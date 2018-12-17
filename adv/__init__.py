@@ -91,27 +91,33 @@ class Adv(object):
                     break
 
         if e.pin == 'x_cancel':
-            log('cancel','x%s'%this.x_status[0],0)
             if 'x5' in this.conf['al'] and this.x_status == (5, 0):
                 for i in this.conf['al']['x5']:
                     if getattr(this,i).cast():
+                        log("cancel",'x%s'%this.x_status[0],0)
                         break
             elif 'x4' in this.conf['al'] and this.x_status == (4, 5):
                 for i in this.conf['al']['x4']:
                     if getattr(this,i).cast():
+                        log("cancel",'x%s'%this.x_status[0],0)
                         break
             elif 'x3' in this.conf['al'] and this.x_status == (3, 4):
                 for i in this.conf['al']['x3']:
                     if getattr(this,i).cast():
+                        log("cancel",'x%s'%this.x_status[0],0)
                         break
             elif 'x2' in this.conf['al'] and this.x_status == (2, 3):
                 for i in this.conf['al']['x2']:
                     if getattr(this,i).cast():
+                        log("cancel",'x%s'%this.x_status[0],0)
                         break
             elif 'x1' in this.conf['al'] and this.x_status == (1, 2):
                 for i in this.conf['al']['x1']:
                     if getattr(this,i).cast():
+                        log("cancel",'x%s'%this.x_status[0],0)
                         break
+            else:
+                return
             #elif this.x_status == (0, 1) and this.conf['al']['x1']:
                 #for i in this.conf['al']['x0'] :
                     #getattr(this, i).cast()
@@ -133,6 +139,18 @@ class Adv(object):
         arm = 10.0 * this.arm_mod()
         return 5.0/3 * this.dmg_mod(name) * att/arm
 
+
+    def dmg_mod(this, name):
+        if name[0] == 's':
+            return this.dmg_mod_s(name)
+        elif name[0:2] == 'fs':
+            return this.dmg_mod_fs(name)
+        elif name[0] == 'x':
+            return this.dmg_mod_x(name)
+        else:
+            return 1
+
+
     def dmg_mod_s(this, name):
         return 1
 
@@ -145,24 +163,21 @@ class Adv(object):
     def dmg_mod_fs(this):
         return 1
 
-    def dmg_mod(this, name):
-        if name[0] == 's':
-            return this.dmg_mod_s(name)
-        elif name[0:2] == 'fs':
-            return this.dmg_mod_fs(name)
-        elif name[0] == 'x':
-            return this.dmg_mod_x(name)
-        else:
-            return 1
-
     def att_mod(this):
         return 1
+    
+
+    def x_speed(this):
+        return 1
+
 
     def arm_mod(this):
         return 1
 
+
     def sp_mod(this, name):
         return 1
+
 
     def dmg_make(this, name, att):
         count = this.dmg_formula(name, att)
@@ -184,7 +199,7 @@ class Adv(object):
 
     def range_x(this):
         if this.x_status[1] == 0 :
-            time = this.conf["x1_startup"]
+            time = float(this.conf["x1_startup"]) / this.x_speed()
             this.idle.timing += time
             if this.x_status[0] == 0:
                 this.think_pin('s')
@@ -208,15 +223,15 @@ class Adv(object):
 
         if seq == 5:
             this.x_status = (5, 0)
-            time = this.conf["x5_recovery"]
+            time = float(this.conf["x5_recovery"]) / this.x_speed()
         else:
             this.x_status = (seq, seq+1)
-            time = this.conf["x%d_startup"%(seq+1)]
+            time = float(this.conf["x%d_startup"%(seq+1)]) / this.x_speed()
         this.idle.timing += time
 
     def melee_x(this):
         if this.x_status[1] == 0 :
-            time = this.conf["x1_startup"]
+            time = float(this.conf["x1_startup"]) / this.x_speed()
             this.idle.timing += time
             if this.x_status[0] == 0:
                 this.think_pin('s')
@@ -239,17 +254,15 @@ class Adv(object):
 
         if seq == 5:
             this.x_status = (5, 0)
-            time = this.conf["x5_recovery"]
+            time = float(this.conf["x5_recovery"]) / this.x_speed()
         else:
             this.x_status = (seq, seq+1)
-            time = this.conf["x%d_startup"%(seq+1)]
+            time = float(this.conf["x%d_startup"%(seq+1)]) / this.x_speed()
         this.idle.timing += time
 
 
 
     def s(this, e):
-        func = e.name + '_proc'
-        getattr(this, func)(e)
         #if e.name == "s1":
             #this.s1_proc(e)
 
@@ -258,7 +271,12 @@ class Adv(object):
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )
 
         this.idle.timing = now() + this.conf[e.name+"_time"]
-        this.dmg_make(e.name , this.conf[e.name+"_dmg"])
+        dmg = this.conf[e.name+"_dmg"]
+        if dmg :
+            this.dmg_make(e.name , this.conf[e.name+"_dmg"])
+
+        func = e.name + '_proc'
+        getattr(this, func)(e)
 
         this.x_status = (0, 0)
         #this.think_pin("s")

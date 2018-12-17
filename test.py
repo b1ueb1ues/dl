@@ -29,7 +29,7 @@ al.update( {
     'x3': ["s1"],
     'x2': ["s1"],
     'x1': ["s1"],
-    's': ["s1"],
+    's': ["s1","s3","s2"],
     } )
 
 conf['al'] = al
@@ -64,7 +64,7 @@ def sum_dmg():
 
 
 Mikoto(conf).run()
-#logcat(['x','dmg','cast'])
+logcat()
 sum_dmg()
 exit()
 

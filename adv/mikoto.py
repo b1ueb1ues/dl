@@ -1,38 +1,74 @@
 import adv
 import wep.blade
+from core.timeline import *
+from core.log import *
 
 
 class Mikoto(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 10    ,
-        "s1_sp"   : 4800     ,
-        "s1_time" : 167/60.0 ,
+        "s1_dmg"  : 0      ,
+        "s1_sp"   : 4500   ,
+        "s1_time" : 2.5    ,
 
-        "s2_dmg"  : 0        ,
-        "s2_sp"   : 0        ,
-        "s2_time" : 0        ,
+        "s2_dmg"  : 0      ,
+        "s2_sp"   : 4500   ,
+        "s2_time" : 2.0    ,
 
-        "s3_dmg"  : 0        ,
-        "s3_sp"   : 0        ,
-        "s3_time" : 0        ,
+        "s3_dmg"  : 3.54*3 ,
+        "s3_sp"   : 8030   ,
+        "s3_time" : 3      ,
         } )
     conf.update(wep.blade.conf)
 
+    def init(this):
+        this.atspd = 1.0
+        this.stance = 0
+        this.s1event = Event("s1buff", this.s1_end)
+        this.s2event = Event("s2buff", this.s2_end)
+
+    
     def sp_mod(this, name):
         return 1
 
-
     def dmg_mod(this, name):
-        return 1
+        if this.stance == 0:
+            return 1
+        elif this.stance == 1:
+            return 1.15
+        elif this.stance == 2:
+            return 1.20
 
-    def init(this):
-        pass
+    def x_speed(this):
+        return this.atspd
+
+
+    def s1_end(this, e):
+        this.stance = 0
+        log("buff",'s1','end')
 
 
     def s1_proc(this, e):
-        pass
+        if this.stance == 0:
+            this.dmg_make('s1',5.32*2)
+            this.stance = 1
+            this.s1event.on(now()+15)
+        elif this.stance == 1:
+            this.dmg_make('s1',3.54*3)
+            this.stance = 2
+            this.s1event.on(now()+15)
+        elif this.stance == 2:
+            this.dmg_make('s1',2.13*4+4.25)
+            this.stance = 0
+
+    def s2_end(this, e):
+        this.atspd = 1.0
+        log("buff","s2","end")
+
     def s2_proc(this, e):
-        pass
+        this.atspd = 1.2
+        log("buff","s2","start")
+        this.s2event.on(now()+10)
+
     def s3_proc(this, e):
         pass
