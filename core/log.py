@@ -7,6 +7,7 @@ g_log_active = []
 
 
 def loginit(log=None):
+    global g_log_active
     if log == None :
         g_log_active = []
         return g_log_active

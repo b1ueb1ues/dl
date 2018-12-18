@@ -13,9 +13,9 @@ class Lily(adv.Adv):
         "s2_sp"   : 5909     ,
         "s2_time" : 106/60.0 ,
 
-        "s3_dmg"  : 0        ,
-        "s3_sp"   : 0        ,
-        "s3_time" : 0        ,
+        "s3_dmg"  : 4*2.71        ,
+        "s3_sp"   : 8597        ,
+        "s3_time" : 1        ,
         } )
     conf.update(wep.wand.conf)
 
@@ -25,7 +25,7 @@ class Lily(adv.Adv):
     def dmg_mod(this, name):
         return 1
 
-    def str_mod(this, name):
+    def att_mod(this):
         return 1.15
     
     def init(this):
