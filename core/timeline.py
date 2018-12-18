@@ -92,6 +92,7 @@ class Event(object):
         this.trigger()
         if this.timing <= now():
             if this.online:
+                this.online = 0
                 this.timeline.rm(this)
 
     def listener(this, cb,  eventname = None):

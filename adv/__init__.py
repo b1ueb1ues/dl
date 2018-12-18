@@ -14,6 +14,13 @@ class Skill(object):
             this.ac = ac
         if sp:
             this.sp = sp
+        this.init()
+
+
+    def init(this):
+        pass
+
+
     def charge(this,sp):
         this.charged += sp
         #if this.charged > this.sp:
@@ -40,11 +47,26 @@ class Adv(object):
     x_status = (0,0)
     conf = {}
 
+    conf_default = { 
+            "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05}
+            }
+
+    conf_default['al'] = {
+        'sp': [],
+        'x5': [],
+        'x4': [],
+        'x3': [],
+        'x2': [],
+        'x1': [],
+        's': [],
+        }
+
     def __init__(this,conf):
         this.log = []
         loginit(this.log)
         tmpconf = {}
         tmpconf.update(this.conf)
+        tmpconf.update(this.conf_default)
         tmpconf.update(conf)
         this.conf = tmpconf
         this.s1 = Skill("s1",this.conf["s1_sp"])
@@ -93,28 +115,34 @@ class Adv(object):
         if e.pin == 'x_cancel':
             if 'x5' in this.conf['al'] and this.x_status == (5, 0):
                 for i in this.conf['al']['x5']:
-                    if getattr(this,i).cast():
+                    if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
+                        getattr(this,i).cast()
                         break
+
             elif 'x4' in this.conf['al'] and this.x_status == (4, 5):
                 for i in this.conf['al']['x4']:
-                    if getattr(this,i).cast():
+                    if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
+                        getattr(this,i).cast()
                         break
             elif 'x3' in this.conf['al'] and this.x_status == (3, 4):
                 for i in this.conf['al']['x3']:
-                    if getattr(this,i).cast():
+                    if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
+                        getattr(this,i).cast()
                         break
             elif 'x2' in this.conf['al'] and this.x_status == (2, 3):
                 for i in this.conf['al']['x2']:
-                    if getattr(this,i).cast():
+                    if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
+                        getattr(this,i).cast()
                         break
             elif 'x1' in this.conf['al'] and this.x_status == (1, 2):
                 for i in this.conf['al']['x1']:
-                    if getattr(this,i).cast():
+                    if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
+                        getattr(this,i).cast()
                         break
             else:
                 return
@@ -123,7 +151,8 @@ class Adv(object):
                     #getattr(this, i).cast()
         if e.pin == 's' and 's' in this.conf['al']:
             for i in this.conf['al']['s'] :
-                getattr(this, i).cast()
+                if getattr(this, i).cast():
+                    break
 
     def charge(this, name, sp):
         sp = sp * this.sp_mod(name)
@@ -134,10 +163,10 @@ class Adv(object):
         log("sp", name, sp,"%d/%d, %d/%d, %d/%d"%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
 
-    def dmg_formula(this, name, att):
-        att = att * this.att_mod()
+    def dmg_formula(this, name, dmg_p):
+        att = 1.0 * this.att_mod()
         arm = 10.0 * this.arm_mod()
-        return 5.0/3 * this.dmg_mod(name) * att/arm
+        return 5.0/3 * dmg_p * this.dmg_mod(name) * att/arm
 
 
     def dmg_mod(this, name):
@@ -179,8 +208,8 @@ class Adv(object):
         return 1
 
 
-    def dmg_make(this, name, att):
-        count = this.dmg_formula(name, att)
+    def dmg_make(this, name, dmg_p):
+        count = this.dmg_formula(name, dmg_p)
         
         if name[0] == "x":
             spgain = this.conf[name[:2]+"_sp"]
@@ -239,17 +268,16 @@ class Adv(object):
             return
 
         seq = this.x_status[1]
-        att = this.conf["x%d_dmg"%seq]
+        dmg_p = this.conf["x%d_dmg"%seq]
         sp = this.conf["x%d_sp"%seq] 
-        log("x", "x%d"%seq, 0)
-
-        this.dmg_make("x%d"%seq, att)
-        this.charge("x%d"%seq, sp)
-
         if seq == 5:
             log("x", "x%d"%seq, 0,"-------------------------------------c5")
         else:
             log("x", "x%d"%seq, 0)
+
+        this.dmg_make("x%d"%seq, dmg_p)
+        this.charge("x%d"%seq, sp)
+
         this.think_pin("x_cancel")
 
         if seq == 5:
