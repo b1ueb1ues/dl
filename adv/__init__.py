@@ -198,8 +198,6 @@ class Adv(object):
     def dmg_mod_x(this, name):
         return 1
 
-    def dmg_mod_fs(this):
-        return 1
 
     def att_mod(this):
         return 1

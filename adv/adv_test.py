@@ -70,9 +70,12 @@ def sum_dmg():
         if tmp[i] != 0:
             xdmg_sum[i] = tmp[i]
 
-    sdmg_sum['s1'] = "dmg: %.2f (x%d)"%(sdmg_sum['s1']['dmg'], sdmg_sum['s1']['count'])
-    sdmg_sum['s2'] = "dmg: %.2f (x%d)"%(sdmg_sum['s2']['dmg'], sdmg_sum['s2']['count'])
-    sdmg_sum['s3'] = "dmg: %.2f (x%d)"%(sdmg_sum['s3']['dmg'], sdmg_sum['s3']['count'])
+    for i in dmg_sum:
+        dmg_sum[i] = '%.3f'%dmg_sum[i]
+
+    for i in sdmg_sum:
+        sdmg_sum[i] = "dmg: %.2f (x%d)"%(sdmg_sum[i]['dmg'], sdmg_sum[i]['count'])
+
 
     global mname
     print '\n======================='

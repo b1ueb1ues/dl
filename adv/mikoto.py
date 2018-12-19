@@ -38,7 +38,8 @@ class Mikoto(adv.Adv):
         return 1
 
     def att_mod(this):
-        return 1
+        # calculate 20%crit to 12.42604% attack
+        return 1.1242604
 
     def dmg_mod_x(this, name):
         if this.stance == 0:

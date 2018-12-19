@@ -104,6 +104,8 @@ if __name__ == '__main__':
     for i in l:
         if i[1] == 'dmg' and i[2][0] == 's' and i[2][-1:] == 'y':
             energized[i[2][:2]] += i[3]
+    for i in energized:
+        energized[i] = "%.3f"%energized[i]
     print "energized  |",energized
 
 
