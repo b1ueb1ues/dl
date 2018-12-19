@@ -11,11 +11,11 @@ class Kleimann(adv.Adv):
     conf.update( {
         "s1_dmg"  : 9.84  ,
         "s1_sp"   : 2854     ,
-        "s1_time" : 111/60.0 ,
+        "s1_time" : 1.9, #114/60.0 ,
 
         "s2_dmg"  : 4.19*2   ,
         "s2_sp"   : 7090     ,
-        "s2_time" : 109/60.0 ,
+        "s2_time" : 1.8, #109/60.0 ,
 
         "s3_dmg"  : 0        ,
         "s3_sp"   : 0        ,
@@ -27,7 +27,7 @@ class Kleimann(adv.Adv):
         return 1
 
     def dmg_mod_s(this, name):
-        return 1.2*1.13
+        return 1.45*1.11
 
     def init(this):
         pass

@@ -154,7 +154,15 @@ class Adv(object):
                 if getattr(this, i).cast():
                     break
 
-    def charge(this, name, sp):
+    def charge(this, name, sp): #, percent=None):
+        if type(sp) == str and sp[-1] == '%':
+            percent = int(sp[:-1])
+            this.s1.charge(this.conf['s1_sp']*percent/100)
+            this.s2.charge(this.conf['s2_sp']*percent/100)
+            this.s3.charge(this.conf['s3_sp']*percent/100)
+            log("sp", name, "%d%%"%percent,"%d/%d, %d/%d, %d/%d"%(\
+                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
+            return
         sp = sp * this.sp_mod(name)
         this.s1.charge(sp)
         this.s2.charge(sp)

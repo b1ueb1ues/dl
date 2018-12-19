@@ -4,13 +4,17 @@ if __package__ is None:
 
 from core.log import *
 
+
+mname = ""
 def test(classname, conf, verbose):
+    global mname
     classname(conf=conf).run(310)
+
+    mname = classname.__name__
     if verbose:
         logcat()
     sum_dmg()
     return
-
 
 
 def sum_dmg():
@@ -23,13 +27,13 @@ def sum_dmg():
             #dmg_sum[i[2][0]] += i[3]
             if i[2][0] == 'x':
                 dmg_sum['x'][0] += i[3]
-            elif i[2] == 's1':
+            elif i[2][:2] == 's1':
                 dmg_sum['s'] += i[3]
                 sdmg_sum['s1'][0] += i[3]
-            elif i[2] == 's2':
+            elif i[2][:2] == 's2':
                 dmg_sum['s'] += i[3]
                 sdmg_sum['s2'][0] += i[3]
-            elif i[2] == 's3':
+            elif i[2][:2] == 's3':
                 dmg_sum['s'] += i[3]
                 sdmg_sum['s3'][0] += i[3]
         elif i[1] == 'cast':
@@ -65,7 +69,9 @@ def sum_dmg():
             xdmg_sum[i] = tmp[i]
 
 
-
+    global mname
+    print '\n======================='
+    print mname,dmg_sum['total']
     print '-----------------------'
     print "dmgsum     |", dmg_sum
     print "skill_stat |", sdmg_sum

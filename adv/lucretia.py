@@ -13,7 +13,7 @@ class Lucretia(adv.Adv):
     conf.update( {
         "s1_dmg"  : 3.22*3   ,
         "s1_sp"   : 3530     ,
-        "s1_time" : 150/60.0 ,
+        "s1_time" : 180/60.0 ,
 
         "s2_dmg"  : 0        ,
         "s2_sp"   : 4553     ,
@@ -36,7 +36,9 @@ class Lucretia(adv.Adv):
 
 
     def init(this):
+        #!!!!!!!!!!!!!!!!!!!!!
         this.s2.charge(400)
+        #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
         this.s2buff = Event("s2buff",this.s2_buff_end)
         this.doublebuff = Event("doublebuff",this.double_buff_end)
@@ -45,11 +47,11 @@ class Lucretia(adv.Adv):
                 "double":1, #1.2 for 15s
                 }
 
-        def att_mod(this):
-            return this.buff["s2"] * this.buff["double"]
+    def att_mod(this):
+        return this.buff["s2"] * this.buff["double"]
 
     def dmg_mod_s(this, name):
-        return 1.15
+        return 1.15*1.25
 
     def get_energy(this, count):
         this.energy += count
@@ -87,16 +89,24 @@ if __name__ == '__main__':
     conf = {}
     conf['al'] = {
         #'sp': ["s1","s2"],
-        'x5': ["s1"],
+        'x5': ["s2"],
         'x4': [],
         'x3': [],
         'x2': [],
         'x1': [],
-        's':  ["s3","s2"],
-        #'s':  ["s1","s3"],
+        's':  ["s3","s2","s1"],
+        #'s':  ["s1","s2","s3"],
         } 
 
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
+    l = logget()
+    energized = {'s1':0, 's2':0, 's3':0}
+    for i in l:
+        if i[1] == 'dmg' and i[2][0] == 's' and i[2][-1:] == 'y':
+            energized[i[2][:2]] += i[3]
+    print "energized  |",energized
+
+
 
 '''
 2 1 | 2 3 1 | 2 1 | 1 3 2 | 2 1 | 3 2 1 | 2 1 | 2 3 1 | 2 1 | 2 3 1 |
