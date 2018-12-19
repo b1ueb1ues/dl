@@ -1,46 +1,21 @@
 import adv_test
-import adv
+from adv import *
+import adv.maribelle
 import wep.wand
 
 
 def module():
-    return Maribelle
+    return Maribelle_s3
 
-class Maribelle(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 1.61*6 ,
-        "s1_sp"   : 2648   ,
-        "s1_time" : 2.7    ,
-
-        "s2_dmg"  : 2.44*4 ,
-        "s2_sp"   : 5838   ,
-        "s2_time" : 1.8    ,
-
-        "s3_dmg"  : 4*2.71   ,
-        "s3_sp"   : 8597     ,
-        "s3_time" : 1.9        ,
-        } )
-    conf.update(wep.wand.conf)
-
-    def sp_mod(this, name):
-        return 1
-
-    def dmg_mod_s(this, name):
-        return 1.65*1.15
-
+class Maribelle_s3(adv.maribelle.Maribelle):
     def init(this):
-        this.s1.charge(20000)
-        this.s2.charge(20000)
-        this.s3.charge(20000)
-
-
-    def s1_proc(this, e):
-        pass
-    def s2_proc(this, e):
-        pass
-    def s3_proc(this, e):
-        pass
+        adv.maribelle.Maribelle.init(this)
+        this.conf.update( {
+            "s3_dmg"  : 4*2.71 ,
+            "s3_sp"   : 8597   ,
+            "s3_time" : 1.9    ,
+            } )
+        this.s3 = Skill("s3", this.conf["s3_sp"])
 
 
 if __name__ == '__main__':

@@ -14,15 +14,15 @@ class Mikoto(adv.Adv):
     conf.update( {
         "s1_dmg"  : 0      ,
         "s1_sp"   : 4500   ,
-        "s1_time" : 2.5    ,
+        "s1_time" : 1.9    ,
 
         "s2_dmg"  : 0      ,
         "s2_sp"   : 4500   ,
-        "s2_time" : 2.0    ,
+        "s2_time" : 1.1    ,
 
         "s3_dmg"  : 3.54*3 ,
         "s3_sp"   : 8030   ,
-        "s3_time" : 3      ,
+        "s3_time" : 2.7      ,
         } )
     conf.update(wep.blade.conf)
 
@@ -37,7 +37,10 @@ class Mikoto(adv.Adv):
     def sp_mod(this, name):
         return 1
 
-    def dmg_mod(this, name):
+    def att_mod(this):
+        return 1
+
+    def dmg_mod_x(this, name):
         if this.stance == 0:
             return 1
         elif this.stance == 1:
@@ -45,7 +48,10 @@ class Mikoto(adv.Adv):
         elif this.stance == 2:
             return 1.20
 
-    def x_speed(this):
+    def dmg_mod_s(this, name):
+        return 1.25
+
+    def speed(this):
         return this.atspd
 
 
@@ -84,29 +90,6 @@ class Mikoto(adv.Adv):
 
     def s3_proc(this, e):
         pass
-
-class Mikoto_s1_wait(adv.Skill):
-    def check(this):
-        if this.hold :
-            return 0
-        if this.charged >= this.sp:
-            return 1
-        else:
-            return 0
-
-
-    def rs(this, e):
-        this.hold = 1
-
-
-    def ns(this, e):
-        this.hold = 0
-
-
-    def init(this):
-        this.hold = 0
-        add_event_listener("ruin_stance", this.rs)
-        add_event_listener("no_stance", this.ns)
 
 
 if __name__ == '__main__':

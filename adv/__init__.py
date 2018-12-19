@@ -174,7 +174,8 @@ class Adv(object):
     def dmg_formula(this, name, dmg_p):
         att = 1.0 * this.att_mod()
         arm = 10.0 * this.arm_mod()
-        return 5.0/3 * dmg_p * this.dmg_mod(name) * att/arm
+        #return 5.0/3 * dmg_p * this.dmg_mod(name) * att/arm   # true formula 
+        return att * dmg_p * this.dmg_mod(name) /10
 
 
     def dmg_mod(this, name):
@@ -204,7 +205,7 @@ class Adv(object):
         return 1
     
 
-    def x_speed(this):
+    def speed(this):
         return 1
 
 
@@ -236,7 +237,7 @@ class Adv(object):
 
     def range_x(this):
         if this.x_status[1] == 0 :
-            time = float(this.conf["x1_startup"]) / this.x_speed()
+            time = float(this.conf["x1_startup"]) / this.speed()
             this.idle.timing += time
             if this.x_status[0] == 0:
                 this.think_pin('s')
@@ -260,15 +261,15 @@ class Adv(object):
 
         if seq == 5:
             this.x_status = (5, 0)
-            time = float(this.conf["x5_recovery"]) / this.x_speed()
+            time = float(this.conf["x5_recovery"]) / this.speed()
         else:
             this.x_status = (seq, seq+1)
-            time = float(this.conf["x%d_startup"%(seq+1)]) / this.x_speed()
+            time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
         this.idle.timing += time
 
     def melee_x(this):
         if this.x_status[1] == 0 :
-            time = float(this.conf["x1_startup"]) / this.x_speed()
+            time = float(this.conf["x1_startup"]) / this.speed()
             this.idle.timing += time
             if this.x_status[0] == 0:
                 this.think_pin('s')
@@ -290,10 +291,10 @@ class Adv(object):
 
         if seq == 5:
             this.x_status = (5, 0)
-            time = float(this.conf["x5_recovery"]) / this.x_speed()
+            time = float(this.conf["x5_recovery"]) / this.speed()
         else:
             this.x_status = (seq, seq+1)
-            time = float(this.conf["x%d_startup"%(seq+1)]) / this.x_speed()
+            time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
         this.idle.timing += time
 
 
@@ -306,7 +307,7 @@ class Adv(object):
         log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )
 
-        this.idle.timing = now() + this.conf[e.name+"_time"]
+        this.idle.timing = now() + this.conf[e.name+"_time"] / this.speed()
         dmg = this.conf[e.name+"_dmg"]
         if dmg :
             this.dmg_make(e.name , this.conf[e.name+"_dmg"])

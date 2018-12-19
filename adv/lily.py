@@ -33,9 +33,7 @@ class Lily(adv.Adv):
         return 1.15
     
     def init(this):
-        this.s1.charge(20000)
-        this.s2.charge(20000)
-        this.s3.charge(20000)
+        this.charge("prep", "100%")
 
     def s1_proc(this, e):
         pass
