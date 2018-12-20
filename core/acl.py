@@ -60,7 +60,7 @@ def acl_func(acl):
     line += "def foo(this, e):\n"
 
     for i in prepare_list:
-        line += "    %s\n"%(i.strip())
+        line += "    %s\n"%(i.strip().replace('\n','\n    '))
 
     for i in aif:
         if len(i) == 1:
@@ -68,7 +68,9 @@ def acl_func(acl):
             line += "        return '%s'\n"%( i[0].strip() )
             #line_list.append("%s()\n"%i[0])
         elif len(i) == 2:
-            line += "    if %s :\n"%( i[1].strip() )
+            condi = i[1].strip().replace("==","=").replace("=","==")
+            #condi = i[1].strip()
+            line += "    if %s :\n"%( condi )
             line += "        if %s():\n"%( i[0].strip() )
             line += "            return '%s'\n"%( i[0].strip() )
             #line_list.append( "if %s :\n    %s()\n"%(i[1],i[0]) )
@@ -88,6 +90,7 @@ if __name__ == "__main__":
 
 
     acl = """
+        #if a>b :\n    b=3\n
         /s1,a>b and pin!='sp'
         /s2
         /s3
@@ -96,7 +99,10 @@ if __name__ == "__main__":
         #s3 = foo
         #pin = epin
         """
-    acl_func(acl)(this, e)
+    try:
+        acl_func(acl)(this, e)
+    except Exception, e:
+        pass
     print g_line
     
 

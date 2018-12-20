@@ -11,7 +11,12 @@ def test(classname, conf, verbose):
     classname(conf=conf).run(300)
 
     mname = classname.__name__
-    if verbose:
+    import sys
+    if len(sys.argv) >= 2:
+        verbose = sys.argv[1]
+    verbose = int(verbose)
+
+    if verbose != 0:
         logcat()
     sum_dmg()
     return

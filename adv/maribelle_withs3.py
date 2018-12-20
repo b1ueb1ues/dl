@@ -14,16 +14,17 @@ class Maribelle_s3(adv.maribelle.Maribelle):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        /s1, seq==5 and pin == 'x_cancel'
-        /s2, seq==5 and pin == 'x_cancel'
+        /s1, seq=5 and cancel
+        /s2, seq=5 and cancel
         /s1, pin == 'prep'
+        /s3
         """
         
-    #conf.update({
-            #"s3_dmg"  : 4*2.71 ,
-            #"s3_sp"   : 8597   ,
-            #"s3_time" : 1.9    ,
-        #})
+    conf.update({
+            "s3_dmg"  : 4*2.71 ,
+            "s3_sp"   : 8597   ,
+            "s3_time" : 1.9    ,
+        })
 
     adv_test.test(module(), conf, verbose=1)
 

@@ -7,7 +7,9 @@ import core.acl
 class Skill(object):
     charged = 0
     sp = 0
-    def __init__(this, name=None, sp=None, ac=None):
+    duration = 1.9
+    silence = [0]
+    def __init__(this, name=None, sp=None, duration=None, ac=None):
         this.charged = 0
         if name:
             this.name = name
@@ -15,6 +17,9 @@ class Skill(object):
             this.ac = ac
         if sp:
             this.sp = sp
+        if duration :
+            this.duration = duration
+        this.silence_end = Event("silence",this.restore)
         this.init()
 
     def __call__(this):
@@ -30,19 +35,33 @@ class Skill(object):
         #if this.charged > this.sp:
             #this.charged = this.sp
 
+    def restore(this, e):
+        this.silence[0] = 0
+        Event("silence_end").trigger()
+
+
     def check(this):
         if this.sp == 0:
+            return 0
+        elif this.silence[0] == 1:
             return 0
         elif this.charged >= this.sp:
             return 1
         else:
             return 0
 
-    def cast(this):
+    def cast(this, duration=None):
         if not this.check():
             return 0
         else:
             this.charged = 0
+            if duration == None:
+                duration = this.duration
+            # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
+            if duration > 1.9:
+                duration = 1.9
+            this.silence_end.on(now()+this.duration)
+            this.silence[0] = 1
             this.ac()
             return 1
 
@@ -69,6 +88,15 @@ class Adv(object):
 
     acl_prepare_default = """
         #pin=e.pin
+        #x=0
+        #s=0
+        #sx=0
+        #sp=0
+        #cancel=0
+        #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
+        #if pin == 's': s=1
+        #if pin == 's-x': sx=1
+        #if pin == 'sp': sp=1
         #s1=this.s1.cast
         #s2=this.s2.cast
         #s3=this.s3.cast
@@ -104,18 +132,24 @@ class Adv(object):
 
         Timeline().reset()
         this.idle = Event("idle", this.ac).on()
+        this.x_before = 0
+        this.first_x_after_s = 0
         this.x_status = (0,0)
         Event("s1").listener(this.s)
         Event("s2").listener(this.s)
         Event("s3").listener(this.s)
+        Event("silence_end").listener(this.think_after_s)
 
         this.think = this.think3
+
         this.init()
-        if type(this.conf['acl']) == str:
-            this.think = this.think3
-            this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
-        else:
-            this.think = this.think1
+
+        this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
+        #if type(this.conf['acl']) == str:
+        #   this.think = this.think3
+        #   this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
+        #else:
+        #    this.think = this.think1
 
         Timeline().run(d)
 
@@ -127,11 +161,15 @@ class Adv(object):
             latency = this.conf['think_latency']['default']
         e = Event('think', this.think).on(now() + latency).pin = pin
 
+    def think_after_s(this, e):
+        this.think_pin("s")
+        this.first_x_after_s = 1
+
+
     def think(this, e):
         pass
 
     def think3(this, e):
-        print e.pin
         this.__acl(this, e)
 
 
@@ -142,7 +180,7 @@ class Adv(object):
                 if getattr(this,i).cast():
                     break
 
-        if e.pin == 'x_cancel':
+        if e.pin == 'x':
             if 'x5' in this.conf['acl'] and this.x_status == (5, 0):
                 for i in this.conf['acl']['x5']:
                     if getattr(this,i).check():
@@ -286,7 +324,11 @@ class Adv(object):
             log("x", "x%d"%seq, 0,"-------------------------------------c5")
         else:
             log("x", "x%d"%seq, 0)
-        this.think_pin("x_cancel")
+
+        this.think_pin("x")
+        if this.first_x_after_s:
+            this.think_pin("s-x")
+            this.first_x_after_s = 0
 
         if seq == 5:
             this.x_status = (5, 0)
@@ -294,6 +336,7 @@ class Adv(object):
         else:
             this.x_status = (seq, seq+1)
             time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
+        this.x_before = now()
         this.idle.timing += time
 
     def melee_x(this):
@@ -316,7 +359,10 @@ class Adv(object):
         this.dmg_make("x%d"%seq, dmg_p)
         this.charge("x%d"%seq, sp)
 
-        this.think_pin("x_cancel")
+        this.think_pin("x")
+        if this.first_x_after_s:
+            this.think_pin("s-x")
+            this.first_x_after_s = 0
 
         if seq == 5:
             this.x_status = (5, 0)
@@ -324,6 +370,7 @@ class Adv(object):
         else:
             this.x_status = (seq, seq+1)
             time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
+        this.x_before = now()
         this.idle.timing += time
 
 
@@ -333,8 +380,9 @@ class Adv(object):
             #this.s1_proc(e)
 
         seq = this.x_status[0]
-        if seq == 0:
-            log("cancel", "x%d"%seq , 0)
+        if seq != 0:
+            time = now() - this.x_before
+            log("cancel", "x%d"%seq , time)
 
         log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )

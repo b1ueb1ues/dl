@@ -14,17 +14,11 @@ class Mikoto21(adv.mikoto.Mikoto):
 if __name__ == '__main__':
     conf = {}
 
-    al = {
-        #'sp': ["s1","s2"],
-        'x5': ["s2"],
-        'x4': ["s2"],
-        'x3': ["s2"],
-        'x2': ["s2"],
-        'x1': ["s2"],
-        's': ["s2", "s1","s3","s2"],
-        } 
-
-    conf['al'] = al
+    conf['acl'] = """
+        /s2, seq=5
+        /s1, cancel
+        /s3, cancel
+        """
 
     adv_test.test(module(), conf, verbose=0)
 

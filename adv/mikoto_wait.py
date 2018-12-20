@@ -45,18 +45,11 @@ class Mikoto_s1_wait(adv.Skill):
 
 if __name__ == '__main__':
     conf = {}
-
-    al = {
-        #'sp': ["s1","s2"],
-        'x5': ["s1"],
-        'x4': ["s1"],
-        'x3': ["s1"],
-        'x2': ["s1"],
-        'x1': ["s1"],
-        's': ["s1","s3","s2"],
-        } 
-
-    conf['al'] = al
-
+    conf['acl'] = """
+        /s1, seq==5 and cancel
+        /s2, seq==0 
+        /s3
+        """
     adv_test.test(module(), conf, verbose=0)
+
 

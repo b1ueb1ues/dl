@@ -43,15 +43,12 @@ class Maribelle(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = {
-        #'sp': ["s1","s2"],
-        'x5': ["s1","s2"],
-        'x4': [],
-        'x3': ["s1","s2"],
-        'x2': ["s1","s2"],
-        'x1': ["s1","s2"],
-        's':  ["s1","s2"],
-        } 
+    conf['acl'] = """
+        /s1, seq=5 and cancel
+        /s2, seq=5 and cancel
+        /s1, pin == 'prep'
+        /s3
+        """
 
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 
