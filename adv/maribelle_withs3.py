@@ -26,5 +26,9 @@ if __name__ == '__main__':
             #"s3_time" : 1.9    ,
         #})
 
+    import time
+    a = time.time()
     adv_test.test(module(), conf, verbose=0)
+    b = time.time()
+    print b-a
 

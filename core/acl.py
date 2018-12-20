@@ -19,7 +19,7 @@ class Acl(object):
         this.aif = aif
         return line_list
 
-def compile(acl):
+def acl_compile(acl):
     aif = []
     acl_list = acl.strip().split('\n')
     for i in acl_list:
@@ -40,7 +40,8 @@ def compile(acl):
             line += "            break\n"
             #line_list.append( "if %s :\n    %s()\n"%(i[1],i[0]) )
     line += '    break'
-    return line
+    #return line
+    return compile(line, "acl", "exec")
 
 
 def create_think(acl, prepare):
@@ -49,22 +50,29 @@ def create_think(acl, prepare):
     for i in acl_list:
         aif.append(i.strip().split(','))
 
+    prepare_list = []
+    prepare_list = prepare.strip().split('\n')
 
-    line = "while 1:\n"
-    #line = "def while 1:\n"
-    #line_list = []
+    line = ""
+
+    line += "def foo(this, e):\n"
+
+    for i in prepare_list:
+        line += "    %s\n"%(i.strip())
+
     for i in aif:
         if len(i) == 1:
             line += "    if %s():\n"%i[0]
-            line += "        break\n"
+            line += "        return '%s'\n"%i[0]
             #line_list.append("%s()\n"%i[0])
         elif len(i) == 2:
             line += "    if %s :\n"%i[1]
             line += "        if %s():\n"%i[0]
-            line += "            break\n"
+            line += "            return '%s'\n"%i[0]
             #line_list.append( "if %s :\n    %s()\n"%(i[1],i[0]) )
-    line += '    break'
-    return line
+    line += '    return 0'
+    exec(line)
+    return foo
 
 if __name__ == "__main__":
     a = 1

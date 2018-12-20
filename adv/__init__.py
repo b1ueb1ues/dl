@@ -103,9 +103,25 @@ class Adv(object):
         Event("s3").listener(this.s)
 
         this.init()
+        this.think = this.think3
         if type(this.conf['acl']) == str:
-            this.acl = core.acl.compile(this.conf['acl'])
+            if this.think == this.think2:
+                    this.acl = core.acl.acl_compile(this.conf['acl'])
+            elif this.think == this.think3:
+                this.ac_prepare = """
+                    pin = e.pin
+                    s1 = this.s1.cast
+                    s2 = this.s2.cast
+                    s3 = this.s3.cast
+                    seq = this.x_status[0]
+                """
+                this.__acl = core.acl.create_think(this.conf['acl'],this.ac_prepare)
+            else:
+                print "not support acl_string in think1 mode"
+                exit()
+
         Timeline().run(d)
+
 
     def think_pin(this, pin):
         if pin in this.conf['think_latency'] :
@@ -116,11 +132,16 @@ class Adv(object):
 
     def think(this, e):
         if type(this.conf['acl']) == str:
-            this.think1(e)
+            this.think(e)
         else:
-            this.think2(e)
+            this.think1(e)
 
-    def think1(this, e):
+
+    def think3(this, e):
+        this.__acl(this, e)
+
+
+    def think2(this, e):
         pin = e.pin
         seq = this.x_status[0]
 
@@ -129,7 +150,8 @@ class Adv(object):
         exec(this.acl,globals(),localv)
 
 
-    def think2(this, e):
+
+    def think1(this, e):
         print e.pin
         if e.pin == 'sp' and 'sp' in this.conf['acl']:
             for i in this.conf['acl']['sp']:
