@@ -31,7 +31,9 @@ class Skill(object):
             #this.charged = this.sp
 
     def check(this):
-        if this.charged >= this.sp:
+        if this.sp == 0:
+            return 0
+        elif this.charged >= this.sp:
             return 1
         else:
             return 0
@@ -120,14 +122,15 @@ class Adv(object):
 
     def think1(this, e):
         pin = e.pin
-        s1 = this.s1
-        s2 = this.s2
-        s3 = this.s3
         seq = this.x_status[0]
-        exec(this.acl)
+
+        localv = vars(this)
+        localv.update(locals())
+        exec(this.acl,globals(),localv)
 
 
     def think2(this, e):
+        print e.pin
         if e.pin == 'sp' and 'sp' in this.conf['acl']:
             for i in this.conf['acl']['sp']:
                 if getattr(this,i).cast():
@@ -181,8 +184,9 @@ class Adv(object):
             this.s1.charge(this.conf['s1_sp']*percent/100)
             this.s2.charge(this.conf['s2_sp']*percent/100)
             this.s3.charge(this.conf['s3_sp']*percent/100)
-            log("sp", name, "%d%%"%percent,"%d/%d, %d/%d, %d/%d"%(\
+            log("sp", name, "%d%%   "%percent,"%d/%d, %d/%d, %d/%d"%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
+            this.think_pin("prep")
             return
         sp = sp * this.sp_mod(name)
         this.s1.charge(sp)

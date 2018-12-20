@@ -14,8 +14,10 @@ class Maribelle_s3(adv.maribelle.Maribelle):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        s1,seq==4 and pin == 'x_cancel'
-        s2,seq==4 and pin == 'x_cancel'
+        s1, seq==5 and pin == 'x_cancel'
+        s2, seq==5 and pin == 'x_cancel'
+        s1, pin == 'prep'
+        s2, pin == 'prep'
         """
         
     #conf.update({

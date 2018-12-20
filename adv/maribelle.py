@@ -53,5 +53,5 @@ if __name__ == '__main__':
         's':  ["s1","s2"],
         } 
 
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=1)
 
