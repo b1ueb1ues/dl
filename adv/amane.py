@@ -63,7 +63,7 @@ class Amane(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['al'] = {
+    conf['acl'] = {
         #'sp': ["s1","s2"],
         'x5': ["s2","s1","s3"],
         'x4': [],

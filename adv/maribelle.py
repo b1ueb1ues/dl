@@ -43,7 +43,7 @@ class Maribelle(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['al'] = {
+    conf['acl'] = {
         #'sp': ["s1","s2"],
         'x5': ["s1","s2"],
         'x4': [],

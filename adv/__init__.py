@@ -1,5 +1,6 @@
 from core.timeline import *
 from core.log import *
+import core.acl
 
 
 
@@ -15,6 +16,9 @@ class Skill(object):
         if sp:
             this.sp = sp
         this.init()
+
+    def __call__(this):
+        return this.cast()
 
 
     def init(this):
@@ -51,7 +55,7 @@ class Adv(object):
             "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05}
             }
 
-    conf_default['al'] = {
+    conf_default['acl'] = {
         'sp': [],
         'x5': [],
         'x4': [],
@@ -97,6 +101,8 @@ class Adv(object):
         Event("s3").listener(this.s)
 
         this.init()
+        if type(this.conf['acl']) == str:
+            this.acl = core.acl.compile(this.conf['acl'])
         Timeline().run(d)
 
     def think_pin(this, pin):
@@ -107,50 +113,65 @@ class Adv(object):
         e = Event('think', this.think).on(now() + latency).pin = pin
 
     def think(this, e):
-        if e.pin == 'sp' and 'sp' in this.conf['al']:
-            for i in this.conf['al']['sp']:
+        if type(this.conf['acl']) == str:
+            this.think1(e)
+        else:
+            this.think2(e)
+
+    def think1(this, e):
+        pin = e.pin
+        s1 = this.s1
+        s2 = this.s2
+        s3 = this.s3
+        seq = this.x_status[0]
+        exec(this.acl)
+
+
+    def think2(this, e):
+        if e.pin == 'sp' and 'sp' in this.conf['acl']:
+            for i in this.conf['acl']['sp']:
                 if getattr(this,i).cast():
                     break
 
         if e.pin == 'x_cancel':
-            if 'x5' in this.conf['al'] and this.x_status == (5, 0):
-                for i in this.conf['al']['x5']:
+            if 'x5' in this.conf['acl'] and this.x_status == (5, 0):
+                for i in this.conf['acl']['x5']:
                     if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
                         getattr(this,i).cast()
                         break
 
-            elif 'x4' in this.conf['al'] and this.x_status == (4, 5):
-                for i in this.conf['al']['x4']:
+            elif 'x4' in this.conf['acl'] and this.x_status == (4, 5):
+                for i in this.conf['acl']['x4']:
                     if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
                         getattr(this,i).cast()
                         break
-            elif 'x3' in this.conf['al'] and this.x_status == (3, 4):
-                for i in this.conf['al']['x3']:
+            elif 'x3' in this.conf['acl'] and this.x_status == (3, 4):
+                for i in this.conf['acl']['x3']:
                     if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
                         getattr(this,i).cast()
                         break
-            elif 'x2' in this.conf['al'] and this.x_status == (2, 3):
-                for i in this.conf['al']['x2']:
+            elif 'x2' in this.conf['acl'] and this.x_status == (2, 3):
+                for i in this.conf['acl']['x2']:
                     if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
                         getattr(this,i).cast()
                         break
-            elif 'x1' in this.conf['al'] and this.x_status == (1, 2):
-                for i in this.conf['al']['x1']:
+            elif 'x1' in this.conf['acl'] and this.x_status == (1, 2):
+                for i in this.conf['acl']['x1']:
                     if getattr(this,i).check():
                         log("cancel",'x%s'%this.x_status[0],0)
                         getattr(this,i).cast()
                         break
             else:
                 return
-            #elif this.x_status == (0, 1) and this.conf['al']['x1']:
-                #for i in this.conf['al']['x0'] :
+            #elif this.x_status == (0, 1) and this.conf['acl']['x1']:
+                #for i in this.conf['acl']['x0'] :
                     #getattr(this, i).cast()
-        if e.pin == 's' and 's' in this.conf['al']:
-            for i in this.conf['al']['s'] :
+        if e.pin == 's' and 's' in this.conf['acl']:
+            for i in this.conf['acl']['s'] :
                 if getattr(this, i).cast():
                     break
 
@@ -394,7 +415,7 @@ if __name__ == "__main__":
     conf.update( {
         "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05}
         } )
-    al = {
+    acl = {
         'sp': [],
         'x5': [],
         'x4': [],
@@ -404,7 +425,7 @@ if __name__ == "__main__":
         'x0': [],
         }
 
-    al.update( {
+    acl.update( {
             #'sp': ["s1","s2"],
             'x5': ["s1", "s2"],
             'x4': ["s1", "s2"],
@@ -414,7 +435,7 @@ if __name__ == "__main__":
             'x0': ["s1", "s2"],
         } )
 
-    conf['al'] = al
+    conf['acl'] = acl
 
     a = Adv(conf)
     a.run(300)
@@ -423,7 +444,7 @@ if __name__ == "__main__":
 
 
     logreset()
-    conf['al'] = {
+    conf['acl'] = {
             'sp': ["s1","s2"],
             'x5': [],
             'x4': [],
