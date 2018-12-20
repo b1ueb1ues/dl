@@ -67,6 +67,13 @@ class Adv(object):
         's': [],
         }
 
+    acl_prepare_default = """
+        #pin=e.pin
+        #s1=this.s1.cast
+        #s2=this.s2.cast
+        #s3=this.s3.cast
+        #seq = this.x_status[0]
+    """
     def __init__(this,conf):
         this.log = []
         loginit(this.log)
@@ -102,23 +109,13 @@ class Adv(object):
         Event("s2").listener(this.s)
         Event("s3").listener(this.s)
 
-        this.init()
         this.think = this.think3
+        this.init()
         if type(this.conf['acl']) == str:
-            if this.think == this.think2:
-                    this.acl = core.acl.acl_compile(this.conf['acl'])
-            elif this.think == this.think3:
-                this.ac_prepare = """
-                    pin = e.pin
-                    s1 = this.s1.cast
-                    s2 = this.s2.cast
-                    s3 = this.s3.cast
-                    seq = this.x_status[0]
-                """
-                this.__acl = core.acl.create_think(this.conf['acl'],this.ac_prepare)
-            else:
-                print "not support acl_string in think1 mode"
-                exit()
+            this.think = this.think3
+            this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
+        else:
+            this.think = this.think1
 
         Timeline().run(d)
 
@@ -131,24 +128,11 @@ class Adv(object):
         e = Event('think', this.think).on(now() + latency).pin = pin
 
     def think(this, e):
-        if type(this.conf['acl']) == str:
-            this.think(e)
-        else:
-            this.think1(e)
-
+        pass
 
     def think3(this, e):
+        print e.pin
         this.__acl(this, e)
-
-
-    def think2(this, e):
-        pin = e.pin
-        seq = this.x_status[0]
-
-        localv = vars(this)
-        localv.update(locals())
-        exec(this.acl,globals(),localv)
-
 
 
     def think1(this, e):
@@ -349,6 +333,9 @@ class Adv(object):
             #this.s1_proc(e)
 
         seq = this.x_status[0]
+        if seq == 0:
+            log("cancel", "x%d"%seq , 0)
+
         log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )
 

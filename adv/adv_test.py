@@ -8,7 +8,7 @@ from core.log import *
 mname = ""
 def test(classname, conf, verbose):
     global mname
-    classname(conf=conf).run(30000)
+    classname(conf=conf).run(300)
 
     mname = classname.__name__
     if verbose:

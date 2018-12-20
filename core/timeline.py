@@ -65,6 +65,14 @@ class Event(object):
         this.online = 0
         #this.on()
 
+    def __str__(this):
+        return "%f: %s"%(this.timing,this.name)
+
+    def __repr__(this):
+        return "%f: %s"%(this.timing,this.name)
+    
+
+
     def disable(this):
         if this.online:
             this.online = 0
