@@ -96,9 +96,9 @@ class Mikoto(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        /s1, seq==5 and cancel
-        /s2, seq==0 
-        /s3
+        `s1, seq=5 
+        `s2, seq=5 
+        `s3, seq=5
         """
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 

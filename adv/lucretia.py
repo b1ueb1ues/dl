@@ -17,11 +17,11 @@ class Lucretia(adv.Adv):
 
         "s2_dmg"  : 0        ,
         "s2_sp"   : 4553     ,
-        "s2_time" : 109/60.0 ,
+        "s2_time" : 1.1      ,
 
         "s3_dmg"  : 4*2.71   ,
         "s3_sp"   : 8597     ,
-        "s3_time" : 1        ,
+        "s3_time" : 1.9        ,
         } )
     conf.update(wep.wand.conf)
 
@@ -53,7 +53,7 @@ class Lucretia(adv.Adv):
     def dmg_mod_s(this, name):
         return 1.15*1.25
 
-    def get_energy(this, count):
+    def add_energy(this, count):
         this.energy += count
         log("buff","energy",this.energy)
         if this.energy >= 5 :
@@ -67,12 +67,12 @@ class Lucretia(adv.Adv):
             log("buff","energy",this.energy)
             this.dmg_make("s1_energy",this.conf["s1_dmg"]*0.4)
         else:
-            this.get_energy(1)
+            this.add_energy(1)
             
 
 
     def s2_proc(this, e):
-        this.get_energy(2)
+        this.add_energy(2)
         this.buff["s2"] = 1.1
         log("buff","s2","start   ")
         this.s2buff.on(now()+10)
@@ -88,10 +88,18 @@ class Lucretia(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        /s2, seq=5 and cancel
-        /s1, seq=5 and cancel
-        /s3
+        `s2, seq=5 and cancel
+        `s3, sx=2 
+        `s1, sx=3
+        `s1, seq=5 and cancel
         """
+
+    if 1:
+        conf['acl'] = """
+            `s1, seq=5 and cancel
+            `s2, seq=5 and cancel
+            `s3, seq=5 and cancel
+            """
 
     adv_test.test(module(), conf, verbose=0)
     l = logget()

@@ -19,6 +19,7 @@ class Skill(object):
             this.sp = sp
         if duration :
             this.duration = duration
+        this.silence[0] = 0
         this.silence_end = Event("silence",this.restore)
         this.init()
 
@@ -76,15 +77,11 @@ class Adv(object):
             "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05}
             }
 
-    conf_default['acl'] = {
-        'sp': [],
-        'x5': [],
-        'x4': [],
-        'x3': [],
-        'x2': [],
-        'x1': [],
-        's': [],
-        }
+    conf_default['acl'] = """
+        `s1
+        `s2
+        `s3
+    """
 
     acl_prepare_default = """
         #pin=e.pin
@@ -94,12 +91,14 @@ class Adv(object):
         #sp=0
         #cancel=0
         #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
-        #if pin == 's': s=1
-        #if pin == 's-x': sx=1
+        #if pin == 'fs':\n    fs=1\n    cancel=1\n    fs_cancel=1
+        #if pin == 's': s=this.s_prev
+        #if pin == 's-x': sx=this.s_prev
         #if pin == 'sp': sp=1
         #s1=this.s1.cast
         #s2=this.s2.cast
         #s3=this.s3.cast
+        #fs=this.fs
         #seq = this.x_status[0]
     """
     def __init__(this,conf):
@@ -119,20 +118,52 @@ class Adv(object):
         elif this.conf['x_type']== "melee":
             this.x = this.melee_x
 
-    def init(this): #virtual
+
+    def dmg_mod(this, name):
+        if name[0] == 's':
+            return this.dmg_mod_s(name)
+        elif name[0:2] == 'fs':
+            return this.dmg_mod_fs(name)
+        elif name[0] == 'x':
+            return this.dmg_mod_x(name)
+        else:
+            return 1
+    def dmg_mod_s(this, name):
+        return 1
+    def dmg_mod_fs(this, name):
+        return 1
+    def dmg_mod_x(this, name):
+        return 1
+    def att_mod(this):
+        return 1
+    def speed(this):
+        return 1
+    def arm_mod(this):
+        return 1
+    def sp_mod(this, name):
+        return 1
+    def s1_proc(this, e):
+        pass
+    def s2_proc(this, e):
+        pass
+    def s3_proc(this, e):
+        pass
+    def fs_proc(this, e):
+        pass
+    def init(this): 
         pass
 
-    def x(this): #virtual
-        pass
 
-    def ac(this, e):
-        this.x()
+
+
+
 
     def run(this, d = 300):
-
         Timeline().reset()
-        this.idle = Event("idle", this.ac).on()
-        this.x_before = 0
+        this.x_next = Event("x", this.ac).on()
+        this.x_prev = 0
+        this.s_prev = 0
+        this.fs_hold = Event("fs_success", this.fs_success)
         this.first_x_after_s = 0
         this.x_status = (0,0)
         Event("s1").listener(this.s)
@@ -144,7 +175,7 @@ class Adv(object):
 
         this.init()
 
-        this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
+        this.__acl, this.__acl_str = core.acl.acl_func_str(this.acl_prepare_default+this.conf['acl'])
         #if type(this.conf['acl']) == str:
         #   this.think = this.think3
         #   this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
@@ -162,8 +193,12 @@ class Adv(object):
         e = Event('think', this.think).on(now() + latency).pin = pin
 
     def think_after_s(this, e):
-        this.think_pin("s")
-        this.first_x_after_s = 1
+        if this.s1.silence[0] == 1:
+            this.think_pin("s")
+            this.first_x_after_s = 1
+        else :
+            this.think_pin("s-x")
+            this.think_pin("s")
 
 
     def think(this, e):
@@ -247,42 +282,6 @@ class Adv(object):
         return att * dmg_p * this.dmg_mod(name) /10
 
 
-    def dmg_mod(this, name):
-        if name[0] == 's':
-            return this.dmg_mod_s(name)
-        elif name[0:2] == 'fs':
-            return this.dmg_mod_fs(name)
-        elif name[0] == 'x':
-            return this.dmg_mod_x(name)
-        else:
-            return 1
-
-
-    def dmg_mod_s(this, name):
-        return 1
-
-    def dmg_mod_fs(this, name):
-        return 1
-
-    def dmg_mod_x(this, name):
-        return 1
-
-
-    def att_mod(this):
-        return 1
-    
-
-    def speed(this):
-        return 1
-
-
-    def arm_mod(this):
-        return 1
-
-
-    def sp_mod(this, name):
-        return 1
-
 
     def dmg_make(this, name, dmg_p):
         count = this.dmg_formula(name, dmg_p)
@@ -302,10 +301,18 @@ class Adv(object):
         this.charge(e.name, e.samount)
 
 
+    def ac(this, e):
+        this.x()
+
+
+    def x(this): 
+        pass
+
+
     def range_x(this):
         if this.x_status[1] == 0 :
             time = float(this.conf["x1_startup"]) / this.speed()
-            this.idle.timing += time
+            this.x_next.timing += time
             if this.x_status[0] == 0:
                 this.think_pin('s')
             this.x_status = (0, 1)
@@ -336,13 +343,13 @@ class Adv(object):
         else:
             this.x_status = (seq, seq+1)
             time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
-        this.x_before = now()
-        this.idle.timing += time
+        this.x_prev = now()
+        this.x_next.timing += time
 
     def melee_x(this):
         if this.x_status[1] == 0 :
             time = float(this.conf["x1_startup"]) / this.speed()
-            this.idle.timing += time
+            this.x_next.timing += time
             if this.x_status[0] == 0:
                 this.think_pin('s')
             this.x_status = (0, 1)
@@ -370,154 +377,70 @@ class Adv(object):
         else:
             this.x_status = (seq, seq+1)
             time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
-        this.x_before = now()
-        this.idle.timing += time
+        this.x_prev = now()
+        this.x_next.timing += time
 
 
+    def fs_success(this, e):
+        log("fs","succ",0)
+        dmg_p = this.conf["fs_dmg"]
+        this.dmg_make("fs", dmg_p)
+        this.charge("fs",this.conf["fs_sp"])
+        this.fs_proc(e)
+        this.x_status = (-1, 0)
+        this.think_pin("fs")
+        pass
 
-    def s(this, e):
-        #if e.name == "s1":
-            #this.s1_proc(e)
-
+    def fs(this):
         seq = this.x_status[0]
         if seq != 0:
-            time = now() - this.x_before
+            time = now() - this.x_prev
             log("cancel", "x%d"%seq , time)
 
-        log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
-            this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )
 
-        this.idle.timing = now() + this.conf[e.name+"_time"] / this.speed()
-        dmg = this.conf[e.name+"_dmg"]
-        if dmg :
-            this.dmg_make(e.name , this.conf[e.name+"_dmg"])
+        if seq != 0:
+            log("fs", 'hold', 0,"                               (hold fs after c%s)"%( seq ) )
+        else:
+            log("fs", 'hold', 0,"                               (hold fs)" )
+
+        this.x_next.timing = now() + (this.conf["fs_startup"] + this.conf["fs_recovery"]) / this.speed()
+        this.fs_hold.on(now()+this.conf['fs_startup'])
+
+        this.x_status = (-1, 0)
+        return 1
+
+    def s(this, e):
+        seq = this.x_status[0]
+        if seq == -1:
+            time = this.conf['fs_recovery'] - (this.x_next.timing - now())
+            log("cancel", "fs" , time)
+        elif seq != 0:
+            time = now() - this.x_prev
+            log("cancel", "x%d"%seq , time)
+
+        if seq == -1:
+            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after fs)"%(\
+                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name) )
+        elif seq != 0:
+            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
+                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )
+        else:
+            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after s%d)"%(\
+                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, this.s_prev ) )
+
+        this.x_next.timing = now() + this.conf[e.name+"_time"] / this.speed()
+        dmg_p = this.conf[e.name+"_dmg"]
+        if dmg_p :
+            this.dmg_make(e.name , dmg_p)
 
         func = e.name + '_proc'
         getattr(this, func)(e)
 
+        this.s_prev = int(e.name[1])
         this.x_status = (0, 0)
-        #this.think_pin("s")
 
-    def s1_proc(this, e):
-        pass
-
-    def s2_proc(this, e):
-        pass
-
-    def s3_proc(this, e):
-        pass
-
-
-def sum_dmg():
-    l = logget()
-    dmg_sum = {'x':0, 's':0}
-    for i in l:
-        if i[1] == 'dmg':
-            dmg_sum[i[2][0]] += i[3]
-
-    total = 0
-    for i in dmg_sum:
-        total += dmg_sum[i]
-    dmg_sum['total'] = total
-    print dmg_sum
 
 
 if __name__ == "__main__":
-
-    conf = {}
-    conf.update( {
-        "x_type"      : "ranged" ,
-
-        "x1_dmg"      : 0.98     ,
-        "x1_sp"       : 130      ,
-        "x1_startup"  : 18/60.0  ,
-
-        "x2_dmg"      : 1.06     ,
-        "x2_sp"       : 200      ,
-        "x2_startup"  : 33/60.0  ,
-
-        "x3_dmg"      : 1.08     ,
-        "x3_sp"       : 240      ,
-        "x3_startup"  : 31/60.0  ,
-
-        "x4_dmg"      : 1.56     ,
-        "x4_sp"       : 430      ,
-        "x4_startup"  : 53/60.0  ,
-
-        "x5_dmg"      : 2.06     ,
-        "x5_sp"       : 600      ,
-        "x5_startup"  : 64/60.0  ,
-        "x5_recovery" : 68/60.0  ,
-
-        "fs_dmg"      : 1.8      ,
-        "fs_sp"       : 400      ,
-        "fs_startup"  : 42/60.0  ,
-        "fs_recovery" : 81/60.0  ,
-
-        "dodge_recovery": 43/60.0,
-
-        "missile_iv"  : [0.7/2, 0.7, 0.7, 0.7, 0.7, 0.7], # fs, c1, c2...
-        } )
-
-    conf.update( {
-        "s1_dmg"  : 1.61*6   ,
-        "s1_sp"   : 2648     ,
-        "s1_time" : 167/60.0 ,
-
-        "s2_dmg"  : 2.44*4   ,
-        "s2_sp"   : 5838     ,
-        "s2_time" : 114/60.0 ,
-
-        "s3_dmg"  : 0        ,
-        "s3_sp"   : 0        ,
-        "s3_time" : 0        ,
-        } )
-
-    conf.update( {
-        "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05}
-        } )
-    acl = {
-        'sp': [],
-        'x5': [],
-        'x4': [],
-        'x3': [],
-        'x2': [],
-        'x1': [],
-        'x0': [],
-        }
-
-    acl.update( {
-            #'sp': ["s1","s2"],
-            'x5': ["s1", "s2"],
-            'x4': ["s1", "s2"],
-            'x3': ["s1", "s2"],
-            'x2': ["s1", "s2"],
-            'x1': ["s1", "s2"],
-            'x0': ["s1", "s2"],
-        } )
-
-    conf['acl'] = acl
-
-    a = Adv(conf)
-    a.run(300)
-    logcat(['dmg','x','cast'])
-    sum_dmg()
-
-
-    logreset()
-    conf['acl'] = {
-            'sp': ["s1","s2"],
-            'x5': [],
-            'x4': [],
-            'x3': [],
-            'x2': [],
-            'x1': [],
-            'x0': [],
-            }
-
-    a = Adv(conf)
-    a.run(300)
-    sum_dmg()
-            
-
+    print "to use adv_test"
 

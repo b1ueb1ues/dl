@@ -14,10 +14,10 @@ class Maribelle_s3(adv.maribelle.Maribelle):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        /s1, seq=5 and cancel
-        /s2, seq=5 and cancel
-        /s1, pin == 'prep'
-        /s3
+        `s1, seq=5 and cancel
+        `s2, seq=5 and cancel
+        `s1, pin == 'prep'
+        `s3, s
         """
         
     conf.update({
@@ -26,5 +26,5 @@ if __name__ == '__main__':
             "s3_time" : 1.9    ,
         })
 
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 

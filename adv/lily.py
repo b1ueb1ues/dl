@@ -45,11 +45,16 @@ class Lily(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        /s2, seq=5 and cancel
-        /s1, seq=5 and cancel
-        /s3
+        #prep=0
+        #if pin=='prep': prep=1
+        `s2, seq=5 and cancel
+        `s1, seq=5 and cancel
+        `s3, seq=5 and cancel
+        `s3, s=1
+        `s1, pin='prep'
         """
 
     adv_test.test(module(), conf, verbose=0)
+
 
 

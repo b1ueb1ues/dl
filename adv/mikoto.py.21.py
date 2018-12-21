@@ -15,9 +15,8 @@ if __name__ == '__main__':
     conf = {}
 
     conf['acl'] = """
-        /s2, seq=5
-        /s1, cancel
-        /s3, cancel
+        `s2, seq=5
+        `s1, sx
         """
 
     adv_test.test(module(), conf, verbose=0)

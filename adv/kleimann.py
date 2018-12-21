@@ -29,6 +29,9 @@ class Kleimann(adv.Adv):
     def dmg_mod_s(this, name):
         return 1.45*1.11
 
+    def dmg_mod_fs(this, name):
+        return 1.4
+
     def init(this):
         pass
 
@@ -43,10 +46,23 @@ class Kleimann(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+
+
+    # s2 after s1 will increase kleimann's damage a little since his s2's sp is too strange
     conf['acl'] = """
-        /s1, seq=5 and cancel
-        /s2, seq=5 and cancel
+        `s1, seq=5 and cancel
+        `s2, seq=5 and cancel 
+        `s2, s=1
         """
+
+    # add little fs to increace very little damage
+    if 1:
+        conf['acl'] = """
+            `s1, seq=5 and cancel or pin='fs'
+            `fs, seq=5 and this.s2.charged < 7090 and this.s2.charged > 6400
+            `s2, seq=5 and cancel or pin='fs'
+            `s2, s=1
+            """
 
     adv_test.test(module(), conf, verbose=0)
 

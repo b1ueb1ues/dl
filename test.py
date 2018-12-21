@@ -45,27 +45,11 @@ conf.update( {
     "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05} 
     } )
 
-al = {
-    'sp': [],
-    'x5': [],
-    'x4': [],
-    'x3': [],
-    'x2': [],
-    'x1': [],
-    's': [],
-    }
-
-al.update( {
-    #'sp': ["s1","s2"],
-    'x5': ["s1"],
-    'x4': ["s1"],
-    'x3': ["s1"],
-    'x2': ["s1"],
-    'x1': ["s1"],
-    's': ["s1","s3","s2"],
-    } )
-
-conf['al'] = al
+conf['al'] = """
+    /s1
+    /s2
+    /s3
+"""
 
 Mikoto(conf).run()
 #logcat()
