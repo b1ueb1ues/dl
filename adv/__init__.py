@@ -3,6 +3,55 @@ from core.log import *
 import core.acl
 
 
+class Buff(object):
+    def __init__(this, name=None, value=None, duration=None):
+        this._value = 0
+        this.duration = 0
+        this.name = "buff_noname"
+        if name != None:
+            this.name = name
+        if value != None:
+            this._value = value
+        if duration != None:
+            this.duration = duration
+        this.active = 0
+        this.buff_end_event = Event("buff",this.buff_end_proc)
+
+    def value(this):
+        if this.active:
+            return this._value
+        else:
+            return 1
+    def get(this):
+        if this.active:
+            return this._value
+        else:
+            return 1
+
+    def set(this, v):
+        this._value = v
+        return this
+
+    def buff_end_proc(this, e):
+        this.active = 0
+        log("buff",this.name,this.value, this.name+" buff end <timeout>")
+
+
+    def on(this, duration=None):
+        if duration == None:
+            d = this.duration
+        else:
+            d = duration
+        this.active = 1
+        this.buff_end_event.on(now()+d)
+        log("buff",this.name,this.value(), this.name+" buff start <%d>"%d)
+
+
+    def off(this):
+        this.active = 0
+        this.buff_end_event.off()
+        log("buff",this.name,this.value(), this.name+" buff end <other>")
+
 
 class Skill(object):
     charged = 0
@@ -128,6 +177,7 @@ class Adv(object):
             return this.dmg_mod_x(name)
         else:
             return 1
+
     def dmg_mod_s(this, name):
         return 1
     def dmg_mod_fs(this, name):
