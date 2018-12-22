@@ -48,7 +48,7 @@ class Lucretia(adv.Adv):
                 }
 
     def att_mod(this):
-        return this.buff["s2"] * this.buff["double"]
+        return (this.buff["s2"] + this.buff["double"] -1 )* 1.6
 
     def dmg_mod_s(this, name):
         return 1.15*1.25

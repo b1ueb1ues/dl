@@ -23,6 +23,9 @@ class Kleimann(adv.Adv):
         } )
     conf.update(wep.wand.conf)
 
+    def att_mod(this):
+        return 1.45
+
     def sp_mod(this, name):
         return 1
 

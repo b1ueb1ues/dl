@@ -30,7 +30,7 @@ class Lily(adv.Adv):
         return 1.25*1.15
 
     def att_mod(this):
-        return 1.75 #* 115.4/101.4 #calc crit as att
+        return (1.4+0.15) * 115.4/101.4 #calc crit as att
     
     def init(this):
         this.charge("prep", "100%")

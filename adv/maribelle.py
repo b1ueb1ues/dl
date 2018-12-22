@@ -27,7 +27,7 @@ class Maribelle(adv.Adv):
         return 1
 
     def dmg_mod_s(this, name):
-        return 1.65*1.15
+        return (1.4+0.25)*1.15
 
     def att_mod(this):
         return 1.6
