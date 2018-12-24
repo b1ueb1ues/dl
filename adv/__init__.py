@@ -33,8 +33,8 @@ class Buff(object):
         return this
 
     def buff_end_proc(this, e):
+        log("buff", this.name, this.value(), this.name+" buff end <timeout>")
         this.active = 0
-        log("buff",this.name,this.value, this.name+" buff end <timeout>")
 
 
     def on(this, duration=None):
@@ -44,13 +44,15 @@ class Buff(object):
             d = duration
         this.active = 1
         this.buff_end_event.on(now()+d)
-        log("buff",this.name,this.value(), this.name+" buff start <%d>"%d)
+        log("buff", this.name, this.value(), this.name+" buff start <%ds>"%d)
+        return this
 
 
     def off(this):
+        log("buff", this.name, this.value(), this.name+" buff end <turn off>")
         this.active = 0
         this.buff_end_event.off()
-        log("buff",this.name,this.value(), this.name+" buff end <other>")
+        return this
 
 
 class Skill(object):
@@ -123,7 +125,19 @@ class Adv(object):
     conf = {}
 
     conf_default = { 
-            "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05}
+            "think_latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05},
+
+            "s1_dmg"  : 0   ,
+            "s1_sp"   : 0   ,
+            "s1_time" : 1.9 ,
+
+            "s2_dmg"  : 0   ,
+            "s2_sp"   : 0   ,
+            "s2_time" : 1.9 ,
+
+            "s3_dmg"  : 0   ,
+            "s3_sp"   : 0   ,
+            "s3_time" : 1.9 ,
             }
 
     conf_default['acl'] = """
@@ -154,18 +168,22 @@ class Adv(object):
         this.log = []
         loginit(this.log)
         tmpconf = {}
-        tmpconf.update(this.conf)
         tmpconf.update(this.conf_default)
+        tmpconf.update(this.conf)
         tmpconf.update(conf)
         this.conf = tmpconf
         this.s1 = Skill("s1",this.conf["s1_sp"])
         this.s2 = Skill("s2",this.conf["s2_sp"])
         this.s3 = Skill("s3",this.conf["s3_sp"])
+        this.doing = "idle"
 
         if this.conf['x_type']== "ranged":
             this.x = this.range_x
+            this.fs_success = this.range_fs_sucess
         elif this.conf['x_type']== "melee":
             this.x = this.melee_x
+            this.fs_success = this.melee_fs_success
+        #this.fs_success = this.melee_fs_success
 
 
     def dmg_mod(this, name):
@@ -199,6 +217,8 @@ class Adv(object):
     def s3_proc(this, e):
         pass
     def fs_proc(this, e):
+        pass
+    def dmg_proc(this, name, amount):
         pass
     def init(this): 
         pass
@@ -340,10 +360,15 @@ class Adv(object):
             spgain = this.conf[name[:2]+"_sp"]
             log("dmg", name, count, "%d/%d, %d/%d, %d/%d (+%d)"%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
+        elif name[:2] == "fs":
+            spgain = this.conf['fs'+"_sp"]
+            log("dmg", name, count, "%d/%d, %d/%d, %d/%d (+%d)"%(\
+                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
         else:
             spgain = this.conf[name[:2]+"_sp"]
             log("dmg", name, count, "%d/%d, %d/%d, %d/%d (-%d)"%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
+        this.dmg_proc(name, count)
 
 
     def missile(this,e):
@@ -355,8 +380,8 @@ class Adv(object):
         this.x()
 
 
-    def x(this): 
-        pass
+    #def x(this): 
+    #   pass
 
 
     def range_x(this):
@@ -431,7 +456,7 @@ class Adv(object):
         this.x_next.timing += time
 
 
-    def fs_success(this, e):
+    def melee_fs_success(this, e):
         log("fs","succ",0)
         dmg_p = this.conf["fs_dmg"]
         this.dmg_make("fs", dmg_p)
@@ -439,14 +464,26 @@ class Adv(object):
         this.fs_proc(e)
         this.x_status = (-1, 0)
         this.think_pin("fs")
-        pass
+
+
+    def range_fs_sucess(this, e):
+        log("fs","succ",0)
+        dmg_p = this.conf["fs_dmg"]
+        sp_gain = this.conf["fs_sp"]
+        missile_event = Event("fs_missile", this.missile, 
+                now() + this.conf['missile_iv'][0] )
+        missile_event.amount = dmg_p
+        missile_event.samount = sp_gain
+        missile_event.on()
+        this.fs_proc(e)
+        this.x_status = (-1, 0)
+        this.think_pin("fs")
 
     def fs(this):
         seq = this.x_status[0]
         if seq != 0:
             time = now() - this.x_prev
             log("cancel", "x%d"%seq , time)
-
 
         if seq != 0:
             log("fs", 'hold', 0,"                               (hold fs after c%s)"%( seq ) )
@@ -458,6 +495,8 @@ class Adv(object):
 
         this.x_status = (-1, 0)
         return 1
+
+
 
     def s(this, e):
         seq = this.x_status[0]

@@ -27,13 +27,8 @@ class Mikoto(Adv):
     conf.update(wep.blade.conf)
 
     def init(this):
-        #this.atspd = 1.0
-        #his.stance = 0
         this.s1buff = Buff("s1",1, 15)
         this.s2buff = Buff("s2",1.2, 10)
-        #this.s1 = Mikoto_s1_wait("s1", this.conf["s1_sp"])
-        #his.s1event = Event("s1buff", this.s1_end)
-        #his.s2event = Event("s2buff", this.s2_end)
 
     
     def sp_mod(this, name):
@@ -45,12 +40,6 @@ class Mikoto(Adv):
 
     def dmg_mod_x(this, name):
         return this.s1buff.get()
-        #if this.stance == 0:
-            #return 1
-        #elif this.stance == 1:
-            #return 1.15
-        #elif this.stance == 2:
-            #return 1.20
 
     def dmg_mod_s(this, name):
         return 1.25
@@ -58,54 +47,28 @@ class Mikoto(Adv):
     def speed(this):
         return this.s2buff.get()
 
-
-    def s1_end(this, e):
-        this.stance = 0
-        log("buff",'s1','stance_end')
-        Event("no_stance").trigger()
-
-
     def s1_proc(this, e):
-        stance = this.s1buff.get()
-        if stance == 1:
+        buff = this.s1buff.get()
+        if buff == 1:
+            stance = 0
+        elif buff == 1.15:
+            stance = 1
+        elif buff == 1.2:
+            stance = 2
+
+        if stance == 0:
             this.dmg_make('s1',5.32*2)
             this.s1buff.set(1.15).on()
-        elif stance == 1.15:
+        elif stance == 1:
             this.dmg_make('s1',3.54*3)
             this.s1buff.off()
             this.s1buff.set(1.2).on()
-        elif stance == 1.2:
+        elif stance == 2:
             this.dmg_make('s1',2.13*4+4.25)
-            this.s1buff.set(1).off()
-
-        #if this.stance == 0:
-        #    this.dmg_make('s1',5.32*2)
-        #    this.stance = 1
-        #    this.s1event.on(now()+15)
-        #    log("buff","s1","stance_1")
-        #elif this.stance == 1:
-        #    this.dmg_make('s1',3.54*3)
-        #    this.s1buff.off()
-        #    this.s1buff.set(1.2).on()
-        #    this.stance = 2
-        #    this.s1event.on(now()+15)
-        #    log("buff","s1","stance_2")
-        #    Event("ruin_stance").trigger()
-        #elif this.stance == 2:
-        #    this.dmg_make('s1',2.13*4+4.25)
-        #    this.stance = 0
-        #    Event("no_stance").trigger()
-        #    log("buff","s1","stance_end")
-
-   # def s2_end(this, e):
-   #     this.atspd = 1.0
-   #     log("buff","s2","end     ")
+            this.s1buff.off().set(1)
 
     def s2_proc(this, e):
         this.s2buff.on()
-        #this.atspd = 1.2
-        #log("buff","s2","start   ")
-        #this.s2event.on(now()+10)
 
     def s3_proc(this, e):
         pass
@@ -114,8 +77,8 @@ class Mikoto(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 
         `s2, seq=5 
+        `s1, seq=5 
         `s3, seq=5
         """
     adv_test.test(module(), conf, verbose=0)

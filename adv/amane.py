@@ -25,40 +25,21 @@ class Amane(adv.Adv):
         } )
     conf.update(wep.wand.conf)
 
-    def s2_buff_end(this, e):
-        this.buff["s2"] = 1
-        log("buff","s2","end   ")
-
 
     def init(this):
-        #!!!!!!!!!!!!!!!!!!!!!
-        #!!!!!!!!!!!!!!!!!!!!!
         this.charge("prep","75%")
-        this.s2buff = Event("s2buff",this.s2_buff_end)
-        this.buff = {
-                "s2":1,     #1.15 for 10s
-                }
+        this.s2buff = adv.Buff("s2",1.15,10)
 
     def att_mod(this):
-        return this.buff["s2"]*1.6
+        return this.s2buff.get() * 1.6
 
 
     def dmg_mod_s(this, name):
         return 1.11*1.25
 
 
-    def s1_proc(this, e):
-        pass
-
-
     def s2_proc(this, e):
-        this.buff["s2"] = 1.15
-        log("buff","s2","start   ")
-        this.s2buff.on(now()+10)
-
-
-    def s3_proc(this, e):
-        pass
+        this.s2buff.on()
 
 
 if __name__ == '__main__':

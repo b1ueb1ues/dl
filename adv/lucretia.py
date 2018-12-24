@@ -25,30 +25,17 @@ class Lucretia(adv.Adv):
         } )
     conf.update(wep.wand.conf)
 
-    def s2_buff_end(this, e):
-        this.buff["s2"] = 1
-        log("buff","s2","end   ")
-
-
-    def double_buff_end(this, e):
-        this.buff["double"] = 1
-        log("buff","double","end   ")
-
 
     def init(this):
-        #!!!!!!!!!!!!!!!!!!!!!
+        #!!!cheat!!!!!!!!!!!!!
         this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
-        this.s2buff = Event("s2buff",this.s2_buff_end)
-        this.doublebuff = Event("doublebuff",this.double_buff_end)
-        this.buff = {
-                "s2":1,     #1.1 for 10s
-                "double":1, #1.2 for 15s
-                }
+        this.s2buff = adv.Buff("s2", 1.1, 10)
+        this.doublebuff = adv.Buff("double", 1.2, 15)
 
     def att_mod(this):
-        return (this.buff["s2"] + this.buff["double"] -1 )* 1.6
+        return (this.s2buff.get() + this.doublebuff.get() -1 )* 1.6
 
     def dmg_mod_s(this, name):
         return 1.15*1.25
@@ -57,9 +44,7 @@ class Lucretia(adv.Adv):
         this.energy += count
         log("buff","energy",this.energy)
         if this.energy >= 5 :
-            this.buff["double"] = 1.2
-            this.doublebuff.on(now()+15)
-            log("buff","double",'start   ')
+            this.doublebuff.on()
 
     def s1_proc(this, e):
         if this.energy >= 5:
@@ -70,12 +55,9 @@ class Lucretia(adv.Adv):
             this.add_energy(1)
             
 
-
     def s2_proc(this, e):
         this.add_energy(2)
-        this.buff["s2"] = 1.1
-        log("buff","s2","start   ")
-        this.s2buff.on(now()+10)
+        this.s2buff.on()
 
 
     def s3_proc(this, e):

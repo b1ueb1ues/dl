@@ -65,7 +65,9 @@ if __name__ == '__main__':
             `fs, seq=5 and this.s2.charged < 7090 and this.s2.charged > 6400
             `s2, seq=5 and cancel or pin='fs'
             `s2, s=1
+            `s2, sp and seq=-1
             """
 
     adv_test.test(module(), conf, verbose=0)
+    import core.log
 
