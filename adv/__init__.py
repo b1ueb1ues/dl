@@ -176,6 +176,7 @@ class Adv(object):
         this.s2 = Skill("s2",this.conf["s2_sp"])
         this.s3 = Skill("s3",this.conf["s3_sp"])
         this.doing = "idle"
+        this.done = "idle"
 
         if this.conf['x_type']== "ranged":
             this.x = this.range_x
@@ -246,11 +247,6 @@ class Adv(object):
         this.init()
 
         this.__acl, this.__acl_str = core.acl.acl_func_str(this.acl_prepare_default+this.conf['acl'])
-        #if type(this.conf['acl']) == str:
-        #   this.think = this.think3
-        #   this.__acl = core.acl.acl_func(this.acl_prepare_default+this.conf['acl'])
-        #else:
-        #    this.think = this.think1
 
         Timeline().run(d)
 
@@ -278,55 +274,6 @@ class Adv(object):
         this.__acl(this, e)
 
 
-    def think1(this, e):
-        print e.pin
-        if e.pin == 'sp' and 'sp' in this.conf['acl']:
-            for i in this.conf['acl']['sp']:
-                if getattr(this,i).cast():
-                    break
-
-        if e.pin == 'x':
-            if 'x5' in this.conf['acl'] and this.x_status == (5, 0):
-                for i in this.conf['acl']['x5']:
-                    if getattr(this,i).check():
-                        log("cancel",'x%s'%this.x_status[0],0)
-                        getattr(this,i).cast()
-                        break
-
-            elif 'x4' in this.conf['acl'] and this.x_status == (4, 5):
-                for i in this.conf['acl']['x4']:
-                    if getattr(this,i).check():
-                        log("cancel",'x%s'%this.x_status[0],0)
-                        getattr(this,i).cast()
-                        break
-            elif 'x3' in this.conf['acl'] and this.x_status == (3, 4):
-                for i in this.conf['acl']['x3']:
-                    if getattr(this,i).check():
-                        log("cancel",'x%s'%this.x_status[0],0)
-                        getattr(this,i).cast()
-                        break
-            elif 'x2' in this.conf['acl'] and this.x_status == (2, 3):
-                for i in this.conf['acl']['x2']:
-                    if getattr(this,i).check():
-                        log("cancel",'x%s'%this.x_status[0],0)
-                        getattr(this,i).cast()
-                        break
-            elif 'x1' in this.conf['acl'] and this.x_status == (1, 2):
-                for i in this.conf['acl']['x1']:
-                    if getattr(this,i).check():
-                        log("cancel",'x%s'%this.x_status[0],0)
-                        getattr(this,i).cast()
-                        break
-            else:
-                return
-            #elif this.x_status == (0, 1) and this.conf['acl']['x1']:
-                #for i in this.conf['acl']['x0'] :
-                    #getattr(this, i).cast()
-        if e.pin == 's' and 's' in this.conf['acl']:
-            for i in this.conf['acl']['s'] :
-                if getattr(this, i).cast():
-                    break
-
     def charge(this, name, sp): #, percent=None):
         if type(sp) == str and sp[-1] == '%':
             percent = int(sp[:-1])
@@ -344,6 +291,7 @@ class Adv(object):
         this.think_pin("sp")
         log("sp", name, sp,"%d/%d, %d/%d, %d/%d"%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
+
 
     def dmg_formula(this, name, dmg_p):
         att = 1.0 * this.att_mod()
@@ -380,10 +328,6 @@ class Adv(object):
         this.x()
 
 
-    #def x(this): 
-    #   pass
-
-
     def range_x(this):
         if this.x_status[1] == 0 :
             time = float(this.conf["x1_startup"]) / this.speed()
@@ -413,13 +357,17 @@ class Adv(object):
             this.first_x_after_s = 0
 
         if seq == 5:
+            this.doing = "x5_recover"
             this.x_status = (5, 0)
             time = float(this.conf["x5_recovery"]) / this.speed()
         else:
+            this.doing = "x%d"%(seq+1)
             this.x_status = (seq, seq+1)
             time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
+        this.done = "x%d"%seq
         this.x_prev = now()
         this.x_next.timing += time
+
 
     def melee_x(this):
         if this.x_status[1] == 0 :
@@ -447,13 +395,17 @@ class Adv(object):
             this.first_x_after_s = 0
 
         if seq == 5:
+            this.doing = "x5_recover"
             this.x_status = (5, 0)
             time = float(this.conf["x5_recovery"]) / this.speed()
         else:
+            this.doing = "x%d"%(seq+1)
             this.x_status = (seq, seq+1)
             time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
+        this.done = "x%d"%seq
         this.x_prev = now()
         this.x_next.timing += time
+
 
 
     def melee_fs_success(this, e):
@@ -464,6 +416,8 @@ class Adv(object):
         this.fs_proc(e)
         this.x_status = (-1, 0)
         this.think_pin("fs")
+        this.done = "fs"
+        this.doing = "fs_recover"
 
 
     def range_fs_sucess(this, e):
@@ -478,6 +432,8 @@ class Adv(object):
         this.fs_proc(e)
         this.x_status = (-1, 0)
         this.think_pin("fs")
+        this.done = "fs"
+        this.doing = "fs_recover"
 
     def fs(this):
         seq = this.x_status[0]
@@ -494,6 +450,7 @@ class Adv(object):
         this.fs_hold.on(now()+this.conf['fs_startup'])
 
         this.x_status = (-1, 0)
+        this.doing = "fs_hold"
         return 1
 
 
@@ -527,6 +484,8 @@ class Adv(object):
 
         this.s_prev = int(e.name[1])
         this.x_status = (0, 0)
+        this.done = e.name
+        this.doing = e.name + "_recover"
 
 
 
