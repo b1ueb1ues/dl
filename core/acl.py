@@ -1,28 +1,5 @@
 from core.log import *
-
-def acl_compile(acl):
-    aif = []
-    acl_list = acl.strip().split('\n')
-    for i in acl_list:
-        aif.append(i.strip().split(','))
-
-
-    line = "while 1:\n"
-    #line = "def while 1:\n"
-    #line_list = []
-    for i in aif:
-        if len(i) == 1:
-            line += "    if %s():\n"%i[0]
-            line += "        break\n"
-            #line_list.append("%s()\n"%i[0])
-        elif len(i) == 2:
-            line += "    if %s :\n"%i[1]
-            line += "        if %s():\n"%i[0]
-            line += "            break\n"
-            #line_list.append( "if %s :\n    %s()\n"%(i[1],i[0]) )
-    line += '    break'
-    #return line
-    return compile(line, "acl", "exec")
+import sys
 
 g_line = ""
 
@@ -106,9 +83,12 @@ def acl_str(acl):
 
     line += '    return 0'
     g_line = line
+    if len(sys.argv) >= 2:
+        if sys.argv[1] != 0:
+            if int(sys.argv[1]) >= 2:
+                print line
     return line
-    #exec(line)
-    #return foo
+
 
 if __name__ == "__main__":
     a = 1

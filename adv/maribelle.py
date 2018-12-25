@@ -9,17 +9,20 @@ def module():
 class Maribelle(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 1.61*6 ,
-        "s1_sp"   : 2648   ,
-        "s1_time" : 2.7    ,
+        "s1_dmg"      : 1.61*6 ,
+        "s1_sp"       : 2648   ,
+        "s1_startup"  : 0.1    ,
+        "s1_recovery" : 2.7    ,
 
-        "s2_dmg"  : 2.44*4 ,
-        "s2_sp"   : 5838   ,
-        "s2_time" : 1.8    ,
+        "s2_dmg"      : 2.44*4 ,
+        "s2_sp"       : 5838   ,
+        "s2_startup"  : 0.1    ,
+        "s2_recovery" : 1.8    ,
 
-        "s3_dmg"  : 0      ,
-        "s3_sp"   : 0      ,
-        "s3_time" : 0      ,
+        "s3_dmg"      : 0      ,
+        "s3_sp"       : 0      ,
+        "s3_startup"  : 0.1    ,
+        "s3_recovery" : 1.9    ,
         } )
     conf.update(wep.wand.conf)
 

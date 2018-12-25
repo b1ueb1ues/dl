@@ -1,7 +1,11 @@
 from core.timeline import *
 from core.log import *
 import core.acl
+import sys
 
+loglevel = 0
+if len(sys.argv) >= 2:
+    loglevel = int(sys.argv[1])
 
 class Buff(object):
     def __init__(this, name=None, value=None, duration=None):
@@ -42,9 +46,14 @@ class Buff(object):
             d = this.duration
         else:
             d = duration
-        this.active = 1
-        this.buff_end_event.on(now()+d)
-        log("buff", this.name, this.value(), this.name+" buff start <%ds>"%d)
+        if this.active == 0:
+            this.active = 1
+            this.buff_end_event.on(now()+d)
+            log("buff", this.name, this.value(), this.name+" buff start <%ds>"%d)
+        else:
+            this.buff_end_event.timing = now() + d
+            log("buff", this.name, this.value(), this.name+" buff refresh <%ds>"%d)
+
         return this
 
 
@@ -89,7 +98,8 @@ class Skill(object):
             #this.charged = this.sp
 
     def restore(this, e):
-        log("silence","end")
+        if loglevel >= 2:
+            log("silence","end")
         this.silence[0] = 0
         this.trigger_silence_end()
 
@@ -109,6 +119,7 @@ class Skill(object):
             return 0
         else:
             this.charged = 0
+            this.ac()
             if duration == None:
                 duration = this.silence_duration
             # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
@@ -116,7 +127,8 @@ class Skill(object):
                 duration = 1.9
             this.silence_end.on(now()+duration)
             this.silence[0] = 1
-            this.ac()
+            if loglevel >= 2:
+                log("silence","start")
             return 1
 
     def ac(this):
@@ -150,7 +162,8 @@ class Action(object):
         if act != None:
             this.act = act
 
-        this.spd_func[0] = this.nospeed
+        if this.spd_func[0] == 0:
+            this.spd_func[0] = this.nospeed
 
         this.cancel_by = []
         this.interrupt_by = []
@@ -195,7 +208,8 @@ class Action(object):
 
     def _cb_act_end(this, e):
         if this.getdoing() == this:
-            log("ac_end",this.name)
+            if loglevel >= 2:
+                log("ac_end",this.name)
             this.status = -2
             this._setprev() # turn this from doing to prev
             this.doing[0] = 0
@@ -203,7 +217,8 @@ class Action(object):
 
 
     def act(this):
-        log("ac",this.name)
+        if loglevel >= 2:
+            log("ac",this.name)
         this.e_this.trigger()
 
 
@@ -211,9 +226,11 @@ class Action(object):
         doing = this.getdoing()
 
         if doing == 0:
-            log("tap",this.name, None, 'idle')
+            if loglevel >= 2:
+                log("tap",this.name, None, 'idle')
         else:
-            log("tap",this.name, None, 'doing '+doing.name)
+            if loglevel >= 2:
+                log("tap",this.name, None, 'doing '+doing.name)
 
         if doing == this : # self is doing
             return 0
@@ -223,12 +240,12 @@ class Action(object):
         if doing != 0 : # doing != this
             if doing.status == -1: # try to interrupt an action
                 if this.name in doing.interrupt_by : # can interrupt action
-                    log("interrupt", doing.name , "by "+this.name, "after %.3fs"%(now()-doing.startup_start) )
+                    log("interrupt", doing.name , "by "+this.name+"\t", "after %.2fs"%(now()-doing.startup_start) )
                 else:
                     return 0
             elif doing.status == 1: # try to cancel an action
                 if this.name in doing.cancel_by : # can interrupt action
-                    log("cancel", doing.name , "by "+this.name, "after %.3fs"%(now()-doing.recover_start) )
+                    log("cancel", doing.name , "by "+this.name+"\t", "after %.2fs"%(now()-doing.recover_start) )
                 else:
                     return 0
             elif doing.status == 0:
@@ -249,7 +266,7 @@ class Adv(object):
     conf = {}
 
     conf_default = { 
-        "latency" : {'x_cancel':0.05, 'sp':0.05 , 'default':0.05, 'x':0, 'idle':0},
+        "latency" : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
 
         "s1_dmg"      : 0   ,
         "s1_sp"       : 0   ,
@@ -287,13 +304,12 @@ class Adv(object):
 
         #if dname[0] == 'x': xseq = didx
         #if dname == 'idle': xseq = 0
+        
         #seq = xseq
-        #cancel = xseq
-        #x_cancel = xseq
-        #if pin == 'x': \n    x=1\n    
-        #if pin == 'fs':\n    fs=1\n   
+        #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
+        #if pin == 'fs':\n    fs=1\n    cancel=1
         #if pin == 's': s = dname
-        #if pin == 's-x': s = this.s_prev
+        #if pin == 's-x': \n    s = this.s_prev\n    sx=this.s_prev\n
         #if pin == 'sp': sp=1
         #s1=this.s1
         #s2=this.s2
@@ -433,7 +449,21 @@ class Adv(object):
 
 
     def l_range_x(this, e):
-        pass
+        xseq = e.name
+        dmg_p = this.conf["%s_dmg"%xseq]
+        sp_gain = this.conf["%s_sp"%xseq] 
+        if xseq == 'x5':
+            log("x", "%s"%xseq, 0,"-------------------------------------c5")
+        else:
+            log("x", "%s"%xseq, 0)
+
+        missile_event = Event("%s_missile"%xseq, this.missile, 
+                now() + this.conf['missile_iv'][xseq] )
+        missile_event.amount = dmg_p
+        missile_event.samount = sp_gain
+        missile_event.on()
+
+        this.think_pin("x")
     
     def l_melee_x(this, e):
         xseq = e.name
@@ -476,7 +506,6 @@ class Adv(object):
                 )
         #this._acl, this._acl_str = core.acl.acl_func_str(
         #       this.acl_prepare_default+this.conf['acl']+'`x')
-        print this._acl_str
 
         Timeline().run(d)
 
@@ -570,85 +599,6 @@ class Adv(object):
         this.x()
 
 
-    def range_x(this):
-        if this.x_status[1] == 0 :
-            time = float(this.conf["x1_startup"]) / this.speed()
-            this.x_next.timing += time
-            if this.x_status[0] == 0:
-                this.think_pin('s')
-            this.x_status = (0, 1)
-            return
-
-        seq = this.x_status[1]
-        dmg = this.conf["x%d_dmg"%seq] 
-        sp = this.conf["x%d_sp"%seq] 
-        e = Event("x%d_missile"%seq, this.missile, \
-                now() + this.conf['missile_iv'][seq] )
-        e.amount = dmg
-        e.samount = sp
-        e.on()
-
-        if seq == 5:
-            log("x", "x%d"%seq, 0,"-------------------------------------c5")
-        else:
-            log("x", "x%d"%seq, 0)
-
-        this.think_pin("x")
-        if this.first_x_after_s:
-            this.think_pin("s-x")
-            this.first_x_after_s = 0
-
-        if seq == 5:
-            this.doing = "x5_recover"
-            this.x_status = (5, 0)
-            time = float(this.conf["x5_recovery"]) / this.speed()
-        else:
-            this.doing = "x%d"%(seq+1)
-            this.x_status = (seq, seq+1)
-            time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
-        this.done = "x%d"%seq
-        this.x_prev = now()
-        this.x_next.timing += time
-
-
-    def melee_x(this):
-        if this.x_status[1] == 0 :
-            time = float(this.conf["x1_startup"]) / this.speed()
-            this.x_next.timing += time
-            if this.x_status[0] == 0:
-                this.think_pin('s')
-            this.x_status = (0, 1)
-            return
-
-        seq = this.x_status[1]
-        dmg_p = this.conf["x%d_dmg"%seq]
-        sp = this.conf["x%d_sp"%seq] 
-        if seq == 5:
-            log("x", "x%d"%seq, 0,"-------------------------------------c5")
-        else:
-            log("x", "x%d"%seq, 0)
-
-        this.dmg_make("x%d"%seq, dmg_p)
-        this.charge("x%d"%seq, sp)
-
-        this.think_pin("x")
-        if this.first_x_after_s:
-            this.think_pin("s-x")
-            this.first_x_after_s = 0
-
-        if seq == 5:
-            this.doing = "x5_recover"
-            this.x_status = (5, 0)
-            time = float(this.conf["x5_recovery"]) / this.speed()
-        else:
-            this.doing = "x%d"%(seq+1)
-            this.x_status = (seq, seq+1)
-            time = float(this.conf["x%d_startup"%(seq+1)]) / this.speed()
-        this.done = "x%d"%seq
-        this.x_prev = now()
-        this.x_next.timing += time
-
-
     def l_melee_fs(this, e):
         log("fs","succ")
         dmg_p = this.conf["fs_dmg"]
@@ -662,7 +612,7 @@ class Adv(object):
         dmg_p = this.conf["fs_dmg"]
         sp_gain = this.conf["fs_sp"]
         missile_event = Event("fs_missile", this.missile, 
-                now() + this.conf['missile_iv'][0] )
+                now() + this.conf['missile_iv']['fs'] )
         missile_event.amount = dmg_p
         missile_event.samount = sp_gain
         missile_event.on()
@@ -709,39 +659,6 @@ class Adv(object):
         getattr(this, func)(e)
 
 
-
-
-#    def s(this, e):
-#        seq = this.x_status[0]
-#        if seq == -1:
-#            time = this.conf['fs_recovery'] - (this.x_next.timing - now())
-#            log("cancel", "fs" , time)
-#        elif seq != 0:
-#            time = now() - this.x_prev
-#            log("cancel", "x%d"%seq , time)
-#
-#        if seq == -1:
-#            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after fs)"%(\
-#                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name) )
-#        elif seq != 0:
-#            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
-#                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, seq ) )
-#        else:
-#            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after s%d)"%(\
-#                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, this.s_prev ) )
-#
-#        this.x_next.timing = now() + this.conf[e.name+"_time"] / this.speed()
-#        dmg_p = this.conf[e.name+"_dmg"]
-#        if dmg_p :
-#            this.dmg_make(e.name , dmg_p)
-#
-#        func = e.name + '_proc'
-#        getattr(this, func)(e)
-#
-#        this.s_prev = int(e.name[1])
-#        this.x_status = (0, 0)
-#        this.done = e.name
-#        this.doing = e.name + "_recover"
 
 
 
