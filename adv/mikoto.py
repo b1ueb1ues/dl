@@ -12,17 +12,20 @@ def module():
 class Mikoto(Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 0      ,
-        "s1_sp"   : 4500   ,
-        "s1_time" : 1.9    ,
+        "s1_dmg"      : 0        ,
+        "s1_sp"       : 4500     ,
+        "s1_startup"  : 0.1      ,
+        "s1_recovery" : 1.9      ,
 
-        "s2_dmg"  : 0      ,
-        "s2_sp"   : 4500   ,
-        "s2_time" : 1.1    ,
+        "s2_dmg"      : 0        ,
+        "s2_sp"       : 4500     ,
+        "s2_startup"  : 0.25     ,
+        "s2_recovery" : 1.1-0.15 ,
 
-        "s3_dmg"  : 3.54*3 ,
-        "s3_sp"   : 8030   ,
-        "s3_time" : 2.7      ,
+        "s3_dmg"      : 3.54*3   ,
+        "s3_sp"       : 8030     ,
+        "s3_startup"  : 0.1      ,
+        "s3_recovery" : 2.7      ,
         } )
     conf.update(wep.blade.conf)
 
@@ -77,9 +80,9 @@ class Mikoto(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, seq=5 
-        `s1, seq=5 
-        `s3, seq=5
+        `s2, seq=5 and cancel
+        `s1, seq=5 and cancel
+        `s3, seq=5 and cancel
         """
     adv_test.test(module(), conf, verbose=0)
 

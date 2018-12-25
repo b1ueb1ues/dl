@@ -1,5 +1,6 @@
 
 def printboost(name, dmg, boost, p=1):
+    dmg = dmg / 6.0
     dmgmin = dmg *0.95
     dmgmax = dmg *1.05
     if p:
@@ -14,10 +15,6 @@ def addormult(name, dmg, boost1, boost2):
     print b
 
 
-dmg = 2845*1.1*0.97/6
+dmg = 1812 *1.08 * 1.61/6
 
-addormult("n",dmg, 1.1,1.7)
-
-dmg = 690*7.43 /6 *1.24
-
-addormult("n",dmg, 1.20,1.25)
+addormult("n",dmg, 1.25,1.4)

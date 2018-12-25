@@ -15,6 +15,20 @@ def set_time(time):
 
 __g_event_listeners = {}
 
+def get_g_el():
+    global __g_event_listeners
+    return __g_event_listeners
+
+def save_event_listeners(el):
+    global __g_event_listeners
+    el.update(__g_event_listeners)
+    return __g_event_listeners
+
+def load_event_listeners(gel):
+    global __g_event_listeners
+    __g_event_listeners = gel
+
+
 def add_event_listener(eventname,listener): #listener should be a function
     global __g_event_listeners
 
