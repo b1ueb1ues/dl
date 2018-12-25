@@ -9,17 +9,20 @@ def module():
 class Lily(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 9.68     ,
-        "s1_sp"   : 2490     ,
-        "s1_time" : 4,
+        "s1_dmg"      : 9.68   ,
+        "s1_sp"       : 2490   ,
+        "s1_startup"  : 0.1    ,
+        "s1_recovery" : 4      ,
 
-        "s2_dmg"  : 9.74     ,
-        "s2_sp"   : 5909     ,
-        "s2_time" : 1.85 ,
+        "s2_dmg"      : 9.74   ,
+        "s2_sp"       : 5909   ,
+        "s2_startup"  : 0.1    ,
+        "s2_recovery" : 1.85   ,
 
-        "s3_dmg"  : 4*2.71   ,
-        "s3_sp"   : 8597     ,
-        "s3_time" : 1.9        ,
+        "s3_dmg"      : 4*2.71 ,
+        "s3_sp"       : 8597   ,
+        "s3_startup"  : 0.1    ,
+        "s3_recovery" : 1.9    ,
         } )
     conf.update(wep.wand.conf)
 

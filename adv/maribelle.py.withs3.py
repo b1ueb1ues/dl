@@ -21,9 +21,10 @@ if __name__ == '__main__':
         """
         
     conf.update({
-            "s3_dmg"  : 4*2.71 ,
-            "s3_sp"   : 8597   ,
-            "s3_time" : 1.9    ,
+            "s3_dmg"      : 4*2.71 ,
+            "s3_sp"       : 8597   ,
+            "s3_startup"  : 0.1    ,
+            "s3_recovery" : 1.9    ,
         })
 
     adv_test.test(module(), conf, verbose=0)

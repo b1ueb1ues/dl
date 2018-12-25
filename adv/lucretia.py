@@ -11,17 +11,20 @@ def module():
 class Lucretia(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 3.22*3   ,
-        "s1_sp"   : 3530     ,
-        "s1_time" : 180/60.0 ,
+        "s1_dmg"      : 3.22*3   ,
+        "s1_sp"       : 3530     ,
+        "s1_startup"  : 0.1      ,
+        "s1_recovery" : 180/60.0 ,
 
-        "s2_dmg"  : 0        ,
-        "s2_sp"   : 4553     ,
-        "s2_time" : 1.1      ,
+        "s2_dmg"      : 0        ,
+        "s2_sp"       : 4553     ,
+        "s2_startup"  : 0.1      ,
+        "s2_recovery" : 1.1      ,
 
-        "s3_dmg"  : 4*2.71   ,
-        "s3_sp"   : 8597     ,
-        "s3_time" : 1.9        ,
+        "s3_dmg"      : 4*2.71   ,
+        "s3_sp"       : 8597     ,
+        "s3_startup"  : 0.1      ,
+        "s3_recovery" : 1.9      ,
         } )
     conf.update(wep.wand.conf)
 

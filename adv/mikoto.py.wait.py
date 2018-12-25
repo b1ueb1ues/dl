@@ -14,7 +14,7 @@ class Mikoto_wait(adv.mikoto.Mikoto):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, cancel and this.stance != 2
+        `s1, cancel and this.s1buff != 1.2
         `s2, s=1
         """
     adv_test.test(module(), conf, verbose=0)

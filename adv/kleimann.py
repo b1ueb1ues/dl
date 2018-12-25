@@ -9,17 +9,20 @@ def module():
 class Kleimann(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 9.84  ,
-        "s1_sp"   : 2854     ,
-        "s1_time" : 1.9, #114/60.0 ,
+        "s1_dmg"      : 9.84   ,
+        "s1_sp"       : 2854   ,
+        "s1_startup"  : 0.1    ,
+        "s1_recovery" : 1.9    , #114/60.0 ,
 
-        "s2_dmg"  : 4.19*2   ,
-        "s2_sp"   : 7090     ,
-        "s2_time" : 1.8, #109/60.0 ,
+        "s2_dmg"      : 4.19*2 ,
+        "s2_sp"       : 7090   ,
+        "s2_startup"  : 0.1    ,
+        "s2_recovery" : 1.8    , #114/60.0 ,
 
-        "s3_dmg"  : 0        ,
-        "s3_sp"   : 0        ,
-        "s3_time" : 0        ,
+        "s3_dmg"      : 0      ,
+        "s3_sp"       : 0      ,
+        "s3_startup"  : 0.1    ,
+        "s3_recovery" : 1.9    ,
         } )
     conf.update(wep.wand.conf)
 

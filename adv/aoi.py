@@ -12,17 +12,20 @@ def module():
 class Aoi(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 8.78   ,
-        "s1_sp"   : 2630   ,
-        "s1_time" : 1.9    ,
+        "s1_dmg"      : 8.78   ,
+        "s1_sp"       : 2630   ,
+        "s1_startup"  : 0.1    ,
+        "s1_recovery" : 1.9    ,
 
-        "s2_dmg"  : 7.90   ,
-        "s2_sp"   : 5280   ,
-        "s2_time" : 1.9    ,
+        "s2_dmg"      : 7.90   ,
+        "s2_sp"       : 5280   ,
+        "s2_startup"  : 0.1    ,
+        "s2_recovery" : 1.9    ,
 
-        "s3_dmg"  : 3.54*3 ,
-        "s3_sp"   : 8030   ,
-        "s3_time" : 2.7    ,
+        "s3_dmg"      : 3.54*3 ,
+        "s3_sp"       : 8030   ,
+        "s3_startup"  : 0.1    ,
+        "s3_recovery" : 2.7    ,
         } )
     conf.update(wep.blade.conf)
 

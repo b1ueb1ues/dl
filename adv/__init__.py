@@ -301,6 +301,11 @@ class Adv(object):
         #sx=0
         #sp=0
         #cancel=0
+        #prev = this.action.getprev()
+        #pname="00"
+        #pidx=0
+        #pstat=0
+        #if prev != 0:\n    pname = prev.name\n    pidx = prev.index\n    pstat = prev.status
 
         #if dname[0] == 'x': xseq = didx
         #if dname == 'idle': xseq = 0
@@ -308,7 +313,7 @@ class Adv(object):
         #seq = xseq
         #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
         #if pin == 'fs':\n    fs=1\n    cancel=1
-        #if pin == 's': s = dname
+        #if pin == 'idle' and pname[0]=='s': \n    s = int(pname[1])
         #if pin == 's-x': \n    s = this.s_prev\n    sx=this.s_prev\n
         #if pin == 'sp': sp=1
         #s1=this.s1
