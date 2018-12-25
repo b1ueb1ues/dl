@@ -70,6 +70,8 @@ class Skill(object):
     silence_duration = 1.9
     silence = [0]
     name = "_Skill"
+    s_prev = ["__nop__"]
+    first_x_after_s = [0]
     def __init__(this, name=None, sp=None, ac=None):
         this.charged = 0
         if name:
@@ -81,7 +83,8 @@ class Skill(object):
         this.silence[0] = 0
         this.silence_end = Event("silence",this.restore)
         this.trigger_this = Event(this.name+"_cast").trigger
-        this.trigger_silence_end = Event("silence_end").trigger
+        this.se = Event("silence_end")
+        this.trigger_silence_end = this.se.trigger
         this.init()
 
     def __call__(this):
@@ -101,6 +104,7 @@ class Skill(object):
         if loglevel >= 2:
             log("silence","end")
         this.silence[0] = 0
+        this.se.s_prev = this.name
         this.trigger_silence_end()
 
 
@@ -114,17 +118,15 @@ class Skill(object):
         else:
             return 0
 
-    def cast(this, duration=None):
+    def cast(this):
         if not this.check():
             return 0
         else:
             this.charged = 0
             this.ac()
-            if duration == None:
-                duration = this.silence_duration
+            this.s_prev[0] = this.name
+            duration = this.silence_duration
             # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
-            if duration > 1.9:
-                duration = 1.9
             this.silence_end.on(now()+duration)
             this.silence[0] = 1
             if loglevel >= 2:
@@ -146,6 +148,15 @@ class Action(object):
     _startup = 0
     _recovery = 0
     status = -2 # -2nop -1startup 0doing 1recovery
+    idle = 0
+
+    class Nop(object):
+        name = "__idle__"
+        index = 0
+        status = -2
+        idle = 1
+
+    nop = Nop()
 
     def __init__(this, name=None, conf=None, act=None):  ## can't change name after this
         if name != None:
@@ -164,6 +175,11 @@ class Action(object):
 
         if this.spd_func[0] == 0:
             this.spd_func[0] = this.nospeed
+
+        if this.doing[0] == 0:
+            this.doing[0] = this.nop
+        if this.prev[0] == 0:
+            this.prev[0] = this.nop
 
         this.cancel_by = []
         this.interrupt_by = []
@@ -212,7 +228,7 @@ class Action(object):
                 log("ac_end",this.name)
             this.status = -2
             this._setprev() # turn this from doing to prev
-            this.doing[0] = 0
+            this.doing[0] = this.nop
             this.e_idle.trigger()
 
 
@@ -225,7 +241,7 @@ class Action(object):
     def tap(this):
         doing = this.getdoing()
 
-        if doing == 0:
+        if doing.idle :
             if loglevel >= 2:
                 log("tap",this.name, None, 'idle')
         else:
@@ -235,9 +251,9 @@ class Action(object):
         if doing == this : # self is doing
             return 0
 
-        #if doing == 0: # idle
+        #if doing.idle # idle
         #    pass
-        if doing != 0 : # doing != this
+        if not doing.idle : # doing != this
             if doing.status == -1: # try to interrupt an action
                 if this.name in doing.interrupt_by : # can interrupt action
                     log("interrupt", doing.name , "by "+this.name+"\t", "after %.2fs"%(now()-doing.startup_start) )
@@ -295,32 +311,36 @@ class Adv(object):
         #dname=e.dname
         #dstat=e.dstat
         #didx=e.didx
-        #xseq = -1
-        #x=0
-        #s=0
-        #sx=0
-        #sp=0
-        #cancel=0
         #prev = this.action.getprev()
-        #pname="00"
-        #pidx=0
-        #pstat=0
-        #if prev != 0:\n    pname = prev.name\n    pidx = prev.index\n    pstat = prev.status
+        #pname=prev.name
+        #pidx=prev.index
+        #pstat=prev.status
 
+        #xseq = -1
         #if dname[0] == 'x': xseq = didx
-        #if dname == 'idle': xseq = 0
-        
+        #if dstat == -2: xseq = 0
         #seq = xseq
+
+        #cancel=0
+        #x=0
+        #fs=0
         #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
         #if pin == 'fs':\n    fs=1\n    cancel=1
-        #if pin == 'idle' and pname[0]=='s': \n    s = int(pname[1])
-        #if pin == 's-x': \n    s = this.s_prev\n    sx=this.s_prev\n
+
+        #s=0
+        #sx=0
+        #if pin == 's':\n    s=pidx 
+        #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n  
+
+        #sp=0
         #if pin == 'sp': sp=1
+
         #s1=this.s1
         #s2=this.s2
         #s3=this.s3
         #fs=this.fs
     """
+        #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    exit()
 
 
     def __init__(this,conf):
@@ -425,6 +445,13 @@ class Adv(object):
 
     def l_idle(this, e):
         this.think_pin("idle")
+        prev = this.action.getprev()
+        if prev.name[0] == 's':
+            this.think_pin("s")
+        if this.skill.first_x_after_s[0] :
+            this.first_x_after_s[0] = 0
+            this.think_pin("s-x")
+
         this.x()
         pass
 
@@ -444,10 +471,9 @@ class Adv(object):
     def x(this):
         prev = this.action.getprev() 
         x_next = 1
-        if prev != 0:
-            if prev.name[0] == 'x':
-                if prev.index != 5:
-                    x_next = prev.index + 1
+        if prev.name[0] == 'x':
+            if prev.index != 5:
+                x_next = prev.index + 1
 
         a = getattr(this, "x%d"%x_next)()
         return 1
@@ -502,8 +528,6 @@ class Adv(object):
 
         Event("silence_end").listener(this.think_after_s)
 
-        this.cb_think = this.think3
-
         this.init()
 
         this._acl, this._acl_str = core.acl.acl_func_str(
@@ -521,32 +545,18 @@ class Adv(object):
         else:
             latency = this.conf['latency']['default']
         e = Event('think', this.cb_think).on(now() + latency)
-        e.pin = pin
         doing = this.action.getdoing()
-        e.dname = 'idle'
-        e.didx = -1
-        e.dstat = -1
-        if doing:
-            e.dname = doing.name
-            e.dstat = doing.status
-            e.didx = doing.index
+        e.pin = pin
+        e.dname = doing.name
+        e.dstat = doing.status
+        e.didx = doing.index
 
 
     def think_after_s(this, e):
-        if this.skill.silence[0] == 1:
-            print '1'
-            exit()
-            this.think_pin(e.name)
-            this.first_x_after_s = 1
-        else :
-            this.think_pin(e.name+"-x")
-            this.think_pin(e.name)
+        this.first_x_after_s = 1
 
 
     def cb_think(this, e):
-        pass
-
-    def think3(this, e):
         this._acl(this, e)
 
 
@@ -600,10 +610,6 @@ class Adv(object):
         this.charge(e.name, e.samount)
 
 
-    def ac(this, e):
-        this.x()
-
-
     def l_melee_fs(this, e):
         log("fs","succ")
         dmg_p = this.conf["fs_dmg"]
@@ -623,25 +629,6 @@ class Adv(object):
         missile_event.on()
         this.fs_proc(e)
         this.think_pin("fs")
-
-
-    def fs(this):
-        xseq = this.x_status[0]
-        if xseq != 0:
-            time = now() - this.x_prev
-            log("cancel", "x%d"%xseq , time)
-
-        if xseq != 0:
-            log("fs", 'hold', 0,"                               (hold fs after c%s)"%( xseq ) )
-        else:
-            log("fs", 'hold', 0,"                               (hold fs)" )
-
-        this.x_next.timing = now() + (this.conf["fs_startup"] + this.conf["fs_recovery"]) / this.speed()
-        this.fs_hold.on(now()+this.conf['fs_startup'])
-
-        this.x_status = (-1, 0)
-        this.doing = "fs_hold"
-        return 1
 
 
     def l_s(this, e):
