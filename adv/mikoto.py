@@ -27,7 +27,8 @@ class Mikoto(Adv):
         "s3_startup"  : 0.1      ,
         "s3_recovery" : 2.7      ,
 
-        "mod_p"   : ('crit' , 'chance'  , 0.18) ,
+        "mod_a"   : ('crit' , 'chance'  , 0.10) ,
+        "mod_a2"   : ('crit' , 'chance'  , 0.08) ,
         "mod_d"   : ('att'  , 'passive' , 0.60) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'chance'  , 0.06) ,

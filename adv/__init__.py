@@ -155,8 +155,9 @@ class Skill(object):
         if not this.check():
             return 0
         else:
+            if not this.ac() :
+                return 0
             this.charged = 0
-            this.ac()
             this._static.s_prev = this.name
             duration = this.silence_duration
             # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
@@ -168,6 +169,7 @@ class Skill(object):
 
     def ac(this):
         this.trigger_this()
+        return 1
 
 
 class Action(object):   

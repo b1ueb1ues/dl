@@ -23,17 +23,17 @@ class Lily(adv.Adv):
         "s3_sp"       : 8597   ,
         "s3_startup"  : 0.1    ,
         "s3_recovery" : 1.9    ,
+
+        "mod_a_fullhp"   : ('att'  , 'passive' , 0.15)  ,
+        #"mod_d"   : ('att'  , 'passive' , 0.45)  ,
+        #"mod_d2"   : ('crit'  , 'passive' , 0.2)  ,
+        "mod_d3"   : ('att'  , 'passive' , 0.6)  ,
+        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
+        "mod_wp2" : ('crit' , 'passive' , 0.06) ,
+        "mod_ex" : ('s','ex',0.15)
         } )
     conf.update(wep.wand.conf)
 
-    def sp_mod(this, name):
-        return 1
-
-    def dmg_mod_s(this, name):
-        return 1.25*1.15
-
-    def att_mod(this):
-        return (1.4+0.15) * 115.4/101.4 #calc crit as att
     
     def init(this):
         this.charge("prep", "100%")
@@ -53,7 +53,7 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s1, seq=5 and cancel
         `s3, seq=5 and cancel
-        `s3, s=1
+        `s3, s
         `s1, pin='prep'
         """
 

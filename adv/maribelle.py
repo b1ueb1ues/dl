@@ -24,7 +24,7 @@ class Maribelle(adv.Adv):
         "s3_startup"  : 0.1    ,
         "s3_recovery" : 1.9    ,
 
-        "mod_fullhp" : ('s'    , 'passive' , 0.4)  ,
+        "mod_a_fullhp" : ('s'    , 'passive' , 0.4)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"     : ('s'    , 'passive' , 0.25) ,
         "mod_wp2"    : ('crit' , 'chance'  , 0.06) ,

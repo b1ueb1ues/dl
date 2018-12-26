@@ -25,6 +25,11 @@ class Lucretia(adv.Adv):
         "s3_sp"       : 8597     ,
         "s3_startup"  : 0.1      ,
         "s3_recovery" : 1.9      ,
+
+        "mod_d"      : ('att'  , 'passive' , 0.6)  ,
+        "mod_wp"     : ('s'    , 'passive' , 0.25) ,
+        "mod_wp2"    : ('crit' , 'chance'  , 0.06) ,
+
         } )
     conf.update(wep.wand.conf)
 
@@ -34,14 +39,8 @@ class Lucretia(adv.Adv):
         this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
-        this.s2buff = adv.Buff("s2", 1.1, 10)
-        this.doublebuff = adv.Buff("double", 1.2, 15)
-
-    def att_mod(this):
-        return (this.s2buff.get() + this.doublebuff.get() -1 )* 1.6
-
-    def dmg_mod_s(this, name):
-        return 1.15*1.25
+        this.s2buff = adv.Buff("s2", 0.1, 10,'att')
+        this.doublebuff = adv.Buff("double", 0.2, 15,'att')
 
     def add_energy(this, count):
         this.energy += count

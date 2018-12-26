@@ -23,20 +23,14 @@ class Kleimann(adv.Adv):
         "s3_sp"       : 0      ,
         "s3_startup"  : 0.1    ,
         "s3_recovery" : 1.9    ,
+
+        "mod_a"   :("fs",'passive',0.4),
+        "mod_a2"   :("s",'passive',0.2),
+        "mod_d"   : ('att'  , 'passive' , 0.45)  ,
+        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
+        "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         } )
     conf.update(wep.wand.conf)
-
-    def att_mod(this):
-        return 1.45
-
-    def sp_mod(this, name):
-        return 1
-
-    def dmg_mod_s(this, name):
-        return 1.45*1.11
-
-    def dmg_mod_fs(this, name):
-        return 1.4
 
     def init(this):
         pass

@@ -26,26 +26,16 @@ class Aoi(adv.Adv):
         "s3_sp"       : 8030   ,
         "s3_startup"  : 0.1    ,
         "s3_recovery" : 2.7    ,
+
+        "mod_d"   : ('att'  , 'passive' , 0.6)  ,
+        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
+        "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         } )
     conf.update(wep.blade.conf)
 
     def init(this):
         pass
     
-    def sp_mod(this, name):
-        return 1
-
-    def att_mod(this):
-        return 1.6
-
-    def dmg_mod_x(this, name):
-        return 1
-
-    def dmg_mod_s(this, name):
-        return 1.25
-
-
-
 
 
 
