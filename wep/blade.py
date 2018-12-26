@@ -35,7 +35,7 @@ conf.update( {
 
         "dodge_recovery" : 43 /60.0   ,
 
-        "mod_wep"        : ("crit","chance",0.02)
+        "mod_wep"        : ("crit","chance",0.02),
         #"mod_wep"        : ("crit","dmg",0.10)
 
         }

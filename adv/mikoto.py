@@ -27,9 +27,12 @@ class Mikoto(Adv):
         "s3_startup"  : 0.1      ,
         "s3_recovery" : 2.7      ,
 
-        "mod_p1" : ('crit','chance',0.18),
-        "mod_ex" : ('att','ex',0.10),
-        "mod_dragon" : ('att','passive',0.60),
+        "mod_p"   : ('crit' , 'chance'  , 0.18) ,
+        "mod_d"   : ('att'  , 'passive' , 0.60) ,
+        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
+        "mod_wp2" : ('crit' , 'chance'  , 0.06) ,
+        #"mod_ex"  : ('att'  , 'ex'      , 0.10) ,
+        #"mod_ex2"  : ('s'  , 'ex'      , 0.15) ,
         } )
     conf.update(wep.blade.conf)
 

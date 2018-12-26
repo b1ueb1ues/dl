@@ -44,5 +44,7 @@ conf.update( {
             "x5" : 0.7   ,
             }, 
 
+        "mod_wep" : ('crit','chance',0.02),
+
         })
 

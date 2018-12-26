@@ -492,17 +492,18 @@ class Adv(object):
         return ret
 
     def crit_mod(this):
-        m = {"chance":0,"dmg":1.7}
+        m = {"chance":0,"dmg":1.7,"passive":0}
         for i in this.modifier._static.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
                 else:
-                    "err in crit_mod"
+                    print "err in crit_mod"
                     exit()
-        if m['chance'] > 1:
-            m['chance'] = 1
-        average = m["chance"] * m['dmg'] + 1 - m["chance"]
+        chance = m['chance']+m['passive']
+        if chance > 1:
+            chance = 1
+        average = chance * m['dmg'] + 1 - chance
         return average
 
 
@@ -608,8 +609,6 @@ class Adv(object):
         this._acl, this._acl_str = core.acl.acl_func_str(
                 this.acl_prepare_default+this.conf['acl'] 
                 )
-        #this._acl, this._acl_str = core.acl.acl_func_str(
-        #       this.acl_prepare_default+this.conf['acl']+'`x')
 
         Timeline().run(d)
 

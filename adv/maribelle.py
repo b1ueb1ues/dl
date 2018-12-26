@@ -23,21 +23,20 @@ class Maribelle(adv.Adv):
         "s3_sp"       : 0      ,
         "s3_startup"  : 0.1    ,
         "s3_recovery" : 1.9    ,
+
+        "mod_fullhp" : ('s'    , 'passive' , 0.4)  ,
+        "mod_d"      : ('att'  , 'passive' , 0.6)  ,
+        "mod_wp"     : ('s'    , 'passive' , 0.25) ,
+        "mod_wp2"    : ('crit' , 'chance'  , 0.06) ,
+        #"mod_ex"     : ('s'    , 'ex'      , 0.15) ,
+        #"mod_ex2"    : ('att'  , 'ex'      , 0.10) ,
         } )
     conf.update(wep.wand.conf)
 
-    def sp_mod(this, name):
-        return 1
-
-    def dmg_mod_s(this, name):
-        return (1.4+0.25)*1.15
-
-    def att_mod(this):
-        return 1.6
 
     def init(this):
         this.charge("prep", "100%")
-        this.s1buff = adv.Buff('armorbreak',(1.0/0.95-1)/2+1,10)
+        this.s1buff = adv.Buff('armorbreak',(1.0/0.95-1)/2,10)
 
 
     def s1_proc(this, e):
