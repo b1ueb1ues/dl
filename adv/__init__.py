@@ -385,7 +385,7 @@ class Adv(object):
         #s=0
         #sx=0
         #if pin[0] == 's' and pin[1] != 'p':\n    s=int(pin[1])
-        #if pin[-2:] == '-x':\n    s=int(pin[1])\n    sx=s\n  
+        #if pin[-2:] == '-x':\n    s=int(pin[1])\n    sx=s\n
 
         #sp=0
         #if pin == 'sp': sp=dname
@@ -630,9 +630,11 @@ class Adv(object):
 
     def think_after_s(this, e):
         doing = this.action.getdoing()
+        sname = this.skill._static.s_prev
         if doing.name[0] == 'x':
             this.skill._static.first_x_after_s = 1
-        sname = this.skill._static.s_prev
+        else:
+            this.think_pin(sname+'-x')  # best choice
         this.think_pin(sname)
         #if doing.name[0] == 's': 
         #   no_deed_to_do_anythin
@@ -640,6 +642,8 @@ class Adv(object):
 
 
     def cb_think(this, e):
+        if loglevel >= 2:
+            log("think", e.pin, e.dname)
         this._acl(this, e)
 
 
