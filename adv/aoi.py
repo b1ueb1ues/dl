@@ -27,6 +27,7 @@ class Aoi(adv.Adv):
         "s3_startup"  : 0.1    ,
         "s3_recovery" : 2.7    ,
 
+        "mod_a" :('att','punisher', 0.04),
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
