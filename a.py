@@ -15,6 +15,6 @@ def addormult(name, dmg, boost1, boost2):
     print b
 
 
-dmg = 1812 *1.08 * 1.61/6
+dmg = 568 * 0.97 *1.03  /6*10
 
-addormult("n",dmg, 1.25,1.4)
+addormult("n",dmg, 1.2,1.2)
