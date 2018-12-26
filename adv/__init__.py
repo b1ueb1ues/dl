@@ -388,7 +388,7 @@ class Adv(object):
         #if pin[-2:] == '-x':\n    s=int(pin[1])\n    sx=s\n  
 
         #sp=0
-        #if pin == 'sp': sp=1
+        #if pin == 'sp': sp=dname
 
         #s1=this.s1
         #s2=this.s2
