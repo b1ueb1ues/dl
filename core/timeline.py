@@ -50,6 +50,32 @@ def clean_event_listener():
     __g_event_listeners = {}
 
 
+class Static(object):
+    ___var___ = {}
+    def __init__(this, dic={}):
+        object.__setattr__(this, '___var___', dic)
+        var = object.__getattribute__(this, '___var___')
+        this["___var___"] = var
+
+
+
+    def __getattr__(this, n):
+        var = object.__getattribute__(this, '___var___')
+        return var[n]
+
+    def __getitem__(this, i):
+        var = object.__getattribute__(this, '___var___')
+        return var[i]
+
+    def __setitem__(this, i, v):
+        var = object.__getattribute__(this, '___var___')
+        var[i] = v
+
+    def __setattr__(this, n, v):
+        var = object.__getattribute__(this, '___var___')
+        var[n] = v
+
+
 
 class Event(object):
 

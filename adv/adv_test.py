@@ -3,12 +3,15 @@ if __package__ is None:
     sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
 from core.log import *
+import time
 
 
 mname = ""
 def test(classname, conf, verbose):
     global mname
+    a = time.time()
     classname(conf=conf).run(300)
+    b = time.time()
 
     mname = classname.__name__
     import sys
@@ -20,6 +23,8 @@ def test(classname, conf, verbose):
         logcat()
         sum_ac()
     sum_dmg()
+    if loglevel >= 2:
+        print '-----------------------\nrun in %f'%(b-a)
     return
 
 def sum_ac():

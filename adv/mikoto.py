@@ -26,49 +26,39 @@ class Mikoto(Adv):
         "s3_sp"       : 8030     ,
         "s3_startup"  : 0.1      ,
         "s3_recovery" : 2.7      ,
+
+        "mod_p1" : ('crit','chance',0.18),
+        "mod_ex" : ('att','ex',0.10),
+        "mod_dragon" : ('att','passive',0.60),
         } )
     conf.update(wep.blade.conf)
 
     def init(this):
-        this.s1buff = Buff("s1",1, 15)
-        this.s2buff = Buff("s2",1.2, 10)
 
-    
-    def sp_mod(this, name):
-        return 1
-
-    def att_mod(this):
-        # calculate 20%crit to 12.42604% attack
-        return 1.1242604*1.6
-
-    def dmg_mod_x(this, name):
-        return this.s1buff.get()
-
-    def dmg_mod_s(this, name):
-        return 1.25
+        this.s1buff = Buff("s1",0, 15, 'x')
+        this.s2buff = Buff("s2",0.2, 10)
 
     def speed(this):
-        return this.s2buff.get()
+        return 1+this.s2buff.get()
 
     def s1_proc(this, e):
         buff = this.s1buff.get()
-        if buff == 1:
+        if buff == 0:
             stance = 0
-        elif buff == 1.15:
+        elif buff == 0.15:
             stance = 1
-        elif buff == 1.2:
+        elif buff == 0.2:
             stance = 2
-
         if stance == 0:
             this.dmg_make('s1',5.32*2)
-            this.s1buff.set(1.15).on()
+            this.s1buff.set(0.15).on()
         elif stance == 1:
             this.dmg_make('s1',3.54*3)
             this.s1buff.off()
-            this.s1buff.set(1.2).on()
+            this.s1buff.set(0.2).on()
         elif stance == 2:
             this.dmg_make('s1',2.13*4+4.25)
-            this.s1buff.off().set(1)
+            this.s1buff.off().set(0)
 
     def s2_proc(this, e):
         this.s2buff.on()

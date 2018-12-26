@@ -3,36 +3,67 @@ from core.log import *
 import core.acl
 import sys
 
-loglevel = 0
-if len(sys.argv) >= 2:
-    loglevel = int(sys.argv[1])
+
+class Modifier(object):
+    _static = Static()
+    _static.all_modifiers = []
+    mod_name = "<nop>"
+    mod_type = "_nop" or "att" or "x" or "fs" or "s" #....
+    mod_order = "_nop" or "passive" or "ex" or "buff" # chance dmg for crit 
+    mod_value = 0
+    def __init__(this, name, mtype, order, value):
+        this.mod_name = name
+        this.mod_type = mtype
+        this.mod_order = order
+        this.mod_value = value
+        this._static['all_modifiers'].append(this)
+    def get(this):
+        return this.mod_value
+    def __repr__(this):
+        return "<%s %s %s %s>"%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
+
 
 class Buff(object):
-    def __init__(this, name=None, value=None, duration=None):
+    _static = Static()
+    _static.all_buffs = []
+    def __init__(this, name=None, value=None, duration=None, mtype=None, morder=None):
         this._value = 0
         this.duration = 0
         this.name = "buff_noname"
-        this.mod = "att" or "x" or "fs" or "s" #....
-        this.type = "passive" or "ex" or "active"
+        this.mod_type = "_nop" or "att" or "x" or "fs" or "s" #....
+        this.mod_order = "_nop" or "passive" or "ex" or "buff"
         if name != None:
             this.name = name
         if value != None:
             this._value = value
         if duration != None:
             this.duration = duration
+        if mtype != None:
+            this.mod_type = mtype
+        if morder != None:
+            this.mod_order = morder
+        if this.mod_type != 'crit':
+            if morder == None:
+                this.mod_order = 'buff'
+        if this.mod_type == 'crit':
+            if morder == None:
+                this.mod_order = 'chance'
         this.active = 0
         this.buff_end_event = Event("buff",this.buff_end_proc)
+        this._static.all_buffs.append(this)
+        this.modifier = Modifier("mod_"+this.name, this.mod_type, this.mod_order, 0)
+        this.modifier.get = this.get
 
     def value(this):
         if this.active:
             return this._value
         else:
-            return 1
+            return 0
     def get(this):
         if this.active:
             return this._value
         else:
-            return 1
+            return 0
 
     def set(this, v):
         this._value = v
@@ -67,13 +98,14 @@ class Buff(object):
 
 
 class Skill(object):
+    _static = Static()
+    _static.s_prev = "<nop>"
+    _static.first_x_after_s = 0
     charged = 0
     sp = 0
     silence_duration = 1.9
     silence = [0]
     name = "_Skill"
-    s_prev = ["__nop__"]
-    first_x_after_s = [0]
     def __init__(this, name=None, sp=None, ac=None):
         this.charged = 0
         if name:
@@ -98,15 +130,14 @@ class Skill(object):
 
 
     def charge(this,sp):
-        this.charged += sp
-        #if this.charged > this.sp:
+        this.charged += sp   
+        #if this.charged > this.sp:  # should be 
             #this.charged = this.sp
 
     def restore(this, e):
         if loglevel >= 2:
             log("silence","end")
         this.silence[0] = 0
-        this.se.s_prev = this.name
         this.trigger_silence_end()
 
 
@@ -126,7 +157,7 @@ class Skill(object):
         else:
             this.charged = 0
             this.ac()
-            this.s_prev[0] = this.name
+            this._static.s_prev = this.name
             duration = this.silence_duration
             # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
             this.silence_end.on(now()+duration)
@@ -140,6 +171,11 @@ class Skill(object):
 
 
 class Action(object):   
+    _static = Static()
+    _static.prev = 0
+    _static.doing = 0
+    _static.spd_func = 0
+
     prev = [0]
     doing = [0] # idle
     spd_func = [0]
@@ -175,13 +211,12 @@ class Action(object):
         if active != None:
             this.active = active
 
-        if this.spd_func[0] == 0:
-            this.spd_func[0] = this.nospeed
-
-        if this.doing[0] == 0:
-            this.doing[0] = this.nop
-        if this.prev[0] == 0:
-            this.prev[0] = this.nop
+        if this._static["spd_func"] == 0:
+            this._static["spd_func"] = this.nospeed
+        if this._static["doing"] == 0:
+            this._static["doing"] = this.nop
+        if this._static["prev"] == 0:
+            this._static["prev"] = this.nop
 
         this.cancel_by = []
         this.interrupt_by = []
@@ -195,13 +230,13 @@ class Action(object):
         return this.tap()
     
     def getdoing(this):
-        return this.doing[0]
+        return this._static['doing']
     def _setdoing(this):
-        this.doing[0] = this
+        this._static["doing"] = this
     def getprev(this):
-        return this.prev[0]
+        return this._static['prev']
     def _setprev(this):
-        this.prev[0] = this.doing[0]
+        this._static['prev'] = this._static['doing']
 
     def getrecovery(this):
         return this._recovery / this.speed()
@@ -213,7 +248,7 @@ class Action(object):
         return 1
 
     def speed(this):
-        return this.spd_func[0]()
+        return this._static.spd_func()
 
     def _cb_acting(this, e):
         if this.getdoing() == this:
@@ -230,7 +265,7 @@ class Action(object):
                 log("ac_end",this.name)
             this.status = -2
             this._setprev() # turn this from doing to prev
-            this.doing[0] = this.nop
+            this._static['doing'] = this.nop
             this.e_idle.trigger()
 
 
@@ -274,12 +309,28 @@ class Action(object):
         this.startup_start = now()
         this.startup_event.on(now()+this.getstartup())
         this._setdoing()
-        #this.act()
         return 1
 
 
 
 class Adv(object):
+    # vvvvvvvvv rewrite this to provide advanced tweak vvvvvvvvvv
+    def s1_proc(this, e):
+        pass
+    def s2_proc(this, e):
+        pass
+    def s3_proc(this, e):
+        pass
+    def fs_proc(this, e):
+        pass
+    def dmg_proc(this, name, amount):
+        pass
+    def speed(this):
+        return 1
+    def init(this): 
+        pass
+    # ^^^^^^^^^ rewrite this to provide advanced tweak ^^^^^^^^^^
+
     x_status = (0,0)
     conf = {}
 
@@ -346,6 +397,7 @@ class Adv(object):
 
 
     def __init__(this,conf):
+        Timeline().reset()
         this.log = []
         loginit(this.log)
         tmpconf = {}
@@ -353,11 +405,19 @@ class Adv(object):
         tmpconf.update(this.conf)
         tmpconf.update(conf)
         this.conf = tmpconf
-        this.s_prev = 0
 
         this.skill = Skill()
         this.action = Action()
-        this.action.spd_func[0] = this.speed
+        this.action._static['spd_func'] = this.speed
+        this.buff = Buff()
+        this.buff._static['all_buffs'] = []
+        # set modifier
+        this.modifier = Modifier(0,0,0,0)
+        this.modifier._static['all_modifiers'] = []
+        for i in this.conf:
+            if i[:3] == 'mod':
+                j = this.conf[i]
+                Modifier(i,j[0],j[1],j[2])
 
         # init actions
         this.a_s1 = Action(("s1",1),this.conf)
@@ -395,6 +455,7 @@ class Adv(object):
         this.s2 = Skill("s2",this.conf["s2_sp"],this.a_s2.tap)
         this.s3 = Skill("s3",this.conf["s3_sp"],this.a_s3.tap)
 
+
         if this.conf['x_type']== "ranged":
             this.l_x = this.l_range_x
             this.l_fs = this.l_range_fs
@@ -409,40 +470,52 @@ class Adv(object):
 
     def dmg_mod(this, name):
         if name[0] == 's':
-            return this.dmg_mod_s(name)
+            return this.mod('s')
         elif name[0:2] == 'fs':
-            return this.dmg_mod_fs(name)
+            return this.mod('fs')
         elif name[0] == 'x':
-            return this.dmg_mod_x(name)
+            return this.mod('x')
         else:
             return 1
 
-    def dmg_mod_s(this, name):
-        return 1
-    def dmg_mod_fs(this, name):
-        return 1
-    def dmg_mod_x(this, name):
-        return 1
+    def mod(this, mtype):
+        m = {}
+        for i in this.modifier._static.all_modifiers:
+            if mtype == i.mod_type:
+                if i.mod_order in m:
+                    m[i.mod_order] += i.get()
+                else:
+                    m[i.mod_order] = 1 + i.get()
+        ret = 1.0
+        for i in m:
+            ret *= m[i]
+        return ret
+
+    def crit_mod(this):
+        m = {"chance":0,"dmg":1.7}
+        for i in this.modifier._static.all_modifiers:
+            if 'crit' == i.mod_type:
+                if i.mod_order in m:
+                    m[i.mod_order] += i.get()
+                else:
+                    "err in crit_mod"
+                    exit()
+        if m['chance'] > 1:
+            m['chance'] = 1
+        average = m["chance"] * m['dmg'] + 1 - m["chance"]
+        return average
+
+
     def att_mod(this):
-        return 1
-    def speed(this):
-        return 1
+        att = this.mod('att')
+        cc = this.crit_mod()
+        return cc * att
+
     def def_mod(this):
-        return 1
+        return this.mod('def')
+
     def sp_mod(this, name):
-        return 1
-    def s1_proc(this, e):
-        pass
-    def s2_proc(this, e):
-        pass
-    def s3_proc(this, e):
-        pass
-    def fs_proc(this, e):
-        pass
-    def dmg_proc(this, name, amount):
-        pass
-    def init(this): 
-        pass
+        return this.mod('sp')
 
 
     def l_idle(this, e):
@@ -450,9 +523,9 @@ class Adv(object):
         prev = this.action.getprev()
         if prev.name[0] == 's':
             this.think_pin(prev.name)
-        if this.skill.first_x_after_s[0] :
-            this.skill.first_x_after_s[0] = 0
-            s_prev = this.skill.s_prev[0]
+        if this.skill._static.first_x_after_s :
+            this.skill._static.first_x_after_s = 0
+            s_prev = this.skill._static.s_prev
             this.think_pin("%s-x"%s_prev)
         this.x()
 
@@ -557,8 +630,8 @@ class Adv(object):
     def think_after_s(this, e):
         doing = this.action.getdoing()
         if doing.name[0] == 'x':
-            this.skill.first_x_after_s[0] = 1
-        sname = this.skill.s_prev[0]
+            this.skill._static.first_x_after_s = 1
+        sname = this.skill._static.s_prev
         this.think_pin(sname)
         #if doing.name[0] == 's': 
         #   no_deed_to_do_anythin

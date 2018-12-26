@@ -1,5 +1,9 @@
 from timeline import *
+import sys
 
+loglevel = 0
+if len(sys.argv) >= 2:
+    loglevel = int(sys.argv[1])
 
 #g_log = []
 g_log_active = []
