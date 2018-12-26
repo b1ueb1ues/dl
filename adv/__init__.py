@@ -12,6 +12,8 @@ class Buff(object):
         this._value = 0
         this.duration = 0
         this.name = "buff_noname"
+        this.mod = "att" or "x" or "fs" or "s" #....
+        this.type = "passive" or "ex" or "active"
         if name != None:
             this.name = name
         if value != None:
@@ -158,7 +160,7 @@ class Action(object):
 
     nop = Nop()
 
-    def __init__(this, name=None, conf=None, act=None):  ## can't change name after this
+    def __init__(this, name=None, conf=None, active=None):  ## can't change name after this
         if name != None:
             if type(name) == tuple:
                 this.name = name[0]
@@ -170,8 +172,8 @@ class Action(object):
             this._startup = conf[this.name+"_startup"]
             this._recovery = conf[this.name+"_recovery"]
             
-        if act != None:
-            this.act = act
+        if active != None:
+            this.active = active
 
         if this.spd_func[0] == 0:
             this.spd_func[0] = this.nospeed
@@ -216,7 +218,7 @@ class Action(object):
     def _cb_acting(this, e):
         if this.getdoing() == this:
             this.status = 0
-            this.act()
+            this.active()
             this.status = 1
             this.recover_start = now() 
             this.recovery_event.on(now()+ this.getrecovery())
@@ -232,9 +234,9 @@ class Action(object):
             this.e_idle.trigger()
 
 
-    def act(this):
+    def active(this):
         if loglevel >= 2:
-            log("ac",this.name)
+            log("active",this.name)
         this.e_this.trigger()
 
 
@@ -329,8 +331,8 @@ class Adv(object):
 
         #s=0
         #sx=0
-        #if pin == 's':\n    s=pidx 
-        #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n  
+        #if pin[0] == 's' and pin[1] != 'p':\n    s=int(pin[1])
+        #if pin[-2:] == '-x':\n    s=int(pin[1])\n    sx=s\n  
 
         #sp=0
         #if pin == 'sp': sp=1
@@ -447,13 +449,13 @@ class Adv(object):
         this.think_pin("idle")
         prev = this.action.getprev()
         if prev.name[0] == 's':
-            this.think_pin("s")
+            this.think_pin(prev.name)
         if this.skill.first_x_after_s[0] :
-            this.first_x_after_s[0] = 0
-            this.think_pin("s-x")
-
+            this.skill.first_x_after_s[0] = 0
+            s_prev = this.skill.s_prev[0]
+            this.think_pin("%s-x"%s_prev)
         this.x()
-        pass
+
 
     def getxseq(this):
         doing = this.action.getdoing()
@@ -553,7 +555,14 @@ class Adv(object):
 
 
     def think_after_s(this, e):
-        this.first_x_after_s = 1
+        doing = this.action.getdoing()
+        if doing.name[0] == 'x':
+            this.skill.first_x_after_s[0] = 1
+        sname = this.skill.s_prev[0]
+        this.think_pin(sname)
+        #if doing.name[0] == 's': 
+        #   no_deed_to_do_anythin
+            
 
 
     def cb_think(this, e):
