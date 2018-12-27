@@ -11,13 +11,34 @@ staff  = 0.69
 
 '''
 
+已知龙与hp攻加算
+1060攻 水库 无能力基础攻731
+70血攻13 疾风攻13 龙攻45
+
+
+c1
++x add  : 148 156 164 <
++x mult : < 154 163 171
+
+c2
++x add  : 75 79 83 <
++x mult : < 78 82 86
+
+实测c1 149 c2 76
+疾风攻+hp攻+龙攻 加算
 
 '''
 
 def main():
-    dmg = sword * 586
-    a = 1.25
-    b = 1.20
+    dmg = dagger * 731
+    a = 1.58
+    b = 1.13
+
+    addormult("+x",dmg, a, b)
+
+    dmg = dagger2 * 731
+    a = 1.58
+    b = 1.13
 
     addormult("+x",dmg, a, b)
 
