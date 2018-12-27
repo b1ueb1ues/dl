@@ -13,11 +13,11 @@ staff = 0.69
 
 
 def main():
-    dmg = dagger * 683 *10/6
-    addormult("+x",dmg, 1.25,1.2)
+    dmg = dagger * 1060/1.45
+    addormult("+x",dmg, 1.13,1.58)
 
-    dmg = dagger2 * 683 *10/6
-    addormult("+x",dmg, 1.25,1.2)
+    dmg = dagger2 * 1060/1.45
+    addormult("+x",dmg, 1.13,1.58)
 
 
 def printboost(name, dmg, boost, p=1):
