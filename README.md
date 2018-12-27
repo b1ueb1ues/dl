@@ -2,7 +2,11 @@
 
 
 ## Running
-python adv/mikoto.py [loglevel(0,1,2)]
+python adv/[someone].py [loglevel(0,1,2)]
+
+python adv/mikoto.py
+python adv/maribelle.py 1
+...
 
 ## Folders
 - core: simulate engine
