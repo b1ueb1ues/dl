@@ -17,3 +17,23 @@ python adv/maribelle.py 1
 - framedata: Pictures that have frames number in it. Source of data in adventures and weapons config.
 - mechanics: The study of DL's mechanics, Lots of test data, formula,  (Warning: lots of Chinese inside)
 
+## Acl syntax
+```
+# a = b
+`action, condition
+`action2, condition2 or condithon3=4
+# c = d
+```
+after # is prepare language, # they will execute before `
+
+after ` is action you want to do when condition is true, if this action can't be execute, then passthrough next action
+
+this acl will be translate into
+```
+a=b
+c=d
+if condition:
+    action()
+if condition2 or condition3==4:
+    action2()
+```
