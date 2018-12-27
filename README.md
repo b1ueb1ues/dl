@@ -21,7 +21,7 @@ python adv/maribelle.py 1
 ```
 # a = b
 `action, condition
-`action2, condition2 or condithon3
+`action2, condition2 or condithon3=4
 # c = d
 ```
 after # is prepare language, # they will execute before `
@@ -34,6 +34,6 @@ a=b
 c=d
 if condition:
     action()
-if condition2 or condition3:
+if condition2 or condition3==4:
     action2()
 ```
