@@ -369,9 +369,9 @@ class Adv(object):
 
         #cancel=0
         #x=0
-        #fs=0
+        #fsc=0
         #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
-        #if pin == 'fs':\n    fs=1\n    cancel=1
+        #if pin == 'fs':\n    fsc=1\n    cancel=1
 
         #s=0
         #sx=0

@@ -25,9 +25,9 @@ class Lily(adv.Adv):
         "s3_recovery" : 1.9    ,
 
         "mod_a_fullhp"   : ('att'  , 'passive' , 0.15)  ,
-        #"mod_d"   : ('att'  , 'passive' , 0.45)  ,
-        #"mod_d2"   : ('crit'  , 'passive' , 0.2)  ,
-        "mod_d3"   : ('att'  , 'passive' , 0.6)  ,
+        "mod_d"   : ('att'  , 'passive' , 0.45)  ,
+        "mod_d2"   : ('crit'  , 'passive' , 0.2)  ,
+        #"mod_d3"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         "mod_ex" : ('s','ex',0.15)
