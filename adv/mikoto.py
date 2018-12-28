@@ -1,6 +1,6 @@
 import adv_test
 from adv import *
-import wep.blade
+import wep.blade as weapon
 from core.timeline import *
 from core.log import *
 
@@ -35,7 +35,7 @@ class Mikoto(Adv):
         #"mod_ex"  : ('att'  , 'ex'      , 0.10) ,
         #"mod_ex2"  : ('s'  , 'ex'      , 0.15) ,
         } )
-    conf.update(wep.blade.conf)
+    conf.update(weapon.conf)
 
     def init(this):
 
