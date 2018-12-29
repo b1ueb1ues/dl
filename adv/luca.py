@@ -19,10 +19,10 @@ class Luca(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.9    ,
 
-        "s3_dmg"      : 0      ,
-        "s3_sp"       : 0      ,
-        "s3_startup"  : 0.1    ,
-        "s3_recovery" : 1.9    ,
+        #"s3_dmg"      : 0      ,
+        #"s3_sp"       : 0      ,
+        #"s3_startup"  : 0.1    ,
+        #"s3_recovery" : 1.9    ,
 
         "mod_a" : ('att'    , 'passive' , 0.13)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
@@ -32,13 +32,6 @@ class Luca(adv.Adv):
         #"mod_ex2"    : ('att'  , 'ex'      , 0.10) ,
         } )
     conf.update(weapon.conf)
-
-
-    def init(this):
-        pass
-
-    def s1_proc(this, e):
-        pass
 
 
 

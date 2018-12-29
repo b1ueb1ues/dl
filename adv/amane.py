@@ -21,10 +21,10 @@ class Amane(adv.Adv):
         "s2_startup"  : 0.1+0.5 , #65/60
         "s2_recovery" : 1.1-0.5 , #65/60
 
-        "s3_dmg"      : 4*2.71  ,
-        "s3_sp"       : 8597    ,
-        "s2_startup"  : 0.1     ,
-        "s3_recovery" : 1.9     , #117/60
+        #"s3_dmg"      : 4*2.71  ,
+        #"s3_sp"       : 8597    ,
+        #"s2_startup"  : 0.1     ,
+        #"s3_recovery" : 1.9     , #117/60
 
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
@@ -35,7 +35,7 @@ class Amane(adv.Adv):
 
     def init(this):
         this.charge("prep","75%")
-        this.s2buff = adv.Buff("s2",0.15,10,'att')
+        this.s2buff = adv.Buff("s2",0.15,10,'att') # impossible to stack
 
 
 

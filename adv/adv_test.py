@@ -19,7 +19,7 @@ def test(classname, conf, verbose):
         verbose = sys.argv[1]
     verbose = int(verbose)
 
-    if verbose != 0:
+    if verbose > 0:
         logcat()
         sum_ac()
     sum_dmg()
@@ -146,10 +146,12 @@ def sum_dmg():
         sdmg_sum[i] = "%.2f (%d)"%(sdmg_sum[i]['dmg'], sdmg_sum[i]['count'])
 
 
-    global mname
-    print '\n======================='
-    print mname,dmg_sum['total']
-    print '-----------------------'
-    print "dmgsum     |", dmg_sum
-    print "skill_stat |", sdmg_sum
-    print "x_stat     |",xdmg_sum
+    if loglevel >= 0:
+        print '\n======================='
+        print mname,dmg_sum['total']
+        print '-----------------------'
+        print "dmgsum     |", dmg_sum
+        print "skill_stat |", sdmg_sum
+        print "x_stat     |",xdmg_sum
+    else:
+        print "%s, %s"%(dmg_sum['total'], mname)

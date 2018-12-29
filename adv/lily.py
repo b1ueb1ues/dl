@@ -19,10 +19,10 @@ class Lily(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.85   ,
 
-        "s3_dmg"      : 4*2.71 ,
-        "s3_sp"       : 8597   ,
-        "s3_startup"  : 0.1    ,
-        "s3_recovery" : 1.9    ,
+        #"s3_dmg"      : 4*2.71 ,
+        #"s3_sp"       : 8597   ,
+        #"s3_startup"  : 0.1    ,
+        #"s3_recovery" : 1.9    ,
 
         "mod_a_fullhp"   : ('att'  , 'passive' , 0.15)  ,
         "mod_d"   : ('att'  , 'passive' , 0.45)  ,

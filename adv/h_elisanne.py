@@ -7,9 +7,9 @@ from core.log import *
 
 
 def module():
-    return Mikoto
+    return H_Elisanne
 
-class Mikoto(Adv):
+class H_Elisanne(Adv):
     conf = {}
     conf.update( {
         "s1_dmg"      : 115*7 /100.0   ,
@@ -22,10 +22,10 @@ class Mikoto(Adv):
         "s2_startup"  : 0.1     ,
         "s2_recovery" : 4        ,
 
-        "s3_dmg"      : 4.61*2   ,
-        "s3_sp"       : 8111     ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 2.7      ,
+        #"s3_dmg"      : 4.61*2   ,
+        #"s3_sp"       : 8111     ,
+        #"s3_startup"  : 0.1      ,
+        #"s3_recovery" : 2.7      ,
 
         "mod_a"   : ('s' , 'passive'  , 0.3) ,
         "mod_d"   : ('att'  , 'passive' , 0.60) ,

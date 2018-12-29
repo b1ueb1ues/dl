@@ -34,11 +34,11 @@ class Celliera(adv.Adv):
 
 
     def init(this):
-        this.s2buff = adv.Buff("s2",0.25,10,'att')
+        pass
 
 
     def s2_proc(this, e):
-        this.s2buff.on()
+        adv.Buff("s2",0.25,10,'att').on()
 
 
 if __name__ == '__main__':

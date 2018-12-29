@@ -21,10 +21,10 @@ class Lucretia(adv.Adv):
         "s2_startup"  : 0.1      ,
         "s2_recovery" : 1.1      ,
 
-        "s3_dmg"      : 4*2.71   ,
-        "s3_sp"       : 8597     ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 1.9      ,
+        #"s3_dmg"      : 4*2.71   ,
+        #"s3_sp"       : 8597     ,
+        #"s3_startup"  : 0.1      ,
+        #"s3_recovery" : 1.9      ,
 
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"     : ('s'    , 'passive' , 0.25) ,
@@ -39,7 +39,6 @@ class Lucretia(adv.Adv):
         this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
-        this.s2buff = adv.Buff("s2", 0.1, 10,'att')
         this.doublebuff = adv.Buff("double", 0.2, 15,'att')
 
     def add_energy(this, count):
@@ -59,7 +58,7 @@ class Lucretia(adv.Adv):
 
     def s2_proc(this, e):
         this.add_energy(2)
-        this.s2buff.on()
+        adv.Buff("s2", 0.1, 10,'att').on()
 
 
     def s3_proc(this, e):
@@ -86,14 +85,15 @@ if __name__ == '__main__':
             """
 
     adv_test.test(module(), conf, verbose=0)
-    l = logget()
-    energized = {'s1':0, 's2':0, 's3':0}
-    for i in l:
-        if i[1] == 'dmg' and i[2][0] == 's' and i[2][-1:] == 'y':
-            energized[i[2][:2]] += i[3]
-    for i in energized:
-        energized[i] = "%.3f"%energized[i]
-    print "energized  |",energized
+    if loglevel >= 0:
+        l = logget()
+        energized = {'s1':0, 's2':0, 's3':0}
+        for i in l:
+            if i[1] == 'dmg' and i[2][0] == 's' and i[2][-1:] == 'y':
+                energized[i[2][:2]] += i[3]
+        for i in energized:
+            energized[i] = "%.3f"%energized[i]
+        print "energized  |",energized
 
 
 

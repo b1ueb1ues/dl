@@ -19,10 +19,10 @@ class Kleimann(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.8    , #114/60.0 ,
 
-        "s3_dmg"      : 0      ,
-        "s3_sp"       : 0      ,
-        "s3_startup"  : 0.1    ,
-        "s3_recovery" : 1.9    ,
+        #"s3_dmg"      : 0      ,
+        #"s3_sp"       : 0      ,
+        #"s3_startup"  : 0.1    ,
+        #"s3_recovery" : 1.9    ,
 
         "mod_a"   :("fs",'passive',0.4),
         "mod_a2"   :("s",'passive',0.2),

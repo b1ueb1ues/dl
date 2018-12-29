@@ -63,6 +63,13 @@ class Buff(object):
     def buff_end_proc(this, e):
         log("buff", this.__name, this.value(), this.__name+" buff end <timeout>")
         this.__active = 0
+        stack = 0
+        for i in this._static.all_buffs:
+            if i.__name == this.__name:
+                if i.__active != 0:
+                    stack += 1
+        if stack > 0:
+            log("buff", this.__name, this.value(), this.__name+" buff stack <%d>"%stack)
 
 
     def on(this, duration=None):
@@ -77,6 +84,15 @@ class Buff(object):
         else:
             this.buff_end_event.timing = now() + d
             log("buff", this.__name, this.value(), this.__name+" buff refresh <%ds>"%d)
+
+        stack = 0
+        for i in this._static.all_buffs:
+            if i.__name == this.__name:
+                if i.__active != 0:
+                    stack += 1
+        if stack > 1:
+            log("buff", this.__name, this.value(), this.__name+" buff stack <%d>"%stack)
+
 
         return this
 
