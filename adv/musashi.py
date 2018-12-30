@@ -27,6 +27,7 @@ class Musashi(adv.Adv):
         #"s3_startup"  : 0.1    ,
         #"s3_recovery" : 2.7    ,
 
+        "mod_a"   : ('att'  , 'buff', 0.03) ,
         "mod_a"   : ('att'  , 'punisher', 0.08/2) ,
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
@@ -35,6 +36,9 @@ class Musashi(adv.Adv):
     conf.update(weapon.conf)
 
     def init(this):
+        this.dmg_make("s1_poison",2.65)
+        this.dmg_make("s1_poison",2.65)
+        this.dmg_make("s1_poison",2.65)
         this.s2buff = adv.Buff("s2",0.3,5,'att')
 
     def s2_proc(this, e):
@@ -49,7 +53,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, seq=5
         `s2, seq=5 
-        `s3, seq=5
+        `s3, s
         """
     adv_test.test(module(), conf, verbose=0)
 

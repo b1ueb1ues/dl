@@ -693,7 +693,9 @@ class Adv(object):
             log("dmg", name, count, "%d/%d, %d/%d, %d/%d (+%d)"%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
         else:
-            spgain = this.conf[name[:2]+"_sp"]
+            spgain = 0
+            if name[:2]+"_sp" in this.conf:
+                spgain = this.conf[name[:2]+"_sp"]
             log("dmg", name, count, "%d/%d, %d/%d, %d/%d (-%d)"%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
         this.dmg_proc(name, count)
