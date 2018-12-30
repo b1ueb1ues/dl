@@ -24,7 +24,7 @@ python adv/maribelle.py 1
 `action2, condition2 or condithon3=4
 # c = d
 ```
-after # is prepare language, # they will execute before action language
+after # is prepare language, prepare language will execute before action language
 
 after ` is action you want to do when condition is true, if this action can't be execute, then passthrough next action
 
