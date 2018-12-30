@@ -1,6 +1,6 @@
 import adv_test
 from adv import *
-import wep.blade_wellplayed as weapon
+import wep.blade as weapon
 from core.timeline import *
 from core.log import *
 
