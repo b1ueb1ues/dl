@@ -1,7 +1,7 @@
 
 conf = {}
 conf.update( {
-        "x_type"         : "melee"         ,
+        "x_type"         : "melee" ,
 
         "x1_dmg"         : 84      / 100.0 ,
         "x1_sp"          : 120             ,
@@ -26,17 +26,16 @@ conf.update( {
         "x5_dmg"         : 112     / 100.0 ,
         "x5_sp"          : 600             ,
         "x5_startup"     : 0               ,
-        "x5_recovery"    : 67      / 60.0  ,
+        "x5_recovery"    : 35      / 60.0  ,
 
         "fs_dmg"         : 30*5    / 100.0 ,
         "fs_sp"          : 460             ,
-        "fs_startup"     : 42      / 60.0  ,
-        "fs_recovery"    : 81      / 60.0  ,
+        "fs_startup"     : 49      / 60.0  ,
+        "fs_recovery"    : 25      / 60.0  ,
 
         "dodge_recovery" : 43      / 60.0  ,
 
-        "mod_wep"        : ("crit","chance",0.02),
-        #"mod_wep"        : ("crit","dmg",0.10)
+        "mod_wep" : ("crit", "chance", 0.02) ,
 
         }
         )
