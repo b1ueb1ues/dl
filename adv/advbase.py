@@ -22,6 +22,38 @@ class Modifier(object):
     def __repr__(this):
         return "<%s %s %s %s>"%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
 
+class Dot(object):
+    #_static = Static()
+    #_static.all_dots = []
+    def __init__(this, name, dmg, duration, iv):
+        this.__name = name
+        this.active = 0
+        this.dmg = dmg
+        this.iv = iv
+        this.duration = duration
+        this.dmg_event = Event("dmg")
+        this.tick_event = Event("dot_tick", this.tick_proc)
+        this.dotend_event = Event("dot_end",this.dot_end_proc)
+        #this._static.all_dots.append(this)
+
+    def dot_end_proc(this, e):
+        this.active = 0
+
+    def tick_proc(this, e):
+        if this.active == 0:
+            return
+        this.tick_event.timing += this.iv
+        this.dmg_event.dmg = this.dmg
+        this.dmg_event.name = this.__name
+        this.dmg_event.trigger()
+        
+
+    def on(this):
+        this.active = 1
+        this.tick_event.on(now()+this.iv)
+        this.dotend_event.on(now()+this.duration)
+
+
 
 class Buff(object):
     _static = Static()
@@ -501,7 +533,7 @@ class Adv(object):
         return ret
 
     def crit_mod(this):
-        m = {"chance":0,"dmg":1.7,"passive":0}
+        m = {"chance":0, "dmg":0, "damage":0, "passive":0}
         for i in this.modifier._static.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
@@ -512,7 +544,8 @@ class Adv(object):
         chance = m['chance']+m['passive']
         if chance > 1:
             chance = 1
-        average = chance * m['dmg'] + 1 - chance
+        cdmg = m['dmg'] + m["damage"] + 1.7
+        average = chance * cdmg + 1 - chance
         return average
 
 
@@ -612,6 +645,8 @@ class Adv(object):
         Event("s3").listener(this.l_s)
 
         Event("silence_end").listener(this.think_after_s)
+        
+        Event("dmg").listener(this.l_dmg)
 
         this.init()
 
@@ -679,7 +714,15 @@ class Adv(object):
         #return 5.0/3 * dmg_p * this.dmg_mod(name) * att/arm   # true formula 
         return att/armor * dmg_p * this.dmg_mod(name)
 
+    def l_true_dmg(this, e):
+        dmg_p = e.dmg
+        name = e.name
 
+    def l_dmg(this, e):
+        dmg = e.dmg
+        name = e.name
+        comment = e.comment
+        log("dmg", name, dmg, comment)
 
     def dmg_make(this, name, dmg_p):
         count = this.dmg_formula(name, dmg_p)
