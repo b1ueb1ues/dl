@@ -22,10 +22,10 @@ class Musashi(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.1    ,
 
-        #"s3_dmg"      : 3.54*3 ,
-        #"s3_sp"       : 8030   ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 2.7    ,
+        "s3_dmg"      : 3.54*3 ,
+        "s3_sp"       : 8030   ,
+        "s3_startup"  : 0.1    ,
+        "s3_recovery" : 2.7    ,
 
         "mod_a"   : ('att'  , 'buff', 0.03) ,
         "mod_a"   : ('att'  , 'punisher', 0.08/2) ,

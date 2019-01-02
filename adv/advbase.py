@@ -646,7 +646,9 @@ class Adv(object):
 
         Event("silence_end").listener(this.think_after_s)
         
-        Event("dmg").listener(this.l_dmg)
+        Event("dmg_make").listener(this.l_dmg_make)
+        Event("true_dmg").listener(this.l_true_dmg)
+        Event("dmg_formula").listener(this.l_dmg_formula)
 
         this.init()
 
@@ -707,6 +709,12 @@ class Adv(object):
         log("sp", name, sp,"%d/%d, %d/%d, %d/%d"%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
 
+    def l_dmg_formula(this, e):
+        name = e.name
+        dmg_p = e.dmg_p
+        e.dmg = this.dmg_formula(name, dmg_p)
+        e.ret = e.dmg
+        return
 
     def dmg_formula(this, name, dmg_p):
         att = 1.0 * this.att_mod()
@@ -715,14 +723,15 @@ class Adv(object):
         return att/armor * dmg_p * this.dmg_mod(name)
 
     def l_true_dmg(this, e):
-        dmg_p = e.dmg
         name = e.name
-
-    def l_dmg(this, e):
-        dmg = e.dmg
-        name = e.name
+        count = e.dmg
         comment = e.comment
-        log("dmg", name, dmg, comment)
+        log("dmg", name, count, comment)
+
+    def l_dmg_make(this, e):
+        name = e.name
+        dmg_p = e.dmg_p
+        dmg_make(name, dmg_p)
 
     def dmg_make(this, name, dmg_p):
         count = this.dmg_formula(name, dmg_p)

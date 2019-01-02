@@ -15,9 +15,9 @@ staff  = 0.69
 '''
 
 def main():
-    dmg = sword * 586
-    a = 1.25
-    b = 1.20
+    dmg = blade * 1171
+    a = 1.1
+    b = 1.1
 
     addormult("+x",dmg, a, b)
 
