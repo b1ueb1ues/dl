@@ -51,6 +51,7 @@ class Bleed(Dot):
             print "err in bleed on"
             exit()
 
+        log('debuff','bleed')
         this.quickshot_event.trigger()
         this._static.all_bleeds.append(this)
         this.dot_end_event.on(now()+this.duration)
