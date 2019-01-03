@@ -14,13 +14,13 @@ def module():
 class Ieyasu(Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 8*1.19   ,
-        "s1_sp"       : 2467     ,
+        "s1_dmg"      : 4*2.16   ,
+        "s1_sp"       : 2537     ,
         "s1_startup"  : 0.1      ,
-        "s1_recovery" : 4.1      ,
+        "s1_recovery" : 1.9      ,
 
         "s2_dmg"      : 0        ,
-        "s2_sp"       : 7913     ,
+        "s2_sp"       : 4877     ,
         "s2_startup"  : 0.25     ,
         "s2_recovery" : 1.1-0.15 ,
 
@@ -29,8 +29,6 @@ class Ieyasu(Adv):
         #"s3_startup"  : 0.1      ,
         #"s3_recovery" : 2.7      ,
 
-        "mod_a"   : ('crit' , 'damage'  , 0.2) ,
-        "mod_a2"   : ('crit' , 'chance'  , 0.1) ,
         "mod_d"   : ('att'  , 'passive' , 0.60) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'chance'  , 0.06) ,
@@ -39,35 +37,33 @@ class Ieyasu(Adv):
         } )
     conf.update(weapon.conf)
 
-    def s2ifbleed(this):
-        if this.s2buff.get()!=0:
-            if this.bleed._static.stacks > 0:
-                return 0.15
+    def getbleedpunisher(this):
+        if this.bleed._static.stacks > 0:
+            return 0.08
         return 0
 
-
     def init(this):
-        this.s2buff = Buff("s2",0.15, 15, 'crit')
-        this.s2buff.modifier.get = this.s2ifbleed
+        this.s2buff = Buff("s2",0.25, 10, 'att')
+        this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
+        this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0)
         random.seed()
 
     def s1_proc(this, e):
-        if random.random() < 0.8:
-            Bleed("s1_bleed", 1.46).on()
+        if this.s2buff.get():
+            if random.random() < 0.8:
+                Bleed("s1_bleed", 1.46).on()
 
 
     def s2_proc(this, e):
         this.s2buff.on()
 
-    def s3_proc(this, e):
-        pass
 
 
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
+        `s1, seq=5 and cancel 
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """

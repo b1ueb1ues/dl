@@ -85,7 +85,7 @@ def sum_ac():
 
 def sum_dmg():
     l = logget()
-    dmg_sum = {'x': 0, 's': 0, 'fs': 0 }
+    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0 }
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
                 's3':{"dmg":0, "count": 0}, 
@@ -108,6 +108,8 @@ def sum_dmg():
             elif i[2][:2] == 'fs':
                 dmg_sum['fs'] += i[3]
                 xdmg_sum['fs'] += 1
+            elif i[2][0] == 'o':
+                dmg_sum['others'] += i[3]
         elif i[1] == 'cast':
             if i[2] == 's1':
                 sdmg_sum['s1']['count'] += 1
@@ -118,7 +120,7 @@ def sum_dmg():
         elif i[1] == 'x' :
             xdmg_sum[i[2]] += 1
 
-    total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs']
+    total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs'] + dmg_sum['others']
     dmg_sum['total'] = total
     xdmg_sum['x1'] -= xdmg_sum['x5']
     xdmg_sum['x2'] -= xdmg_sum['x5']
