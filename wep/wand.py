@@ -48,3 +48,12 @@ conf.update( {
 
         })
 
+import wand5b2
+
+flame  = wand
+wind   = wand
+shadow = wand
+
+water  = wand5b2
+light  = wand5b2
+

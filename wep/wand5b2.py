@@ -1,4 +1,7 @@
-from sword import conf
+import wand
+
+conf = {}
+conf.update(wand.conf)
 
 conf.update({
         "s3_dmg"      : 4*2.71   ,

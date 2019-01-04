@@ -1,4 +1,7 @@
-from bow import conf
+import bow
+
+conf = {}
+conf.update(bow.conf)
 
 conf.update({
         "s3_dmg"      : 9.49     ,

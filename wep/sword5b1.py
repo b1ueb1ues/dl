@@ -1,4 +1,7 @@
-from sword import conf
+import sword
+
+conf = {}
+conf.update(sword.conf)
 
 conf.update({
         "s3_dmg"      : 5*1.65   ,

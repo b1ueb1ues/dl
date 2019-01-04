@@ -1,5 +1,7 @@
-from blade import conf
+import blade
 
+conf = {}
+conf.update(blade.conf)
 conf.update({
         "s3_dmg"      : 2.13*5   ,
         "s3_sp"       : 7695     ,

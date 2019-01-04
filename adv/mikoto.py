@@ -1,6 +1,6 @@
 import adv_test
 from adv import *
-import wep.blade as weapon
+from wep.blade import flame as weapon
 from core.timeline import *
 from core.log import *
 
@@ -19,13 +19,9 @@ class Mikoto(Adv):
 
         "s2_dmg"      : 0        ,
         "s2_sp"       : 4500     ,
-        "s2_startup"  : 0.25     ,
-        "s2_recovery" : 1.1-0.15 ,
+        "s2_startup"  : 0.1+0.15 ,
+        "s2_recovery" : 1.05-0.15,
 
-        "s3_dmg"      : 3.54*3   ,
-        "s3_sp"       : 8030     ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 2.65      ,
 
         "mod_a"   : ('crit' , 'chance'  , 0.10) ,
         "mod_a2"   : ('crit' , 'chance'  , 0.08) ,

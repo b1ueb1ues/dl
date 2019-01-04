@@ -1,4 +1,8 @@
-from dagger import conf
+import dagger
+
+conf = {}
+conf.update(dagger.conf)
+
 
 conf.update({
         "s3_dmg"      : 6*1.64   ,

@@ -40,3 +40,11 @@ conf.update( {
         }
         )
 
+import sword5b1
+
+flame  = sword5b1
+water  = sword5b1
+light  = sword5b1
+
+wind   = sword
+shadow = sword

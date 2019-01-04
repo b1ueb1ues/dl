@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.sword as weapon
+import wep.sword_r as weapon
 from core.timeline import *
 from core.log import *
 
@@ -12,35 +12,22 @@ def module():
 class Karl(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 3.75*2   ,
+        "s1_dmg"      : 3.75*2 ,
         "s1_sp"       : 2376   ,
         "s1_startup"  : 0.1    ,
         "s1_recovery" : 1.9    ,
 
-        "s2_dmg"      : 0   ,
+        "s2_buff"     :[0.15, 15, 'att'] ,
         "s2_sp"       : 6610   ,
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.1    ,
 
-        #"s3_dmg"      : 3.54*3 ,
-        #"s3_sp"       : 8030   ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 2.7    ,
-
-        "mod_a"   : ('att'  , 'passive', 0.08) ,
-        "mod_d"   : ('att'  , 'passive' , 0.6)  ,
-        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
-        "mod_wp2" : ('crit' , 'chance' , 0.06) ,
+        "mod_a"   : ('att'  , 'passive' , 0.08 ) ,
+        "mod_d"   : ('att'  , 'passive' , 0.6  ) ,
+        "mod_wp"  : ('s'    , 'passive' , 0.25 ) ,
+        "mod_wp2" : ('crit' , 'chance'  , 0.06 ) ,
         } )
     conf.update(weapon.conf)
-
-    def init(this):
-        pass
-
-    def s2_proc(this, e):
-        adv.Buff("s2",0.15,15,'att').on()
-
-    
 
 
 

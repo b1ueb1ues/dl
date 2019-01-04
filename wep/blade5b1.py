@@ -1,4 +1,7 @@
-from blade import conf
+import blade
+
+conf = {}
+conf.update(blade.conf)
 
 conf.update({
         "s3_dmg"      : 3.54*3   ,

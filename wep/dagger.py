@@ -40,3 +40,12 @@ conf.update( {
         }
         )
 
+import dagger5b1
+import dagger5b2
+
+flame  = dagger5b1
+wind   = dagger5b1
+shadow = dagger5b1
+
+water  = dagger5b2
+light  = dagger5b2

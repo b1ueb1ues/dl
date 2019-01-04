@@ -1,4 +1,7 @@
-from lance import conf
+import lance
+
+conf = {}
+conf.update(lance.conf)
 
 conf.update({
         "s3_dmg"      : 2*4.61   ,

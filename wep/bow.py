@@ -48,3 +48,14 @@ conf.update( {
 
         })
 
+import bow5b1
+import bow5b2
+import bow5b3
+
+flame  = bow5b1
+water  = bow5b1
+wind   = bow5b1
+
+light  = bow5b2
+
+shadow = bow5b3

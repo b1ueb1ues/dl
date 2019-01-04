@@ -40,3 +40,13 @@ conf.update( {
         }
         )
 
+import lance5b1
+
+flame  = lance5b1
+light  = lance5b1
+shadow = lance5b1
+
+water  = lance
+wind   = lance
+
+

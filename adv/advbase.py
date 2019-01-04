@@ -794,6 +794,9 @@ class Adv(object):
         dmg_p = this.conf[e.name+"_dmg"]
         if dmg_p :
             this.dmg_make(e.name , dmg_p)
+        if e.name+"_buff" in this.conf:
+            buffarg = this.conf[e.name+'_buff']
+            Buff(e.name, *buffarg).on()
 
         func = e.name + '_proc'
         getattr(this, func)(e)

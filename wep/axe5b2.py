@@ -1,4 +1,7 @@
-from axe import conf
+import axe
+
+conf = {}
+conf.update(axe.conf)
 
 conf.update({
         "s3_dmg"      : 4.18*3   ,
