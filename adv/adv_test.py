@@ -160,6 +160,6 @@ def sum_dmg():
         print '-----------------------'
         print "dmgsum     |", dmg_sum
         print "skill_stat |", sdmg_sum
-        print "x_stat     |",xdmg_sum
+        print "x_stat     |", xdmg_sum
     elif loglevel == -1:
-        print "%d, %s"%( (float(dmg_sum['total'])*2800/180), mname)
+        print "%6.2f , %d , %s"%( float(dmg_sum['total']), (float(dmg_sum['total'])*2800/180), mname )
