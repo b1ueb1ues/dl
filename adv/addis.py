@@ -1,6 +1,6 @@
 import adv_test
 from adv import *
-import wep.blade as weapon
+import wep.blade5b1 as weapon
 from core.timeline import *
 from core.log import *
 from module.bleed import Bleed
@@ -9,9 +9,9 @@ import random
 
 
 def module():
-    return Ieyasu
+    return Addis
 
-class Ieyasu(Adv):
+class Addis(Adv):
     conf = {}
     conf.update( {
         "s1_dmg"      : 4*2.16   ,
@@ -24,10 +24,6 @@ class Ieyasu(Adv):
         "s2_startup"  : 0.25     ,
         "s2_recovery" : 1.1-0.15 ,
 
-        #"s3_dmg"      : 3.54*3   ,
-        #"s3_sp"       : 8030     ,
-        #"s3_startup"  : 0.1      ,
-        #"s3_recovery" : 2.7      ,
 
         "mod_d"   : ('att'  , 'passive' , 0.60) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,

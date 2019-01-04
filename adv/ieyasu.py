@@ -24,10 +24,10 @@ class Ieyasu(Adv):
         "s2_startup"  : 0.25     ,
         "s2_recovery" : 1.1-0.15 ,
 
-        #"s3_dmg"      : 3.54*3   ,
-        #"s3_sp"       : 8030     ,
-        #"s3_startup"  : 0.1      ,
-        #"s3_recovery" : 2.7      ,
+        "s3_dmg"      : 3.54*3   ,
+        "s3_sp"       : 8030     ,
+        "s3_startup"  : 0.1      ,
+        "s3_recovery" : 2.65      ,
 
         "mod_a"   : ('crit' , 'damage'  , 0.2) ,
         "mod_a2"   : ('crit' , 'chance'  , 0.1) ,

@@ -21,10 +21,6 @@ class Celliera(adv.Adv):
         "s2_startup"  : 0.1+0.5 , #65/60
         "s2_recovery" : 1.1-0.5 , #65/60
 
-        #"s3_dmg"      : 4*2.71  ,
-        #"s3_sp"       : 8597    ,
-        #"s2_startup"  : 0.1     ,
-        #"s3_recovery" : 1.9     , #117/60
         "mod_a"   : ('att'  , 'passive' , 0.08)  ,
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,

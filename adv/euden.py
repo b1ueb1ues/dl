@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.sword
+import wep.sword5b1
 from core.timeline import *
 from core.log import *
 
@@ -21,11 +21,6 @@ class Euden(adv.Adv):
         "s2_sp"       : 4880   ,
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.9    ,
-
-       # "s3_dmg"      : 1.65*5 ,
-       # "s3_sp"       : 6847   ,
-       # "s3_startup"  : 0.1    ,
-       # "s3_recovery" : 2.7    ,
 
         "mod_d"   : ('att'  , 'passive' , 0.6) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,

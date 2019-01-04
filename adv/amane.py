@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.wand
+import wep.wand5b2
 from core.timeline import *
 from core.log import *
 

@@ -10,7 +10,8 @@ mname = ""
 def test(classname, conf, verbose):
     global mname
     a = time.time()
-    classname(conf=conf).run(300)
+    adv = classname(conf=conf)
+    adv.run(300)
     b = time.time()
 
     mname = classname.__name__
@@ -22,6 +23,11 @@ def test(classname, conf, verbose):
     if verbose > 0:
         logcat()
         sum_ac()
+    elif verbose == -2:
+        if adv.conf['x_type'] == 'melee':
+            logcat(['dmg','cancel','fs','cast','buff'])
+        if adv.conf['x_type'] == 'ranged':
+            logcat(['x','dmg','cancel','fs','cast','buff'])
     sum_dmg()
     if loglevel >= 2:
         print '-----------------------\nrun in %f'%(b-a)
@@ -155,5 +161,5 @@ def sum_dmg():
         print "dmgsum     |", dmg_sum
         print "skill_stat |", sdmg_sum
         print "x_stat     |",xdmg_sum
-    else:
+    elif loglevel == -1:
         print "%s, %s"%(dmg_sum['total'], mname)
