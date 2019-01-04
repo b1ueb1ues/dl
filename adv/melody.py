@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.blade
+from wep.blade import wind as weapon
 from core.timeline import *
 from core.log import *
 
@@ -12,7 +12,7 @@ def module():
 class Melody(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 0   ,
+        "s1_buff"     : [0.15, 15, 'att'] ,
         "s1_sp"       : 2987   ,
         "s1_startup"  : 0.1    ,
         "s1_recovery" : 1.1    ,
@@ -22,25 +22,13 @@ class Melody(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.1    ,
 
-        #"s3_dmg"      : 3.54*3 ,
-        #"s3_sp"       : 8030   ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 2.7    ,
-
         "mod_p"   : ('crit'  , 'chance', 0.08) ,
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         } )
-    conf.update(wep.blade.conf)
+    conf.update(weapon.conf)
 
-    def init(this):
-        pass
-
-    def s1_proc(this, e):
-        adv.Buff("s1",0.15,15,'att').on()
-
-    
 
 
 

@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.bow as weapon
+from wep.bow import wind as weapon
 
 
 def module():
@@ -18,11 +18,6 @@ class Louise(adv.Adv):
         "s2_sp"       : 5838   ,
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.8    ,
-
-        #"s3_dmg"      : 0      ,
-        #"s3_sp"       : 0      ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 1.9    ,
 
         "mod_a_od" : ('att'    , 'punisher' , 0.13/2)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
@@ -48,6 +43,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel
+        `s3, seq=5 and cancel
         """
 
     adv_test.test(module(), conf, verbose=0)

@@ -8,7 +8,6 @@ python adv/h_edward.py -1
 python adv/h_elisanne.py -1
 python adv/jurota.py -1
 python adv/kleimann.py -1
-python adv/kleimann.py.with60dragon.py -1
 python adv/lily.py -1
 python adv/louise.py -1
 python adv/luca.py -1

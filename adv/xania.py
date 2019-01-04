@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.wand
+from wep.wand import flame as weapon
 from core.timeline import *
 from core.log import *
 
@@ -28,9 +28,7 @@ class Xania(adv.Adv):
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
 
         } )
-    conf.update(wep.wand.conf)
-
-
+    conf.update(weapon.conf)
 
 
 

@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.wand
+from wep.wand import wind as weapon
 
 
 def module():
@@ -19,11 +19,6 @@ class Maribelle(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.8    ,
 
-        #"s3_dmg"      : 0      ,
-        #"s3_sp"       : 0      ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 1.9    ,
-
         "mod_a_fullhp" : ('s'    , 'passive' , 0.4)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"     : ('s'    , 'passive' , 0.25) ,
@@ -31,7 +26,7 @@ class Maribelle(adv.Adv):
         #"mod_ex"     : ('s'    , 'ex'      , 0.15) ,
         #"mod_ex2"    : ('att'  , 'ex'      , 0.10) ,
         } )
-    conf.update(wep.wand.conf)
+    conf.update(weapon.conf)
 
 
     def init(this):

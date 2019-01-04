@@ -5,7 +5,6 @@ from core.timeline import *
 from core.log import *
 
 
-
 def module():
     return Mikoto
 
@@ -17,10 +16,10 @@ class Mikoto(Adv):
         "s1_startup"  : 0.1      ,
         "s1_recovery" : 1.9      ,
 
-        "s2_dmg"      : 0        ,
-        "s2_sp"       : 4500     ,
-        "s2_startup"  : 0.1+0.15 ,
-        "s2_recovery" : 1.05-0.15,
+        "s2_dmg"      : 0         ,
+        "s2_sp"       : 4500      ,
+        "s2_startup"  : 0.10+0.15 ,
+        "s2_recovery" : 1.05-0.15 ,
 
 
         "mod_a"   : ('crit' , 'chance'  , 0.10) ,
@@ -34,7 +33,6 @@ class Mikoto(Adv):
     conf.update(weapon.conf)
 
     def init(this):
-
         this.s1buff = Buff("s1",0, 15, 'x')
         this.s2buff = Buff("s2",0.2, 10)
 
@@ -62,9 +60,6 @@ class Mikoto(Adv):
 
     def s2_proc(this, e):
         this.s2buff.on()
-
-    def s3_proc(this, e):
-        pass
 
 
 if __name__ == '__main__':

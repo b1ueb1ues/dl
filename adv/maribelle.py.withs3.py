@@ -1,7 +1,6 @@
 import adv_test
 from adv import *
 import adv.maribelle
-import wep.wand
 
 
 def module():

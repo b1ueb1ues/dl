@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.blade5b1
+from wep.blade import flame as weapon
 from core.timeline import *
 from core.log import *
 
@@ -27,7 +27,7 @@ class Aoi(adv.Adv):
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         } )
-    conf.update(wep.blade.conf)
+    conf.update(weapon.conf)
 
     def init(this):
         pass

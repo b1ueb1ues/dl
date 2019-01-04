@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.wand
+from wep.wand import light as weapon
 from core.timeline import *
 from core.log import *
 
@@ -21,17 +21,12 @@ class Lucretia(adv.Adv):
         "s2_startup"  : 0.1      ,
         "s2_recovery" : 1.1      ,
 
-        #"s3_dmg"      : 4*2.71   ,
-        #"s3_sp"       : 8597     ,
-        #"s3_startup"  : 0.1      ,
-        #"s3_recovery" : 1.9      ,
-
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"     : ('s'    , 'passive' , 0.25) ,
         "mod_wp2"    : ('crit' , 'chance'  , 0.06) ,
 
         } )
-    conf.update(wep.wand.conf)
+    conf.update(weapon.conf)
 
 
     def init(this):

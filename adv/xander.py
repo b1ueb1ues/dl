@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.sword
+from wep.sword import water as weapon
 from core.timeline import *
 from core.log import *
 
@@ -22,11 +22,6 @@ class Xander(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.9    ,
 
-       # "s3_dmg"      : 1.65*5 ,
-       # "s3_sp"       : 6847   ,
-       # "s3_startup"  : 0.1    ,
-       # "s3_recovery" : 2.7    ,
-
         "mod_p"   : ('fs'   , 'passive' , 0.50) ,
         "mod_d"   : ('att'  , 'passive' , 0.45) ,
         "mod_d2"  : ('crit' , 'chance'  , 0.20) ,
@@ -35,7 +30,7 @@ class Xander(adv.Adv):
         #"mod_wp3" : ('fs'   , 'passive' , 0.20) ,
         #"mod_wp4" : ('s'    , 'passive' , 0.10) ,
         } )
-    conf.update(wep.sword.conf)
+    conf.update(weapon.conf)
 
     def init(this):
         pass

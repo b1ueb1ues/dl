@@ -1,9 +1,8 @@
 import adv_test
 import adv
-import wep.sword
+from wep.sword import flame as weapon
 from core.timeline import *
 from core.log import *
-
 
 
 def module():
@@ -22,18 +21,13 @@ class Naveed(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.1    ,
 
-       # "s3_dmg"      : 1.65*5 ,
-       # "s3_sp"       : 6847   ,
-       # "s3_startup"  : 0.1    ,
-       # "s3_recovery" : 2.7    ,
-
         "mod_d"   : ('att'  , 'passive' , 0.6) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         #"mod_wp2" : ('crit' , 'passive' , 0.06) ,
         #"mod_wp3" : ('fs'   , 'passive' , 0.20) ,
         #"mod_wp4" : ('s'    , 'passive' , 0.10) ,
         } )
-    conf.update(wep.sword.conf)
+    conf.update(weapon.conf)
 
     def init(this):
         this.s1level = 0
@@ -49,7 +43,6 @@ class Naveed(adv.Adv):
             this.s1level = 5
         adv.Buff("crown_double_buff",0.08,15).on()
     
-
 
 
 if __name__ == '__main__':

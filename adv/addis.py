@@ -1,6 +1,6 @@
 import adv_test
 from adv import *
-import wep.blade5b1 as weapon
+from wep.blade import wind as weapon
 from core.timeline import *
 from core.log import *
 from module.bleed import Bleed

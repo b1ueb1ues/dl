@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.bow as weapon
+from wep.bow import light as weapon
 
 
 def module():
@@ -18,11 +18,6 @@ class Luca(adv.Adv):
         "s2_sp"       : 5115   ,
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.9    ,
-
-        #"s3_dmg"      : 0      ,
-        #"s3_sp"       : 0      ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 1.9    ,
 
         "mod_a" : ('att'    , 'passive' , 0.13)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,

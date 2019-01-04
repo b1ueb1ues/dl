@@ -41,12 +41,13 @@ conf.update( {
         )
 
 import blade5b1
+import blade5b2
 import blade5b3
 
 flame  = blade5b1
 wind   = blade5b1
 
-water  = blade
-light  = blade
+water  = blade5b2
+light  = blade5b2
 
 shadow = blade5b3

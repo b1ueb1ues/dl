@@ -11,7 +11,7 @@ def test(classname, conf, verbose):
     global mname
     a = time.time()
     adv = classname(conf=conf)
-    adv.run(300)
+    adv.run(180)
     b = time.time()
 
     mname = classname.__name__
@@ -162,4 +162,4 @@ def sum_dmg():
         print "skill_stat |", sdmg_sum
         print "x_stat     |",xdmg_sum
     elif loglevel == -1:
-        print "%s, %s"%(dmg_sum['total'], mname)
+        print "%d, %s"%( (float(dmg_sum['total'])*2800/180), mname)

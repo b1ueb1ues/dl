@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.blade
+from wep.blade import water as weapon
 from core.timeline import *
 from core.log import *
 
@@ -16,25 +16,18 @@ class Celliera(adv.Adv):
         "s1_startup"  : 0.1     , #108/60
         "s1_recovery" : 1.8     , #108/60
 
-        "s2_dmg"      : 0       ,
-        "s2_sp"       : 4877   ,
-        "s2_startup"  : 0.1+0.5 , #65/60
-        "s2_recovery" : 1.1-0.5 , #65/60
+        "s2_buff"     : [0.25, 10, 'att'] ,
+        "s2_sp"       : 4877      ,
+        "s2_startup"  : 0.10+0.15 , 
+        "s2_recovery" : 1.05-0.15 , #65/60
 
         "mod_a"   : ('att'  , 'passive' , 0.08)  ,
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         } )
-    conf.update(wep.blade.conf)
+    conf.update(weapon.conf)
 
-
-    def init(this):
-        pass
-
-
-    def s2_proc(this, e):
-        adv.Buff("s2",0.25,10,'att').on()
 
 
 if __name__ == '__main__':

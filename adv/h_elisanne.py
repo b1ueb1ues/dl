@@ -1,6 +1,6 @@
 import adv_test
 from adv import *
-import wep.lance as weapon
+from wep.lance import light as weapon
 from core.timeline import *
 from core.log import *
 
@@ -21,11 +21,6 @@ class H_Elisanne(Adv):
         "s2_sp"       : 5252     ,
         "s2_startup"  : 0.1     ,
         "s2_recovery" : 4        ,
-
-        #"s3_dmg"      : 4.61*2   ,
-        #"s3_sp"       : 8111     ,
-        #"s3_startup"  : 0.1      ,
-        #"s3_recovery" : 2.7      ,
 
         "mod_a"   : ('s' , 'passive'  , 0.3) ,
         "mod_d"   : ('att'  , 'passive' , 0.60) ,

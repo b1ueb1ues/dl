@@ -48,11 +48,12 @@ conf.update( {
 
         })
 
+import wand5b1
 import wand5b2
 
-flame  = wand
-wind   = wand
-shadow = wand
+flame  = wand5b1
+wind   = wand5b1
+shadow = wand5b1
 
 water  = wand5b2
 light  = wand5b2

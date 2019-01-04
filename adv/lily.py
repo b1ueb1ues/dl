@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.wand
+from wep.wand import water as weapon
 
 
 def module():
@@ -19,10 +19,6 @@ class Lily(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.85   ,
 
-        #"s3_dmg"      : 4*2.71 ,
-        #"s3_sp"       : 8597   ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 1.9    ,
 
         "mod_a_fullhp"   : ('att'  , 'passive' , 0.15)  ,
         "mod_d"   : ('att'  , 'passive' , 0.45)  ,
@@ -32,18 +28,11 @@ class Lily(adv.Adv):
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         "mod_ex" : ('s','ex',0.15)
         } )
-    conf.update(wep.wand.conf)
+    conf.update(weapon.conf)
 
-    
     def init(this):
         this.charge("prep", "100%")
 
-    def s1_proc(this, e):
-        pass
-    def s2_proc(this, e):
-        pass
-    def s3_proc(this, e):
-        pass
 
 if __name__ == '__main__':
     conf = {}

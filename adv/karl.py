@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.sword_r as weapon
+from wep.sword import flame as weapon
 from core.timeline import *
 from core.log import *
 

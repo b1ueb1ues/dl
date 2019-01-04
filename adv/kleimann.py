@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.wand
+from wep.wand import shadow as weapon
 
 
 def module():
@@ -19,35 +19,18 @@ class Kleimann(adv.Adv):
         "s2_startup"  : 0.1    ,
         "s2_recovery" : 1.8    , #114/60.0 ,
 
-        #"s3_dmg"      : 0      ,
-        #"s3_sp"       : 0      ,
-        #"s3_startup"  : 0.1    ,
-        #"s3_recovery" : 1.9    ,
-
         "mod_a"   :("fs",'passive',0.4),
         "mod_a2"   :("s",'passive',0.2),
-        "mod_d"   : ('att'  , 'passive' , 0.45)  ,
+        "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
         "mod_wp2" : ('crit' , 'passive' , 0.06) ,
         #"mod_sp" : ('sp' , 'ex' , 0.15) ,
         } )
-    conf.update(wep.wand.conf)
-
-    def init(this):
-        pass
-
-
-    def s1_proc(this, e):
-        pass
-    def s2_proc(this, e):
-        pass
-    def s3_proc(this, e):
-        pass
+    conf.update(weapon.conf)
 
 
 if __name__ == '__main__':
     conf = {}
-
 
     # s2 after s1 will increase kleimann's damage a little since his s2's sp is too strange
 

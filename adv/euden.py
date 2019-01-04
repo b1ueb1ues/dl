@@ -1,6 +1,6 @@
 import adv_test
 import adv
-import wep.sword5b1
+from wep.sword import flame as weapon
 from core.timeline import *
 from core.log import *
 
@@ -28,7 +28,7 @@ class Euden(adv.Adv):
 
         } )
 
-    conf.update(wep.sword.conf)
+    conf.update(weapon.conf)
 
     def init(this):
         pass
