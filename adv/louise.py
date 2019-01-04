@@ -12,12 +12,12 @@ class Louise(adv.Adv):
         "s1_dmg"      : 2.12*4 ,
         "s1_sp"       : 2896   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9 ,
+        "s1_recovery" : 1.95   ,
 
         "s2_dmg"      : 2.69*3 ,
         "s2_sp"       : 5838   ,
         "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.8    ,
+        "s2_recovery" : 2.7    ,
 
         "mod_a_od" : ('att'    , 'punisher' , 0.13/2)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,

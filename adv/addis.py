@@ -17,12 +17,12 @@ class Addis(Adv):
         "s1_dmg"      : 4*2.16   ,
         "s1_sp"       : 2537     ,
         "s1_startup"  : 0.1      ,
-        "s1_recovery" : 1.9      ,
+        "s1_recovery" : 2.5      ,
 
-        "s2_dmg"      : 0        ,
-        "s2_sp"       : 4877     ,
-        "s2_startup"  : 0.25     ,
-        "s2_recovery" : 1.1-0.15 ,
+        "s2_dmg"      : 0         ,
+        "s2_sp"       : 4877      ,
+        "s2_startup"  : 0.10+0.15 ,
+        "s2_recovery" : 1.05-0.15 ,
 
 
         "mod_d"   : ('att'  , 'passive' , 0.60) ,

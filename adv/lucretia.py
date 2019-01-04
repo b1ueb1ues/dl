@@ -14,12 +14,12 @@ class Lucretia(adv.Adv):
         "s1_dmg"      : 3.22*3   ,
         "s1_sp"       : 3530     ,
         "s1_startup"  : 0.1      ,
-        "s1_recovery" : 180/60.0 ,
+        "s1_recovery" : 3.15     ,
 
-        "s2_dmg"      : 0        ,
-        "s2_sp"       : 4553     ,
-        "s2_startup"  : 0.1      ,
-        "s2_recovery" : 1.1      ,
+        "s2_buff"     : [0.1, 10, 'att'] ,
+        "s2_sp"       : 4553 ,
+        "s2_startup"  : 0.25 ,
+        "s2_recovery" : 0.9  ,
 
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"     : ('s'    , 'passive' , 0.25) ,
@@ -53,7 +53,6 @@ class Lucretia(adv.Adv):
 
     def s2_proc(this, e):
         this.add_energy(2)
-        adv.Buff("s2", 0.1, 10,'att').on()
 
 
     def s3_proc(this, e):

@@ -14,13 +14,13 @@ class Melody(adv.Adv):
     conf.update( {
         "s1_buff"     : [0.15, 15, 'att'] ,
         "s1_sp"       : 2987   ,
-        "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.1    ,
+        "s1_startup"  : 0.25   ,
+        "s1_recovery" : 0.9    ,
 
-        "s2_dmg"      : 2.64*3   ,
+        "s2_dmg"      : 2.64*3 ,
         "s2_sp"       : 4784   ,
         "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.1    ,
+        "s2_recovery" : 2.75   ,
 
         "mod_p"   : ('crit'  , 'chance', 0.08) ,
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,

@@ -12,7 +12,7 @@ class Lily(adv.Adv):
         "s1_dmg"      : 9.68   ,
         "s1_sp"       : 2490   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 4      ,
+        "s1_recovery" : 3.95   ,
 
         "s2_dmg"      : 9.74   ,
         "s2_sp"       : 5909   ,

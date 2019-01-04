@@ -11,15 +11,15 @@ def module():
 class Musashi(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 4.32*2   ,
+        "s1_dmg"      : 4.32*2 ,
         "s1_sp"       : 2567   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9    ,
+        "s1_recovery" : 2.0    ,
 
         "s2_buff"     : [0.3, 5, 'att'] ,
         "s2_sp"       : 4430   ,
-        "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.1    ,
+        "s2_startup"  : 0.25   ,
+        "s2_recovery" : 0.9    ,
 
         "mod_a"   : ('att'  , 'buff', 0.03) ,
         "mod_a"   : ('att'  , 'punisher', 0.08/2) ,

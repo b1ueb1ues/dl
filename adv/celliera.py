@@ -14,7 +14,7 @@ class Celliera(adv.Adv):
         "s1_dmg"      : 2.42*4  ,
         "s1_sp"       : 2537    ,
         "s1_startup"  : 0.1     , #108/60
-        "s1_recovery" : 1.8     , #108/60
+        "s1_recovery" : 2.5     , #108/60
 
         "s2_buff"     : [0.25, 10, 'att'] ,
         "s2_sp"       : 4877      ,

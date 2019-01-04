@@ -12,15 +12,15 @@ def module():
 class H_Elisanne(Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 115*7 /100.0   ,
-        "s1_sp"       : 2450     ,
-        "s1_startup"  : 0.1      ,
-        "s1_recovery" : 3      ,
+        "s1_dmg"      : 115*7 /100.0 ,
+        "s1_sp"       : 2450         ,
+        "s1_startup"  : 0.1          ,
+        "s1_recovery" : 2.8          ,
 
-        "s2_dmg"      : 83*10 /100.0   ,
-        "s2_sp"       : 5252     ,
-        "s2_startup"  : 0.1     ,
-        "s2_recovery" : 4        ,
+        "s2_dmg"      : 83*10 /100.0 ,
+        "s2_sp"       : 5252         ,
+        "s2_startup"  : 0.1          ,
+        "s2_recovery" : 3.55         ,
 
         "mod_a"   : ('s' , 'passive'  , 0.3) ,
         "mod_d"   : ('att'  , 'passive' , 0.60) ,

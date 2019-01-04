@@ -15,7 +15,7 @@ class H_Edward(adv.Adv):
         "s1_dmg"      : 2.93*3   ,
         "s1_sp"       : 2392   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9    ,
+        "s1_recovery" : 2.8    ,
 
         "s2_dmg"      : 7.47   ,
         "s2_sp"       : 5346   ,

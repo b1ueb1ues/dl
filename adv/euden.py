@@ -15,12 +15,12 @@ class Euden(adv.Adv):
         "s1_dmg"      : 3.75*2   ,
         "s1_sp"       : 2376   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9    ,
+        "s1_recovery" : 1.85   ,
 
         "s2_dmg"      : 6.38   ,
         "s2_sp"       : 4880   ,
         "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.9    ,
+        "s2_recovery" : 2.7    ,
 
         "mod_d"   : ('att'  , 'passive' , 0.6) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,

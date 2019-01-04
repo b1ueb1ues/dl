@@ -15,12 +15,12 @@ class Aoi(adv.Adv):
         "s1_dmg"      : 8.78   ,
         "s1_sp"       : 2630   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9    ,
+        "s1_recovery" : 1.85   ,
 
         "s2_dmg"      : 7.90   ,
         "s2_sp"       : 5280   ,
         "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.9    ,
+        "s2_recovery" : 1.85   ,
 
         "mod_a" :('att','punisher', 0.04),
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,

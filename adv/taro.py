@@ -12,15 +12,15 @@ def module():
 class Taro(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 2.93*3   ,
+        "s1_dmg"      : 2.93*3 ,
         "s1_sp"       : 2392   ,
         "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9    ,
+        "s1_recovery" : 2.8    ,
 
-        "s2_dmg"      : 7.9   ,
+        "s2_dmg"      : 7.9    ,
         "s2_sp"       : 5259   ,
         "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.9    ,
+        "s2_recovery" : 1.95   ,
 
         "mod_d"   : ('att'  , 'passive' , 0.6)  ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,

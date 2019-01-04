@@ -32,10 +32,6 @@ class Xander(adv.Adv):
         } )
     conf.update(weapon.conf)
 
-    def init(this):
-        pass
-    
-
 
 
 if __name__ == '__main__':

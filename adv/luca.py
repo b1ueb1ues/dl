@@ -10,14 +10,14 @@ class Luca(adv.Adv):
     conf = {}
     conf.update( {
         "s1_dmg"      : 7.71 ,
-        "s1_sp"       : 2504   ,
-        "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.9 ,
+        "s1_sp"       : 2504 ,
+        "s1_startup"  : 0.1  ,
+        "s1_recovery" : 2.15 ,
 
         "s2_dmg"      : 7.77 ,
-        "s2_sp"       : 5115   ,
-        "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.9    ,
+        "s2_sp"       : 5115 ,
+        "s2_startup"  : 0.1  ,
+        "s2_recovery" : 1.9  ,
 
         "mod_a" : ('att'    , 'passive' , 0.13)  ,
         "mod_d"      : ('att'  , 'passive' , 0.6)  ,
