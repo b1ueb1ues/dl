@@ -1,7 +1,7 @@
 from timeline import *
 import sys
 
-loglevel = 0
+loglevel = None
 if len(sys.argv) >= 2:
     loglevel = int(sys.argv[1])
 

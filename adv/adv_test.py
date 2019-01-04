@@ -4,21 +4,24 @@ if __package__ is None:
 
 from core.log import *
 import time
+import sys
+
+sim_duration = 180
+sim_times = 100
+
 
 
 mname = ""
-def test(classname, conf, verbose):
+def test(classname, conf, verbose, mass=0):
     global mname
     a = time.time()
     adv = classname(conf=conf)
-    adv.run(180)
-    b = time.time()
+    adv.run(sim_duration)
 
     mname = classname.__name__
-    import sys
-    if len(sys.argv) >= 2:
-        verbose = sys.argv[1]
-    verbose = int(verbose)
+
+    if loglevel != None:
+        verbose = loglevel
 
     if verbose > 0:
         logcat()
@@ -28,7 +31,51 @@ def test(classname, conf, verbose):
             logcat(['dmg','cancel','fs','cast','buff'])
         if adv.conf['x_type'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
-    sum_dmg()
+
+    if mass == 0:
+        sum_dmg()
+    else:
+        adv = classname(conf=conf)
+        print id(logget())
+        adv.run(sim_duration)
+        print id(logget())
+        print logget()
+        print logcat(adv.log)
+        sum_dmg()
+        do_mass_sim(classname, conf)
+
+    b = time.time()
+    if loglevel >= 2:
+        print '-----------------------\nrun in %f'%(b-a)
+    return
+
+
+def statis(data):
+    total = 0
+    dmax = data[0]
+    dmin = data[0]
+    size = len(data)
+    print data
+    for i in data:
+        total += i
+        if i < dmin:
+            dmin = i
+        if i > dmax:
+            dmax = i
+    print dmin, total/size, dmax
+
+def do_mass_sim(classname, conf):
+    a = time.time()
+
+    results = []
+    for i in range(sim_times):
+        adv = classname(conf=conf)
+        adv.run(sim_duration)
+        r = sum_dmg(1)
+        results.append(r)
+    statis(results)
+
+    b = time.time()
     if loglevel >= 2:
         print '-----------------------\nrun in %f'%(b-a)
     return
@@ -89,7 +136,7 @@ def sum_ac():
             #print i,
             row += 3
 
-def sum_dmg():
+def sum_dmg(silence=0):
     l = logget()
     dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0 }
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
@@ -147,14 +194,19 @@ def sum_dmg():
         if tmp[i] != 0:
             xdmg_sum[i] = tmp[i]
 
+    float_dsum = dmg_sum['total']
+    print dmg_sum['total']
+    exit()
+    if silence:
+        return float_dsum
+
     for i in dmg_sum:
         dmg_sum[i] = '%.3f'%dmg_sum[i]
 
     for i in sdmg_sum:
         sdmg_sum[i] = "%.2f (%d)"%(sdmg_sum[i]['dmg'], sdmg_sum[i]['count'])
 
-
-    if loglevel >= 0:
+    if loglevel >= 0 or loglevel == None:
         print '\n======================='
         print mname,dmg_sum['total']
         print '-----------------------'
@@ -162,4 +214,5 @@ def sum_dmg():
         print "skill_stat |", sdmg_sum
         print "x_stat     |", xdmg_sum
     elif loglevel == -1:
-        print "%6.2f , %d , %s"%( float(dmg_sum['total']), (float(dmg_sum['total'])*2800/180), mname )
+        print "%6.2f , %d , %s"%( float(dmg_sum['total']), (float(dmg_sum['total'])*2800/simduration), mname )
+    return float_dsum
