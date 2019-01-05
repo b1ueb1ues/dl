@@ -2,6 +2,8 @@ from core.timeline import *
 from core.log import *
 import core.acl
 import sys
+import conf as globalconf
+import random
 
 
 class Modifier(object):
@@ -387,6 +389,7 @@ class Adv(object):
 
     conf_default = { 
         "latency" : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
+        "latency" : {'x':0.00, 'sp':0.00, 'default':0.00, 'idle':0},
 
         "s1_dmg"      : 0   ,
         "s1_sp"       : 0   ,
@@ -448,14 +451,25 @@ class Adv(object):
 
 
     def __init__(this,conf):
+        random.seed()
         this.timeline = Timeline().reset()
         this.log = []
         loginit(this.log)
         tmpconf = {}
+
+        this.adv_name = this.__class__.__name__
+
+        tmpconf.update(globalconf.get(this.adv_name))
         tmpconf.update(this.conf_default)
         tmpconf.update(this.conf)
         tmpconf.update(conf)
         this.conf = tmpconf
+
+        this.base_str = this.conf['base_str']
+        if 1:
+            this.crit_mod = this.solid_crit_mod
+        else:
+            this.crit_mod = this.rand_crit_mod
 
         this.skill = Skill()
         this.action = Action()
@@ -544,6 +558,9 @@ class Adv(object):
         return ret
 
     def crit_mod(this):
+        pass
+
+    def solid_crit_mod(this):
         m = {"chance":0, "dmg":0, "damage":0, "passive":0}
         for i in this.modifier._static.all_modifiers:
             if 'crit' == i.mod_type:
@@ -556,8 +573,27 @@ class Adv(object):
         if chance > 1:
             chance = 1
         cdmg = m['dmg'] + m["damage"] + 1.7
-        average = chance * cdmg + 1 - chance
+        average = chance * (cdmg-1) + 1
         return average
+    
+    def rand_crit_mod(this):
+        m = {"chance":0, "dmg":0, "damage":0, "passive":0}
+        for i in this.modifier._static.all_modifiers:
+            if 'crit' == i.mod_type:
+                if i.mod_order in m:
+                    m[i.mod_order] += i.get()
+                else:
+                    print "err in crit_mod"
+                    exit()
+        chance = m['chance']+m['passive']
+        if chance > 1:
+            chance = 1
+        cdmg = m['dmg'] + m["damage"] + 1.7
+        r = random.random()
+        if r < chance:
+            return cdmg
+        else: 
+            return 1
 
 
     def att_mod(this):
@@ -728,10 +764,10 @@ class Adv(object):
         return
 
     def dmg_formula(this, name, dmg_p):
-        att = 1.0 * this.att_mod()
+        att = 1.0 * this.att_mod() * this.base_str
         armor = 10.0 * this.def_mod()
-        #return 5.0/3 * dmg_p * this.dmg_mod(name) * att/arm   # true formula 
-        return att/armor * dmg_p * this.dmg_mod(name)
+        return 5.0/3 * dmg_p * this.dmg_mod(name) * att/armor   # true formula 
+        #return att/armor * dmg_p * this.dmg_mod(name)
 
     def l_true_dmg(this, e):
         name = e.name

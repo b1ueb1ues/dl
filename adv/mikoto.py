@@ -69,5 +69,11 @@ if __name__ == '__main__':
         `s1, seq=5 and cancel
         `s3, seq=5 and cancel
         """
+
+    #conf['acl'] = """
+    #    `s1
+    #    `s3
+    #    `s2
+    #    """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

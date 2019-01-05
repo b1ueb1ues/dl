@@ -7,7 +7,7 @@ import time
 import sys
 
 sim_duration = 180
-sim_times = 1000
+sim_times = 100
 
 
 
@@ -32,9 +32,8 @@ def test(classname, conf, verbose, mass=0):
         if adv.conf['x_type'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
 
-    if mass == 0:
-        sum_dmg()
-    else:
+    sum_dmg()
+    if mass :
         do_mass_sim(classname, conf)
 
     b = time.time()
@@ -127,6 +126,7 @@ def sum_ac():
                     print 'c5*%d %s'%(c5count, i),
             #print i,
             row += 3
+    print ''
 
 def sum_dmg(silence=0):
     l = logget()
@@ -186,9 +186,9 @@ def sum_dmg(silence=0):
         if tmp[i] != 0:
             xdmg_sum[i] = tmp[i]
 
-    float_dsum = dmg_sum['total']
+    float_dps = dmg_sum['total']/sim_duration
     if silence:
-        return float_dsum
+        return float_dps
 
     for i in dmg_sum:
         dmg_sum[i] = '%.3f'%dmg_sum[i]
@@ -198,11 +198,11 @@ def sum_dmg(silence=0):
 
     if loglevel >= 0 or loglevel == None:
         print '\n======================='
-        print mname,dmg_sum['total']
+        print mname,"%d"%float_dps
         print '-----------------------'
         print "dmgsum     |", dmg_sum
         print "skill_stat |", sdmg_sum
         print "x_stat     |", xdmg_sum
     elif loglevel == -1:
-        print "%6.2f , %d , %s"%( float(dmg_sum['total']), (float(dmg_sum['total'])*2800/simduration), mname )
-    return float_dsum
+        print "%6.2f , %d , %s"%( float(dmg_sum['total']), (float(dmg_sum['total'])*2800/sim_duration), mname )
+    return float_dps
