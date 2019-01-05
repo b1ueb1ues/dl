@@ -473,8 +473,8 @@ class Adv(object):
 
         this.skill = Skill()
         this.action = Action()
-        this.action._static['spd_func'] = this.speed
         this.action.reset()
+        this.action._static['spd_func'] = this.speed
         this.buff = Buff()
         this.buff._static['all_buffs'] = []
         # set modifier
