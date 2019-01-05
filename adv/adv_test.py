@@ -32,9 +32,12 @@ def test(classname, conf, verbose, mass=0):
         if adv.conf['x_type'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
 
-    sum_dmg()
-    if mass :
+    if mass:
+        if loglevel != -1:
+            sum_dmg()
         do_mass_sim(classname, conf)
+    else:
+        sum_dmg()
 
     b = time.time()
     if loglevel >= 2:
@@ -42,7 +45,7 @@ def test(classname, conf, verbose, mass=0):
     return
 
 
-def statis(data):
+def statis(data, mname):
     total = 0
     dmax = data[0]
     dmin = data[0]
@@ -53,10 +56,11 @@ def statis(data):
             dmin = i
         if i > dmax:
             dmax = i
-    print "%.2f (%.2f, %.2f)"%(total/size, dmin, dmax)
+    print "%d , %s (%.2f, %.2f)"%(total/size, mname, dmin, dmax)
 
 def do_mass_sim(classname, conf):
     a = time.time()
+    mname = classname.__name__
 
     results = []
     for i in range(sim_times):
@@ -64,7 +68,7 @@ def do_mass_sim(classname, conf):
         adv.run(sim_duration)
         r = sum_dmg(1)
         results.append(r)
-    statis(results)
+    statis(results, mname)
 
     b = time.time()
     if loglevel >= 2:
@@ -204,5 +208,5 @@ def sum_dmg(silence=0):
         print "skill_stat |", sdmg_sum
         print "x_stat     |", xdmg_sum
     elif loglevel == -1:
-        print "%6.2f , %d , %s"%( float(dmg_sum['total']), (float(dmg_sum['total'])*2800/sim_duration), mname )
+        print "%d , %s"%( float_dps, mname )
     return float_dps
