@@ -27,3 +27,15 @@ python adv/taro.py -1
 python adv/xander.py -1
 python adv/xania.py -1
 python adv/zardin.py -1
+
+python adv/ezelith.py -1
+python adv/melsa.py -1
+python adv/renelle.py -1
+python adv/d_cleo.py -1
+python adv/orsem.py -1
+python adv/luther.py -1
+python adv/francesca.py -1
+python adv/irfan.py -1
+python adv/orion.py -1
+python adv/vida.py -1
+python adv/vice.py -1

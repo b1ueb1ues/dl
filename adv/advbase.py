@@ -607,7 +607,11 @@ class Adv(object):
         return cc * att
 
     def def_mod(this):
-        return this.mod('def')
+        m = this.mod('def')
+        if m < 0.5:
+            return 0.5
+        else:
+            return m
 
     def sp_mod(this, name):
         return this.mod('sp')
