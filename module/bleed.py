@@ -14,6 +14,11 @@ class Bleed(Dot):
         this.quickshot_event.dmg_p = dmg_p
         this.dot_end_event = Event("bleed_end", this.dot_end_proc)
 
+    def reset(this):
+        this._static.all_bleeds = []
+        this._static.stacks = 0
+        return this
+
     def tick_proc(this, e):
         dmg_sum = 0
         stacks = this._static.stacks

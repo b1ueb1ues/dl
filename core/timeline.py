@@ -179,8 +179,8 @@ class Repeat_event(Event):
 
 
 class Timeline(object):
-    _active = [0]
-    _now = 0
+    _active = [None]
+    #_now = 0
     _listenerlist = []
     _eventlist = []
 
@@ -188,23 +188,21 @@ class Timeline(object):
     def setup(cls):
         cls.activeContext[0] = object.__new__(cls)
 
+    def set(this):
+        this._active[0] = this
 
-    @classmethod
-    def reset(cls):
-        cls._active = [0]
+    def reset(this):
+        this._active[0] = None
         set_time(0)
         clean_event_listener()
         return Timeline()
 
-    def __init__(this):
-        if this._active[0]:
-            return
-        this._listenerlist = []
-        this._eventlist = []
 
     def __new__(cls):
-        if not cls._active[0] :
+        if cls._active[0] == None :
             cls._active[0] = object.__new__(cls)
+            cls._listenerlist = []
+            cls._eventlist = []
         return cls._active[0]
 
 
@@ -254,13 +252,13 @@ class Timeline(object):
             exit()
         return 0
     
-    @classmethod
-    def run(cls, last = 100):
+    def run(this, last = 100):
         last += now()
         while 1:
             if now() > last:
                 return
-            r = cls.process_head(cls._active[0])
+
+            r = this.process_head()
             if r == -1:
                 return
 

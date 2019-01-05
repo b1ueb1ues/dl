@@ -42,7 +42,7 @@ class Addis(Adv):
         this.s2buff = Buff("s2",0.25, 10, 'att')
         this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
-        this.bleed = Bleed("g_bleed",0)
+        this.bleed = Bleed("g_bleed",0).reset()
         random.seed()
 
     def s1_proc(this, e):
@@ -63,5 +63,5 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=0, mass=1)
 

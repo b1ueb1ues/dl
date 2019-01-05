@@ -7,7 +7,7 @@ import time
 import sys
 
 sim_duration = 180
-sim_times = 100
+sim_times = 1000
 
 
 
@@ -35,13 +35,6 @@ def test(classname, conf, verbose, mass=0):
     if mass == 0:
         sum_dmg()
     else:
-        adv = classname(conf=conf)
-        print id(logget())
-        adv.run(sim_duration)
-        print id(logget())
-        print logget()
-        print logcat(adv.log)
-        sum_dmg()
         do_mass_sim(classname, conf)
 
     b = time.time()
@@ -55,14 +48,13 @@ def statis(data):
     dmax = data[0]
     dmin = data[0]
     size = len(data)
-    print data
     for i in data:
         total += i
         if i < dmin:
             dmin = i
         if i > dmax:
             dmax = i
-    print dmin, total/size, dmax
+    print "%.2f (%.2f, %.2f)"%(total/size, dmin, dmax)
 
 def do_mass_sim(classname, conf):
     a = time.time()
@@ -195,8 +187,6 @@ def sum_dmg(silence=0):
             xdmg_sum[i] = tmp[i]
 
     float_dsum = dmg_sum['total']
-    print dmg_sum['total']
-    exit()
     if silence:
         return float_dsum
 

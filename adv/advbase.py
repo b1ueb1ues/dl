@@ -77,11 +77,16 @@ class Buff(object):
         this.modifier = Modifier("mod_"+this.__name, this.mod_type, this.mod_order, 0)
         this.modifier.get = this.get
 
+    def reset(this):
+        this._static.all_buffs = []
+        return this
+
     def value(this):
         if this.__active:
             return this._value
         else:
             return 0
+
     def get(this):
         if this.__active:
             return this._value
@@ -217,9 +222,9 @@ class Action(object):
     _static.doing = 0
     _static.spd_func = 0
 
-    prev = [0]
-    doing = [0] # idle
-    spd_func = [0]
+    #prev = [0]
+    #doing = [0] # idle
+    #spd_func = [0]
     name = "_Action"
     index = 0
     recover_start = 0
@@ -266,6 +271,11 @@ class Action(object):
         this.recovery_event = Event("action_end", this._cb_act_end)
         this.e_idle = Event("idle")
         this.e_this = Event(this.name)
+
+    def reset(this):
+        this._static.prev = 0
+        this._static.doing = 0
+        this._static.spd_func = 0
 
     def __call__(this):
         return this.tap()
@@ -438,7 +448,7 @@ class Adv(object):
 
 
     def __init__(this,conf):
-        Timeline().reset()
+        this.timeline = Timeline().reset()
         this.log = []
         loginit(this.log)
         tmpconf = {}
@@ -450,6 +460,7 @@ class Adv(object):
         this.skill = Skill()
         this.action = Action()
         this.action._static['spd_func'] = this.speed
+        this.action.reset()
         this.buff = Buff()
         this.buff._static['all_buffs'] = []
         # set modifier
@@ -628,7 +639,7 @@ class Adv(object):
 
 
     def run(this, d = 300):
-        Timeline().reset()
+        this.timeline.set()
         load_event_listeners(this._el)
 
         Event("init", this.l_idle).on()
