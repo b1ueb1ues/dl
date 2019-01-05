@@ -5,6 +5,7 @@ if __package__ is None:
 from core.log import *
 import time
 import sys
+import conf as globalconf
 
 sim_duration = 180
 sim_times = 100
@@ -15,10 +16,14 @@ mname = ""
 def test(classname, conf, verbose, mass=0):
     global mname
     a = time.time()
+    mname = classname.__name__
+    gconf = globalconf.get(mname)
+    gconf.update(conf)
+    gconf.update(classname.conf)
+    conf = gconf
     adv = classname(conf=conf)
     adv.run(sim_duration)
 
-    mname = classname.__name__
 
     if loglevel != None:
         verbose = loglevel

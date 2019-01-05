@@ -1,10 +1,9 @@
 import adv_test
 import adv
-from wep.blade import flame as weapon
 from core.timeline import *
 from core.log import *
 
-
+from wep.blade import flame as weapon
 
 def module():
     return Aoi
@@ -12,20 +11,13 @@ def module():
 class Aoi(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 8.78   ,
-        "s1_sp"       : 2630   ,
-        "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.85   ,
+        "s1_dmg" : 8.78   ,
+        "s1_sp"  : 2630   ,
 
-        "s2_dmg"      : 7.90   ,
-        "s2_sp"       : 5280   ,
-        "s2_startup"  : 0.1    ,
-        "s2_recovery" : 1.85   ,
+        "s2_dmg" : 7.90   ,
+        "s2_sp"  : 5280   ,
 
-        "mod_a" :('att','punisher', 0.04),
-        "mod_d"   : ('att'  , 'passive' , 0.6)  ,
-        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
-        "mod_wp2" : ('crit' , 'passive' , 0.06) ,
+        "mod_a"  : ('att' , 'punisher' , 0.04) ,
         } )
     conf.update(weapon.conf)
 

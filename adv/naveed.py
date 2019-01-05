@@ -1,9 +1,9 @@
 import adv_test
 import adv
-from wep.sword import flame as weapon
 from core.timeline import *
 from core.log import *
 
+from wep.sword import flame as weapon
 
 def module():
     return Naveed
@@ -11,21 +11,13 @@ def module():
 class Naveed(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 4*1.70 ,
-        "s1_sp"       : 2590   ,
-        "s1_startup"  : 0.1    ,
-        "s1_recovery" : 2.6    ,
+        "s1_dmg"  : 4*1.70 ,
+        "s1_sp"   : 2590   ,
 
-        "s2_dmg"      : 0      ,
-        "s2_sp"       : 4800   ,
-        "s2_startup"  : 0.25   ,
-        "s2_recovery" : 0.9    ,
+        "s2_dmg"  : 0      ,
+        "s2_sp"   : 4800   ,
 
-        "mod_d"   : ('att'  , 'passive' , 0.6) ,
         "mod_wp"  : ('s'    , 'passive' , 0.25) ,
-        #"mod_wp2" : ('crit' , 'passive' , 0.06) ,
-        #"mod_wp3" : ('fs'   , 'passive' , 0.20) ,
-        #"mod_wp4" : ('s'    , 'passive' , 0.10) ,
         } )
     conf.update(weapon.conf)
 

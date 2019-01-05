@@ -1,19 +1,42 @@
 import base_str
 import skillframe
+import equip_common
 
 conf = {}
 conf.update(base_str.conf)
 
-def get(name):
+def get_advconf(name):
+    return
+
+
+def get_skillframe(name):
     global conf
     for i in skillframe.skills:
-        if name == i:
-            conf.update({
-                "s1_recovery":skillframe.skills[i][0],
-                "s2_recovery":skillframe.skills[i][1],
-                })
-            print conf
-            exit()
+        sf = skillframe.skills[i]
+        if name.lower() == i.lower():
+            if sf[0] == '1':
+                conf.update({
+                        "s1_startup":0.25,
+                        "s1_recovery":0.9,
+                        })
+            else:
+                conf.update({
+                        "s1_recovery":float(sf[0]),
+                        })
+            if sf[1] == '1':
+                conf.update({
+                        "s2_startup":0.25,
+                        "s2_recovery":0.9,
+                        })
+            else:
+                conf.update({
+                        "s2_recovery":float(sf[1]),
+                        })
+
+def get(name):
+    get_advconf(name)
+    get_skillframe(name)
+    conf.update(equip_common.conf)
     return conf
     
 

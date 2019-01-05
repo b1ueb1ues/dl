@@ -1,11 +1,11 @@
 import adv_test
 from adv import *
-from wep.blade import wind as weapon
 from core.timeline import *
 from core.log import *
 from module.bleed import Bleed
 import random
 
+from wep.blade import wind as weapon
 
 
 def module():
@@ -14,22 +14,12 @@ def module():
 class Addis(Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 4*2.16   ,
-        "s1_sp"       : 2537     ,
-        "s1_startup"  : 0.1      ,
-        "s1_recovery" : 2.5      ,
+        "s1_dmg"      : 4*2.16  ,
+        "s1_sp"       : 2537    ,
 
-        "s2_dmg"      : 0         ,
-        "s2_sp"       : 4877      ,
-        "s2_startup"  : 0.10+0.15 ,
-        "s2_recovery" : 1.05-0.15 ,
+        "s2_dmg"      : 0       ,
+        "s2_sp"       : 4877    ,
 
-
-        "mod_d"   : ('att'  , 'passive' , 0.60) ,
-        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
-        "mod_wp2" : ('crit' , 'chance'  , 0.06) ,
-        #"mod_ex"  : ('att'  , 'ex'      , 0.10) ,
-        #"mod_ex2"  : ('s'  , 'ex'      , 0.15) ,
         } )
     conf.update(weapon.conf)
 
@@ -59,7 +49,6 @@ class Addis(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, seq=5 and s1.charged>=2537-1500
         `s1, seq=5 and cancel or s=2
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel

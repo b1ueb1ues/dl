@@ -1,11 +1,11 @@
 import adv_test
 from adv import *
-from wep.blade import shadow as weapon
 from core.timeline import *
 from core.log import *
 from module.bleed import Bleed
 import random
 
+from wep.blade import shadow as weapon
 
 
 def module():
@@ -14,24 +14,14 @@ def module():
 class Ieyasu(Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 8*1.19   ,
-        "s1_sp"       : 2467     ,
-        "s1_startup"  : 0.1      ,
-        "s1_recovery" : 4.1      ,
+        "s1_dmg" : 8*1.19   ,
+        "s1_sp"  : 2467     ,
 
-        "s2_dmg"      : 0        ,
-        "s2_sp"       : 7913     ,
-        "s2_startup"  : 0.25     ,
-        "s2_recovery" : 1.1-0.15 ,
+        "s2_dmg" : 0        ,
+        "s2_sp"  : 7913     ,
 
-
-        "mod_a"   : ('crit' , 'damage'  , 0.2) ,
-        "mod_a2"   : ('crit' , 'chance'  , 0.1) ,
-        "mod_d"   : ('att'  , 'passive' , 0.60) ,
-        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
-        "mod_wp2" : ('crit' , 'chance'  , 0.06) ,
-        #"mod_ex"  : ('att'  , 'ex'      , 0.10) ,
-        #"mod_ex2"  : ('s'  , 'ex'      , 0.15) ,
+        "mod_a"  : ('crit' , 'damage'  , 0.2) ,
+        "mod_a2" : ('crit' , 'chance'  , 0.1) ,
         } )
     conf.update(weapon.conf)
 

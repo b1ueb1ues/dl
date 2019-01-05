@@ -1,10 +1,9 @@
 import adv_test
 from adv import *
-from wep.lance import light as weapon
 from core.timeline import *
 from core.log import *
 
-
+from wep.lance import light as weapon
 
 def module():
     return H_Elisanne
@@ -12,22 +11,13 @@ def module():
 class H_Elisanne(Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"      : 115*7 /100.0 ,
-        "s1_sp"       : 2450         ,
-        "s1_startup"  : 0.1          ,
-        "s1_recovery" : 2.8          ,
+        "s1_dmg" : 115*7 /100.0 ,
+        "s1_sp"  : 2450         ,
 
-        "s2_dmg"      : 83*10 /100.0 ,
-        "s2_sp"       : 5252         ,
-        "s2_startup"  : 0.1          ,
-        "s2_recovery" : 3.55         ,
+        "s2_dmg" : 83*10 /100.0 ,
+        "s2_sp"  : 5252         ,
 
-        "mod_a"   : ('s' , 'passive'  , 0.3) ,
-        "mod_d"   : ('att'  , 'passive' , 0.60) ,
-        "mod_wp"  : ('s'    , 'passive' , 0.25) ,
-        "mod_wp2" : ('crit' , 'chance'  , 0.06) ,
-        #"mod_ex"  : ('att'  , 'ex'      , 0.10) ,
-        #"mod_ex2"  : ('s'  , 'ex'      , 0.15) ,
+        "mod_a"  : ('s', 'passive', 0.3) ,
         } )
     conf.update(weapon.conf)
 

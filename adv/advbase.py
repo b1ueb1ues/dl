@@ -459,7 +459,6 @@ class Adv(object):
 
         this.adv_name = this.__class__.__name__
 
-        tmpconf.update(globalconf.get(this.adv_name))
         tmpconf.update(this.conf_default)
         tmpconf.update(this.conf)
         tmpconf.update(conf)
@@ -483,7 +482,13 @@ class Adv(object):
         for i in this.conf:
             if i[:3] == 'mod':
                 j = this.conf[i]
-                Modifier(i,j[0],j[1],j[2])
+                if type(j) == tuple:
+                    Modifier(i,j[0],j[1],j[2])
+                elif type(j) == list:
+                    idx = 0
+                    for k in j:
+                        Modifier(i+"_%d"%idx,k[0],k[1],k[2])
+                        idx += 1
 
         # init actions
         this.a_s1 = Action(("s1",1),this.conf)

@@ -1,7 +1,7 @@
 import adv_test
 import adv
-from wep.bow import wind as weapon
 
+from wep.bow import wind as weapon
 
 def module():
     return Louise
@@ -11,23 +11,13 @@ class Louise(adv.Adv):
     conf.update( {
         "s1_dmg"      : 2.12*4 ,
         "s1_sp"       : 2896   ,
-        "s1_startup"  : 0.1    ,
-        "s1_recovery" : 1.95   ,
 
         "s2_dmg"      : 2.69*3 ,
         "s2_sp"       : 5838   ,
-        "s2_startup"  : 0.1    ,
-        "s2_recovery" : 2.7    ,
 
-        "mod_a_od" : ('att'    , 'punisher' , 0.13/2)  ,
-        "mod_d"      : ('att'  , 'passive' , 0.6)  ,
-        "mod_wp"     : ('s'    , 'passive' , 0.25) ,
-        "mod_wp2"    : ('crit' , 'chance'  , 0.06) ,
-        #"mod_ex"     : ('s'    , 'ex'      , 0.15) ,
-        #"mod_ex2"    : ('att'  , 'ex'      , 0.10) ,
+        "mod_a_od" : ('att' , 'punisher' , 0.13*0.45) ,
         } )
     conf.update(weapon.conf)
-
 
     def init(this):
         pass
