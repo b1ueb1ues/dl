@@ -1,28 +1,17 @@
 import adv_test
 import adv
-from core.timeline import *
-from core.log import *
 
-from wep.blade import water as weapon
 
 def module():
     return Celliera
 
 class Celliera(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 2.42*4  ,
-        "s1_sp"   : 2537    ,
-
-        "s2_buff" : [0.25   , 10        , 'att'] ,
-        "s2_sp"   : 4877    ,
-
-        "mod_a"   : ('att'  , 'passive' , 0.08)  ,
-        "mod_d"   :[('att'  , 'passive' , 0.45)  ,
-                    ('crit' , 'chance'  , 0.20)] ,
-        } )
-    conf.update(weapon.conf)
-
+    conf = {
+        "mod_a": ('att' , 'passive', 0.08) ,
+        "mod_d":[('att' , 'passive', 0.45) ,
+                 ('crit', 'chance' , 0.20)],
+        'condition':'hp70'
+        } 
 
 
 if __name__ == '__main__':

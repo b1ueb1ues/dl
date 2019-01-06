@@ -1,29 +1,14 @@
 import adv_test
 import adv
-from core.timeline import *
-from core.log import *
-
-from wep.wand import light as weapon
+from adv import *
 
 def module():
     return Lucretia
 
 class Lucretia(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"      : 3.22*3   ,
-        "s1_sp"       : 3530     ,
-
-        "s2_buff"     : [0.1, 10, 'att'] ,
-        "s2_sp"       : 4553 ,
-
-        } )
-    conf.update(weapon.conf)
-
-
     def init(this):
         #!!!cheat!!!!!!!!!!!!!
-        this.s2.charge(400)
+        #this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
         this.doublebuff = adv.Buff("double", 0.2, 15,'att')

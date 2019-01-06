@@ -60,11 +60,11 @@ class Dot(object):
 class Buff(object):
     _static = Static()
     _static.all_buffs = []
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='team'):  
         this.__name = name   
         this._value = value
         this.duration = duration
-        this.mod_type = mtype or "<null>" or "att" or "x" or "fs" or "s" #....
+        this.mod_type = mtype or "att" or "x" or "fs" or "s" #....
         if morder ==None:
             if this.mod_type == 'crit':
                 this.mod_order = 'chance'
@@ -384,7 +384,8 @@ class Adv(object):
         pass
     # ^^^^^^^^^ rewrite this to provide advanced tweak ^^^^^^^^^^
 
-    x_status = (0,0)
+    comment = ''
+    #x_status = (0,0)
     conf = {}
 
     conf_default = { 
@@ -460,6 +461,9 @@ class Adv(object):
         this.adv_name = this.__class__.__name__
 
         tmpconf.update(this.conf_default)
+
+        tmpconf.update(globalconf.get(this.adv_name))
+
         tmpconf.update(this.conf)
         tmpconf.update(conf)
         this.conf = tmpconf

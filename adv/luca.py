@@ -1,24 +1,14 @@
 import adv_test
 import adv
 
-from wep.bow import light as weapon
-
 def module():
     return Luca
 
 class Luca(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg" : 7.71 ,
-        "s1_sp"  : 2504 ,
-
-        "s2_dmg" : 7.77 ,
-        "s2_sp"  : 5115 ,
-
+    conf = {
         "mod_a" : ('att' , 'passive' , 0.13)  ,
-        } )
-    conf.update(weapon.conf)
-
+        'condition':'hp100',
+        } 
 
 
 if __name__ == '__main__':
@@ -26,6 +16,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel
+        `s3, seq=5
         """
 
     adv_test.test(module(), conf, verbose=0)

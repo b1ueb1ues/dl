@@ -1,25 +1,15 @@
 import adv_test
 import adv
 
-from wep.wand import shadow as weapon
 
 def module():
     return Kleimann
 
 class Kleimann(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 9.84   ,
-        "s1_sp"   : 2854   ,
-
-        "s2_dmg"  : 4.19*2 ,
-        "s2_sp"   : 7090   ,
-
+    conf = {
         "mod_a"  : ("fs", 'passive', 0.4),
         "mod_a2" : ("s" , 'passive', 0.2),
-        } )
-    conf.update(weapon.conf)
-
+        } 
 
 if __name__ == '__main__':
     conf = {}

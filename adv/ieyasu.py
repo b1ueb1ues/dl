@@ -1,29 +1,16 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
 from module.bleed import Bleed
-import random
-
-from wep.blade import shadow as weapon
-
 
 def module():
     return Ieyasu
 
 class Ieyasu(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg" : 8*1.19   ,
-        "s1_sp"  : 2467     ,
-
-        "s2_dmg" : 0        ,
-        "s2_sp"  : 7913     ,
-
+    conf = {
         "mod_a"  : ('crit' , 'damage'  , 0.2) ,
         "mod_a2" : ('crit' , 'chance'  , 0.1) ,
-        } )
-    conf.update(weapon.conf)
+        "condition":"hp70"
+        } 
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
@@ -36,6 +23,7 @@ class Ieyasu(Adv):
         this.s2buff = Buff("s2",0.15, 15, 'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
+        this.crit_mod = this.rand_crit_mod
         random.seed()
 
     def s1_proc(this, e):
@@ -45,9 +33,6 @@ class Ieyasu(Adv):
 
     def s2_proc(this, e):
         this.s2buff.on()
-
-    def s3_proc(this, e):
-        pass
 
 
 if __name__ == '__main__':

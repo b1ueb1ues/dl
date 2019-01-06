@@ -13,16 +13,27 @@ sim_times = 100
 
 
 mname = ""
-def test(classname, conf, verbose, mass=0):
+base_str = 0
+comment = ""
+condition = ""
+def test(classname, conf, verbose=0, mass=0):
     global mname
+    global base_str
+    global comment
+    global condition
     a = time.time()
     mname = classname.__name__
-    gconf = globalconf.get(mname)
-    gconf.update(conf)
-    gconf.update(classname.conf)
-    conf = gconf
+    #gconf = globalconf.get(mname)
+    #gconf.update(conf)
+    #gconf.update(classname.conf)
+    #conf = gconf
+    #print conf
     adv = classname(conf=conf)
     adv.run(sim_duration)
+    base_str = adv.conf['base_str']
+    if 'condition' in adv.conf:
+        condition = adv.conf['condition']
+    comment = adv.comment
 
 
     if loglevel != None:
@@ -61,7 +72,7 @@ def statis(data, mname):
             dmin = i
         if i > dmax:
             dmax = i
-    print "%d , %s (%.2f, %.2f)"%(total/size, mname, dmin, dmax)
+    print "%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment)
 
 def do_mass_sim(classname, conf):
     a = time.time()
@@ -207,11 +218,12 @@ def sum_dmg(silence=0):
 
     if loglevel >= 0 or loglevel == None:
         print '\n======================='
-        print mname,"%d"%float_dps
+        #print mname,"%d"%float_dps
+        print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
         print '-----------------------'
         print "dmgsum     |", dmg_sum
         print "skill_stat |", sdmg_sum
         print "x_stat     |", xdmg_sum
     elif loglevel == -1:
-        print "%d , %s"%( float_dps, mname )
+        print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
     return float_dps

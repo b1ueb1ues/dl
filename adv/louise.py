@@ -1,31 +1,16 @@
 import adv_test
 import adv
 
-from wep.bow import wind as weapon
-
 def module():
     return Louise
 
 class Louise(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"      : 2.12*4 ,
-        "s1_sp"       : 2896   ,
-
-        "s2_dmg"      : 2.69*3 ,
-        "s2_sp"       : 5838   ,
-
+    conf = {
         "mod_a_od" : ('att' , 'punisher' , 0.13*0.45) ,
-        } )
-    conf.update(weapon.conf)
+        } 
 
     def init(this):
         pass
-
-
-    def s1_proc(this, e):
-        pass
-
 
 
 if __name__ == '__main__':

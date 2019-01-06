@@ -1,7 +1,5 @@
 import adv_test
 import adv
-from core.timeline import *
-from core.log import *
 
 def module():
     return Amane

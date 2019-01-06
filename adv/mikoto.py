@@ -1,25 +1,26 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
 
-from wep.blade import flame as weapon
+import wep.blade as weapon
 
 def module():
     return Mikoto
 
 class Mikoto(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 0        ,
-        "s1_sp"   : 4500     ,
+    conf = {
+        "s1_dmg"      : 0        ,
+        "s1_sp"       : 4500     ,
+        "s1_startup"  : 0.1      ,
+        "s1_recovery" : 1.9      ,
 
-        "s2_dmg"  : 0         ,
-        "s2_sp"   : 4500      ,
+        "s2_dmg"      : 0        ,
+        "s2_sp"       : 4500     ,
+        "s2_startup"  : 0.25     ,
+        "s2_recovery" : 1.05-0.15 ,
 
         "mod_a"   : ('crit' , 'chance'  , 0.10) ,
         "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
-        } )
+        } 
     conf.update(weapon.conf)
 
     def init(this):

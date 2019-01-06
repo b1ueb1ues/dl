@@ -1,8 +1,16 @@
 import os
 
-rootdir = "framedata/skills"
-skills = []
+find = '\\'
+if __file__.find("\\") == -1:
+    find = '/'
+    if __file__.find('/') == -1: 
+        find = None
+        rootdir = '.'
+if find:
+    l = __file__.rfind(find)
+    rootdir = __file__[:l]+find+'..'+find+'framedata'+find+'skills'
 
+skills = []
 for root, subfolders, files in os.walk(rootdir):
     if root == rootdir :
         skills = subfolders

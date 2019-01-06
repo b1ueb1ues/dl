@@ -5,25 +5,16 @@ from core.timeline import *
 from core.log import *
 
 
-
 def module():
     return Xander
 
 class Xander(adv.Adv):
     conf = {}
     conf.update( {
-        "s1_dmg"  : 8.25   ,
-        "s1_sp"   : 2714   ,
-
-        "s2_dmg"  : 2.48*3 ,
-        "s2_sp"   : 4817   ,
-
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
         "mod_a"   : ('fs'   , 'passive' , 0.50) ,
         } )
-    conf.update(weapon.conf)
-
 
 
 if __name__ == '__main__':

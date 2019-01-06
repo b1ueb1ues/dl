@@ -1,28 +1,16 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
-import random
-
-from wep.dagger import water as weapon
 
 def module():
     return Luther
 
 class Luther(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 4*1.86 ,
-        "s1_sp"   : 2343   ,
-
-        "s2_dmg"  : 4*1.44 ,
-        "s2_sp"   : 4904   ,
-
+    conf = {
         "mod_a"   : ('crit', 'chance', 0.10) ,
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
-        } )
-    conf.update(weapon.conf)
+        'condition':'15hits'
+        } 
 
     def s2_proc(this, e):
         Buff('s2_ab',-0.015,10,'def').on()

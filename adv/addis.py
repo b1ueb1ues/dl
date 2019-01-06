@@ -1,28 +1,11 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
 from module.bleed import Bleed
-import random
-
-from wep.blade import wind as weapon
-
 
 def module():
     return Addis
 
 class Addis(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"      : 4*2.16  ,
-        "s1_sp"       : 2537    ,
-
-        "s2_dmg"      : 0       ,
-        "s2_sp"       : 4877    ,
-
-        } )
-    conf.update(weapon.conf)
-
     def getbleedpunisher(this):
         if this.bleed._static.stacks > 0:
             return 0.08
@@ -33,7 +16,9 @@ class Addis(Adv):
         this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0).reset()
+        this.crit_mod = this.rand_crit_mod
         random.seed()
+
 
     def s1_proc(this, e):
         if this.s2buff.get():
@@ -45,7 +30,6 @@ class Addis(Adv):
         this.s2buff.on()
 
 
-
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
@@ -53,5 +37,5 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
-    adv_test.test(module(), conf, verbose=0, mass=1)
+    adv_test.test(module(), conf, mass=1)
 

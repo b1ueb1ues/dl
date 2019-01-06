@@ -1,29 +1,17 @@
 import adv_test
 import adv
-from core.timeline import *
-from core.log import *
-
-from wep.dagger import water as weapon
+from adv import *
 
 def module():
     return D_Cleo
 
 class D_Cleo(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"      : 0.67*11  ,
-        "s1_sp"       : 3136     ,
-
-        "s2_dmg"      : 5*1.48        ,
-        "s2_sp"       : 4882     ,
-
-        "mod_a"   : ('att'  , 'passive' , 0.13)  ,
-
-        "mod_d"   :[('att'  , 'passive' , 0.45)  ,
-                    ('crit' , 'chance'  , 0.20)] ,
-        } )
-    conf.update(weapon.conf)
-
+    conf = {
+        "mod_a": ('att' , 'passive', 0.13) ,
+        "mod_d":[('att' , 'passive', 0.45) ,
+                 ('crit', 'chance' , 0.20)],
+        'condition':'hp70'
+        }
 
     def init(this):
         this.energy = 0

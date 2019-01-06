@@ -1,27 +1,14 @@
 import adv_test
 import adv
-from core.timeline import *
-from core.log import *
-
-from wep.blade import wind as weapon
 
 def module():
     return Melody
 
 class Melody(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_buff"     : [0.15, 15, 'att'] ,
-        "s1_sp"       : 2987   ,
-
-        "s2_dmg"      : 2.64*3 ,
-        "s2_sp"       : 4784   ,
-
+    conf = {
         "mod_p"   : ('crit'  , 'chance', 0.08) ,
-        } )
-    conf.update(weapon.conf)
-
-
+        'condition':'hp100',
+        } 
 
 
 if __name__ == '__main__':

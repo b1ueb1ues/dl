@@ -1,25 +1,13 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
-
-from wep.lance import light as weapon
 
 def module():
     return H_Elisanne
 
 class H_Elisanne(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg" : 115*7 /100.0 ,
-        "s1_sp"  : 2450         ,
-
-        "s2_dmg" : 83*10 /100.0 ,
-        "s2_sp"  : 5252         ,
-
+    conf = {
         "mod_a"  : ('s', 'passive', 0.3) ,
-        } )
-    conf.update(weapon.conf)
+        } 
 
     def init(this):
         this.stance = 0

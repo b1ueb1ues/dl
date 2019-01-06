@@ -33,10 +33,18 @@ def get(mname):
     conf['str_adv'] = int(conf['str_adv'])
     if conf['s1_buff'] != '' and conf['s1_buff']!= '0':
         tmp = conf['s1_buff'].split(';')
-        conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
+        conf['s1_buff'] = []
+        if len(tmp) == 3:
+            conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
+        elif len(tmp) == 2:
+            conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]) ]
     if conf['s2_buff'] != '' and conf['s2_buff']!= '0':
         tmp = conf['s2_buff'].split(';')
-        conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
+        conf['s2_buff'] = []
+        if len(tmp) == 3:
+            conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
+        elif len(tmp) == 2:
+            conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
     return conf
     
 
