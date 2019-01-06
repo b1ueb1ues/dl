@@ -30,8 +30,8 @@ conf.update( {
 
         "fs_dmg"         : 0.31*8   ,
         "fs_sp"          : 460      ,
-        "fs_startup"     : 42/60.0  , #?
-        "fs_recovery"    : 81/60.0  , #?
+        "fs_startup"     : 50/60.0  , 
+        "fs_recovery"    : 37/60.0  , 
 
         "dodge_recovery" : 43/60.0  ,
 

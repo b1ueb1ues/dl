@@ -2,17 +2,18 @@ import adv_test
 import adv
 
 def module():
-    return Louise
+    return Philia
 
-class Louise(adv.Adv):
+class Philia(adv.Adv):
     conf = {
-        "mod_a_od" : ('att' , 'punisher' , 0.13*0.45) ,
+        "mod_a": ('att' , 'passive' , 0.10),
+        'condition':'hp100',
         } 
-
     def init(this):
-        this.dmg_make("o_poison",2.91)
-        this.dmg_make("o_poison",2.91)
-        this.dmg_make("o_poison",2.91)
+        this.dmg_make("o_paralysis",1.8)
+        this.dmg_make("o_paralysis",1.8)
+        this.dmg_make("o_paralysis",1.8)
+
 
 
 if __name__ == '__main__':
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s3, seq=5
         """
 
     adv_test.test(module(), conf, verbose=0)

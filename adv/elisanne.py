@@ -1,18 +1,13 @@
 import adv_test
-import adv
+from adv import *
 
 def module():
-    return Louise
+    return Elisanne
 
-class Louise(adv.Adv):
-    conf = {
-        "mod_a_od" : ('att' , 'punisher' , 0.13*0.45) ,
-        } 
-
+class Elisanne(Adv):
+    comment = 'do not use fs'
     def init(this):
-        this.dmg_make("o_poison",2.91)
-        this.dmg_make("o_poison",2.91)
-        this.dmg_make("o_poison",2.91)
+        this.conf['s1_buff'][1] *= 1.25
 
 
 if __name__ == '__main__':
@@ -22,6 +17,5 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
-
     adv_test.test(module(), conf, verbose=0)
 

@@ -10,6 +10,11 @@ class Luca(adv.Adv):
         'condition':'hp100',
         } 
 
+    def init(this):
+        this.dmg_make("o_paralysis",2.65)
+        this.dmg_make("o_paralysis",2.65)
+        this.dmg_make("o_paralysis",2.65)
+
 
 if __name__ == '__main__':
     conf = {}

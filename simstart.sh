@@ -56,7 +56,29 @@ python adv/rex.py -1
 python adv/sazanka.py -1
 python adv/vanessa.py -1
 echo '---------------'
+python adv/aeleen.py -1
+python adv/alain.py -1
+python adv/botan.py -1
+python adv/cibella.py -1
+python adv/elisanne.py -1
 python adv/h_elisanne.py -1
+python adv/malka.py -1
+python adv/pia.py -1
+python adv/ryozen.py -1
+python adv/xainfried.py -1
+python adv/zace.py -1
+echo '---------------'
+python adv/d_nefaria.py -1
+python adv/eleonora.py -1
+python adv/elias.py -1
+python adv/hawk.py -1
+python adv/joe.py -1
 python adv/louise.py -1
 python adv/luca.py -1
+python adv/malora.py -1
+python adv/nefaria.py -1
+python adv/philia.py -1
+python adv/rawn.py -1
+python adv/waike.py -1
+
 
