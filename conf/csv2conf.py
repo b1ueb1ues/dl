@@ -38,6 +38,9 @@ def get(mname):
             conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
         elif len(tmp) == 2:
             conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]) ]
+    else:
+        conf.pop('s1_buff')
+
     if conf['s2_buff'] != '' and conf['s2_buff']!= '0':
         tmp = conf['s2_buff'].split(';')
         conf['s2_buff'] = []
@@ -45,6 +48,9 @@ def get(mname):
             conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
         elif len(tmp) == 2:
             conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
+    else:
+        conf.pop('s2_buff')
+    print conf
     return conf
     
 

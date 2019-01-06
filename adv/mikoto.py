@@ -1,31 +1,16 @@
 import adv_test
 from adv import *
 
-import wep.blade as weapon
-
 def module():
     return Mikoto
 
 class Mikoto(Adv):
     conf = {
-        "s1_dmg"      : 0        ,
-        "s1_sp"       : 4500     ,
-        "s1_startup"  : 0.1      ,
-        "s1_recovery" : 1.9      ,
-
-        "s2_dmg"      : 0        ,
-        "s2_sp"       : 4500     ,
-        "s2_startup"  : 0.25     ,
-        "s2_recovery" : 1.05-0.15 ,
-
-        "mod_a"   : ('crit' , 'chance'  , 0.10) ,
-        "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
-        } 
-    conf.update(weapon.conf)
+        }
 
     def init(this):
         this.s1buff = Buff("s1",0, 15, 'x')
-        this.s2buff = Buff("s2",0.2, 10)
+        this.s2buff = Buff("s2",0.2, 10, 'spd')
 
     def speed(this):
         return 1+this.s2buff.get()
