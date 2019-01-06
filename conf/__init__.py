@@ -1,9 +1,8 @@
-import base_str
 import skillframe
 import equip_common
+import csv2conf
 
 conf = {}
-conf.update(base_str.conf)
 
 def get_advconf(name):
     return
@@ -37,6 +36,28 @@ def get(name):
     get_advconf(name)
     get_skillframe(name)
     conf.update(equip_common.conf)
+    csvconf = csv2conf.get(name)
+    conf.update(csvconf)
+    if conf['weapon']=='sword':
+        import wep.sword as weapon
+    elif conf['weapon']=='blade':
+        import wep.blade as weapon
+    elif conf['weapon']=='dagger':
+        import wep.dagger as weapon
+    elif conf['weapon']=='axe':
+        import wep.axe as weapon
+    elif conf['weapon']=='lance':
+        import wep.lance as weapon
+    elif conf['weapon']=='bow':
+        import wep.bow as weapon
+    elif conf['weapon']=='wand':
+        import wep.wand as weapon
+
+    wepconf = getattr(weapon,conf['element'])
+
+    conf.update(wepconf.conf)
+    conf['base_str'] = int(conf['str_adv']*(1+0.22+0.16)\
+            +conf['str_d']+conf['str_wp']+conf['str_w'])
     return conf
     
 

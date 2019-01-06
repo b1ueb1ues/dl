@@ -9,3 +9,4 @@ conf.update({
         "s3_startup"  : 0.1      ,
         "s3_recovery" : 2.65      ,
     })
+conf['str_w'] = 572*1.5
