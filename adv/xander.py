@@ -1,20 +1,15 @@
 import adv_test
 import adv
-from wep.sword import water as weapon
-from core.timeline import *
-from core.log import *
-
 
 def module():
     return Xander
 
 class Xander(adv.Adv):
-    conf = {}
-    conf.update( {
+    conf = {
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
         "mod_a"   : ('fs'   , 'passive' , 0.50) ,
-        } )
+        } 
 
 
 if __name__ == '__main__':

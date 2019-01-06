@@ -1,26 +1,13 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
-import random
-
-from wep.dagger import shadow as weapon
 
 def module():
     return Vida
 
 class Vida(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 2*3.39 ,
-        "s1_sp"   : 2446   ,
-
-        "s2_dmg"  : 0      ,
-        "s2_sp"   : 5315   ,
-
+    conf = {
         "mod_a"   : ('fs', 'passive', 0.30)
-        } )
-    conf.update(weapon.conf)
+        } 
 
     def init(this):
         this.s2charge = 0

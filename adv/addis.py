@@ -23,7 +23,7 @@ class Addis(Adv):
     def s1_proc(this, e):
         if this.s2buff.get():
             if random.random() < 0.8:
-                Bleed("s1_bleed", 1.46).on()
+                Bleed("s1_bleed", 1.32).on()
 
 
     def s2_proc(this, e):

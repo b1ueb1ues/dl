@@ -1,26 +1,14 @@
 import adv_test
 from adv import *
-from core.timeline import *
-from core.log import *
-import random
-
-from wep.dagger import shadow as weapon
 
 def module():
     return Orion
 
 class Orion(Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 4*1.59 ,
-        "s1_sp"   : 2213   ,
-
-        "s2_dmg"  : 4*1.67 ,
-        "s2_sp"   : 4904   ,
-
-        "mod_a"   : ('crit', 'chance', 0.10)
-        } )
-    conf.update(weapon.conf)
+    conf = {
+        "mod_a": ('crit', 'chance', 0.10),
+        'condition':'15hits',
+        } 
 
     def init(this):
         this.charge('prep','50%')

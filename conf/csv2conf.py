@@ -50,7 +50,6 @@ def get(mname):
             conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
     else:
         conf.pop('s2_buff')
-    print conf
     return conf
     
 

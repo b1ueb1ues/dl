@@ -2,20 +2,20 @@ import adv_test
 import adv
 
 def module():
-    return Xania
+    return Erik
 
-class Xania(adv.Adv):
+class Erik(adv.Adv):
+    comment ='do not use weapon skill and fs'
     conf = {
-        "mod_a": ("s", 'passive', 0.20) ,
+        "mod_a": ('fs', 'passive', 0.30),
         } 
 
 
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1 
+        `s2 
         """
     adv_test.test(module(), conf, verbose=0)
 

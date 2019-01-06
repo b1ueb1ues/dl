@@ -6,6 +6,9 @@ def module():
 
 class Mikoto(Adv):
     conf = {
+        "mod_a"   : ('crit' , 'chance'  , 0.10) ,
+        "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
+        'condition':'hp70'
         }
 
     def init(this):

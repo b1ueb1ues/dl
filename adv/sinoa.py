@@ -1,25 +1,11 @@
 import adv_test
 import adv
-from core.timeline import *
-from core.log import *
-import random
-
-from wep.wand import flame as weapon
+from adv import *
 
 def module():
     return Sinoa
 
 class Sinoa(adv.Adv):
-    conf = {}
-    conf.update( {
-        "s1_dmg"  : 0      ,
-        "s1_sp"   : 3817   ,
-
-        "s2_dmg"  : 2*4.43 ,
-        "s2_sp"   : 5422   ,
-
-        } )
-    conf.update(weapon.conf)
     def init(this):
         random.seed()
 
