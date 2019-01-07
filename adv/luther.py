@@ -26,10 +26,13 @@ if __name__ == '__main__':
         `fs, seq=5
         """
 
+    #lower dps
     #conf['acl'] = """
     #    `s1
-    #    `s3
     #    `s2
+    #    `s3
+    #    `fs, seq=4
     #    """
+
     adv_test.test(module(), conf, verbose=0, mass=0)
 

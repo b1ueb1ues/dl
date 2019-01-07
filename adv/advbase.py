@@ -778,7 +778,7 @@ class Adv(object):
         if doing.name[0] == 'x':
             getattr(this, 'a_'+doing.name+'fs')()
         else:
-            this.a_fs()
+            return this.a_fs()
 
     def x(this):
         prev = this.action.getprev() 
@@ -817,8 +817,8 @@ class Adv(object):
         else:
             log("x", "%s"%xseq, 0)
         this.dmg_make("%s"%xseq, dmg_p)
-        this.charge("%s"%xseq, sp)
         this.think_pin("x")
+        this.charge("%s"%xseq, sp)
 
 
     def run(this, d = 300):
@@ -967,9 +967,9 @@ class Adv(object):
         log("fs","succ")
         dmg_p = this.conf["fs_dmg"]
         this.dmg_make("fs", dmg_p)
-        this.charge("fs",this.conf["fs_sp"])
         this.fs_proc(e)
         this.think_pin("fs")
+        this.charge("fs",this.conf["fs_sp"])
 
     def l_range_fs(this, e):
         log("fs","succ")

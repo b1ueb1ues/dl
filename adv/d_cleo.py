@@ -14,6 +14,7 @@ class D_Cleo(adv.Adv):
         }
 
     def init(this):
+        this.stance = 0
         this.energy = 0
 
     def add_energy(this, count):
@@ -21,10 +22,20 @@ class D_Cleo(adv.Adv):
         log("buff","energy",this.energy)
 
     def s1_proc(this, e):
+        if this.stance == 0:
+            this.stance = 1
+        elif this.stance == 1:
+            this.stance = 2
+            adv.Buff('s1s',0.1,10,'att').on()
+        elif this.stance ==1:
+            this.stance = 0
+            adv.Buff('s1s',0.1,10,'att').on()
+            adv.Buff('s1c',0.08,10,'crit','chance').on()
+
         if this.energy >= 5:
             this.energy = 0
             log("buff","energy",this.energy)
-            this.dmg_make("s1_energy",this.conf["s1_dmg"]*0.4)
+            this.dmg_make("o_s1_energy",this.conf["s1_dmg"]*0.4)
         else:
             this.add_energy(1)
             
@@ -33,14 +44,8 @@ class D_Cleo(adv.Adv):
         if this.energy >= 5:
             this.energy = 0
             log("buff","energy",this.energy)
-            this.dmg_make("s2_energy",this.conf["s2_dmg"]*0.4)
+            this.dmg_make("o_s2_energy",this.conf["s2_dmg"]*0.4)
 
-
-    def s3_proc(this, e):
-        if this.energy >= 5:
-            this.energy = 0
-            log("buff","energy",this.energy)
-            this.dmg_make("s3_energy",this.conf["s3_dmg"]*0.4)
 
 
 if __name__ == '__main__':
@@ -48,16 +53,8 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
         `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
+        `fs, seq=5
         """
 
     adv_test.test(module(), conf, verbose=0)
-    if loglevel >= 0:
-        l = logget()
-        energized = {'s1':0, 's2':0, 's3':0}
-        for i in l:
-            if i[1] == 'dmg' and i[2][0] == 's' and i[2][-1:] == 'y':
-                energized[i[2][:2]] += i[3]
-        for i in energized:
-            energized[i] = "%.3f"%energized[i]
-        print "energized  |",energized
-
