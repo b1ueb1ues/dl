@@ -11,7 +11,7 @@ class Ezelith(Adv):
 
     def init(this):
         random.seed()
-        this.s2buff = Buff("s2",0.15, 15,'att')
+        this.s2buff = Buff("s2",0.15, 15,'att','buff','self')
 
     def s2_proc(this, e):
         this.s2buff.on()

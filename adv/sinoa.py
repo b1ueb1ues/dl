@@ -15,6 +15,8 @@ class Sinoa(adv.Adv):
             adv.Buff('s1_att',0.15,15,'att').on()
         elif r<0.5 :
             adv.Buff('s1_crit',0.15,15,'crit').on()
+        else:
+            log('failed','s1')
 
 
 if __name__ == '__main__':

@@ -44,8 +44,11 @@ def get(mname):
     if conf['s2_buff'] != '' and conf['s2_buff']!= '0':
         tmp = conf['s2_buff'].split(';')
         conf['s2_buff'] = []
-        if len(tmp) == 3:
-            conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]), tmp[2] ]
+        if len(tmp) >= 3 :
+            conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
+            for i in tmp[2:]:
+                conf['s2_buff'] += [i]
+
         elif len(tmp) == 2:
             conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
     else:

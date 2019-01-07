@@ -11,7 +11,7 @@ class Lucretia(adv.Adv):
         #this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
-        this.doublebuff = adv.Buff("double", 0.2, 15,'att')
+        this.doublebuff = adv.Buff("double", 0.2, 15,'att',wide='self')
 
     def add_energy(this, count):
         this.energy += count
@@ -23,7 +23,7 @@ class Lucretia(adv.Adv):
         if this.energy >= 5:
             this.energy = 0
             log("buff","energy",this.energy)
-            this.dmg_make("s1_energy",this.conf["s1_dmg"]*0.4)
+            this.dmg_make("o_s1_energy",this.conf["s1_dmg"]*0.4)
         else:
             this.add_energy(1)
             
@@ -36,7 +36,7 @@ class Lucretia(adv.Adv):
         if this.energy >= 5:
             this.energy = 0
             log("buff","energy",this.energy)
-            this.dmg_make("s3_energy",this.conf["s3_dmg"]*0.4)
+            this.dmg_make("o_s3_energy",this.conf["s3_dmg"]*0.4)
 
 
 if __name__ == '__main__':
@@ -56,15 +56,6 @@ if __name__ == '__main__':
             """
 
     adv_test.test(module(), conf, verbose=0)
-    if loglevel >= 0:
-        l = logget()
-        energized = {'s1':0, 's2':0, 's3':0}
-        for i in l:
-            if i[1] == 'dmg' and i[2][0] == 's' and i[2][-1:] == 'y':
-                energized[i[2][:2]] += i[3]
-        for i in energized:
-            energized[i] = "%.3f"%energized[i]
-        print "energized  |",energized
 
 
 

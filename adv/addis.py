@@ -12,7 +12,8 @@ class Addis(Adv):
         return 0
 
     def init(this):
-        this.s2buff = Buff("s2",0.25, 10, 'att')
+        #this.s2buff = Buff("s2",0.25, 10, 'att', 'buff','self')
+        this.s2buff = Buff("s2_shapshifts1",0, 10,'ss')
         this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0).reset()

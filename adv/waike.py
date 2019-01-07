@@ -5,7 +5,15 @@ def module():
     return Waike
 
 class Waike(adv.Adv):
-    pass
+    def init(this):
+        this.bogcountlast = 3
+        this.bogbuff = adv.Buff('s2_bog',0.6,8,'att','bog')
+
+    def s2_proc(this, e):
+        if this.bogcountlast > 0:
+            if not this.bogbuff.get():
+                this.bogcountlast -= 1
+                this.bogbuff.on()
 
 
 

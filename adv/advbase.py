@@ -19,10 +19,50 @@ class Modifier(object):
         this.mod_order = order
         this.mod_value = value
         this._static['all_modifiers'].append(this)
+        this.__active = 1
+
+
     def get(this):
         return this.mod_value
+
+
+    def on(this, modifier=None):
+        if this.__active == 1:
+            return
+        if modifier == None:
+            modifier = this
+        this._static['all_modifiers'].append(modifier)
+        this.__active = 1
+
+
+    def off(this, modifier=None):
+        if this.__active == 0:
+            return
+        this.__active = 0
+        if modifier==None:
+            modifier = this
+        idx = len(this._static.all_modifiers)
+        while 1:
+            idx -= 1
+            if idx < 0:
+                break
+            if this._static.all_modifiers[idx] == modifier:
+                this._static.all_modifiers.pop(idx)
+                break
+
+        #idx = len(this._static.team_modifiers)
+        #while 1:
+        #    idx -= 1
+        #    if idx < 0:
+        #        break
+        #    if this._static.team_modifiers[idx] == modifier:
+        #        this._static.team_modifiers.pop(idx)
+        #        break
+
+
     def __repr__(this):
         return "<%s %s %s %s>"%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
+
 
 class Dot(object):
     #_static = Static()
@@ -72,12 +112,19 @@ class Buff(object):
                 this.mod_order = 'buff'
         else:
             this.mod_order = morder or "<null>" or "passive" or "ex" or "buff" or "punisher" #...
+        this.wide = wide
 
-        this.__active = 0
         this.buff_end_event = Event("buff",this.buff_end_proc)
-        this._static.all_buffs.append(this)
         this.modifier = Modifier("mod_"+this.__name, this.mod_type, this.mod_order, 0)
         this.modifier.get = this.get
+        this.dmg_test_event = Event("dmg_formula")
+        this.dmg_test_event.dmg_p = 1
+        this.dmg_test_event.name = 'test'
+
+        this.__stored = 0
+        this.__active = 0
+        #this.on()
+
 
     def reset(this):
         this._static.all_buffs = []
@@ -100,15 +147,28 @@ class Buff(object):
         return this
 
     def buff_end_proc(this, e):
-        log("buff", this.__name, this.value(), this.__name+" buff end <timeout>")
+        log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()), this.__name+" buff end <timeout>")
         this.__active = 0
+
+        if this.__stored:
+            idx = len(this._static.all_buffs)
+            while 1:
+                idx -= 1
+                if idx < 0:
+                    break
+                if this == this._static.all_buffs[idx]:
+                    this._static.all_buffs.pop(idx)
+                    break
+            this.__stored = 0
         stack = 0
         for i in this._static.all_buffs:
             if i.__name == this.__name:
                 if i.__active != 0:
                     stack += 1
         if stack > 0:
-            log("buff", this.__name, this.value(), this.__name+" buff stack <%d>"%stack)
+            log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()*stack), this.__name+" buff stack <%d>"%stack)
+        this.modifier.off()
+        this.count_team_buff()
 
 
     def on(this, duration=None):
@@ -118,11 +178,14 @@ class Buff(object):
             d = duration
         if this.__active == 0:
             this.__active = 1
+            if this.__stored == 0:
+                this._static.all_buffs.append(this)
+                this.__stored = 1
             this.buff_end_event.on(now()+d)
-            log("buff", this.__name, this.value(), this.__name+" buff start <%ds>"%d)
+            log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()), this.__name+" buff start <%ds>"%d)
         else:
             this.buff_end_event.timing = now() + d
-            log("buff", this.__name, this.value(), this.__name+" buff refresh <%ds>"%d)
+            log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()), this.__name+" buff refresh <%ds>"%d)
 
         stack = 0
         for i in this._static.all_buffs:
@@ -130,17 +193,38 @@ class Buff(object):
                 if i.__active != 0:
                     stack += 1
         if stack > 1:
-            log("buff", this.__name, this.value(), this.__name+" buff stack <%d>"%stack)
+            log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()*stack), this.__name+" buff stack <%d>"%stack)
 
-
+        this.modifier.on()
+        this.count_team_buff()
         return this
 
 
     def off(this):
-        log("buff", this.__name, this.value(), this.__name+" buff end <turn off>")
+        if this.__active == 0:
+            return 
+        log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()), this.__name+" buff end <turn off>")
         this.__active = 0
+        this.modifier.off()
         this.buff_end_event.off()
+        this.count_team_buff()
         return this
+
+    def count_team_buff(this):
+        if this.wide != 'team':
+            return
+        this.dmg_test_event.modifiers = []
+        this.dmg_test_event.trigger()
+        no_team_buff_dmg = this.dmg_test_event.dmg
+        modifiers = []
+        for i in this._static.all_buffs:
+            if i.wide == 'team':
+                modifiers.append(i.modifier)
+        this.dmg_test_event.modifiers = modifiers
+        this.dmg_test_event.trigger()
+        team_buff_dmg = this.dmg_test_event.dmg
+        log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
+
 
 
 class Skill(object):
@@ -475,14 +559,20 @@ class Adv(object):
             this.crit_mod = this.rand_crit_mod
 
         this.skill = Skill()
+
+        # set buff
         this.action = Action()
         this.action.reset()
         this.action._static['spd_func'] = this.speed
+        # set buff
         this.buff = Buff()
-        this.buff._static['all_buffs'] = []
+        this.all_buffs = []
+        this.buff._static['all_buffs'] = this.all_buffs
         # set modifier
         this.modifier = Modifier(0,0,0,0)
-        this.modifier._static['all_modifiers'] = []
+        this.all_modifiers = []
+        this.modifier._static['all_modifiers'] = this.all_modifiers
+
         for i in this.conf:
             if i[:3] == 'mod':
                 j = this.conf[i]
@@ -544,6 +634,8 @@ class Adv(object):
 
 
     def dmg_mod(this, name):
+        if name[0:2] == 'o_':
+            name = name[2:]
         if name[0] == 's':
             return this.mod('s')
         elif name[0:2] == 'fs':
@@ -555,7 +647,7 @@ class Adv(object):
 
     def mod(this, mtype):
         m = {}
-        for i in this.modifier._static.all_modifiers:
+        for i in this.all_modifiers:
             if mtype == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
@@ -571,7 +663,7 @@ class Adv(object):
 
     def solid_crit_mod(this):
         m = {"chance":0, "dmg":0, "damage":0, "passive":0}
-        for i in this.modifier._static.all_modifiers:
+        for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
@@ -587,7 +679,7 @@ class Adv(object):
     
     def rand_crit_mod(this):
         m = {"chance":0, "dmg":0, "damage":0, "passive":0}
-        for i in this.modifier._static.all_modifiers:
+        for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
@@ -772,7 +864,11 @@ class Adv(object):
     def l_dmg_formula(this, e):
         name = e.name
         dmg_p = e.dmg_p
+        if 'modifiers' in e.__dict__ :
+            if e.modifiers!=None and e.modifiers != 0:
+                this.all_modifiers = e.modifiers
         e.dmg = this.dmg_formula(name, dmg_p)
+        this.all_modifiers = this.modifier._static.all_modifiers
         e.ret = e.dmg
         return
 
@@ -793,8 +889,10 @@ class Adv(object):
         dmg_p = e.dmg_p
         dmg_make(name, dmg_p)
 
-    def dmg_make(this, name, dmg_p):
-        count = this.dmg_formula(name, dmg_p)
+    def dmg_make(this, name, dmg_p, dmgtype=None):
+        if dmgtype == None:
+            dmgtype = name
+        count = this.dmg_formula(dmgtype, dmg_p)
         
         if name[0] == "x":
             spgain = this.conf[name[:2]+"_sp"]
