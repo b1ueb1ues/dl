@@ -1,3 +1,4 @@
+# encoding:utf8
 if __package__ is None:
     from os import sys, path
     sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
@@ -16,6 +17,7 @@ mname = ""
 base_str = 0
 comment = ""
 condition = ""
+dps = 0
 def test(classname, conf, verbose=0, mass=0):
     global mname
     global base_str
@@ -42,7 +44,7 @@ def test(classname, conf, verbose=0, mass=0):
     if verbose > 0:
         logcat()
         sum_ac()
-    elif verbose == -2:
+    elif verbose == 3:
         if adv.conf['x_type'] == 'melee':
             logcat(['dmg','cancel','fs','cast','buff'])
         if adv.conf['x_type'] == 'ranged':
@@ -50,10 +52,30 @@ def test(classname, conf, verbose=0, mass=0):
 
     if mass:
         if loglevel != -1:
-            sum_dmg()
+            r = sum_dmg()
         do_mass_sim(classname, conf)
     else:
-        sum_dmg()
+        r = sum_dmg()
+
+    if loglevel >= 0 or loglevel == None:
+        print '\n======================='
+        #print mname,"%d"%float_dps
+        print "%d , %s (str: %d) %s ;%s"%( dps, mname, base_str, condition, comment )
+        print '-----------------------'
+        print "dmgsum     |", r['dmg_sum']
+        print "skill_stat |", r['sdmg_sum']
+        print "x_stat     |", r['xdmg_sum']
+        print "others     |", r['o_sum']
+    elif loglevel == -1:
+        print "%d , %s (str: %d) %s ;%s"%( dps, mname, base_str, condition, comment )
+    elif loglevel == -2:
+        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+comment,dps, dps)
+        line = line.replace(',3,',',3星,').replace(',4,',',4星,').replace(',5,',',5星,')
+        line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
+        line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')
+        line = line.replace('shadow','暗').replace('light','光')
+        line = line.replace('wind','风').replace('water','水').replace('flame','火')
+        print line
 
     b = time.time()
     if loglevel >= 2:
@@ -72,7 +94,12 @@ def statis(data, mname):
             dmin = i
         if i > dmax:
             dmax = i
-    print "%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment)
+    
+    global dps
+    global comment
+    dps = total/size
+    comment = '(%.0f~%.0f) %s'%(dmin, dmax, comment)
+    #print "%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment)
 
 def do_mass_sim(classname, conf):
     a = time.time()
@@ -212,9 +239,10 @@ def sum_dmg(silence=0):
         if tmp[i] != 0:
             xdmg_sum[i] = tmp[i]
 
-    float_dps = dmg_sum['total']/sim_duration
+    global dps
+    dps = dmg_sum['total']/sim_duration
     if silence:
-        return float_dps
+        return dps
 
     for i in dmg_sum:
         dmg_sum[i] = '%.0f'%dmg_sum[i]
@@ -224,16 +252,21 @@ def sum_dmg(silence=0):
     for i in o_sum:
         o_sum[i] = "%.0f"%(o_sum[i])
     
+    r = {}
+    r['dmg_sum'] = dmg_sum
+    r['sdmg_sum'] = sdmg_sum
+    r['xdmg_sum'] = xdmg_sum
+    r['o_sum'] = o_sum
 
-    if loglevel >= 0 or loglevel == None:
-        print '\n======================='
-        #print mname,"%d"%float_dps
-        print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
-        print '-----------------------'
-        print "dmgsum     |", dmg_sum
-        print "skill_stat |", sdmg_sum
-        print "x_stat     |", xdmg_sum
-        print "others     |", o_sum
-    elif loglevel == -1:
-        print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
-    return float_dps
+    #if loglevel >= 0 or loglevel == None:
+    #    print '\n======================='
+    #    #print mname,"%d"%float_dps
+    #    print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
+    #    print '-----------------------'
+    #    print "dmgsum     |", dmg_sum
+    #    print "skill_stat |", sdmg_sum
+    #    print "x_stat     |", xdmg_sum
+    #    print "others     |", o_sum
+    #elif loglevel == -1:
+    #    print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
+    return r

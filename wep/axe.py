@@ -4,7 +4,7 @@ conf.update( {
 
         "x1_dmg"         : 114   / 100.0 ,
         "x1_sp"          : 200           ,
-        "x1_startup"     : 16    / 60    ,
+        "x1_startup"     : 16    / 60.0  ,
         "x1_recovery"    : 46    / 60.0  ,
 
         "x2_dmg"         : 122   / 100.0 ,

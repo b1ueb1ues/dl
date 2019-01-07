@@ -8,7 +8,7 @@ class Orsem(Adv):
     conf = {
         "mod_a"   : ('crit', 'chance', 0.10) ,
         "mod_a2"  : ('crit', 'chance', 0.06) ,
-        'condition':'hp70, 15hits',
+        'condition':'hp70 & 15hits',
 
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
