@@ -69,6 +69,8 @@ def test(classname, conf, verbose=0, mass=0):
     elif loglevel == -1:
         print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str, condition, comment )
     elif loglevel == -2:
+        if condition+comment == '':
+            comment = ' '
         line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+comment,dps, dps+ave_dps*2.5*bps)
         line = line.replace(',3,',',3星,').replace(',4,',',4星,').replace(',5,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')

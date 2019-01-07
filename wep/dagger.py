@@ -24,14 +24,15 @@ conf.update( {
         "x4_recovery"    : 36    / 60.0  ,
 
         "x5_dmg"         : 119   / 100.0 ,
-        "x5_sp"          : 480           ,
+        "x5_sp"          : 288           ,
         "x5_startup"     : 0             ,
         "x5_recovery"    : 40    / 60.0  ,
 
         "fs_dmg"         : 47*3  / 100.0 ,
         "fs_sp"          : 288           ,
-        "fs_startup"     : 64    / 60.0  ,
+        "fs_startup"     : 54    / 60.0  ,
         "fs_recovery"    : 14    / 60.0  ,
+        "x5fs_startup"   : 64    / 60.0  ,
 
         "dodge_recovery" : 43    / 60.0  ,
 

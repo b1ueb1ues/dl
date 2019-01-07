@@ -339,6 +339,7 @@ class Action(object):
                 this.name = name
                 this.index = 0
         if conf != None:
+            this.conf = conf
             this._startup = conf[this.name+"_startup"]
             this._recovery = conf[this.name+"_recovery"]
             
@@ -590,12 +591,34 @@ class Adv(object):
         this.a_s1 = Action(("s1",1),this.conf)
         this.a_s2 = Action(("s2",2),this.conf)
         this.a_s3 = Action(("s3",3),this.conf)
-        this.a_fs = Action("fs",this.conf)
         this.a_x1 = Action(("x1",1),this.conf)
         this.a_x2 = Action(("x2",2),this.conf)
         this.a_x3 = Action(("x3",3),this.conf)
         this.a_x4 = Action(("x4",4),this.conf)
         this.a_x5 = Action(("x5",5),this.conf)
+        fsconf = {}
+        xnfsconf = {}
+        xn = {}
+        for i in this.conf:
+            if i[:3] == 'fs_':
+                fsconf[i] = this.conf[i]
+            if i[2:5] == 'fs_':
+                xnfsconf[i] = this.conf[i]
+                xn[i[:4]] = 1
+        this.a_fs = Action("fs",fsconf)
+
+        for i in ['x1fs','x2fs','x3fs','x4fs','x5fs']:
+            tmpconf = {}
+            for j in xnfsconf:
+                if j[:4] == i:
+                    tmpconf[j[2:]] = xnfsconf[j]
+            if tmpconf == {}:
+                setattr(this, "a_"+i,  this.a_fs )
+            else:
+                for j in fsconf:
+                    if j not in tmpconf:
+                        tmpconf[j] = fsconf[j]
+                setattr(this, "a_"+i,  Action('fs' ,tmpconf) )
 
         this.a_x1.cancel_by = ["dodge","fs","s1","s2","s3"]
         this.a_x2.cancel_by = ["dodge","fs","s1","s2","s3"]
@@ -603,6 +626,11 @@ class Adv(object):
         this.a_x4.cancel_by = ["dodge","fs","s1","s2","s3"]
         this.a_x5.cancel_by = ["dodge","fs","s1","s2","s3"]
         this.a_fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x1fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x2fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x3fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x4fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x5fs.cancel_by = ["dodge","s1","s2","s3"]
 
         this.a_x1.interrupt_by = ["dodge", "fs","s1","s2","s3"]
         this.a_x2.interrupt_by = ["dodge", "fs","s1","s2","s3"]
@@ -610,6 +638,11 @@ class Adv(object):
         this.a_x4.interrupt_by = ["dodge", "fs","s1","s2","s3"]
         this.a_x5.interrupt_by = ["dodge", "fs","s1","s2","s3"]
         this.a_fs.interrupt_by = ["s1","s2","s3"]
+        this.a_x1fs.interrupt_by = ["s1","s2","s3"]
+        this.a_x2fs.interrupt_by = ["s1","s2","s3"]
+        this.a_x3fs.interrupt_by = ["s1","s2","s3"]
+        this.a_x4fs.interrupt_by = ["s1","s2","s3"]
+        this.a_x5fs.interrupt_by = ["s1","s2","s3"]
 
         # set cmd
         this.x1 = this.a_x1
@@ -617,7 +650,7 @@ class Adv(object):
         this.x3 = this.a_x3
         this.x4 = this.a_x4
         this.x5 = this.a_x5
-        this.fs = this.a_fs
+        #this.fs = this.a_fs
         this.s1 = Skill("s1",this.conf["s1_sp"],this.a_s1.tap)
         this.s2 = Skill("s2",this.conf["s2_sp"],this.a_s2.tap)
         this.s3 = Skill("s3",this.conf["s3_sp"],this.a_s3.tap)
@@ -730,7 +763,7 @@ class Adv(object):
     def getxseq(this):
         doing = this.action.getdoing()
         if doing.name[0] == 'x':
-            return doing.index, doing,status
+            return doing.index, doing.status
         else:
             return doing.name, doing.index
 
@@ -739,6 +772,13 @@ class Adv(object):
         prev = this.action.getprev()
         return prev.name, prev.index, prev.status
 
+
+    def fs(this):
+        doing = this.action.getdoing()
+        if doing.name[0] == 'x':
+            getattr(this, 'a_'+doing.name+'fs')()
+        else:
+            this.a_fs()
 
     def x(this):
         prev = this.action.getprev() 
@@ -794,6 +834,11 @@ class Adv(object):
         Event("x4").listener(this.l_x)
         Event("x5").listener(this.l_x)
         Event("fs").listener(this.l_fs)
+        Event("x1fs").listener(this.l_fs)
+        Event("x2fs").listener(this.l_fs)
+        Event("x3fs").listener(this.l_fs)
+        Event("x4fs").listener(this.l_fs)
+        Event("x5fs").listener(this.l_fs)
         Event("s1").listener(this.l_s)
         Event("s2").listener(this.l_s)
         Event("s3").listener(this.l_s)
