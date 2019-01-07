@@ -142,8 +142,10 @@ class Buff(object):
         else:
             return 0
 
-    def set(this, v):
+    def set(this, v, d=None):
         this._value = v
+        if d != None:
+            this.duration = d
         return this
 
     def buff_end_proc(this, e):
@@ -166,7 +168,7 @@ class Buff(object):
                 if i.__active != 0:
                     stack += 1
         if stack > 0:
-            log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()*stack), this.__name+" buff stack <%d>"%stack)
+            log("buff", this.__name, "%s: %.2f"%(this.mod_type, this._value*stack), this.__name+" buff stack <%d>"%stack)
         this.modifier.off()
         this.count_team_buff()
 
@@ -952,6 +954,7 @@ class Adv(object):
         dmg_p = this.conf[e.name+"_dmg"]
         if dmg_p :
             this.dmg_make(e.name , dmg_p)
+
         if e.name+"_buff" in this.conf:
             buffarg = this.conf[e.name+'_buff']
             Buff(e.name, *buffarg).on()

@@ -12,7 +12,7 @@ sim_duration = 180
 sim_times = 100
 
 
-
+ave_dps = 1500
 mname = ""
 base_str = 0
 comment = ""
@@ -27,6 +27,9 @@ def test(classname, conf, verbose=0, mass=0):
     a = time.time()
     mname = classname.__name__
     adv = classname(conf=conf)
+    if mass :
+        import random
+        random.seed(0)
     adv.run(sim_duration)
     base_str = adv.conf['base_str']
     if 'condition' in adv.conf:
@@ -49,14 +52,14 @@ def test(classname, conf, verbose=0, mass=0):
     if mass:
         if loglevel != -1:
             r = sum_dmg()
-            do_mass_sim(classname, conf)
+        do_mass_sim(classname, conf)
     else:
         r = sum_dmg()
 
     if loglevel >= 0 or loglevel == None:
         print '\n======================='
         #print mname,"%d"%float_dps
-        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps,r['buff_sum'], mname, base_str, condition, comment )
+        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str, condition, comment )
         print '-----------------------'
         print "dmgsum     |", r['dmg_sum']
         print "skill_stat |", r['sdmg_sum']
@@ -64,9 +67,9 @@ def test(classname, conf, verbose=0, mass=0):
         if r['o_sum']:
             print "others     |", r['o_sum']
     elif loglevel == -1:
-        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps,bps, mname, base_str, condition, comment )
+        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str, condition, comment )
     elif loglevel == -2:
-        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+comment,dps, dps)
+        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+comment,dps, dps+ave_dps*2.5*bps)
         line = line.replace(',3,',',3星,').replace(',4,',',4星,').replace(',5,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
         line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')
@@ -261,9 +264,11 @@ def sum_dmg(silence=0):
             xdmg_sum[i] = tmp[i]
 
     global dps
+    global bps
     dps = dmg_sum['total']/sim_duration
+    bps = team_buff_powertime/sim_duration
     if silence:
-        return dps, team_buff_powertime/sim_duration
+        return dps, bps
 
     for i in dmg_sum:
         dmg_sum[i] = '%.0f'%dmg_sum[i]

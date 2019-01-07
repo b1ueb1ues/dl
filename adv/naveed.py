@@ -23,7 +23,7 @@ class Naveed(adv.Adv):
         this.s1level += 1
         if this.s1level > 5:
             this.s1level = 5
-        adv.Buff("crown_double_buff",0.08,15).on()
+        adv.Buff("crown_double_buff",0.08,15,wide='self').on()
     
 
 

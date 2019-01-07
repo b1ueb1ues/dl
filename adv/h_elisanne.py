@@ -11,18 +11,20 @@ class H_Elisanne(Adv):
 
     def init(this):
         this.stance = 0
-        this.s1buff1 = Buff("s1_buff1",0.1, 10, 'att')
-        this.s1buff2 = Buff("s1_buff2",0.1, 15, 'att')
 
+
+    def s1latency(this, e):
+        Buff("s1_buff",0.1,15,'att').on()
 
     def s1_proc(this, e):
         if this.stance == 0:
             this.stance = 1
         elif this.stance == 1:
-            this.s1buff1.on()
+            Event('s1bufflatency',this.s1latency).on(now()+2.5)
             this.stance = 2
         elif this.stance == 2:
-            this.s1buff2.on()
+            Event('s1bufflatency',this.s1latency).on(now()+2.5)
+            this.stance = 0
 
 
 

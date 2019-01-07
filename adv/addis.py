@@ -12,19 +12,23 @@ class Addis(Adv):
         return 0
 
     def init(this):
+        this.poisoncount = 3
         #this.s2buff = Buff("s2",0.25, 10, 'att', 'buff','self')
-        this.s2buff = Buff("s2_shapshifts1",0, 10,'ss')
+        this.s2buff = Buff("s2_shapshifts1",1, 10,'ss','ss','self')
         this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0).reset()
         this.crit_mod = this.rand_crit_mod
-        random.seed()
 
 
     def s1_proc(this, e):
         if this.s2buff.get():
             if random.random() < 0.8:
                 Bleed("s1_bleed", 1.32).on()
+        else:
+            if this.poisoncount > 0:
+                this.poisoncount -= 1
+                this.dmg_make("o_s1_poison",2.65)
 
 
     def s2_proc(this, e):
