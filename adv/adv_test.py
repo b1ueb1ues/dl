@@ -156,6 +156,7 @@ def sum_dmg(silence=0):
                 's3':{"dmg":0, "count": 0}, 
                 }
     xdmg_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
+    o_sum = {}
     for i in l:
         if i[1] == 'dmg':
             #dmg_sum[i[2][0]] += i[3]
@@ -175,6 +176,11 @@ def sum_dmg(silence=0):
                 xdmg_sum['fs'] += 1
             elif i[2][0] == 'o':
                 dmg_sum['others'] += i[3]
+                if i[2][2:] in o_sum:
+                    o_sum[i[2][2:]] += i[3]
+                else:
+                    o_sum[i[2][2:]] = i[3]
+
         elif i[1] == 'cast':
             if i[2] == 's1':
                 sdmg_sum['s1']['count'] += 1
@@ -211,10 +217,13 @@ def sum_dmg(silence=0):
         return float_dps
 
     for i in dmg_sum:
-        dmg_sum[i] = '%.3f'%dmg_sum[i]
+        dmg_sum[i] = '%.0f'%dmg_sum[i]
 
     for i in sdmg_sum:
-        sdmg_sum[i] = "%.2f (%d)"%(sdmg_sum[i]['dmg'], sdmg_sum[i]['count'])
+        sdmg_sum[i] = "%.0f (%d)"%(sdmg_sum[i]['dmg'], sdmg_sum[i]['count'])
+    for i in o_sum:
+        o_sum[i] = "%.0f"%(o_sum[i])
+    
 
     if loglevel >= 0 or loglevel == None:
         print '\n======================='
@@ -224,6 +233,7 @@ def sum_dmg(silence=0):
         print "dmgsum     |", dmg_sum
         print "skill_stat |", sdmg_sum
         print "x_stat     |", xdmg_sum
+        print "others     |", o_sum
     elif loglevel == -1:
         print "%d , %s (str: %d) %s ;%s"%( float_dps, mname, base_str, condition, comment )
     return float_dps
