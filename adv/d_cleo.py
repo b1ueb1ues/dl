@@ -27,7 +27,7 @@ class D_Cleo(adv.Adv):
         elif this.stance == 1:
             this.stance = 2
             adv.Buff('s1s',0.1,10,'att').on()
-        elif this.stance ==1:
+        elif this.stance == 2:
             this.stance = 0
             adv.Buff('s1s',0.1,10,'att').on()
             adv.Buff('s1c',0.08,10,'crit','chance').on()
