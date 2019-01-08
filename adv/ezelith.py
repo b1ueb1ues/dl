@@ -36,3 +36,11 @@ if __name__ == '__main__':
 
     adv_test.test(module(), conf, mass=1)
 
+    module().comment = 'without s1'
+    conf = {}
+    conf['acl'] = """
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
+        `fs, seq=5
+        """
+    adv_test.test(module(), conf, mass=1)
