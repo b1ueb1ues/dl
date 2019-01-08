@@ -41,6 +41,12 @@ if __name__ == '__main__':
 
     Naveed.s2_proc = s2_proc_withdoublebuff
     Naveed.comment = 'Valiant Crown'
+    conf['acl'] = """
+        `s1, sp
+        `s2, sp
+        `s3, sp
+        `fs, seq=3 and cancel
+        """
     conf.update({
         "mod_wp"  : ('s'   , 'passive' , 0.25) ,
         })
