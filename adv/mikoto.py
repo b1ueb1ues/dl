@@ -12,7 +12,7 @@ class Mikoto(Adv):
         }
 
     def init(this):
-        this.s1buff = Buff("s1",0.0, 15, 'x'  , wide='self')
+        this.s1buff = Buff("s1",0.0, 15, 'att','buff?', wide='self')
         this.s2buff = Buff("s2",0.2, 10, 'spd', wide='self')
 
     def speed(this):
@@ -26,18 +26,18 @@ class Mikoto(Adv):
         buff = this.s1buff.get()
         if buff == 0:
             stance = 0
-        elif buff == 0.15:
+        elif buff == 0.10:
             stance = 1
-        elif buff == 0.2:
+        elif buff == 0.15:
             stance = 2
         if stance == 0:
             this.dmg_make('s1',5.32*2)
-            this.s1buff.set(0.15) #.on()
+            this.s1buff.set(0.10) #.on()
             Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
         elif stance == 1:
             this.dmg_make('s1',3.54*3)
             this.s1buff.off()
-            this.s1buff.set(0.20) #.on()
+            this.s1buff.set(0.15) #.on()
             Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
         elif stance == 2:
             this.dmg_make('s1',2.13*4+4.25)
