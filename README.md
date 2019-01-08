@@ -12,8 +12,10 @@ python adv/maribelle.py 1
 
 ## Folders
 - core: simulate engine
-- adv: Try to simulate adventurer's damage. Contains frame data, skill data, ActionList(acl like simulate for wow)
+- adv: Try to simulate adventurer's damage. Contains frame data, skill data, ActionList(acl like simulate for wow).
+- conf: configure of default skill data to simulate, default wp/dragon equiped.
 - wep: Contains config of weapons' frame and damage data.
+- module: Contains bleed now, TODO: add energy.
 - framedata: Pictures that have frames number in it. Source of data in adventures and weapons config.
 - mechanics: The study of DL's mechanics, Lots of test data, formula,  (Warning: lots of Chinese inside)
 
@@ -33,7 +35,9 @@ this acl will be translate into
 a=b
 c=d
 if condition:
-    action()
+    if action():
+        break
 if condition2 or condition3==4:
-    action2()
+    if action2():
+        break
 ```
