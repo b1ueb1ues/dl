@@ -32,6 +32,14 @@ def test(classname, conf, verbose=0, mass=0):
         random.seed(0)
     adv.run(sim_duration)
     base_str = adv.conf['base_str']
+    if type(adv.conf['mod_d']) == list:
+        for i in adv.conf['mod_d']:
+            if i[0] == 'att':
+                d_aura = i[2]
+    else:
+        if adv.conf['mod_d'][0] == 'att':
+            d_aura = adv.conf['mod_d'][2]
+
     if 'condition' in adv.conf:
         condition = adv.conf['condition']
     comment = adv.comment
@@ -59,7 +67,7 @@ def test(classname, conf, verbose=0, mass=0):
     if loglevel >= 0 or loglevel == None:
         print '\n======================='
         #print mname,"%d"%float_dps
-        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str, condition, comment )
+        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str*(1+d_aura), condition, comment )
         print '-----------------------'
         print "dmgsum     |", r['dmg_sum']
         print "skill_stat |", r['sdmg_sum']
@@ -67,9 +75,10 @@ def test(classname, conf, verbose=0, mass=0):
         if r['o_sum']:
             print "others     |", r['o_sum']
     elif loglevel == -1:
-        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str, condition, comment )
+        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str*(1+d_aura), condition, comment )
     elif loglevel == -2:
-        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+';'+comment,dps, dps+team_dps*bps)
+        comment += "(str: %d)"%(base_str*(1+d_aura))
+        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+comment,dps, dps+team_dps*bps)
         line = line.replace(',3,',',3星,').replace(',4,',',4星,').replace(',5,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
         line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')

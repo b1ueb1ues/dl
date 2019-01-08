@@ -5,11 +5,6 @@ def module():
     return Naveed
 
 class Naveed(adv.Adv):
-    comment = 'with crown doublebuff'
-    conf = {
-        "mod_wp"  : ('s'   , 'passive' , 0.25) ,
-        } 
-
     def init(this):
         this.s1level = 0
         this.charge('prep','100%')
@@ -21,9 +16,16 @@ class Naveed(adv.Adv):
 
     def s2_proc(this, e):
         this.s1level += 1
-        if this.s1level > 5:
+        if this.s1level >= 5:
+            this.s2.sp = 0
             this.s1level = 5
-        adv.Buff("crown_double_buff",0.08,15,wide='self').on()
+
+
+def s2_proc_withdoublebuff(this, e):
+    this.s1level += 1
+    if this.s1level > 5:
+        this.s1level = 5
+    adv.Buff("crown_double_buff",0.08,15,wide='self').on()
     
 
 
@@ -36,4 +38,13 @@ if __name__ == '__main__':
         `fs, seq=3 and cancel
         """
     adv_test.test(module(), conf, verbose=0)
+
+    Naveed.s2_proc = s2_proc_withdoublebuff
+    Naveed.comment = 'Valiant Crown'
+    conf.update({
+        "mod_wp"  : ('s'   , 'passive' , 0.25) ,
+        })
+    adv_test.test(module(), conf, verbose=0)
+
+
 
