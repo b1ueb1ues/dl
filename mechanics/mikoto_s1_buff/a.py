@@ -11,8 +11,8 @@ staff  = 0.69
 
 '''
 2661攻 10%ex 无技能伤害 打风龙
-s1 don't buff s1 : 2707.1 2849.5 2992.0
-s1 buff s1       : 2830.1 2979.1 3128.0
+s1 don't buff s1 : 2461.0 2590.5 2720.0
+s1 buff s1       : 2707.1 2849.5 2992.0
 实测2788 2823 2958
 
 1级武器技能3.19
@@ -42,8 +42,8 @@ def main():
     p = 3.54
     pw = 3.19
     dmg = p * 2661 * 1.1 * 1.5
+    printboost('s1', dmg, 1.0, p=1)
     printboost('s1', dmg, 1.1, p=1)
-    printboost('s1', dmg, 1.15, p=1)
 
     dmg = pw * 2623 * 1.1 * 1.5 *1.15
     printboost('s3', dmg, 1.0, p=1)
