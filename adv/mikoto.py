@@ -12,7 +12,7 @@ class Mikoto(Adv):
         }
 
     def init(this):
-        this.s1buff = Buff("s1",0.0, 15, 'att','buff?', wide='self')
+        this.s1buff = Buff("s1",0.0, 15, 'att','buff', wide='self')
         this.s2buff = Buff("s2",0.2, 10, 'spd', wide='self')
 
     def speed(this):
