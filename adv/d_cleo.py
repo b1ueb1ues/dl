@@ -16,6 +16,28 @@ class D_Cleo(adv.Adv):
     def init(this):
         this.stance = 0
         this.energy = 0
+        this.hits = 0
+
+    def dmg_proc(this, name, amount):
+        if name == 'x1':
+            this.hits += 1
+        elif name == 'x2':
+            this.hits += 2
+        elif name == 'x3':
+            this.hits += 2
+        elif name == 'x4':
+            this.hits += 1
+        elif name == 'x5':
+            this.hits += 1
+        elif name == 'fs':
+            this.hits += 3
+        elif name == 's1':
+            this.hits += 11
+        elif name == 's2':
+            this.hits += 5
+        if this.hits >= 30:
+            this.add_energy(1)
+            this.hits -= 30
 
     def add_energy(this, count):
         this.energy += count
@@ -27,7 +49,7 @@ class D_Cleo(adv.Adv):
         elif this.stance == 1:
             this.stance = 2
             adv.Buff('s1s',0.1,10,'att').on()
-        elif this.stance ==1:
+        elif this.stance == 2:
             this.stance = 0
             adv.Buff('s1s',0.1,10,'att').on()
             adv.Buff('s1c',0.08,10,'crit','chance').on()

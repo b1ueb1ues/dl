@@ -24,6 +24,7 @@ class Addis(Adv):
     def s1_proc(this, e):
         if this.s2buff.get():
             if random.random() < 0.8:
+                log('-special','s1_with_s2')
                 Bleed("s1_bleed", 1.32).on()
         else:
             if this.poisoncount > 0:
@@ -43,4 +44,3 @@ if __name__ == '__main__':
         `s3, seq=5 and cancel
         """
     adv_test.test(module(), conf, mass=1)
-
