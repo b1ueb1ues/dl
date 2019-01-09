@@ -122,7 +122,7 @@ def statis(data, mname):
     global comment
     dps = total/size
     bps = buff_sum/size
-    if bps:
+    if bps and bmin != bmax:
         comment = '(%.0f~%.0f)(%.2f~%.2f) %s'%(dmin, dmax, bmin, bmax, comment)
     else:
         comment = '(%.0f~%.0f) %s'%(dmin, dmax, comment)
