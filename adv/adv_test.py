@@ -25,7 +25,7 @@ def test(classname, conf, verbose=0, mass=0):
     global comment
     global condition
     global loglevel
-    if verbose:
+    if not loglevel:
         loglevel = verbose
     a = time.time()
     mname = classname.__name__
@@ -48,13 +48,14 @@ def test(classname, conf, verbose=0, mass=0):
     comment = adv.comment
 
 
-    if loglevel != None:
-        verbose = loglevel
 
-    if verbose > 0:
+    if loglevel >= 2:
+        print adv._acl_str
+
+    if loglevel > 0:
         logcat()
         sum_ac()
-    if verbose == 3:
+    if loglevel == 3:
         if adv.conf['x_type'] == 'melee':
             logcat(['dmg','cancel','fs','cast','buff'])
         if adv.conf['x_type'] == 'ranged':

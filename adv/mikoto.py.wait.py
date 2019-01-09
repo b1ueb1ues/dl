@@ -6,16 +6,17 @@ from core.timeline import *
 from core.log import *
 
 def module():
-    return Mikoto_wait
+    return Mikoto
 
-class Mikoto_wait(adv.mikoto.Mikoto):
+class Mikoto(adv.mikoto.Mikoto):
     pass
 
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, cancel and this.s1buff != 1.2
-        `s2, s=1
+        `s1, (seq=5 and cancel or fsc ) and this.s1buff.get() != 0.15
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
         """
     adv_test.test(module(), conf, verbose=0)
 

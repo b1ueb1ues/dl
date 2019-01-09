@@ -41,6 +41,7 @@ class Bleed(Dot):
         idx = this._static.all_bleeds.index(this)
         this._static.all_bleeds.pop(idx)
         this._static.stacks -= 1
+        log('debuff','bleed','stack_end',"stack <%d>"%this._static.stacks)
         if this._static.stacks < 0:
             print 'err in bleed dot_end_proc'
             exit()

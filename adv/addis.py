@@ -18,7 +18,7 @@ class Addis(Adv):
         this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0).reset()
-        this.crit_mod = this.rand_crit_mod
+        #this.crit_mod = this.rand_crit_mod
 
 
     def s1_proc(this, e):

@@ -21,7 +21,7 @@ class Ezelith(Adv):
             return
         if this.s2buff.get():
             r = random.random()
-            if r < 0.5:
+            if r < 0.7:
                 Buff("s2_ab",-0.05,5,'def').on()
 
 

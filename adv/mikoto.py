@@ -50,9 +50,9 @@ class Mikoto(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, seq=5 and cancel
-        `s1, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1, seq=5 and cancel or fsc
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
         """
 
     #conf['acl'] = """

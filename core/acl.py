@@ -83,10 +83,10 @@ def acl_str(acl):
 
     line += '    return 0'
     g_line = line
-    if len(sys.argv) >= 2:
-        if sys.argv[1] != 0:
-            if int(sys.argv[1]) >= 2:
-                print line
+   # if len(sys.argv) >= 2:
+   #     if sys.argv[1] != 0:
+   #         if int(sys.argv[1]) >= 2:
+   #             print line
     return line
 
 
