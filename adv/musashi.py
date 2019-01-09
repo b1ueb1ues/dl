@@ -20,9 +20,9 @@ class Musashi(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5
         `s2, seq=5 
+        `s1
         `s3, s
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=1)
 

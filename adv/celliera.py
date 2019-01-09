@@ -17,22 +17,22 @@ class Celliera(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     acl12 = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1
+        `s2
+        `s3
         """
     acl21 = """
-        `s2, seq=5 and cancel
-        `s1, seq=5 and cancel
-        `s3, seq=5
+        `s2
+        `s1
+        `s3
         """ 
-    # test that 12 is better than 21
-    if 1:
+    # test that 21 is better than 12
+    if 0:
         conf['acl'] = acl12
         adv_test.test(module(), conf, verbose=0)
         exit()
 
     conf['acl'] = acl21
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=1)
 
 

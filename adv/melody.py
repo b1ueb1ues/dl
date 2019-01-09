@@ -14,7 +14,7 @@ class Melody(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5
+        `s1
         `s2, seq=5 
         `s3, seq=5
         """
