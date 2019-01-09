@@ -8,8 +8,6 @@ def module():
 class Botan(Adv):
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()
-        this.crit_mod = this.rand_crit_mod
-        random.seed()
         this.charge('prep','50%')
 
     def s1_proc(this, e):

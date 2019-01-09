@@ -9,8 +9,6 @@ class Sazanka(Adv):
     comment = 'do not use weapon skill'
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()
-        this.crit_mod = this.rand_crit_mod
-        random.seed()
         this.s2fscharge = 0
 
     def s1_proc(this, e):

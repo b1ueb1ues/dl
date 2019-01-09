@@ -64,7 +64,8 @@ def test(classname, conf, verbose=0, mass=0):
     if mass:
         if loglevel != -1:
             r = sum_dmg()
-        do_mass_sim(classname, conf)
+        if loglevel <= 0:
+            do_mass_sim(classname, conf)
     else:
         r = sum_dmg()
 
