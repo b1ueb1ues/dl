@@ -1,5 +1,4 @@
 #!/bin/sh 
-python markdown2.py www/README.md > www/readme.html 2>&1
 echo name,star,element,job,comment,solo_dps,total_dps > www/data.csv
 python adv/berserker.py -2 >> www/data.csv
 python adv/euden.py -2 >> www/data.csv
