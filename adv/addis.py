@@ -39,8 +39,10 @@ class Addis(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or s=2
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s2, s1.charged>=2537
+        `s1
+        `s2
+        `s3
         """
-    adv_test.test(module(), conf, mass=1)
+    adv_test.test(module(), conf,verbose=0, mass=1)
+
