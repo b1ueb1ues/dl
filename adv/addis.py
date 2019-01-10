@@ -46,3 +46,22 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf,verbose=0, mass=1)
 
+    module().comment = 'with 20% skill haste'
+    conf = {
+            'mod_wp':[('s','passive',0.25),
+                      ('sp','passive',0.05)],
+            'mod_ex':('sp','passive',0.15)
+            }
+#    conf['acl'] = """
+#        `s2, s1.charged>=2537 and seq=5
+#        `s1, this.s2buff.get()==0 and seq=5
+#        `s1, s2.charged<4877 and this.s2buff.get()
+#        `s3, this.s2buff.get()==0
+#        """
+    conf['acl'] = """
+        `s2, s1.charged>=2537 and seq=5
+        `s1, s2.charged<4877 
+        `s3, this.s2buff.get()==0
+        """
+    adv_test.test(module(), conf,verbose=0, mass=1)
+

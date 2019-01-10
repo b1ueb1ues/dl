@@ -539,7 +539,6 @@ class Adv(object):
 
 
     def __init__(this,conf):
-        random.seed()
         this.timeline = Timeline().reset()
         this.log = []
         loginit(this.log)

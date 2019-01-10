@@ -7,6 +7,7 @@ from core.log import *
 import time
 import sys
 import conf as globalconf
+import random
 
 sim_duration = 180
 sim_times = 1000
@@ -27,12 +28,10 @@ def test(classname, conf, verbose=0, mass=0):
     global loglevel
     if not loglevel:
         loglevel = verbose
+    random.seed(0)
     a = time.time()
     mname = classname.__name__
     adv = classname(conf=conf)
-    if mass :
-        import random
-        random.seed(0)
     adv.run(sim_duration)
     base_str = adv.conf['base_str']
     if type(adv.conf['mod_d']) == list:
@@ -65,6 +64,7 @@ def test(classname, conf, verbose=0, mass=0):
         if loglevel != -1:
             r = sum_dmg()
         if loglevel <= 0:
+            random.seed()
             do_mass_sim(classname, conf)
     else:
         r = sum_dmg()
