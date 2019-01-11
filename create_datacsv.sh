@@ -72,3 +72,4 @@ python adv/nefaria.py -2 >> www/data.csv
 python adv/philia.py -2 >> www/data.csv
 python adv/rawn.py -2 >> www/data.csv
 python adv/waike.py -2 >> www/data.csv
+python adv/g_sarisse.py -2 >> www/data.csv

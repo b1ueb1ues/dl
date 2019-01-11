@@ -26,8 +26,8 @@ class G_Sarisse(adv.Adv):
             this.hits += 8
         if this.hits >= 20:
             this.hits -= 20
-            adv.Buff('sylvan strength',0.02,15*1.3).on()
-            adv.Buff('sylvan crit',0.01,15*1.3,'crit','chance').on()
+            adv.Buff('sylvan strength',0.02,15*1.3,wide='self').on()
+            adv.Buff('sylvan crit',0.01,15*1.3,'crit','chance',wide='self').on()
 
     def s1_proc(this, e):
         buffcount = 0
@@ -71,11 +71,3 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=0)
 
-    module().comment = 'no fs'
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=0)
