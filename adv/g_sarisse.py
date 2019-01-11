@@ -58,16 +58,14 @@ if __name__ == '__main__':
         `s3
         `fs, seq=4
         """
-
     adv_test.test(module(), conf, verbose=0)
 
-    module().comment = 'c1+fs'
+    module().comment = ''
     conf = {}
     conf['acl'] = """
         `s1
         `s2
         `s3
-        `fs, seq=1
         """
     adv_test.test(module(), conf, verbose=0)
 
