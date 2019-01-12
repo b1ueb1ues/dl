@@ -13,7 +13,7 @@ conf.update( {
         "x2_startup"     : 0              ,
         "x2_recovery"    : 41     / 60.0  ,
 
-        "x3_dmg"         : 126    / 100.0 ,
+        "x3_dmg"         : 63*2   / 100.0 ,
         "x3_sp"          : 220            ,
         "x3_startup"     : 6      / 60.0  ,
         "x3_recovery"    : 37     / 60.0  ,
@@ -23,12 +23,12 @@ conf.update( {
         "x4_startup"     : 0              ,
         "x4_recovery"    : 69     / 60.0  ,
 
-        "x5_dmg"         : 206    / 100.0 ,
+        "x5_dmg"         : 194    / 100.0 ,
         "x5_sp"          : 660            ,
         "x5_startup"     : 0              ,
         "x5_recovery"    : 33     / 60.0  ,
 
-        "fs_dmg"         : 111    / 100.0 ,
+        "fs_dmg"         : 92     / 100.0 ,
         "fs_sp"          : 200            ,
         "fs_startup"     : 30     / 60.0  ,
         "fs_recovery"    : 47     / 60.0  ,

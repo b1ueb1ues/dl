@@ -29,7 +29,7 @@ conf.update( {
         "x5_recovery"    : 35      / 60.0  ,
 
         "fs_dmg"         : 30*5    / 100.0 ,
-        "fs_sp"          : 460             ,
+        "fs_sp"          : 400             ,
         "fs_startup"     : 49      / 60.0  ,
         "fs_recovery"    : 25      / 60.0  ,
 

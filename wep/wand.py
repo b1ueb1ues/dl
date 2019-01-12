@@ -8,27 +8,27 @@ conf.update( {
         "x1_startup"     : 18/60.0  ,
         "x1_recovery"    : 33/60.0  ,
 
-        "x2_dmg"         : 1.06     ,
+        "x2_dmg"         : 0.53*2   ,
         "x2_sp"          : 200      ,
         "x2_startup"     : 0        ,
         "x2_recovery"    : 31/60.0  ,
 
-        "x3_dmg"         : 1.08     ,
+        "x3_dmg"         : 0.36*3   ,
         "x3_sp"          : 240      ,
         "x3_startup"     : 0        ,
         "x3_recovery"    : 53/60.0  ,
 
-        "x4_dmg"         : 1.56     ,
+        "x4_dmg"         : 0.78*2   ,
         "x4_sp"          : 430      ,
         "x4_startup"     : 0        ,
         "x4_recovery"    : 64/60.0  ,
 
-        "x5_dmg"         : 2.06     ,
+        "x5_dmg"         : 0.3605*4+0.618 ,
         "x5_sp"          : 600      ,
         "x5_startup"     : 0        ,
         "x5_recovery"    : 68/60.0  ,
 
-        "fs_dmg"         : 1.8      ,
+        "fs_dmg"         : 0.9*2    ,
         "fs_sp"          : 400      ,
         "fs_startup"     : 42/60.0  ,
         "fs_recovery"    : 81/60.0  ,
