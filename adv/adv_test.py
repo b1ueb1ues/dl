@@ -9,7 +9,11 @@ import sys
 import conf as globalconf
 import random
 
-sim_duration = 180
+
+if len(sys.argv) >= 3:
+    sim_duration = int(sys.argv[2])
+else:
+    sim_duration = 180
 sim_times = 1000
 
 

@@ -10,6 +10,7 @@ class G_Sarisse(adv.Adv):
         this.hits = 0
         this.buffs = adv.Buff()
         this.s2stance = 0
+        this.conf['s3_buff'][1] *= 1.3
 
     def dmg_proc(this, name, amount):
         if name[:2] == 'x1':
@@ -36,7 +37,7 @@ class G_Sarisse(adv.Adv):
                 break
             if i.get():
                 buffcount += 1
-        this.dmg_make('s1_missile*%d'%buffcount,0.77*buffcount)
+        this.dmg_make('s1_missile*%d'%buffcount,0.95*buffcount)
         this.hits += 1 + buffcount
             
 
@@ -45,7 +46,7 @@ class G_Sarisse(adv.Adv):
             adv.Buff('s2str',0.20,13).on()
             this.s2stance = 1
         elif this.s2stance ==0:
-            log('buff','def')
+            adv.Buff('s2def',1,15*1.3,'defup').on()
             this.s2stance = 0
 
 

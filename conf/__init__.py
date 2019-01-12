@@ -1,6 +1,7 @@
 import skillframe
 import equip_common
 import csv2conf
+import copy
 
 conf = {}
 
@@ -33,9 +34,11 @@ def get_skillframe(name):
                         })
 
 def get(name):
+    global conf
+    conf = {}
     get_advconf(name)
     get_skillframe(name)
-    conf.update(equip_common.conf)
+    conf.update(copy.deepcopy(equip_common.conf))
     csvconf = csv2conf.get(name)
     conf.update(csvconf)
     if conf['weapon']=='sword':
@@ -54,8 +57,7 @@ def get(name):
         import wep.wand as weapon
 
     wepconf = getattr(weapon,conf['element'])
-
-    conf.update(wepconf.conf)
+    conf.update(copy.deepcopy(wepconf.conf))
     base_str = conf['str_d']+conf['str_wp']+conf['str_w']
 
     if conf['element'] == 'flame':

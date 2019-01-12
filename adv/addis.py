@@ -46,6 +46,19 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf,verbose=0, mass=1)
 
+    module().comment = 'use shapeshift bug'
+    def cheat(this, e):
+        if random.random() < 0.8:
+            log('-special','cheated_s1')
+            Bleed("s1_bleed", 1.32).on()
+    module().s1_proc = cheat
+    conf['acl'] = """
+        `s1
+        `s3
+        """
+    adv_test.test(module(), conf,verbose=0, mass=1)
+
+
     module().comment = 'with 20% skill haste'
     conf = {
             'mod_wp':[('s','passive',0.25),

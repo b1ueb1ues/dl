@@ -548,6 +548,7 @@ class Adv(object):
 
         tmpconf.update(this.conf_default)
 
+        print(globalconf.get(this.adv_name))
         tmpconf.update(globalconf.get(this.adv_name))
 
         tmpconf.update(this.conf)
