@@ -6,6 +6,9 @@ def module():
     return Addis
 
 class Addis(Adv):
+    conf = {
+            'mod_a':('att','bp',0.03)
+            }
     def getbleedpunisher(this):
         if this.bleed._static.stacks > 0:
             return 0.08
@@ -45,6 +48,7 @@ if __name__ == '__main__':
         `s3
         """
     adv_test.test(module(), conf,verbose=0, mass=1)
+    exit()
 
     module().comment = 'use shapeshift bug'
     def cheat(this, e):
