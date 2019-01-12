@@ -21,7 +21,7 @@ conf.update( {
         "x4_dmg"         : 129    / 100.0 ,
         "x4_sp"          : 360            ,
         "x4_startup"     : 0              ,
-        "x4_recovery"    : 69     / 60.0  ,
+        "x4_recovery"    : 65     / 60.0  ,
 
         "x5_dmg"         : 194    / 100.0 ,
         "x5_sp"          : 660            ,
@@ -31,7 +31,7 @@ conf.update( {
         "fs_dmg"         : 92     / 100.0 ,
         "fs_sp"          : 200            ,
         "fs_startup"     : 30     / 60.0  ,
-        "fs_recovery"    : 47     / 60.0  ,
+        "fs_recovery"    : 41     / 60.0  ,
 
         "dodge_recovery" : 43     / 60.0  ,
 
