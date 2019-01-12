@@ -55,8 +55,8 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
+        `s3,s1.charged>=2803
         `s2
-        `s3
         `fs, seq=4
         """
     adv_test.test(module(), conf, verbose=0)
