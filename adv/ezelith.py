@@ -9,6 +9,7 @@ class Ezelith(Adv):
         "mod_a": ('att', 'broken_p', 0.3*0.15) ,
         } 
 
+    s2chance = 0.15
     def init(this):
         random.seed()
         this.s2buff = Buff("s2",0.15, 15,'att','buff','self')
@@ -21,7 +22,7 @@ class Ezelith(Adv):
             return
         if this.s2buff.get():
             r = random.random()
-            if r < 0.15:
+            if r < this.s2chance:
                 Buff("s2_ab",-0.05,5,'def').on()
 
 
@@ -36,9 +37,11 @@ if __name__ == '__main__':
 
     adv_test.test(module(), conf, mass=1)
 
-    module().comment = 'without s1'
+    module().comment = 'maintain 15hits passive'
+    module().s2chance = 0.35
     conf = {}
     conf['acl'] = """
+        `s1, seq=5 and cancel or fsc
         `s2, seq=5 and cancel or fsc
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
