@@ -45,7 +45,7 @@ class G_Sarisse(adv.Adv):
         if this.s2stance == 0:
             adv.Buff('s2str',0.20,13).on()
             this.s2stance = 1
-        elif this.s2stance ==0:
+        elif this.s2stance == 1:
             adv.Buff('s2def',1,15*1.3,'defup').on()
             this.s2stance = 0
 
