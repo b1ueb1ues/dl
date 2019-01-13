@@ -12,6 +12,7 @@ class Bleed(Dot):
         this.tdmg_event.comment = ""
         this.quickshot_event = Event("dmg_formula")
         this.quickshot_event.dmg_p = dmg_p
+        this.quickshot_event.name = 's_bleed'
         this.dot_end_event = Event("bleed_end", this.dot_end_proc)
 
     def reset(this):
