@@ -48,7 +48,31 @@ if __name__ == '__main__':
         `s3
         """
     adv_test.test(module(), conf,verbose=0, mass=1)
-    exit()
+
+
+    module().comment = 'with 20% skill haste'
+    conf = {
+            'mod_wp':[('s','passive',0.25),
+                      ('sp','passive',0.05)],
+            'mod_ex':('sp','passive',0.15)
+            }
+    conf['acl'] = """
+        `s2, s1.charged>=2537 and seq=5
+        `s1, s2.charged<4877 
+        `s3, this.s2buff.get()==0
+        """
+    adv_test.test(module(), conf,verbose=0, mass=1)
+
+## just too little to acl before
+#    module().comment = 'another acl with 20% skill haste'
+#    conf['acl'] = """
+#        `s2, s1.charged>=2537 and seq=5
+#        `s1, s2.charged<4877 
+#        `s3, this.s2buff.get()==0
+#        `fs, this.s2buff.get() and seq=5
+#        """
+#    adv_test.test(module(), conf,verbose=0, mass=1)
+
 
     module().comment = 'use shapeshift bug'
     def cheat(this, e):
@@ -59,26 +83,6 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1
         `s3
-        """
-    adv_test.test(module(), conf,verbose=0, mass=1)
-
-
-    module().comment = 'with 20% skill haste'
-    conf = {
-            'mod_wp':[('s','passive',0.25),
-                      ('sp','passive',0.05)],
-            'mod_ex':('sp','passive',0.15)
-            }
-#    conf['acl'] = """
-#        `s2, s1.charged>=2537 and seq=5
-#        `s1, this.s2buff.get()==0 and seq=5
-#        `s1, s2.charged<4877 and this.s2buff.get()
-#        `s3, this.s2buff.get()==0
-#        """
-    conf['acl'] = """
-        `s2, s1.charged>=2537 and seq=5
-        `s1, s2.charged<4877 
-        `s3, this.s2buff.get()==0
         """
     adv_test.test(module(), conf,verbose=0, mass=1)
 

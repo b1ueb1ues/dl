@@ -41,3 +41,40 @@ if condition2 or condition3==4:
     if action2():
         break
 ```
+#### build-in action
+##### s1 
+skill1
+#### s2
+skill2
+#### s3
+weapon skill
+#### fs
+forse strike
+#### dodge
+(comming soon)
+#### x 
+attack, but you will not need to do that, since the attack is auto arranged.
+
+#### build-in condition
+##### s1.charged   
+skill's sp now
+##### cancel
+At the timing that c1~c5 and fs just to deal damage(shot the missile for ranged unit)
+##### x
+At the timing that c1~c5 just to deal damage(shot the missile for ranged unit)
+##### fsc
+At the timing that fs just to deal damage(shot the missile for ranged unit)
+##### sp
+At the timing of sp gain. (usefull for ranged dps to acknowledge their missile hitting target)
+
+##### seq=1 
+At the timing from c1 to c2, every event can trigger that(ex:sp gain,   
+##### seq=5
+At the timing from c5 to c5 recovery
+##### s=1
+right after s1 proc (the moment as soon as possible you can cast next skill) 
+##### sx=1
+right after s1 proc (if you are doing normal attack, wait for the cancel timing)  
+that is useful for skill shorter than 1.9s. In that case, even the skill end, you cannot find you skill button in the sreen but can only tap attack to wait the button comeback.  
+PS: auto control unit don't have that limit
+
