@@ -54,8 +54,8 @@ if __name__ == '__main__':
     module().comment = 'c4+fs'
     conf = {}
     conf['acl'] = """
-        `s1
         `s3,s1.charged>=2803
+        `s1
         `s2
         `fs, seq=4
         """

@@ -22,8 +22,14 @@ if __name__ == '__main__':
         `s2, s=1
         """
 
-    # add little fs to increace damage
     if 1:
+        conf['acl'] = """
+            `s1, seq=5 and cancel or pin='fs'
+            `s2, seq=5 and cancel or pin='fs'
+            `fs, seq=5
+            """
+    # add 1 fs can increase lots of damage 
+    if 0:
         conf['acl'] = """
             `fs, seq=5 and s1.charged >= 2500
             `s1, seq=5 and cancel or pin='fs'
