@@ -65,14 +65,14 @@ At the timing that c1~c5 just have dealt damage(shot the missile for ranged unit
 At the timing that fs just have dealt damage(shot the missile for ranged unit)
 - sp  
 At the timing of sp gain. (usefull for ranged dps to acknowledge their missile hitting target)
-- seq=1   
-At the timing from c1 to c2, every event can trigger that(ex:sp gain,   
+- seq=1
+At the timing from c1 to c2, any event can trigger that.
 - seq=5  
 At the timing from c5 to c5 recovery
-- s=1  
-right after s1 proc (the moment as soon as possible you can cast next skill) 
-- sx=1  
-right after s1 proc (if you are doing normal attack, wait for the cancel timing)  
+- s=2  
+right after s2 proc (the moment as soon as possible you can cast next skill) 
+- sx=3  
+right after s3 proc (if you are doing normal attack, wait for the cancel timing)  
 that is useful for skill shorter than 1.9s. In that case, even the skill end, you cannot find you skill button in the sreen but can only tap attack to wait the button comeback.  
 PS: auto control unit don't have that limit
 
