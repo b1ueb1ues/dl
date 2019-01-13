@@ -58,11 +58,11 @@ forse strike
 - s1.charged    
 skill's sp now
 - cancel  
-At the timing that c1~c5 and fs just to deal damage(shot the missile for ranged unit)
+At the timing that c1~c5 and fs just have dealt damage(shot the missile for ranged unit)
 - x  
-At the timing that c1~c5 just to deal damage(shot the missile for ranged unit)
+At the timing that c1~c5 just have dealt damage(shot the missile for ranged unit)
 - fsc  
-At the timing that fs just to deal damage(shot the missile for ranged unit)
+At the timing that fs just have dealt damage(shot the missile for ranged unit)
 - sp  
 At the timing of sp gain. (usefull for ranged dps to acknowledge their missile hitting target)
 - seq=1   
