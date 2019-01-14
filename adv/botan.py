@@ -24,3 +24,7 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, mass=1)
 
+    exit()
+    conf['mod_wp'] = ('s','passive',0.35)
+    adv_test.test(module(), conf, mass=1)
+

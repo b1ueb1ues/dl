@@ -21,4 +21,10 @@ if __name__ == '__main__':
         `fs, seq=3 and cancel
         """
     adv_test.test(module(), conf, verbose=0)
+    exit()
 
+    module().conf['mod_wp'] = [('fs','passive',0.3),('s','passive',0.15)]
+    adv_test.test(module(), conf, verbose=0)
+
+    module().conf['mod_wp'] = [('s','passive',0.25)]
+    adv_test.test(module(), conf, verbose=0)

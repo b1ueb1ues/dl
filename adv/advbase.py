@@ -668,8 +668,9 @@ class Adv(object):
 
 
     def dmg_mod(this, name):
-        if name[0:2] == 'o_':
-            name = name[2:]
+        if name.find('o_')!= -1:
+            name.replace('o_','')
+            
         if name[0] == 's':
             return this.mod('s')
         elif name[0:2] == 'fs':
@@ -910,6 +911,8 @@ class Adv(object):
     def l_dmg_formula(this, e):
         name = e.name
         dmg_p = e.dmg_p
+        if hasattr(e, 'dtype'):
+            name = e.dtype
         if 'modifiers' in e.__dict__ :
             if e.modifiers!=None and e.modifiers != 0:
                 this.all_modifiers = e.modifiers
@@ -935,10 +938,11 @@ class Adv(object):
         dmg_p = e.dmg_p
         dmg_make(name, dmg_p)
 
-    def dmg_make(this, name, dmg_p, dmgtype=None):
-        if dmgtype == None:
-            dmgtype = name
-        count = this.dmg_formula(dmgtype, dmg_p)
+    def dmg_make(this, name, dmg_p, dtype=None):
+        if dtype == None:
+            dtype = name
+
+        count = this.dmg_formula(dtype, dmg_p)
         
         if name[0] == "x":
             spgain = this.conf[name[:2]+"_sp"]
@@ -954,6 +958,7 @@ class Adv(object):
                 spgain = this.conf[name[:2]+"_sp"]
             log("dmg", name, count, "%d/%d, %d/%d, %d/%d (-%d)"%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
+
         this.dmg_proc(name, count)
 
 
