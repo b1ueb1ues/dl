@@ -1,4 +1,4 @@
-from adv.advbase import *
+from core.advbase import *
 
 class Bleed(Dot):
     _static = Static()
@@ -7,9 +7,9 @@ class Bleed(Dot):
 
     def __init__(this, name, dmg_p):
         Dot.__init__(this, name, dmg_p, 30, 4.99)
-        this.tdmg_event = Event("true_dmg")
-        this.tdmg_event.name = "o_bleed"
-        this.tdmg_event.comment = ""
+        #this.tdmg_event = Event("true_dmg")
+        #this.tdmg_event.name = "o_bleed"
+        #this.tdmg_event.comment = ""
         this.quickshot_event = Event("dmg_formula")
         this.quickshot_event.dmg_p = dmg_p
         this.quickshot_event.name = 's_bleed'
@@ -26,16 +26,20 @@ class Bleed(Dot):
         for i in this._static.all_bleeds:
             dmg_sum += i.quickshot_event.dmg
         if stacks == 1:
-            this.tdmg_event.dmg = dmg_sum
+            #this.tdmg_event.dmg = dmg_sum
+            dmg = dmg_sum
         elif stacks == 2:
-            this.tdmg_event.dmg = dmg_sum * 1.5
+            #this.tdmg_event.dmg = dmg_sum * 1.5
+            dmg = dmg_sum * 1.5
         elif stacks == 3:
-            this.tdmg_event.dmg = dmg_sum * 2
+            #this.tdmg_event.dmg = dmg_sum * 2
+            dmg = dmg_sum * 2
         else:
             print "err in bleed tick_proc"
             exit()
-        this.tdmg_event.comment = "%d stacks"%(stacks)
-        this.tdmg_event.trigger()
+        log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
+        #this.tdmg_event.comment = "%d stacks"%(stacks)
+        #this.tdmg_event.trigger()
         e.timing += this.iv
 
     def dot_end_proc(this, e):

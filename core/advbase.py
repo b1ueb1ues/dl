@@ -668,8 +668,10 @@ class Adv(object):
 
 
     def dmg_mod(this, name):
-        if name.find('o_')!= -1:
-            name.replace('o_','')
+        if name[:2] == 'o_':
+            name = name[2:]
+        #if name.find('o_') != -1:
+        #    name = name.replace('o_','')
             
         if name[0] == 's':
             return this.mod('s')

@@ -1,42 +1,28 @@
 import adv_test
 import adv
 from adv import *
+from module import energy
 
 def module():
     return Lucretia
 
 class Lucretia(adv.Adv):
     def init(this):
+        energy.Energy(this,
+                self={'s1':1,'s2':2} ,
+                team={'s1':1,'s2':2} 
+                )
         #!!!cheat!!!!!!!!!!!!!
         #this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
         this.energy = 0
-        this.doublebuff = adv.Buff("double", 0.2, 15,'att',wide='self')
+        Event('energized').listener(this.energy_doublebuff)
 
-    def add_energy(this, count):
-        this.energy += count
-        log("buff","energy",this.energy)
-        if this.energy >= 5 :
-            this.doublebuff.on()
-
-    def s1_proc(this, e):
-        if this.energy >= 5:
-            this.energy = 0
-            log("buff","energy",this.energy)
-            this.dmg_make("o_s1_energy",this.conf["s1_dmg"]*0.4)
-        else:
-            this.add_energy(1)
-            
-
-    def s2_proc(this, e):
-        this.add_energy(2)
+    def energy_doublebuff(this, e):
+        adv.Buff("double_buff", 0.2, 15,'att',wide='self').on()
 
 
-    def s3_proc(this, e):
-        if this.energy >= 5:
-            this.energy = 0
-            log("buff","energy",this.energy)
-            this.dmg_make("o_s3_energy",this.conf["s3_dmg"]*0.4)
+
 
 
 if __name__ == '__main__':

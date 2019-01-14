@@ -1,14 +1,12 @@
 import adv_test
 import adv
 from adv import *
-from module import energy
 
 def module():
     return Lucretia
 
 class Lucretia(adv.Adv):
     def init(this):
-        energy.init(this)
         #!!!cheat!!!!!!!!!!!!!
         #this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!

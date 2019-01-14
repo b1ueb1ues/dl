@@ -18,12 +18,14 @@ sim_times = 1000
 
 
 team_dps = 3500 #(1500+1500+500)
+energy_efficiency = 6000 * 0.4/5 / sim_duration
 mname = ""
 base_str = 0
 comment = ""
 condition = ""
 dps = 0
 bps = 0
+energy = 0
 def test(classname, conf, verbose=0, mass=0):
     global mname
     global base_str
@@ -73,10 +75,15 @@ def test(classname, conf, verbose=0, mass=0):
     else:
         r = sum_dmg()
 
+    recount = "%d"%dps
+    if bps:
+        recount += '(%.2f)'%bps
+    if energy:
+        recount += '(team_energy:%d)'%energy
     if loglevel >= 0 or loglevel == None:
         print '\n======================='
         #print mname,"%d"%float_dps
-        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str*(1+d_aura), condition, comment )
+        print "%s , %s (str: %d) %s ;%s"%( recount, mname, base_str*(1+d_aura), condition, comment )
         print '-----------------------'
         print "dmgsum     |", r['dmg_sum']
         print "skill_stat |", r['sdmg_sum']
@@ -84,10 +91,10 @@ def test(classname, conf, verbose=0, mass=0):
         if r['o_sum']:
             print "others     |", r['o_sum']
     elif loglevel == -1:
-        print "%d(%.2f) , %s (str: %d) %s ;%s"%( dps, bps, mname, base_str*(1+d_aura), condition, comment )
+        print "%s , %s (str: %d) %s ;%s"%( recount, mname, base_str*(1+d_aura), condition, comment )
     elif loglevel == -2:
         comment += "(str: %d)"%(base_str*(1+d_aura))
-        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+';'+comment,dps, dps+team_dps*bps)
+        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+';'+comment,dps, dps+team_dps*bps+energy*energy_efficiency)
         line = line.replace(',3,',',3星,').replace(',4,',',4星,').replace(',5,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
         line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')
@@ -109,9 +116,11 @@ def statis(data, mname):
     bmax = data[0][1]
     size = len(data)
     buff_sum = 0
+    energy_sum = 0
     for i in data:
         total += i[0]
         buff_sum += i[1]
+        energy_sum += i[2]
         if i[0] < dmin:
             dmin = i[0]
         if i[0] > dmax:
@@ -123,13 +132,18 @@ def statis(data, mname):
     
     global dps
     global bps
+    global energy
     global comment
-    dps = total/size
-    bps = buff_sum/size
+    dps = float(total)/size
+    bps = float(buff_sum)/size
+    energy = float(energy_sum)/size
     if bps and bmin != bmax:
         comment = '(%.0f~%.0f)(%.2f~%.2f) %s'%(dmin, dmax, bmin, bmax, comment)
     else:
         comment = '(%.0f~%.0f) %s'%(dmin, dmax, comment)
+    if energy:
+        comment += '(team_energy:%.0f)'%energy
+
     #print "%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment)
 
 def do_mass_sim(classname, conf):
@@ -217,6 +231,7 @@ def sum_dmg(silence=0):
     team_buff_powertime = 0
     team_buff_power = 0
     team_buff_start = 0
+    team_energy = 0
     o_sum = {}
     for i in l:
         if i[1] == 'dmg':
@@ -241,7 +256,6 @@ def sum_dmg(silence=0):
                     o_sum[i[2][2:]] += i[3]
                 else:
                     o_sum[i[2][2:]] = i[3]
-
         elif i[1] == 'cast' or i[1] == 's':
             if i[2] == 's1':
                 sdmg_sum['s1']['count'] += 1
@@ -251,12 +265,13 @@ def sum_dmg(silence=0):
                 sdmg_sum['s3']['count'] += 1
         elif i[1] == 'x' :
             xdmg_sum[i[2]] += 1
-
         elif i[1] == 'buff' and i[2] == 'team':
             if team_buff_power != 0:
                 team_buff_powertime += team_buff_power*(i[0] - team_buff_start)
             team_buff_start = i[0]
             team_buff_power = i[3]
+        elif i[1] == 'energy' and i[2] == 'team':
+            team_energy += i[3]
     team_buff_powertime += (sim_duration - team_buff_start)*team_buff_power
 
 
@@ -283,10 +298,12 @@ def sum_dmg(silence=0):
 
     global dps
     global bps
+    global energy
     dps = dmg_sum['total']/sim_duration
     bps = team_buff_powertime/sim_duration
+    energy = team_energy
     if silence:
-        return dps, bps
+        return dps, bps, energy 
 
     for i in dmg_sum:
         dmg_sum[i] = '%.0f'%dmg_sum[i]
@@ -301,6 +318,7 @@ def sum_dmg(silence=0):
     r['xdmg_sum'] = xdmg_sum
     r['o_sum'] = o_sum
     r['buff_sum'] = team_buff_powertime/sim_duration
+    r['energy_sum'] = team_energy
 
     #if loglevel >= 0 or loglevel == None:
     #    print '\n======================='
