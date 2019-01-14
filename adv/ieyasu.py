@@ -44,3 +44,13 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=1, mass=1)
 
+    exit()
+    def foo(this, e):
+        return
+    module().s1_proc = foo
+    conf['acl'] = """
+        `s1
+        `s2, this.bleed._static.stacks > 0
+        `s3
+        """
+    adv_test.test(module(), conf, verbose=1, mass=1)

@@ -12,8 +12,8 @@ python adv/maribelle.py 1
 
 ## Folders
 - core: simulate engine
-- adv: Try to simulate adventurer's damage. Contains frame data, skill data, ActionList(acl like simulate for wow).
-- conf: configure of default skill data to simulate, default wp/dragon equiped.
+- adv: Try to simulate adventurer's damage. Contains charactor unique skill process function, ActionList(like APL in simcraft for wow), and you can change default equip to specific one.
+- conf: configure of default skill data to simulate, read frame data from framedata folder, configure default wp/dragon equiped.
 - wep: Contains config of weapons' frame and damage data.
 - module: Contains bleed now, TODO: add energy.
 - framedata: Pictures that have frames number in it. Source of data in adventures and weapons config.
