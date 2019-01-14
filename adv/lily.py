@@ -24,7 +24,7 @@ if __name__ == '__main__':
         `s1, seq=5 and cancel
         `s3, seq=5 and cancel
         `s3, s
-        `s1, pin='prep'
+        `s2, pin='prep'
         """
 
     adv_test.test(module(), conf, verbose=0)
