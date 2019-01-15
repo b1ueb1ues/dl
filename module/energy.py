@@ -17,7 +17,7 @@ class Energy():
                 this.energized = name[:2]
 
         if this.energized == name[:2] :
-            log('dmg','o_%s_energy'%name,amount*0.4, 'energy boost')
+            log('dmg','o_%s_energy'%name,amount*0.5, 'energy boost')
 
 
 

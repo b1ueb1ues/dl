@@ -16,7 +16,7 @@ class Annelie(Adv):
     def init(this):
         this.stance = 0
         this.energy = energy.Energy(this, 
-                self={'1':1,'2':2},
+                self={'1':1,'2':2,'s2':2},
                 team={'s2':2}
                 )
         Event('energized').listener(this.energy_doublebuff)
@@ -41,11 +41,31 @@ class Annelie(Adv):
 
 if __name__ == '__main__':
     conf = {}
+   # conf['acl'] = """
+   #     `s1, seq=5 
+   #     `s2, seq=5
+   #     `s3
+   #     `fs, seq=5
+   #     """
+   # adv_test.test(module(), conf, verbose=0)
+
+   # conf['acl'] = """
+   #     # e = this.energy.energized
+   #     `s3, e
+   #     `s1, seq=5 and not e
+   #     `s2, seq=5 and not e
+   #     `fs, seq=5 
+   #     """
+   # adv_test.test(module(), conf, verbose=0)
+
     conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5
+        # e = this.energy.energized
+        `s1, seq=5 and s2.charged<=10000
+        `s1, s=2
+        `s2, seq=5 
         `s3
-        `fs, seq=5
+        `fs, seq=5 
         """
+    module().comment='do s1s1s2s1 loop'
     adv_test.test(module(), conf, verbose=0)
 
