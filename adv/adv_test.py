@@ -18,7 +18,7 @@ sim_times = 1000
 
 
 team_dps = 3500 #(1500+1500+500)
-energy_efficiency = 6000 * 0.4/5 / sim_duration
+energy_efficiency = 6000 * 0.4 * 3 / 5 / sim_duration
 mname = ""
 base_str = 0
 comment = ""
