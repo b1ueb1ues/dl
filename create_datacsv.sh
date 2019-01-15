@@ -72,7 +72,7 @@ python adv/nefaria.py -2    $1 |& tee -a www/$1/data.csv
 python adv/philia.py -2     $1 |& tee -a www/$1/data.csv
 python adv/rawn.py -2       $1 |& tee -a www/$1/data.csv
 python adv/waike.py -2      $1 |& tee -a www/$1/data.csv
-python adv/g_sarrise -2     $1 |& tee -a www/$1/data.csv
+python adv/g_sarisse.py -2  $1 |& tee -a www/$1/data.csv
 python adv/annelie.py -2    $1 |& tee -a www/$1/data.csv
 python adv/marty.py -2      $1 |& tee -a www/$1/data.csv
 python adv/fritz.py -2      $1 |& tee -a www/$1/data.csv
