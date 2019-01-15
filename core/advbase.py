@@ -1,6 +1,6 @@
-from core.timeline import *
-from core.log import *
-import core.acl
+from timeline import *
+from log import *
+import acl
 import sys
 import conf as globalconf
 import random
@@ -699,7 +699,7 @@ class Adv(object):
         pass
 
     def solid_crit_mod(this):
-        m = {"chance":0, "dmg":0, "damage":0, "passive":0}
+        m = {"chance":0, "dmg":0, "damage":0, "passive":0, "rate":0,}
         for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
@@ -707,7 +707,7 @@ class Adv(object):
                 else:
                     print "err in crit_mod"
                     exit()
-        chance = m['chance']+m['passive']
+        chance = m['chance']+m['passive']+m['rate']
         if chance > 1:
             chance = 1
         cdmg = m['dmg'] + m["damage"] + 1.7
@@ -853,7 +853,7 @@ class Adv(object):
 
         this.init()
 
-        this._acl, this._acl_str = core.acl.acl_func_str(
+        this._acl, this._acl_str = acl.acl_func_str(
                 this.acl_prepare_default+this.conf['acl'] 
                 )
 

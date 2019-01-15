@@ -1,7 +1,7 @@
 import adv_test
 import adv
 from adv import *
-from module import energy
+from module import energy2 as energy
 
 def module():
     return Lucretia
@@ -20,8 +20,6 @@ class Lucretia(adv.Adv):
 
     def energy_doublebuff(this, e):
         adv.Buff("double_buff", 0.2, 15,'att',wide='self').on()
-
-
 
 
 

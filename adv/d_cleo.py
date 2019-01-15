@@ -18,7 +18,7 @@ class D_Cleo(adv.Adv):
         this.stance = 0
         this.energy = 0
         this.hits = 0
-        energy.Energy(this, 
+        this.energy = energy.Energy(this, 
                 self={'s1':1,'hit':1},
                 team={'s1':1}
                 )
@@ -41,7 +41,7 @@ class D_Cleo(adv.Adv):
         elif name == 's2':
             this.hits += 5
         if this.hits >= 30:
-            this.add_energy('hit')
+            this.energy.add_energy('hit')
             this.hits -= 30
 
     def s1_proc(this, e):

@@ -1,4 +1,4 @@
-from core.log import *
+from log import *
 import sys
 
 g_line = ""
