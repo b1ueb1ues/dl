@@ -81,7 +81,7 @@ if __name__ == '__main__':
             Bleed("s1_bleed", 1.32).on()
     module().s1_proc = cheat
     conf['acl'] = """
-        `s1
+        `s1,seq=5
         `s3
         """
     adv_test.test(module(), conf,verbose=0, mass=1)

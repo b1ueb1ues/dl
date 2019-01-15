@@ -18,7 +18,7 @@ sim_times = 1000
 
 
 team_dps = 3500 #(1500+1500+500)
-energy_efficiency = 6000 * 0.4 * 3 / 5 / sim_duration
+energy_efficiency = 6000 * 0.4 * 2 / 5 / sim_duration
 mname = ""
 base_str = 0
 comment = ""
@@ -168,6 +168,8 @@ def sum_ac():
     prev = 0
     ret = []
     for i in l:
+        if i[2] == 'succ':
+            i[2] = 'fs'
         if i[1] == 'x':
             if i[2] == 'x5':
                 ret.append('c5')
@@ -180,44 +182,50 @@ def sum_ac():
                 prev = 0
             else:
                 ret.append(i[2])
-    #print ret
+    print ret
     prev = 'c0'
     row = 0
+    rowend = 11
     c5count = 0
     for i in ret:
-        if prev == 's':
-            if i[0] == 's':
-                print '%s'%i,
-            elif i[0] == 'c' :
-                print '\n',
-                prev = 'c5'
-        elif i[0] == 's':
-            if i == 'succ': i = 'fs'
-            if prev == 'c5':
-                print 'c5*%d    - %s'%(c5count, i) ,
-            elif prev == 'c0':
-                print '        - %s'%(i) ,
-            else:
-                print '- %s'%(i) ,
-            prev = 's'
+        if prev == 'c' and i[0] != 'c' and c5count!=0:
+            print 'c5*%d'%(c5count),
             c5count = 0
-            #if row >= 8:
-            #    print '\t`%s'%i,
-            #if row < 8:
-            #    print '\t\t`%s'%i,
-            row =0
-        if i[0] == 'c':
+            row += 5
+
+        if i[0] == 's':
+            if prev != 's':
+                print '-'*(rowend - row), i,
+                row = 0
+            else:
+                print i
+            prev = 's'
+        elif i[0] == 'c':
+            if prev == 's':
+                row = 0
+                print ''
+            elif prev == 'fs':
+                row = 0
+                print ''
             if i == 'c5':
-                prev = i
                 c5count+=1
             else:
-                prev = i
                 if c5count == 0:
-                    print '     %s'%(i),
+                    print i,
+                    row += 3
                 else:
                     print 'c5*%d %s'%(c5count, i),
-            #print i,
-            row += 3
+                    c5count=0
+                    row += 8
+            prev = 'c'
+        elif i == 'fs':
+            if prev == 'fs':
+                print '\nfs',
+                row = 3
+            else:
+                print 'fs',
+                row +=3
+            prev = 'fs'
     print ''
 
 def sum_dmg(silence=0):

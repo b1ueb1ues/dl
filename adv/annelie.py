@@ -6,7 +6,6 @@ def module():
     return Annelie
 
 class Annelie(Adv):
-    comment = 'unconfirmed frame data'
     conf = {
         "mod_a"  : ('s', 'passive', 0.35) ,
         'condition':'hp70',
@@ -43,9 +42,10 @@ class Annelie(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1, seq=5 
+        `s2, seq=5
+        `s3
+        `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)
 
