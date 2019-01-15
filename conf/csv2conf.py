@@ -26,8 +26,8 @@ def get(mname):
             for r in row:
                 conf[title[i]] = r
                 i+=1
-    conf['s1_dmg'] = int(conf['s1_dmgpc'])/100.0
-    conf['s2_dmg'] = int(conf['s2_dmgpc'])/100.0
+    conf['s1_dmg'] = float(conf['s1_dmgpc'])/100.0
+    conf['s2_dmg'] = float(conf['s2_dmgpc'])/100.0
     conf['s1_sp'] = int(conf['s1_sp'])
     conf['s2_sp'] = int(conf['s2_sp'])
     conf['str_adv'] = int(conf['str_adv'])

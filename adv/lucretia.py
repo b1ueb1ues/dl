@@ -1,7 +1,7 @@
 import adv_test
 import adv
 from adv import *
-from module import energy2 as energy
+from module import energy
 
 def module():
     return Lucretia
@@ -15,7 +15,6 @@ class Lucretia(adv.Adv):
         #!!!cheat!!!!!!!!!!!!!
         #this.s2.charge(400)
         #!!!!!!!!!!!!!!!!!!!!!
-        this.energy = 0
         Event('energized').listener(this.energy_doublebuff)
 
     def energy_doublebuff(this, e):
