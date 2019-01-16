@@ -10,6 +10,8 @@ class Vanessa(adv.Adv):
         "mod_a": ('fs', 'passive', 0.40),
         } 
 
+    def s2_proc(this, e):
+        adv.Buff('defdown',-0.05,10,'def').on()
 
 if __name__ == '__main__':
     conf = {}

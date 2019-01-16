@@ -13,6 +13,7 @@ class Joe(adv.Adv):
 
 
 if __name__ == '__main__':
+    module().comment = 'burn 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 or fsc
@@ -20,7 +21,7 @@ if __name__ == '__main__':
         `s3, seq=5 or fsc
         """
     adv_test.test(module(), conf, verbose=0)
-    module().comment = 'spawn c1+fs'
+    module().comment += ' & spawn c1+fs'
     conf['acl'] = """
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc

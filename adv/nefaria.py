@@ -22,18 +22,19 @@ class Nefaria(adv.Adv):
 
 
 if __name__ == '__main__':
+    module().comment = 'boost dmf from blind 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 or fsc
         `s3, seq=5 or fsc
         """
     adv_test.test(module(), conf, verbose=0)
-    module().comment = 'spawn c1+fs'
+    module().comment += ' & c4+fs'
     conf['acl'] = """
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc
         `s3, seq=5 or fsc
-        `fs, seq=1
+        `fs, seq=4
         """
     adv_test.test(module(), conf, verbose=0)
 
