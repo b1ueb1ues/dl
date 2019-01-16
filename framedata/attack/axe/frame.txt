@@ -1,0 +1,22 @@
+c1_startup  : 0   ; 0
+c1_hit      : 16  ; 16
+c2_hit      : 62  ; 46
+c3_hit      : 123 ; 61
+c4_hit      : 163 ; 40
+c5_hit      : 241 ; 78
+c5_recovery : 260 ; 19
+
+
+
+5+fs  (good)
+c1_startup  : 0
+fs_hit      : 281
+fs_recovery : 315
+
+
+5+fs  (bad)
+c1_startup  : 0
+fs_hit      : 286
+fs_recovery : 336
+
+

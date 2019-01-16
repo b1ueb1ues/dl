@@ -1,0 +1,23 @@
+c1_startup  : 0     ; 0
+c1_hit      : 12    ; 12
+c2_hit      : 25,34 ; 22
+c3_hit      : 58,75 ; 41
+c4_hit      : 100   ; 25
+c5_hit      : 136   ; 36
+c5_recovery : 176   ; 40
+
+
+4+fs*3
+c1_startup  : 0
+c5_hit      : 100 
+fs_hit      : 154 ; 54
+c5_recovery : 169 ; 15
+
+
+5+reversehold+fs*3 
+c1_startup  : 0
+c5_hit      : 136
+fs_hit      : 200 ; 64
+fs_recovery : 214 ; 14
+
+

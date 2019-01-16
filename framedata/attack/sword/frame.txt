@@ -1,0 +1,24 @@
+c1_start : 0   ; 0
+c1_hit   : 9   ; 9
+c2_hit   : 35  ; 26
+c3_hit   : 58  ; 23
+c4_hit   : 94  ; 36
+c5_hit   : 131 ; 37
+c5_end   : 173 ; 42
+
+fs_start : 0  ; 0
+fs_hit   : 19 ; 19
+fs_end   : 40 ; 21
+
+perfect 3+1
+c1_start : 0
+c1_hit   : 9
+fs_hit   : 77
+fs_end   : 98
+
+
+5+1
+c1_start : 0
+c5_hit   : 128
+fs_hit   : 172 ; 44
+fs_end   : 198 ; 26
