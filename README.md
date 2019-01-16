@@ -55,8 +55,10 @@ forse strike
 
 
 #### build-in condition
-- s1.charged    
-skill's sp now
+- s1.charged >= s1.sp  
+Skill 1 is ready.
+- s2.charged > 2000:
+S2 is charged more than 2000sp.
 - cancel  
 At the timing that c1~c5 and fs just have dealt damage(shot the missile for ranged unit)
 - x  
@@ -70,9 +72,9 @@ At the timing from c1 to c2, any event can trigger that.
 - seq=5  
 At the timing from c5 to c5 recovery
 - s=2  
-right after s2 proc (the moment as soon as possible you can cast next skill) 
+Right after s2 proc (the moment as soon as possible you can cast next skill) 
 - sx=3  
-right after s3 proc (if you are doing normal attack, wait for the cancel timing)  
-that is useful for skill shorter than 1.9s. In that case, even the skill end, you cannot find you skill button in the sreen but can only tap attack to wait the button comeback.  
-PS: auto control unit don't have that limit
+Right after s3 proc. If you are doing normal attack, wait for the cancel timing.  
+that is useful for skill shorter than 1.9s. In that case, even if the skill end, you cannot find you skill button in the sreen but can only tap attack to wait the button comeback.  
+PS: auto controled unit don't have that limit
 
