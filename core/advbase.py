@@ -28,16 +28,17 @@ class Modifier(object):
 
     def on(this, modifier=None):
         if this.__active == 1:
-            return
+            return this
         if modifier == None:
             modifier = this
         this._static['all_modifiers'].append(modifier)
         this.__active = 1
+        return this
 
 
     def off(this, modifier=None):
         if this.__active == 0:
-            return
+            return this
         this.__active = 0
         if modifier==None:
             modifier = this
@@ -49,6 +50,7 @@ class Modifier(object):
             if this._static.all_modifiers[idx] == modifier:
                 this._static.all_modifiers.pop(idx)
                 break
+        return this
 
         #idx = len(this._static.team_modifiers)
         #while 1:
