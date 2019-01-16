@@ -65,7 +65,7 @@ At the timing that c1~c5 just have dealt damage(shot the missile for ranged unit
 At the timing that fs just have dealt damage(shot the missile for ranged unit)
 - sp  
 At the timing of sp gain. (usefull for ranged dps to acknowledge their missile hitting target)
-- seq=1
+- seq=1  
 At the timing from c1 to c2, any event can trigger that.
 - seq=5  
 At the timing from c5 to c5 recovery
