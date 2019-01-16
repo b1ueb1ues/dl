@@ -57,7 +57,7 @@ forse strike
 #### build-in condition
 - s1.charged >= s1.sp  
 Skill 1 is ready.
-- s2.charged > 2000:
+- s2.charged > 2000:  
 S2 is charged more than 2000sp.
 - cancel  
 At the timing that c1~c5 and fs just have dealt damage(shot the missile for ranged unit)
