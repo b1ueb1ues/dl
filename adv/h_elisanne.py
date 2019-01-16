@@ -26,6 +26,9 @@ class H_Elisanne(Adv):
             Event('s1bufflatency',this.s1latency).on(now()+2.5)
             this.stance = 0
 
+    def s2_proc(this, e):
+        this.charge('s2',500)
+
 
 
 if __name__ == '__main__':
