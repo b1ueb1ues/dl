@@ -5,6 +5,7 @@ def module():
     return Musashi
 
 class Musashi(adv.Adv):
+    comment = 'poison 3 times'
     conf = {
         #"mod_a"   :  ('att'  , 'buff'     , 0.03 )  ,
         "mod_a2"  :  ('att'  , 'punisher' , 0.08*0.45 ) ,

@@ -17,7 +17,11 @@ class Energy():
                 this.energized = name[:2]
 
         if this.energized == name[:2] :
-            log('dmg','o_%s_energy'%name,amount*0.5, 'energy boost')
+            sd = this.a.mod('s')
+            this.energy_mod.on()
+            sd2 = this.a.mod('s')
+            this.energy_mod.off()
+            log('dmg','o_%s_energy'%name,amount*(sd2/sd-1), 'energy boost')
 
 
 
@@ -71,6 +75,8 @@ class Energy():
         this.energy_self = self
         this.energy_team = team
         this.energy_consume = consume
+
+        this.energy_mod = Modifier('energy_mod','s','passive',0.5).off()
 
         this.energy = 0
         this.energized = 0
