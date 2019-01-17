@@ -471,6 +471,8 @@ class Adv(object):
         return 1
     def init(this): 
         pass
+    def condition(this):
+        return ''
     # ^^^^^^^^^ rewrite this to provide advanced tweak ^^^^^^^^^^
 
     comment = ''
@@ -556,10 +558,10 @@ class Adv(object):
         tmpconf.update(conf)
         this.conf = tmpconf
 
-        if 'condition' in this.conf:
-            this.condition = this.conf['condition']
-        else :
-            this.condition = {}
+       # if 'condition' in this.conf:
+       #     this.condition = this.conf['condition']
+       # else :
+       #     this.condition = {}
 
         this.base_str = this.conf['base_str']
         if 1:
@@ -582,16 +584,6 @@ class Adv(object):
         this.all_modifiers = []
         this.modifier._static['all_modifiers'] = this.all_modifiers
 
-        for i in this.conf:
-            if i[:3] == 'mod':
-                j = this.conf[i]
-                if type(j) == tuple:
-                    Modifier(i,j[0],j[1],j[2])
-                elif type(j) == list:
-                    idx = 0
-                    for k in j:
-                        Modifier(i+"_%d"%idx,k[0],k[1],k[2])
-                        idx += 1
 
         # init actions
         this.a_s1 = Action(("s1",1),this.conf)
@@ -857,6 +849,17 @@ class Adv(object):
         Event("dmg_make").listener(this.l_dmg_make)
         Event("true_dmg").listener(this.l_true_dmg)
         Event("dmg_formula").listener(this.l_dmg_formula)
+
+        for i in this.conf:
+            if i[:3] == 'mod':
+                j = this.conf[i]
+                if type(j) == tuple:
+                    Modifier(i,j[0],j[1],j[2])
+                elif type(j) == list:
+                    idx = 0
+                    for k in j:
+                        Modifier(i+"_%d"%idx,k[0],k[1],k[2])
+                        idx += 1
 
         this.init()
 

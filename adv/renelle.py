@@ -5,10 +5,9 @@ def module():
     return Renelle
 
 class Renelle(Adv):
-    conf = {
-        "mod_a": ('crit', 'chance', 0.08) ,
-        'condition':'15hits',
-        } 
+    def condition(this):
+        this.conf['mod_a'] = ('crit' , 'passive', 0.08)
+        return 'hit15'
 
 
 if __name__ == '__main__':

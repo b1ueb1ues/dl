@@ -5,19 +5,15 @@ def module():
     return Luca
 
 class Luca(adv.Adv):
-    conf = {
-        'condition':{
-            'hp100':{
-                "mod_a" : ('att' , 'passive' , 0.13) ,
-                },
-            'aff':{},
-            }
-        } 
+    def c_init(this):
+        this.dmg_make("o_paralysis",2.65)
+        this.dmg_make("o_paralysis",2.65)
+        this.dmg_make("o_paralysis",2.65)
 
-    def init(this):
-        this.dmg_make("o_paralysis",2.65)
-        this.dmg_make("o_paralysis",2.65)
-        this.dmg_make("o_paralysis",2.65)
+    def condition(this):
+        this.init = this.c_init
+        this.conf['mod_a'] = ('att' , 'passive' , 0.13) 
+        return 'afflic & hp100'
 
 
 
@@ -30,7 +26,7 @@ if __name__ == '__main__':
         `s3, seq=5 or fsc
         """
     adv_test.test(module(), conf, verbose=0)
-    module().comment += '& spawn c1+fs'
+    module().comment += ' & spawn c1+fs'
     conf['acl'] = """
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc

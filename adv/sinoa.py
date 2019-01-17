@@ -6,10 +6,9 @@ def module():
     return Sinoa
 
 class Sinoa(adv.Adv):
-    conf = {
-        "mod_a":('att','passive',0.13),
-        'condition':'hp100',
-            }
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.13)
+        return 'hp100'
 
     def s1_proc(this, e):
         r = random.random()

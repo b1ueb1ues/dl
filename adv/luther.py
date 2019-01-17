@@ -6,11 +6,13 @@ def module():
 
 class Luther(Adv):
     conf = {
-        "mod_a"   : ('crit', 'chance', 0.10) ,
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
-        'condition':'15hits'
         } 
+    def condition(this):
+        this.conf['mod_a'] = ('crit' , 'chance', 0.10)
+        return 'hit15'
+
 
     def s2_proc(this, e):
         Buff('s2_ab',-0.015,10,'def').on()

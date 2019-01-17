@@ -5,10 +5,9 @@ def module():
     return Orion
 
 class Orion(Adv):
-    conf = {
-        "mod_a": ('crit', 'chance', 0.10),
-        'condition':'15hits',
-        } 
+    def condition(this):
+        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
+        return 'hit15'
 
     def init(this):
         this.charge('prep','50%')

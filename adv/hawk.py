@@ -5,10 +5,17 @@ def module():
     return Hawk
 
 class Hawk(adv.Adv):
+    def condition(this):
+        this.init = this.c_init
+        return 'afflic'
+
+    def c_init(this):
+        this.s2fscharge = 0
+        this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
+        this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
+        this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
+
     def init(this):
-        this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
-        this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
-        this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.s2fscharge = 0
 
     def s2_proc(this, e):

@@ -6,12 +6,9 @@ def module():
     return Annelie
 
 class Annelie(Adv):
-    conf = {
-        "mod_a"  : ('s', 'passive', 0.35) ,
-        'condition':'hp70',
-        's1_recovery':2.5,
-        's2_recovery':3.55,
-        } 
+    def condition(this):
+        this.conf["mod_a"] = ('s', 'passive', 0.35) 
+        return 'hp70'
 
     def init(this):
         this.stance = 0

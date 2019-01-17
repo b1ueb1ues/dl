@@ -7,11 +7,13 @@ def module():
 
 class Celliera(adv.Adv):
     conf = {
-        "mod_a": ('att' , 'passive', 0.08) ,
         "mod_d":[('att' , 'passive', 0.45) ,
                  ('crit', 'chance' , 0.20)],
-        'condition':'hp70'
         } 
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.08)
+        return 'hp70'
+
 
 
 if __name__ == '__main__':
@@ -33,6 +35,6 @@ if __name__ == '__main__':
         exit()
 
     conf['acl'] = acl21
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 
 

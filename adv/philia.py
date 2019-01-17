@@ -5,11 +5,12 @@ def module():
     return Philia
 
 class Philia(adv.Adv):
-    conf = {
-        "mod_a": ('att' , 'passive' , 0.10),
-        'condition':'hp100',
-        } 
-    def init(this):
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.10)
+        this.init = this.c_init
+        return 'hp100 & afflic'
+
+    def c_init(this):
         this.dmg_make("o_paralysis",1.8)
         this.dmg_make("o_paralysis",1.8)
         this.dmg_make("o_paralysis",1.8)

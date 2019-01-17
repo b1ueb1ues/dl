@@ -9,6 +9,10 @@ class Ezelith(Adv):
         "mod_a": ('att', 'broken_p', 0.3*0.15) ,
         } 
 
+    def condition(this):
+        this.s2chance += 0.2
+        return 'hp70'
+
     s2chance = 0.15
     def init(this):
         random.seed()
@@ -37,13 +41,3 @@ if __name__ == '__main__':
 
     adv_test.test(module(), conf, mass=1)
 
-    module().comment = 'maintain 15hits passive'
-    module().s2chance = 0.35
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
-        """
-    adv_test.test(module(), conf, mass=1)

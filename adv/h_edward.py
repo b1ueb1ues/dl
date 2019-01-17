@@ -5,10 +5,10 @@ def module():
     return H_Edward
 
 class H_Edward(adv.Adv):
-    conf = {
-        "mod_a": ('att', 'passive', 0.1) ,
-        "condition": 'hp100',
-        } 
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.1)
+        return 'hp100'
+
 
 if __name__ == '__main__':
     conf = {}
@@ -17,5 +17,5 @@ if __name__ == '__main__':
         `s2, seq=5 
         `s3
         """
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 

@@ -6,11 +6,13 @@ def module():
 
 class Lily(adv.Adv):
     conf = {
-        "mod_a"  : ('att'  , 'passive' , 0.15)  ,
         "mod_d"  :[('att'  , 'passive' , 0.45)  ,
                    ('crit' , 'chance'  , 0.20)] ,
-        'condition':'hp100',
         } 
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.15)
+        return 'hp100'
+
     def init(this):
         this.charge("prep", "100%")
 

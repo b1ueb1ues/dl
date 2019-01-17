@@ -7,11 +7,15 @@ def module():
 class Musashi(adv.Adv):
     comment = 'poison 3 times'
     conf = {
-        #"mod_a"   :  ('att'  , 'buff'     , 0.03 )  ,
-        "mod_a2"  :  ('att'  , 'punisher' , 0.08*0.45 ) ,
+        "mod_a"  :  ('att'  , 'punisher' , 0.08*0.45 ) ,
         } 
 
-    def init(this):
+    def condition(this):
+        this.init = this.c_init
+        return 'afflic & last offense'
+
+    def c_init(this):
+        adv.Buff('last_offense',0.4,15,wide='self').on()
         this.dmg_make("o_poison",2.65)
         this.dmg_make("o_poison",2.65)
         this.dmg_make("o_poison",2.65)

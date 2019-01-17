@@ -6,11 +6,12 @@ def module():
 
 class Zardin(adv.Adv):
     conf = {
-        "mod_a"   : ('att'  , 'passive' , 0.10)  ,
-        'condition':'hp100',
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
         } 
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.10)
+        return 'hp100'
 
 
 if __name__ == '__main__':

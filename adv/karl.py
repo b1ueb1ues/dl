@@ -5,10 +5,10 @@ def module():
     return Karl
 
 class Karl(adv.Adv):
-    conf = {
-        "mod_a": ('att'  , 'passive' , 0.08 ) ,
-        'condition':'hp70'
-        } 
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.08)
+        return 'hp70'
+
 
 
 if __name__ == '__main__':

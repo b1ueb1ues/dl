@@ -5,8 +5,14 @@ def module():
     return Eleonora
 
 class Eleonora(adv.Adv):
+    def condition(this):
+        this.init = this.c_init
+        return 'afflic'
 
     def init(this):
+        this.charge("prep",'50%')
+
+    def c_init(this):
         this.charge("prep",'50%')
         this.dmg_make("o_poison",2.65)
         this.dmg_make("o_poison",2.65)

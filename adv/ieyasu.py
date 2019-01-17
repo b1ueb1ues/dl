@@ -8,9 +8,12 @@ def module():
 class Ieyasu(Adv):
     conf = {
         "mod_a"  : ('crit' , 'damage'  , 0.2) ,
-        "mod_a2" : ('crit' , 'chance'  , 0.1) ,
-        "condition":"hp70"
         } 
+
+    def condition(this):
+        this.conf['mod_a2'] = ('crit' , 'chance', 0.1)
+        return 'hp70'
+
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:

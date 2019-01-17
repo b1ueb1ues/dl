@@ -9,13 +9,25 @@ class Addis(Adv):
     conf = {
             'mod_a':('att','bp',0.03)
             }
+
+    def condition(this):
+        this.oldinit = this.init
+        this.init = this.c_init
+        return 'afflic'
+
+    def c_init(this):
+        this.oldinit()
+        this.poisoncount=3
+
+
     def getbleedpunisher(this):
         if this.bleed._static.stacks > 0:
             return 0.08
         return 0
 
     def init(this):
-        this.poisoncount = 3
+        random.seed()
+        this.poisoncount = 0
         #this.s2buff = Buff("s2",0.25, 10, 'att', 'buff','self')
         this.s2buff = Buff("s2_shapshifts1",1, 10,'ss','ss','self')
         this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
@@ -50,6 +62,9 @@ if __name__ == '__main__':
     adv_test.test(module(), conf,verbose=0, mass=1)
 
 
+    def foo(this):
+        return ''
+    module().condition = foo
     module().comment = 'with 20% skill haste'
     conf = {
             'mod_wp':[('s','passive',0.25),

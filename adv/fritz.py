@@ -6,8 +6,6 @@ def module():
     return Fritz
 
 class Fritz(adv.Adv):
-    conf = {
-        }
 
     def init(this):
         this.stance = 0

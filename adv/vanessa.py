@@ -9,6 +9,13 @@ class Vanessa(adv.Adv):
     conf = {
         "mod_a": ('fs', 'passive', 0.40),
         } 
+    def condition(this):
+        this.init = this.c_init
+        return 'last offense'
+
+    def c_init(this):
+        adv.Buff('last_offense',0.3,15,wide='self').on()
+
 
     def s2_proc(this, e):
         adv.Buff('defdown',-0.05,10,'def').on()

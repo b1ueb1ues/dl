@@ -5,10 +5,10 @@ def module():
     return Melody
 
 class Melody(adv.Adv):
-    conf = {
-        "mod_p"   : ('crit'  , 'chance', 0.08) ,
-        'condition':'hp100',
-        } 
+    def condition(this):
+        this.conf['mod_a'] = ('crit' , 'passive', 0.08)
+        return 'hp100'
+
 
 
 if __name__ == '__main__':

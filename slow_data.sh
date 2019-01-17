@@ -4,7 +4,7 @@ if [ -z $1 ]; then
     time=180
 fi
 echo "create slow chart (${time}s)"
-echo name,star,element,job,comment,solo_dps,total_dps > www/$1/slow_data.csv
+echo name,star,element,job,comment,solo_dps,team_bps,c_solo_dps,c_team_bps > www/$1/slow_data.csv
 python adv/addis.py -2      $1 | tee -a www/$1/slow_data.csv
 python adv/ieyasu.py -2     $1 | tee -a www/$1/slow_data.csv
 python adv/sinoa.py -2      $1 | tee -a www/$1/slow_data.csv

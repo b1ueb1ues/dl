@@ -48,13 +48,13 @@ def test(classname, conf, verbose=0, mass=0):
         if adv.conf['mod_d'][0] == 'att':
             d_aura = adv.conf['mod_d'][2]
 
-    if 'condition' in adv.conf:
-        condition = ''
-        for i in adv.conf['condition']:
-            if condition == '':
-                condition = i
-            else:
-                condition += ' & %s'%condition
+    condition = adv.condition()
+    #if 'condition' in adv.conf:
+    #    for i in adv.conf['condition']:
+    #        if condition == '':
+    #            condition = i
+    #        else:
+    #            condition += ' & %s'%i
 
     comment = adv.comment
 
@@ -72,6 +72,7 @@ def test(classname, conf, verbose=0, mass=0):
         if adv.conf['x_type'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
 
+
     if mass:
         if loglevel != -1:
             r = sum_dmg()
@@ -81,12 +82,58 @@ def test(classname, conf, verbose=0, mass=0):
     else:
         r = sum_dmg()
 
-    recount = "%d"%dps
-    if bps:
-        recount += '(%.2f)'%bps
-    if energy:
-        recount += '(team_energy:%d)'%energy
+    dps1 = dps
+    bps1 = bps
+    energy1 = energy
+
+    if condition != '':
+        adv_c = classname(conf=conf)
+        adv_c.condition()
+        adv_c.run(sim_duration)
+        if mass:
+            if loglevel != -1:
+                rc = sum_dmg()
+            if loglevel <= 0:
+                random.seed()
+                do_mass_sim(classname, conf, 1)
+        else:
+            rc = sum_dmg()
+
+        if loglevel > 0:
+            logcat()
+            sum_ac()
+        if loglevel == 3:
+            if adv.conf['x_type'] == 'melee':
+                logcat(['dmg','cancel','fs','cast','buff'])
+            if adv.conf['x_type'] == 'ranged':
+                logcat(['x','dmg','cancel','fs','cast','buff'])
+
+    if condition == '':
+        recount = "%d"%(dps1)
+        if bps1:
+            recount += '(%.2f)'%bps1
+        if energy1:
+            recount += '(team_energy:%d)'%energy1
+        dps2 = dps
+    if condition != '':
+        dps2 = dps
+        bps2 = bps
+        energy2 = energy
+        if dps2 < dps1:
+            dps2 = dps1
+        if bps2 < bps1:
+            bps2 = bps1
+        if energy2 < energy1:
+            energy2 = energy1
+        recount = "%d/%d"%(dps1, dps2)
+        if bps1:
+            recount += '(%.2f/%.2f)'%(bps1, bps2)
+        if energy1:
+            recount += '(team_energy:%d/%d)'%(energy1, energy2)
+
     if loglevel >= 0 or loglevel == None:
+        if condition != '':
+            condition = '<%s>'%(condition)
         print '\n======================='
         #print mname,"%d"%float_dps
         print "%s , %s (str: %d) %s ;%s"%( recount, mname, base_str*(1+d_aura), condition, comment )
@@ -96,12 +143,42 @@ def test(classname, conf, verbose=0, mass=0):
         print "x_stat     |", r['xdmg_sum']
         if r['o_sum']:
             print "others     |", r['o_sum']
+
+        if condition != '':
+            recount = "%d"%dps
+            if bps:
+                recount += '(%.2f)'%bps
+            if energy:
+                recount += '(team_energy:%d)'%energy
+            r = rc
+            print '-----------------------'
+            #print mname,"%d"%float_dps
+            print "condition",condition
+            print '-----------------------'
+            print "dmgsum     |", r['dmg_sum']
+            print "skill_stat |", r['sdmg_sum']
+            print "x_stat     |", r['xdmg_sum']
+            if r['o_sum']:
+                print "others     |", r['o_sum']
+
     elif loglevel == -1:
+        if condition != '':
+            condition = '<%s>'%(condition)
         print "%s , %s (str: %d) %s ;%s"%( recount, mname, base_str*(1+d_aura), condition, comment )
     elif loglevel == -2:
-        comment += "(str: %d)"%(base_str*(1+d_aura))
-        line = "%s,%s,%s,%s,%s,%d,%d"%( mname,adv.conf['stars'], adv.conf['element'], adv.conf['weapon'], condition+';'+comment,dps, dps+team_dps*bps+energy*energy_efficiency)
-        line = line.replace(',3,',',3星,').replace(',4,',',4星,').replace(',5,',',5星,')
+        comment += " (str: %d)"%(base_str*(1+d_aura))
+        bps1 = team_dps*bps1+energy1*energy_efficiency
+        bps_delta = team_dps*bps+energy*energy_efficiency 
+        if bps_delta < bps1:
+            bps_delta = 0
+        else:
+            bps_delta = bps_delta - bps1
+        line = "%s,%s,%s,%s,%s,%d,%d,%d,%d"%(
+                mname,adv.conf['stars']+'*', adv.conf['element'], adv.conf['weapon'], '<%s>'%condition+';'+comment,
+                dps1, bps1, 
+                dps2-dps1, bps_delta, 
+                )
+        line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
         line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')
         line = line.replace('shadow','暗').replace('light','光')
@@ -152,13 +229,15 @@ def statis(data, mname):
 
     #print "%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment)
 
-def do_mass_sim(classname, conf):
+def do_mass_sim(classname, conf, cond=0):
     a = time.time()
     mname = classname.__name__
 
     results = []
     for i in range(sim_times):
         adv = classname(conf=conf)
+        if cond:
+            adv.condition()
         adv.run(sim_duration)
         r = sum_dmg(1)
         results.append(r)

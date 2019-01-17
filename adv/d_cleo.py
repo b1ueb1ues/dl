@@ -8,11 +8,13 @@ def module():
 
 class D_Cleo(adv.Adv):
     conf = {
-        "mod_a": ('att' , 'passive', 0.13) ,
         "mod_d":[('att' , 'passive', 0.45) ,
                  ('crit', 'chance' , 0.20)],
-        'condition':'hp70'
         }
+    def condition(this):
+        this.conf['mod_a'] = ('att' , 'passive', 0.13) 
+        this.dmg_proc = this.c_dmg_proc
+        return 'hp70 & always connect hits'
 
     def init(this):
         this.stance = 0
@@ -23,7 +25,7 @@ class D_Cleo(adv.Adv):
                 team={'s1':1}
                 )
 
-    def dmg_proc(this, name, amount):
+    def c_dmg_proc(this, name, amount):
         if name == 'x1':
             this.hits += 1
         elif name == 'x2':
