@@ -49,7 +49,13 @@ def test(classname, conf, verbose=0, mass=0):
             d_aura = adv.conf['mod_d'][2]
 
     if 'condition' in adv.conf:
-        condition = adv.conf['condition']
+        condition = ''
+        for i in adv.conf['condition']:
+            if condition == '':
+                condition = i
+            else:
+                condition += ' & %s'%condition
+
     comment = adv.comment
 
 

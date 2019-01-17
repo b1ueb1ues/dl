@@ -556,6 +556,11 @@ class Adv(object):
         tmpconf.update(conf)
         this.conf = tmpconf
 
+        if 'condition' in this.conf:
+            this.condition = this.conf['condition']
+        else :
+            this.condition = {}
+
         this.base_str = this.conf['base_str']
         if 1:
             this.crit_mod = this.solid_crit_mod

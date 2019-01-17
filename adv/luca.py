@@ -6,8 +6,12 @@ def module():
 
 class Luca(adv.Adv):
     conf = {
-        "mod_a" : ('att' , 'passive' , 0.13)  ,
-        'condition':'hp100',
+        'condition':{
+            'hp100':{
+                "mod_a" : ('att' , 'passive' , 0.13) ,
+                },
+            'aff':{},
+            }
         } 
 
     def init(this):
