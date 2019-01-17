@@ -1,3 +1,5 @@
+# I have changed all the png to jpg for less storage uses, developers need to rebase or clone again. 
+
 # dragalia lost sim and analysis
 
 
