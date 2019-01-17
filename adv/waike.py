@@ -5,7 +5,16 @@ def module():
     return Waike
 
 class Waike(adv.Adv):
+    def condition(this):
+        this.init = this.c_init
+        return 'bog'
+
     def init(this):
+        this.bogcountlast = 0
+        this.bogbuff = adv.Buff('s2_bog',0.6,8,'att','bog')
+
+
+    def c_init(this):
         this.bogcountlast = 3
         this.bogbuff = adv.Buff('s2_bog',0.6,8,'att','bog')
 

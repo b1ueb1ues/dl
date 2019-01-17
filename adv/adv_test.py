@@ -173,8 +173,10 @@ def test(classname, conf, verbose=0, mass=0):
             bps_delta = 0
         else:
             bps_delta = bps_delta - bps1
+        if condition != '':
+            condition = '<%s>'%condition
         line = "%s,%s,%s,%s,%s,%d,%d,%d,%d"%(
-                mname,adv.conf['stars']+'*', adv.conf['element'], adv.conf['weapon'], '<%s>'%condition+';'+comment,
+                mname,adv.conf['stars']+'*', adv.conf['element'], adv.conf['weapon'], condition+';'+comment,
                 dps1, bps1, 
                 dps2-dps1, bps_delta, 
                 )
