@@ -14,16 +14,19 @@ class Ieyasu(ieyasu.Ieyasu):
             for i in this._static.all_bleeds:
                 dmg_sum += i.quickshot_event.dmg
             if stacks == 1:
-                this.tdmg_event.dmg = dmg_sum * 0.8
+                #this.tdmg_event.dmg = dmg_sum
+                dmg = dmg_sum * 0.8
             elif stacks == 2:
-                this.tdmg_event.dmg = dmg_sum * 1.12
+                #this.tdmg_event.dmg = dmg_sum * 1.5
+                dmg = dmg_sum * 1.12
             elif stacks == 3:
-                this.tdmg_event.dmg = dmg_sum * 1.44
+                #this.tdmg_event.dmg = dmg_sum * 2
+                dmg = dmg_sum * 1.44
             else:
                 print "err in bleed tick_proc"
                 exit()
-            this.tdmg_event.comment = "%d stacks"%(stacks)
-            this.tdmg_event.trigger()
+
+            log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
             e.timing += this.iv
 
     def s2ifbleed(this):
