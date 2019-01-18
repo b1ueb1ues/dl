@@ -49,14 +49,11 @@ class D_Cleo(adv.Adv):
     def s1_proc(this, e): # buggy lvl3 s1
         if this.stance == 0:
             this.stance = 1
-            this.s2.sp = 4335
         elif this.stance == 1:
             this.stance = 2
-            this.s2.sp = 5217
             adv.Buff('s1s',0.1,10,'att').on()
         elif this.stance == 2:
             this.stance = 0
-            this.s2.sp = 3136
             adv.Buff('s1s',0.1,10,'att').on()
             adv.Buff('s1c',0.08,10,'crit','chance').on()
 
@@ -64,7 +61,7 @@ class D_Cleo(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 's1 in lvl3 have a critical bug in game, simulate as lvl3 is buggy'
+    module().comment = 's1 in lvl3 have a critical bug in game; simulate as lvl3 is buggy'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
