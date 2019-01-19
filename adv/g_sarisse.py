@@ -12,7 +12,11 @@ class G_Sarisse(adv.Adv):
         this.s2stance = 0
         this.conf['s3_buff'][1] *= 1.3
 
-    def dmg_proc(this, name, amount):
+    def condition(this):
+        this.dmg_proc = this.c_dmg_proc
+        return 'never lose combos'
+
+    def c_dmg_proc(this, name, amount):
         if name[:2] == 'x1':
             this.hits += 3
         elif name[:2] == 'x2':

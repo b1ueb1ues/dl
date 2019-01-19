@@ -17,6 +17,13 @@ class Lucretia(adv.Adv):
         #!!!!!!!!!!!!!!!!!!!!!
         Event('energized').listener(this.energy_doublebuff)
 
+    #def condition(this):
+    #    energy.Energy(this,
+    #            self={'s1':1,'s2':2} ,
+    #            team={'s1':1,'s2':2} 
+    #            )
+    #    return 'energized'
+
     def energy_doublebuff(this, e):
         adv.Buff("double_buff", 0.2, 15,'att',wide='self').on()
 
