@@ -61,7 +61,7 @@ class D_Cleo(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 's1 in lvl3 have a critical bug in game; simulate as lvl3 is buggy'
+    module().comment = 's1 in lvl3 (buggy)'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc

@@ -9,14 +9,10 @@ class Louise(adv.Adv):
         "mod_a_od" : ('att' , 'punisher' , 0.13*0.45) ,
         } 
 
-    def condition(this):
-        this.init = this.c_init
-        return 'afflic'
-
-    def c_init(this):
-        this.dmg_make("o_poison",2.91)
-        this.dmg_make("o_poison",2.91)
-        this.dmg_make("o_poison",2.91)
+    def init(this):
+        this.dmg_make("o_s1_poison",2.91)
+        this.dmg_make("o_s1_poison",2.91)
+        this.dmg_make("o_s1_poison",2.91)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)

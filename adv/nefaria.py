@@ -5,17 +5,11 @@ def module():
     return Nefaria
 
 class Nefaria(adv.Adv):
-    def condition(this):
-        this.init = this.c_init
-        return 'afflic'
-
-    def c_init(this):
-        this.dmg_make("o_s1hitblind",7.3352*1.3-1.06)
-        this.dmg_make("o_s1hitblind",7.3352*1.3-1.06)
-        this.dmg_make("o_s1hitblind",7.3352*1.3-1.06)
-        this.s2fscharge = 0
 
     def init(this):
+        this.dmg_make("o_s1hitblind",7.3352*1.3-1.06)
+        this.dmg_make("o_s1hitblind",7.3352*1.3-1.06)
+        this.dmg_make("o_s1hitblind",7.3352*1.3-1.06)
         this.s2fscharge = 0
 
     def s2_proc(this, e):

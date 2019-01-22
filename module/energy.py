@@ -21,7 +21,7 @@ class Energy():
             this.energy_mod.on()
             sd2 = this.a.mod('s')
             this.energy_mod.off()
-            log('dmg','o_%s_energy'%name,amount*(sd2/sd-1), 'energy boost')
+            log('dmg','o_%s_energized'%name,amount*(sd2/sd-1), 'energy boost')
 
 
 

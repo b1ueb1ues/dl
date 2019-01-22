@@ -5,18 +5,12 @@ def module():
     return Eleonora
 
 class Eleonora(adv.Adv):
-    def condition(this):
-        this.init = this.c_init
-        return 'afflic'
-
     def init(this):
         this.charge("prep",'50%')
+        this.dmg_make("o_s1_oison",2.65)
+        this.dmg_make("o_s1_oison",2.65)
+        this.dmg_make("o_s1_oison",2.65)
 
-    def c_init(this):
-        this.charge("prep",'50%')
-        this.dmg_make("o_poison",2.65)
-        this.dmg_make("o_poison",2.65)
-        this.dmg_make("o_poison",2.65)
 
 
 if __name__ == '__main__':

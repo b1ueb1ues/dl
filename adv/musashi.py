@@ -12,13 +12,18 @@ class Musashi(adv.Adv):
 
     def condition(this):
         this.init = this.c_init
-        return 'afflic & last offense'
+        return 'last offense'
 
     def c_init(this):
         adv.Buff('last_offense',0.4,15,wide='self').on()
-        this.dmg_make("o_poison",2.65)
-        this.dmg_make("o_poison",2.65)
-        this.dmg_make("o_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
+
+    def init(this):
+        this.dmg_make("o_s1_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
 
 
 

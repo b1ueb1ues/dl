@@ -5,15 +5,14 @@ def module():
     return Luca
 
 class Luca(adv.Adv):
-    def c_init(this):
-        this.dmg_make("o_paralysis",2.65)
-        this.dmg_make("o_paralysis",2.65)
-        this.dmg_make("o_paralysis",2.65)
+    def init(this):
+        this.dmg_make("o_s1_paralysis",2.65)
+        this.dmg_make("o_s1_paralysis",2.65)
+        this.dmg_make("o_s1_paralysis",2.65)
 
     def condition(this):
-        this.init = this.c_init
         this.conf['mod_a'] = ('att' , 'passive' , 0.13) 
-        return 'afflic & hp100'
+        return 'hp100'
 
 
 

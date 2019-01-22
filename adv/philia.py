@@ -7,13 +7,12 @@ def module():
 class Philia(adv.Adv):
     def condition(this):
         this.conf['mod_a'] = ('att' , 'passive', 0.10)
-        this.init = this.c_init
-        return 'hp100 & afflic'
+        return 'hp100'
 
-    def c_init(this):
-        this.dmg_make("o_paralysis",1.8)
-        this.dmg_make("o_paralysis",1.8)
-        this.dmg_make("o_paralysis",1.8)
+    def init(this):
+        this.dmg_make("o_s2_paralysis",1.8)
+        this.dmg_make("o_s2_paralysis",1.8)
+        this.dmg_make("o_s2_paralysis",1.8)
 
 
 

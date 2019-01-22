@@ -5,14 +5,10 @@ def module():
     return Joe
 
 class Joe(adv.Adv):
-    def condition(this):
-        this.init = this.c_init
-        return 'afflic'
-
-    def c_init(this):
-        this.dmg_make("o_burn",1.8)
-        this.dmg_make("o_burn",1.8)
-        this.dmg_make("o_burn",1.8)
+    def init(this):
+        this.dmg_make("o_s2_burn",1.8)
+        this.dmg_make("o_s2_burn",1.8)
+        this.dmg_make("o_s2_burn",1.8)
 
 
 
