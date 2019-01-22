@@ -153,8 +153,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/sim_duration))
         line += ',skill_2:%d'%(int(r['sdmg_sum']['s2']['dmg']/sim_duration))
         line += ',skill_3:%d'%(int(r['sdmg_sum']['s3']['dmg']/sim_duration))
-        if r['buff_sum']:
-            line += ',team_buff:%d'%(int(r['buff_sum']*team_dps))
+        line += ',team_buff:%d'%(int(r['buff_sum']*team_dps))
         if r['energy_sum']:
             line += ',team_energy:%d'%(int(r['energy_sum']*energy_efficiency))
         if r['o_sum'] != {}:

@@ -7,9 +7,9 @@ def module():
 class Eleonora(adv.Adv):
     def init(this):
         this.charge("prep",'50%')
-        this.dmg_make("o_s1_oison",2.65)
-        this.dmg_make("o_s1_oison",2.65)
-        this.dmg_make("o_s1_oison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
+        this.dmg_make("o_s1_poison",2.65)
 
 
 
