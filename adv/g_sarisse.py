@@ -14,7 +14,13 @@ class G_Sarisse(adv.Adv):
 
     def condition(this):
         this.dmg_proc = this.c_dmg_proc
-        return 'never lose combos'
+        this.conf['acl'] = """
+            `s3,s1.charged>=2803
+            `s1
+            `s2
+            `fs, seq=4
+            """
+        return 'never lose combos & c4+fs'
 
     def c_dmg_proc(this, name, amount):
         if name[:2] == 'x1':
@@ -55,17 +61,6 @@ class G_Sarisse(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'c4+fs'
-    conf = {}
-    conf['acl'] = """
-        `s3,s1.charged>=2803
-        `s1
-        `s2
-        `fs, seq=4
-        """
-    adv_test.test(module(), conf, verbose=0)
-
-    module().comment = ''
     conf = {}
     conf['acl'] = """
         `s3,s1.charged>=2803

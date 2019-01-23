@@ -92,7 +92,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         recount += '(team_energy:%d)'%team_energy
 
     if loglevel >= 0 or loglevel == None:
-        if condition == '':
+        if g_condition != '' and condition == '':
             print '-----------------------'
             print recount+' !<%s>'%(g_condition)
             print '-----------------------'

@@ -7,7 +7,13 @@ def module():
 class Philia(adv.Adv):
     def condition(this):
         this.conf['mod_a'] = ('att' , 'passive', 0.10)
-        return 'hp100'
+        this.conf['acl'] = """
+            `s1, fsc
+            `s2, fsc
+            `s3, fsc
+            `fs, seq=4
+            """
+        return 'hp100 & c4+fs'
 
     def init(this):
         this.dmg_make("o_s2_paralysis",1.8)
@@ -23,14 +29,6 @@ if __name__ == '__main__':
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc
         `s3, seq=5 or fsc
-        """
-    adv_test.test(module(), conf, verbose=0)
-    module().comment += ' & spawn c1+fs'
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        `fs, seq=1
         """
     adv_test.test(module(), conf, verbose=0)
 
