@@ -67,7 +67,7 @@ def get(name):
     elif conf['element'] == 'wind':
         base_str += conf['str_adv'] * (1+0.22+0.23)
     elif conf['element'] == 'light':
-        base_str += conf['str_adv'] * (1+0.22+0.23)
+        base_str += conf['str_adv'] * (1+0.29+0.23)
     elif conf['element'] == 'shadow':
         base_str += conf['str_adv'] * (1+0.15+0.23)
 

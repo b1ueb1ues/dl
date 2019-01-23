@@ -110,7 +110,11 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
             dmg_sum[i] = int(r['dmg_sum'][i])
         for i in r['sdmg_sum']:
             v = r['sdmg_sum'][i]
-            sdmg_sum[i] = '%d *%d = %d'%(int(v['dmg']/v['count']), v['count'], int(v['dmg']))
+            if v['count'] :
+                sdmg_sum[i] = '%d *%d = %d'%(int(v['dmg']/v['count']), v['count'], int(v['dmg']))
+            else:
+                sdmg_sum[i] = '%d'%(int(v['dmg']))
+
         for i in r['o_sum']:
             o_sum[i] = int(r['o_sum'][i])
 

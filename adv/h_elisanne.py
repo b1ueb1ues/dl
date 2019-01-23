@@ -12,6 +12,14 @@ class H_Elisanne(Adv):
     def init(this):
         this.stance = 0
 
+    def condition(this):
+        this.conf['acl'] = """
+            `s1, seq=5 and cancel
+            `s3, seq=5 and cancel
+            """
+        return 'do not use s2'
+
+
 
     def s1latency(this, e):
         Buff("s1_buff",0.1,15,'att').on()
@@ -40,9 +48,9 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=0)
 
-    module().comment = 'do not use s2'
-    conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s3, seq=5 and cancel
-        """
-    adv_test.test(module(), conf, verbose=0)
+    #module().comment = 'do not use s2'
+    #conf['acl'] = """
+    #    `s1, seq=5 and cancel
+    #    `s3, seq=5 and cancel
+    #    """
+    #adv_test.test(module(), conf, verbose=0)
