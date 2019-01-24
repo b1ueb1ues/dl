@@ -39,18 +39,18 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=0)
 
-    Naveed.s2_proc = s2_proc_withdoublebuff
-    Naveed.comment = 'Valiant Crown'
-    conf['acl'] = """
-        `s1, sp
-        `s2, sp
-        `s3, sp
-        `fs, seq=3 and cancel
-        """
-    conf.update({
-        "mod_wp"  : ('s'   , 'passive' , 0.25) ,
-        })
-    adv_test.test(module(), conf, verbose=0)
+#    Naveed.s2_proc = s2_proc_withdoublebuff
+#    Naveed.comment = 'Valiant Crown'
+#    conf['acl'] = """
+#        `s1, sp
+#        `s2, sp
+#        `s3, sp
+#        `fs, seq=3 and cancel
+#        """
+#    conf.update({
+#        "mod_wp"  : ('s'   , 'passive' , 0.25) ,
+#        })
+#    adv_test.test(module(), conf, verbose=0)
 
 
 
