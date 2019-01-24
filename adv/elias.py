@@ -7,8 +7,13 @@ def module():
 
 class Elias(adv.Adv):
     def condition(this):
+        this.conf['acl'] = """
+            `s1, fsc
+            `s3, fsc
+            `fs, seq=4
+            """
         this.init = this.c_init
-        return 'last offense'
+        return 'last offense & c4+fs & no s2'
 
     def c_init(this):
         adv.Buff('last_offense',0.4,15,wide='self').on()
@@ -19,28 +24,9 @@ class Elias(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-
-    if 0:
-        conf['acl'] = """
-            `s1, seq=5 or fsc
-            `s2, seq=5 or fsc
-            `s3, seq=5 or fsc
-            """
-        adv_test.test(module(), conf, verbose=0)
-
-    module().comment = 'spawn c1+fs; don not use s2'
     conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s3, seq=5 or fsc
-        `fs, seq=1
-        """
-    adv_test.test(module(), conf, verbose=0)
-
-    module().comment = 'spawn c1+fs;'
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        `fs, seq=1
+        `s1, seq=5
+        `s2, seq=5
+        `s3, seq=5
         """
     adv_test.test(module(), conf, verbose=0)

@@ -17,7 +17,7 @@ class H_Elisanne(Adv):
             `s1, seq=5 and cancel
             `s3, seq=5 and cancel
             """
-        return 'do not use s2'
+        return 'no s2'
 
 
 

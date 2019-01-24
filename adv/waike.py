@@ -7,7 +7,13 @@ def module():
 class Waike(adv.Adv):
     def condition(this):
         this.init = this.c_init
-        return 'bog'
+        this.conf['acl'] = """
+            `s1, fsc
+            `s2, fsc
+            `s3, fsc
+            `fs, seq=4
+            """
+        return 'bog & c4+fs'
 
     def init(this):
         this.bogcountlast = 0
@@ -33,14 +39,6 @@ if __name__ == '__main__':
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc
         `s3, seq=5 or fsc
-        """
-    adv_test.test(module(), conf, verbose=0)
-    module().comment += '& spawn c1+fs'
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        `fs, seq=1
         """
     adv_test.test(module(), conf, verbose=0)
 

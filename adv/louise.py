@@ -20,21 +20,11 @@ class Louise(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'poison and boost dmg from poison 3 times'
+    module().comment = 'poison 3 times & no fs'
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
+        `s1, seq=5
+        `s2, seq=5
+        `s3, seq=5
         """
     adv_test.test(module(), conf, verbose=0)
-    module().comment += ' & spawn c1+fs'
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        `fs, seq=1
-        """
-    adv_test.test(module(), conf, verbose=0)
-
-

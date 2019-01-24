@@ -10,6 +10,18 @@ class Addis(Adv):
             'mod_a':('att','bp',0.03)
             }
 
+   # def condition(this):
+   #     def cheat(e):
+   #         if random.random() < 0.8:
+   #             log('-special','cheated_s1')
+   #             Bleed("s1_bleed", 1.32).on()
+   #     this.s1_proc = cheat
+   #     this.conf['acl'] = """
+   #         `s1,seq=5
+   #         `s3
+   #         """
+   #     return 'use shapeshift bug'
+
     def getbleedpunisher(this):
         if this.bleed._static.stacks > 0:
             return 0.08
