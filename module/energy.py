@@ -81,7 +81,7 @@ class Energy():
         this.energy = 0
         this.energized = 0
 
-        this.energy_buff = Buff('energy',-1,9999,'energy','energy')
+        this.energy_buff = Buff('energy',-1,-1,'energy','energy')
 
         this.s1_proc_old = a.s1_proc
         this.s2_proc_old = a.s2_proc

@@ -11,7 +11,17 @@ class D_Xander(adv.Adv):
                     ('crit' , 'chance'  , 0.20)] ,
         } 
 
+    def condition(this):
+        this.init = this.c_init
+        return 'energy'
+
     def init(this):
+        energy.Energy(this,
+                self={},
+                team={}
+                )
+
+    def c_init(this):
         energy.Energy(this,
                 self={'s2':1},
                 team={'s2':1}

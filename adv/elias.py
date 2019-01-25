@@ -20,7 +20,7 @@ class Elias(adv.Adv):
         energy.Energy(this,{'s2':1},{'s2':1})
 
     def init(this):
-        energy.Energy(this,{'s2':1},{'s2':1})
+        energy.Energy(this,{},{})
 
 if __name__ == '__main__':
     conf = {}

@@ -14,15 +14,22 @@ class D_Cleo(adv.Adv):
     def condition(this):
         this.conf['mod_a'] = ('att' , 'passive', 0.13) 
         this.dmg_proc = this.c_dmg_proc
-        return 'hp70 & always connect hits'
+        this.init = this.c_init
+        return 'hp70 & energy & always connect hits'
 
-    def init(this):
+    def c_init(this):
         this.stance = 0
-        this.energy = 0
         this.hits = 0
         this.energy = energy.Energy(this, 
                 self={'s1':1,'hit':1},
                 team={'s1':1}
+                )
+    def init(this):
+        this.stance = 0
+        this.hits = 0
+        this.energy = energy.Energy(this, 
+                self={},
+                team={}
                 )
 
     def c_dmg_proc(this, name, amount):

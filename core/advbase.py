@@ -185,10 +185,12 @@ class Buff(object):
             if this.__stored == 0:
                 this._static.all_buffs.append(this)
                 this.__stored = 1
-            this.buff_end_event.on(now()+d)
+            if d >= 0:
+                this.buff_end_event.on(now()+d)
             log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()), this.__name+" buff start <%ds>"%d)
         else:
-            this.buff_end_event.timing = now() + d
+            if d >= 0:
+                this.buff_end_event.timing = now() + d
             log("buff", this.__name, "%s: %.2f"%(this.mod_type, this.value()), this.__name+" buff refresh <%ds>"%d)
 
         stack = 0
@@ -541,35 +543,22 @@ class Adv(object):
     """
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    exit()
 
-
-    def __init__(this,conf):
-        this.timeline = Timeline().reset()
-        this.log = []
-        loginit(this.log)
+    def setconfig(this,conf={}):
         tmpconf = {}
-
-        this.adv_name = this.__class__.__name__
-
         tmpconf.update(this.conf_default)
-
         tmpconf.update(globalconf.get(this.adv_name))
-
         tmpconf.update(this.conf)
         tmpconf.update(conf)
+        if 'adv_name' in tmpconf :
+            if this.adv_name != tmpconf['adv_name']:
+                if this.adv_name == this.__class__.__name__:
+                    this.adv_name = tmpconf['adv_name']
+                    this.setconf(conf)
+                    return
+
         this.conf = tmpconf
 
-       # if 'condition' in this.conf:
-       #     this.condition = this.conf['condition']
-       # else :
-       #     this.condition = {}
-
         this.base_str = this.conf['base_str']
-        if 1:
-            this.crit_mod = this.solid_crit_mod
-        else:
-            this.crit_mod = this.rand_crit_mod
-
-        this.skill = Skill()
 
         # set buff
         this.action = Action()
@@ -584,7 +573,6 @@ class Adv(object):
         this.all_modifiers = []
         this.modifier._static['all_modifiers'] = this.all_modifiers
 
-
         # init actions
         this.a_s1 = Action(("s1",1),this.conf)
         this.a_s2 = Action(("s2",2),this.conf)
@@ -594,6 +582,7 @@ class Adv(object):
         this.a_x3 = Action(("x3",3),this.conf)
         this.a_x4 = Action(("x4",4),this.conf)
         this.a_x5 = Action(("x5",5),this.conf)
+
         fsconf = {}
         xnfsconf = {}
         xn = {}
@@ -642,17 +631,9 @@ class Adv(object):
         this.a_x4fs.interrupt_by = ["s1","s2","s3"]
         this.a_x5fs.interrupt_by = ["s1","s2","s3"]
 
-        # set cmd
-        this.x1 = this.a_x1
-        this.x2 = this.a_x2
-        this.x3 = this.a_x3
-        this.x4 = this.a_x4
-        this.x5 = this.a_x5
-        #this.fs = this.a_fs
         this.s1 = Skill("s1",this.conf["s1_sp"],this.a_s1.tap)
         this.s2 = Skill("s2",this.conf["s2_sp"],this.a_s2.tap)
         this.s3 = Skill("s3",this.conf["s3_sp"],this.a_s3.tap)
-
 
         if this.conf['x_type']== "ranged":
             this.l_x = this.l_range_x
@@ -662,6 +643,48 @@ class Adv(object):
             this.l_x = this.l_melee_x
             this.l_fs = this.l_melee_fs
             #this.fs_success = this.melee_fs_success
+
+        # set cmd
+        this.x1 = this.a_x1
+        this.x2 = this.a_x2
+        this.x3 = this.a_x3
+        this.x4 = this.a_x4
+        this.x5 = this.a_x5
+        #this.fs = this.a_fs
+
+        for i in this.conf:
+            if i[:3] == 'mod':
+                j = this.conf[i]
+                if type(j) == tuple:
+                    Modifier(i,j[0],j[1],j[2])
+                elif type(j) == list:
+                    idx = 0
+                    for k in j:
+                        Modifier(i+"_%d"%idx,k[0],k[1],k[2])
+                        idx += 1
+
+        this._acl, this._acl_str = acl.acl_func_str(
+                this.acl_prepare_default+this.conf['acl'] 
+                )
+
+
+
+    def __init__(this,conf):
+        this.timeline = Timeline().reset()
+        this.log = []
+        loginit(this.log)
+
+        this.adv_name = this.__class__.__name__
+
+        this.setconfig(conf)
+
+        if 1:
+            this.crit_mod = this.solid_crit_mod
+        else:
+            this.crit_mod = this.rand_crit_mod
+
+        this.skill = Skill()
+
         this._el = {}
         save_event_listeners(this._el)
 
@@ -850,22 +873,9 @@ class Adv(object):
         Event("true_dmg").listener(this.l_true_dmg)
         Event("dmg_formula").listener(this.l_dmg_formula)
 
-        for i in this.conf:
-            if i[:3] == 'mod':
-                j = this.conf[i]
-                if type(j) == tuple:
-                    Modifier(i,j[0],j[1],j[2])
-                elif type(j) == list:
-                    idx = 0
-                    for k in j:
-                        Modifier(i+"_%d"%idx,k[0],k[1],k[2])
-                        idx += 1
+        this.setconfig()
 
         this.init()
-
-        this._acl, this._acl_str = acl.acl_func_str(
-                this.acl_prepare_default+this.conf['acl'] 
-                )
 
         Timeline().run(d)
 

@@ -5,7 +5,7 @@ def module():
     return Aeleen
 
 class Aeleen(Adv):
-    comment = 'do not use fs'
+    comment = 'no fs'
 
 
 if __name__ == '__main__':
