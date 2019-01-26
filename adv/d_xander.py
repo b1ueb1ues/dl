@@ -15,6 +15,11 @@ class D_Xander(adv.Adv):
         this.init = this.c_init
         return 'energy'
 
+    def init(this):
+        energy.Energy(this,
+                self={},
+                team={}
+                )
 
     def c_init(this):
         energy.Energy(this,

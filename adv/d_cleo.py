@@ -17,9 +17,8 @@ class D_Cleo(adv.Adv):
         this.dmg_proc = this.c_dmg_proc
         return 'hp70 & energy & always connect hits'
 
-    def init(this):
+    def c_init(this):
         this.stance = 0
-        this.energy = 0
         this.hits = 0
         this.energy = energy.Energy(this, 
                 self={},
@@ -32,6 +31,13 @@ class D_Cleo(adv.Adv):
         this.energy = energy.Energy(this, 
                 self={'s1':1,'hit':1},
                 team={'s1':1}
+                )
+    def init(this):
+        this.stance = 0
+        this.hits = 0
+        this.energy = energy.Energy(this, 
+                self={},
+                team={}
                 )
 
     def c_dmg_proc(this, name, amount):

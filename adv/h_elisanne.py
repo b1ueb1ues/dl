@@ -19,8 +19,6 @@ class H_Elisanne(Adv):
             """
         return 'no s2'
 
-
-
     def s1latency(this, e):
         Buff("s1_buff",0.1,15,'att').on()
 

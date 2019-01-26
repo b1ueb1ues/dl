@@ -7,10 +7,11 @@ def module():
 
 class Annelie(Adv):
     def condition(this):
+        this.conf["mod_a"] = ('s', 'passive', 0.35) 
         this.init = this.c_init
         return 'hp70 & energy'
 
-    def init(this):
+    def c_init(this):
         this.stance = 0
         this.energy = energy.Energy(this, 
                 self={},
@@ -18,13 +19,19 @@ class Annelie(Adv):
                 )
 
     def c_init(this):
-        this.conf["mod_a"] = ('s', 'passive', 0.35) 
         this.stance = 0
         this.energy = energy.Energy(this, 
                 self={'1':1,'2':2,'s2':2},
                 team={'s2':2}
                 )
         Event('energized').listener(this.energy_doublebuff)
+
+    def init(this):
+        this.stance = 0
+        this.energy = energy.Energy(this, 
+                self={},
+                team={}
+                )
 
     def energy_doublebuff(this, e):
         Buff("double_buff", 0.2, 15,'att',wide='self').on()
