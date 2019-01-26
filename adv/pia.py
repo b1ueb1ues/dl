@@ -7,9 +7,18 @@ def module():
 
 class Pia(Adv):
     comment = 'no fs'
-    def init(this):
+    def c_init(this):
         energy.Energy(this,{'s2':1},{'s2':1})
 
+    def init(this):
+        this.conf['acl'] = """
+            `s1, seq=5 and cancel
+            `s3, seq=5 and cancel
+            """
+
+    def condition(this):
+        this.init = this.c_init
+        return 'energy'
   #  def condition(this):
   #      this.conf['acl'] = """
   #          `s1, seq=5 and cancel

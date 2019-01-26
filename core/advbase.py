@@ -850,6 +850,12 @@ class Adv(object):
         Event("true_dmg").listener(this.l_true_dmg)
         Event("dmg_formula").listener(this.l_dmg_formula)
 
+
+        this.init()
+
+        this._acl, this._acl_str = acl.acl_func_str(
+                this.acl_prepare_default+this.conf['acl'] 
+                )
         for i in this.conf:
             if i[:3] == 'mod':
                 j = this.conf[i]
@@ -860,12 +866,6 @@ class Adv(object):
                     for k in j:
                         Modifier(i+"_%d"%idx,k[0],k[1],k[2])
                         idx += 1
-
-        this.init()
-
-        this._acl, this._acl_str = acl.acl_func_str(
-                this.acl_prepare_default+this.conf['acl'] 
-                )
 
         Timeline().run(d)
 
