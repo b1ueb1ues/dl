@@ -75,7 +75,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         if adv.conf['x_type'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
 
-    if mass:
+    if mass and loglevel <=0 :
         r = do_mass_sim(classname,conf,no_cond)
     else:
         r = sum_dmg()
