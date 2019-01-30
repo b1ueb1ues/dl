@@ -24,7 +24,7 @@ class Mikoto(Adv):
         this.s1buff.on()
 
     def s1_proc(this, e):
-        this.s1buff.set(0.10).off()
+        this.s1buff.off()
         this.dmg_make('s1',5.32*2)
         this.s1buff.set(0.10).on()
         Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
