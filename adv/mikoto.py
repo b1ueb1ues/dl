@@ -10,7 +10,8 @@ class Mikoto(Adv):
         }
     def condition(this):
         this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        return 'hp70'
+        this.s1_proc = this.c_s1_proc
+        return 'hp70 & connect s1'
 
     def init(this):
         this.s1buff = Buff("s1",0.0, 15, 'att','buff', wide='self')
@@ -22,8 +23,13 @@ class Mikoto(Adv):
     def s1latency(this, e):
         this.s1buff.on()
 
-
     def s1_proc(this, e):
+        this.s1buff.set(0.10).off()
+        this.dmg_make('s1',5.32*2)
+        this.s1buff.set(0.10).on()
+        Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
+
+    def c_s1_proc(this, e):
         buff = this.s1buff.get()
         if buff == 0:
             stance = 0
