@@ -79,3 +79,7 @@ python adv/g_sarisse.py -2  $1 | tee -a www/$1/data.csv
 python adv/annelie.py -2    $1 | tee -a www/$1/data.csv
 python adv/marty.py -2      $1 | tee -a www/$1/data.csv
 python adv/fritz.py -2      $1 | tee -a www/$1/data.csv
+python adv/linyou.py -2     $1 | tee -a www/$1/data.csv
+python adv/kuhai.py -2      $1 | tee -a www/$1/data.csv
+python adv/xiaolei.py -2    $1 | tee -a www/$1/data.csv
+python adv/sufang.py -2     $1 | tee -a www/$1/data.csv
