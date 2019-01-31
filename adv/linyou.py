@@ -21,6 +21,15 @@ class Linyou(Adv):
     def condition(this):
         this.conf['mod_a'] = ('crit' , 'passive', 0.10)
         return 'hp70'
+    
+    def condition2(this):
+        this.conf["mod_wp"] = [
+            ('s','passive',0.25),
+            ('crit','rate', 0.06),
+            ]
+        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
+        return 'hp70'
+
 
     def init(this):
         this.s2ssbuff = Buff("s2_s1",1, 10, 'ss','ss', wide='self')
@@ -51,14 +60,15 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=0, mass=0)
 
-    exit()
+    module().comment = 'RR+Zephyr'
+    module().condition = module().condition2
     conf = {
         "mod_d" :[
             ('att','passive',0.6),
             ],
-       # "mod_wp" :[
-       #     ('s','passive',0.25),
-       #     ],
+        "mod_wp" :[
+            ('s','passive',0.25),
+            ],
         }
     conf['acl'] = """
         `s2, s1.charged>=s1.sp
