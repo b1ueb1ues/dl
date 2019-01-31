@@ -5,7 +5,7 @@ def module():
     return Kuhai
 
 class Kuhai(Adv):
-    comment = 'don\'t use s2 ever'
+    comment = 'never ever ever ever use s2'
     conf = {
         "mod_a"   : ('crit', 'damage', 0.15),
         } 
