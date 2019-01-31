@@ -1,0 +1,47 @@
+import adv_test
+import adv
+from adv import *
+
+def module():
+    return Xiaolei
+
+class Xiaolei(adv.Adv):
+    conf = {
+        'mod_a':('s','passive',0.2),
+        }
+
+    #def condition(this):
+    #    this.conf['s2_sp'] = 3909
+    #    this.s2_proc = this.c_s2_proc
+    #    return 's2 in lv1'
+
+
+    def s2_proc(this, e):
+        Buff('s2cc',0.08,10,'crit','rate').on()
+        Buff('s2cd',0.40,10,'crit','dmg').on()
+
+    def c_s2_proc(this, e):
+        Buff('s2cc',0.05,10,'crit','rate').on()
+        Buff('s2cd',0.30,10,'crit','dmg').on()
+
+
+if __name__ == '__main__':
+    conf = {}
+    acl12 = """
+        `s1, seq=5 and cancel
+        `s2, seq=5 and cancel 
+        `s3, seq=5 and cancel
+        """
+    acl21 = """
+        `s2, seq=5 and cancel
+        `s1, seq=5 and cancel
+        `s3, seq=5
+        """ 
+    if 1:
+        conf['acl'] = acl12
+        adv_test.test(module(), conf, verbose=0)
+    else:
+        conf['acl'] = acl21
+        adv_test.test(module(), conf, verbose=0)
+
+
