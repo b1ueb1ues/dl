@@ -59,7 +59,7 @@ if __name__ == '__main__':
     adv_test.test(module(), conf, verbose=0, mass=0)
 
     module().comment = 'use s2'
-    # c1+fs_alt has higher dps and sp rate than c2+fs_alt
+    # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show
     conf['acl'] = """
         `s1
         `s2
