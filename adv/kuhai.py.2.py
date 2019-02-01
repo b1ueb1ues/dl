@@ -10,11 +10,11 @@ class Kuhai(Adv):
         #"mod_wp" : [
         #    ('fs','passive',0.30),
         #    ('sp','passive',0.08),
-        #    ]
-        "mod_wp" : [
-            ('crit','rate',0.08),
-            ('crit','damage',0.13),
-            ]
+        #    ],
+        "mod_d" :[
+            ('att','passive',0.45),
+            ('crit','rate',0.20),
+            ],
         } 
     def condition(this):
         this.conf["mod_a2"] = ('crit', 'damage', 0.15)
