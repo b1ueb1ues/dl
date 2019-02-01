@@ -65,6 +65,7 @@ if __name__ == '__main__':
    #     `s3, not this.s2ssbuff.get()
    #     """
     adv_test.test(module(), conf, verbose=0, mass=0)
+    exit()
 
     module().comment = 'RR+Zephyr'
     module().condition = module().condition2

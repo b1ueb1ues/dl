@@ -499,6 +499,9 @@ class Adv(object):
         "s3_sp"       : 0   ,
         "s3_startup"  : 0.1 ,
         "s3_recovery" : 1.9 ,
+
+        "dodge_startup"  : 0  ,
+        "dodge_recovery" : 43 / 60.0  ,
         }
 
     conf_default['acl'] = """
@@ -582,6 +585,8 @@ class Adv(object):
         this.a_x3 = Action(("x3",3),this.conf)
         this.a_x4 = Action(("x4",4),this.conf)
         this.a_x5 = Action(("x5",5),this.conf)
+
+        this.dodge = Action('dodge', this.conf)
 
         fsconf = {}
         xnfsconf = {}
@@ -813,7 +818,7 @@ class Adv(object):
 
         a = getattr(this, "x%d"%x_next)()
         return 1
-
+    
 
     def l_range_x(this, e):
         xseq = e.name
