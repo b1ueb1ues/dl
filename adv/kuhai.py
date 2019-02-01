@@ -5,9 +5,13 @@ def module():
     return Kuhai
 
 class Kuhai(Adv):
-    comment = 'never ever ever ever use s2'
+    comment = 'without s2'
     conf = {
         "mod_a"   : ('crit', 'damage', 0.15),
+        "mod_wp" : [ # stellar show for maximum s2 bonus
+            ('fs','passive',0.40),
+            ('crit','damage',0.13),
+            ],
         } 
     def condition(this):
         this.conf["mod_a2"] = ('crit', 'damage', 0.15)
@@ -55,10 +59,11 @@ if __name__ == '__main__':
     adv_test.test(module(), conf, verbose=0, mass=0)
 
     module().comment = 'use s2'
+    # c1+fs_alt has higher dps and sp rate than c2+fs_alt
     conf['acl'] = """
         `s1
         `s2
-        `fs, seq=2 and this.s2fsbuff.get()
+        `fs, seq=1 and this.s2fsbuff.get()
         `fs, seq=3
         """
     adv_test.test(module(), conf, verbose=0, mass=0)
