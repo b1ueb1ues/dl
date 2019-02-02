@@ -58,14 +58,16 @@ if __name__ == '__main__':
         `s2
         `s3
         """
-   # # a better acl, but hit threshold of lose one s3.
-   # conf['acl'] = """                 
-   #     `s2, s1.charged>=s1.sp
-   #     `s1
-   #     `s3, not this.s2ssbuff.get()
-   #     """
     adv_test.test(module(), conf, verbose=0, mass=0)
-    exit()
+
+    # a better acl, but hit threshold of lose one s3.
+    #module().comment = 'cover 2 s1 in one s2'
+    #conf['acl'] = """                 
+    #    `s2, s1.charged>=s1.sp-440
+    #    `s1
+    #    `s3, not this.s2ssbuff.get()
+    #    """
+    #adv_test.test(module(), conf, verbose=0, mass=0)
 
     module().comment = 'RR+Zephyr'
     module().condition = module().condition2
