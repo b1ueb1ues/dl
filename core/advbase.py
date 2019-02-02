@@ -459,6 +459,7 @@ class Action(object):
 
 class Adv(object):
     # vvvvvvvvv rewrite this to provide advanced tweak vvvvvvvvvv
+    adv_name = None
     def s1_proc(this, e):
         pass
     def s2_proc(this, e):
@@ -674,12 +675,16 @@ class Adv(object):
 
 
 
-    def __init__(this,conf):
-        this.timeline = Timeline().reset()
+    def __init__(this,conf={},timeline=None):
+        if timeline :
+            this.timeline = timeline
+        else:
+            this.timeline = Timeline().reset()
         this.log = []
         loginit(this.log)
 
-        this.adv_name = this.__class__.__name__
+        if not this.adv_name:
+            this.adv_name = this.__class__.__name__
 
         this.setconfig(conf)
 
@@ -851,10 +856,8 @@ class Adv(object):
 
 
     def run(this, d = 300):
-        this.timeline.set()
         load_event_listeners(this._el)
 
-        Event("init", this.l_idle).on()
         Event("idle").listener(this.l_idle)
 
         Event("x1").listener(this.l_x)
@@ -880,7 +883,13 @@ class Adv(object):
 
         this.setconfig()
 
+        save_event_listeners(this._el)
+
         this.init()
+
+        load_event_listeners(this._el)
+        this.timeline.set()
+        Event("init", this.l_idle).on()
 
         Timeline().run(d)
 
