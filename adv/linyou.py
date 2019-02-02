@@ -43,7 +43,7 @@ class Linyou(Adv):
 
     def s1_proc(this, e):
         if this.s2ssbuff.get():
-            this.dmg_make('o_s1_powerup',1.86*2)
+            this.dmg_make('o_s1_powerup',1.86*3)
 
     def s2_proc(this, e):
         this.s2ssbuff.on()
@@ -53,7 +53,7 @@ class Linyou(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp
+        `s2, s1.charged>=s1.sp-440
         `s1
         `s2
         `s3
