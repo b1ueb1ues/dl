@@ -36,7 +36,7 @@ class Kuhai(Adv):
         this.conf["mod_a2"] = ('crit', 'damage', 0.15)
         this.o_init = this.init
         this.init = this.c_init
-        return 'hp70 & 3 hits FS(nearly impossible outside Raid)'
+        return 'huge hitbox & hp70'
 
     def condition2(this):
         this.conf["mod_a2"] = ('crit', 'damage', 0.15)
