@@ -77,5 +77,5 @@ fritz,4,light,dagger,459,,167,4,2452,0,0,5315,,668,0,,
 marty,3,flame,sword,411,,375,2,2409,0,0,5840,,750,0,,
 linyou,5,wind,axe,517,,186,6,2969,0,0,8014,,1116,0,,
 kuhai,4,wind,sword,488,,188,4,2296,0,0,2913,,752,0,,0.1;10;crit;rate;self
-sufang,4,wind,dagger,458,,744,1,2462,0,0,4877,,744,0,,0.25;10;att;buff;self
+sufang,4,wind,dagger,458,,558,1,2462,0,0,4877,,558,0,,0.25;10;att;buff;self
 xiaolei,3,light,wand,437,,895,1,2785,0,0,4648,,895,0,,
