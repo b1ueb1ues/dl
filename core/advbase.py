@@ -503,6 +503,10 @@ class Adv(object):
 
         "dodge_startup"  : 0  ,
         "dodge_recovery" : 43 / 60.0  ,
+
+        "fsf_startup"  : 0          ,
+        "fsf_recovery" : 57 / 60.0  ,
+
         }
 
     conf_default['acl'] = """
@@ -544,6 +548,8 @@ class Adv(object):
         #s2=this.s2
         #s3=this.s3
         #fs=this.fs
+        #fsf=this.fsf
+        #dodge=this.dodge
     """
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    exit()
 
@@ -588,6 +594,8 @@ class Adv(object):
         this.a_x5 = Action(("x5",5),this.conf)
 
         this.dodge = Action('dodge', this.conf)
+        this.fsf = Action("fsf", this.conf)
+
 
         fsconf = {}
         xnfsconf = {}
@@ -613,23 +621,23 @@ class Adv(object):
                         tmpconf[j] = fsconf[j]
                 setattr(this, "a_"+i,  Action('fs' ,tmpconf) )
 
-        this.a_x1.cancel_by = ["dodge","fs","s1","s2","s3"]
-        this.a_x2.cancel_by = ["dodge","fs","s1","s2","s3"]
-        this.a_x3.cancel_by = ["dodge","fs","s1","s2","s3"]
-        this.a_x4.cancel_by = ["dodge","fs","s1","s2","s3"]
-        this.a_x5.cancel_by = ["dodge","fs","s1","s2","s3"]
-        this.a_fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x1.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
+        this.a_x2.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
+        this.a_x3.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
+        this.a_x4.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
+        this.a_x5.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
+        this.a_fs.cancel_by = ["dodge","s1","fsf","s2","s3"]
         this.a_x1fs.cancel_by = ["dodge","s1","s2","s3"]
         this.a_x2fs.cancel_by = ["dodge","s1","s2","s3"]
         this.a_x3fs.cancel_by = ["dodge","s1","s2","s3"]
         this.a_x4fs.cancel_by = ["dodge","s1","s2","s3"]
         this.a_x5fs.cancel_by = ["dodge","s1","s2","s3"]
 
-        this.a_x1.interrupt_by = ["dodge", "fs","s1","s2","s3"]
-        this.a_x2.interrupt_by = ["dodge", "fs","s1","s2","s3"]
-        this.a_x3.interrupt_by = ["dodge", "fs","s1","s2","s3"]
-        this.a_x4.interrupt_by = ["dodge", "fs","s1","s2","s3"]
-        this.a_x5.interrupt_by = ["dodge", "fs","s1","s2","s3"]
+        this.a_x1.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
+        this.a_x2.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
+        this.a_x3.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
+        this.a_x4.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
+        this.a_x5.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
         this.a_fs.interrupt_by = ["s1","s2","s3"]
         this.a_x1fs.interrupt_by = ["s1","s2","s3"]
         this.a_x2fs.interrupt_by = ["s1","s2","s3"]

@@ -8,6 +8,7 @@ class Julietta(adv.Adv):
     comment = 'do not use weapon skill and fs'
     pass
 
+
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """

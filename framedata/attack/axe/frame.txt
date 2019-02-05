@@ -6,6 +6,11 @@ c4_hit      : 163 ; 40
 c5_hit      : 241 ; 78
 c5_recovery : 260 ; 19
 
+4+fsf
+c4_hit     : 163
+fsf        : 204 ; 41
+c1_startup : 204
+c1_hit     : 220
 
 
 5+fs  (good)
