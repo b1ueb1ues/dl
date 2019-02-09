@@ -505,7 +505,7 @@ class Adv(object):
         "dodge_recovery" : 43 / 60.0  ,
 
         "fsf_startup"  : 0          ,
-        "fsf_recovery" : 57 / 60.0  ,
+        "fsf_recovery" : 41 / 60.0  ,
 
         }
 

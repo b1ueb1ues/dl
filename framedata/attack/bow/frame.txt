@@ -21,3 +21,9 @@ x5fs_recovery : 37
 
 !x4fs_startup  : 50     #perfectjob
 !x4fs_recovery : 32+5
+
+fsf.
+c4_shot  : 550
+fsf      : 582 , 32
+c1_start : 582
+c1_hit   : 605 , 23
