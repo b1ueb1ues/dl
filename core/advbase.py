@@ -208,6 +208,7 @@ class Buff(object):
         this.count_team_buff()
         return this
 
+
     def count_team_buff(this):
         if this.wide != 'team':
             return
