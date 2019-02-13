@@ -17,10 +17,9 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, sp
         `s2, sp
-        `s3, sp
-        `fs, seq=3 and cancel
+        `fs, seq=2 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=0, mass=0)
     exit()
 
     module().conf['mod_wp'] = [('fs','passive',0.3),('s','passive',0.15)]

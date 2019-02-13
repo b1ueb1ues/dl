@@ -23,7 +23,7 @@ class Addis(Adv):
    #     return 'use shapeshift bug'
 
     def getbleedpunisher(this):
-        if this.bleed._static.stacks > 0:
+        if this.bleed._static['stacks'] > 0:
             return 0.08
         return 0
 

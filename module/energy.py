@@ -42,7 +42,7 @@ class Energy():
             if this.energy >= 5 :
                 this.energy = 0
                 this.energized = 1
-                Event('energized').trigger()
+                this.energized_event()
 
 
 
@@ -80,6 +80,7 @@ class Energy():
 
         this.energy = 0
         this.energized = 0
+        this.energized_event = Event('energized')
 
         this.energy_buff = Buff('energy',-1,-1,'energy','energy')
 

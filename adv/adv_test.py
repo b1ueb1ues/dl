@@ -168,11 +168,13 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     if condition != '':
         test(classname, conf, verbose, mass, 1)
         g_condition = ''
-    else:
+    elif g_condition != '':
         return
 
     b = time.time()
     if loglevel > 0 and loglevel & 8:
+        print '-----------------------\nrun in %f'%(b-a)
+    elif loglevel < 0 and not loglevel-1 & 8:
         print '-----------------------\nrun in %f'%(b-a)
     return
 

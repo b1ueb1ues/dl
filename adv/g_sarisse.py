@@ -42,7 +42,7 @@ class G_Sarisse(adv.Adv):
 
     def s1_proc(this, e):
         buffcount = 0
-        for i in this.buffs._static.all_buffs:
+        for i in this.buffs._static['all_buffs']:
             if buffcount >= 7:
                 break
             if i.get():
