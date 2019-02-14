@@ -26,10 +26,10 @@ class H_Elisanne(Adv):
         if this.stance == 0:
             this.stance = 1
         elif this.stance == 1:
-            Event('s1bufflatency',this.s1latency).on(now()+2.5)
+            Timer(this.s1latency).on(2.5)
             this.stance = 2
         elif this.stance == 2:
-            Event('s1bufflatency',this.s1latency).on(now()+2.5)
+            Timer(this.s1latency).on(2.5)
             this.stance = 0
 
     def s2_proc(this, e):

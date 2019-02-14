@@ -20,7 +20,7 @@ if __name__ == '__main__':
         `s2
         `fs, seq=2 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=0, mass=0)
     exit()
 
     module().conf['mod_wp'] = [('fs','passive',0.3),('s','passive',0.15)]

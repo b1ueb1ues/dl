@@ -17,7 +17,7 @@ class Ieyasu(Adv):
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
-            if this.bleed._static.stacks > 0:
+            if this.bleed._static['stacks'] > 0:
                 return 0.15
         return 0
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
-        `s2, this.bleed._static.stacks > 0
+        `s2, this.bleed._static['stacks'] > 0
         `s3
         """
     adv_test.test(module(), conf, verbose=1, mass=1)
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     module().s1_proc = foo
     conf['acl'] = """
         `s1
-        `s2, this.bleed._static.stacks > 0
+        `s2, this.bleed._static['stacks'] > 0
         `s3
         """
     adv_test.test(module(), conf, verbose=1, mass=1)

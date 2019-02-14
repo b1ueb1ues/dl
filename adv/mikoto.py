@@ -27,7 +27,7 @@ class Mikoto(Adv):
         this.s1buff.off()
         this.dmg_make('s1',5.32*2)
         this.s1buff.set(0.10).on()
-        Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
+        Timer(this.s1latency).on(1.5/this.speed())
 
     def c_s1_proc(this, e):
         buff = this.s1buff.get()
@@ -40,12 +40,12 @@ class Mikoto(Adv):
         if stance == 0:
             this.dmg_make('s1',5.32*2)
             this.s1buff.set(0.10) #.on()
-            Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
+            Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 1:
             this.dmg_make('s1',3.54*3)
             this.s1buff.off()
             this.s1buff.set(0.15) #.on()
-            Event("s1bufflatency",this.s1latency).on(now()+1.5/this.speed())
+            Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 2:
             this.dmg_make('s1',2.13*4+4.25)
             this.s1buff.off().set(0)
@@ -61,7 +61,6 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel or fsc
         `s3, seq=5 and cancel or fsc
         """
-
 
     #conf['acl'] = """
     #    `s1

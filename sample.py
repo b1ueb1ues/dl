@@ -35,5 +35,5 @@ conf['acl'] = """
 
 Lily(conf).run()
 #logcat()
-sum_dmg()
+print sum_dmg()
 

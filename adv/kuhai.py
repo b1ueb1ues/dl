@@ -14,16 +14,17 @@ class Kuhai_alt(Adv):
         "fs_startup":33/60.0,
         "fs_recovery":33/60.0,
     }
-    def __init__(this):
-        Adv.__init__(this,{},Timeline())
-        #this.setconfig()
+    def __init__(this, ctx):
+        Adv.__init__(this)
+        ctx.on()
+        this.setconfig()
         e = Event("fs_alt")
-        this.a_x1fs.e_this = e
-        this.a_x2fs.e_this = e
-        this.a_x3fs.e_this = e
-        this.a_x4fs.e_this = e
-        this.a_x5fs.e_this = e
-        this.a_fs.e_this = e
+        this.a_x1fs.act_event = e
+        this.a_x2fs.act_event = e
+        this.a_x3fs.act_event = e
+        this.a_x4fs.act_event = e
+        this.a_x5fs.act_event = e
+        this.a_fs.act_event = e
 
 
 class Kuhai(Adv):
@@ -47,7 +48,7 @@ class Kuhai(Adv):
         this.fsaconf['fs_dmg'] = 0.83*3
 
     def init(this):
-        this.ka = Kuhai_alt()
+        this.ka = Kuhai_alt(this.ctx)
         this.setconfig()
         this.o_fs = this.fs
         this.fs = this.fs_alt

@@ -1,261 +1,199 @@
+from ctx import *
 
-
-
-__g_now = 0
-#__g_active_timeline = 0
 
 def now():
-    global __g_now
-    return __g_now
+    return _g_now
+
+
 def set_time(time):
-    global __g_now
-    __g_now = time
-    return 1
+    global _g_now
+    _g_now = time
 
 
-__g_event_listeners = {}
+def add_event_listener(eventname, listener): #listener should be a function
+    global _g_event_listeners
 
-def get_g_el():
-    global __g_event_listeners
-    return __g_event_listeners
-
-def save_event_listeners(el):
-    global __g_event_listeners
-    el.update(__g_event_listeners)
-    return __g_event_listeners
-
-def load_event_listeners(gel):
-    global __g_event_listeners
-    __g_event_listeners = gel
-
-
-def add_event_listener(eventname,listener): #listener should be a function
-    global __g_event_listeners
-
-    if eventname in __g_event_listeners:
-        __g_event_listeners[eventname].append(listener)
+    if eventname in _g_event_listeners:
+        _g_event_listeners[eventname].append(listener)
     else:
-        __g_event_listeners[eventname] = [listener]
+        _g_event_listeners[eventname] = [listener]
+
 
 def get_event_trigger(eventname, trigger = []): 
-    global __g_event_listeners
-    if eventname in __g_event_listeners:
-        return __g_event_listeners[eventname]
+    global _g_event_listeners
+    if eventname in _g_event_listeners:
+        return _g_event_listeners[eventname]
     else:
-        __g_event_listeners[eventname] = []
-        return __g_event_listeners[eventname]
-
-def clean_event_listener(): 
-    global __g_event_listeners
-    __g_event_listeners = {}
-
-
-class Static(object):
-    ___var___ = {}
-    def __init__(this, dic={}):
-        object.__setattr__(this, '___var___', dic)
-        var = object.__getattribute__(this, '___var___')
-        this["___var___"] = var
-
-
-
-    def __getattr__(this, n):
-        var = object.__getattribute__(this, '___var___')
-        return var[n]
-
-    def __getitem__(this, i):
-        var = object.__getattribute__(this, '___var___')
-        return var[i]
-
-    def __setitem__(this, i, v):
-        var = object.__getattribute__(this, '___var___')
-        var[i] = v
-
-    def __setattr__(this, n, v):
-        var = object.__getattribute__(this, '___var___')
-        var[n] = v
-
+        _g_event_listeners[eventname] = []
+        return _g_event_listeners[eventname]
 
 
 class Event(object):
+    def __init__(this, name=None):
+        if name :
+            this.name = name
+            this._trigger = get_event_trigger(name)
+        else:
+            this._trigger = []
 
-    def __init__(this, name, proc=None, timing=None, timeline=None):
-        this.name = name
 
+    def listener(this, cb, eventname = None):
+        if eventname:
+            if type(eventname) == list or type(eventname) == tuple:
+                for i in eventname:
+                    add_event_listener(i, cb)
+            else:
+                add_event_listener(eventname, cb)
+        else:
+            add_event_listener(this.name, cb)
+
+
+    def on(this, e):
+        for i in this._trigger:
+            i(this)
+
+    def __call__(this, expand=None):
+        this.on(this)
+
+    #__call__ = on
+
+#} class Event
+
+
+class Timer(object):
+    def __init__(this, proc=None, timeout=None, repeat=0, timeline=None):
         if proc:
             this.process = proc
         else:
             this.process = this._process
 
+        if timeout :
+            this.timeout = timeout
+        else:
+            this.timeout = 0
+
+        if repeat :
+            this.callback = this.callback_repeat
+        else:
+            this.callback = this.callback_once
+
         if timeline:
             this.timeline = timeline
         else:
-            this.timeline = Timeline()
+            this.timeline = _g_timeline
 
-        if timing :
-            this.timing = timing
-        else:
-            this.timing = now()
-
-        if name :
-            this._trigger = get_event_trigger(name)
-        else:
-            this._trigger = []
-
+        this.timing = 0
         this.online = 0
         #this.on()
 
-    def __str__(this):
-        return "%f: %s"%(this.timing,this.name)
 
-    def __repr__(this):
-        return "%f: %s"%(this.timing,this.name)
-    
+    def on(this, timeout = None):
+        if timeout:
+            this.timing = _g_now + timeout
+        else:
+            this.timing = _g_now + this.timeout
 
-
-    def disable(this):
-        if this.online:
-            this.online = 0
-            this.timeline.rm(this)
-        return this
-    #alias
-    off = disable
-
-    def status(this):
-        return this.online
-
-    def enable(this, timing = None):
-        if timing:
-            this.timing = timing
         if this.online == 0:
             this.online = 1
             this.timeline.add(this)
         return this
+
+
+    def off(this):
+        if this.online:
+            this.online = 0
+            this.timeline.rm(this)
+        return this
+
+
     #alias
-    on = enable
+    disable = off
+    enable = on
+    __call__ = on
 
 
-    def callback(this):
+    def status(this):
+        return this.online
+
+    def callback_repeat(this):
         this.process(this)
-        this.trigger()
-        if this.timing <= now():
+        if this.timing == _g_now :
+            this.timing += this.timeout
+
+    def callback_once(this):
+        this.process(this)
+        if this.timing <= _g_now:
             if this.online:
                 this.online = 0
                 this.timeline.rm(this)
 
-    def listener(this, cb,  eventname = None):
-        if eventname:
-            add_event_listener(eventname, cb)
-        else:
-            add_event_listener(this.name, cb)
-
-
-    def trigger(this, triggername = None):
-        if triggername:
-            trigger = get_event_trigger(triggername)
-        else:
-            trigger = this._trigger
-        for i in trigger:
-            i(this)
-
-
-    @staticmethod
-    def _process(e):
-        # sample plain _process
-        print '-- plain event ',e.name ,'@', e.timing
-        return 1
-
-
-class Repeat_event(Event):
-    def __init__(this, name, proc=None, interval=10, timing=None):
-        super(Repeat_event,this).__init__(name, proc, timing)
-        this.interval = interval
-
     def callback(this):
-        this.process(this)
-        if this.timing == now():
-            this.timing += this.interval
+        pass
+
+
+    def __str__(this):
+        return '%f: Timer:%s'%(this.timing,this.process)
+
+    def __repr__(this):
+        return '%f: Timer:%s'%(this.timing,this.process)
+
+    def _process(this):
+        # sample plain _process
+        print '-- plain timer ','@', t.timing
+        return 1
 
 
 
 class Timeline(object):
-    _active = [None]
-    #_now = 0
-    _listenerlist = []
-    _eventlist = []
-
-    @classmethod
-    def setup(cls):
-        cls.activeContext[0] = object.__new__(cls)
-
-    def set(this):
-        this._active[0] = this
-
-    def reset(this):
-        this._active[0] = None
-        set_time(0)
-        clean_event_listener()
-        return Timeline()
+    def __init__(this):
+        this._tlist = []
 
 
-    def __new__(cls):
-        if cls._active[0] == None :
-            cls._active[0] = object.__new__(cls)
-            cls._listenerlist = []
-            cls._eventlist = []
-        return cls._active[0]
+    def add(this, t):
+        this._tlist.append(t)
 
 
-    def __str__(this):
-        return "Timeline Eventlist: %s"%(str(this._eventlist))
-
-
-    def add(this, event):
-        this._eventlist.append(event)
-
-
-    def addlistener(this, listener):
-        this._listenerlist.append(listener)
-
-
-    def rm(this, event):
-        i = this._eventlist.index(event)
-        return this._eventlist.pop(i)
+    def rm(this, t):
+        i = this._tlist.index(t)
+        return this._tlist.pop(i)
 
 
     def process_head(this):
-        global __g_now
-        eventcount = len(this._eventlist)
-        if eventcount == 0:
+        global _g_now
+        tcount = len(this._tlist)
+        if tcount == 0:
             return -1
 
-        if eventcount == 1:
-            headtiming = this._eventlist[0].timing  
+        if tcount == 1:
+            headtiming = this._tlist[0].timing  
             headindex = 0                          
-        else: #if eventcount >= 2: 
-            headtiming = this._eventlist[0].timing  
+        else: #if tcount >= 2: 
+            headtiming = this._tlist[0].timing  
             headindex = 0                          
-            for i in range(1,eventcount):
-                timing = this._eventlist[i].timing
+            for i in range(1,tcount):
+                timing = this._tlist[i].timing
                 if timing < headtiming:
                     headtiming = timing
                     headindex = i
 
-        if headtiming >= now():
-            set_time(headtiming)
-            headevent = this._eventlist[headindex]
-            headevent.callback()
-            for i in this._listenerlist:
-                i(headevent)
+        if headtiming >= _g_now:
+            _g_now = headtiming
+            headt = this._tlist[headindex]
+            headt.callback()
         else:
-            print "timeline time err"
+            print 'timeline time err'
             exit()
         return 0
     
-    def run(this, last = 100):
-        last += now()
+    @classmethod
+    def run(cls, last = 100):
+        global _g_timeline
+        return _g_timeline._run(last)
+
+    def _run(this, last = 100):
+        last += _g_now
         while 1:
-            if now() > last:
+            if _g_now > last:
                 return
 
             r = this.process_head()
@@ -263,32 +201,54 @@ class Timeline(object):
                 return
 
 
+    def __str__(this):
+        return 'Timeline tlist: %s'%(str(this._tlist))
+
+#} class Timeline
+
+
+Ctx().on()
+Ctx.register(globals(),{
+    '_g_now'             : 0 ,
+    '_g_timeline'        : Timeline() ,
+    '_g_event_listeners' : {} ,
+    })
+
+
+
+
 def main():
+    class A():
+        name = 'b'
+        def a3(this):
+            print '-3',this.name
+    a = A()
 
-    def a1(e):
-        print '-1',e.name, e.timing
-        e.trigger('e3')
-    def a2(e):
-        print '-2',e.name, e.timing
+    def a1():
+        print '-1', now()
+    def a2():
+        e = Event('e3')
+        e.test = 1
+        e()
+        print '-2', now()
+ 
+    def lis(e):
+        print 'listener1'
+    def lis2(e):
+        print 'listener2'
+    def lis3(e):
+        print 'listener3'
 
-    def lis():
-        print "listener1"
-    def lis2():
-        print "listener2"
-    def lis3():
-        print "listener3"
+    e1 = Timer(a1,1).on()
 
-    e1 = Event("e1",a1,1)
+    Event('e3').listener(lis3)
+    Event('e2').listener(lis)
+    Event('e2').listener(lis2)
 
-    add_event_listener("e3",lis3)
+    e2 = Timer(a2,2).on()
+    e3 = Timer(a.a3,3).on()
 
-
-    add_event_listener("e2",lis)
-    add_event_listener("e2",lis2)
-
-    e2 = Event("e2",a2,2)
-
-    Timeline().run()
+    _g_timeline.run()
 
 
 
