@@ -41,15 +41,6 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     a = time.time()
     mname = classname.__name__
     adv = classname(conf=conf)
-    base_str = adv.conf['base_str']
-    if type(adv.conf['mod_d']) == list:
-        for i in adv.conf['mod_d']:
-            if i[0] == 'att':
-                d_aura = i[2]
-    else:
-        if adv.conf['mod_d'][0] == 'att':
-            d_aura = adv.conf['mod_d'][2]
-    displayed_str = int(base_str * (1+d_aura))
     if not no_cond:
         condition = adv.condition()
     else:
@@ -60,6 +51,16 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     comment = adv.comment
 
     adv.run(sim_duration)
+
+    base_str = adv.conf['base_str']
+    if type(adv.conf['mod_d']) == list:
+        for i in adv.conf['mod_d']:
+            if i[0] == 'att':
+                d_aura = i[2]
+    else:
+        if adv.conf['mod_d'][0] == 'att':
+            d_aura = adv.conf['mod_d'][2]
+    displayed_str = int(base_str * (1+d_aura))
     
 
     if loglevel > 0 and loglevel & 1:

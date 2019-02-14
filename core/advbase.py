@@ -7,23 +7,20 @@ import random
 
 
 class Modifier(object):
-    _static = {}
-    _static['all_modifiers'] = []
-    mod_name = "<nop>"
-    mod_type = "_nop" or "att" or "x" or "fs" or "s" #....
-    mod_order = "_nop" or "passive" or "ex" or "buff" # chance dmg for crit 
+    _static = Static({
+        'all_modifiers': [],
+        })
+    mod_name = '<nop>'
+    mod_type = '_nop' or 'att' or 'x' or 'fs' or 's' #....
+    mod_order = '_nop' or 'passive' or 'ex' or 'buff' # chance dmg for crit 
     mod_value = 0
     def __init__(this, name, mtype, order, value):
         this.mod_name = name
         this.mod_type = mtype
         this.mod_order = order
         this.mod_value = value
-        this._static['all_modifiers'].append(this)
+        this._static.all_modifiers.append(this)
         this.__active = 1
-
-    def reset(this):
-        this._static['all_modifiers'] = []
-        return this
 
 
     def get(this):
@@ -35,7 +32,7 @@ class Modifier(object):
             return this
         if modifier == None:
             modifier = this
-        this._static['all_modifiers'].append(modifier)
+        this._static.all_modifiers.append(modifier)
         this.__active = 1
         return this
 
@@ -46,19 +43,19 @@ class Modifier(object):
         this.__active = 0
         if modifier==None:
             modifier = this
-        idx = len(this._static['all_modifiers'])
+        idx = len(this._static.all_modifiers)
         while 1:
             idx -= 1
             if idx < 0:
                 break
-            if this._static['all_modifiers'][idx] == modifier:
-                this._static['all_modifiers'].pop(idx)
+            if this._static.all_modifiers[idx] == modifier:
+                this._static.all_modifiers.pop(idx)
                 break
         return this
 
 
     def __repr__(this):
-        return "<%s %s %s %s>"%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
+        return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
 
 
 class Dot(object):
@@ -68,7 +65,7 @@ class Dot(object):
         this.dmg = dmg
         this.iv = iv
         this.duration = duration
-        this.dmg_event = Event("dmg")
+        this.dmg_event = Event('dmg')
         this.tick_timer = Timer(this.tick_proc)
         this.dotend_timer = Timer(this.dot_end_proc)
 
@@ -92,26 +89,27 @@ class Dot(object):
 
 
 class Buff(object):
-    _static = {}
-    _static['all_buffs'] = []
+    _static = Static({
+        'all_buffs': [],
+        })
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='team'):  
         this.name = name   
         this.__value = value
         this.duration = duration
-        this.mod_type = mtype or "att" or "x" or "fs" or "s" #....
+        this.mod_type = mtype or 'att' or 'x' or 'fs' or 's' #....
         if morder ==None:
             if this.mod_type == 'crit':
                 this.mod_order = 'chance'
             else:
                 this.mod_order = 'buff'
         else:
-            this.mod_order = morder or "<null>" or "passive" or "ex" or "buff" or "punisher" #...
+            this.mod_order = morder or '<null>' or 'passive' or 'ex' or 'buff' or 'punisher' #...
         this.wide = wide
 
         this.buff_end_timer = Timer(this.buff_end_proc)
-        this.modifier = Modifier("mod_"+this.name, this.mod_type, this.mod_order, 0)
+        this.modifier = Modifier('mod_'+this.name, this.mod_type, this.mod_order, 0)
         this.modifier.get = this.get
-        this.dmg_test_event = Event("dmg_formula")
+        this.dmg_test_event = Event('dmg_formula')
         this.dmg_test_event.dmg_p = 1
         this.dmg_test_event.dname = 'test'
 
@@ -119,10 +117,6 @@ class Buff(object):
         this.__active = 0
         #this.on()
 
-
-    def reset(this):
-        this._static['all_buffs'] = []
-        return this
 
     def value(this, newvalue=None):
         if newvalue:
@@ -143,26 +137,26 @@ class Buff(object):
         return this
 
     def buff_end_proc(this, e):
-        log("buff", this.name, "%s: %.2f"%(this.mod_type, this.value()), this.name+" buff end <timeout>")
+        log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff end <timeout>')
         this.__active = 0
 
         if this.__stored:
-            idx = len(this._static['all_buffs'])
+            idx = len(this._static.all_buffs)
             while 1:
                 idx -= 1
                 if idx < 0:
                     break
-                if this == this._static['all_buffs'][idx]:
-                    this._static['all_buffs'].pop(idx)
+                if this == this._static.all_buffs[idx]:
+                    this._static.all_buffs.pop(idx)
                     break
             this.__stored = 0
         stack = 0
-        for i in this._static['all_buffs']:
+        for i in this._static.all_buffs:
             if i.name == this.name:
                 if i.__active != 0:
                     stack += 1
         if stack > 0:
-            log("buff", this.name, "%s: %.2f"%(this.mod_type, this.__value*stack), this.name+" buff stack <%d>"%stack)
+            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.__value*stack), this.name+' buff stack <%d>'%stack)
         this.modifier.off()
         this.count_team_buff()
 
@@ -175,23 +169,23 @@ class Buff(object):
         if this.__active == 0:
             this.__active = 1
             if this.__stored == 0:
-                this._static['all_buffs'].append(this)
+                this._static.all_buffs.append(this)
                 this.__stored = 1
             if d >= 0:
                 this.buff_end_timer.on(d)
-            log("buff", this.name, "%s: %.2f"%(this.mod_type, this.value()), this.name+" buff start <%ds>"%d)
+            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff start <%ds>'%d)
         else:
             if d >= 0:
                 this.buff_end_timer.on(d)
-            log("buff", this.name, "%s: %.2f"%(this.mod_type, this.value()), this.name+" buff refresh <%ds>"%d)
+            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff refresh <%ds>'%d)
 
         stack = 0
-        for i in this._static['all_buffs']:
+        for i in this._static.all_buffs:
             if i.name == this.name:
                 if i.__active != 0:
                     stack += 1
         if stack > 1:
-            log("buff", this.name, "%s: %.2f"%(this.mod_type, this.value()*stack), this.name+" buff stack <%d>"%stack)
+            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()*stack), this.name+' buff stack <%d>'%stack)
 
         this.modifier.on()
         this.count_team_buff()
@@ -201,7 +195,7 @@ class Buff(object):
     def off(this):
         if this.__active == 0:
             return 
-        log("buff", this.name, "%s: %.2f"%(this.mod_type, this.value()), this.name+" buff end <turn off>")
+        log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff end <turn off>')
         this.__active = 0
         this.modifier.off()
         this.buff_end_timer.off()
@@ -216,7 +210,7 @@ class Buff(object):
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
         modifiers = []
-        for i in this._static['all_buffs']:
+        for i in this._static.all_buffs:
             if i.wide == 'team':
                 modifiers.append(i.modifier)
         this.dmg_test_event.modifiers = modifiers
@@ -227,14 +221,15 @@ class Buff(object):
 
 
 class Skill(object):
-    _static = {}
-    _static['s_prev'] = "<nop>"
-    _static['first_x_after_s'] = 0
+    _static = Static({
+        's_prev'          : '<nop>' ,
+        'first_x_after_s' : 0       ,
+        'silence'         : 0       ,
+        })
     charged = 0
     sp = 0
     silence_duration = 1.9
-    silence = [0]
-    name = "_Skill"
+    name = '_Skill'
     def __init__(this, name=None, sp=None, ac=None):
         this.charged = 0
         if name:
@@ -243,20 +238,15 @@ class Skill(object):
             this.ac = ac
         if sp:
             this.sp = sp
-        this.silence[0] = 0
+        this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
-        this.silence_end_event = Event("silence_end")
-        this.cast_event = Event(this.name+"_cast")
+        this.silence_end_event = Event('silence_end')
+        this.cast_event = Event(this.name+'_cast')
         this.init()
 
     def __call__(this):
         return this.cast()
 
-    def reset(this):
-        this._static['s_prev'] = "<nop>"
-        this._static['first_x_after_s'] = 0
-        this.silence = [0]
-        return this
 
     def init(this):
         pass
@@ -269,15 +259,15 @@ class Skill(object):
 
     def cb_silence_end(this, e):
         if loglevel >= 2:
-            log("silence","end")
-        this.silence[0] = 0
+            log('silence','end')
+        this._static.silence = 0
         this.silence_end_event()
 
 
     def check(this):
         if this.sp == 0:
             return 0
-        elif this.silence[0] == 1:
+        elif this._static.silence == 1:
             return 0
         elif this.charged >= this.sp:
             return 1
@@ -291,12 +281,12 @@ class Skill(object):
             if not this.ac() :
                 return 0
             this.charged = 0
-            this._static['s_prev'] = this.name
+            this._static.s_prev = this.name
             # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
             this.silence_end_timer.on(this.silence_duration)
-            this.silence[0] = 1
+            this._static.silence = 1
             if loglevel >= 2:
-                log("silence","start")
+                log('silence','start')
             return 1
 
     def ac(this):
@@ -305,12 +295,13 @@ class Skill(object):
 
 
 class Action(object):   
-    _static = {}
-    _static['prev'] = 0
-    _static['doing'] = 0
-    _static['spd_func'] = 0
+    _static = Static({
+        'prev'     : 0 ,
+        'doing'    : 0 ,
+        'spd_func' : 0 ,
+        })
 
-    name = "_Action"
+    name = '_Action'
     index = 0
     recover_start = 0
     startup_start = 0
@@ -320,7 +311,7 @@ class Action(object):
     idle = 0
 
     class Nop(object):
-        name = "__idle__"
+        name = '__idle__'
         index = 0
         status = -2
         idle = 1
@@ -337,44 +328,39 @@ class Action(object):
                 this.index = 0
         if conf != None:
             this.conf = conf
-            this._startup = conf[this.name+"_startup"]
-            this._recovery = conf[this.name+"_recovery"]
+            this._startup = conf[this.name+'_startup']
+            this._recovery = conf[this.name+'_recovery']
             
         if act != None:
             this.act = act
 
-        if this._static["spd_func"] == 0:
-            this._static["spd_func"] = this.nospeed
-        if this._static["doing"] == 0:
-            this._static["doing"] = this.nop
-        if this._static["prev"] == 0:
-            this._static["prev"] = this.nop
+        if this._static.spd_func == 0:
+            this._static.spd_func = this.nospeed
+        if this._static.doing == 0:
+            this._static.doing = this.nop
+        if this._static.prev == 0:
+            this._static.prev = this.nop
 
         this.cancel_by = []
         this.interrupt_by = []
 
         this.startup_timer = Timer(this._cb_acting)
         this.recovery_timer = Timer(this._cb_act_end)
-        this.idle_event = Event("idle")
+        this.idle_event = Event('idle')
         this.act_event = Event(this.name)
 
-    def reset(this):
-        this._static['prev'] = 0
-        this._static['doing'] = 0
-        this._static['spd_func'] = 0
-        return this
 
     def __call__(this):
         return this.tap()
     
     def getdoing(this):
-        return this._static['doing']
+        return this._static.doing
     def _setdoing(this):
-        this._static["doing"] = this
+        this._static.doing = this
     def getprev(this):
-        return this._static['prev']
+        return this._static.prev
     def _setprev(this):
-        this._static['prev'] = this._static['doing']
+        this._static.prev = this._static.doing
 
     def getrecovery(this):
         return this._recovery / this.speed()
@@ -386,7 +372,7 @@ class Action(object):
         return 1
 
     def speed(this):
-        return this._static['spd_func']()
+        return this._static.spd_func()
 
     def _cb_acting(this, e):
         if this.getdoing() == this:
@@ -400,16 +386,16 @@ class Action(object):
     def _cb_act_end(this, e):
         if this.getdoing() == this:
             if loglevel >= 2:
-                log("ac_end",this.name)
+                log('ac_end',this.name)
             this.status = -2
             this._setprev() # turn this from doing to prev
-            this._static['doing'] = this.nop
+            this._static.doing = this.nop
             this.idle_event()
 
 
     def act(this):
         if loglevel >= 2:
-            log("act",this.name)
+            log('act',this.name)
         this.act_event()
 
 
@@ -418,10 +404,10 @@ class Action(object):
 
         if doing.idle :
             if loglevel >= 2:
-                log("tap",this.name, None, 'idle')
+                log('tap',this.name, None, 'idle')
         else:
             if loglevel >= 2:
-                log("tap",this.name, None, 'doing '+doing.name)
+                log('tap',this.name, None, 'doing '+doing.name)
 
         if doing == this : # self is doing
             return 0
@@ -431,16 +417,16 @@ class Action(object):
         if not doing.idle : # doing != this
             if doing.status == -1: # try to interrupt an action
                 if this.name in doing.interrupt_by : # can interrupt action
-                    log("interrupt", doing.name , "by "+this.name+"\t", "after %.2fs"%(now()-doing.startup_start) )
+                    log('interrupt', doing.name , 'by '+this.name+'\t', 'after %.2fs'%(now()-doing.startup_start) )
                 else:
                     return 0
             elif doing.status == 1: # try to cancel an action
                 if this.name in doing.cancel_by : # can interrupt action
-                    log("cancel", doing.name , "by "+this.name+"\t", "after %.2fs"%(now()-doing.recover_start) )
+                    log('cancel', doing.name , 'by '+this.name+'\t', 'after %.2fs'%(now()-doing.recover_start) )
                 else:
                     return 0
             elif doing.status == 0:
-                print "err in action tap()"
+                print 'err in action tap()'
                 exit()
             this._setprev()
         this.status = -1
@@ -477,39 +463,39 @@ class Adv(object):
     conf = {}
 
     conf_default = { 
-        "latency" : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
-        "latency" : {'x':0.00, 'sp':0.00, 'default':0.00, 'idle':0},
+        'latency' : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
+        'latency' : {'x':0.00, 'sp':0.00, 'default':0.00, 'idle':0},
 
-        "s1_dmg"      : 0   ,
-        "s1_sp"       : 0   ,
-        "s1_startup"  : 0.1 ,
-        "s1_recovery" : 1.9 ,
+        's1_dmg'      : 0   ,
+        's1_sp'       : 0   ,
+        's1_startup'  : 0.1 ,
+        's1_recovery' : 1.9 ,
 
-        "s2_dmg"      : 0   ,
-        "s2_sp"       : 0   ,
-        "s2_startup"  : 0.1 ,
-        "s2_recovery" : 1.9 ,
+        's2_dmg'      : 0   ,
+        's2_sp'       : 0   ,
+        's2_startup'  : 0.1 ,
+        's2_recovery' : 1.9 ,
 
-        "s3_dmg"      : 0   ,
-        "s3_sp"       : 0   ,
-        "s3_startup"  : 0.1 ,
-        "s3_recovery" : 1.9 ,
+        's3_dmg'      : 0   ,
+        's3_sp'       : 0   ,
+        's3_startup'  : 0.1 ,
+        's3_recovery' : 1.9 ,
 
-        "dodge_startup"  : 0  ,
-        "dodge_recovery" : 43 / 60.0  ,
+        'dodge_startup'  : 0  ,
+        'dodge_recovery' : 43 / 60.0  ,
 
-        "fsf_startup"  : 0          ,
-        "fsf_recovery" : 41 / 60.0  ,
+        'fsf_startup'  : 0          ,
+        'fsf_recovery' : 41 / 60.0  ,
 
         }
 
-    conf_default['acl'] = """
+    conf_default['acl'] = '''
         `s1
         `s2
         `s3
-    """
+    '''
 
-    acl_prepare_default = """
+    acl_prepare_default = '''
         #pin=e.pin
         #dname=e.dname
         #dstat=e.dstat
@@ -544,7 +530,7 @@ class Adv(object):
         #fs=this.fs
         #fsf=this.fsf
         #dodge=this.dodge
-    """
+    '''
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    exit()
 
     def setconfig(this,conf={}):
@@ -566,29 +552,28 @@ class Adv(object):
 
         # set buff
         this.action = Action()
-        this.action.reset()
-        this.action._static['spd_func'] = this.speed
+        this.action._static.spd_func = this.speed
         # set buff
         this.buff = Buff()
         this.all_buffs = []
-        this.buff._static['all_buffs'] = this.all_buffs
+        this.buff._static.all_buffs = this.all_buffs
         # set modifier
         this.modifier = Modifier(0,0,0,0)
         this.all_modifiers = []
-        this.modifier._static['all_modifiers'] = this.all_modifiers
+        this.modifier._static.all_modifiers = this.all_modifiers
 
         # init actions
-        this.a_s1 = Action(("s1",1),this.conf)
-        this.a_s2 = Action(("s2",2),this.conf)
-        this.a_s3 = Action(("s3",3),this.conf)
-        this.a_x1 = Action(("x1",1),this.conf)
-        this.a_x2 = Action(("x2",2),this.conf)
-        this.a_x3 = Action(("x3",3),this.conf)
-        this.a_x4 = Action(("x4",4),this.conf)
-        this.a_x5 = Action(("x5",5),this.conf)
+        this.a_s1 = Action(('s1',1),this.conf)
+        this.a_s2 = Action(('s2',2),this.conf)
+        this.a_s3 = Action(('s3',3),this.conf)
+        this.a_x1 = Action(('x1',1),this.conf)
+        this.a_x2 = Action(('x2',2),this.conf)
+        this.a_x3 = Action(('x3',3),this.conf)
+        this.a_x4 = Action(('x4',4),this.conf)
+        this.a_x5 = Action(('x5',5),this.conf)
 
         this.a_dodge = Action('dodge', this.conf)
-        this.a_fsf = Action("fsf", this.conf)
+        this.a_fsf = Action('fsf', this.conf)
 
 
         fsconf = {}
@@ -600,7 +585,7 @@ class Adv(object):
             if i[2:5] == 'fs_':
                 xnfsconf[i] = this.conf[i]
                 xn[i[:4]] = 1
-        this.a_fs = Action("fs",fsconf)
+        this.a_fs = Action('fs',fsconf)
 
         for i in ['x1fs','x2fs','x3fs','x4fs','x5fs']:
             tmpconf = {}
@@ -608,46 +593,46 @@ class Adv(object):
                 if j[:4] == i:
                     tmpconf[j[2:]] = xnfsconf[j]
             if tmpconf == {}:
-                setattr(this, "a_"+i,  this.a_fs )
+                setattr(this, 'a_'+i,  this.a_fs )
             else:
                 for j in fsconf:
                     if j not in tmpconf:
                         tmpconf[j] = fsconf[j]
-                setattr(this, "a_"+i,  Action('fs' ,tmpconf) )
+                setattr(this, 'a_'+i,  Action('fs' ,tmpconf) )
 
-        this.a_x1.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
-        this.a_x2.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
-        this.a_x3.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
-        this.a_x4.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
-        this.a_x5.cancel_by = ["dodge","fs","fsf","s1","s2","s3"]
-        this.a_fs.cancel_by = ["dodge","s1","fsf","s2","s3"]
-        this.a_x1fs.cancel_by = ["dodge","s1","s2","s3"]
-        this.a_x2fs.cancel_by = ["dodge","s1","s2","s3"]
-        this.a_x3fs.cancel_by = ["dodge","s1","s2","s3"]
-        this.a_x4fs.cancel_by = ["dodge","s1","s2","s3"]
-        this.a_x5fs.cancel_by = ["dodge","s1","s2","s3"]
+        this.a_x1.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
+        this.a_x2.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
+        this.a_x3.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
+        this.a_x4.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
+        this.a_x5.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
+        this.a_fs.cancel_by = ['dodge','s1','fsf','s2','s3']
+        this.a_x1fs.cancel_by = ['dodge','s1','s2','s3']
+        this.a_x2fs.cancel_by = ['dodge','s1','s2','s3']
+        this.a_x3fs.cancel_by = ['dodge','s1','s2','s3']
+        this.a_x4fs.cancel_by = ['dodge','s1','s2','s3']
+        this.a_x5fs.cancel_by = ['dodge','s1','s2','s3']
 
-        this.a_x1.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
-        this.a_x2.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
-        this.a_x3.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
-        this.a_x4.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
-        this.a_x5.interrupt_by = ["dodge", "fs","fsf","s1","s2","s3"]
-        this.a_fs.interrupt_by = ["s1","s2","s3"]
-        this.a_x1fs.interrupt_by = ["s1","s2","s3"]
-        this.a_x2fs.interrupt_by = ["s1","s2","s3"]
-        this.a_x3fs.interrupt_by = ["s1","s2","s3"]
-        this.a_x4fs.interrupt_by = ["s1","s2","s3"]
-        this.a_x5fs.interrupt_by = ["s1","s2","s3"]
+        this.a_x1.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
+        this.a_x2.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
+        this.a_x3.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
+        this.a_x4.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
+        this.a_x5.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
+        this.a_fs.interrupt_by = ['s1','s2','s3']
+        this.a_x1fs.interrupt_by = ['s1','s2','s3']
+        this.a_x2fs.interrupt_by = ['s1','s2','s3']
+        this.a_x3fs.interrupt_by = ['s1','s2','s3']
+        this.a_x4fs.interrupt_by = ['s1','s2','s3']
+        this.a_x5fs.interrupt_by = ['s1','s2','s3']
 
-        this.s1 = Skill("s1",this.conf["s1_sp"],this.a_s1.tap)
-        this.s2 = Skill("s2",this.conf["s2_sp"],this.a_s2.tap)
-        this.s3 = Skill("s3",this.conf["s3_sp"],this.a_s3.tap)
+        this.s1 = Skill('s1',this.conf['s1_sp'],this.a_s1.tap)
+        this.s2 = Skill('s2',this.conf['s2_sp'],this.a_s2.tap)
+        this.s3 = Skill('s3',this.conf['s3_sp'],this.a_s3.tap)
 
-        if this.conf['x_type']== "ranged":
+        if this.conf['x_type']== 'ranged':
             this.l_x = this.l_range_x
             this.l_fs = this.l_range_fs
             #this.fs_success = this.range_fs_sucess
-        elif this.conf['x_type']== "melee":
+        elif this.conf['x_type']== 'melee':
             this.l_x = this.l_melee_x
             this.l_fs = this.l_melee_fs
             #this.fs_success = this.melee_fs_success
@@ -670,7 +655,7 @@ class Adv(object):
                 elif type(j) == list:
                     idx = 0
                     for k in j:
-                        Modifier(i+"_%d"%idx,k[0],k[1],k[2])
+                        Modifier(i+'_%d'%idx,k[0],k[1],k[2])
                         idx += 1
 
         this._acl, this._acl_str = acl.acl_func_str(
@@ -680,6 +665,7 @@ class Adv(object):
 
 
     def __init__(this,conf={}):
+        this.conf_init = conf
         this.ctx = Ctx().on()
         this.log = []
         loginit(this.log)
@@ -731,34 +717,34 @@ class Adv(object):
         pass
 
     def solid_crit_mod(this):
-        m = {"chance":0, "dmg":0, "damage":0, "passive":0, "rate":0,}
+        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
         for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
                 else:
-                    print "err in crit_mod"
+                    print 'err in crit_mod'
                     exit()
         chance = m['chance']+m['passive']+m['rate']
         if chance > 1:
             chance = 1
-        cdmg = m['dmg'] + m["damage"] + 1.7
+        cdmg = m['dmg'] + m['damage'] + 1.7
         average = chance * (cdmg-1) + 1
         return average
     
     def rand_crit_mod(this):
-        m = {"chance":0, "dmg":0, "damage":0, "passive":0}
+        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0}
         for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
                 else:
-                    print "err in crit_mod"
+                    print 'err in crit_mod'
                     exit()
         chance = m['chance']+m['passive']
         if chance > 1:
             chance = 1
-        cdmg = m['dmg'] + m["damage"] + 1.7
+        cdmg = m['dmg'] + m['damage'] + 1.7
         r = random.random()
         if r < chance:
             return cdmg
@@ -783,14 +769,14 @@ class Adv(object):
 
 
     def l_idle(this, e):
-        this.think_pin("idle")
+        this.think_pin('idle')
         prev = this.action.getprev()
         if prev.name[0] == 's':
             this.think_pin(prev.name)
-        if this.skill._static['first_x_after_s'] :
-            this.skill._static['first_x_after_s'] = 0
-            s_prev = this.skill._static['s_prev']
-            this.think_pin("%s-x"%s_prev)
+        if this.skill._static.first_x_after_s :
+            this.skill._static.first_x_after_s = 0
+            s_prev = this.skill._static.s_prev
+            this.think_pin('%s-x'%s_prev)
         this.x()
 
 
@@ -821,18 +807,18 @@ class Adv(object):
             if prev.index != 5:
                 x_next = prev.index + 1
 
-        a = getattr(this, "x%d"%x_next)()
+        a = getattr(this, 'x%d'%x_next)()
         return 1
     
 
     def l_range_x(this, e):
         xseq = e.name
-        dmg_p = this.conf["%s_dmg"%xseq]
-        sp_gain = this.conf["%s_sp"%xseq] 
+        dmg_p = this.conf['%s_dmg'%xseq]
+        sp_gain = this.conf['%s_sp'%xseq] 
         if xseq == 'x5':
-            log("x", "%s"%xseq, 0,"-------------------------------------c5")
+            log('x', '%s'%xseq, 0,'-------------------------------------c5')
         else:
-            log("x", "%s"%xseq, 0)
+            log('x', '%s'%xseq, 0)
 
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv'][xseq] )
         missile_timer.dname = '%s_missile'%xseq
@@ -840,7 +826,7 @@ class Adv(object):
         missile_timer.samount = sp_gain
         missile_timer()
 
-        this.think_pin("x")
+        this.think_pin('x')
 
     def cb_missile(this, t):
         this.dmg_make(t.dname, t.amount)
@@ -849,20 +835,21 @@ class Adv(object):
     
     def l_melee_x(this, e):
         xseq = e.name
-        dmg_p = this.conf["%s_dmg"%xseq]
-        sp = this.conf["%s_sp"%xseq] 
+        dmg_p = this.conf['%s_dmg'%xseq]
+        sp = this.conf['%s_sp'%xseq] 
         if xseq == 'x5':
-            log("x", "%s"%xseq, 0,"-------------------------------------c5")
+            log('x', '%s'%xseq, 0,'-------------------------------------c5')
         else:
-            log("x", "%s"%xseq, 0)
-        this.dmg_make("%s"%xseq, dmg_p)
-        this.think_pin("x")
-        this.charge("%s"%xseq, sp)
+            log('x', '%s'%xseq, 0)
+        this.dmg_make('%s'%xseq, dmg_p)
+        this.think_pin('x')
+        this.charge('%s'%xseq, sp)
 
 
     def run(this, d = 300):
         this.ctx.on()
 
+        this.setconfig()
 
         e = Event()
         e.listener(this.l_idle        , 'idle')
@@ -874,21 +861,20 @@ class Adv(object):
         e.listener(this.l_true_dmg    , 'true_dmg')
         e.listener(this.l_dmg_formula , 'dmg_formula')
 
-        this.setconfig()
-
         this.init()
 
         this.ctx.on()
 
-        Event("idle")()
+        Event('idle')()
         #Timer(this.l_idle).on(0)
-        this.ctx._timeline.run(d)
+        Timeline.run(d)
+        #this.ctx._g_timeline.run(d)
 
 
     def think_pin(this, pin):
         def cb_think(t):
             if loglevel >= 2:
-                log("think", t.pin, t.dname)
+                log('think', t.pin, t.dname)
             this._acl(this, t)
 
         if pin in this.conf['latency'] :
@@ -906,9 +892,9 @@ class Adv(object):
 
     def l_silence_end(this, e):
         doing = this.action.getdoing()
-        sname = this.skill._static['s_prev']
+        sname = this.skill._static.s_prev
         if doing.name[0] == 'x':
-            this.skill._static['first_x_after_s'] = 1
+            this.skill._static.first_x_after_s = 1
         else:
             this.think_pin(sname+'-x')  # best choice
         this.think_pin(sname)
@@ -922,16 +908,16 @@ class Adv(object):
             this.s1.charge(this.conf['s1_sp']*percent/100)
             this.s2.charge(this.conf['s2_sp']*percent/100)
             this.s3.charge(this.conf['s3_sp']*percent/100)
-            log("sp", name, "%d%%   "%percent,"%d/%d, %d/%d, %d/%d"%(\
+            log('sp', name, '%d%%   '%percent,'%d/%d, %d/%d, %d/%d'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
-            this.think_pin("prep")
+            this.think_pin('prep')
             return
         sp = sp * this.sp_mod(name)
         this.s1.charge(sp)
         this.s2.charge(sp)
         this.s3.charge(sp)
-        this.think_pin("sp")
-        log("sp", name, sp,"%d/%d, %d/%d, %d/%d"%(\
+        this.think_pin('sp')
+        log('sp', name, sp,'%d/%d, %d/%d, %d/%d'%(\
             this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
 
     def l_dmg_formula(this, e):
@@ -943,7 +929,7 @@ class Adv(object):
             if e.modifiers!=None and e.modifiers != 0:
                 this.all_modifiers = e.modifiers
         e.dmg = this.dmg_formula(name, dmg_p)
-        this.all_modifiers = this.modifier._static['all_modifiers']
+        this.all_modifiers = this.modifier._static.all_modifiers
         e.ret = e.dmg
         return
 
@@ -954,7 +940,7 @@ class Adv(object):
         #return att/armor * dmg_p * this.dmg_mod(name)
 
     def l_true_dmg(this, e):
-        log("dmg", e.dname, e.count, e.comment)
+        log('dmg', e.dname, e.count, e.comment)
 
     def l_dmg_make(this, e):
         dmg_make(e.dname, e.dmg_p)
@@ -965,62 +951,62 @@ class Adv(object):
 
         count = this.dmg_formula(dtype, dmg_p)
         
-        if name[0] == "x":
-            spgain = this.conf[name[:2]+"_sp"]
-            log("dmg", name, count, "%d/%d, %d/%d, %d/%d (+%d)"%(\
+        if name[0] == 'x':
+            spgain = this.conf[name[:2]+'_sp']
+            log('dmg', name, count, '%d/%d, %d/%d, %d/%d (+%d)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
-        elif name[:2] == "fs":
-            spgain = this.conf['fs'+"_sp"]
-            log("dmg", name, count, "%d/%d, %d/%d, %d/%d (+%d)"%(\
+        elif name[:2] == 'fs':
+            spgain = this.conf['fs'+'_sp']
+            log('dmg', name, count, '%d/%d, %d/%d, %d/%d (+%d)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
         else:
             spgain = 0
-            if name[:2]+"_sp" in this.conf:
-                spgain = this.conf[name[:2]+"_sp"]
-            log("dmg", name, count, "%d/%d, %d/%d, %d/%d (-%d)"%(\
+            if name[:2]+'_sp' in this.conf:
+                spgain = this.conf[name[:2]+'_sp']
+            log('dmg', name, count, '%d/%d, %d/%d, %d/%d (-%d)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, spgain) )
 
         this.dmg_proc(name, count)
 
 
     def l_melee_fs(this, e):
-        log("fs","succ")
-        dmg_p = this.conf["fs_dmg"]
-        this.dmg_make("fs", dmg_p)
+        log('fs','succ')
+        dmg_p = this.conf['fs_dmg']
+        this.dmg_make('fs', dmg_p)
         this.fs_proc(e)
-        this.think_pin("fs")
-        this.charge("fs",this.conf["fs_sp"])
+        this.think_pin('fs')
+        this.charge('fs',this.conf['fs_sp'])
 
     def l_range_fs(this, e):
-        log("fs","succ")
-        dmg_p = this.conf["fs_dmg"]
-        sp_gain = this.conf["fs_sp"]
+        log('fs','succ')
+        dmg_p = this.conf['fs_dmg']
+        sp_gain = this.conf['fs_sp']
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv']['fs'] )
         missile_timer.dname = 'fs_missile'
         missile_timer.amount = dmg_p
         missile_timer.samount = sp_gain
         missile_timer()
         this.fs_proc(e)
-        this.think_pin("fs")
+        this.think_pin('fs')
 
 
     def l_s(this, e):
         prev, index, stat = this.getprev()
         if prev == 'fs':
-            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after fs)"%(\
+            log('cast', e.name, 0,'<cast> %d/%d, %d/%d, %d/%d (%s after fs)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name) )
         elif prev[0] == 'x':
-            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after c%s)"%(\
+            log('cast', e.name, 0,'<cast> %d/%d, %d/%d, %d/%d (%s after c%s)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, index ) )
         else:
-            log("cast", e.name, 0,"<cast> %d/%d, %d/%d, %d/%d (%s after %s)"%(\
+            log('cast', e.name, 0,'<cast> %d/%d, %d/%d, %d/%d (%s after %s)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, prev ) )
 
-        dmg_p = this.conf[e.name+"_dmg"]
+        dmg_p = this.conf[e.name+'_dmg']
         if dmg_p :
             this.dmg_make(e.name , dmg_p)
 
-        if e.name+"_buff" in this.conf:
+        if e.name+'_buff' in this.conf:
             buffarg = this.conf[e.name+'_buff']
             Buff(e.name, *buffarg).on()
 
@@ -1029,6 +1015,6 @@ class Adv(object):
 
 
 
-if __name__ == "__main__":
-    print "to use adv_test"
+if __name__ == '__main__':
+    print 'to use adv_test'
 

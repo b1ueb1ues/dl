@@ -1,134 +1,4 @@
-import copy
-
-_g_statics         = None
-
-_ctx_list = ['_g_now','_g_timeline','_g_event_listeners']
-_g_now             = None
-_g_timeline        = None
-_g_event_listeners = None
-gnow = 1
-
-class Static(object):
-    def __init__(this, default={}):
-        global _g_statics
-        this.__default = default
-        for i in this.__default:
-            this.__setattr__(i,this.__default[i])
-        _g_statics.append(this)
-
-    @classmethod
-    def reset(cls, this):
-        for i in this.__default:
-            this.__setattr__(i,this.__default[i])
-
-    @classmethod
-    def save(cls, this):
-        save = {}
-        for i in this.__dict__:
-            save[i] = copy.deepcopy(this.__dict__[i])
-        return save
-
-    @classmethod
-    def load(cls, this, save):
-        for i in save:
-            this.__setattr__(i, save[i])
-        return this.__dict__
-
-_g_statics = []
-a = Static({
-    "a":1,
-    "b":2,
-    })
-
-b = Static({
-    "aa":11,
-    "bb":22,
-    'reset':1,
-    })
-
-
-def _static_off():
-    global _g_statics
-    _statics = {}
-    for i in _g_statics:
-        _statics[i]=Static.save(i)
-
-def _static_on(save):
-    global _g_statics
-
-print a.a
-print b.bb
-        
-
-
-def static(default):
-    pass
-
-
-
-class Ctx(object):
-    _active = [None]
-
-
-    def __init__(this):
-        this._now = 0
-        this._timeline = Timeline()
-        this._event_listeners = {}
-
-
-    def on(this):
-        global _g_now
-        global _g_timeline
-        global _g_event_listeners
-
-        if this._active[0] != None:
-            this._active[0]._now             = _g_now
-            this._active[0]._timeline        = _g_timeline
-            this._active[0]._event_listeners = _g_event_listeners
-        _g_now             = this._now
-        _g_timeline        = this._timeline
-        _g_event_listeners = this._event_listeners
-
-        this._active[0] = this
-
-        return this
-
-
-    def save(this):
-        global _g_now
-        global _g_timeline
-        global _g_event_listeners
-        this._now             = _g_now
-        this._timeline        = _g_timeline
-        this._event_listeners = _g_event_listeners
-        return this
-
-
-    def off(this):
-        if this._active[0] != this:
-            print 'try to turn off inactive ctx'
-            exit()
-
-        global _g_now
-        global _g_timeline
-        global _g_event_listeners
-        this.save()
-        _g_now             = None
-        _g_timeline        = None
-        _g_event_listeners = None
-        this._active[0] = None
-
-
-    def now(this, newtime = None):
-        if newtime:
-            this._now = newtime
-        return this._now
-
-
-    def set_time(this,t):
-        this._now = t
-
-#}class Ctx
+from ctx import *
 
 
 def now():
@@ -262,10 +132,10 @@ class Timer(object):
 
 
     def __str__(this):
-        return "%f: Timer:%s"%(this.timing,this.process)
+        return '%f: Timer:%s'%(this.timing,this.process)
 
     def __repr__(this):
-        return "%f: Timer:%s"%(this.timing,this.process)
+        return '%f: Timer:%s'%(this.timing,this.process)
 
     def _process(this):
         # sample plain _process
@@ -311,12 +181,16 @@ class Timeline(object):
             headt = this._tlist[headindex]
             headt.callback()
         else:
-            print "timeline time err"
+            print 'timeline time err'
             exit()
         return 0
     
+    @classmethod
+    def run(cls, last = 100):
+        global _g_timeline
+        return _g_timeline._run(last)
 
-    def run(this, last = 100):
+    def _run(this, last = 100):
         last += _g_now
         while 1:
             if _g_now > last:
@@ -328,13 +202,19 @@ class Timeline(object):
 
 
     def __str__(this):
-        return "Timeline tlist: %s"%(str(this._tlist))
+        return 'Timeline tlist: %s'%(str(this._tlist))
 
 #} class Timeline
 
 
-
 Ctx().on()
+Ctx.register(globals(),{
+    '_g_now'             : 0 ,
+    '_g_timeline'        : Timeline() ,
+    '_g_event_listeners' : {} ,
+    })
+
+
 
 
 def main():
@@ -353,11 +233,11 @@ def main():
         print '-2', now()
  
     def lis(e):
-        print "listener1"
+        print 'listener1'
     def lis2(e):
-        print "listener2"
+        print 'listener2'
     def lis3(e):
-        print "listener3"
+        print 'listener3'
 
     e1 = Timer(a1,1).on()
 
