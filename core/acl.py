@@ -41,22 +41,6 @@ def acl_str(acl):
     for i in aif:
         aif_list.append( i.split(',', 1) )
 
-
-    #acl_list = acl.strip().split('`')
-    #for i in acl_list:
-    #    i = i.strip()
-    #    loc = i.find('#')
-    #    if loc == 0:
-    #        prepare_list += i.split('#')
-    #    elif loc > 0:
-    #        tmp = i.split('#')
-    #        aif_list.append(tmp[0].split(','))
-    #        prepare_list += tmp[1:]
-    #    else:
-    #        if i == '':
-    #            continue
-    #        aif_list.append(i.split(','))
-
     line = ""
 
     line += "def foo(this, e):\n"
@@ -83,10 +67,6 @@ def acl_str(acl):
 
     line += '    return 0'
     g_line = line
-   # if len(sys.argv) >= 2:
-   #     if sys.argv[1] != 0:
-   #         if int(sys.argv[1]) >= 2:
-   #             print line
     return line
 
 

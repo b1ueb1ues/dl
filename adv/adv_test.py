@@ -8,6 +8,7 @@ import time
 import sys
 import conf as globalconf
 import random
+from core.acl import *
 
 
 if len(sys.argv) >= 3:
@@ -181,10 +182,15 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
 
 def do_mass_sim(classname, conf, no_cond=None):
     results = []
+    adv = classname(conf=conf)
+    _acl, _acl_str = acl_func_str(
+                    adv.acl_prepare_default+adv.conf['acl'] 
+                    )
     for i in range(sim_times):
         adv = classname(conf=conf)
         if not no_cond:
             condi = adv.condition()
+        adv._acl = _acl
         adv.run(sim_duration)
         r = sum_dmg()
         results.append(r)

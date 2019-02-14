@@ -143,7 +143,6 @@ class Timer(object):
         return 1
 
 
-
 class Timeline(object):
     def __init__(this):
         this._tlist = []

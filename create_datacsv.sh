@@ -83,3 +83,5 @@ python adv/linyou.py -2     $1 | tee -a www/$1/data.csv
 python adv/kuhai.py -2      $1 | tee -a www/$1/data.csv
 python adv/xiaolei.py -2    $1 | tee -a www/$1/data.csv
 python adv/sufang.py -2     $1 | tee -a www/$1/data.csv
+python adv/v_ezelith.py -2  $1 | tee -a www/$1/data.csv
+python adv/v_orion.py -2    $1 | tee -a www/$1/data.csv

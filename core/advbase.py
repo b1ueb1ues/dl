@@ -400,7 +400,7 @@ class Action(object):
 
 
     def tap(this):
-        doing = this.getdoing()
+        doing = this._static.doing
 
         if doing.idle :
             if loglevel >= 2:
@@ -658,9 +658,6 @@ class Adv(object):
                         Modifier(i+'_%d'%idx,k[0],k[1],k[2])
                         idx += 1
 
-        this._acl, this._acl_str = acl.acl_func_str(
-                this.acl_prepare_default+this.conf['acl'] 
-                )
 
 
 
@@ -681,6 +678,7 @@ class Adv(object):
             this.crit_mod = this.rand_crit_mod
 
         this.skill = Skill()
+        this._acl = None
 
         #this.ctx.off()
 
@@ -866,9 +864,13 @@ class Adv(object):
         this.ctx.on()
 
         Event('idle')()
-        #Timer(this.l_idle).on(0)
+
+        if not this._acl:
+            this._acl, this._acl_str = acl.acl_func_str(
+                    this.acl_prepare_default+this.conf['acl'] 
+                    )
+
         Timeline.run(d)
-        #this.ctx._g_timeline.run(d)
 
 
     def think_pin(this, pin):

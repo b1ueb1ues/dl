@@ -19,7 +19,6 @@ class D_Cleo(adv.Adv):
 
     def c_init(this):
         this.stance = 0
-        this.energy = 0
         this.hits = 0
         this.energy = energy.Energy(this, 
                 self={'s1':1,'hit':1},
