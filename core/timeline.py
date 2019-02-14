@@ -1,9 +1,68 @@
+import copy
 
-import time
+_g_statics         = None
 
+_ctx_list = ['_g_now','_g_timeline','_g_event_listeners']
 _g_now             = None
 _g_timeline        = None
 _g_event_listeners = None
+gnow = 1
+
+class Static(object):
+    def __init__(this, default={}):
+        global _g_statics
+        this.__default = default
+        for i in this.__default:
+            this.__setattr__(i,this.__default[i])
+        _g_statics.append(this)
+
+    @classmethod
+    def reset(cls, this):
+        for i in this.__default:
+            this.__setattr__(i,this.__default[i])
+
+    @classmethod
+    def save(cls, this):
+        save = {}
+        for i in this.__dict__:
+            save[i] = copy.deepcopy(this.__dict__[i])
+        return save
+
+    @classmethod
+    def load(cls, this, save):
+        for i in save:
+            this.__setattr__(i, save[i])
+        return this.__dict__
+
+_g_statics = []
+a = Static({
+    "a":1,
+    "b":2,
+    })
+
+b = Static({
+    "aa":11,
+    "bb":22,
+    'reset':1,
+    })
+
+
+def _static_off():
+    global _g_statics
+    _statics = {}
+    for i in _g_statics:
+        _statics[i]=Static.save(i)
+
+def _static_on(save):
+    global _g_statics
+
+print a.a
+print b.bb
+        
+
+
+def static(default):
+    pass
 
 
 
