@@ -40,7 +40,10 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         loglevel = verbose
     random.seed(0)
     a = time.time()
-    mname = classname.__name__
+    if classname.adv_name :
+        mname = classname.adv_name
+    else:
+        mname = classname.__name__
     adv = classname(conf=conf)
     if not no_cond:
         condition = adv.condition()

@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from core.log import *
 
 def module():
     return V_Orion
@@ -11,6 +12,9 @@ class V_Orion(adv.Adv):
         #this.dmg_make("o_s2_burn",1.8)
         #this.dmg_make("o_s2_burn",1.8)
         #this.dmg_make("o_s2_burn",1.8)
+    def h_init(this):
+        log('dmg','o_s2_burn',258949.2)
+
 
     def s2_proc(this, e):
         adv.Buff("double_buff",0.08,15,wide='self').on()
@@ -40,3 +44,9 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=0)
 
+    module().comment = 'HMS (something just OVERPOWERED in his S1)'
+    def foo(t):
+        return ''
+    module().condition = foo
+    module().init = module().h_init
+    adv_test.test(module(), conf, verbose=0)
