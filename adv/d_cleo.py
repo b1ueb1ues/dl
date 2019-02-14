@@ -19,13 +19,6 @@ class D_Cleo(adv.Adv):
 
     def c_init(this):
         this.stance = 0
-        this.hits = 0
-        this.energy = energy.Energy(this, 
-                self={},
-                team={}
-                )
-    def c_init(this):
-        this.stance = 0
         this.energy = 0
         this.hits = 0
         this.energy = energy.Energy(this, 
@@ -89,5 +82,6 @@ if __name__ == '__main__':
 
     conf['s1_sp'] = 2400
     conf['s1_dmg'] = 0.63*11
+    conf['base_str'] = 2515/1.45-20*1.3
     module().comment = 'use s1 in lvl2'
     adv_test.test(module(), conf, verbose=0)

@@ -1,10 +1,11 @@
 import adv_test
-import adv
+from xander import *
 
 def module():
-    return Xander
+    return Xander_best
 
-class Xander(adv.Adv):
+class Xander_best(Xander):
+    adv_name = 'Xander'
     conf = {
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,

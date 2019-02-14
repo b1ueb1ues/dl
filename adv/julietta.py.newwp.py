@@ -1,18 +1,17 @@
 import adv_test
-import adv
+import julietta
 
 def module():
-    return Julietta
+    return Julietta_newWP
 
-class Julietta(adv.Adv):
-    comment = 'do not use weapon skill and fs'
+class Julietta_newWP(julietta.Julietta):
+    adv_name = 'Julietta'
     conf = {
         'mod_wp': [
             ('s','passive',0.15),
             ('crit','rate',0.12),
         ],
     }
-    pass
 
 if __name__ == '__main__':
     conf = {}

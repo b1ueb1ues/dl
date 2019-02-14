@@ -1,10 +1,11 @@
 import adv_test
-from adv import *
+import linyou
 
 def module():
-    return Linyou
+    return Linyou_best
 
-class Linyou(Adv):
+class Linyou_best(linyou.Linyou):
+    adv_name = 'Linyou'
     comment = 'new WP & new dragon'
     conf = {
         "mod_a2"  : ('sp' , 'passive'  , 0.08) ,
@@ -17,37 +18,6 @@ class Linyou(Adv):
             ('crit','rate',0.12),
             ],
         }
-
-    def condition(this):
-        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        return 'hp70'
-    
-    def condition2(this):
-        this.conf["mod_wp"] = [
-            ('s','passive',0.25),
-            ('crit','rate', 0.06),
-            ]
-        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        return 'hp70'
-
-
-    def init(this):
-        this.s2ssbuff = Buff("s2_s1",1, 10, 'ss','ss', wide='self')
-        this.s2spdbuff = Buff("s2_spd",0.2, 10, 'spd', wide='self')
-
-    def speed(this):
-        if this.s2spdbuff.get():
-            return 1.2
-        return 1
-    
-
-    def s1_proc(this, e):
-        if this.s2ssbuff.get():
-            this.dmg_make('o_s1_powerup',1.86*3)
-
-    def s2_proc(this, e):
-        this.s2ssbuff.on()
-        this.s2spdbuff.on()
 
 
 if __name__ == '__main__':
