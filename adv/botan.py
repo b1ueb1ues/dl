@@ -8,7 +8,7 @@ def module():
 class Botan(Adv):
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()
-        this.charge('prep','50%')
+        this.charge_p('prep','50%')
 
     def s1_proc(this, e):
         if random.random() < 0.8:

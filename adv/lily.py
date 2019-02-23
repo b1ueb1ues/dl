@@ -14,7 +14,7 @@ class Lily(adv.Adv):
         return 'hp100'
 
     def init(this):
-        this.charge("prep", "100%")
+        this.charge_p("prep", "100%")
 
 
 if __name__ == '__main__':

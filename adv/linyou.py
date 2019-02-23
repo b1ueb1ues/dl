@@ -51,23 +51,16 @@ class Linyou(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s2, s1.charged>=s1.sp-440
-        `s1
-        `s2
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=0, mass=0)
+    if 0:
+        conf = {}
+        conf['acl'] = """
+            `s2, s1.charged>=s1.sp-440
+            `s1
+            `s2
+            `s3
+            """
+        adv_test.test(module(), conf, verbose=0, mass=0)
 
-    # a better acl, but hit threshold of lose one s3.
-    #module().comment = 'cover 2 s1 in one s2'
-    #conf['acl'] = """                 
-    #    `s2, s1.charged>=s1.sp-440
-    #    `s1
-    #    `s3, not this.s2ssbuff.get()
-    #    """
-    #adv_test.test(module(), conf, verbose=0, mass=0)
 
     module().comment = 'RR+Zephyr'
     module().condition = module().condition2
@@ -80,7 +73,7 @@ if __name__ == '__main__':
             ],
         }
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp
+        `s2, s1.charged>=s1.sp-440
         `s1
         `s2
         `s3

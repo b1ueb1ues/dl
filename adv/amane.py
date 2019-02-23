@@ -6,7 +6,7 @@ def module():
 
 class Amane(adv.Adv):
     def init(this):
-        this.charge("prep","75%")
+        this.charge_p("prep","75%")
 
 
 

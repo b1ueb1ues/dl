@@ -7,7 +7,7 @@ def module():
 class Naveed(adv.Adv):
     def init(this):
         this.s1level = 0
-        this.charge('prep','100%')
+        this.charge_p('prep','100%')
         pass
 
     def s1_proc(this, e):
