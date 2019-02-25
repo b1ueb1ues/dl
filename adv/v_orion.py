@@ -5,12 +5,10 @@ def module():
     return V_Orion
 
 class V_Orion(adv.Adv):
-    comment = "can not calculate burning damage"
     def init(this):
-        pass
-        #this.dmg_make("o_s2_burn",1.8)
-        #this.dmg_make("o_s2_burn",1.8)
-        #this.dmg_make("o_s2_burn",1.8)
+        this.dmg_make("o_s2_burn",0.803*3)
+        this.dmg_make("o_s2_burn",0.803*3)
+        this.dmg_make("o_s2_burn",0.803*3)
 
     def s2_proc(this, e):
         adv.Buff("double_buff",0.08,15,wide='self').on()
