@@ -58,20 +58,21 @@ def get(name):
 
     wepconf = getattr(weapon,conf['element'])
     conf.update(copy.deepcopy(wepconf.conf))
-    base_str = conf['str_d']+conf['str_wp']+conf['str_w']
 
-    if conf['element'] == 'flame':
-        base_str += conf['str_adv'] * (1+0.15+0.23)
-    elif conf['element'] == 'water':
-        base_str += conf['str_adv'] * (1+0.22+0.23)
-    elif conf['element'] == 'wind':
-        base_str += conf['str_adv'] * (1+0.22+0.23)
-    elif conf['element'] == 'light':
-        base_str += conf['str_adv'] * (1+0.29+0.23)
-    elif conf['element'] == 'shadow':
-        base_str += conf['str_adv'] * (1+0.15+0.23)
+    #base_str = conf['str_d']+conf['str_wp']+conf['str_w']
 
-    conf['base_str'] = int(base_str)
+    #if conf['element'] == 'flame':
+    #    base_str += conf['str_adv'] * (1+0.15+0.23)
+    #elif conf['element'] == 'water':
+    #    base_str += conf['str_adv'] * (1+0.22+0.23)
+    #elif conf['element'] == 'wind':
+    #    base_str += conf['str_adv'] * (1+0.22+0.23)
+    #elif conf['element'] == 'light':
+    #    base_str += conf['str_adv'] * (1+0.29+0.23)
+    #elif conf['element'] == 'shadow':
+    #    base_str += conf['str_adv'] * (1+0.15+0.23)
+
+    #conf['base_str'] = int(base_str)
     return conf
     
 

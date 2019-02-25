@@ -547,8 +547,9 @@ class Adv(object):
                     return
 
         this.conf = tmpconf
-
-        this.base_str = this.conf['base_str']
+        this.conf['base_str'] = this.calc_str(this.conf)
+        #this.base_str = this.conf['base_str']
+        this.base_str = this.calc_str(this.conf) 
 
         # set buff
         this.action = Action()
@@ -647,6 +648,7 @@ class Adv(object):
         this.fsf = this.a_fsf
         this.dodge = this.a_dodge
 
+
         for i in this.conf:
             if i[:3] == 'mod':
                 j = this.conf[i]
@@ -657,6 +659,23 @@ class Adv(object):
                     for k in j:
                         Modifier(i+'_%d'%idx,k[0],k[1],k[2])
                         idx += 1
+
+    def calc_str(this, conf):
+        base_str = conf['str_d']+conf['str_wp']+conf['str_w']
+
+        if conf['element'] == 'flame':
+            base_str += conf['str_adv'] * (1+0.15+0.23+0.04)
+        elif conf['element'] == 'water':
+            base_str += conf['str_adv'] * (1+0.15+0.23+0.07)
+        elif conf['element'] == 'wind':
+            base_str += conf['str_adv'] * (1+0.15+0.23+0.07)
+        elif conf['element'] == 'light':
+            base_str += conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
+        elif conf['element'] == 'shadow':
+            base_str += conf['str_adv'] * (1+0.15+0.23)
+
+        #conf['base_str'] = int(base_str)
+        return int(base_str)
 
 
 
@@ -903,8 +922,7 @@ class Adv(object):
         #if doing.name[0] == 's': 
         #   no_deed_to_do_anythin
 
-
-    def charge(this, name, sp): #, percent=None):
+    def charge_p(this, name, sp):
         if type(sp) == str and sp[-1] == '%':
             percent = int(sp[:-1])
             this.s1.charge(this.conf['s1_sp']*percent/100)
@@ -914,6 +932,9 @@ class Adv(object):
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
             this.think_pin('prep')
             return
+
+
+    def charge(this, name, sp): 
         sp = sp * this.sp_mod(name)
         this.s1.charge(sp)
         this.s2.charge(sp)

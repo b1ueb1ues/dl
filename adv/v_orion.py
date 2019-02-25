@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from core.log import *
 
 def module():
     return V_Orion

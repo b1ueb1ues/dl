@@ -5,6 +5,7 @@ def module():
     return Xander_best
 
 class Xander_best(Xander):
+    comment = 'together we stand & 10 stacks striker\'s strength'
     adv_name = 'Xander'
     conf = {
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,

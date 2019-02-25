@@ -9,6 +9,7 @@ class D_Xander(adv.Adv):
     conf = {
         "mod_d"   :[('att'  , 'passive' , 0.45)  ,
                     ('crit' , 'chance'  , 0.20)] ,
+        "mod_a"   : ('sp'  , 'passive' , 0.05) ,
         } 
 
     def condition(this):

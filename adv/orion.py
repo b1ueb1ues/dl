@@ -10,7 +10,7 @@ class Orion(Adv):
         return 'hit15'
 
     def init(this):
-        this.charge('prep','50%')
+        this.charge_p('prep','50%')
 
 
 if __name__ == '__main__':

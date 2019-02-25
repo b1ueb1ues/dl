@@ -11,7 +11,7 @@ class Karina(adv.Adv):
         } 
 
     def init(this):
-        this.charge("prep","50%")
+        this.charge_p("prep","50%")
 
 
 
