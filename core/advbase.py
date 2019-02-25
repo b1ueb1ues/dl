@@ -971,6 +971,13 @@ class Adv(object):
     def dmg_make(this, name, dmg_p, dtype=None):
         if dtype == None:
             dtype = name
+        count = this.dmg_formula(dtype, dmg_p)
+        log('dmg', name, count)
+        this.dmg_proc(name, count)
+
+    def dmg_make_withspshow(this, name, dmg_p, dtype=None):
+        if dtype == None:
+            dtype = name
 
         count = this.dmg_formula(dtype, dmg_p)
         

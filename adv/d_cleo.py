@@ -81,6 +81,6 @@ if __name__ == '__main__':
 
     conf['s1_sp'] = 2400
     conf['s1_dmg'] = 0.63*11
-    conf['base_str'] = 2515/1.45-20*1.3
+    conf['str_adv'] = 474-17
     module().comment = 'use s1 in lvl2'
     adv_test.test(module(), conf, verbose=0)
