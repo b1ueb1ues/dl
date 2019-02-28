@@ -15,39 +15,36 @@ class Albert(Adv):
     def init(this):
         this.fsa_conf = {
                 'fsa_dmg':1.02,
-                'fsa_dmg':330,
+                'fsa_sp':330,
                 #'fsa_startup':18,
                 #'fsa_recovery':18,
                 }
         this.s2timer = Timer(this.s2autocharge,1,1).on()
         this.paralyze_count=3
         this.s2buff = Buff("s2_shapshift",1, 20,'ss','ss','self')
-        this.a2buff = Buff('a2_str_passive',0.2,20,'att','passive','self')
+        this.a2buff = Buff('a2_str_passive',0.25,20,'att','passive','self')
+
+        e = Event('fs_alt')
         Event('fs_alt').listener(this.l_fs_alt)
-
-    def fs_alt(this):
-        this.a_fs.reinit('fs_alt')
-        this.a_x1fs.reinit('fs_alt')
-        this.a_x2fs.reinit('fs_alt')
-        this.a_x3fs.reinit('fs_alt')
-        this.a_x4fs.reinit('fs_alt')
-        this.a_x5fs.reinit('fs_alt')
-
-    def fs_back(this):
-        this.a_fs.reinit('fs')
-        this.a_x1fs.reinit('fs')
-        this.a_x2fs.reinit('fs')
-        this.a_x3fs.reinit('fs')
-        this.a_x4fs.reinit('fs')
-        this.a_x5fs.reinit('fs')
+        this.l_fs_old = this.l_fs
+        this.l_fs = this.l_fs_alt
+        this.a_fs.act_event = e
+        this.a_x1fs.act_event = e
+        this.a_x2fs.act_event = e
+        this.a_x3fs.act_event = e
+        this.a_x4fs.act_event = e
+        this.a_x2fs.act_event = e
 
     def l_fs_alt(this, e):
-        log("fs_alt","succ")
-        dmg_p = this.fsaconf["fsa_dmg"]
-        this.dmg_make("o_fs_alt", dmg_p)
-        this.fs_proc(e)
-        this.think_pin("fs")
-        this.charge("fs",this.fsaconf["fsa_sp"])
+        if this.s2buff.get():
+            log("fs_alt","succ")
+            dmg_p = this.fsa_conf["fsa_dmg"]
+            this.dmg_make("o_fs_alt", dmg_p)
+            this.fs_proc(e)
+            this.think_pin("fs")
+            this.charge("fs",this.fsa_conf["fsa_sp"])
+        else:
+            this.l_fs_old(e)
 
 
     def s2autocharge(this, t):
@@ -80,7 +77,6 @@ class Albert(Adv):
         this.s2timer.on()
         this.s2buff.on()
         this.a2buff.on()
-        #this.fs_alt()
 
 
 if __name__ == '__main__':

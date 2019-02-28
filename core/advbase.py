@@ -378,8 +378,7 @@ class Action(object):
         if act != None:
             this.act = act
 
-        this.startup_timer = Timer(this._cb_acting)
-        this.recovery_timer = Timer(this._cb_act_end)
+        this.act_event = Event(this.name)
 
 
     def getrecovery(this):
@@ -833,7 +832,8 @@ class Adv(object):
     def fs(this):
         doing = this.action.getdoing()
         if doing.name[0] == 'x':
-            getattr(this, 'a_'+doing.name+'fs')()
+            a = getattr(this, 'a_'+doing.name+'fs')
+            return a()
         else:
             return this.a_fs()
 
