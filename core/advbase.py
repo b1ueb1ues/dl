@@ -362,6 +362,26 @@ class Action(object):
     def _setprev(this):
         this._static.prev = this._static.doing
 
+    def reinit(this, name=None, conf=None, act=None):  
+        if name != None:
+            if type(name) == tuple:
+                this.name = name[0]
+                this.index = name[1]
+            else:
+                this.name = name
+                this.index = 0
+        if conf != None:
+            this.conf = conf
+            this._startup = conf[this.name+'_startup']
+            this._recovery = conf[this.name+'_recovery']
+            
+        if act != None:
+            this.act = act
+
+        this.startup_timer = Timer(this._cb_acting)
+        this.recovery_timer = Timer(this._cb_act_end)
+
+
     def getrecovery(this):
         return this._recovery / this.speed()
 
