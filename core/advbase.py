@@ -396,7 +396,7 @@ class Action(object):
     def _cb_acting(this, e):
         if this.getdoing() == this:
             this.status = 0
-            this.act()
+            this.act(this)
             this.status = 1
             this.recover_start = now() 
             this.recovery_timer.on(this.getrecovery())
@@ -412,7 +412,7 @@ class Action(object):
             this.idle_event()
 
 
-    def act(this):
+    def act(this, action):
         if loglevel >= 2:
             log('act',this.name)
         this.act_event()
@@ -888,15 +888,24 @@ class Adv(object):
 
         this.setconfig()
 
-        e = Event()
-        e.listener(this.l_idle        , 'idle')
-        e.listener(this.l_x  , ['x1', 'x2' ,'x3', 'x4', 'x5'] )
-        e.listener(this.l_fs , ['fs', 'x1fs', 'x2fs', 'x3fs', 'x4fs', 'x5fs'] )
-        e.listener(this.l_s  , ['s1', 's2', 's3'] )
-        e.listener(this.l_silence_end , 'silence_end')
-        e.listener(this.l_dmg_make    , 'dmg_make')
-        e.listener(this.l_true_dmg    , 'true_dmg')
-        e.listener(this.l_dmg_formula , 'dmg_formula')
+        this.l_idle        = Listener('idle',this.l_idle)
+        this.l_x           = Listener(['x1','x2','x3','x4','x5'],this.l_x)
+        this.l_fs          = Listener(['fs','x1fs','x2fs','x3fs','x4fs','x5fs'],this.l_fs)
+        this.l_s           = Listener(['s1','s2','s3'],this.l_s)
+        this.l_silence_end = Listener('silence_end' , this.l_silence_end  )
+        this.l_dmg_make    = Listener('dmg_make'    , this.l_dmg_make     )
+        this.l_true_dmg    = Listener('true_dmg'    , this.l_true_dmg     )
+        this.l_dmg_formula = Listener('dmg_formula' , this.l_dmg_formula  )
+
+        #e = Event()
+        #e.listener(this.l_idle        , 'idle')
+        #e.listener(this.l_x  , ['x1', 'x2' ,'x3', 'x4', 'x5'] )
+        #e.listener(this.l_fs , ['fs', 'x1fs', 'x2fs', 'x3fs', 'x4fs', 'x5fs'] )
+        #e.listener(this.l_s  , ['s1', 's2', 's3'] )
+        #e.listener(this.l_silence_end , 'silence_end')
+        #e.listener(this.l_dmg_make    , 'dmg_make')
+        #e.listener(this.l_true_dmg    , 'true_dmg')
+        #e.listener(this.l_dmg_formula , 'dmg_formula')
 
         this.init()
 
