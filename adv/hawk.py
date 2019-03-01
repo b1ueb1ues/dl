@@ -10,6 +10,7 @@ class Hawk(adv.Adv):
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
+        adv.Buff('stunpunisher',0.3,18,'att','punisher','self').on()
 
     def condition(this):
         this.conf['acl'] = """

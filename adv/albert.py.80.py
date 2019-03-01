@@ -11,10 +11,11 @@ def module():
 class Albert(Adv):
     conf = {
             'mod_a':('fs','passive',0.5),
-            #'mod_wp':('s','passive',0.35),
+            'mod_wp':[],
             }
 
     def init(this):
+        this.charge_p('prep','100%')
         this.fsa_conf = copy.deepcopy(this.conf)
         this.fsa_conf.update( {
                 'fs_dmg':1.02,

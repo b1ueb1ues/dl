@@ -59,6 +59,51 @@ class Event(object):
 
 #} class Event
 
+class Listener(object):
+    def __init__(this, eventname, cb):
+        this.__cb = cb
+        this.__eventname = eventname
+        this.__online = 0
+        this.on()
+
+    def __call__(this, e):
+        this.__cb(e)
+
+    def on(this, cb=None):
+        if this.__online :
+            return 
+        if cb :
+            this.__cb = cb
+        if type(this.__eventname) == list or type(this.__eventname) == tuple:
+            for i in this.__eventname:
+                add_event_listener(i, this.__cb)
+        else:
+            add_event_listener(this.__eventname, this.__cb)
+        this.__online = 1
+        return this
+
+    def pop(this):
+        this.off()
+        return this.__cb
+
+
+    def off(this):
+        if not this.__online:
+            return 
+        if type(this.__eventname) == list or type(this.__eventname) == tuple:
+            for i in this.__eventname:
+                els = get_event_trigger(i)
+                idx = els.index(this.__cb)
+                els.pop(idx)
+        else:
+            els = get_event_trigger(this.__eventname)
+            idx = els.index(this.__cb)
+            els.pop(idx)
+        this.__online = 0
+        return this
+
+#} class Listener
+
 
 class Timer(object):
     def __init__(this, proc=None, timeout=None, repeat=0, timeline=None):

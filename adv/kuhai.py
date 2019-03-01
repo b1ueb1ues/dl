@@ -1,30 +1,9 @@
 import adv_test
 from adv import *
+from module.fsalt import *
 
 def module():
     return Kuhai
-
-class Kuhai_alt(Adv):
-    adv_name = 'Kuhai'
-    conf = {
-        "x2fs_startup":18/60.0,
-        "x2fs_recovery":33/60.0,
-        "x3fs_startup":18/60.0,
-        "x3fs_recovery":33/60.0,
-        "fs_startup":33/60.0,
-        "fs_recovery":33/60.0,
-    }
-    def __init__(this, ctx):
-        Adv.__init__(this)
-        ctx.on()
-        this.setconfig()
-        e = Event("fs_alt")
-        this.a_x1fs.act_event = e
-        this.a_x2fs.act_event = e
-        this.a_x3fs.act_event = e
-        this.a_x4fs.act_event = e
-        this.a_x5fs.act_event = e
-        this.a_fs.act_event = e
 
 
 class Kuhai(Adv):
@@ -48,34 +27,28 @@ class Kuhai(Adv):
         this.fsaconf['fs_dmg'] = 0.83*3
 
     def init(this):
-        this.ka = Kuhai_alt(this.ctx)
-        this.setconfig()
-        this.o_fs = this.fs
-        this.fs = this.fs_alt
-        this.fsaconf = {
+        this.fsaconf = copy.deepcopy(this.conf)
+        this.fsaconf.update({
                 'fs_dmg':0.83*2,
                 'fs_sp' :330,
-                }
+                "fs_startup":33/60.0,
+                "fs_recovery":33/60.0,
+                "x2fs_startup":18/60.0,
+                "x2fs_recovery":33/60.0,
+                "x3fs_startup":18/60.0,
+                "x3fs_recovery":33/60.0,
+                })
         this.s2fsbuff = Buff('s2ss',1,10,'ss','ss','self')
-        Event('fs_alt').listener(this.l_fs_alt)
+        this.alttimer = Timer(this.altend)
+        fs_alt_init(this, this.fsaconf)
 
-
-    def l_fs_alt(this, e):
-        log("fs_alt","succ")
-        dmg_p = this.fsaconf["fs_dmg"]
-        this.dmg_make("o_fs_alt", dmg_p)
-        this.fs_proc(e)
-        this.think_pin("fs")
-        this.charge("fs",this.fsaconf["fs_sp"])
-
-    def fs_alt(this):
-        if this.s2fsbuff.get():
-            return this.ka.fs()
-        else:
-            return this.o_fs()
+    def altend(this,t):
+        fs_back(this)
 
     def s2_proc(this, e):
         this.s2fsbuff.on() 
+        fs_alt(this)
+        this.alttimer.on(10)
 
 
 if __name__ == '__main__':
