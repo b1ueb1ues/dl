@@ -42,17 +42,23 @@ class Albert(Adv):
             
     def condition(this):
         this.conf['acl'] = """
-            `s2, s1.charged>=s1.sp
+            `s2, s1.charged>=s1.sp-300
             `s1
             `s3, not this.s2buff.get()
-            `fs, seq=3 
+            `fs, seq=2 
             """
-        return '3s1 in one s2'
+        this.s1_proc = this.c_s1_proc
+        return '3s1 in one s2 & huge hitbox'
 
+
+    def c_s1_proc(this, e):
+        if this.s2buff.get():
+            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*5)
+    
 
     def s1_proc(this, e):
         if this.s2buff.get():
-            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*5)
+            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*1)
 
 
     def fs_proc(this, e):
@@ -75,7 +81,7 @@ if __name__ == '__main__':
         `s2
         `s1, this.s2.charged > 900
         `s3
-        `fs, seq=2
+        `fs, seq=2 and not this.s2buff.get()
         """
     adv_test.test(module(), conf,verbose=0, mass=0)
 
