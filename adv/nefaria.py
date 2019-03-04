@@ -5,13 +5,16 @@ def module():
     return Nefaria
 
 class Nefaria(adv.Adv):
+    def c_init(this):
+        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
+        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
+        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
+        adv.Buff('blindpunisher',0.3,20,'att','punisher','self').on()
+        this.o_init()
 
     def init(this):
-        adv.Buff('blindpunisher',0.3,20,'att','punisher','self').on()
-        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
-        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
-        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
         this.s2fscharge = 0
+
 
     def s2_proc(this, e):
         this.s2fscharge = 3
@@ -22,13 +25,14 @@ class Nefaria(adv.Adv):
             this.dmg_make("o_s2fs",0.48)
 
     def condition(this):
+        this.init, this.o_init = this.c_init, this.init
         this.conf['acl'] = """
             `s1, fsc
             `s2, fsc
             `s3, fsc
             `fs, seq=4
             """
-        return 'c4+fs'
+        return 'c4+fs & blind 20s (s1 boosted 3times)'
 
 
 if __name__ == '__main__':
