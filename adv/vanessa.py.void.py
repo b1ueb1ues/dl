@@ -5,6 +5,7 @@ def module():
     return Vanessa
 
 class Vanessa(adv.Adv):
+    comment = 'void weapon vs HMS'
     conf = {
         "mod_a": ('fs', 'passive', 0.40),
         } 

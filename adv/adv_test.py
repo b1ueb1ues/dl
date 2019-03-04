@@ -138,6 +138,9 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         bdps = team_dps*bps
         name = mname
         condi = ' '
+        exdps = team_dps + int(r['dmg_sum']['total']/sim_duration)
+
+
         if condition != '':
             condition = '<%s>'%condition
             condi = condition

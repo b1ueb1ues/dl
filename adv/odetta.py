@@ -15,10 +15,10 @@ class Odetta(Adv):
         Buff('s1defdown',-0.02,10,'def','debuff').on()
 
     def c_s2_proc(this, e):
-        Buff('s2',0.15,15).on()
+        Buff('s2',0.15,15*1.2).on()
 
     def s2_proc(this, e):
-        Buff('s2',0.15,15,wide='self').on()
+        Buff('s2',0.15,15*1.2,wide='self').on()
 
 
 
