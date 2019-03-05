@@ -32,7 +32,7 @@ def s2_proc_withdoublebuff(this, e):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, sp
+        `s2, sp 
         `s1, sp
         `s3, sp
         `fs, seq=3 and cancel

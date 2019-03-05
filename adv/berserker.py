@@ -16,8 +16,8 @@ class Berserker(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, sp
-        `s3, sp
+        `s1
+        `s3
         `fs, seq=3 and cancel
         """
     adv_test.test(module(), conf, verbose=0)

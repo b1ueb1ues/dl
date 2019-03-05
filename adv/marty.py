@@ -13,8 +13,8 @@ class Marty(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1
-        `s3
+        `s1,fsc
+        `s3,fsc
         `fs, seq=3
         """
     adv_test.test(module(), conf, verbose=0)
