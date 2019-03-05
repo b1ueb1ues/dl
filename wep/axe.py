@@ -32,6 +32,9 @@ conf.update( {
         "fs_startup"     : 40    / 60.0  ,
         "fs_recovery"    : 34    / 60.0  ,
 
+        "x4fs_startup"     : (40+78)/ 60.0  ,
+        "x4fs_recovery"    : 34    / 60.0  ,
+
         "fsf_startup"    : 0             ,
         "fsf_recovery"   : 41    / 60.0  ,
 

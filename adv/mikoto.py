@@ -8,6 +8,7 @@ class Mikoto(Adv):
     conf = {
         "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
         }
+
     def condition(this):
         this.conf['mod_a'] = ('crit' , 'passive', 0.10)
         this.s1_proc = this.c_s1_proc
