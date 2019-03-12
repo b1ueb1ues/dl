@@ -55,6 +55,8 @@ def get(name):
         import wep.bow as weapon
     elif conf['weapon']=='wand':
         import wep.wand as weapon
+    elif conf['weapon']=='staff':
+        import wep.staff as weapon
 
     wepconf = getattr(weapon,conf['element'])
     conf.update(copy.deepcopy(wepconf.conf))
