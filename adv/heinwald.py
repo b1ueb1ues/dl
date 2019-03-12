@@ -30,7 +30,7 @@ class Heinwald(Adv):
 
     def s2_proc(this, e):
         this.s2ssbuff.on()
-        Buff('s2',0.2,10,wide='self')
+        Buff('s2',0.1,10,wide='self').on()
 
 
 if __name__ == '__main__':
