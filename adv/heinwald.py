@@ -9,7 +9,7 @@ class Heinwald(Adv):
     def condition(this):
         this.conf['mod_a'] = ('s','passive',0.35)
         this.s2_proc = this.c_s2_proc
-        return 'hp70 & buff all teamate'
+        return 'hp70 & buff all teammate'
 
 
     def init(this):
@@ -29,12 +29,12 @@ class Heinwald(Adv):
 
     def c_s2_proc(this, e):
         this.s2ssbuff.on()
-        Buff('s2',0.1,10,wide='team').on()
-        Buff('s2',0.1,10,wide='self').on()
+        Buff('s2team',0.1,10,wide='team').on()
+        Buff('s2self',0.1,10,wide='self').on()
 
     def s2_proc(this, e):
         this.s2ssbuff.on()
-        Buff('s2',0.1,10,wide='self').on()
+        Buff('s2',0.2,10,wide='self').on()
 
 
 if __name__ == '__main__':

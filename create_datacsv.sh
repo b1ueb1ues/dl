@@ -88,4 +88,5 @@ python adv/v_orion.py -2    $1 | tee -a www/$1/data.csv
 python adv/albert.py -2     $1 | tee -a www/$1/data.csv
 python adv/odetta.py -2     $1 | tee -a www/$1/data.csv
 python adv/jakob.py -2      $1 | tee -a www/$1/data.csv
+python adv/curran.py -2     $1 | tee -a www/$1/data.csv
 
