@@ -680,18 +680,25 @@ class Adv(object):
                         idx += 1
 
     def calc_str(this, conf):
-        base_str = conf['str_d']+conf['str_wp']+conf['str_w']
-
+        base_str = conf['str_wp']+conf['str_w']
+        tmp_str = 0
         if conf['element'] == 'flame':
-            base_str += conf['str_adv'] * (1+0.15+0.23+0.04)
+            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.04)
         elif conf['element'] == 'water':
-            base_str += conf['str_adv'] * (1+0.15+0.23+0.07)
+            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
         elif conf['element'] == 'wind':
-            base_str += conf['str_adv'] * (1+0.15+0.23+0.07)
+            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
         elif conf['element'] == 'light':
-            base_str += conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
+            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
         elif conf['element'] == 'shadow':
-            base_str += conf['str_adv'] * (1+0.15+0.23)
+            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
+
+        base_str += tmp_str
+
+        tmp_str = 0
+        tmp_str = conf['str_d']
+
+        base_str += tmp_str
 
         #conf['base_str'] = int(base_str)
         return int(base_str)

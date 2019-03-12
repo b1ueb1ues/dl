@@ -157,6 +157,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
         line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')
+        line = line.replace('staff','奶')
         line = line.replace('shadow','暗').replace('light','光')
         line = line.replace('wind','风').replace('water','水').replace('flame','火')
         line += ',%d'%(int(r['dmg_sum']['total']/sim_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency))
