@@ -6,12 +6,12 @@ def module():
     return Elisanne
 
 class Elisanne(elisanne.Elisanne):
-    comment = 'do not use fs & 15bufftime WP'
+    comment = 'do not use fs & 20bufftime WP'
     conf = {}
     conf['mod_wp'] = []
-    conf['str_wp'] = 25
+    conf['str_wp'] = 40
     def init(this):
-        this.conf['s1_buff'][1] *= 1.4
+        this.conf['s1_buff'][1] *= 1.45
 
 
 if __name__ == '__main__':
