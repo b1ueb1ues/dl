@@ -17,7 +17,7 @@ class Waike(adv.Adv):
 
     def init(this):
         this.bogcountlast = 0
-        this.bogbuff = adv.Buff('s2_bog',0.6,8,'att','bog')
+        this.bogbuff = adv.Buff('s2_bog',0.5,8,'att','bog')
 
 
     def c_init(this):

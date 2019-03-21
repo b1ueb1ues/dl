@@ -9,6 +9,9 @@ echo "
 echo "create data chart (${time}s)"
 echo '----------------------------'
 cp www/$1/slow_data.csv www/$1/data.csv
+python adv/ex_dagger.py     $1 | tee -a www/$1/data.csv
+python adv/ex_blade.py      $1 | tee -a www/$1/data.csv
+python adv/ex_wand.py       $1 | tee -a www/$1/data.csv
 python adv/berserker.py -2  $1 | tee -a www/$1/data.csv
 python adv/euden.py -2      $1 | tee -a www/$1/data.csv
 python adv/karl.py -2       $1 | tee -a www/$1/data.csv
