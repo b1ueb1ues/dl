@@ -61,6 +61,14 @@ def get(name):
     wepconf = getattr(weapon,conf['element'])
     conf.update(copy.deepcopy(wepconf.conf))
 
+    if conf['element'] == 'shadow':
+        conf['str_d'] = 121*1.5
+    elif conf['element'] == 'light':
+        conf['str_d'] = 119*1.5
+    elif conf['element'] == 'water':
+        conf['str_d'] = 125*1.5
+
+
     #base_str = conf['str_d']+conf['str_wp']+conf['str_w']
 
     #if conf['element'] == 'flame':
