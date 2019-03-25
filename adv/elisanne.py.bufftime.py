@@ -11,7 +11,7 @@ class Elisanne(elisanne.Elisanne):
     conf['mod_wp'] = []
     conf['str_wp'] = 40
     def init(this):
-        this.conf['s1_buff'][1] *= 1.45
+        this.conf['s1_buff'][1] *= 1.40
 
 
 if __name__ == '__main__':
