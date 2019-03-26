@@ -6,7 +6,7 @@ def module():
 
 class Linyou_best(linyou.Linyou):
     adv_name = 'Linyou'
-    comment = 'new WP & new dragon'
+    comment = 'Kunfu & LongLong'
     conf = {
         "mod_a2"  : ('sp' , 'passive'  , 0.08) ,
         "mod_d" :[
@@ -23,7 +23,7 @@ class Linyou_best(linyou.Linyou):
 if __name__ == '__main__':
     conf = {}
     # a better acl, but hit threshold of lose one s3.
-    module().comment = 'cover 2 s1 in one s2'
+    module().comment += '& cover 2 s1 in one s2'
     conf['acl'] = """                 
         `s2, s1.charged>=s1.sp-440
         `s1

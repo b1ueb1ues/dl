@@ -38,9 +38,10 @@ def get(name):
     conf = {}
     get_advconf(name)
     get_skillframe(name)
-    conf.update(copy.deepcopy(equip_common.conf))
     csvconf = csv2conf.get(name)
     conf.update(csvconf)
+    commonconf = equip_common.get(conf['stars'],conf['element'],conf['weapon'])
+    conf.update(copy.deepcopy(commonconf))
     if conf['weapon']=='sword':
         import wep.sword as weapon
     elif conf['weapon']=='blade':
@@ -60,6 +61,14 @@ def get(name):
 
     wepconf = getattr(weapon,conf['element'])
     conf.update(copy.deepcopy(wepconf.conf))
+
+    #if conf['element'] == 'shadow':
+    #    conf['str_d'] = 121*1.5
+    #elif conf['element'] == 'light':
+    #    conf['str_d'] = 119*1.5
+    #elif conf['element'] == 'water':
+    #    conf['str_d'] = 125*1.5
+
 
     #base_str = conf['str_d']+conf['str_wp']+conf['str_w']
 
