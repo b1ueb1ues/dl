@@ -24,15 +24,16 @@ class Nefaria(adv.Adv):
             this.s2fscharge -= 1
             this.dmg_make("o_s2fs",0.48)
 
-    def condition(this):
-        this.init, this.o_init = this.c_init, this.init
-        this.conf['acl'] = """
-            `s1, fsc
-            `s2, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        return 'c4+fs & blind 20s (s1 boosted 3times)'
+    def pre(this):
+        if this.condition('blind 20s (s1 boosted 3times)'):
+            this.init, this.o_init = this.c_init, this.init
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ import time
 import sys
 import conf as globalconf
 import random
+from core import condition as m_condition
 from core.acl import *
 
 
@@ -44,17 +45,23 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         mname = classname.adv_name
     else:
         mname = classname.__name__
-    adv = classname(conf=conf)
+
+
     if not no_cond:
-        condition = adv.condition()
+        adv = classname(conf=conf,cond=1)
     else:
-        condition = ''
-    if condition != '' :
-        g_condition = condition
+        adv = classname(conf=conf,cond=0)
 
     comment = adv.comment
 
     adv.run(sim_duration)
+
+    if not no_cond:
+        condition = adv.m_condition.p()
+    else:
+        condition = ''
+    if condition != '' :
+        g_condition = condition
 
     base_str = adv.conf['base_str']
     if type(adv.conf['mod_d']) == list:
@@ -194,11 +201,13 @@ def do_mass_sim(classname, conf, no_cond=None):
                     adv.acl_prepare_default+adv.conf['acl'] 
                     )
     for i in range(sim_times):
-        adv = classname(conf=conf)
         if not no_cond:
-            condi = adv.condition()
+            adv = classname(conf=conf,cond=1)
+        else:
+            adv = classname(conf=conf,cond=0)
         adv._acl = _acl
         adv.run(sim_duration)
+        #condi = adv.m_condition.p()
         r = sum_dmg()
         results.append(r)
     r = sum_mass_dmg(results)

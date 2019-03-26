@@ -6,9 +6,9 @@ def module():
 
 class Linyou(Adv):
 
-    def condition(this):
-        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        return 'hp70'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf['mod_a'] = ('crit' , 'passive', 0.10)
     
     def init(this):
         this.s2ssbuff = Buff("s2_s1",1, 10, 'ss','ss', wide='self')

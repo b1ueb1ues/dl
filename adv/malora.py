@@ -11,15 +11,15 @@ class Malora(adv.Adv):
     def s2_proc(this, e):
         adv.Buff('armorbreak',-0.04,10,'def').on()  
 
-    def condition(this):
-        this.conf['acl'] = """
-            `s1,fsc
-            `s2,fsc
-            `s3,fsc
-            `fs,seq=1
-            """
-        return 'spawn c1+fs'
 
+    def pre(this):
+        if this.condition('spawn c1+fs'):
+            this.conf['acl'] = """
+                `s1,fsc
+                `s2,fsc
+                `s3,fsc
+                `fs,seq=1
+                """
 
 
 

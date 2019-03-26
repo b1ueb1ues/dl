@@ -7,15 +7,13 @@ def module():
     return D_Cleo
 
 class D_Cleo(adv.Adv):
-    conf = {
-        "mod_d":[('att' , 'passive', 0.45) ,
-                 ('crit', 'chance' , 0.20)],
-        }
-    def condition(this):
-        this.conf['mod_a'] = ('att' , 'passive', 0.13) 
-        this.init = this.c_init
-        this.dmg_proc = this.c_dmg_proc
-        return 'hp70 & energy & always connect hits'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf['mod_a'] = ('att' , 'passive', 0.13) 
+        if this.condition('energy'):
+            this.init = this.c_init
+        if this.condition('always connect hits'):
+            this.dmg_proc = this.c_dmg_proc
 
     def c_init(this):
         this.stance = 0

@@ -5,9 +5,9 @@ def module():
     return Maribelle
 
 class Maribelle(adv.Adv):
-    def condition(this):
-        this.conf['mod_a'] = ('s' , 'passive', 0.4)
-        return 'hp100'
+    def pre(this):
+        if this.condition('hp100'):
+            this.conf['mod_a'] = ('s' , 'passive', 0.4)
 
     def init(this):
         this.charge_p("prep", "100%")

@@ -6,24 +6,45 @@ Ctx.register(globals(),{
     '_switch':-1,
     })
 
-def setcondition(c):
+def set(c=1):
     global _if_condition
     _if_condition = c
 
-def getconditions():
+def unset():
+    global _if_condition
+    _if_condition = 0
+
+def get():
     global _conditions
     ret = []
     for i in _conditions:
         ret.append(i)
     return ret
 
-def on():
+def clean():
     global _if_condition
-    _if_condition = 1
-
-def off():
-    global _if_condition
+    global _conditions
+    global _switch
     _if_condition = 0
+    _conditions = {}
+    _switch = -1
+
+def p():
+    a = get()
+    ret = ''
+    for i in a:
+        if ret != '':
+            ret += ' & '
+        ret += i
+    return ret
+
+#def on():
+#    global _if_condition
+#    _if_condition = 1
+#
+#def off():
+#    global _if_condition
+#    _if_condition = 0
 
 def condition_do(cond):
     global _conditions
@@ -37,6 +58,8 @@ def condition_do(cond):
         errrrrrrrrrrr()
 
     return _if_condition
+
+
 ##def condition_do(func):
 ##    global _if_condition
 ##    def foo(*args,**kwargs):
@@ -46,16 +69,18 @@ def condition_do(cond):
 ##    else:
 ##        return foo
 do = condition_do
+on = condition_do
 
 def __test():
     Ctx().on()
-    on()
+    set(1)
     if do('test'):
         print '1'
     if do('test2'):
         print '2'
-    print getconditions()
-    off()
+    print get()
+    print p()
+    set(0)
 
     #Ctx().on()
     #def t1(s='s'):

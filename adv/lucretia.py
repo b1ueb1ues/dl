@@ -7,9 +7,9 @@ def module():
     return Lucretia
 
 class Lucretia(adv.Adv):
-    def condition(this):
-        this.init = this.c_init
-        return 'energy'
+    def pre(this):
+        if this.condition('energy'):
+            this.init = this.c_init
 
     def init(this):
         energy.Energy(this,

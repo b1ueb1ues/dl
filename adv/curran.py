@@ -9,12 +9,10 @@ class Curran(adv.Adv):
     conf = {
         "mod_a": ('att', 'bane', 0.13*0.45),
         } 
-    def condition(this):
-        this.init = this.c_init
-        return 'last offense'
 
-    def c_init(this):
-        adv.Buff('last_offense',0.5,15,wide='self').on()
+    def init(this):
+        if this.condition('last_offense'):
+            adv.Buff('last_offense',0.5,15,wide='self').on()
 
     def s1_proc(this, e):
         adv.Buff('defdown',-0.025,10,'def').on()

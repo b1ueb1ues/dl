@@ -24,21 +24,22 @@ class V_Ezelith(Adv):
                 self={},
                 team={}
                 )
-        this.dmg_make("o_s2_burn",0.883*3)
-        this.dmg_make("o_s2_burn",0.883*3)
-        this.dmg_make("o_s2_burn",0.883*3)
+        this.dmg_make("o_s1_burn",0.883*3)
+        this.dmg_make("o_s1_burn",0.883*3)
+        this.dmg_make("o_s1_burn",0.883*3)
 
-    def condition(this):
-        this.o_init = this.init
-        this.init = this.c_init
-        this.dmg_proc = this.c_dmg_proc
-        this.conf['acl'] = """
-            `s3,s1.charged>=2803
-            `s1
-            `s2
-            `fs, seq=4
-            """
-        return 'never lose combos & c4+fs'
+    def pre(this):
+        if this.condition('never lose combos'):
+            this.o_init = this.init
+            this.init = this.c_init
+            this.dmg_proc = this.c_dmg_proc
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s3,s1.charged>=2803
+                `s1
+                `s2
+                `fs, seq=4
+                """
 
     def c_dmg_proc(this, name, amount):
         if name[:2] == 'x1':
@@ -62,6 +63,7 @@ class V_Ezelith(Adv):
             
     def s2_proc(this, e):
         this.hits += 1
+        Buff('defdown',-0.09,10,'def').on()
 
 
 if __name__ == '__main__':

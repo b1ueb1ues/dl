@@ -6,14 +6,15 @@ def module():
     return Elias
 
 class Elias(adv.Adv):
-    def condition(this):
-        this.conf['acl'] = """
-            `s1, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        this.init = this.c_init
-        return 'last offense & c4+fs & no s2'
+    def pre(this):
+        if this.condition('last offense'):
+            this.init = this.c_init
+        if this.condition('c4+fs & no s2'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
     def c_init(this):
         adv.Buff('last_offense',0.4,15,wide='self').on()

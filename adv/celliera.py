@@ -6,13 +6,9 @@ def module():
     return Celliera
 
 class Celliera(adv.Adv):
-    conf = {
-        "mod_d":[('att' , 'passive', 0.45) ,
-                 ('crit', 'chance' , 0.20)],
-        } 
-    def condition(this):
-        this.conf['mod_a'] = ('att' , 'passive', 0.08)
-        return 'hp70'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf['mod_a'] = ('att' , 'passive', 0.08)
 
 
 

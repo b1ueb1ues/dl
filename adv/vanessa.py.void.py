@@ -12,10 +12,10 @@ class Vanessa(adv.Adv):
     conf['str_w'] = 1.5*380
     conf['mod_w'] = ('att','punisher',0.2)
 
-    def condition(this):
-        this.o_init = this.init
-        this.init = this.c_init
-        return 'last offense'
+    def pre(this):
+        if this.condition('last offense'):
+            this.o_init = this.init
+            this.init = this.c_init
     
     def init(this):
         this.charge_p('prep','50%')

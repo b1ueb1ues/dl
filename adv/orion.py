@@ -5,9 +5,9 @@ def module():
     return Orion
 
 class Orion(Adv):
-    def condition(this):
-        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        return 'hit15'
+    def pre(this):
+        if this.condition('hit15'):
+            this.conf['mod_a'] = ('crit' , 'passive', 0.10)
 
     def init(this):
         this.charge_p('prep','50%')

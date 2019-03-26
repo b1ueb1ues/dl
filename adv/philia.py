@@ -5,15 +5,16 @@ def module():
     return Philia
 
 class Philia(adv.Adv):
-    def condition(this):
-        this.conf['mod_a'] = ('att' , 'passive', 0.10)
-        this.conf['acl'] = """
-            `s1, fsc
-            `s2, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        return 'hp100 & c4+fs'
+    def pre(this):
+        if this.condition('hp100'):
+            this.conf['mod_a'] = ('att' , 'passive', 0.10)
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
     def init(this):
         this.dmg_make("o_s2_paralysis",1.8)

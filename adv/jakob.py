@@ -5,10 +5,10 @@ def module():
     return Jakob
 
 class Jakob(adv.Adv):
-    def condition(this):
-        this.o_init = this.init
-        this.init = this.c_init
-        return 'bog'
+    def pre(this):
+        if this.condition('bog'):
+            this.o_init = this.init
+            this.init = this.c_init
 
     def init(this):
         this.charge_p('prep','50%')

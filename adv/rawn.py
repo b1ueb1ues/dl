@@ -5,14 +5,14 @@ def module():
     return Rawn
 
 class Rawn(adv.Adv):
-    def condition(this):
-        this.conf['acl'] = """
-            `s1, fsc
-            `s2, fsc
-            `s3, fsc
-            `fs, seq=1
-            """
-        return 'c1+fs'
+    def pre(this):
+        if this.condition('c1+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=1
+                """
 
 
 if __name__ == '__main__':

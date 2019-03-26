@@ -15,15 +15,16 @@ class Hawk(adv.Adv):
         adv.Buff('stunpunisher',0.3,20,'att','punisher','self').on()
         this.o_init()
 
-    def condition(this):
-        this.init, this.o_init = this.c_init, this.init
-        this.conf['acl'] = """
-            `s1, fsc
-            `s2, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        return 'c4+fs & stun 20s(3 s1 boosted)'
+    def pre(this):
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
+        if this.condition('stun 20s(3 s1 boosted)'):
+            this.init, this.o_init = this.c_init, this.init
 
     def s2_proc(this, e):
         this.s2fscharge = 3

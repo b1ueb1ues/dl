@@ -7,17 +7,20 @@ def module():
 class Mikoto(Adv):
     conf = {
         "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
+        #"mod_wp2" : ('buff','time',0),
         }
 
-    def condition(this):
-        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        this.s1_proc = this.c_s1_proc
-        return 'hp70 & connect s1'
+    def pre(this):
+        if this.condition('connect s1'):
+            this.s1_proc = this.c_s1_proc
+        if this.condition('hp70'):
+            this.conf['mod_a'] = ('crit' , 'passive', 0.10)
 
     def init(this):
         this.s1buff = Buff("s1",0.0, 15, 'att','buff', wide='self')
         this.s2buff = Buff("s2",0.2, 10, 'spd', wide='self')
         this.a_s1._recovery = 1.4
+
 
     def speed(this):
         return 1+this.s2buff.get()

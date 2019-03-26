@@ -5,9 +5,9 @@ def module():
     return Karl
 
 class Karl(adv.Adv):
-    def condition(this):
-        this.conf['mod_a'] = ('att' , 'passive', 0.08)
-        return 'hp70'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf['mod_a'] = ('att' , 'passive', 0.08)
 
 
 

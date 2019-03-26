@@ -5,9 +5,10 @@ def module():
     return Elisanne
 
 class Elisanne(Adv):
-    comment = 'do not use fs'
-    def init(this):
-        this.conf['s1_buff'][1] *= 1.25
+    comment = 'do not use fs & RR+15%buff_time'
+    conf = {}
+    conf['mod_a'] = ('buff','time',0.25)
+    conf['mod_wp2'] = ('buff','time',0.15)
 
 
 if __name__ == '__main__':
@@ -17,6 +18,6 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 
 

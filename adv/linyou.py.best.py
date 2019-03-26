@@ -13,10 +13,6 @@ class Linyou_best(linyou.Linyou):
             ('att','passive',0.45),
             ('crit','dmg',0.55),
             ],
-        "mod_wp" :[
-            ('s','passive',0.15),
-            ('crit','rate',0.12),
-            ],
         }
 
 

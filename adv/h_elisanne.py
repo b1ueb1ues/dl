@@ -12,12 +12,12 @@ class H_Elisanne(Adv):
     def init(this):
         this.stance = 0
 
-    def condition(this):
-        this.conf['acl'] = """
-            `s1, seq=5 and cancel
-            `s3, seq=5 and cancel
-            """
-        return 'no s2'
+    def pre(this):
+        if this.condition("no s2"):
+            this.conf['acl'] = """
+                `s1, seq=5 and cancel
+                `s3, seq=5 and cancel
+                """
 
     def s1latency(this, e):
         Buff("s1_buff",0.1,15,'att').on()

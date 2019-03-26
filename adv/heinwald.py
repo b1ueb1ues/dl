@@ -6,10 +6,11 @@ def module():
 
 class Heinwald(Adv):
 
-    def condition(this):
-        this.conf['mod_a'] = ('s','passive',0.35)
-        this.s2_proc = this.c_s2_proc
-        return 'hp70 & buff all teammate'
+    def pre(this):
+        if this.condition("hp70"):
+            this.conf['mod_a'] = ('s','passive',0.35)
+        if this.condition("buff all teammates"):
+            this.s2_proc = this.c_s2_proc
 
 
     def init(this):

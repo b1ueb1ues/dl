@@ -4,6 +4,8 @@ import acl
 import sys
 import conf as globalconf
 import random
+import condition 
+m_condition = condition
 
 
 class Modifier(object):
@@ -22,6 +24,21 @@ class Modifier(object):
         this._static.all_modifiers.append(this)
         this.__active = 1
 
+    @classmethod
+    def mod(cls, mtype, all_modifiers=None):
+        if not all_modifiers:
+            all_modifiers = cls._static.all_modifiers
+        m = {}
+        for i in all_modifiers:
+            if mtype == i.mod_type:
+                if i.mod_order in m:
+                    m[i.mod_order] += i.get()
+                else:
+                    m[i.mod_order] = 1 + i.get()
+        ret = 1.0
+        for i in m:
+            ret *= m[i]
+        return ret
 
     def get(this):
         return this.mod_value
@@ -91,6 +108,7 @@ class Dot(object):
 class Buff(object):
     _static = Static({
         'all_buffs': [],
+        'time_func':0,
         })
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='team'):  
         this.name = name   
@@ -115,7 +133,15 @@ class Buff(object):
 
         this.__stored = 0
         this.__active = 0
+        if not this._static.time_func:
+            this._static.time_func = this.nobufftime
         #this.on()
+
+    def nobufftime(this):
+        return 1
+    
+    def bufftime(this):
+        return this._static.time_func()
 
 
     def value(this, newvalue=None):
@@ -163,9 +189,9 @@ class Buff(object):
 
     def on(this, duration=None):
         if duration == None:
-            d = this.duration
+            d = this.duration * this.bufftime()
         else:
-            d = duration
+            d = duration * this.bufftime()
         if this.__active == 0:
             this.__active = 1
             if this.__stored == 0:
@@ -217,6 +243,14 @@ class Buff(object):
         this.dmg_test_event()
         team_buff_dmg = this.dmg_test_event.dmg
         log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
+
+class Selfbuff(Buff):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
+        Buff.__init__(this, name,value,duration,mtype,morder, wide='self')
+
+class Teambuff(Buff):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
+        Buff.__init__(this, name,value,duration,mtype,morder, wide='team')
 
 
 
@@ -471,10 +505,12 @@ class Adv(object):
         pass
     def speed(this):
         return 1
+    def pre(this):
+        pass
     def init(this): 
         pass
-    def condition(this):
-        return ''
+    #def condition(this):
+    #    return ''
     # ^^^^^^^^^ rewrite this to provide advanced tweak ^^^^^^^^^^
 
     comment = ''
@@ -552,7 +588,7 @@ class Adv(object):
     '''
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    exit()
 
-    def setconfig(this,conf={}):
+    def preconfig(this,conf={}):
         tmpconf = {}
         tmpconf.update(this.conf_default)
         tmpconf.update(globalconf.get(this.adv_name))
@@ -570,6 +606,9 @@ class Adv(object):
         #this.base_str = this.conf['base_str']
         this.base_str = this.calc_str(this.conf) 
 
+    def setconfig(this,conf={}):
+        this.preconfig(conf)
+
         # set buff
         this.action = Action()
         this.action._static.spd_func = this.speed
@@ -577,6 +616,7 @@ class Adv(object):
         this.buff = Buff()
         this.all_buffs = []
         this.buff._static.all_buffs = this.all_buffs
+        this.buff._static.time_func = this.bufftime
         # set modifier
         this.modifier = Modifier(0,0,0,0)
         this.all_modifiers = []
@@ -706,16 +746,20 @@ class Adv(object):
 
 
 
-    def __init__(this,conf={}):
+    def __init__(this,conf={},cond=0):
         this.conf_init = conf
         this.ctx = Ctx().on()
+        this.condition = m_condition.on
+        this.m_condition = m_condition
+        this.m_condition.set(cond)
         this.log = []
         loginit(this.log)
+        
 
         if not this.adv_name:
             this.adv_name = this.__class__.__name__
 
-        this.setconfig(conf)
+        this.preconfig(conf)
 
         if 1:
             this.crit_mod = this.solid_crit_mod
@@ -810,6 +854,8 @@ class Adv(object):
     def sp_mod(this, name):
         return this.mod('sp')
 
+    def bufftime(this):
+        return this.mod('buff')
 
     def l_idle(this, e):
         this.think_pin('idle')
@@ -891,6 +937,7 @@ class Adv(object):
 
 
     def run(this, d = 300):
+        this.pre()
         this.ctx.on()
 
         this.setconfig()

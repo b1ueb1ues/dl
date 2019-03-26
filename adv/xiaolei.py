@@ -10,10 +10,10 @@ class Xiaolei(adv.Adv):
         'mod_a':('s','passive',0.2),
         }
 
-    #def condition(this):
-    #    this.conf['s2_sp'] = 3909
-    #    this.s2_proc = this.c_s2_proc
-    #    return 's2 in lv1'
+#    def pre(this):
+#        if this.condition('s2 in lv1'):
+#            this.conf['s2_sp'] = 3909
+#            this.s2_proc = this.c_s2_proc
 
 
     def s2_proc(this, e):

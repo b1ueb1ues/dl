@@ -15,9 +15,9 @@ class Sazanka(Adv):
         this.o_init()
         Buff('sleep',0.2,14,'att','killer','self').on()
 
-    def condition(this):
-        this.init, this.o_init = this.c_init, this.init
-        return 'sleep'
+    def pre(this):
+        if this.condition('sleep'):
+            this.init, this.o_init = this.c_init, this.init
 
     def s1_proc(this, e):
         if random.random() < 0.8:

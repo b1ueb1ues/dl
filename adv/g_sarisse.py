@@ -6,20 +6,23 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.Adv):
+    conf = {}
+    conf['mod_a'] = ('buff','time',0.3)
     def init(this):
         this.hits = 0
         this.buffs = adv.Buff()
         this.s2stance = 0
-        this.conf['s3_buff'][1] *= 1.3
 
-    def condition(this):
-        this.dmg_proc = this.c_dmg_proc
-        this.conf['acl'] = """
-            `s3,s1.charged>=2803
-            `s1
-            `s2
-            `fs, seq=4
-            """
+    def pre(this):
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s3,s1.charged>=2803
+                `s1
+                `s2
+                `fs, seq=4
+                """
+        if this.condition('never lose combos'):
+            this.dmg_proc = this.c_dmg_proc
         return 'never lose combos & c4+fs'
 
     def c_dmg_proc(this, name, amount):
@@ -37,8 +40,8 @@ class G_Sarisse(adv.Adv):
             this.hits += 8
         if this.hits >= 20:
             this.hits -= 20
-            adv.Buff('sylvan strength',0.02,15*1.3,wide='self').on()
-            adv.Buff('sylvan crit',0.01,15*1.3,'crit','chance',wide='self').on()
+            adv.Buff('sylvan strength',0.02,15,wide='self').on()
+            adv.Buff('sylvan crit',0.01,15,'crit','chance',wide='self').on()
 
     def s1_proc(this, e):
         buffcount = 0
@@ -53,10 +56,10 @@ class G_Sarisse(adv.Adv):
 
     def s2_proc(this, e):
         if this.s2stance == 0:
-            adv.Buff('s2str',0.20,13).on()
+            adv.Buff('s2str',0.20,10).on()
             this.s2stance = 1
         elif this.s2stance == 1:
-            adv.Buff('s2def',1,15*1.3,'defup').on()
+            adv.Buff('s2def',1,15,'defup').on()
             this.s2stance = 0
 
 
@@ -67,5 +70,5 @@ if __name__ == '__main__':
         `s1
         `s2
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

@@ -6,11 +6,11 @@ def module():
     return Pia
 
 class Pia(Adv):
-    comment = 'no fs & energy'
+    comment = 'no fs'
 
-    def condition(this):
-        this.init = this.c_init
-        return 'energy'
+    def pre(this):
+        if this.condition('energy'):
+            this.init = this.c_init
 
     def init(this):
         this.conf['acl'] = """

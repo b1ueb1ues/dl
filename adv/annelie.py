@@ -6,10 +6,11 @@ def module():
     return Annelie
 
 class Annelie(Adv):
-    def condition(this):
-        this.conf["mod_a"] = ('s', 'passive', 0.35) 
-        this.init = this.c_init
-        return 'hp70 & energy'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf["mod_a"] = ('s', 'passive', 0.35) 
+        if this.condition('energy'):
+            this.init = this.c_init
 
     def c_init(this):
         this.stance = 0

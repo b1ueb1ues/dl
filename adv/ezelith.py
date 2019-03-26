@@ -9,9 +9,9 @@ class Ezelith(Adv):
         "mod_a": ('att', 'broken_p', 0.3*0.15) ,
         } 
 
-    def condition(this):
-        this.s2chance += 0.2
-        return 'hp70'
+    def pre(this):
+        if this.condition('hp70'):
+            this.s2chance += 0.2
 
     s2chance = 0.15
     def init(this):

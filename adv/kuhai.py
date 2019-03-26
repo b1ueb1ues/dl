@@ -7,20 +7,21 @@ def module():
 
 
 class Kuhai(Adv):
-    comment = 'c2+fs during s2 & stellar show(WP)'
+    comment = 'c2+fs during s2 & stellar show(WP)+LC'
     conf = {
         "mod_a"   : ('crit', 'damage', 0.15),
         } 
 
-    def condition(this):
-        this.conf["mod_a2"] = ('crit', 'damage', 0.15)
-        this.o_init = this.init
-        this.init = this.c_init
-        return 'huge hitbox enemy & hp70'
+    def pre(this):
+        if this.condition('huge hitbox eneny'):
+            this.o_init = this.init
+            this.init = this.c_init
+        if this.condition('hp70'):
+            this.conf["mod_a2"] = ('crit', 'damage', 0.15)
 
-    def condition2(this):
-        this.conf["mod_a2"] = ('crit', 'damage', 0.15)
-        return 'hp70'
+    def pre2(this):
+        if this.condition('hp70'):
+            this.conf["mod_a2"] = ('crit', 'damage', 0.15)
     
     def c_init(this):
         this.o_init()
@@ -65,10 +66,14 @@ if __name__ == '__main__':
         ('fs','passive',0.40),
         ('crit','damage',0.13),
         ]
+   # conf["mod_wp2"] = [ 
+   #     ('s','passive',0.25),
+   #     ('crit','chance',0.06),
+   #     ]
     adv_test.test(module(), conf, verbose=0, mass=0)
 
     module().comment = 'no s2'
-    module().condition = module().condition2
+    module().pre = module().pre2
     conf = {}
     conf['acl'] = """
         `s1

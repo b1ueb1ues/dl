@@ -5,9 +5,9 @@ def module():
     return Renelle
 
 class Renelle(Adv):
-    def condition(this):
-        this.conf['mod_a'] = ('crit' , 'passive', 0.08)
-        return 'hit15'
+    def pre(this):
+        if this.condition('hit15'):
+            this.conf['mod_a'] = ('crit' , 'passive', 0.08)
 
     def s2_proc(this, e):
         Buff('defdown',-0.015,10,'def').on()

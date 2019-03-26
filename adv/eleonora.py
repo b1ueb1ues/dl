@@ -10,14 +10,15 @@ class Eleonora(adv.Adv):
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)
-    def condition(this):
-        this.conf['acl'] = """
-            `s1, fsc
-            `s2, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        return 'c4+fs'
+
+    def pre(this):
+        this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
 
 

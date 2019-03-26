@@ -10,9 +10,9 @@ class Ieyasu(Adv):
         "mod_a"  : ('crit' , 'damage'  , 0.2) ,
         } 
 
-    def condition(this):
-        this.conf['mod_a2'] = ('crit' , 'chance', 0.1)
-        return 'hp70'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf['mod_a2'] = ('crit' , 'chance', 0.1)
 
 
     def s2ifbleed(this):

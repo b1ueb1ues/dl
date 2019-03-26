@@ -5,15 +5,16 @@ def module():
     return Waike
 
 class Waike(adv.Adv):
-    def condition(this):
-        this.init = this.c_init
-        this.conf['acl'] = """
-            `s1, fsc
-            `s2, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        return 'bog & c4+fs'
+    def pre(this):
+        if this.condition('bog'):
+            this.init = this.c_init
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
     def init(this):
         this.bogcountlast = 0

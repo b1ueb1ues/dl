@@ -8,13 +8,13 @@ class D_Nefaria(adv.Adv):
     conf = {
         "mod_a": ('s', 'passive', 0.25),
         } 
-    def condition(this):
-        this.conf['acl'] = """
-            `s1, fsc
-            `s3, fsc
-            `fs, seq=4
-            """
-        return 'c4+fs'
+    def pre(this):
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
 
 if __name__ == '__main__':

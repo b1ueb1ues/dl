@@ -5,9 +5,9 @@ def module():
     return Althemia
 
 class Althemia(adv.Adv):
-    def condition(this):
-        this.conf["mod_a"] = ("s", 'passive', 0.3)
-        return 'hp100'
+    def pre(this):
+        if this.condition('hp100'):
+            this.conf["mod_a"] = ("s", 'passive', 0.3)
 
 
 if __name__ == '__main__':

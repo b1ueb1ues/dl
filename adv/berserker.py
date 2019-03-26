@@ -5,12 +5,9 @@ def module():
     return Berserker
 
 class Berserker(Adv):
-    def condition(this):
-        this.init = this.c_init
-        return 'last offense'
-
-    def c_init(this):
-        Buff('last_offense',0.4,15,wide='self').on()
+    def init(this):
+        if this.condition('last offense'):
+            Buff('last_offense',0.4,15,wide='self').on()
 
 
 if __name__ == '__main__':

@@ -10,9 +10,9 @@ class Musashi(adv.Adv):
         "mod_a"  :  ('att'  , 'punisher' , 0.08*0.45 ) ,
         } 
 
-    def condition(this):
-        this.init = this.c_init
-        return 'last offense'
+    def pre(this):
+        if this.condition('last offense'):
+            this.init = this.c_init
 
     def c_init(this):
         adv.Buff('last_offense',0.4,15,wide='self').on()
@@ -34,5 +34,5 @@ if __name__ == '__main__':
         `s1
         `s3, s
         """
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 

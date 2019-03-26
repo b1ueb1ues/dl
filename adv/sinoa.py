@@ -6,16 +6,18 @@ def module():
     return Sinoa
 
 class Sinoa(adv.Adv):
-    def condition(this):
-        this.conf['mod_a'] = ('att' , 'passive', 0.13)
-        return 'hp100'
+    def pre(this):
+        if this.condition('hp100'):
+            this.conf['mod_a'] = ('att' , 'passive', 0.13)
+        this.conf['mod_a2'] = ('buff' , 'time', 0.2)
+        #this.conf['mod_wp2'] = ('buff' , 'time', 0.15)
 
     def s1_proc(this, e):
         r = random.random()
         if r<0.25  :
-            adv.Buff('s1_att',0.25,15*1.2,'att').on()
+            adv.Buff('s1_att',0.25,15,'att').on()
         elif r<0.5 :
-            adv.Buff('s1_crit',0.25,10*1.2,'crit').on()
+            adv.Buff('s1_crit',0.25,10,'crit').on()
         else:
             log('failed','s1')
 

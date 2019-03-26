@@ -40,15 +40,16 @@ class Albert(Adv):
             log('sp','s2autocharge')
 
             
-    def condition(this):
-        this.conf['acl'] = """
-            `s2, s1.charged>=s1.sp-300
-            `s1
-            `s3, not this.s2buff.get()
-            `fs, seq=2 
-            """
-        this.s1_proc = this.c_s1_proc
-        return '3s1 in one s2 & huge hitbox'
+    def pre(this):
+        if this.condition('3s1 in on s2'):
+            this.conf['acl'] = """
+                `s2, s1.charged>=s1.sp-300
+                `s1
+                `s3, not this.s2buff.get()
+                `fs, seq=2 
+                """
+        if this.condition('big hitbox'):
+            this.s1_proc = this.c_s1_proc
 
 
     def c_s1_proc(this, e):

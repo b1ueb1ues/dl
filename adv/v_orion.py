@@ -18,16 +18,16 @@ class V_Orion(adv.Adv):
         adv.Buff("double_buff",0.08,15,wide='self').on()
         adv.Buff("crown_double_buff",0.08,15,wide='self').on()
 
-    def condition(this):
-        this.conf['wp'] = ('s', 'passive', 0.25) 
-        this.conf['acl'] = """
-            `s1
-            `s2
-            `s3
-            `fs, seq=3 and cancel
-            """
-        this.s2_proc = this.s2_proc_vc
-        return 'Valiant Crown'
+    def pre(this):
+        if this.condition('Valiant Crown'):
+            this.conf['mod_wp'] = [('s', 'passive', 0.25)]
+            this.conf['acl'] = """
+                `s1
+                `s2
+                `s3
+                `fs, seq=3 and cancel
+                """
+            this.s2_proc = this.s2_proc_vc
     
 
 if __name__ == '__main__':
