@@ -1,6 +1,6 @@
 
 
-def get(adv):
+def get(s, e, w):
     d = {
         'ele','all',
         'str':127,
@@ -13,4 +13,11 @@ def get(adv):
         "mod"  :[('s'    , 'passive' , 0.25) ,
                 ('crit' , 'chance'  , 0.06)],
         }
-    return d, wp
+    wp2 = {
+        'ele','all',
+        'str':64,
+        "mod"  :[('crit'    , 'damage' , 0.13) ,
+                ('crit' , 'chance'  , 0.08)],
+        }
+
+    return d, wp, wp2
