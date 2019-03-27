@@ -5,9 +5,8 @@ def module():
     return Zardin
 
 class Zardin(adv.Adv):
-    def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('att' , 'passive', 0.10)
+    conf = {}
+    conf['mod_a1'] = ('att', 'passive', 0.10, 'hp100')
 
 
 if __name__ == '__main__':

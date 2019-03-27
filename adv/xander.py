@@ -7,10 +7,8 @@ def module():
 class Xander(adv.Adv):
     comment = 'c2+fs'
     conf = {
-        "mod_d"   :[('att'  , 'passive' , 0.45)  ,
-                    ('crit' , 'chance'  , 0.20)] ,
-        "mod_a"   : ('fs'   , 'passive' , 0.50) ,
-        } 
+        "mod_a3": ('fs', 'passive', 0.50) ,
+    } 
 
 
 if __name__ == '__main__':

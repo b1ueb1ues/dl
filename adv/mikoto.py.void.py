@@ -6,11 +6,10 @@ def module():
     return Mikoto
 
 class Mikoto(mikoto.Mikoto):
-    conf = {
-        "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
-        }
-    conf['str_w'] = 1.5*353
-    conf['mod_w'] = ('att','punisher',0.2)
+
+    def pre(this):
+        this.conf['str_w'] = 1.5*353
+        this.conf['mod_w'] = ('att','punisher',0.2)
 
     def init(this):
         mikoto.Mikoto.init(this)

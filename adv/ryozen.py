@@ -6,7 +6,7 @@ def module():
 
 class Ryozen(Adv):
     conf = {
-        'mod_a':('att','op',0.08*0.45),
+        'mod_a3':('att','op',0.08*0.45),
         }
 
 

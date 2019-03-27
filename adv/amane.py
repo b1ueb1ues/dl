@@ -5,6 +5,9 @@ def module():
     return Amane
 
 class Amane(adv.Adv):
+    conf = {}
+    conf['mod_a3'] = ('att','bp',0.2*0.15)
+
     def init(this):
         this.charge_p("prep","75%")
 

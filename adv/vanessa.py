@@ -7,7 +7,7 @@ def module():
 class Vanessa(adv.Adv):
     comment = ''
     conf = {
-        "mod_a": ('fs', 'passive', 0.40),
+        "mod_a1": ('fs', 'passive', 0.40),
         } 
     def pre(this):
         if this.condition('last offense'):

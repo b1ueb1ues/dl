@@ -9,19 +9,17 @@ def module():
 class Kuhai(Adv):
     comment = 'c2+fs during s2 & stellar show(WP)+LC'
     conf = {
-        "mod_a"   : ('crit', 'damage', 0.15),
+        "mod_a1": ('crit', 'damage', 0.15),
+        "mod_a3": ('crit', 'damage', 0.15, 'hp70'),
         } 
 
     def pre(this):
         if this.condition('huge hitbox eneny'):
             this.o_init = this.init
             this.init = this.c_init
-        if this.condition('hp70'):
-            this.conf["mod_a2"] = ('crit', 'damage', 0.15)
 
     def pre2(this):
-        if this.condition('hp70'):
-            this.conf["mod_a2"] = ('crit', 'damage', 0.15)
+        pass
     
     def c_init(this):
         this.o_init()

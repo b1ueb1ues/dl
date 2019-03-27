@@ -7,7 +7,7 @@ def module():
 
 class Addis(Adv):
     conf = {
-            'mod_a':('att','bp',0.03)
+            'mod_a3':('att','bp',0.03)
             }
 
 

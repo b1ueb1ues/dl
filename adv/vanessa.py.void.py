@@ -1,18 +1,16 @@
 import adv_test
 import adv
+import vanessa
 
 def module():
     return Vanessa
 
-class Vanessa(adv.Adv):
+class Vanessa(vanessa.Vanessa):
     comment = 'void weapon vs HMS'
-    conf = {
-        "mod_a": ('fs', 'passive', 0.40),
-        } 
-    conf['str_w'] = 1.5*380
-    conf['mod_w'] = ('att','killer',0.2)
 
     def pre(this):
+        this.conf['str_w'] = 1.5*380
+        this.conf['mod_w'] = ('att','killer',0.2)
         if this.condition('last offense'):
             this.o_init = this.init
             this.init = this.c_init

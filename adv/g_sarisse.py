@@ -7,7 +7,7 @@ def module():
 
 class G_Sarisse(adv.Adv):
     conf = {}
-    conf['mod_a'] = ('buff','time',0.3)
+    conf['mod_a3'] = ('buff','time',0.3)
     def init(this):
         this.hits = 0
         this.bc = adv.Selfbuff()

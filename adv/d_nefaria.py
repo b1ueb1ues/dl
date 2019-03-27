@@ -6,7 +6,7 @@ def module():
 
 class D_Nefaria(adv.Adv):
     conf = {
-        "mod_a": ('s', 'passive', 0.25),
+        "mod_a1": ('s', 'passive', 0.25),
         } 
     def pre(this):
         if this.condition('c4+fs'):

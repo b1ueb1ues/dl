@@ -1,10 +1,11 @@
 import adv_test
 from adv import *
+import mikoto
 
 def module():
     return Mikoto
 
-class Mikoto(Adv):
+class Mikoto(mikoto.Mikoto):
     conf = {
         "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
         }

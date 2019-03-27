@@ -6,8 +6,8 @@ def module():
 
 class Malora(adv.Adv):
     conf = {
-            'mod_a':('att','bp',0.2*0.15),
-            }
+        'mod_a1':('att','bp',0.2*0.15),
+    }
 
     def pre(this):
         if this.condition('spawn c1+fs'):

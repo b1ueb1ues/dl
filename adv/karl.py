@@ -5,10 +5,9 @@ def module():
     return Karl
 
 class Karl(adv.Adv):
-    def pre(this):
-        if this.condition('hp70'):
-            this.conf['mod_a'] = ('att' , 'passive', 0.08)
-
+    conf = {}
+    conf['mod_a3'] = ('att' , 'passive', 0.08, 'hp70')
+    #conf['mod_wp2'] = ('buff' , 'time', 0.15)
 
 
 if __name__ == '__main__':
@@ -19,5 +18,5 @@ if __name__ == '__main__':
         `s3,fsc
         `fs, seq=3
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

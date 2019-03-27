@@ -5,6 +5,9 @@ def module():
     return Luca
 
 class Luca(adv.Adv):
+    conf = {}
+    conf['mod_a1'] = ('att', 'passive', 0.13, 'hp100') 
+
     def init(this):
         this.dmg_make("o_s1_paralysis",2.65)
         this.dmg_make("o_s1_paralysis",2.65)
@@ -12,8 +15,6 @@ class Luca(adv.Adv):
 
 
     def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('att' , 'passive' , 0.13) 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc

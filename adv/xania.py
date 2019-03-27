@@ -6,8 +6,8 @@ def module():
 
 class Xania(adv.Adv):
     conf = {
-        "mod_a": ("s", 'passive', 0.20) ,
-        } 
+        "mod_a1": ("s", 'passive', 0.20) ,
+    } 
 
 
 if __name__ == '__main__':

@@ -5,11 +5,6 @@ def module():
     return Karina
 
 class Karina(adv.Adv):
-    conf = {
-        "mod_d" :[('att'  , 'passive' , 0.45)  ,
-                  ('crit' , 'chance'  , 0.20)] ,
-        } 
-
     def init(this):
         this.charge_p("prep","50%")
 

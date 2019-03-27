@@ -6,7 +6,7 @@ def module():
 
 class H_Elisanne(Adv):
     conf = {
-        "mod_a"  : ('s', 'passive', 0.3) ,
+        "mod_a1"  : ('s', 'passive', 0.3) ,
         } 
 
     def init(this):

@@ -6,8 +6,8 @@ def module():
 
 class Marty(adv.Adv):
     conf = {
-            'mod_a':('sp','passive',0.05),
-            }
+        'mod_a1':('sp','passive',0.05),
+    }
 
 
 if __name__ == '__main__':

@@ -6,9 +6,9 @@ def module():
     return Annelie
 
 class Annelie(Adv):
+    conf = {}
+    conf["mod_a1"] = ('s', 'passive', 0.35, 'hp70') 
     def pre(this):
-        if this.condition('hp70'):
-            this.conf["mod_a"] = ('s', 'passive', 0.35) 
         if this.condition('energy'):
             this.init = this.c_init
 

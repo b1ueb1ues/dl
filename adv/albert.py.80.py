@@ -11,7 +11,7 @@ def module():
 
 class Albert(albert.Albert):
     conf = {
-            'mod_a':('fs','passive',0.5),
+            'mod_a1':('fs','passive',0.5),
             'mod_wp2':[],
             }
 

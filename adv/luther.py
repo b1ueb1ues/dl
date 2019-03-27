@@ -6,13 +6,8 @@ def module():
 
 class Luther(Adv):
     conf = {
-        "mod_d"   :[('att'  , 'passive' , 0.45)  ,
-                    ('crit' , 'chance'  , 0.20)] ,
+        'mod_a1': ('crit', 'chance', 0.1, 'hit15')
         } 
-    def pre(this):
-        if this.condition('hit15'):
-            this.conf['mod_a'] = ('crit' , 'chance', 0.10)
-
 
 
 if __name__ == '__main__':

@@ -5,7 +5,8 @@ def module():
     return Jurota
 
 class Jurota(adv.Adv):
-    pass
+    conf = {}
+    conf['mod_a1'] = ('att','bp',0.2*0.45)
 
 
 if __name__ == '__main__':

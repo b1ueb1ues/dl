@@ -7,8 +7,9 @@ def module():
 class Elisanne(Adv):
     comment = 'do not use fs & RR+15%buff_time'
     conf = {}
-    conf['mod_a'] = ('buff','time',0.25)
+    conf['mod_a1'] = ('buff','time',0.25)
     conf['mod_wp2'] = ('buff','time',0.15)
+    #conf['mod_wp'] = [('sp','passive',0.06),('att','passive',0.08)] 
 
 
 if __name__ == '__main__':
@@ -18,6 +19,6 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=0)
 
 

@@ -7,12 +7,9 @@ def module():
 
 class Sinoa(adv.Adv):
     conf = {}
+    conf['mod_a1'] = ('att' , 'passive', 0.13, 'hp100')
+    conf['mod_a3'] = ('buff' , 'time', 0.2)
     #conf['mod_wp2'] = ('buff','time',0.15)
-    def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('att' , 'passive', 0.13)
-        this.conf['mod_a2'] = ('buff' , 'time', 0.2)
-        #this.conf['mod_wp2'] = ('buff' , 'time', 0.15)
 
     def s1_proc(this, e):
         r = random.random()

@@ -6,7 +6,7 @@ def module():
 
 class Aoi(adv.Adv):
     conf = {
-        "mod_a": ('att', 'punisher', 0.04),
+        "mod_a1": ('att', 'punisher', 0.08*0.45),
         } 
     
 

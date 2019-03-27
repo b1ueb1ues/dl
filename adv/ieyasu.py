@@ -7,12 +7,9 @@ def module():
 
 class Ieyasu(Adv):
     conf = {
-        "mod_a"  : ('crit' , 'damage'  , 0.2) ,
+        "mod_a1": ('crit', 'chance', 0.1, 'hp70') ,
+        "mod_a3": ('crit', 'damage', 0.2) ,
         } 
-
-    def pre(this):
-        if this.condition('hp70'):
-            this.conf['mod_a2'] = ('crit' , 'chance', 0.1)
 
 
     def s2ifbleed(this):

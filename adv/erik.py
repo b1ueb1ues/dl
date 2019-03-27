@@ -7,7 +7,7 @@ def module():
 class Erik(adv.Adv):
     comment ='do not use weapon skill'
     conf = {
-        "mod_a": ('fs', 'passive', 0.30),
+        "mod_a1": ('fs', 'passive', 0.30),
         } 
 
 

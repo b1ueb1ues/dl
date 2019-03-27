@@ -16,13 +16,16 @@ class Modifier(object):
     mod_type = '_nop' or 'att' or 'x' or 'fs' or 's' #....
     mod_order = '_nop' or 'passive' or 'ex' or 'buff' # chance dmg for crit 
     mod_value = 0
-    def __init__(this, name, mtype, order, value):
+    def __init__(this, name, mtype, order, value, condition=None):
         this.mod_name = name
         this.mod_type = mtype
         this.mod_order = order
         this.mod_value = value
-        this._static.all_modifiers.append(this)
-        this.__active = 1
+        this.mod_condition = condition
+        this.__active = 0
+        this.on()
+        #this._static.all_modifiers.append(this)
+        #this.__active = 1
 
     @classmethod
     def mod(cls, mtype, all_modifiers=None):
@@ -49,6 +52,10 @@ class Modifier(object):
             return this
         if modifier == None:
             modifier = this
+        if modifier.mod_condition :
+            if not m_condition.on(modifier.mod_condition):
+                return this
+
         this._static.all_modifiers.append(modifier)
         this.__active = 1
         return this
@@ -759,11 +766,11 @@ class Adv(object):
             if i[:3] == 'mod':
                 j = this.conf[i]
                 if type(j) == tuple:
-                    Modifier(i,j[0],j[1],j[2])
+                    Modifier(i,*j)
                 elif type(j) == list:
                     idx = 0
                     for k in j:
-                        Modifier(i+'_%d'%idx,k[0],k[1],k[2])
+                        Modifier(i+'_%d'%idx,*k)
                         idx += 1
 
     def calc_str(this, conf):

@@ -6,7 +6,7 @@ def module():
 
 class Vice(Adv):
     conf = {
-        "mod_a"   : ('att', 'bp', 0.2*0.15)
+        "mod_a1": ('att', 'bp', 0.2*0.15)
         } 
 
 

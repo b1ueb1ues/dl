@@ -10,7 +10,7 @@ def module():
 
 class Albert(Adv):
     conf = {
-            'mod_a':('fs','passive',0.5),
+            'mod_a1':('fs','passive',0.5),
             #'mod_wp':('s','passive',0.35),
             }
 

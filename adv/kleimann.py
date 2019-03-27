@@ -7,8 +7,8 @@ def module():
 
 class Kleimann(adv.Adv):
     conf = {
-        "mod_a"  : ("fs", 'passive', 0.4),
-        "mod_a2" : ("s" , 'passive', 0.2),
+        "mod_a1" : ("fs", 'passive', 0.4),
+        "mod_a3" : ("s" , 'passive', 0.2),
         } 
 
 if __name__ == '__main__':

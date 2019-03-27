@@ -6,12 +6,8 @@ def module():
 
 class Lily(adv.Adv):
     conf = {
-        "mod_d"  :[('att'  , 'passive' , 0.45)  ,
-                   ('crit' , 'chance'  , 0.20)] ,
+        'mod_a1': ('att', 'passive', 0.15, 'hp100'),
         } 
-    def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('att' , 'passive', 0.15)
 
     def init(this):
         this.charge_p("prep", "100%")

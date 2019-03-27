@@ -8,10 +8,7 @@ class Melody(adv.Adv):
     comment = 'RR+15%buff_time & no s2'
     conf = {}
     conf['mod_wp2'] = ('buff','time',0.15)
-    def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('crit' , 'passive', 0.08)
-
+    conf['mod_a1'] = ('crit', 'chance', 0.08, 'hp100')
 
 
 if __name__ == '__main__':

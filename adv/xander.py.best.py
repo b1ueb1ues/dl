@@ -8,17 +8,17 @@ class Xander_best(Xander):
     comment = 'together we stand & 10 stacks striker\'s strength'
     adv_name = 'Xander'
     conf = {
-        "mod_d"   :[('att'  , 'passive' , 0.45)  ,
-                    ('crit' , 'chance'  , 0.20)] ,
-
-        "mod_a"   : ('fs'   , 'passive' , 0.50) ,
-
-        "mod_a2"   : ('att'   , 'buff' , 0.30) ,
-
+        "mod_a1"   : ('att'   , 'buff' , 0.30) ,
+        "mod_a3"   : ('fs'   , 'passive' , 0.50) ,
         "mod_wp"   : [
             ('s'   , 'passive' , 0.15) ,
             ('att' , 'buff'    , 0.20) ,
+            #('fs' , 'passive'   , 0.40) ,
+            #('crit' ,'damage'  , 0.13) ,
+            ('s' , 'passive'   , 0.20) ,
+            ('crit' ,'chance'  , 0.06, 'hp70') ,
             ],
+        "mod_wp2"   : [],
         } 
 
     def s1_proc(this,e):

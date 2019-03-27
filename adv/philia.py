@@ -5,9 +5,9 @@ def module():
     return Philia
 
 class Philia(adv.Adv):
+    conf = {}
+    conf['mod_a1'] = ('att', 'passive', 0.10, 'hp100')
     def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('att' , 'passive', 0.10)
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc

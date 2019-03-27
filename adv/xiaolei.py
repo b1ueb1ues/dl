@@ -7,7 +7,7 @@ def module():
 
 class Xiaolei(adv.Adv):
     conf = {
-        'mod_a':('s','passive',0.2),
+        'mod_a1':('s','passive',0.2),
         }
 
 #    def pre(this):

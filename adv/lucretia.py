@@ -7,6 +7,9 @@ def module():
     return Lucretia
 
 class Lucretia(adv.Adv):
+    conf = {}
+    conf['mod_a3'] = ('att','bp', 0.3*0.15)
+     
     def pre(this):
         if this.condition('energy'):
             this.init = this.c_init

@@ -8,8 +8,8 @@ def module():
 
 class V_Ezelith(Adv):
     conf = {
-            "mod_a2":('att','broken_p',0.2*0.15),
-            }
+        "mod_a3":('att','broken_p',0.2*0.15),
+    }
 
     def c_init(this):
         this.o_init()

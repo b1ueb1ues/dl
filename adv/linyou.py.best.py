@@ -7,13 +7,9 @@ def module():
 class Linyou_best(linyou.Linyou):
     adv_name = 'Linyou'
     comment = 'Kunfu & LongLong'
-    conf = {
-        "mod_a2"  : ('sp' , 'passive'  , 0.08) ,
-        "mod_d" :[
-            ('att','passive',0.45),
-            ('crit','dmg',0.55),
-            ],
-        }
+    def pre(this):
+        this.conf['mod_d'] = [('att','passive',0.45),
+                              ('crit','dmg',0.55)]
 
 
 if __name__ == '__main__':

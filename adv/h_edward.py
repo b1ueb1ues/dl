@@ -5,9 +5,8 @@ def module():
     return H_Edward
 
 class H_Edward(adv.Adv):
-    def pre(this):
-        if this.condition('hp100'):
-            this.conf['mod_a'] = ('att' , 'passive', 0.1)
+    conf = {}
+    conf['mod_a1'] = ('att', 'passive', 0.1, 'hp100')
 
 
 if __name__ == '__main__':

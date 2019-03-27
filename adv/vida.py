@@ -6,7 +6,7 @@ def module():
 
 class Vida(Adv):
     conf = {
-        "mod_a"   : ('fs', 'passive', 0.30)
+        "mod_a1": ('fs', 'passive', 0.30)
         } 
 
     def init(this):

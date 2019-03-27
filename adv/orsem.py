@@ -5,16 +5,10 @@ def module():
     return Orsem
 
 class Orsem(Adv):
-    conf = {
-        "mod_d"   :[('att'  , 'passive' , 0.45)  ,
-                    ('crit' , 'chance'  , 0.20)] ,
-        } 
+    conf = {} 
+    conf['mod_a1'] = ('crit' , 'passive', 0.10, 'hit15')
+    conf['mod_a3'] = ('crit' , 'passive', 0.06, 'hp70')
 
-    def pre(this):
-        if this.condition('hit15'):
-            this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        if this.condition('hp70'):
-            this.conf['mod_a2'] = ('crit' , 'passive', 0.06)
 
 if __name__ == '__main__':
     conf = {}

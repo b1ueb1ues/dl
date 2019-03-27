@@ -7,7 +7,7 @@ def module():
 class Musashi(adv.Adv):
     comment = 'poison 3 times'
     conf = {
-        "mod_a"  :  ('att'  , 'killer' , 0.08*0.45 ) ,
+        "mod_a3": ('att', 'killer', 0.08*0.45) ,
         } 
 
     def pre(this):

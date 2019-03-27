@@ -6,7 +6,7 @@ def module():
 
 class Ezelith(Adv):
     conf = {
-        "mod_a": ('att', 'broken_p', 0.3*0.15) ,
+        "mod_a3": ('att', 'broken_p', 0.3*0.15) ,
         } 
 
     def pre(this):

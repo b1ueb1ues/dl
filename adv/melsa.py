@@ -5,9 +5,8 @@ def module():
     return Melsa
 
 class Melsa(Adv):
-    def pre(this):
-        if this.condition('hit15'):
-            this.conf['mod_a'] = ('crit' , 'passive', 0.08)
+    conf = {}
+    conf['mod_a3'] = ('crit', 'passive', 0.08, 'hit15')
 
 
 

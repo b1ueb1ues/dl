@@ -6,15 +6,14 @@ def module():
 
 class Mikoto(Adv):
     conf = {
-        "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
+        "mod_a1": ('crit', 'chance', 0.10, 'hp70') ,
+        "mod_a3": ('crit', 'chance', 0.08) ,
         #"mod_wp2" : ('buff','time',0),
         }
 
     def pre(this):
         if this.condition('connect s1'):
             this.s1_proc = this.c_s1_proc
-        if this.condition('hp70'):
-            this.conf['mod_a'] = ('crit' , 'passive', 0.10)
 
     def init(this):
         this.s1buff = Selfbuff("s1",0.0, 15)

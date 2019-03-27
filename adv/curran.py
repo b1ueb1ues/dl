@@ -7,7 +7,7 @@ def module():
 class Curran(adv.Adv):
     comment = "do not use weapon skill and fs"
     conf = {
-        "mod_a": ('att', 'killer', 0.13*0.45),
+        "mod_a1": ('att', 'killer', 0.13*0.45),
         } 
 
     def init(this):

@@ -7,7 +7,7 @@ def module():
 class Zace(Adv):
     comment = 'do not use fs'
     conf = {
-        'mod_a':('s','passive',0.2),
+        'mod_a1':('s','passive',0.2),
     }
 
 

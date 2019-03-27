@@ -21,7 +21,6 @@ class Eleonora(adv.Adv):
                 """
 
 
-
 if __name__ == '__main__':
     module().comment = 'poison by s1 3 times'
     conf = {}

@@ -6,7 +6,7 @@ def module():
 
 class Louise(adv.Adv):
     conf = {
-        "mod_a_od" : ('att' , 'punisher' , 0.13*0.45) ,
+        "mod_a1": ('att', 'punisher', 0.13*0.45) ,
         } 
 
     def init(this):

@@ -6,8 +6,8 @@ def module():
 
 class Sufang(Adv):
     conf = {
-        "mod_a2"   : ('s', 'passive', 0.20)
-        } 
+        "mod_a3":('s', 'passive', 0.20),
+    } 
 
 
 
