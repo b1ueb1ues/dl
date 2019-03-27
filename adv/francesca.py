@@ -9,8 +9,6 @@ class Francesca(Adv):
         "mod_fs"  : ('fs', 'passive', 0.30) ,
         } 
 
-    def s2_proc(this, e):
-        Buff('s2_ab',-0.015,10,'def').on()
 
 
 if __name__ == '__main__':

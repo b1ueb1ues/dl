@@ -11,9 +11,6 @@ class Fritz(adv.Adv):
         this.stance = 0
         this.s2fscharge = 0
 
-    def s1_proc(this, e):
-        Buff('defdown',-0.02,10,'def').on()
-
     def s2_proc(this, e):
         this.s2fscharge = 3
 

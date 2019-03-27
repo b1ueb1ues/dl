@@ -7,15 +7,13 @@ def module():
 class Curran(adv.Adv):
     comment = "do not use weapon skill and fs"
     conf = {
-        "mod_a": ('att', 'bane', 0.13*0.45),
+        "mod_a": ('att', 'killer', 0.13*0.45),
         } 
 
     def init(this):
         if this.condition('last_offense'):
-            adv.Buff('last_offense',0.5,15,wide='self').on()
+            adv.Selfbuff('last_offense',0.5,15).on()
 
-    def s1_proc(this, e):
-        adv.Buff('defdown',-0.025,10,'def').on()
 
 if __name__ == '__main__':
     conf = {}

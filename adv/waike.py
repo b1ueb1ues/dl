@@ -18,12 +18,12 @@ class Waike(adv.Adv):
 
     def init(this):
         this.bogcountlast = 0
-        this.bogbuff = adv.Buff('s2_bog',0.5,8,'att','bog')
+        this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
 
 
     def c_init(this):
         this.bogcountlast = 3
-        this.bogbuff = adv.Buff('s2_bog',0.6,8,'att','bog')
+        this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
 
     def s2_proc(this, e):
         if this.bogcountlast > 0:

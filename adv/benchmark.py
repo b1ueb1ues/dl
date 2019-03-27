@@ -8,14 +8,15 @@ class Mikoto(Adv):
     conf = {
         "mod_a2"  : ('crit' , 'chance'  , 0.08) ,
         }
-    def condition(this):
-        this.conf['mod_a'] = ('crit' , 'passive', 0.10)
-        this.s1_proc = this.c_s1_proc
-        return 'hp70 & connect s1'
+    def pre(this):
+        if this.condition('hp70'):
+            this.conf['mod_a'] = ('crit' , 'passive', 0.10)
+        if this.condition('connect s1'):
+            this.s1_proc = this.c_s1_proc
 
     def init(this):
-        this.s1buff = Buff("s1",0.0, 15, 'att','buff', wide='self')
-        this.s2buff = Buff("s2",0.2, 10, 'spd', wide='self')
+        this.s1buff = Selfbuff("s1",0.0, 15)
+        this.s2buff = Selfbuff("s2",0.2, 10, 'spd')
 
     def speed(this):
         return 1+this.s2buff.get()

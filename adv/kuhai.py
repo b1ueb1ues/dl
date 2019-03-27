@@ -39,7 +39,7 @@ class Kuhai(Adv):
                 "x3fs_startup":18/60.0,
                 "x3fs_recovery":33/60.0,
                 })
-        this.s2fsbuff = Buff('s2ss',1,10,'ss','ss','self')
+        this.s2fsbuff = Selfbuff('s2ss',1,10,'ss','ss')
         this.alttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
 

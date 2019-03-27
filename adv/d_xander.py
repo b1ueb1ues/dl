@@ -12,9 +12,9 @@ class D_Xander(adv.Adv):
         "mod_a"   : ('sp'  , 'passive' , 0.05) ,
         } 
 
-    def condition(this):
-        this.init = this.c_init
-        return 'energy'
+    def pre(this):
+        if this.condition('energy'):
+            this.init = this.c_init
 
     def init(this):
         energy.Energy(this,

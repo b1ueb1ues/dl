@@ -1,18 +1,12 @@
 import adv_test
 import adv
+import karl
 
 def module():
     return Karl
 
-class Karl(adv.Adv):
-    conf = {}
-    conf['mod_wp'] = [
-            ('s','passive',0.10),
-            ('fs','passive',0.20),
-            ]
-    def condition(this):
-        this.conf['mod_a'] = ('att' , 'passive', 0.08)
-        return 'hp70'
+class Karl(karl.Karl):
+    pass
 
 
 

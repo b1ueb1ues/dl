@@ -7,7 +7,7 @@ def module():
 class Musashi(adv.Adv):
     comment = 'poison 3 times'
     conf = {
-        "mod_a"  :  ('att'  , 'punisher' , 0.08*0.45 ) ,
+        "mod_a"  :  ('att'  , 'killer' , 0.08*0.45 ) ,
         } 
 
     def pre(this):
@@ -15,7 +15,7 @@ class Musashi(adv.Adv):
             this.init = this.c_init
 
     def c_init(this):
-        adv.Buff('last_offense',0.4,15,wide='self').on()
+        adv.Selfbuff('last_offense',0.4,15).on()
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)

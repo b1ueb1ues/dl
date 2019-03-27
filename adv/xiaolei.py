@@ -17,12 +17,12 @@ class Xiaolei(adv.Adv):
 
 
     def s2_proc(this, e):
-        Buff('s2cc',0.08,10,'crit','rate').on()
-        Buff('s2cd',0.40,10,'crit','dmg').on()
+        Teambuff('s2cc',0.08,10,'crit','rate').on()
+        Teambuff('s2cd',0.40,10,'crit','dmg').on()
 
     def c_s2_proc(this, e):
-        Buff('s2cc',0.05,10,'crit','rate').on()
-        Buff('s2cd',0.30,10,'crit','dmg').on()
+        Teambuff('s2cc',0.05,10,'crit','rate').on()
+        Teambuff('s2cd',0.30,10,'crit','dmg').on()
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ class Elias(adv.Adv):
                 """
 
     def c_init(this):
-        adv.Buff('last_offense',0.4,15,wide='self').on()
+        adv.Selfbuff('last_offense',0.4,15).on()
         energy.Energy(this,{'s2':1},{'s2':1})
 
     def init(this):

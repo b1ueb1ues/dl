@@ -13,9 +13,8 @@ class Mikoto(mikoto.Mikoto):
     conf['mod_w'] = ('att','punisher',0.2)
 
     def init(this):
+        mikoto.Mikoto.init(this)
         this.charge_p('prep','50%')
-        this.s1buff = Buff("s1",0.0, 15, 'att','buff', wide='self')
-        this.s2buff = Buff("s2",0.2, 10, 'spd', wide='self')
 
 
 if __name__ == '__main__':

@@ -11,8 +11,8 @@ class Linyou(Adv):
             this.conf['mod_a'] = ('crit' , 'passive', 0.10)
     
     def init(this):
-        this.s2ssbuff = Buff("s2_s1",1, 10, 'ss','ss', wide='self')
-        this.s2spdbuff = Buff("s2_spd",0.2, 10, 'spd', wide='self')
+        this.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')
+        this.s2spdbuff = Selfbuff("s2_spd",0.2, 10, 'spd')
 
     def speed(this):
         if this.s2spdbuff.get():

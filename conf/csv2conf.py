@@ -35,11 +35,11 @@ def get(mname):
         tmp = conf['s1_buff'].split(';')
         conf['s1_buff'] = []
         if len(tmp) >= 3 :
-            conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]) ]
-            for i in tmp[2:]:
+            conf['s1_buff'] = [ tmp[0],float(tmp[1]), float(tmp[2]) ]
+            for i in tmp[3:]:
                 conf['s1_buff'] += [i]
         elif len(tmp) == 2:
-            conf['s1_buff'] = [ float(tmp[0]), float(tmp[1]) ]
+            conf['s1_buff'] = [ 'none',float(tmp[0]), float(tmp[1]) ]
     else:
         conf.pop('s1_buff')
 
@@ -47,11 +47,11 @@ def get(mname):
         tmp = conf['s2_buff'].split(';')
         conf['s2_buff'] = []
         if len(tmp) >= 3 :
-            conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
-            for i in tmp[2:]:
+            conf['s2_buff'] = [ tmp[0],float(tmp[1]), float(tmp[2]) ]
+            for i in tmp[3:]:
                 conf['s2_buff'] += [i]
         elif len(tmp) == 2:
-            conf['s2_buff'] = [ float(tmp[0]), float(tmp[1]) ]
+            conf['s2_buff'] = [ 'none',float(tmp[0]), float(tmp[1]) ]
     else:
         conf.pop('s2_buff')
     return conf

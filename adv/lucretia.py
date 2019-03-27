@@ -26,7 +26,7 @@ class Lucretia(adv.Adv):
         Event('energized').listener(this.energy_doublebuff)
 
     def energy_doublebuff(this, e):
-        adv.Buff("double_buff", 0.2, 15,'att',wide='self').on()
+        adv.Selfbuff("double_buff", 0.2, 15).on()
 
 
 

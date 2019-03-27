@@ -12,7 +12,7 @@ class Hawk(adv.Adv):
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
-        adv.Buff('stunpunisher',0.3,20,'att','punisher','self').on()
+        adv.Selfbuff('stunpunisher',0.3,20,'att','killer').on()
         this.o_init()
 
     def pre(this):

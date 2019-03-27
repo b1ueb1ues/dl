@@ -15,27 +15,17 @@ class Heinwald(Adv):
 
     def init(this):
         this.charge_p('prep','100%')
-        this.s2ssbuff = Buff("s2_shapshifts1",1, 10,'ss','ss','self')
+        this.s2ssbuff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
 
-
-    #def c_s1_proc(this, e):
-    #    if this.s2ssbuff.get():
-    #        log('-special','s1_with_s2')
-    #        Buff('s1teambuff',0.1,10).on()
-
-    #def s1_proc(this, e):
-    #    if this.s2ssbuff.get():
-    #        log('-special','s1_with_s2')
-    #        Buff('s1teambuff',0.1,10,wide='self').on()
 
     def c_s2_proc(this, e):
         this.s2ssbuff.on()
-        Buff('s2team',0.1,10,wide='team').on()
-        Buff('s2self',0.1,10,wide='self').on()
+        Teambuff('s2team',0.1,10).on()
+        Selfbuff('s2self',0.1,10).on()
 
     def s2_proc(this, e):
         this.s2ssbuff.on()
-        Buff('s2',0.2,10,wide='self').on()
+        Selfbuff('s2',0.2,10).on()
 
 
 if __name__ == '__main__':

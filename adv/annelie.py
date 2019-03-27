@@ -35,7 +35,7 @@ class Annelie(Adv):
                 )
 
     def energy_doublebuff(this, e):
-        Buff("double_buff", 0.2, 15,'att',wide='self').on()
+        Selfbuff("double_buff", 0.2, 15).on()
 
     def s1_proc(this, e):
         if this.stance == 0:

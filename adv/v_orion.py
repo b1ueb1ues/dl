@@ -12,11 +12,11 @@ class V_Orion(adv.Adv):
         this.dmg_make("o_s2_burn",0.803*3)
 
     def s2_proc(this, e):
-        adv.Buff("double_buff",0.08,15,wide='self').on()
+        adv.Selfbuff("double_buff",0.08,15).on()
 
     def s2_proc_vc(this, e):
-        adv.Buff("double_buff",0.08,15,wide='self').on()
-        adv.Buff("crown_double_buff",0.08,15,wide='self').on()
+        adv.Selfbuff("double_buff",0.08,15).on()
+        adv.Selfbuff("crown_double_buff",0.08,15).on()
 
     def pre(this):
         if this.condition('Valiant Crown'):

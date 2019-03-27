@@ -9,8 +9,8 @@ class V_Orion_vc(V_Orion):
     adv_name = 'V_Orion'
 
     def s2_proc(this, e):
-        adv.Buff("double_buff",0.08,15,wide='self').on()
-        adv.Buff("crown_double_buff",0.08,15,wide='self').on()
+        adv.Selfbuff("double_buff",0.08,15).on()
+        adv.Selfbuff("crown_double_buff",0.08,15).on()
     
 
 if __name__ == '__main__':

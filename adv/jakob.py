@@ -13,12 +13,12 @@ class Jakob(adv.Adv):
     def init(this):
         this.charge_p('prep','50%')
         this.bogcountlast = 0
-        this.bogbuff = adv.Buff('s1_bog',0.5,8,'att','bog')
+        this.bogbuff = adv.Debuff('s1_bog',-0.5,8,1,'att','bog')
 
 
     def c_init(this):
         this.bogcountlast = 3
-        this.bogbuff = adv.Buff('s1_bog',0.5,8,'att','bog')
+        this.bogbuff = adv.Debuff('s1_bog',-0.5,8,1,'att','bog')
 
     def s1_proc(this, e):
         if this.bogcountlast > 0:

@@ -16,7 +16,7 @@ class Ezelith(Adv):
     s2chance = 0.15
     def init(this):
         random.seed()
-        this.s2buff = Buff("s2",0.15, 15,'att','buff','self')
+        this.s2buff = Selfbuff("s2",0.15, 15)
 
     def s2_proc(this, e):
         this.s2buff.on()
@@ -27,7 +27,7 @@ class Ezelith(Adv):
         if this.s2buff.get():
             r = random.random()
             if r < this.s2chance:
-                Buff("s2_ab",-0.05,5,'def').on()
+                Debuff("s2_ab",0.05,5,1).on()
 
 
 if __name__ == '__main__':

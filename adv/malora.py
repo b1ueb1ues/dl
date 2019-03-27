@@ -8,9 +8,6 @@ class Malora(adv.Adv):
     conf = {
             'mod_a':('att','bp',0.2*0.15),
             }
-    def s2_proc(this, e):
-        adv.Buff('armorbreak',-0.04,10,'def').on()  
-
 
     def pre(this):
         if this.condition('spawn c1+fs'):

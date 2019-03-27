@@ -6,7 +6,7 @@ def module():
 
 class H_Edward(adv.Adv):
     def pre(this):
-        this.condition('hp100'):
+        if this.condition('hp100'):
             this.conf['mod_a'] = ('att' , 'passive', 0.1)
 
 

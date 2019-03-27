@@ -11,10 +11,6 @@ class Maribelle(adv.Adv):
 
     def init(this):
         this.charge_p("prep", "100%")
-        this.s1buff = adv.Buff('armorbreak',(1.0/0.95-1)/2,10)
-
-    def s1_proc(this, e):
-        this.s1buff.on()
 
 
 

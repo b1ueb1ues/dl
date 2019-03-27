@@ -13,7 +13,7 @@ class Sazanka(Adv):
 
     def c_init(this):
         this.o_init()
-        Buff('sleep',0.2,14,'att','killer','self').on()
+        Selfbuff('sleep',0.2,14,'att','killer').on()
 
     def pre(this):
         if this.condition('sleep'):

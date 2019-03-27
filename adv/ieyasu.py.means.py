@@ -36,7 +36,7 @@ class Ieyasu(ieyasu.Ieyasu):
         return 0
 
     def init(this):
-        this.s2buff = Buff("s2",0.15, 15, 'crit', wide='self')
+        this.s2buff = Selfbuff("s2",0.15, 15, 'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Ieyasu.Bleed("g_bleed",0).reset()
         this.s2charge = 0

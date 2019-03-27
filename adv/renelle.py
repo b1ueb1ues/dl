@@ -9,9 +9,6 @@ class Renelle(Adv):
         if this.condition('hit15'):
             this.conf['mod_a'] = ('crit' , 'passive', 0.08)
 
-    def s2_proc(this, e):
-        Buff('defdown',-0.015,10,'def').on()
-
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """

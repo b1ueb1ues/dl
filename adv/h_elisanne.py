@@ -20,7 +20,7 @@ class H_Elisanne(Adv):
                 """
 
     def s1latency(this, e):
-        Buff("s1_buff",0.1,15,'att').on()
+        Teambuff("s1_buff",0.1,15).on()
 
     def s1_proc(this, e):
         if this.stance == 0:

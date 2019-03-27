@@ -63,7 +63,6 @@ class V_Ezelith(Adv):
             
     def s2_proc(this, e):
         this.hits += 1
-        Buff('defdown',-0.09,10,'def').on()
 
 
 if __name__ == '__main__':

@@ -10,17 +10,6 @@ class Addis(Adv):
             'mod_a':('att','bp',0.03)
             }
 
-   # def condition(this):
-   #     def cheat(e):
-   #         if random.random() < 0.8:
-   #             log('-special','cheated_s1')
-   #             Bleed("s1_bleed", 1.32).on()
-   #     this.s1_proc = cheat
-   #     this.conf['acl'] = """
-   #         `s1,seq=5
-   #         `s3
-   #         """
-   #     return 'use shapeshift bug'
 
     def getbleedpunisher(this):
         if this.bleed._static['stacks'] > 0:
@@ -30,9 +19,8 @@ class Addis(Adv):
     def init(this):
         random.seed()
         this.poisoncount=3
-        #this.s2buff = Buff("s2",0.25, 10, 'att', 'buff','self')
-        this.s2buff = Buff("s2_shapshifts1",1, 10,'ss','ss','self')
-        this.bleedpunisher = Modifier("bleed","att","punisher",0.08)
+        this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
+        this.bleedpunisher = Modifier("bleed","att","killer",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0).reset()
         #this.crit_mod = this.rand_crit_mod

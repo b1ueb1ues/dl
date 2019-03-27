@@ -12,7 +12,7 @@ class Eleonora(adv.Adv):
         this.dmg_make("o_s1_poison",2.65)
 
     def pre(this):
-        this.condition('c4+fs'):
+        if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc
                 `s2, fsc

@@ -17,8 +17,8 @@ class Mikoto(Adv):
             this.conf['mod_a'] = ('crit' , 'passive', 0.10)
 
     def init(this):
-        this.s1buff = Buff("s1",0.0, 15, 'att','buff', wide='self')
-        this.s2buff = Buff("s2",0.2, 10, 'spd', wide='self')
+        this.s1buff = Selfbuff("s1",0.0, 15)
+        this.s2buff = Selfbuff("s2",0.2, 10, 'spd')
         this.a_s1._recovery = 1.4
 
 

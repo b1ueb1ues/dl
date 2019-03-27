@@ -10,7 +10,7 @@ class Vanessa(adv.Adv):
         "mod_a": ('fs', 'passive', 0.40),
         } 
     conf['str_w'] = 1.5*380
-    conf['mod_w'] = ('att','punisher',0.2)
+    conf['mod_w'] = ('att','killer',0.2)
 
     def pre(this):
         if this.condition('last offense'):
@@ -22,11 +22,8 @@ class Vanessa(adv.Adv):
 
     def c_init(this):
         this.o_init()
-        adv.Buff('last_offense',0.3,15,wide='self').on()
+        adv.Selfbuff('last_offense',0.3,15).on()
 
-
-    def s2_proc(this, e):
-        adv.Buff('defdown',-0.05,10,'def').on()
 
 if __name__ == '__main__':
     conf = {}

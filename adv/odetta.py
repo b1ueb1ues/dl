@@ -5,6 +5,9 @@ def module():
     return Odetta
 
 class Odetta(Adv):
+    conf = {}
+    conf['mod_a2'] = ('buff','time',0.2)
+    #conf['mod_wp2'] = ('buff','time',0.15)
     
     def pre(this):
         if this.condition('buff all team'):
@@ -12,14 +15,11 @@ class Odetta(Adv):
         if this.condition('hp70'):
             this.conf['mod_a'] = ('att','passive',0.1)
     
-    def s1_proc(this, e):
-        Buff('s1defdown',-0.02,10,'def','debuff').on()
-
     def c_s2_proc(this, e):
-        Buff('s2',0.15,15*1.2).on()
+        Teambuff('s2',0.15,15).on()
 
     def s2_proc(this, e):
-        Buff('s2',0.15,15*1.2,wide='self').on()
+        Selfbuff('s2',0.15,15).on()
 
 
 

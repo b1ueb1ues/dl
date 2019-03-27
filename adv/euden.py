@@ -6,8 +6,7 @@ def module():
     return Euden
 
 class Euden(adv.Adv):
-    def s2_proc(this, e):
-        adv.Buff('armorbreak',1/0.955-1, 10, 'att','debuff').on()
+    pass
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ class Nefaria(adv.Adv):
         this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
         this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
         this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
-        adv.Buff('blindpunisher',0.3,20,'att','punisher','self').on()
+        adv.Selfbuff('blindpunisher',0.3,20,'att','killer').on()
         this.o_init()
 
     def init(this):

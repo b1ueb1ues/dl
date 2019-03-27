@@ -10,7 +10,7 @@ class G_Sarisse(adv.Adv):
     conf['mod_a'] = ('buff','time',0.3)
     def init(this):
         this.hits = 0
-        this.buffs = adv.Buff()
+        this.bc = adv.Selfbuff()
         this.s2stance = 0
 
     def pre(this):
@@ -40,26 +40,23 @@ class G_Sarisse(adv.Adv):
             this.hits += 8
         if this.hits >= 20:
             this.hits -= 20
-            adv.Buff('sylvan strength',0.02,15,wide='self').on()
-            adv.Buff('sylvan crit',0.01,15,'crit','chance',wide='self').on()
+            adv.Selfbuff('sylvan strength',0.02,15).on()
+            adv.Selfbuff('sylvan crit',0.01,15,'crit','chance').on()
 
     def s1_proc(this, e):
-        buffcount = 0
-        for i in this.buffs._static['all_buffs']:
-            if buffcount >= 7:
-                break
-            if i.get():
-                buffcount += 1
+        buffcount = this.bc.buffcount()
+        if buffcount > 7:
+            buffcount = 7
         this.dmg_make('s1_missile*%d'%buffcount,0.95*buffcount)
         this.hits += 1 + buffcount
             
 
     def s2_proc(this, e):
         if this.s2stance == 0:
-            adv.Buff('s2str',0.20,10).on()
+            adv.Teambuff('s2str',0.20,10).on()
             this.s2stance = 1
         elif this.s2stance == 1:
-            adv.Buff('s2def',1,15,'defup').on()
+            adv.Teambuff('s2def',1,15,'defup').on()
             this.s2stance = 0
 
 

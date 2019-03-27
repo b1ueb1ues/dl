@@ -110,11 +110,12 @@ class Buff(object):
         'all_buffs': [],
         'time_func':0,
         })
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='team'):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
         this.name = name   
         this.__value = value
         this.duration = duration
         this.mod_type = mtype or 'att' or 'x' or 'fs' or 's' #....
+        this.bufftype = ''
         if morder ==None:
             if this.mod_type == 'crit':
                 this.mod_order = 'chance'
@@ -122,7 +123,11 @@ class Buff(object):
                 this.mod_order = 'buff'
         else:
             this.mod_order = morder or '<null>' or 'passive' or 'ex' or 'buff' or 'punisher' #...
-        this.wide = wide
+
+        if this.mod_order != 'buff':
+            this.bufftime = this.nobufftime
+        if not this._static.time_func:
+            this._static.time_func = this.nobufftime
 
         this.buff_end_timer = Timer(this.buff_end_proc)
         this.modifier = Modifier('mod_'+this.name, this.mod_type, this.mod_order, 0)
@@ -133,8 +138,6 @@ class Buff(object):
 
         this.__stored = 0
         this.__active = 0
-        if not this._static.time_func:
-            this._static.time_func = this.nobufftime
         #this.on()
 
     def nobufftime(this):
@@ -184,7 +187,6 @@ class Buff(object):
         if stack > 0:
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.__value*stack), this.name+' buff stack <%d>'%stack)
         this.modifier.off()
-        this.count_team_buff()
 
 
     def on(this, duration=None):
@@ -214,7 +216,6 @@ class Buff(object):
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()*stack), this.name+' buff stack <%d>'%stack)
 
         this.modifier.on()
-        this.count_team_buff()
         return this
 
 
@@ -225,33 +226,79 @@ class Buff(object):
         this.__active = 0
         this.modifier.off()
         this.buff_end_timer.off()
-        this.count_team_buff()
         return this
 
 
+class Selfbuff(Buff):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
+        Buff.__init__(this, name,value,duration,mtype,morder)
+        this.bufftype = 'self'
+        this.bufftime = this._bufftime
+    
+    def _bufftime(this):
+        return this._static.time_func()
+    
+    def buffcount(this):
+        bc = 0
+        for i in this._static.all_buffs:
+            if i.get() and i.bufftype=='self' or i.bufftype=='team':
+                bc+=1
+        return bc
+
+class Teambuff(Buff):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
+        Buff.__init__(this, name,value,duration,mtype,morder)
+        this.bufftype = 'team'
+        this.bufftime = this._bufftime
+
+    def _bufftime(this):
+        return this._static.time_func()
+
+    def on(this, duration=None):
+        Buff.on(this, duration)
+        this.count_team_buff()
+        return this
+
+    def off(this):
+        Buff.off(this)
+        this.count_team_buff()
+        return this
+
+    def buff_end_proc(this,e):
+        Buff.buff_end_proc(this,e)
+        this.count_team_buff()
+
     def count_team_buff(this):
-        if this.wide != 'team':
-            return
         this.dmg_test_event.modifiers = []
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
         modifiers = []
         for i in this._static.all_buffs:
-            if i.wide == 'team':
+            if i.bufftype=='team' or i.bufftype=='debuff':
                 modifiers.append(i.modifier)
         this.dmg_test_event.modifiers = modifiers
         this.dmg_test_event()
         team_buff_dmg = this.dmg_test_event.dmg
         log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
 
-class Selfbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
-        Buff.__init__(this, name,value,duration,mtype,morder, wide='self')
+class Debuff(Teambuff):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None):  
+        value = 0-value
+        chance = float(chance)
+        if chance!= 1:
+            bd = 1.0/(1.0+value)
+            bd = (bd-1)*chance+1
+            value = 1-1.0/bd
+            value = 0-value
+        Teambuff.__init__(this, name,value,duration,mtype,morder)
+        this.bufftype = 'debuff'
+        this.bufftime = this.nobufftime
 
-class Teambuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
-        Buff.__init__(this, name,value,duration,mtype,morder, wide='team')
-
+    def chance(c):
+        bd = 1.0/(1.0+this.value)
+        bd = (bd-1)*c+1
+        this.value = 1-1.0/bd
+        return this
 
 
 class Skill(object):
@@ -1121,7 +1168,17 @@ class Adv(object):
 
         if e.name+'_buff' in this.conf:
             buffarg = this.conf[e.name+'_buff']
-            Buff(e.name, *buffarg).on()
+            wide = buffarg[0]
+            buffarg = buffarg[1:]
+            if wide == 'team':
+                Teambuff(e.name, *buffarg).on()
+            elif wide == 'self':
+                Selfbuff(e.name, *buffarg).on()
+            elif wide == 'debuff':
+                Debuff(e.name, *buffarg).on()
+            else:
+                Buff(e.name, *buffarg).on()
+
 
         func = e.name + '_proc'
         getattr(this, func)(e)

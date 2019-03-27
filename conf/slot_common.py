@@ -16,8 +16,9 @@ def get(s, e, w):
     wp2 = {
         'ele','all',
         'str':64,
-        "mod"  :[('crit'    , 'damage' , 0.13) ,
+        "mod"  :[('crit'    , 'damage' , 1.13) ,
                 ('crit' , 'chance'  , 0.08)],
         }
 
     return d, wp, wp2
+

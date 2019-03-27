@@ -2,24 +2,14 @@ import adv_test
 import adv
 from adv import *
 from module import energy
+import lucretia
 
 def module():
     return Lucretia
 
-class Lucretia(adv.Adv):
+class Lucretia(lucretia.Lucretia):
     prep = 0
     lastoffence = 0
-
-    def condition(this):
-        this.init = this.c_init
-        return 'energy'
-
-    def init(this):
-        energy.Energy(this,
-                self={} ,
-                team={} 
-                )
-        Event('energized').listener(this.energy_doublebuff)
 
     def c_init(this):
         this.energy = energy.Energy(this,
@@ -30,13 +20,7 @@ class Lucretia(adv.Adv):
         if this.prep:
             this.energy.add_energy(this.prep)
         if this.lastoffence:
-            adv.Buff('lo',0.4,15).on()
-
-
-    def energy_doublebuff(this, e):
-        adv.Buff("double_buff", 0.2, 15,'att',wide='self').on()
-
-
+            adv.Selfbuff('lo',0.4,15).on()
 
 if __name__ == '__main__':
     conf = {}
@@ -62,11 +46,10 @@ if __name__ == '__main__':
     conf['mod_wp'] = []
     module().prep = 'prep'
     adv_test.test(module(), conf, verbose=0)
-    module().prep = 0
 
+    module().prep = 0
     module().lastoffence = 1
     adv_test.test(module(), conf, verbose=0)
-    module().prep = 0
 
 
 

@@ -24,8 +24,8 @@ class Albert(Adv):
                 })
         this.s2timer = Timer(this.s2autocharge,1,1).on()
         this.paralyze_count=3
-        this.s2buff = Buff("s2_shapshift",1, 20,'ss','ss','self')
-        this.a2buff = Buff('a2_str_passive',0.25,20,'att','passive','self')
+        this.s2buff = Selfbuff("s2_shapshift",1, 20,'ss','ss')
+        this.a2buff = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsa_conf)

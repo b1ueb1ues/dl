@@ -14,11 +14,8 @@ class Vanessa(adv.Adv):
             this.init = this.c_init
 
     def c_init(this):
-        adv.Buff('last_offense',0.3,15,wide='self').on()
+        adv.Selfbuff('last_offense',0.3,15).on()
 
-
-    def s2_proc(this, e):
-        adv.Buff('defdown',-0.05,10,'def').on()
 
 if __name__ == '__main__':
     conf = {}

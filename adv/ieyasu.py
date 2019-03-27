@@ -24,7 +24,7 @@ class Ieyasu(Adv):
 
     def init(this):
         random.seed()
-        this.s2buff = Buff("s2",0.15, 15, 'crit', wide='self')
+        this.s2buff = Selfbuff("s2",0.15, 15, 'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
  #       this.crit_mod = this.rand_crit_mod
