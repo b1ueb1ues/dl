@@ -23,11 +23,11 @@ class G_Ranzal(Adv):
                 'fs_dmg':0.83*2+0.92,
                 'fs_sp' :330,
                 "fs_startup":33/60.0,
-                "fs_recovery":33/60.0,
+                "fs_recovery":45/60.0,
                 "x2fs_startup":18/60.0,
-                "x2fs_recovery":33/60.0,
+                "x2fs_recovery":45/60.0,
                 "x3fs_startup":18/60.0,
-                "x3fs_recovery":33/60.0,
+                "x3fs_recovery":45/60.0,
                 })
         fs_alt_init(this, this.fsaconf)
 
