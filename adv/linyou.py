@@ -6,7 +6,7 @@ def module():
 
 class Linyou(Adv):
     conf = {
-        'mod_a1': ('crit', 'chance', 0.10),
+        'mod_a1': ('crit', 'chance', 0.10, 'hp70'),
         "mod_a3": ('sp', 'passive', 0.08),
     }
 
