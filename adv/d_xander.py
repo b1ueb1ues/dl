@@ -10,6 +10,18 @@ class D_Xander(adv.Adv):
         "mod_a3": ('sp', 'passive', 0.05) ,
         } 
 
+    a = 0
+    if a==1:
+        conf["mod_wp"] = [('s','passive',0.25),
+                         ('crit','chance',0.06,'hp70') ]
+        conf["mod_wp2"] = [('fs','passive',0.40),
+                           ('crit','damage',0.13) ]
+    if a==2:
+        conf["mod_wp"] = [('s','passive',0.25),
+                         ('crit','chance',0.06,'hp70') ]
+        conf["mod_wp2"] = [('crit','chance',0.09,'hit15'),
+                           ('crit','damage',0.15) ]
+
     def pre(this):
         if this.condition('energy'):
             this.init = this.c_init

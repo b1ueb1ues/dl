@@ -21,6 +21,10 @@ def get(star,ele,wep):
         conf['str_d'] = 125*1.5
         conf['mod_d'] = [('att' , 'passive', 0.45),
                          ('crit', 'chance' , 0.20)]
+        conf["mod_wp"] = [('s','passive',0.25),
+                         ('crit','chance',0.06,'hp70') ]
+        conf["mod_wp2"] = [('crit','chance',0.09,'hit15'),
+                           ('crit','damage',0.15) ]
 
     if wep == 'sword':
         conf['mod_wp2'] = [('fs', 'passive' , 0.3) ,
@@ -35,7 +39,7 @@ def get(star,ele,wep):
 
     if star == '3':
         conf['mod_wp2'] = []
-        conf['str_wp2'] = 42
+        conf['str_wp2'] = 30
 
     conf['str_wp'] += conf['str_wp2']
 

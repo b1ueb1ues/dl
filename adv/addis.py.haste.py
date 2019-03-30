@@ -29,7 +29,7 @@ if __name__ == '__main__':
                       ('sp','passive',0.05)],
             'mod_ex':('sp','passive',0.15)
             }
-    module().comment = 'with 20% skill haste'
+    module().comment = 'with 20% skill haste to have 2s1 boost in one s2'
     conf['acl'] = """
         `s2, s1.charged>=s1.sp-260 and seq=5
         `s1, s2.charged<s2.sp

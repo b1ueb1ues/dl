@@ -9,6 +9,7 @@ def module():
 class D_Cleo(adv.Adv):
     conf = {}
     conf['mod_a1'] = ('att' , 'passive', 0.13, 'hp70') 
+
     def pre(this):
         if this.condition('energy'):
             this.init = this.c_init
