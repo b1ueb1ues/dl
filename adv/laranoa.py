@@ -47,6 +47,8 @@ class Laranoa(Adv):
             this.hits += 5
         elif name[:2] == 'fs':
             this.hits += 8
+        elif name[:2] == 's1':
+            this.hits += 14
         if this.hits >= 20:
             this.hits -= 20
             Selfbuff('sylvan critdmg',0.10,20,'crit','damage').on()

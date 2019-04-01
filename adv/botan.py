@@ -22,7 +22,7 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
-    adv_test.test(module(), conf, mass=1)
+    adv_test.test(module(), conf, verbose=-2,mass=1)
 
     exit()
     conf['mod_wp'] = ('s','passive',0.35)

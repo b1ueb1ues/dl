@@ -1,4 +1,4 @@
-
+#unused now
 
 def get(s, e, w):
     d = {
@@ -10,13 +10,13 @@ def get(s, e, w):
     wp = {
         'ele','all',
         'str':64,
-        "mod"  :[('s'    , 'passive' , 0.25) ,
+        "mod"  :[('s' , 'passive' , 0.25) ,
                 ('crit' , 'chance'  , 0.06)],
         }
     wp2 = {
         'ele','all',
         'str':64,
-        "mod"  :[('crit'    , 'damage' , 1.13) ,
+        "mod"  :[('crit', 'damage' , 0.13) ,
                 ('crit' , 'chance'  , 0.08)],
         }
 

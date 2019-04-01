@@ -779,7 +779,7 @@ class Adv(object):
         if conf['element'] == 'flame':
             tmp_str = conf['str_adv'] * (1+0.15+0.23+0.04)
         elif conf['element'] == 'water':
-            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
+            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
         elif conf['element'] == 'wind':
             tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
         elif conf['element'] == 'light':
