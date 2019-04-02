@@ -28,7 +28,7 @@ class Laranoa(Adv):
     
     def c_s2_proc(this, e):
         Teambuff('s2_str',0.10,10).on()
-        Teambuff('s2_sp',0.20,10,'sp','passive').on()
+        Selfbuff('s2_sp',0.20,10,'sp','passive').on()
 
     def s2_proc(this, e):
         Selfbuff('s2_str',0.10,10).on()
