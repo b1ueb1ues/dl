@@ -5,6 +5,10 @@ def module():
     return Joe
 
 class Joe(adv.Adv):
+    comment = 'reach 100 resist with Saintly Delivery'
+    conf['mod_wp2'] = ('s','passive',0.1)
+    conf['str_wp2'] = 42
+
     def init(this):
         this.dmg_make("o_s2_burn",1.8)
         this.dmg_make("o_s2_burn",1.8)

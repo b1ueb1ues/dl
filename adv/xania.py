@@ -5,6 +5,10 @@ def module():
     return Xania
 
 class Xania(adv.Adv):
+    comment = 'reach 100 resist with Saintly Delivery'
+    conf['mod_wp2'] = ('s','passive',0.1)
+    conf['str_wp2'] = 42
+
     conf = {
         "mod_a1": ("s", 'passive', 0.20) ,
     } 
