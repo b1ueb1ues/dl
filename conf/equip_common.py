@@ -37,9 +37,9 @@ def get(star,ele,wep):
         conf['mod_wp'] = [('crit','chance',0.03,'hp70'),
                             ('s','passive',0.20)]
 
-    if star == '3':
-        conf['mod_wp2'] = []
-        conf['str_wp2'] = 30
+    #if star == '3':
+    #    conf['mod_wp2'] = []
+    #    conf['str_wp2'] = 30
 
     conf['str_wp'] += conf['str_wp2']
 
