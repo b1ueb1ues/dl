@@ -8,6 +8,10 @@ class Marty(adv.Adv):
     conf = {
         'mod_a1':('sp','passive',0.05),
     }
+    comment = 'reach 100 resist with Saintly Delivery'
+    conf['mod_wp2'] = ('s','passive',0.1)
+    conf['str_wp2'] = 42
+
 
 
 if __name__ == '__main__':

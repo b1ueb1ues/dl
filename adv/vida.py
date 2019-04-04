@@ -5,6 +5,7 @@ def module():
     return Vida
 
 class Vida(Adv):
+    comment = 'unsuitable resist'
     conf = {
         "mod_a1": ('fs', 'passive', 0.30)
         } 

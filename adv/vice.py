@@ -8,6 +8,10 @@ class Vice(Adv):
     conf = {
         "mod_a1": ('att', 'bp', 0.2*0.15)
         } 
+    comment = 'reach 100 resist with Silke Lends a Hand'
+    conf['mod_wp2'] = ('s','passive',0.1)
+    conf['str_wp2'] = 42
+
 
 
 if __name__ == '__main__':
