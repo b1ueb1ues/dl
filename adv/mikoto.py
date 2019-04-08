@@ -16,7 +16,7 @@ class Mikoto(Adv):
             this.s1_proc = this.c_s1_proc
 
     def init(this):
-        this.s1buff = Selfbuff("s1",0.0, 15)
+        this.s1buff = Selfbuff("s1",0.0, 20)
         this.s2buff = Selfbuff("s2",0.2, 10, 'spd')
         this.a_s1._recovery = 1.4
 
@@ -44,13 +44,13 @@ class Mikoto(Adv):
             stance = 2
         if stance == 0:
             this.dmg_make('s1',5.32*2)
-            this.s1buff.set(0.10) #.on()
+            this.s1buff.set(0.10,20) #.on()
             this.a_s1._recovery = 1.4
             Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 1:
             this.dmg_make('s1',3.54*3)
             this.s1buff.off()
-            this.s1buff.set(0.15) #.on()
+            this.s1buff.set(0.15,15) #.on()
             this.a_s1._recovery = 1.63
             Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 2:
