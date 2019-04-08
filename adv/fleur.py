@@ -5,7 +5,7 @@ def module():
     return Fleur
 
 class Fleur(Adv):
-    comment = ''
+    comment = 'don\'t use s2 in s3 nor s3 in s2'
     conf = {}
     conf['mod_a1'] = ('sp', 'passive', 0.08,'hp70')
     
@@ -43,5 +43,7 @@ if __name__ == '__main__':
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)
+
+
 
 

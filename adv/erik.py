@@ -10,8 +10,8 @@ class Erik(adv.Adv):
         "mod_a1": ('fs', 'passive', 0.30),
         } 
     comment += '& reach 100 resist with Silke Lends a Hand'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+    conf['mod_wp'] = ('s','passive',0.1)
+    conf['str_wp'] = 42
 
 
 
