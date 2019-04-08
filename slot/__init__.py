@@ -1,57 +1,95 @@
+import copy
 
 class Slot(object):
-    conf = {
-        }
+    att = 0
+    ele = 'none'
+    mod = []
+    conf = {}
+    stype = 'slot'
     def __init__(this):
         pass
 
-    def onele(this, ele):
-        pass
-
     def oninit(this, adv):
-        pass
+        adv.conf.update(this.conf)
+
+        i = this.stype
+        j = this.mod
+        if type(j) == tuple:
+            Modifier(i,*j)
+        elif type(j) == list:
+            idx = 0
+            for k in j:
+                Modifier(i+'_%d'%idx,*k)
+                idx += 1
+
+
 
 class WeaponBase(Slot):
-    att=100
-    ele = 'all'
-    def __init__(this, s3conf):
-        this.s3conf = s3conf
+    stype = 'w'
+    wt = 'none'
+    s3 = {}
+    def __init__(this):
+        pass
 
     def oninit(this, adv):
-        adv.conf.update(this.s3conf)
+        super().oninit(adv)
 
-    def onele(this, ele):
-        this.att *= 1.5
+
+    def setup(this, c):
+        if c.ele == this.ele :
+            this.att *= 1.5
+            this.conf = this.s3
+        elif this.ele == 'all' :
+            this.conf = this.s3
+        
+        if c.wt != this.wt :
+            print('Weapon can\'t equip')
+            errrrrrrrrrrrrr()
+
+
 
 class DragonBase(Slot):
-    att = 0
-    ele = 'none'
+    stype = 'd'
     aura = ('att','passive',0.60)
-    def onele(this, ele):
-        this.att *= 1.5
-        this.mod = this.aura
+
+    def setup(this, c):
+        if c.ele == this.ele:
+            this.att *= 1.5
+            this.mod = this.aura
 
     def oninit(this, adv):
         pass
 
 
 class Amuletempty(object):
-    def onele(this,ele):
-        return
+    stype = 'a2'
     def oninit(this,adv):
         return
+    def setup(this, c):
+        return
+
 
 class AmuletBase(Slot):
-    ele = 'none'
-    att = 0
-    mod = []
+    ae = Amuletempty()
+    stype = 'a1'
     a2 = None
-    def __init__(this):
-        this.a2 = Amuletempty()
 
     def __add__(this, another):
         this.a2 = another
+        this.a2.stype = 'a2'
         return this
+
+    def setup(this, c):
+        if this.a2:
+            this.a2.a2 = None
+            this.a2.setup(c)
+            this.att += this.a2.att
+
+    def oninit(this, adv):
+        if this.a2:
+            this.a2.a2 = None
+            this.a2.oninit(adv)
+            this.att += this.a2.att
     
     
 
@@ -60,42 +98,57 @@ class Slots(object):
     #d = None 
     #a = None 
     #a2 = None
-    w = WeaponBase({})
+    w = WeaponBase()
     d = DragonBase()
     a = AmuletBase()+AmuletBase()
+    c = Slot()
     #a2 = AmuletBase()
     def __init__(this,name):
         import conf.csv2conf
         this.name = name
         this.conf = conf.csv2conf.get(name)
-        this.ele = this.conf['element']
-        this.wt = this.conf['weapon']
-        this.att = this.conf['str_adv']
+        this.c.ele = this.conf['element']
+        this.c.wt = this.conf['weapon']
+        this.c.att = this.conf['str_adv']
 
-    def setup(this):
-        if this.ele == this.w.ele or this.w.ele=='all':
-            this.w.onele(this.ele)
-        if this.ele == this.d.ele or this.d.ele=='all':
-            this.d.onele(this.ele)
-        if this.ele == this.a.ele or this.a.ele=='all':
-            this.a.onele(this.ele)
-      #  if this.ele == this.a2.ele or this.a2.ele=='all':
-      #      this.a2.onele(this.ele)
+    def __setup(this):
+        this.w.setup(this.c)
+        this.d.setup(this.c)
+        this.a.setup(this.c)
+
 
     def init(this, adv):
-        this.w.oninit(adv)
-        this.d.oninit(adv)
-        this.a.oninit(adv)
+        tmp = copy.deepcopy(this)
+        this.tmp = tmp
+        tmp.__setup()
+        tmp.w.oninit(adv)
+        tmp.d.oninit(adv)
+        tmp.a.oninit(adv)
 
     def att(this, forte=None):
+        tmp = copy.deepcopy(this)
+        this.tmp = tmp
+        tmp.__setup()
         if not forte:
-            return this.att + this.d.att + this.w.att + this.a.att + this.a.a2.att
-        return this.att*forte.c(this.ele,this.wt) + this.d.att*forte.d(this.ele) + this.w.att + this.a.att + this.a.a2.att
+            return tmp.c.att + tmp.d.att + tmp.w.att + tmp.a.att
+        return tmp.c.att*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + tmp.a.att
 
+    def _att(this, forte=None):
+        a = this.att(forte)
+        dm = this.tmp.d.mod
+        md = 0
+        if type(dm)==list:
+            for i in dm:
+                if i[0] == 'att':
+                    md = i[2]
+        elif type(dm)==tuple:
+            if dm[0] == 'att':
+                md = dm[2]
+        return a+a*md
 
-import d
-import w
-import a
+import slot.d as d
+import slot.w as w
+import slot.a as a
 
 def main():
     s = Slots('elisanne')
@@ -106,7 +159,7 @@ def main():
     import slot.d.flame
     s.d = slot.d.water.Dragon()
     s.setup()
-    print s.d.att
+    print(s.d.att)
 
 if __name__ == "__main__":
     main()
