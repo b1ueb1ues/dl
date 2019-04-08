@@ -1,5 +1,5 @@
 from __init__ import *
 
-class Dragon(DragonBase):
+class Cupid(DragonBase):
     ele = 'light'
     att = 119

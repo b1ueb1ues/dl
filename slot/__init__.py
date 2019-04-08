@@ -1,5 +1,4 @@
 
-
 class Slot(object):
     conf = {
         }
@@ -25,11 +24,12 @@ class WeaponBase(Slot):
         this.att *= 1.5
 
 class DragonBase(Slot):
-    att=100
+    att = 0
     ele = 'none'
+    aura = ('att','passive',0.60)
     def onele(this, ele):
         this.att *= 1.5
-        this.mod = ('att','passive',0.60)
+        this.mod = this.aura
 
     def oninit(this, adv):
         pass
@@ -66,6 +66,9 @@ class Slots(object):
         if this.ele == this.a2.ele or this.a2.ele=='all':
             this.a2.onele(this.ele)
 
+import d
+import w
+import a
 
 def main():
     s = Slots('elisanne')

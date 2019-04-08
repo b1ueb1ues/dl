@@ -1,6 +1,13 @@
 from __init__ import *
 
-class Dragon(DragonBase):
+class Marishiten(DragonBase):
     ele = 'shadow'
     att = 121
+
+
+class Nyarlathotep(DragonBase):
+    ele = 'shadow'
+    att = 128
+    aura = ('att','passive',0.50,'hp30')
+
 
