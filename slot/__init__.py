@@ -34,10 +34,26 @@ class DragonBase(Slot):
     def oninit(this, adv):
         pass
 
+
+class Amuletempty(object):
+    def onele(this,ele):
+        return
+    def oninit(this,adv):
+        return
+
 class AmuletBase(Slot):
-    ele = 'all'
-    att = 100
+    ele = 'none'
+    att = 0
     mod = []
+    a2 = None
+    def __init__(this):
+        this.a2 = Amuletempty()
+
+    def __add__(this, another):
+        this.a2 = another
+        return this
+    
+    
 
 class Slots(object):
     #w = None 
@@ -46,14 +62,14 @@ class Slots(object):
     #a2 = None
     w = WeaponBase({})
     d = DragonBase()
-    a = AmuletBase()
-    a2 = AmuletBase()
+    a = AmuletBase()+AmuletBase()
+    #a2 = AmuletBase()
     def __init__(this,name):
         import conf.csv2conf
         this.name = name
         this.conf = conf.csv2conf.get(name)
         this.ele = this.conf['element']
-        this.weapon = this.conf['weapon']
+        this.wt = this.conf['weapon']
         this.att = this.conf['str_adv']
 
     def setup(this):
@@ -63,8 +79,19 @@ class Slots(object):
             this.d.onele(this.ele)
         if this.ele == this.a.ele or this.a.ele=='all':
             this.a.onele(this.ele)
-        if this.ele == this.a2.ele or this.a2.ele=='all':
-            this.a2.onele(this.ele)
+      #  if this.ele == this.a2.ele or this.a2.ele=='all':
+      #      this.a2.onele(this.ele)
+
+    def init(this, adv):
+        this.w.oninit(adv)
+        this.d.oninit(adv)
+        this.a.oninit(adv)
+
+    def att(this, forte=None):
+        if not forte:
+            return this.att + this.d.att + this.w.att + this.a.att + this.a.a2.att
+        return this.att*forte.c(this.ele,this.wt) + this.d.att*forte.d(this.ele) + this.w.att + this.a.att + this.a.a2.att
+
 
 import d
 import w

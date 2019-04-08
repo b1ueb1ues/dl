@@ -38,13 +38,6 @@ def p():
         ret += i
     return ret
 
-#def on():
-#    global _if_condition
-#    _if_condition = 1
-#
-#def off():
-#    global _if_condition
-#    _if_condition = 0
 
 def condition_do(cond):
     global _conditions
@@ -60,14 +53,6 @@ def condition_do(cond):
     return _if_condition
 
 
-##def condition_do(func):
-##    global _if_condition
-##    def foo(*args,**kwargs):
-##        pass
-##    if _if_condition :
-##        return func
-##    else:
-##        return foo
 do = condition_do
 on = condition_do
 

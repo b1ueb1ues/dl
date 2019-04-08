@@ -140,7 +140,7 @@ class Buff(object):
         this.modifier = Modifier('mod_'+this.name, this.mod_type, this.mod_order, 0)
         this.modifier.get = this.get
         this.dmg_test_event = Event('dmg_formula')
-        this.dmg_test_event.dmg_p = 1
+        this.dmg_test_event.dmg_coef = 1
         this.dmg_test_event.dname = 'test'
 
         this.__stored = 0
@@ -449,6 +449,18 @@ class Action(object):
         return this._static.prev
     def _setprev(this):
         this._static.prev = this._static.doing
+
+    def rt_tap(this):
+        if this.rt_name != this.name:
+            this.rt_name = this.name
+            this._startup = this.conf[this.name+'_startup']
+            this._recovery = this.conf[this.name+'_recovery']
+            this.act_event = Event(this.name)
+        this.o_tap()
+
+    def realtime(this):
+        this.rt_name = this.name
+        this.tap, this.o_tap = this.rt_tap, this.tap
 
     def reinit(this, name=None, conf=None, act=None):  
         if name != None:
@@ -957,7 +969,7 @@ class Adv(object):
 
     def l_range_x(this, e):
         xseq = e.name
-        dmg_p = this.conf['%s_dmg'%xseq]
+        dmg_coef = this.conf['%s_dmg'%xseq]
         sp_gain = this.conf['%s_sp'%xseq] 
         if xseq == 'x5':
             log('x', '%s'%xseq, 0,'-------------------------------------c5')
@@ -966,7 +978,7 @@ class Adv(object):
 
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv'][xseq] )
         missile_timer.dname = '%s_missile'%xseq
-        missile_timer.amount = dmg_p
+        missile_timer.amount = dmg_coef
         missile_timer.samount = sp_gain
         missile_timer()
 
@@ -979,13 +991,13 @@ class Adv(object):
     
     def l_melee_x(this, e):
         xseq = e.name
-        dmg_p = this.conf['%s_dmg'%xseq]
+        dmg_coef = this.conf['%s_dmg'%xseq]
         sp = this.conf['%s_sp'%xseq] 
         if xseq == 'x5':
             log('x', '%s'%xseq, 0,'-------------------------------------c5')
         else:
             log('x', '%s'%xseq, 0)
-        this.dmg_make('%s'%xseq, dmg_p)
+        this.dmg_make('%s'%xseq, dmg_coef)
         this.think_pin('x')
         this.charge('%s'%xseq, sp)
 
@@ -1082,41 +1094,41 @@ class Adv(object):
 
     def l_dmg_formula(this, e):
         name = e.dname
-        dmg_p = e.dmg_p
+        dmg_coef = e.dmg_coef
         if hasattr(e, 'dtype'):
             name = e.dtype
         if 'modifiers' in e.__dict__ :
             if e.modifiers!=None and e.modifiers != 0:
                 this.all_modifiers = e.modifiers
-        e.dmg = this.dmg_formula(name, dmg_p)
+        e.dmg = this.dmg_formula(name, dmg_coef)
         this.all_modifiers = this.modifier._static.all_modifiers
         e.ret = e.dmg
         return
 
-    def dmg_formula(this, name, dmg_p):
+    def dmg_formula(this, name, dmg_coef):
         att = 1.0 * this.att_mod() * this.base_str
         armor = 10.0 * this.def_mod()
-        return 5.0/3 * dmg_p * this.dmg_mod(name) * att/armor   # true formula 
-        #return att/armor * dmg_p * this.dmg_mod(name)
+        return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor   # true formula 
+        #return att/armor * dmg_coef * this.dmg_mod(name)
 
     def l_true_dmg(this, e):
         log('dmg', e.dname, e.count, e.comment)
 
     def l_dmg_make(this, e):
-        dmg_make(e.dname, e.dmg_p)
+        dmg_make(e.dname, e.dmg_coef)
 
-    def dmg_make(this, name, dmg_p, dtype=None):
+    def dmg_make(this, name, dmg_coef, dtype=None):
         if dtype == None:
             dtype = name
-        count = this.dmg_formula(dtype, dmg_p)
+        count = this.dmg_formula(dtype, dmg_coef)
         log('dmg', name, count)
         this.dmg_proc(name, count)
 
-    def dmg_make_withspshow(this, name, dmg_p, dtype=None):
+    def dmg_make_withspshow(this, name, dmg_coef, dtype=None):
         if dtype == None:
             dtype = name
 
-        count = this.dmg_formula(dtype, dmg_p)
+        count = this.dmg_formula(dtype, dmg_coef)
         
         if name[0] == 'x':
             spgain = this.conf[name[:2]+'_sp']
@@ -1138,19 +1150,19 @@ class Adv(object):
 
     def l_melee_fs(this, e):
         log('fs','succ')
-        dmg_p = this.conf['fs_dmg']
-        this.dmg_make('fs', dmg_p)
+        dmg_coef = this.conf['fs_dmg']
+        this.dmg_make('fs', dmg_coef)
         this.fs_proc(e)
         this.think_pin('fs')
         this.charge('fs',this.conf['fs_sp'])
 
     def l_range_fs(this, e):
         log('fs','succ')
-        dmg_p = this.conf['fs_dmg']
+        dmg_coef = this.conf['fs_dmg']
         sp_gain = this.conf['fs_sp']
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv']['fs'] )
         missile_timer.dname = 'fs_missile'
-        missile_timer.amount = dmg_p
+        missile_timer.amount = dmg_coef
         missile_timer.samount = sp_gain
         missile_timer()
         this.fs_proc(e)
@@ -1169,9 +1181,9 @@ class Adv(object):
             log('cast', e.name, 0,'<cast> %d/%d, %d/%d, %d/%d (%s after %s)'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, prev ) )
 
-        dmg_p = this.conf[e.name+'_dmg']
-        if dmg_p :
-            this.dmg_make(e.name , dmg_p)
+        dmg_coef = this.conf[e.name+'_dmg']
+        if dmg_coef :
+            this.dmg_make(e.name , dmg_coef)
 
         if e.name+'_buff' in this.conf:
             buffarg = this.conf[e.name+'_buff']

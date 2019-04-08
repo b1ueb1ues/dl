@@ -1,5 +1,4 @@
 from slot import *
-import slot
 
 import flame
 import water
