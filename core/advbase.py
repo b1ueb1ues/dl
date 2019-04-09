@@ -437,6 +437,14 @@ class Action(object):
         this.idle_event = Event('idle')
         this.act_event = Event(this.name)
 
+        this.Event = Event
+        this.Buff = Buff
+        this.Debuff = Debuff
+        this.Selfbuff = Selfbuff
+        this.Teambuff = Teambuff
+        this.Modifier = Modifier
+        this.log = log
+
 
     def __call__(this):
         return this.tap()
@@ -818,8 +826,8 @@ class Adv(object):
         this.condition = m_condition.on
         this.m_condition = m_condition
         this.m_condition.set(cond)
-        this.log = []
-        loginit(this.log)
+        this._log = []
+        loginit(this._log)
         
 
         if not this.adv_name:

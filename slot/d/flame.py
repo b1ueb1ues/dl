@@ -1,4 +1,4 @@
-from slot.d import *
+from slot import *
 
 class Cerberus(DragonBase):
     ele = 'flame'

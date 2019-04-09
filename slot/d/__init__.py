@@ -1,5 +1,3 @@
-from slot import *
-
 import flame
 import water
 import wind

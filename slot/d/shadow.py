@@ -1,4 +1,4 @@
-from __init__ import *
+from slot import *
 
 class Marishiten(DragonBase):
     ele = 'shadow'

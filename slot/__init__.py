@@ -1,13 +1,24 @@
 import copy
 
+
 class Slot(object):
     att = 0
     ele = 'none'
+    wt = 'none'
     mod = []
     conf = {}
     stype = 'slot'
+    onele = 0
+    onwt = 0
     def __init__(this):
         pass
+
+    def setup(this, c):
+        if c.ele == this.ele :
+            this.onele = 1
+        if c.wt == this.wt :
+            this.onwt = 1
+
 
     def oninit(this, adv):
         adv.conf.update(this.conf)
@@ -24,6 +35,7 @@ class Slot(object):
 
 
 
+
 class WeaponBase(Slot):
     stype = 'w'
     wt = 'none'
@@ -36,13 +48,14 @@ class WeaponBase(Slot):
 
 
     def setup(this, c):
-        if c.ele == this.ele :
+        Slot.setup(this, c)
+        if this.onele :
             this.att *= 1.5
             this.conf = this.s3
         elif this.ele == 'all' :
             this.conf = this.s3
         
-        if c.wt != this.wt :
+        if not this.onwt :
             print('Weapon can\'t equip')
             errrrrrrrrrrrrr()
 
@@ -53,7 +66,8 @@ class DragonBase(Slot):
     aura = ('att','passive',0.60)
 
     def setup(this, c):
-        if c.ele == this.ele:
+        Slot.setup(this, c)
+        if this.onele:
             this.att *= 1.5
             this.mod = this.aura
 
@@ -79,17 +93,11 @@ class AmuletBase(Slot):
         this.a2.stype = 'a2'
         return this
 
-    def setup(this, c):
-        if this.a2:
-            this.a2.a2 = None
-            this.a2.setup(c)
-            this.att += this.a2.att
 
-    def oninit(this, adv):
-        if this.a2:
-            this.a2.a2 = None
-            this.a2.oninit(adv)
-            this.att += this.a2.att
+ #   def oninit(this, adv):
+ #       if this.a2:
+ #           this.a2.a2 = None
+ #           this.a2.oninit(adv)
     
     
 
@@ -117,7 +125,7 @@ class Slots(object):
         this.a.setup(this.c)
 
 
-    def init(this, adv):
+    def oninit(this, adv):
         tmp = copy.deepcopy(this)
         this.tmp = tmp
         tmp.__setup()
