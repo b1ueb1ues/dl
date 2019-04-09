@@ -12,6 +12,8 @@ class Mikoto(Adv):
         }
 
     def pre(this):
+        this.slots.w.wt = 'blade'
+        this.slots.a = slot.a.LC() + slot.a.RR()
         if this.condition('connect s1'):
             this.s1_proc = this.c_s1_proc
 

@@ -145,8 +145,8 @@ class Amulet(AmuletBase):
         for i in this.a:
             this.mod += i.mod
 
-        print(this.a)
-        print('mod',this.mod)
+        #print(this.a)
+        #print('mod',this.mod)
 
 
     def on(this, c):

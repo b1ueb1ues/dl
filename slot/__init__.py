@@ -33,6 +33,9 @@ class Slot(object):
                 idx += 1
 
 
+class CharacterBase(Slot):
+    def setup(this):
+        return 
 
 
 class WeaponBase(Slot):
@@ -40,8 +43,8 @@ class WeaponBase(Slot):
     wt = 'none'
     s3 = {}
 
-    def oninit(this, adv):
-        super().oninit(adv)
+ #   def oninit(this, adv):
+ #       super().oninit(adv)
 
 
     def setup(this, c):
@@ -103,20 +106,26 @@ class Slots(object):
     #d = None 
     #a = None 
     #a2 = None
-    w = WeaponBase()
-    d = DragonBase()
-    a = AmuletBase()+AmuletBase()
-    c = Slot()
+    #w = WeaponBase()
+    #d = DragonBase()
+    #a = AmuletBase()+AmuletBase()
+    #c = CharacterBase()
     #a2 = AmuletBase()
-    def __init__(this,name):
-        import conf.csv2conf
-        this.name = name
-        this.conf = conf.csv2conf.get(name)
-        this.c.ele = this.conf['element']
-        this.c.wt = this.conf['weapon']
-        this.c.att = this.conf['str_adv']
+    def __init__(this):
+        this.c = CharacterBase()
+        this.w = WeaponBase()
+        this.d = DragonBase()
+        this.a = AmuletBase()+AmuletBase()
+        return
+        #import conf.csv2conf
+        #this.name = name
+        #this.conf = conf.csv2conf.get(name)
+        #this.c.ele = this.conf['element']
+        #this.c.wt = this.conf['weapon']
+        #this.c.att = this.conf['str_adv']
 
     def __setup(this):
+        this.c.setup()
         this.w.setup(this.c)
         this.d.setup(this.c)
         this.a.setup(this.c)
@@ -126,6 +135,7 @@ class Slots(object):
         tmp = copy.deepcopy(this)
         this.tmp = tmp
         tmp.__setup()
+        tmp.c.oninit(adv)
         tmp.w.oninit(adv)
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)

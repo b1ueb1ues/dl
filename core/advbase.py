@@ -5,7 +5,7 @@ import sys
 import conf as globalconf
 import random
 import condition 
-from slot import *
+import slot
 m_condition = condition
 
 class Conf(object):
@@ -602,7 +602,7 @@ class Adv(object):
     comment = ''
     #x_status = (0,0)
     conf = {}
-    slot = Slot()
+    slots = slot.Slots()
 
     conf_default = { 
         'latency' : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
@@ -688,11 +688,21 @@ class Adv(object):
                     this.setconf(conf)
                     return
 
+        this.slots.c.ele = tmpconf['element']
+        this.slots.c.wt = tmpconf['weapon']
+        this.slots.c.att = tmpconf['str_adv']
+
+        this.slots.w.wt = 'blade'
+        this.slots.w.ele = 'flame'
+        this.slots.w.att = 572
+
+        this.slots.a = slot.a.LC() + slot.a.RR()
+        this.slots.d = slot.d.flame.Cerberus()
+
         this.conf = tmpconf
-        this.base_str = this.slot.att()
-        this.conf['base_str'] = this.base_str
-        this.conf['displayed_str'] = this.slot._att()
-        #this.base_str = this.conf['base_str']
+        this.base_att = this.slots.att(globalconf.forte)
+        this.conf['base_att'] = this.base_att
+        this.conf['displayed_str'] = this.slots._att(globalconf.forte)
 
     def setconfig(this,conf={}):
         this.preconfig(conf)
@@ -808,7 +818,7 @@ class Adv(object):
                         idx += 1
 
 #    def calc_str(this, conf):
-#        base_str = conf['str_wp']+conf['str_w']
+#        base_att = conf['str_wp']+conf['str_w']
 #        tmp_str = 0
 #        if conf['element'] == 'flame':
 #            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.04)
@@ -821,15 +831,15 @@ class Adv(object):
 #        elif conf['element'] == 'shadow':
 #            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
 #
-#        base_str += tmp_str
+#        base_att += tmp_str
 #
 #        tmp_str = 0
 #        tmp_str = conf['str_d']
 #
-#        base_str += tmp_str
+#        base_att += tmp_str
 #
-#        #conf['base_str'] = int(base_str)
-#        return int(base_str)
+#        #conf['base_att'] = int(base_att)
+#        return int(base_att)
 #
 
 
@@ -1128,7 +1138,7 @@ class Adv(object):
         return
 
     def dmg_formula(this, name, dmg_coef):
-        att = 1.0 * this.att_mod() * this.base_str
+        att = 1.0 * this.att_mod() * this.base_att
         armor = 10.0 * this.def_mod()
         return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor   # true formula 
         #return att/armor * dmg_coef * this.dmg_mod(name)

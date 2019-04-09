@@ -2,6 +2,7 @@ import skillframe
 import equip_common
 import csv2conf
 import copy
+import forte
 
 conf = {}
 

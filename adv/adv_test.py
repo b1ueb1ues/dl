@@ -22,7 +22,7 @@ sim_times = 1000
 team_dps = 3500 #(1500+1500+500)
 energy_efficiency = 5000 * 0.5 * 2 / 5 / sim_duration
 mname = ""
-base_str = 0
+#base_str = 0
 displayed_str = 0
 
 g_condition = ""
@@ -32,7 +32,6 @@ bps = 0
 
 def test(classname, conf, verbose=0, mass=0, no_cond=None):
     global mname
-    global base_str
     global displayed_str
     global comment
     global g_condition
@@ -63,15 +62,16 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     if condition != '' :
         g_condition = condition
 
-    base_str = adv.conf['base_str']
-    if type(adv.conf['mod_d']) == list:
-        for i in adv.conf['mod_d']:
-            if i[0] == 'att':
-                d_aura = i[2]
-    else:
-        if adv.conf['mod_d'][0] == 'att':
-            d_aura = adv.conf['mod_d'][2]
-    displayed_str = int(base_str * (1+d_aura))
+    #base_str = adv.conf['base_str']
+    #if type(adv.conf['mod_d']) == list:
+    #    for i in adv.conf['mod_d']:
+    #        if i[0] == 'att':
+    #            d_aura = i[2]
+    #else:
+    #    if adv.conf['mod_d'][0] == 'att':
+    #        d_aura = adv.conf['mod_d'][2]
+    #displayed_str = int(base_str * (1+d_aura))
+    displayed_str = adv.conf['displayed_str']
     
 
     if loglevel > 0 and loglevel & 1:
@@ -112,7 +112,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
             print '\n======================='
             #print mname,"%d"%float_dps
             print "%s , %s (str: %d) %s ;%s"%( recount, mname, 
-                    base_str*(1+d_aura), '<%s>'%condition, comment )
+                    displayed_str, '<%s>'%condition, comment )
             print '-----------------------'
 
         dmg_sum = {}
@@ -139,9 +139,9 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     elif loglevel == -1:
         if condition != '':
             condition = '<%s>'%(condition)
-        print "%s , %s (str: %d) %s ;%s"%( recount, mname, base_str*(1+d_aura), condition, comment )
+        print "%s , %s (str: %d) %s ;%s"%( recount, mname, displayed_str, condition, comment )
     elif loglevel == -2:
-        #comment += " (str: %d)"%(base_str*(1+d_aura))
+        #comment += " (str: %d)"%(displayed_str)
         bdps = team_dps*bps
         name = mname
         condi = ' '
