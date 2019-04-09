@@ -5,7 +5,19 @@ import sys
 import conf as globalconf
 import random
 import condition 
+from slot import *
 m_condition = condition
+
+class Conf(object):
+    def __getitem__(this, i):
+        return this.__getattribute__(i)
+
+    def __setitem__(this, i, v):
+        this.__setattr__(i,v)
+
+    def __delitem__(this, i):
+        v = this.__getattribute__(i)
+        del(v)
 
 
 class Modifier(object):
@@ -590,6 +602,7 @@ class Adv(object):
     comment = ''
     #x_status = (0,0)
     conf = {}
+    slot = Slot()
 
     conf_default = { 
         'latency' : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
@@ -676,9 +689,10 @@ class Adv(object):
                     return
 
         this.conf = tmpconf
-        this.conf['base_str'] = this.calc_str(this.conf)
+        this.base_str = this.slot.att()
+        this.conf['base_str'] = this.base_str
+        this.conf['displayed_str'] = this.slot._att()
         #this.base_str = this.conf['base_str']
-        this.base_str = this.calc_str(this.conf) 
 
     def setconfig(this,conf={}):
         this.preconfig(conf)
@@ -793,30 +807,30 @@ class Adv(object):
                         Modifier(i+'_%d'%idx,*k)
                         idx += 1
 
-    def calc_str(this, conf):
-        base_str = conf['str_wp']+conf['str_w']
-        tmp_str = 0
-        if conf['element'] == 'flame':
-            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.04)
-        elif conf['element'] == 'water':
-            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
-        elif conf['element'] == 'wind':
-            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
-        elif conf['element'] == 'light':
-            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
-        elif conf['element'] == 'shadow':
-            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
-
-        base_str += tmp_str
-
-        tmp_str = 0
-        tmp_str = conf['str_d']
-
-        base_str += tmp_str
-
-        #conf['base_str'] = int(base_str)
-        return int(base_str)
-
+#    def calc_str(this, conf):
+#        base_str = conf['str_wp']+conf['str_w']
+#        tmp_str = 0
+#        if conf['element'] == 'flame':
+#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.04)
+#        elif conf['element'] == 'water':
+#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
+#        elif conf['element'] == 'wind':
+#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
+#        elif conf['element'] == 'light':
+#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
+#        elif conf['element'] == 'shadow':
+#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
+#
+#        base_str += tmp_str
+#
+#        tmp_str = 0
+#        tmp_str = conf['str_d']
+#
+#        base_str += tmp_str
+#
+#        #conf['base_str'] = int(base_str)
+#        return int(base_str)
+#
 
 
 

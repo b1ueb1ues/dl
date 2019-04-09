@@ -5,13 +5,12 @@ class Slot(object):
     att = 0
     ele = 'none'
     wt = 'none'
-    mod = []
-    conf = {}
     stype = 'slot'
     onele = 0
     onwt = 0
     def __init__(this):
-        pass
+        this.mod = []
+        this.conf = {}
 
     def setup(this, c):
         if c.ele == this.ele :
@@ -40,8 +39,6 @@ class WeaponBase(Slot):
     stype = 'w'
     wt = 'none'
     s3 = {}
-    def __init__(this):
-        pass
 
     def oninit(this, adv):
         super().oninit(adv)

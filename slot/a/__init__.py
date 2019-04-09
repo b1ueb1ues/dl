@@ -27,32 +27,42 @@ class Ability(object):
         this.cond = cond
         this.mod = []
         if name == 'a':
-            this.mod = ('att','passive',value, cond)
+            this.mod = [('att','passive',value, cond)]
         elif name == 's':
-            this.mod = ('s','passive',value, cond)
+            this.mod = [('s','passive',value, cond)]
         elif name == 'cc':
-            this.mod = ('crit','chance',value, cond)
+            this.mod = [('crit','chance',value, cond)]
         elif name == 'cd':
-            this.mod = ('crit','damage',value, cond)
+            this.mod = [('crit','damage',value, cond)]
         elif name == 'fs':
-            this.mod = ('fs','passive',value, cond)
+            this.mod = [('fs','passive',value, cond)]
         elif name == 'bt':
-            this.mod = ('buff','time',value, cond)
+            this.mod = [('buff','time',value, cond)]
 
         elif name == 'sp':
             if cond != 'fs':
-                this.mod = ('sp','passive',value, cond)
+                this.mod = [('sp','passive',value, cond)]
 
         elif name == 'bk':
-            this.mod = ('att','bk',value*0.15, cond)
+            this.mod = [('att','bk',value*0.15, cond)]
         elif name == 'od':
-            this.mod = ('att','killer',value*0.45, cond)
+            this.mod = [('att','killer',value*0.45, cond)]
+
+    def oninit(this, adv):
+        pass
+
+    def __repr__(this):
+        return str((this.name,this.value,this.cond))
+
+    def __str__(this):
+        return str((this.name,this.value,this.cond))
 
 
         
 class Amulet(AmuletBase):
     a = []
     def __init__(this):
+        this.mod = []
         this.mmax = {
                 'a'      : 0.15,   # attack
                 's'      : 0.35,   # skill damage
@@ -75,8 +85,11 @@ class Amulet(AmuletBase):
                 'resist' : 10000,  # resist
                 }
 
+
     def oninit(this, adv):
-        pass
+        super(Amulet, this).oninit(this,adv)
+        for i in this.a:
+            i.oninit(adv)
 
 
     def merge(this, a, b):
@@ -127,9 +140,13 @@ class Amulet(AmuletBase):
 
         tmp = []
         for i in this.a:
-            tmp.append(this.a[i])
+            tmp.append(Ability(*this.a[i]))
         this.a = tmp
+        for i in this.a:
+            this.mod += i.mod
+
         print(this.a)
+        print('mod',this.mod)
 
 
     def on(this, c):
