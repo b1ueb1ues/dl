@@ -44,14 +44,3 @@ conf.update( {
 
         }
         )
-
-import axe5b1
-import axe5b2
-
-flame  = axe5b1
-light  = axe5b1
-shadow = axe5b1
-
-water  = axe5b2
-wind   = axe5b2
-

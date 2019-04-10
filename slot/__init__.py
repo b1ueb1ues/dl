@@ -1,4 +1,6 @@
 import copy
+from core import Conf
+from ability import *
 
 
 class Slot(object):
@@ -10,7 +12,8 @@ class Slot(object):
     onwt = 0
     def __init__(this):
         this.mod = []
-        this.conf = {}
+        this.conf = Conf()
+        this.a = []
 
     def setup(this, c):
         if c.ele == this.ele :
@@ -20,7 +23,7 @@ class Slot(object):
 
 
     def oninit(this, adv):
-        adv.conf.update(this.conf)
+        adv.conf += this.conf
 
         i = this.stype
         j = this.mod
@@ -48,14 +51,17 @@ class CharacterBase(Slot):
 class WeaponBase(Slot):
     stype = 'w'
     wt = 'none'
-    s3 = {}
-
- #   def oninit(this, adv):
- #       super().oninit(adv)
-
+    s3 = Conf()
+    ele = [] # or ''
 
     def setup(this, c):
-        Slot.setup(this, c)
+        super(WeaponBase, this).setup(c)
+        if type(this.ele) == list:
+            for i in this.ele:
+                if c.ele == i :
+                    this.onele = 1
+                    break
+
         if this.onele :
             this.att *= 1.5
             this.conf = this.s3
@@ -65,6 +71,15 @@ class WeaponBase(Slot):
         if not this.onwt :
             print('Weapon can\'t equip')
             errrrrrrrrrrrrr()
+        if not this.onele:
+            print('!!!!!!!!!!\nwarning: weapon not onele')
+            print this.ele, c.ele
+            print('!!!!!!!!!!!\n')
+
+        if this.wt == 'axe':
+            this.mod.append(('crit','chance',0.04))
+        else :
+            this.mod.append(('crit','chance',0.02))
 
 
 
@@ -120,13 +135,6 @@ class Slots(object):
         this.w = WeaponBase()
         this.d = DragonBase()
         this.a = AmuletBase()+AmuletBase()
-        return
-        #import conf.csv2conf
-        #this.name = name
-        #this.conf = conf.csv2conf.get(name)
-        #this.c.ele = this.conf['element']
-        #this.c.wt = this.conf['weapon']
-        #this.c.att = this.conf['str_adv']
 
     def __setup(this):
         this.c.setup()
@@ -143,6 +151,11 @@ class Slots(object):
         tmp.w.oninit(adv)
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
+        a = c.a + w.a + d.a + a.a
+        adv.abilities = a
+#        for i in a:
+#            Ability(*i).oninit(adv)
+
 
     def att(this, forte=None):
         tmp = copy.deepcopy(this)

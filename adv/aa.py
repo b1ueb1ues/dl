@@ -5,11 +5,8 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
-    conf = {
-        "mod_a1": ('crit', 'chance', 0.10, 'hp70') ,
-        "mod_a3": ('crit', 'chance', 0.08) ,
-        #"mod_wp2" : ('buff','time',0),
-        }
+    a1 = ('cc', 0.10, 'hp70')
+    a3 = ('cc', 0.08) 
 
     def pre(this):
         if this.condition('connect s1'):

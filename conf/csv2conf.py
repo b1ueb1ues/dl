@@ -1,3 +1,4 @@
+from core import Conf
 
 def get(mname):
     csvname = ''
@@ -12,7 +13,7 @@ def get(mname):
         csvname = __file__[:l] + find + 'adv_data.csv'
 
 
-    conf = {}
+    csvconf = {}
     f = open(csvname,'r')
     title = f.readline().strip().split(',')
 
@@ -24,36 +25,53 @@ def get(mname):
         if row[idx].lower() == mname:
             i = 0
             for r in row:
-                conf[title[i]] = r
+                csvconf[title[i]] = r
                 i+=1
-    conf['s1_dmg'] = float(conf['s1_dmgpc'])/100.0
-    conf['s2_dmg'] = float(conf['s2_dmgpc'])/100.0
-    conf['s1_sp'] = int(conf['s1_sp'])
-    conf['s2_sp'] = int(conf['s2_sp'])
-    conf['str_adv'] = int(conf['str_adv'])
-    if conf['s1_buff'] != '' and conf['s1_buff']!= '0':
-        tmp = conf['s1_buff'].split(';')
-        conf['s1_buff'] = []
-        if len(tmp) >= 3 :
-            conf['s1_buff'] = [ tmp[0],float(tmp[1]), float(tmp[2]) ]
-            for i in tmp[3:]:
-                conf['s1_buff'] += [i]
-        elif len(tmp) == 2:
-            conf['s1_buff'] = [ 'none',float(tmp[0]), float(tmp[1]) ]
-    else:
-        conf.pop('s1_buff')
 
-    if conf['s2_buff'] != '' and conf['s2_buff']!= '0':
-        tmp = conf['s2_buff'].split(';')
-        conf['s2_buff'] = []
+    if csvconf['s1_buff'] != '' and csvconf['s1_buff']!= '0':
+        tmp = csvconf['s1_buff'].split(';')
+        csvconf['s1_buff'] = []
         if len(tmp) >= 3 :
-            conf['s2_buff'] = [ tmp[0],float(tmp[1]), float(tmp[2]) ]
+            csvconf['s1_buff'] = [ tmp[0],float(tmp[1]), float(tmp[2]) ]
             for i in tmp[3:]:
-                conf['s2_buff'] += [i]
+                csvconf['s1_buff'] += [i]
         elif len(tmp) == 2:
-            conf['s2_buff'] = [ 'none',float(tmp[0]), float(tmp[1]) ]
+            csvconf['s1_buff'] = [ 'none',float(tmp[0]), float(tmp[1]) ]
     else:
-        conf.pop('s2_buff')
+        csvconf.pop('s1_buff')
+
+    if csvconf['s2_buff'] != '' and csvconf['s2_buff']!= '0':
+        tmp = csvconf['s2_buff'].split(';')
+        csvconf['s2_buff'] = []
+        if len(tmp) >= 3 :
+            csvconf['s2_buff'] = [ tmp[0],float(tmp[1]), float(tmp[2]) ]
+            for i in tmp[3:]:
+                csvconf['s2_buff'] += [i]
+        elif len(tmp) == 2:
+            csvconf['s2_buff'] = [ 'none',float(tmp[0]), float(tmp[1]) ]
+    else:
+        csvconf.pop('s2_buff')
+
+    conf = Conf()
+
+    conf.s1 = Conf()
+    conf.s1.dmg = float(csvconf['s1_dmgpc'])/100.0
+    conf.s1.sp = int(csvconf['s1_sp'])
+    if 's1_buff' in csvconf:
+        conf.s1.buff = csvconf['s1_buff']
+
+    conf.s2 = Conf()
+    conf.s2.dmg = float(csvconf['s2_dmgpc'])/100.0
+    conf.s2.sp = int(csvconf['s2_sp'])
+    if 's2_buff' in csvconf:
+        conf.s2.buff = csvconf['s2_buff']
+
+    conf.c = Conf()
+    conf.c.att = int(csvconf['str_adv'])
+    conf.c.ele = csvconf['element']
+    conf.c.wt = csvconf['weapon']
+    conf.c.stars = csvconf['stars']
+
     return conf
     
 

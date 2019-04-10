@@ -1,5 +1,6 @@
 from timeline import *
 from log import *
+from core import Conf
 import acl
 import sys
 import conf as globalconf
@@ -7,18 +8,7 @@ import random
 import condition 
 import slot
 m_condition = condition
-
-class Conf(object):
-    def __getitem__(this, i):
-        return this.__getattribute__(i)
-
-    def __setitem__(this, i, v):
-        this.__setattr__(i,v)
-
-    def __delitem__(this, i):
-        v = this.__getattribute__(i)
-        del(v)
-
+conf = Conf()
 
 class Modifier(object):
     _static = Static({
@@ -428,8 +418,8 @@ class Action(object):
                 this.index = 0
         if conf != None:
             this.conf = conf
-            this._startup = conf[this.name+'_startup']
-            this._recovery = conf[this.name+'_recovery']
+            this.conf.sync = this.configsync
+            this.configsync()
             
         if act != None:
             this.act = act
@@ -448,7 +438,11 @@ class Action(object):
         this.recovery_timer = Timer(this._cb_act_end)
         this.idle_event = Event('idle')
         this.act_event = Event(this.name)
+        this.realtime()
 
+    def configsync(this):
+        this._startup = this.conf[this.name].startup
+        this._recovery = this.conf[this.name]+recovery
 
     def __call__(this):
         return this.tap()
@@ -465,33 +459,12 @@ class Action(object):
     def rt_tap(this):
         if this.rt_name != this.name:
             this.rt_name = this.name
-            this._startup = this.conf[this.name+'_startup']
-            this._recovery = this.conf[this.name+'_recovery']
             this.act_event = Event(this.name)
         this.o_tap()
 
     def realtime(this):
         this.rt_name = this.name
         this.tap, this.o_tap = this.rt_tap, this.tap
-
-    def reinit(this, name=None, conf=None, act=None):  
-        if name != None:
-            if type(name) == tuple:
-                this.name = name[0]
-                this.index = name[1]
-            else:
-                this.name = name
-                this.index = 0
-        if conf != None:
-            this.conf = conf
-            this._startup = conf[this.name+'_startup']
-            this._recovery = conf[this.name+'_recovery']
-            
-        if act != None:
-            this.act = act
-
-        this.act_event = Event(this.name)
-
 
     def getrecovery(this):
         return this._recovery / this.speed()
@@ -570,7 +543,7 @@ class Action(object):
 
 class Adv(object):
     # vvvvvvvvv rewrite this to provide advanced tweak vvvvvvvvvv
-    adv_name = None
+    name = None
     def s1_proc(this, e):
         pass
     def s2_proc(this, e):
@@ -587,43 +560,28 @@ class Adv(object):
         pass
     def init(this): 
         pass
-    #def condition(this):
-    #    return ''
-    # ^^^^^^^^^ rewrite this to provide advanced tweak ^^^^^^^^^^
+    # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
 
     comment = ''
     #x_status = (0,0)
-    conf = {}
+    conf = Conf()
     slots = slot.Slots()
 
-    conf_default = { 
-        'latency' : {'x':0.05, 'sp':0.05, 'default':0.05, 'idle':0},
-        'latency' : {'x':0.00, 'sp':0.00, 'default':0.00, 'idle':0},
+    conf_default = Conf()
 
-        's1_dmg'      : 0   ,
-        's1_sp'       : 0   ,
-        's1_startup'  : 0.1 ,
-        's1_recovery' : 1.9 ,
+    conf_default.latency = Conf()  
+    conf_default.latency.x = 0.05
+    conf_default.latency.sp = 0.05
+    conf_default.latency.default = 0.05
+    conf_default.latency.idle = 0
 
-        's2_dmg'      : 0   ,
-        's2_sp'       : 0   ,
-        's2_startup'  : 0.1 ,
-        's2_recovery' : 1.9 ,
+    conf_default.s1 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
+    conf_default.s2 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
+    conf_default.s3 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
+    conf_default.dodge = Conf({'startup':0,'recovery':43.0/60.0})
+    conf_default.fsf = Conf({'startup':0,'recovery':41.0/60.0})
 
-        's3_dmg'      : 0   ,
-        's3_sp'       : 0   ,
-        's3_startup'  : 0.1 ,
-        's3_recovery' : 1.9 ,
-
-        'dodge_startup'  : 0  ,
-        'dodge_recovery' : 43 / 60.0  ,
-
-        'fsf_startup'  : 0          ,
-        'fsf_recovery' : 41 / 60.0  ,
-
-        }
-
-    conf_default['acl'] = '''
+    conf_default.acl = '''
         `s1
         `s2
         `s3
@@ -668,32 +626,28 @@ class Adv(object):
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    exit()
 
     def preconfig(this,conf={}):
-        tmpconf = {}
-        tmpconf.update(this.conf_default)
-        tmpconf.update(globalconf.get(this.adv_name))
-        tmpconf.update(this.conf)
-        tmpconf.update(conf)
-        if 'adv_name' in tmpconf :
-            if this.adv_name != tmpconf['adv_name']:
-                if this.adv_name == this.__class__.__name__:
-                    this.adv_name = tmpconf['adv_name']
-                    this.setconf(conf)
-                    return
+        tmpconf = Conf()
+        tmpconf += this.conf_default
+        print 1,tmpconf
+        tmpconf += globalconf.get(this.name)
+        print 2,tmpconf
+        tmpconf += this.conf
+        print 3,tmpconf
+        Conf.update(tmpconf, conf)
+        print 4,tmpconf
 
-        this.slots.c.ele = tmpconf['element']
-        this.slots.c.wt = tmpconf['weapon']
-        this.slots.c.att = tmpconf['str_adv']
-
-        this.slots.w.wt = tmpconf['weapon']
-        this.slots.w.ele = tmpconf['element']
-        this.slots.w.att = tmpconf['str_w']/1.5
-
-        tmpconf['slot_common'](this.slots)
+        this.slots.c.att = tmpconf.c.att
+        this.slots.c.wt = tmpconf.c.wt
+        this.slots.c.stars = tmpconf.c.stars
+        this.slots.c.ele = tmpconf.c.ele
+        tmpconf.slot_common[0](this.slots)
 
         this.conf = tmpconf
         this.base_att = this.slots.att(globalconf.forte)
-        this.conf['base_att'] = this.base_att
-        this.conf['displayed_str'] = this.slots._att(globalconf.forte)
+        this.displayed_att = this.slots._att(globalconf.forte)
+
+        exit()
+
 
     def setconfig(this,conf={}):
         this.preconfig(conf)
@@ -817,6 +771,7 @@ class Adv(object):
         this.Selfbuff = Selfbuff
         this.Teambuff = Teambuff
         this.Modifier = Modifier
+        this.Conf = Conf
         this.log = log
 
         this.conf_init = conf
@@ -828,8 +783,8 @@ class Adv(object):
         loginit(this._log)
         
 
-        if not this.adv_name:
-            this.adv_name = this.__class__.__name__
+        if not this.name:
+            this.name = this.__class__.__name__
 
         this.preconfig(conf)
 

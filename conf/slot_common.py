@@ -1,6 +1,7 @@
 #unused now
 import slot
 from slot.a import *
+import slot.w
 
 def set(slots):
     ele = slots.c.ele
@@ -17,6 +18,11 @@ def set(slots):
         slots.d = slot.d.light.Cupid()
     elif ele == 'shadow':
         slots.d = slot.d.shadow.Marishiten()
+
+    typeweapon = getattr(slot.w, wt)
+    weapon = getattr(typeweapon, ele)
+
+    slots.w = weapon()
 
     slots.a = RR()+LC()
     return

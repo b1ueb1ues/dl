@@ -51,14 +51,3 @@ conf.update( {
         "mod_wep" : ('crit','chance',0.02),
 
         })
-
-import staff5b1
-import staff5b2
-
-flame  = staff5b1
-water  = staff5b1
-wind   = staff5b1
-
-light  = staff5b2
-shadow = staff5b2
-

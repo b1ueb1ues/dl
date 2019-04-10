@@ -1,66 +1,9 @@
 from slot import *
+from ability import Ability
 
 
-mtype = {
-    'a'  : 'attack',
-    's'  : 'skill',
-    'c'  : 'crit',
-    'fs' : 'force strike',
-    'sp' : 'skill haste',
-    'b'  : 'bufftime',
-}
 
-morder = {
-    'p'    : 'passive',
-    'c'    : 'crit chance',
-    'd'    : 'crit damage',
-    'k'    : 'killer',
-    'bk'   : 'break',
-    'buff' : 'buff',
-}
-
-
-class Ability(object):
-    def __init__(this, name, value, cond=None):
-        this.name = name
-        this.value = value
-        this.cond = cond
-        this.mod = []
-        if name == 'a':
-            this.mod = [('att','passive',value, cond)]
-        elif name == 's':
-            this.mod = [('s','passive',value, cond)]
-        elif name == 'cc':
-            this.mod = [('crit','chance',value, cond)]
-        elif name == 'cd':
-            this.mod = [('crit','damage',value, cond)]
-        elif name == 'fs':
-            this.mod = [('fs','passive',value, cond)]
-        elif name == 'bt':
-            this.mod = [('buff','time',value, cond)]
-
-        elif name == 'sp':
-            if cond != 'fs':
-                this.mod = [('sp','passive',value, cond)]
-
-        elif name == 'bk':
-            this.mod = [('att','bk',value*0.15, cond)]
-        elif name == 'od':
-            this.mod = [('att','killer',value*0.45, cond)]
-
-    def oninit(this, adv):
-        pass
-
-    def __repr__(this):
-        return str((this.name,this.value,this.cond))
-
-    def __str__(this):
-        return str((this.name,this.value,this.cond))
-
-
-        
 class Amulet(AmuletBase):
-    a = []
     def __init__(this):
         this.mod = []
         this.conf = {}
@@ -138,17 +81,6 @@ class Amulet(AmuletBase):
                         i = (i[0],this.mmax[k],i[2])
                         this.merge_cond(this.a, i)
                         this.mmax[k] = 0
-
-        tmp = []
-        for i in this.a:
-            tmp.append(Ability(*this.a[i]))
-        this.a = tmp
-        for i in this.a:
-            this.mod += i.mod
-
-        #print(this.a)
-        #print('mod',this.mod)
-
 
     def on(this, c):
         return
