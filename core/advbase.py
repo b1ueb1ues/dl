@@ -1,6 +1,6 @@
 from timeline import *
 from log import *
-from core import Conf
+from core import *
 import acl
 import sys
 import conf as globalconf
@@ -418,6 +418,7 @@ class Action(object):
                 this.index = 0
         if conf != None:
             this.conf = conf
+            #sync(this.conf[
             this.conf.sync = this.configsync
             this.configsync()
             
@@ -440,7 +441,7 @@ class Action(object):
         this.act_event = Event(this.name)
         this.realtime()
 
-    def configsync(this):
+    def configsync(this, c):
         this._startup = this.conf[this.name].startup
         this._recovery = this.conf[this.name]+recovery
 
@@ -628,23 +629,22 @@ class Adv(object):
     def preconfig(this,conf={}):
         tmpconf = Conf()
         tmpconf += this.conf_default
-        print 1,tmpconf
         tmpconf += globalconf.get(this.name)
-        print 2,tmpconf
         tmpconf += this.conf
-        print 3,tmpconf
         Conf.update(tmpconf, conf)
-        print 4,tmpconf
 
         this.slots.c.att = tmpconf.c.att
         this.slots.c.wt = tmpconf.c.wt
         this.slots.c.stars = tmpconf.c.stars
         this.slots.c.ele = tmpconf.c.ele
-        tmpconf.slot_common[0](this.slots)
+        tmpconf.slot_common(this.slots)
 
-        this.conf = tmpconf
+        this.conf += tmpconf
         this.base_att = this.slots.att(globalconf.forte)
         this.displayed_att = this.slots._att(globalconf.forte)
+        print this.conf
+        this.slots.oninit(this)
+        print this.abilities
 
         exit()
 

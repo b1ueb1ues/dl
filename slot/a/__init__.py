@@ -6,7 +6,7 @@ from ability import Ability
 class Amulet(AmuletBase):
     def __init__(this):
         this.mod = []
-        this.conf = {}
+        this.conf = Conf()
         this.mmax = {
                 'a'      : 0.15,   # attack
                 's'      : 0.35,   # skill damage
@@ -30,10 +30,10 @@ class Amulet(AmuletBase):
                 }
 
 
-    def oninit(this, adv):
-        super(Amulet, this).oninit(adv)
-        for i in this.a:
-            i.oninit(adv)
+ #   def oninit(this, adv):
+ #       super(Amulet, this).oninit(adv)
+ #       for i in this.a:
+ #           i.oninit(adv)
 
 
     def merge(this, a, b):
@@ -81,6 +81,12 @@ class Amulet(AmuletBase):
                         i = (i[0],this.mmax[k],i[2])
                         this.merge_cond(this.a, i)
                         this.mmax[k] = 0
+
+        tmp = []
+        for k,i in this.a.items():
+            tmp.append(i)
+        this.a = tmp
+
 
     def on(this, c):
         return

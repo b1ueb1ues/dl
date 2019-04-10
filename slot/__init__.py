@@ -151,8 +151,10 @@ class Slots(object):
         tmp.w.oninit(adv)
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
-        a = c.a + w.a + d.a + a.a
+        a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
+        print a
         adv.abilities = a
+        print adv.__dict__
 #        for i in a:
 #            Ability(*i).oninit(adv)
 

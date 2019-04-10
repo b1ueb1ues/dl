@@ -5,6 +5,8 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
+    
+    conf.a1 = ()
     a1 = ('cc', 0.10, 'hp70')
     a3 = ('cc', 0.08) 
 

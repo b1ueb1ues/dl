@@ -1,3 +1,45 @@
+class C(object):
+    pass
+
+class A(object):
+    def foo(this, k, v):
+        if k == 'k1':
+            this.k1 = v
+        elif k == 'k2':
+            this.k2 = v
+
+    def foo2(this, c):
+        this.k1 = c.k1
+        this.k2 = c.k2
+
+    def test1(this):
+        #this.foo = None
+        for i in range(1000000):
+            this.foo('k1', 1)
+            this.foo('k2', 2)
+
+    def test2(this):
+        c = C()
+        c.k1 = 1
+        c.k2 = 2
+        for i in range(1000000):
+            this.foo2(c)
+            this.foo2(c)
+    
+a = A()
+a2 = A()
+
+import cProfile
+p = cProfile.Profile()
+p.enable()
+
+a.test1()
+a2.test2()
+
+p.print_stats()
+exit()
+
+
 import adv_test
 from adv import *
 import mikoto
@@ -63,6 +105,7 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel or fsc
         `s3, seq=5 and cancel or fsc
         """
+
 
     import cProfile
     p = cProfile.Profile()
