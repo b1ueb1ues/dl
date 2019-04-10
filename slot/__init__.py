@@ -25,15 +25,22 @@ class Slot(object):
         i = this.stype
         j = this.mod
         if type(j) == tuple:
-            Modifier(i,*j)
+            adv.Modifier(i,*j)
         elif type(j) == list:
             idx = 0
             for k in j:
-                Modifier(i+'_%d'%idx,*k)
+                adv.Modifier(i+'_%d'%idx,*k)
+                idx += 1
+        elif type(j) == dict:
+            idx = 0
+            for k in j:
+                adv.Modifier(i+k+'_%d'%idx,*j[k])
                 idx += 1
 
 
 class CharacterBase(Slot):
+    name = 'null'
+    stars = 5
     def setup(this):
         return 
 
@@ -71,9 +78,6 @@ class DragonBase(Slot):
             this.att *= 1.5
             this.mod = this.aura
 
-    def oninit(this, adv):
-        pass
-
 
 class Amuletempty(object):
     stype = 'a2'
@@ -85,7 +89,7 @@ class Amuletempty(object):
 
 class AmuletBase(Slot):
     ae = Amuletempty()
-    stype = 'a1'
+    stype = 'a'
     a2 = None
 
     def __add__(this, another):

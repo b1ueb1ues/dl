@@ -1,24 +1,24 @@
 #unused now
+import slot
+from slot.a import *
 
-def get(s, e, w):
-    d = {
-        'ele','all',
-        'str':127,
-        'mod':('att','passive',0.6),
-        }
+def set(slots):
+    ele = slots.c.ele
+    wt = slots.c.wt
+    stars = slots.c.stars
+    name = slots.c.name
+    if ele == 'flame':
+        slots.d = slot.d.flame.Cerberus()
+    elif ele == 'water':
+        slots.d = slot.d.water.DJ()
+    elif ele == 'wind':
+        slots.d = slot.d.wind.Zephyr()
+    elif ele == 'light':
+        slots.d = slot.d.light.Cupid()
+    elif ele == 'shadow':
+        slots.d = slot.d.shadow.Marishiten()
 
-    wp = {
-        'ele','all',
-        'str':64,
-        "mod"  :[('s' , 'passive' , 0.25) ,
-                ('crit' , 'chance'  , 0.06)],
-        }
-    wp2 = {
-        'ele','all',
-        'str':64,
-        "mod"  :[('crit', 'damage' , 0.13) ,
-                ('crit' , 'chance'  , 0.08)],
-        }
+    slots.a = RR()+LC()
+    return
 
-    return d, wp, wp2
 

@@ -1,8 +1,8 @@
 import skillframe
-import equip_common
 import csv2conf
 import copy
 import forte
+import slot_common
 
 conf = {}
 
@@ -41,8 +41,7 @@ def get(name):
     get_skillframe(name)
     csvconf = csv2conf.get(name)
     conf.update(csvconf)
-    commonconf = equip_common.get(conf['stars'],conf['element'],conf['weapon'])
-    conf.update(copy.deepcopy(commonconf))
+    conf['slot_common'] = slot_common.set
     if conf['weapon']=='sword':
         import wep.sword as weapon
     elif conf['weapon']=='blade':

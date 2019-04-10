@@ -63,6 +63,7 @@ class Amulet(AmuletBase):
     a = []
     def __init__(this):
         this.mod = []
+        this.conf = {}
         this.mmax = {
                 'a'      : 0.15,   # attack
                 's'      : 0.35,   # skill damage
@@ -87,7 +88,7 @@ class Amulet(AmuletBase):
 
 
     def oninit(this, adv):
-        super(Amulet, this).oninit(this,adv)
+        super(Amulet, this).oninit(adv)
         for i in this.a:
             i.oninit(adv)
 

@@ -449,14 +449,6 @@ class Action(object):
         this.idle_event = Event('idle')
         this.act_event = Event(this.name)
 
-        this.Event = Event
-        this.Buff = Buff
-        this.Debuff = Debuff
-        this.Selfbuff = Selfbuff
-        this.Teambuff = Teambuff
-        this.Modifier = Modifier
-        this.log = log
-
 
     def __call__(this):
         return this.tap()
@@ -692,12 +684,11 @@ class Adv(object):
         this.slots.c.wt = tmpconf['weapon']
         this.slots.c.att = tmpconf['str_adv']
 
-        this.slots.w.wt = 'blade'
-        this.slots.w.ele = 'flame'
-        this.slots.w.att = 572
+        this.slots.w.wt = tmpconf['weapon']
+        this.slots.w.ele = tmpconf['element']
+        this.slots.w.att = tmpconf['str_w']/1.5
 
-        this.slots.a = slot.a.LC() + slot.a.RR()
-        this.slots.d = slot.d.flame.Cerberus()
+        tmpconf['slot_common'](this.slots)
 
         this.conf = tmpconf
         this.base_att = this.slots.att(globalconf.forte)
@@ -817,34 +808,17 @@ class Adv(object):
                         Modifier(i+'_%d'%idx,*k)
                         idx += 1
 
-#    def calc_str(this, conf):
-#        base_att = conf['str_wp']+conf['str_w']
-#        tmp_str = 0
-#        if conf['element'] == 'flame':
-#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.04)
-#        elif conf['element'] == 'water':
-#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
-#        elif conf['element'] == 'wind':
-#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
-#        elif conf['element'] == 'light':
-#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07+0.07)
-#        elif conf['element'] == 'shadow':
-#            tmp_str = conf['str_adv'] * (1+0.15+0.23+0.07)
-#
-#        base_att += tmp_str
-#
-#        tmp_str = 0
-#        tmp_str = conf['str_d']
-#
-#        base_att += tmp_str
-#
-#        #conf['base_att'] = int(base_att)
-#        return int(base_att)
-#
-
 
 
     def __init__(this,conf={},cond=0):
+        this.Event = Event
+        this.Buff = Buff
+        this.Debuff = Debuff
+        this.Selfbuff = Selfbuff
+        this.Teambuff = Teambuff
+        this.Modifier = Modifier
+        this.log = log
+
         this.conf_init = conf
         this.ctx = Ctx().on()
         this.condition = m_condition.on
@@ -1049,17 +1023,9 @@ class Adv(object):
         this.l_true_dmg    = Listener('true_dmg'    , this.l_true_dmg     )
         this.l_dmg_formula = Listener('dmg_formula' , this.l_dmg_formula  )
 
-        #e = Event()
-        #e.listener(this.l_idle        , 'idle')
-        #e.listener(this.l_x  , ['x1', 'x2' ,'x3', 'x4', 'x5'] )
-        #e.listener(this.l_fs , ['fs', 'x1fs', 'x2fs', 'x3fs', 'x4fs', 'x5fs'] )
-        #e.listener(this.l_s  , ['s1', 's2', 's3'] )
-        #e.listener(this.l_silence_end , 'silence_end')
-        #e.listener(this.l_dmg_make    , 'dmg_make')
-        #e.listener(this.l_true_dmg    , 'true_dmg')
-        #e.listener(this.l_dmg_formula , 'dmg_formula')
-
         this.init()
+
+        this.slots.oninit(this)
 
         this.ctx.on()
 
