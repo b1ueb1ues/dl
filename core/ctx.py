@@ -50,8 +50,8 @@ class Ctx(object):
 
     def off(this):
         if this._active[0] != this:
-            print 'try to turn off inactive ctx'
-            exit()
+            print('try to turn off inactive ctx')
+            errrrrrrrrrrrr()
         for i in range(len(this.ctxdict_s)):
             gdict = this._gdict_s[i]
             vdict = this.ctxdict_s[i]

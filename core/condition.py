@@ -1,4 +1,4 @@
-from ctx import Ctx
+from core.ctx import Ctx
 
 Ctx.register(globals(),{
     '_if_condition':0,
@@ -47,7 +47,7 @@ def condition_do(cond):
     if _switch == -1:
         _switch = _if_condition
     elif _switch != _if_condition:
-        print 'condition_do not match same condition' 
+        print('condition_do not match same condition' )
         errrrrrrrrrrr()
 
     return _if_condition
@@ -60,16 +60,16 @@ def __test():
     Ctx().on()
     set(1)
     if do('test'):
-        print '1'
+        print('1')
     if do('test2'):
-        print '2'
-    print get()
-    print p()
+        print('2')
+    print(get())
+    print(p())
     set(0)
 
     #Ctx().on()
     #def t1(s='s'):
-    #    print 't1', s
+    #    print('t1', s)
     #on()
     #do(t1)('b')
 

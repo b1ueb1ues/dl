@@ -1,7 +1,7 @@
 # encoding:utf8
-if __package__ is None:
-    from os import sys, path
-    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+if __package__ is None or __package__ == '':
+    import os
+    os.sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from core.log import *
 import time
@@ -71,7 +71,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     #    if adv.conf['mod_d'][0] == 'att':
     #        d_aura = adv.conf['mod_d'][2]
     #displayed_str = int(base_str * (1+d_aura))
-    displayed_str = adv.conf['displayed_str']
+    displayed_str = adv.displayed_att
     
 
     if loglevel > 0 and loglevel & 1:
@@ -79,7 +79,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         sum_ac()
 
     if loglevel > 0 and loglevel & 2:
-        print adv._acl_str
+        print(adv._acl_str)
 
     if loglevel > 0 and loglevel & 4:
         if adv.conf['x_type'] == 'melee':
@@ -105,15 +105,15 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
 
     if loglevel >= 0 or loglevel == None:
         if g_condition != '' and condition == '':
-            print '-----------------------'
-            print recount+' !<%s>'%(g_condition)
-            print '-----------------------'
+            print('-----------------------')
+            print(recount+' !<%s>'%(g_condition))
+            print('-----------------------')
         else:
-            print '\n======================='
+            print('\n=======================')
             #print mname,"%d"%float_dps
-            print "%s , %s (str: %d) %s ;%s"%( recount, mname, 
-                    displayed_str, '<%s>'%condition, comment )
-            print '-----------------------'
+            print("%s , %s (str: %d) %s ;%s"%( recount, mname, 
+                    displayed_str, '<%s>'%condition, comment ))
+            print('-----------------------')
 
         dmg_sum = {}
         sdmg_sum = {}
@@ -130,16 +130,16 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         for i in r['o_sum']:
             o_sum[i] = int(r['o_sum'][i])
 
-        print "dmgsum     |", dmg_sum
-        print "skill_stat |", sdmg_sum
-        print "x_stat     |", r['x_sum']
+        print("dmgsum     | "+ str(dmg_sum))
+        print("skill_stat | "+ str(sdmg_sum))
+        print("x_stat     | "+ str(r['x_sum']))
         if r['o_sum']:
-            print "others     |", o_sum
+            print("others     |", o_sum)
 
     elif loglevel == -1:
         if condition != '':
             condition = '<%s>'%(condition)
-        print "%s , %s (str: %d) %s ;%s"%( recount, mname, displayed_str, condition, comment )
+        print("%s , %s (str: %d) %s ;%s"%( recount, mname, displayed_str, condition, comment ))
     elif loglevel == -2:
         #comment += " (str: %d)"%(displayed_str)
         bdps = team_dps*bps
@@ -179,7 +179,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         if r['o_sum'] != {}:
             for i in r['o_sum']:
                 line += ',%s:%d'%(i, int(r['o_sum'][i]/sim_duration))
-        print line
+        print(line)
 
     if condition != '':
         test(classname, conf, verbose, mass, 1)
@@ -189,9 +189,9 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
 
     b = time.time()
     if loglevel > 0 and loglevel & 8:
-        print '-----------------------\nrun in %f'%(b-a)
+        print('-----------------------\nrun in %f'%(b-a))
     elif loglevel < 0 and not loglevel-1 & 8:
-        print '-----------------------\nrun in %f'%(b-a)
+        print('-----------------------\nrun in %f'%(b-a))
     return
 
 def do_mass_sim(classname, conf, no_cond=None):
@@ -286,7 +286,7 @@ def statis(data, mname):
     if energy:
         comment += '(team_energy:%.0f)'%energy
 
-    #print "%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment)
+    #print("%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment))
 
 
 def sum_ac():
@@ -308,51 +308,52 @@ def sum_ac():
                 prev = 0
             else:
                 ret.append(i[2])
-    print ret
+    print(ret)
     prev = 'c0'
     row = 0
     rowend = 11
     c5count = 0
+    prin = ''
     for i in ret:
         if prev == 'c' and i[0] != 'c' and c5count!=0:
-            print 'c5*%d'%(c5count),
+            prin += 'c5*%d'%(c5count)
             c5count = 0
             row += 5
 
         if i[0] == 's':
             if prev != 's':
-                print '-'*(rowend - row), i,
+                prin += '-'*(rowend - row)+' '+i
                 row = 0
             else:
-                print i
+                prin += i+'\n'
             prev = 's'
         elif i[0] == 'c':
             if prev == 's':
                 row = 0
-                print ''
+                prin += '\n'
             elif prev == 'fs':
                 row = 0
-                print ''
+                prin += '\n'
             if i == 'c5':
                 c5count+=1
             else:
                 if c5count == 0:
-                    print i,
+                    prin += i
                     row += 3
                 else:
-                    print 'c5*%d %s'%(c5count, i),
+                    prin += 'c5*%d %s'%(c5count, i)
                     c5count=0
                     row += 8
             prev = 'c'
         elif i == 'fs':
             if prev == 'fs':
-                print '\nfs',
+                prin += '\nfs'
                 row = 3
             else:
-                print 'fs',
+                prin += 'fs'
                 row +=3
             prev = 'fs'
-    print ''
+    print(prin)
 
 def sum_dmg():
     l = logget()

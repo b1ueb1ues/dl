@@ -64,16 +64,16 @@ class WeaponBase(Slot):
 
         if this.onele :
             this.att *= 1.5
-            this.conf = this.s3
+            this.conf.actions.s3 = this.s3
         elif this.ele == 'all' :
-            this.conf = this.s3
+            this.conf.actions.s3 = this.s3
         
         if not this.onwt :
             print('Weapon can\'t equip')
             errrrrrrrrrrrrr()
         if not this.onele:
             print('!!!!!!!!!!\nwarning: weapon not onele')
-            print this.ele, c.ele
+            print(this.ele, c.ele)
             print('!!!!!!!!!!!\n')
 
         if this.wt == 'axe':
@@ -152,9 +152,7 @@ class Slots(object):
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
-        print a
         adv.abilities = a
-        print adv.__dict__
 #        for i in a:
 #            Ability(*i).oninit(adv)
 

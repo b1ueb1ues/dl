@@ -1,12 +1,12 @@
 from core import Conf
 
-import sword
-import blade
-import axe
-import dagger
-import lance
-import bow
-import wand
-import staff
+import wep.sword
+import wep.blade
+import wep.axe
+import wep.dagger
+import wep.lance
+import wep.bow
+import wep.wand
+import wep.staff
 
 conf = Conf()

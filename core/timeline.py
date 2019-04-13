@@ -1,4 +1,5 @@
-from ctx import *
+from core.ctx import *
+import core.log
 
 
 def now():
@@ -184,7 +185,7 @@ class Timer(object):
 
     def _process(this):
         # sample plain _process
-        print '-- plain timer ','@', t.timing
+        print('-- plain timer ','@', t.timing)
         return 1
 
 
@@ -225,7 +226,7 @@ class Timeline(object):
             headt = this._tlist[headindex]
             headt.callback()
         else:
-            print 'timeline time err'
+            print('timeline time err')
             exit()
         return 0
     
@@ -265,23 +266,23 @@ def main():
     class A():
         name = 'b'
         def a3(this):
-            print '-3',this.name
+            print('-3',this.name)
     a = A()
 
     def a1():
-        print '-1', now()
+        print('-1', now())
     def a2():
         e = Event('e3')
         e.test = 1
         e()
-        print '-2', now()
+        print('-2', now())
  
     def lis(e):
-        print 'listener1'
+        print('listener1')
     def lis2(e):
-        print 'listener2'
+        print('listener2')
     def lis3(e):
-        print 'listener3'
+        print('listener3')
 
     e1 = Timer(a1,1).on()
 

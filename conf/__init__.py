@@ -1,14 +1,12 @@
-import skillframe
-import csv2conf
 import copy
-import slot_common
-import forte
+import conf.skillframe
+import conf.csv2conf
+import conf.slot_common
+import conf.forte
 import slot
 from core import Conf
 
 conf = Conf()
-conf.s1 = Conf()
-conf.s2 = Conf()
 
 def get_skillframe(name):
     global conf

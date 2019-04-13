@@ -51,6 +51,7 @@ class Ability(object):
             adv.conf.resist = (cond, value)
 
         j = this.mod
+        i = name
         if type(j) == tuple:
             adv.Modifier(i,*j)
         elif type(j) == list:
