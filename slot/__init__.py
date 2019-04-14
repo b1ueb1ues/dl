@@ -64,9 +64,9 @@ class WeaponBase(Slot):
 
         if this.onele :
             this.att *= 1.5
-            this.conf.actions.s3 = this.s3
+            this.conf.s3 = Conf(this.s3)
         elif this.ele == 'all' :
-            this.conf.actions.s3 = this.s3
+            this.conf.s3 = Conf(this.s3)
         
         if not this.onwt :
             print('Weapon can\'t equip')
@@ -152,9 +152,9 @@ class Slots(object):
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
-        adv.abilities = a
-#        for i in a:
-#            Ability(*i).oninit(adv)
+        #adv.abilities = a
+        for i in a:
+            Ability(*i).oninit(adv)
 
 
     def att(this, forte=None):

@@ -73,11 +73,23 @@ class Conf(lobject):
         if type(template) == this.__class__:
             this.__fromdict(template.__todict())
 
+
     def __todict(this):
         ret = {}
         for k,v in this.__dict__.items():
             if k[:7] == '_Conf__':
                 continue
+            if type(v) == this.__class__:
+                ret[k] = v.__todict()
+            elif type(v) == dict:
+                ret[k] = ('__realdict',v)
+            else:
+                ret[k] = v
+        return ret
+
+    def __todict_all(this):
+        ret = {}
+        for k,v in this.__dict__.items():
             if type(v) == this.__class__:
                 ret[k] = v.__todict()
             elif type(v) == dict:
@@ -101,14 +113,20 @@ class Conf(lobject):
                 this[k] = v
 
     def __str__(this):
+        return this.__tostr()
+
+    def __tostr(this):
         ret = ''
         ret2 = ''
-        this = copy.deepcopy(this)
+        tmp = this.__new__(this.__class__)
+        tmp.__init__(this.__todict_all())
+        this = tmp
+        #this = copy.deepcopy(this)
         if not this.__parentname and not this.__name:
             for k,i in this.__dict__.items():
                 if type(i) == Conf:
                     i.__name = k
-                    tmp = str(i)
+                    tmp = i.__tostr()
                     ret2 += tmp
                     if tmp == '':
                         ret2+= k+'=Conf()\n'
@@ -120,7 +138,7 @@ class Conf(lobject):
                 if type(i) == Conf:
                     i.__name = k
                     i.__parentname = '%s'%(this.__name)
-                    tmp = str(i)
+                    tmp = i.__tostr()
                     ret2 += tmp
                     if tmp == '':
                         ret2+= this.__name+'.'+k+'=Conf()\n'
@@ -132,7 +150,7 @@ class Conf(lobject):
                 if type(i) == Conf:
                     i.__name = k
                     i.__parentname = '%s.%s'%(this.__parentname, this.__name)
-                    tmp = str(i)
+                    tmp = i.__tostr()
                     ret2 += tmp
                     if tmp == '':
                         ret2+= this.__parentname+'.'+this.__name+'.'+k+'=Conf()\n'
@@ -198,7 +216,7 @@ class Conf(lobject):
             for k,i in a.__dict__.items():
                 if type(i) == Conf:
                     if type(this[k]) == Conf:
-                        Conf.update_re(this[k], i)
+                        Conf.update(this[k], i)
                 this[k] = i
         else:
             print('Conf can only update from Conf/dict')
@@ -222,16 +240,32 @@ class Conf(lobject):
 
     def __setitem__(this,i,v):
         super(Conf, this).__setitem__(i,v)
-        if this.__sync:
-            this.__sync(this)
+        if i[:7] != '_Conf__':
+            if this.__sync:
+                this.__sync(this)
 
     def __setattr__(this,i,v):
         super(Conf, this).__setattr__(i,v)
-        if this.__sync:
-            this.__sync(this)
+        if i[:7] != '_Conf__':
+            if this.__sync:
+                this.__sync(this)
 
-    def __call__(this, cb):
-        this.__sync = cb
+    def __call__(this, a):
+        def foo():
+            pass
+        if type(a) == type(this.__foo):
+            this.__sync = a
+            a(this)
+        elif type(a) == type(foo):
+            this.__sync = a
+            a(this)
+        elif type(a) == this.__class__:
+            print 'update'
+            Conf.update(this, a)
+        elif type(a) == dict:
+            print 'update'
+            Conf.update(this, a)
+
 
     def __foo(this):
         pass
@@ -265,12 +299,18 @@ if __name__ == '__main__':
     t = Test()
 
     a = Conf()
+    a.a.a = 'a'
     a.a.b.c.e = 1
     a.dict = {'dict':'test'}
     a.a.b.c.d = Conf()
     a.a.b.d = Conf()
     a.l = Conf()
     print(a)
+    print a.a
+    a.a(t.d1)
+
+
+
     exit()
     b = Conf(a)
     c = Conf()

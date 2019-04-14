@@ -4,9 +4,9 @@ class Ability(object):
         this.value = value
         this.cond = cond
         this.mod = []
-        if name == 'a' or 'att':
+        if name == 'a' or name == 'att':
             this.mod = [('att','passive',value, cond)]
-        elif name == 's' or 'sd':
+        elif name == 's' or name == 'sd':
             this.mod = [('s','passive',value, cond)]
         elif name == 'cc':
             this.mod = [('crit','chance',value, cond)]
@@ -51,7 +51,10 @@ class Ability(object):
             adv.conf.resist = (cond, value)
 
         j = this.mod
-        i = name
+        if cond:
+            i = name+cond
+        else:
+            i = name
         if type(j) == tuple:
             adv.Modifier(i,*j)
         elif type(j) == list:

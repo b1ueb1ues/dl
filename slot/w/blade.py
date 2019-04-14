@@ -6,11 +6,12 @@ class blade5b1(WeaponBase):
     ele = ['flame','wind']
     wt = 'blade'
     att = 572
-    s3 = Conf()
-    s3.dmg      = 3.54*3   
-    s3.sp       = 8030     
-    s3.startup  = 0.1      
-    s3.recovery = 2.65     
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 8030     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    }
 
 class blade5b2(WeaponBase):
     ele = ['water','light']

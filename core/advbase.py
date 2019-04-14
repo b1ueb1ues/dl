@@ -334,7 +334,6 @@ class Skill(object):
         this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
         this.silence_end_event = Event('silence_end')
-        this.cast_event = Event(this.name+'_cast')
         this.init()
 
     def __call__(this):
@@ -386,7 +385,8 @@ class Skill(object):
             return 1
 
     def ac(this):
-        this.cast_event()
+        #this.cast_event = Event(this.name+'_cast')
+        #this.cast_event()
         return 1
 
 
@@ -446,6 +446,8 @@ class Action(object):
         this.realtime()
 
     def configsync(this, c):
+        #print this.name
+        #print c
         this._startup = c.startup
         this._recovery = c.recovery
 
@@ -465,7 +467,7 @@ class Action(object):
         if this.rt_name != this.name:
             this.rt_name = this.name
             this.act_event = Event(this.name)
-        this.o_tap()
+        return this.o_tap()
 
     def realtime(this):
         this.rt_name = this.name
@@ -569,15 +571,18 @@ class Adv(object):
 
     comment = ''
     #x_status = (0,0)
-    conf = Conf()
-    slots = slot.Slots()
+    mods = []
+    a1 = None
+    a2 = None
+    a3 = None
 
     conf_default = Conf()
 
-    conf_default.latency.x = 0.05
-    conf_default.latency.sp = 0.05
-    conf_default.latency.default = 0.05
-    conf_default.latency.idle = 0
+    #conf_default.latency.x = 0.05
+    #conf_default.latency.sp = 0.05
+    #conf_default.latency.default = 0.05
+    #conf_default.latency.idle = 0
+    conf_default.latency = Conf({'x':0,'sp':0,'default':0,'idle':0})
 
     conf_default.s1 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
     conf_default.s2 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
@@ -634,6 +639,7 @@ class Adv(object):
         tmpconf += this.conf_default
         tmpconf += globalconf.get(this.name)
         tmpconf += this.conf
+        #tmpconf += conf
         Conf.update(tmpconf, conf)
 
         this.slots.c.att = tmpconf.c.att
@@ -645,7 +651,7 @@ class Adv(object):
         this.conf += tmpconf
         this.base_att = this.slots.att(globalconf.forte)
         this.displayed_att = this.slots._att(globalconf.forte)
-        this.slots.oninit(this)
+        #this.slots.oninit(this)
 
 
 
@@ -727,7 +733,7 @@ class Adv(object):
         this.s3 = Skill('s3', this.conf.s3, this.a_s3.tap)
         
 
-        if this.conf.xtype== 'ranged':
+        if this.conf.xtype == 'ranged':
             this.l_x = this.l_range_x
             this.l_fs = this.l_range_fs
             #this.fs_success = this.range_fs_sucess
@@ -767,6 +773,9 @@ class Adv(object):
         this.m_condition.set(cond)
         this._log = []
         loginit(this._log)
+
+        this.conf = Conf()
+        this.slots = slot.Slots()
         
 
         if not this.name:
@@ -966,20 +975,27 @@ class Adv(object):
 
         this.init()
 
-        this.slots.oninit(this)
-
         this.ctx.on()
 
-        Event('idle')()
+        if this.a1 :
+            this.slots.c.a.append(this.a1)
+        if this.a2 :
+            this.slots.c.a.append(this.a2)
+        if this.a3 :
+            this.slots.c.a.append(this.a3)
+        
+        this.confbak = this.conf
+        this.slots.oninit(this)
+        print repr(this.confbak)
+        this.confbak(this.conf)
+        print repr(this.confbak)
+
 
         if not this._acl:
             this._acl, this._acl_str = acl.acl_func_str(
                     this.acl_prepare_default+this.conf.acl
                     )
-
-        for i in this.abilities:
-            Ability(*i).oninit(this)
-
+        Event('idle')()
         Timeline.run(d)
 
 
@@ -1127,7 +1143,7 @@ class Adv(object):
         if dmg_coef :
             this.dmg_make(e.name , dmg_coef)
 
-        if e.name+'_buff' in this.conf:
+        if e.name+'.buff' in this.conf:
             buffarg = this.conf[e.name+'.buff']
             wide = buffarg[0]
             buffarg = buffarg[1:]
