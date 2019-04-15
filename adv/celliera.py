@@ -6,8 +6,7 @@ def module():
     return Celliera
 
 class Celliera(adv.Adv):
-    conf = {}
-    conf['mod_a3'] = ('att', 'passive', 0.08, 'hp70')
+    a3 = ('a',0.08,'hp70')
 
 
 if __name__ == '__main__':

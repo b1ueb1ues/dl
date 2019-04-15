@@ -7,9 +7,7 @@ def module():
     return V_Ezelith
 
 class V_Ezelith(Adv):
-    conf = {
-        "mod_a3":('att','broken_p',0.2*0.15),
-    }
+    a3 = ('bk',0.2)
 
     def c_init(this):
         this.o_init()
@@ -17,6 +15,13 @@ class V_Ezelith(Adv):
                 self={'hit':1},
                 team={}
                 )
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s3,s1.charged>=2803
+                `s1
+                `s2
+                `fs, seq=4
+                """
 
     def init(this):
         this.hits = 0
@@ -33,13 +38,6 @@ class V_Ezelith(Adv):
             this.o_init = this.init
             this.init = this.c_init
             this.dmg_proc = this.c_dmg_proc
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s3,s1.charged>=2803
-                `s1
-                `s2
-                `fs, seq=4
-                """
 
     def c_dmg_proc(this, name, amount):
         if name[:2] == 'x1':

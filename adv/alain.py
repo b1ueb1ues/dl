@@ -7,8 +7,9 @@ def module():
 
 class Alain(Adv):
     comment = 'reach 100 resist with Saintly Delivery'
-    def pre(this):
-        this.slots.a = RR()+Saintly_Delivery()
+    conf = {
+            'slots.a': RR()+Saintly_Delivery()
+        }
 
 
 if __name__ == '__main__':

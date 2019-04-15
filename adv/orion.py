@@ -5,8 +5,7 @@ def module():
     return Orion
 
 class Orion(Adv):
-    conf = {}
-    conf['mod_a1'] = ('crit', 'chance', 0.10, 'hit15')
+    a1 = ('cc',0.10,'hit15')
 
     def init(this):
         this.charge_p('prep','50%')

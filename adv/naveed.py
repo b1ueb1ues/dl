@@ -19,14 +19,7 @@ class Naveed(adv.Adv):
         if this.s1level >= 5:
             this.s2.sp = 0
             this.s1level = 5
-
-
-def s2_proc_withdoublebuff(this, e):
-    this.s1level += 1
-    if this.s1level > 5:
-        this.s1level = 5
-    adv.Selfbuff("crown_double_buff",0.08,15).on()
-    
+        
 
 
 if __name__ == '__main__':
@@ -38,19 +31,4 @@ if __name__ == '__main__':
         `fs, seq=3 and cancel
         """
     adv_test.test(module(), conf, verbose=0)
-
-#    Naveed.s2_proc = s2_proc_withdoublebuff
-#    Naveed.comment = 'Valiant Crown'
-#    conf['acl'] = """
-#        `s1, sp
-#        `s2, sp
-#        `s3, sp
-#        `fs, seq=3 and cancel
-#        """
-#    conf.update({
-#        "mod_wp"  : ('s'   , 'passive' , 0.25) ,
-#        })
-#    adv_test.test(module(), conf, verbose=0)
-
-
 

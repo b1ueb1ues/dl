@@ -22,11 +22,19 @@ class blade5b3(WeaponBase):
     ele = ['shadow']
     att = 590
     wt = 'blade'
-    s3 = Conf()
-    s3.dmg      = 2.13*5
-    s3.sp       = 7695
-    s3.startup  = 0.1
-    s3.recovery = 2.65
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 7695   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.65   ,
+    }
+
+class bladev5flame(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 353
+    a = [('k',0.2), ('prep','50%')]
+
 
 flame  = blade5b1
 wind   = blade5b1

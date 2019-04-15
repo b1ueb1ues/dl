@@ -23,8 +23,13 @@ class axe5b2(WeaponBase):
         "recovery" : 2.25     ,
     }
 
-class axev(WeaponBase):
-    pass
+class axev5flame(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 380
+    a = [('k',0.2), ('prep','50%')]
+
+
 
 flame  = axe5b1
 light  = axe5b1

@@ -5,8 +5,7 @@ def module():
     return Heinwald
 
 class Heinwald(Adv):
-    conf = {}
-    conf['mod_a1'] = ('s','passive',0.35)
+    a1 = ('s',0.35)
 
     def pre(this):
         if this.condition("buff all teammates"):

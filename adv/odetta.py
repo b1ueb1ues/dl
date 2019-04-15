@@ -5,10 +5,8 @@ def module():
     return Odetta
 
 class Odetta(Adv):
-    conf = {}
-    conf['mod_a1'] = ('att', 'passive', 0.1, 'hp70')
-    conf['mod_a3'] = ('buff', 'time', 0.2)
-    #conf['mod_wp2'] = ('buff','time',0.15)
+    a1 = ('a',0.1,'hp70')
+    a3 = ('bt',0.2)
     
     def pre(this):
         if this.condition('buff all team'):

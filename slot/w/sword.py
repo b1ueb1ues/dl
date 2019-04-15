@@ -7,10 +7,10 @@ class sword5b1(WeaponBase):
     wt = 'sword'
     att = 556
     s3 = {
-        "s3_dmg"      : 5*1.65   ,
-        "s3_sp"       : 6847     ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 3.1      ,
+        "dmg"      : 5*1.65   ,
+        "sp"       : 6847     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.1      ,
         }
 
 class sword5b2(WeaponBase):

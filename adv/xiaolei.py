@@ -6,15 +6,12 @@ def module():
     return Xiaolei
 
 class Xiaolei(adv.Adv):
-    conf = {
-        'mod_a1':('s','passive',0.2),
-        }
+    a1 = ('s',0.2)
 
 #    def pre(this):
 #        if this.condition('s2 in lv1'):
-#            this.conf['s2_sp'] = 3909
+#            this.conf['s2.sp'] = 3909
 #            this.s2_proc = this.c_s2_proc
-
 
     def s2_proc(this, e):
         Teambuff('s2cc',0.08,10,'crit','rate').on()

@@ -6,9 +6,9 @@ def module():
     return Botan
 
 class Botan(Adv):
+    a3 = ('prep','50%')
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()
-        this.charge_p('prep','50%')
 
     def s1_proc(this, e):
         if random.random() < 0.8:
@@ -24,7 +24,4 @@ if __name__ == '__main__':
         """
     adv_test.test(module(), conf, verbose=-2,mass=1)
 
-    exit()
-    conf['mod_wp'] = ('s','passive',0.35)
-    adv_test.test(module(), conf, mass=1)
 

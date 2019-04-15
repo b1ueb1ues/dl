@@ -34,7 +34,7 @@ if __name__ == '__main__':
         """
     conf['slots.a'] = Stellar_Show() + VC() 
     adv_test.test(module(), conf, verbose=0, mass=0)
-    #exit()
+    exit()
 
     ams = slot.a.amulets
     amlen = len(ams)

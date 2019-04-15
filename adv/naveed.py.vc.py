@@ -1,6 +1,7 @@
 import adv_test
 import naveed
 import adv
+from slot.a import *
 
 def module():
     return Naveed
@@ -10,20 +11,21 @@ class Naveed(naveed.Naveed):
         this.s1level += 1
         if this.s1level > 5:
             this.s1level = 5
-        adv.Selfbuff("crown_double_buff",0.08,15).on()
+        adv.Event('defchain')()
     
 
 
 if __name__ == '__main__':
     conf = {}
-    Naveed.comment = 'Valiant Crown'
+    Naveed.comment = 'VC + RR'
     conf['acl'] = """
         `s1, sp
         `s2, sp
         `s3, sp
         `fs, seq=3 and cancel
         """
-    conf['mod_wp'] = ('s', 'passive' , 0.25)
+    conf['slots.a'] = VC()+RR()
+    #conf['slots.a'] = VC()+Evening_of_Luxury()
     adv_test.test(module(), conf, verbose=0)
 
 

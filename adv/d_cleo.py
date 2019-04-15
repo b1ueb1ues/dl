@@ -7,8 +7,7 @@ def module():
     return D_Cleo
 
 class D_Cleo(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('att' , 'passive', 0.13, 'hp70') 
+    a1 = ('a',0.13,'hp70')
 
     def pre(this):
         if this.condition('energy'):
@@ -30,6 +29,7 @@ class D_Cleo(adv.Adv):
                 self={},
                 team={}
                 )
+
 
     def c_dmg_proc(this, name, amount):
         if name == 'x1':

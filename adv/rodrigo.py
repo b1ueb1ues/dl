@@ -5,8 +5,7 @@ def module():
     return Rodrigo
 
 class Rodrigo(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('att', 'passive', 0.08, 'hp70')
+    a1 = ('a',0.08,'hp70')
 
 
 if __name__ == '__main__':

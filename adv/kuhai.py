@@ -85,20 +85,3 @@ if __name__ == '__main__':
     conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
     adv_test.test(module(), conf, verbose=0, mass=0)
 
-    exit()
-
-    module().comment = 'no s2 & RR+LC'
-    module().pre = module().pre2
-    conf = {}
-    conf['mod_wp'] = [('s','passive',0.25),
-                  ('crit','chance',0.06,'hp70')]
-    conf['mod_wp2'] = [('crit','damage',0.13),
-                  ('crit','chance',0.08,'hp70')]
-    conf['str_wp2'] = 64
-    #conf['mod_wp2'] = [('s','passive',0.10),
-    #              ('fs','passive',0.30)]
-    conf['acl'] = """
-        `s1
-        `fs, seq=3
-        """
-    adv_test.test(module(), conf, verbose=0, mass=0)

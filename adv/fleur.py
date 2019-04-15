@@ -7,7 +7,7 @@ def module():
 class Fleur(Adv):
     comment = 'don\'t use s2 in s3 nor s3 in s2'
     conf = {}
-    conf['mod_a1'] = ('sp', 'passive', 0.08,'hp70')
+    a1 = ('sp',0.08,'hp70')
     
     def pre(this):
         if this.condition('paralysis 40s (s1 boosted when)'):

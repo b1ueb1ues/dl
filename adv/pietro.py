@@ -5,9 +5,8 @@ def module():
     return Pietro
 
 class Pietro(adv.Adv):
+    a1 = ('cd',0.13)
     comment = 'unsuitable resist'
-    conf = {}
-    conf['mod_a1'] = ('crit','damage',0.13)
 
 if __name__ == '__main__':
     conf = {}

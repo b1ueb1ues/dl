@@ -5,10 +5,8 @@ def module():
     return Linyou
 
 class Linyou(Adv):
-    conf = {
-        'mod_a1': ('crit', 'chance', 0.10, 'hp70'),
-        "mod_a3": ('sp', 'passive', 0.08),
-    }
+    a1 = ('cc',0.10,'hp70')
+    a3 = ('sp',0.08)
 
     def init(this):
         this.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')

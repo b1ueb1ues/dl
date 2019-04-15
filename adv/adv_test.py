@@ -62,15 +62,6 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
     if condition != '' :
         g_condition = condition
 
-    #base_str = adv.conf['base_str']
-    #if type(adv.conf['mod_d']) == list:
-    #    for i in adv.conf['mod_d']:
-    #        if i[0] == 'att':
-    #            d_aura = i[2]
-    #else:
-    #    if adv.conf['mod_d'][0] == 'att':
-    #        d_aura = adv.conf['mod_d'][2]
-    #displayed_str = int(base_str * (1+d_aura))
     displayed_str = adv.displayed_att
     
 
@@ -316,13 +307,13 @@ def sum_ac():
     prin = ''
     for i in ret:
         if prev == 'c' and i[0] != 'c' and c5count!=0:
-            prin += 'c5*%d'%(c5count)
+            prin += 'c5*%d '%(c5count)
             c5count = 0
             row += 5
 
         if i[0] == 's':
             if prev != 's':
-                prin += '-'*(rowend - row)+' '+i
+                prin += '-'*(rowend - row)+' '+i+' '
                 row = 0
             else:
                 prin += i+'\n'
@@ -338,19 +329,19 @@ def sum_ac():
                 c5count+=1
             else:
                 if c5count == 0:
-                    prin += i
+                    prin += i+' '
                     row += 3
                 else:
-                    prin += 'c5*%d %s'%(c5count, i)
+                    prin += 'c5*%d %s '%(c5count, i)
                     c5count=0
                     row += 8
             prev = 'c'
         elif i == 'fs':
             if prev == 'fs':
-                prin += '\nfs'
+                prin += '\nfs '
                 row = 3
             else:
-                prin += 'fs'
+                prin += 'fs '
                 row +=3
             prev = 'fs'
     print(prin)

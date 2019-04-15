@@ -7,7 +7,7 @@ from core.timeline import *
 from core.log import *
 import core.acl
 import conf as globalconf
-#import core.condition 
+import core.condition 
 import slot
 m_condition = condition
 conf = Conf()
@@ -647,14 +647,27 @@ class Adv(object):
         this.slots.c.stars = tmpconf.c.stars
         this.slots.c.ele = tmpconf.c.ele
 
+
+        slots_save = slot.Slots()
+        slots_save.w = this.slots.w
+        slots_save.d = this.slots.d
+        slots_save.a = this.slots.a
+
         this.slot_common = tmpconf.slot_common[0]
         this.slot_common(this.slots)
 
-        if tmpconf.slots.w:
+        if slots_save.w :
             this.slots.w = tmpconf.slots.w
-        if tmpconf.slots.d:
+        if slots_save.d :
             this.slots.d = tmpconf.slots.d
-        if tmpconf.slots.a:
+        if slots_save.a :
+            this.slots.a = tmpconf.slots.a
+
+        if tmpconf.slots.w :
+            this.slots.w = tmpconf.slots.w
+        if tmpconf.slots.d :
+            this.slots.d = tmpconf.slots.d
+        if tmpconf.slots.a :
             this.slots.a = tmpconf.slots.a
 
         this.conf = tmpconf
@@ -798,6 +811,7 @@ class Adv(object):
         this.skill = Skill()
         this._acl = None
 
+        #this.classconf = this.conf
         this.pre()
         this.preconfig()
 
@@ -982,7 +996,6 @@ class Adv(object):
         this.l_true_dmg    = Listener('true_dmg'    , this.l_true_dmg     )
         this.l_dmg_formula = Listener('dmg_formula' , this.l_dmg_formula  )
 
-        this.init()
 
         this.ctx.on()
 
@@ -1000,6 +1013,8 @@ class Adv(object):
             this.slots.c.a.append(this.a3)
         
         this.slots.oninit(this)
+
+        this.init()
 
 
         if not this._acl:

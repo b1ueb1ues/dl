@@ -3,6 +3,7 @@ from adv import *
 import copy
 from module.fsalt import *
 import albert
+from slot.a import *
 
 
 def module():
@@ -10,14 +11,9 @@ def module():
 
 
 class Albert(albert.Albert):
-    conf = {
-            'mod_a1':('fs','passive',0.5),
-            'mod_wp2':[],
-            }
-
-    def init(this):
-        this.charge_p('prep','100%')
-        albert.Albert.init(this)
+    def pre(this):
+        super(Albert,this).pre()
+        this.conf.slots.a = RR() + The_Chocolatiers()
 
 
 

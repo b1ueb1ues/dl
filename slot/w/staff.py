@@ -14,10 +14,10 @@ class staff5b2(WeaponBase):
     wt = 'staff'
     att = 513
     s3 = {
-        "s3_dmg"      : 7.55     ,
-        "s3_sp"       : 15205    ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 1.9      ,
+        "dmg"      : 7.55     ,
+        "sp"       : 15205    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
         }
 
 flame  = staff5b1

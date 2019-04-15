@@ -5,8 +5,7 @@ def module():
     return H_Edward
 
 class H_Edward(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('att', 'passive', 0.1, 'hp100')
+    a1 = ('a',0.1,'hp100')
 
 
 if __name__ == '__main__':

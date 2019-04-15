@@ -16,6 +16,8 @@ class Ability(object):
             this.mod = [('fs','passive',value, cond)]
         elif name == 'bt':
             this.mod = [('buff','time',value, cond)]
+        elif name == 'k':
+            this.mod = [('att','killer',value, cond)]
 
         elif name == 'sp':
             if cond != 'fs':
@@ -34,14 +36,15 @@ class Ability(object):
             if cond == 'fs':
                 adv.conf.fs.sp *=(1+value)
         elif name == 'lo':
-            adv.Buff('lo',value,15)
+            if adv.condition('last offense'):
+                adv.Buff('lo',value,15).on()
         elif name == 'bc':
             e = adv.Event('defchain').listener(this.defchain)
             this.adv = adv
         elif name == 'sts':
-            adv.Buff('strikerstrength',value*5,-1)
+            adv.Buff('strikerstrength',value*5,-1).on()
         elif name == 'sls':
-            adv.Buff('slayerstrength',value*5,-1)
+            adv.Buff('slayerstrength',value*5,-1).on()
         elif name == 'dc':
             pass
         elif name == 'prep':
@@ -74,7 +77,7 @@ class Ability(object):
 
 
     def defchain(this, e):
-        this.adv.Buff('defchain',this.value,15)
+        this.adv.Buff('defchain',this.value,15).on()
 
 
     def __repr__(this):

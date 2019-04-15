@@ -5,11 +5,9 @@ def module():
     return Malora
 
 class Malora(adv.Adv):
-    conf = {
-        'mod_a1':('att','bp',0.2*0.15),
-    }
+    a1 = ('bk',0.2)
 
-    def pre(this):
+    def init(this):
         if this.condition('spawn c1+fs'):
             this.conf['acl'] = """
                 `s1,fsc

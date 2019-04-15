@@ -6,18 +6,14 @@ def module():
     return Ieyasu
 
 class Ieyasu(Adv):
-    conf = {
-        "mod_a1": ('crit', 'chance', 0.1, 'hp70') ,
-        "mod_a3": ('crit', 'damage', 0.2) ,
-        } 
-
+    a1 = ('cc',0.1,'hp70')
+    a2 = ('cd',0.2)
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
             if this.bleed._static['stacks'] > 0:
                 return 0.15
         return 0
-
 
     def init(this):
         random.seed()

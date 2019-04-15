@@ -7,10 +7,7 @@ def module():
 
 
 class G_Ranzal(Adv):
-    conf = {
-        "mod_a3": ('s', 'passive', 0.3),
-        } 
-
+    a3 = ('s',0.3)
 
     def init(this):
         this.gauges = {
@@ -18,16 +15,17 @@ class G_Ranzal(Adv):
                 'fs':0,
                 }
         this.fsacharge = -1
-        this.fsaconf = copy.deepcopy(this.conf)
-        this.fsaconf.update({
-                'fs_dmg':0.83*2+0.92,
-                'fs_sp' :330,
-                "fs_startup":33/60.0,
-                "fs_recovery":45/60.0,
-                "x2fs_startup":18/60.0,
-                "x2fs_recovery":45/60.0,
-                "x3fs_startup":18/60.0,
-                "x3fs_recovery":45/60.0,
+        this.fsaconf = Conf()
+        this.fsaconf.fs = Conf(this.conf.fs)
+        this.fsaconf({
+                'fs.dmg':0.83*2+0.92,
+                'fs.sp' :330,
+                "fs.startup":33/60.0,
+                "fs.recovery":45/60.0,
+                "x2fs.startup":18/60.0,
+                "x2fs.recovery":45/60.0,
+                "x3fs.startup":18/60.0,
+                "x3fs.recovery":45/60.0,
                 })
         fs_alt_init(this, this.fsaconf)
 
@@ -65,9 +63,9 @@ class G_Ranzal(Adv):
             boost += 1
             this.gauges['fs'] = 0
         if boost == 1:
-            this.dmg_make('o_s1_boost',this.conf['s1_dmg']*0.2)
+            this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.2)
         if boost == 2:
-            this.dmg_make('o_s1_boost',this.conf['s1_dmg']*0.8)
+            this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.8)
 
     def s2_proc(this, e):
         this.fsacharge = 3

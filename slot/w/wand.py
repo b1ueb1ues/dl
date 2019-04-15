@@ -14,10 +14,10 @@ class wand5b2(WeaponBase):
     wt = 'wand'
     att = 573
     s3 = {
-        "s3_dmg"      : 4*2.71   ,
-        "s3_sp"       : 8757     ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 1.9      ,
+        "dmg"      : 4*2.71   ,
+        "sp"       : 8757     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
         }
 
 flame  = wand5b1

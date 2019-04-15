@@ -10,10 +10,17 @@ class Slot(object):
     stype = 'slot'
     onele = 0
     onwt = 0
+
+    a = None
+    mod = None
+    conf = None
     def __init__(this):
-        this.mod = []
-        this.conf = Conf()
-        this.a = []
+        if not this.mod:
+            this.mod = []
+        if not this.conf:
+            this.conf = Conf()
+        if not this.a:
+            this.a = []
 
     def setup(this, c):
         if c.ele == this.ele :
@@ -132,9 +139,12 @@ class Slots(object):
     #a2 = AmuletBase()
     def __init__(this):
         this.c = CharacterBase()
-        this.w = WeaponBase()
-        this.d = DragonBase()
-        this.a = AmuletBase()+AmuletBase()
+        #this.w = WeaponBase()
+        #this.d = DragonBase()
+        #this.a = AmuletBase()+AmuletBase()
+        this.w = None
+        this.d = None
+        this.a = None
 
     def __setup(this):
         this.c.setup()

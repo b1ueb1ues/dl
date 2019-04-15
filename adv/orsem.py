@@ -5,9 +5,8 @@ def module():
     return Orsem
 
 class Orsem(Adv):
-    conf = {} 
-    conf['mod_a1'] = ('crit' , 'passive', 0.10, 'hit15')
-    conf['mod_a3'] = ('crit' , 'passive', 0.06, 'hp70')
+    a1 = ('cc',0.10,'hit15')
+    a3 = ('cc',0.06,'hp70')
 
 
 if __name__ == '__main__':

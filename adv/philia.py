@@ -6,8 +6,13 @@ def module():
 
 class Philia(adv.Adv):
     conf = {}
-    conf['mod_a1'] = ('att', 'passive', 0.10, 'hp100')
-    def pre(this):
+    a1 = ('a',0.1,'hp100')
+
+    def init(this):
+        this.dmg_make("o_s2_paralysis",1.8)
+        this.dmg_make("o_s2_paralysis",1.8)
+        this.dmg_make("o_s2_paralysis",1.8)
+
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc
@@ -16,10 +21,6 @@ class Philia(adv.Adv):
                 `fs, seq=4
                 """
 
-    def init(this):
-        this.dmg_make("o_s2_paralysis",1.8)
-        this.dmg_make("o_s2_paralysis",1.8)
-        this.dmg_make("o_s2_paralysis",1.8)
 
 
 

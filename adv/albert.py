@@ -28,6 +28,14 @@ class Albert(Adv):
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
 
+        if this.condition('3s1 in on s2'):
+            this.conf['acl'] = """
+                `s2, s1.charged>=s1.sp-300
+                `s1
+                `s3, not this.s2buff.get()
+                `fs, seq=2 
+                """
+
     def altend(this,t):
         fs_back(this)
 
@@ -39,13 +47,6 @@ class Albert(Adv):
 
             
     def pre(this):
-        if this.condition('3s1 in on s2'):
-            this.conf['acl'] = """
-                `s2, s1.charged>=s1.sp-300
-                `s1
-                `s3, not this.s2buff.get()
-                `fs, seq=2 
-                """
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
 

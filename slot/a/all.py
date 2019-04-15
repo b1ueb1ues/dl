@@ -10,6 +10,7 @@ class RR(Amulet):
     a = [('s',0.25),
          ('cc',0.06,'hp70')]
 
+
 class LC(Amulet):
     att = 64
     a = [('cd',0.13),
@@ -22,7 +23,7 @@ class VC(Amulet):
 
 class FG(Amulet): # Flash of Genius
     att = 57
-    a = [('a',0.15,'15hits')]
+    a = [('a',0.15,'hit15')]
 
 class FP(Amulet):
     att = 52
@@ -43,6 +44,12 @@ class Jewels_of_the_Sun(Amulet):
     att = 64
     a = [('sp',0.06),
          ('a',0.08,'hp70')]
+
+class Heralds_of_Hinomoto(Amulet):
+    att = 64
+    a = [('s',0.25),
+         ('sp',0.05)]
+
 
 class One_with_the_Shadows(Amulet):
     att = 51

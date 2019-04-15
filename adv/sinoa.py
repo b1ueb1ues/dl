@@ -6,10 +6,12 @@ def module():
     return Sinoa
 
 class Sinoa(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('att' , 'passive', 0.13, 'hp100')
-    conf['mod_a3'] = ('buff' , 'time', 0.2)
-    #conf['mod_wp2'] = ('buff','time',0.15)
+    a1 = ('a',0.13,'hp100')
+    a3 = ('bt',0.2)
+   # conf = {}
+   # import slot
+   # conf['slots.a'] = slot.a.Bellathorna()+slot.a.RR()
+
 
     def s1_proc(this, e):
         r = random.random()

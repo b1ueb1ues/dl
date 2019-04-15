@@ -7,10 +7,10 @@ class lance5b1(WeaponBase):
     wt = 'lance'
     att = 567
     s3 = {
-        "s3_dmg"      : 2*4.61   ,
-        "s3_sp"       : 8111     ,
-        "s3_startup"  : 0.1      ,
-        "s3_recovery" : 1.9      ,
+        "dmg"      : 2*4.61   ,
+        "sp"       : 8111     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
         }
 
 class lance5b2(WeaponBase):

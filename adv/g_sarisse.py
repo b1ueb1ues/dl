@@ -6,14 +6,12 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.Adv):
-    conf = {}
-    conf['mod_a3'] = ('buff','time',0.3)
+    a3 = ('bt',0.3)
+
     def init(this):
         this.hits = 0
         this.bc = adv.Selfbuff()
         this.s2stance = 0
-
-    def pre(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s3,s1.charged>=2803
@@ -21,6 +19,8 @@ class G_Sarisse(adv.Adv):
                 `s2
                 `fs, seq=4
                 """
+
+    def pre(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
         return 'never lose combos & c4+fs'
@@ -67,5 +67,5 @@ if __name__ == '__main__':
         `s1
         `s2
         """
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=0)
 

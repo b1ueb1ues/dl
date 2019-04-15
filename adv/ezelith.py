@@ -5,9 +5,7 @@ def module():
     return Ezelith
 
 class Ezelith(Adv):
-    conf = {
-        "mod_a3": ('att', 'broken_p', 0.3*0.15) ,
-        } 
+    a3 = ('bk',0.3)
 
     def pre(this):
         if this.condition('hp70'):

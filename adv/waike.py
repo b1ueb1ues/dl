@@ -8,13 +8,6 @@ class Waike(adv.Adv):
     def pre(this):
         if this.condition('bog'):
             this.init = this.c_init
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
 
     def init(this):
         this.bogcountlast = 0
@@ -24,6 +17,13 @@ class Waike(adv.Adv):
     def c_init(this):
         this.bogcountlast = 3
         this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
 
     def s2_proc(this, e):
         if this.bogcountlast > 0:

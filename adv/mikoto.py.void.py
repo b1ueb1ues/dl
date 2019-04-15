@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 import mikoto
+import slot
 
 def module():
     return Mikoto
@@ -8,12 +9,8 @@ def module():
 class Mikoto(mikoto.Mikoto):
 
     def pre(this):
-        this.conf['str_w'] = 1.5*353
-        this.conf['mod_w'] = ('att','punisher',0.2)
+        this.conf['slots.w'] = slot.w.blade.bladev5flame()
 
-    def init(this):
-        mikoto.Mikoto.init(this)
-        this.charge_p('prep','50%')
 
 
 if __name__ == '__main__':

@@ -5,9 +5,7 @@ def module():
     return Luther
 
 class Luther(Adv):
-    conf = {
-        'mod_a1': ('crit', 'chance', 0.1, 'hit15')
-        } 
+    a1 = ('cc',0.10,'hit15')
 
 
 if __name__ == '__main__':
