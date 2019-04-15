@@ -43,8 +43,8 @@ def get(name):
     weapon = getattr(wep, wt)
     wepconf = weapon.conf
 
-    conf += wepconf
-
+    conf += Conf(wepconf)
+    
     return conf
     
 

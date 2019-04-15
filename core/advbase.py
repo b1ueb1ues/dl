@@ -638,7 +638,7 @@ class Adv(object):
         tmpconf = Conf()
         tmpconf += this.conf_default
         tmpconf += globalconf.get(this.name)
-        tmpconf += this.conf
+        tmpconf += Conf(this.conf)
         #tmpconf += conf
         tmpconf(this.conf_init)
 
@@ -657,7 +657,7 @@ class Adv(object):
         if tmpconf.slots.a:
             this.slots.a = tmpconf.slots.a
 
-        this.conf += tmpconf
+        this.conf = tmpconf
         this.base_att = this.slots.att(globalconf.forte)
         this.displayed_att = this.slots._att(globalconf.forte)
         #this.slots.oninit(this)
@@ -986,6 +986,12 @@ class Adv(object):
 
         this.ctx.on()
 
+        for i in this.conf.mod:
+            v = this.conf.mod[i]
+            if type(v) == tuple:
+                this.slots.c.mod.append(v)
+            if type(v) == list:
+                this.slots.c.mod += v
         if this.a1 :
             this.slots.c.a.append(this.a1)
         if this.a2 :
@@ -1001,8 +1007,11 @@ class Adv(object):
                     this.acl_prepare_default+this.conf.acl
                     )
         Event('idle')()
+        this.debug()
         Timeline.run(d)
 
+    def debug(this):
+        pass
 
     def think_pin(this, pin):
         def cb_think(t):

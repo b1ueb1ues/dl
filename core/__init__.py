@@ -34,9 +34,16 @@ class lobject(object):
         if l >= 1:
             p = i[:l]
             c = i[l+1:]
+
             tmp = this.__new__(this.__class__)
             tmp.__setitem__(c,v)
-            this.__setattr__(p,tmp)
+            if p in this:
+                if type(this[p]) == this.__class__:
+                    this[p](tmp)
+                else:
+                    this.__setattr__(p,tmp)
+            else:
+                this.__setattr__(p,tmp)
             return 
         elif l < 0 and i != '':
             this.__setattr__(i,v)
@@ -331,6 +338,13 @@ if __name__ == '__main__':
     a.a.c = 'ac'
     a.a.sync = t.d1
     a.a.b = 'ab'
+    if 'a' in a:
+        print 'yes'
+    if 'b' in a:
+        print 'no'
+    if 'b' in a:
+        print 'no'
+
     print a
     exit()
 
