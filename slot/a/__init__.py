@@ -4,6 +4,7 @@ from ability import Ability
 
 
 class Amulet(AmuletBase):
+    a = []
     def __init__(this):
         this.mod = []
         this.conf = Conf()

@@ -23,7 +23,7 @@ class Slot(object):
 
 
     def oninit(this, adv):
-        adv.conf += this.conf
+        adv.conf(this.conf)
 
         i = this.stype
         j = this.mod

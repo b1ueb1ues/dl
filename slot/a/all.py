@@ -153,3 +153,8 @@ class The_Shining_Overlord(Amulet):
         if c.wt == 'sword':
             this.a += [('s',0.35)]
 
+amulets = []
+for k,v in globals().items():
+    if type(v) == type(Conf):
+        if v.__module__ == 'slot.a.all':
+            amulets.append(v)

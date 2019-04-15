@@ -33,12 +33,11 @@ class Ability(object):
         if name == 'sp':
             if cond == 'fs':
                 adv.conf.fs.sp *=(1+value)
-                Conf.sync(adv.conf.fs)
         elif name == 'lo':
             adv.Buff('lo',value,15)
         elif name == 'bc':
             e = adv.Event('defchain').listener(this.defchain)
-            e.adv = adv
+            this.adv = adv
         elif name == 'sts':
             adv.Buff('strikerstrength',value*5,-1)
         elif name == 'sls':
@@ -46,7 +45,7 @@ class Ability(object):
         elif name == 'dc':
             pass
         elif name == 'prep':
-            adv.charge_p("%d%%"%value)
+            adv.charge_p('amulet prep',"%d%%"%value)
         elif name == 'resist':
             adv.conf.resist = (cond, value)
 
@@ -70,7 +69,7 @@ class Ability(object):
 
 
     def defchain(this, e):
-        e.adv.Buff('defchain',this.value,15)
+        this.adv.Buff('defchain',this.value,15)
 
 
     def __repr__(this):

@@ -83,6 +83,25 @@ class Conf(lobject):
                 ret[k] = v.__todict()
             elif type(v) == dict:
                 ret[k] = ('__realdict',v)
+            elif type(v) == type(this.__foo):
+                continue
+            elif type(v) == type(Conf.__foo):
+                continue
+            else:
+                ret[k] = v
+        return ret
+
+    def __todict_withname(this):
+        ret = {}
+        for k,v in this.__dict__.items():
+            if type(v) == this.__class__:
+                ret[k] = v.__todict_withname()
+            elif type(v) == dict:
+                ret[k] = ('__realdict',v)
+            elif type(v) == type(this.__foo):
+                continue
+            elif type(v) == type(Conf.__foo):
+                continue
             else:
                 ret[k] = v
         return ret
@@ -91,7 +110,7 @@ class Conf(lobject):
         ret = {}
         for k,v in this.__dict__.items():
             if type(v) == this.__class__:
-                ret[k] = v.__todict()
+                ret[k] = v.__todict_all()
             elif type(v) == dict:
                 ret[k] = ('__realdict',v)
             else:
@@ -119,9 +138,8 @@ class Conf(lobject):
         ret = ''
         ret2 = ''
         tmp = this.__new__(this.__class__)
-        tmp.__init__(this.__todict_all())
+        tmp.__init__(this.__todict_withname())
         this = tmp
-        #this = copy.deepcopy(this)
         if not this.__parentname and not this.__name:
             for k,i in this.__dict__.items():
                 if type(i) == Conf:
@@ -217,7 +235,10 @@ class Conf(lobject):
                 if type(i) == Conf:
                     if type(this[k]) == Conf:
                         Conf.update(this[k], i)
-                this[k] = i
+                    else : #type(this[k]) != Conf
+                        this[k] = i
+                else:
+                    this[k] = i
         else:
             print('Conf can only update from Conf/dict')
             errrrrrrrrrrrrrrrrrrrr()
@@ -242,52 +263,56 @@ class Conf(lobject):
         super(Conf, this).__setitem__(i,v)
         if i[:7] != '_Conf__':
             if this.__sync:
-                this.__sync(this)
+                this.__dosync()
+            else:
+                if type(v) == type(Conf.__foo):
+                    object.__setattr__(this, '_Conf__sync', 1)
+                    v(this)
+                elif type(v) == type(Conf.__sfoo):
+                    object.__setattr__(this, '_Conf__sync', 1)
+                    v(this)
 
     def __setattr__(this,i,v):
         super(Conf, this).__setattr__(i,v)
         if i[:7] != '_Conf__':
             if this.__sync:
-                this.__sync(this)
+                this.__dosync()
+            else:
+                if type(v) == type(Conf.__foo):
+                    object.__setattr__(this, '_Conf__sync', 1)
+                    v(this)
+                elif type(v) == type(Conf.__sfoo):
+                    object.__setattr__(this, '_Conf__sync', 1)
+                    v(this)
 
     def __call__(this, a):
         def foo():
             pass
-        if type(a) == type(this.__foo):
-            this.__sync = a
-            a(this)
-        elif type(a) == type(foo):
-            this.__sync = a
-            a(this)
-        elif type(a) == this.__class__:
-            print 'update'
+        if type(a) == this.__class__:
             Conf.update(this, a)
         elif type(a) == dict:
-            print 'update'
             Conf.update(this, a)
 
+    @staticmethod
+    def __sfoo():
+        pass
 
     def __foo(this):
         pass
 
-## all method in conf will be sync funtion, so use [function] to set a config to function
-#    @staticmethod
-#    def sync(this):
-#        def foo():
-#            pass
-#        for k,i in this.__dict__.items():
-#            if type(i) == Conf:
-#                Conf.sync(i)
-#            elif type(i) == type(this.__foo):
-#                i()
-#            elif type(i) == type(foo):
-#                i()
-#sync = Conf.sync
+# all method in conf will be sync funtion, so use [function] to set a config to function
+    def __dosync(this):
+        for k,i in this.__dict__.items():
+            if type(i) == type(Conf.__foo):
+                i(this)
+            elif type(i) == type(Conf.__sfoo):
+                i(this)
 
 
 class Test(object):
     def d1(this,c):
-        print('d1',str(c))
+        print('d1')
+        print(c)
 
 
 if __name__ == '__main__':
@@ -299,28 +324,17 @@ if __name__ == '__main__':
     t = Test()
 
     a = Conf()
-    a.a.a = 'a'
-    a.a.b.c.e = 1
-    a.dict = {'dict':'test'}
-    a.a.b.c.d = Conf()
-    a.a.b.d = Conf()
-    a.l = Conf()
-    print(a)
-    print a.a
-    a.a(t.d1)
+    b = Conf()
 
 
-
+    a.a.a = 'aa'
+    a.a.c = 'ac'
+    a.a.sync = t.d1
+    a.a.b = 'ab'
+    print a
     exit()
-    b = Conf(a)
-    c = Conf()
-    c.c = 'c'
-    b+=c
-    a.a.b(t.d1)
-    a.a.b.c.e = 2
-    Conf.showsync(a)
-    print(a)
-    exit()
-    print(b)
 
-    exit()
+    b.a.a = 'ba'
+    b.a.b = 'bb'
+    print '-------'
+    a.a.a = 'change'

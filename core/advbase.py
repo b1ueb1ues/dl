@@ -330,7 +330,7 @@ class Skill(object):
             this.ac = ac
         if conf:
             this.conf = conf
-            conf(this.syncsp)
+            conf.sync_skill = this.syncsp
         this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
         this.silence_end_event = Event('silence_end')
@@ -424,7 +424,7 @@ class Action(object):
                 this.index = 0
         if conf != None:
             this.conf = conf
-            this.conf(this.configsync)
+            conf.sync_action = this.configsync
             
         if act != None:
             this.act = act
@@ -446,8 +446,6 @@ class Action(object):
         this.realtime()
 
     def configsync(this, c):
-        #print this.name
-        #print c
         this._startup = c.startup
         this._recovery = c.recovery
 
@@ -572,6 +570,7 @@ class Adv(object):
     comment = ''
     #x_status = (0,0)
     mods = []
+    conf = None
     a1 = None
     a2 = None
     a3 = None
@@ -589,6 +588,7 @@ class Adv(object):
     conf_default.s3 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
     conf_default.dodge = Conf({'startup':0,'recovery':43.0/60.0})
     conf_default.fsf = Conf({'startup':0,'recovery':41.0/60.0})
+    conf_default.slots = Conf({'w':None,'d':None,'a':None})
 
     conf_default.acl = '''
         `s1
@@ -632,21 +632,30 @@ class Adv(object):
         #fsf=this.fsf
         #dodge=this.dodge
     '''
-        #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print sx\n    print pin\n    errrrrrrr()
+        #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print(sx)\n    print(pin)\n    errrrrrrr()
 
-    def preconfig(this,conf={}):
+    def preconfig(this):
         tmpconf = Conf()
         tmpconf += this.conf_default
         tmpconf += globalconf.get(this.name)
         tmpconf += this.conf
         #tmpconf += conf
-        Conf.update(tmpconf, conf)
+        tmpconf(this.conf_init)
 
         this.slots.c.att = tmpconf.c.att
         this.slots.c.wt = tmpconf.c.wt
         this.slots.c.stars = tmpconf.c.stars
         this.slots.c.ele = tmpconf.c.ele
-        tmpconf.slot_common(this.slots)
+
+        this.slot_common = tmpconf.slot_common[0]
+        this.slot_common(this.slots)
+
+        if tmpconf.slots.w:
+            this.slots.w = tmpconf.slots.w
+        if tmpconf.slots.d:
+            this.slots.d = tmpconf.slots.d
+        if tmpconf.slots.a:
+            this.slots.a = tmpconf.slots.a
 
         this.conf += tmpconf
         this.base_att = this.slots.att(globalconf.forte)
@@ -655,7 +664,7 @@ class Adv(object):
 
 
 
-    def setconfig(this):
+    def doconfig(this):
 
         # set buff
         this.action = Action()
@@ -728,9 +737,9 @@ class Adv(object):
 
 
 
-        this.s1 = Skill('s1', this.conf.s1, this.a_s1.tap)
-        this.s2 = Skill('s2', this.conf.s2, this.a_s2.tap)
-        this.s3 = Skill('s3', this.conf.s3, this.a_s3.tap)
+        this.s1 = Skill('s1', this.conf.s1, this.a_s1)
+        this.s2 = Skill('s2', this.conf.s2, this.a_s2)
+        this.s3 = Skill('s3', this.conf.s3, this.a_s3)
         
 
         if this.conf.xtype == 'ranged':
@@ -774,14 +783,12 @@ class Adv(object):
         this._log = []
         loginit(this._log)
 
-        this.conf = Conf()
+        if not this.conf:
+            this.conf = Conf()
         this.slots = slot.Slots()
-        
 
         if not this.name:
             this.name = this.__class__.__name__
-
-        this.preconfig(conf)
 
         if 1:
             this.crit_mod = this.solid_crit_mod
@@ -790,6 +797,9 @@ class Adv(object):
 
         this.skill = Skill()
         this._acl = None
+
+        this.pre()
+        this.preconfig()
 
         #this.ctx.off()
 
@@ -959,10 +969,9 @@ class Adv(object):
 
 
     def run(this, d = 300):
-        this.pre()
         this.ctx.on()
 
-        this.setconfig()
+        this.doconfig()
 
         this.l_idle        = Listener('idle',this.l_idle)
         this.l_x           = Listener(['x1','x2','x3','x4','x5'],this.l_x)
@@ -984,11 +993,7 @@ class Adv(object):
         if this.a3 :
             this.slots.c.a.append(this.a3)
         
-        this.confbak = this.conf
         this.slots.oninit(this)
-        print repr(this.confbak)
-        this.confbak(this.conf)
-        print repr(this.confbak)
 
 
         if not this._acl:

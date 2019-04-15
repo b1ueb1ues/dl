@@ -36,7 +36,7 @@ def get(name):
 
     slots = slot.Slots()
 
-    conf.slot_common = slot_common.set
+    conf.slot_common = [slot_common.set]
 
     import wep
     wt = conf.c.wt

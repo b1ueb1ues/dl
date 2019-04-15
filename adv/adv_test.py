@@ -158,7 +158,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         
 
         line = "%s,%s,%s,%s,%s,%s,%s"%(
-                name,adv.conf['stars']+'*', adv.conf['element'], adv.conf['weapon'], 
+                name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
                 displayed_str, condi,comment,
                 )
         line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
