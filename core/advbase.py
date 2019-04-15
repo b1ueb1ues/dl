@@ -672,7 +672,7 @@ class Adv(object):
 
         this.conf = tmpconf
         this.base_att = this.slots.att(globalconf.forte)
-        this.displayed_att = this.slots._att(globalconf.forte)
+        this.displayed_att = int(this.slots._att(globalconf.forte))
         #this.slots.oninit(this)
 
 

@@ -162,7 +162,7 @@ class Slots(object):
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
-        #adv.abilities = a
+        this.abilities = a
         for i in a:
             Ability(*i).oninit(adv)
 

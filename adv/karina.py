@@ -5,8 +5,14 @@ def module():
     return Karina
 
 class Karina(adv.Adv):
-    def init(this):
-        this.charge_p("prep","50%")
+    s3 = ('prep','50%')
+
+    def debug(this):
+        print this.slots.a
+        print this.slots.a.a2
+        print this.slots.a.a
+        print this.slots.a.a2.a
+        #print this.slots.abilities
 
 
 

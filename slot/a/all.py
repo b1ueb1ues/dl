@@ -66,7 +66,8 @@ class The_Prince_of_Dragonyule(Amulet):
     a = [('cd',0.15)]
     def on(this, c):
         if c.ele == 'water':
-             this.a += [('cc',0.10,'hit15')]
+            this.a = [('cd',0.15)]
+            this.a += [('cc',0.10,'hit15')]
 
 
 class Crystalian_Envoy(Amulet):
@@ -116,6 +117,7 @@ class Luck_of_the_Draw(Amulet):
     a = [('resist',20,'paralysis')]
     def on(this, c):
         if c.ele == 'shadow':
+            this.a = [('resist',20,'paralysis')]
             this.a += [('bt',0.20)]
 
 class Lunar_Festivities(Amulet):
@@ -138,26 +140,29 @@ class KFM(Amulet):
     a = [('s',0.15)]
     def on(this, c):
         if c.wt == 'axe':
-            this.a += [('cc',0.12)]
+            this.a = [('s',0.15)]
+            this.a = [('cc',0.12)]
 
 class Forest_Bonds(Amulet):
     att = 64
     a = [('sp',0.10)]
     def on(this, c):
         if c.wt == 'bow':
+            this.a = [('sp',0.10)]
             this.a += [('s',0.35)]
 
 class Dragon_and_Tamer(Amulet):
     att = 57
     def on(this, c):
         if c.wt == 'lance':
-            this.a += [('s',0.35)]
+            this.a = [('s',0.35)]
 
 class The_Shining_Overlord(Amulet):
     att = 65
     a = [('dc',2)]
     def on(this, c):
         if c.wt == 'sword':
+            this.a = [('dc',2)]
             this.a += [('s',0.35)]
 
 amulets = []

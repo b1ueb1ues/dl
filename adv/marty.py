@@ -7,7 +7,7 @@ def module():
 class Marty(adv.Adv):
     a1 = ('sp',0.05)
     comment = 'reach 100 resist with Saintly Delivery'
-    config = {}
+    conf = {}
     import slot
     conf['slots.a'] = slot.a.Saintly_Delivery()+slot.a.RR()
 
