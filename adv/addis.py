@@ -6,10 +6,7 @@ def module():
     return Addis
 
 class Addis(Adv):
-    conf = {
-            'mod_a3':('att','bp',0.03)
-            }
-
+    a3 = ('bk',0.20)
 
     def getbleedpunisher(this):
         if this.bleed._static['stacks'] > 0:

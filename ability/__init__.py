@@ -24,7 +24,7 @@ class Ability(object):
         elif name == 'bk':
             this.mod = [('att','bk',value*0.15, cond)]
         elif name == 'od':
-            this.mod = [('att','killer',value*0.45, cond)]
+            this.mod = [('att','killer',value*0.35, cond)]
 
     def oninit(this, adv):
         name = this.name
@@ -45,7 +45,12 @@ class Ability(object):
         elif name == 'dc':
             pass
         elif name == 'prep':
-            adv.charge_p('amulet prep',"%d%%"%value)
+            if type(value) == int:
+                adv.charge_p('amulet prep',"%d%%"%value)
+            if type(value) == str:
+                adv.charge_p('amulet prep',value)
+            if type(value) == float:
+                adv.charge_p('amulet prep',"%d%%"%(value*100))
         elif name == 'resist':
             adv.conf.resist = (cond, value)
 

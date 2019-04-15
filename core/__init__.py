@@ -240,12 +240,11 @@ class Conf(lobject):
         if type(a) == Conf:
             for k,i in a.__dict__.items():
                 if type(i) == Conf:
-                    if type(this[k]) == Conf:
-                        Conf.update(this[k], i)
-                    else : #type(this[k]) != Conf
-                        this[k] = i
-                else:
-                    this[k] = i
+                    if k in this :
+                        if type(this[k]) == Conf:
+                            Conf.update(this[k], i)
+                            continue
+                this[k] = i
         else:
             print('Conf can only update from Conf/dict')
             errrrrrrrrrrrrrrrrrrrr()

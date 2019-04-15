@@ -1,14 +1,14 @@
 import adv_test
 from adv import *
+from slot.a import *
 
 def module():
     return Alain
 
 class Alain(Adv):
-    conf = {}
     comment = 'reach 100 resist with Saintly Delivery'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+    def pre(this):
+        this.slots.a = RR()+Saintly_Delivery()
 
 
 if __name__ == '__main__':

@@ -134,7 +134,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         print("skill_stat | "+ str(sdmg_sum))
         print("x_stat     | "+ str(r['x_sum']))
         if r['o_sum']:
-            print("others     |", o_sum)
+            print("others     | "+ str(o_sum))
 
     elif loglevel == -1:
         if condition != '':

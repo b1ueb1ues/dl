@@ -5,8 +5,7 @@ def module():
     return Althemia
 
 class Althemia(adv.Adv):
-    conf = {}
-    conf["mod_a1"] = ("s", 'passive', 0.3, 'hp100')
+    a1 = ('s',0.3,'hp100')
 
 
 if __name__ == '__main__':

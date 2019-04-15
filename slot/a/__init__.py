@@ -59,6 +59,10 @@ class Amulet(AmuletBase):
             this.att += this.a2.att
             this.tmp = this.a + this.a2.a
             this.a = {}
+        else:
+            this.on(c)
+            this.tmp = this.a
+            this.a = {}
 
         for i in this.tmp:
             if len(i)==2 or (len(i)==3 and i[2]==None):

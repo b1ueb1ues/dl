@@ -4,41 +4,41 @@ conf = Conf()
 
 conf = {}
 conf.update( {
-        "x_type"         : "ranged" ,
+        "xtype"         : "ranged" ,
 
-        "x1_dmg"         : 0.98     ,
-        "x1_sp"          : 130      ,
-        "x1_startup"     : 18/60.0  ,
-        "x1_recovery"    : 33/60.0  ,
+        "x1.dmg"         : 0.98     ,
+        "x1.sp"          : 130      ,
+        "x1.startup"     : 18/60.0  ,
+        "x1.recovery"    : 33/60.0  ,
 
-        "x2_dmg"         : 0.53*2   ,
-        "x2_sp"          : 200      ,
-        "x2_startup"     : 0        ,
-        "x2_recovery"    : 31/60.0  ,
+        "x2.dmg"         : 0.53*2   ,
+        "x2.sp"          : 200      ,
+        "x2.startup"     : 0        ,
+        "x2.recovery"    : 31/60.0  ,
 
-        "x3_dmg"         : 0.36*3   ,
-        "x3_sp"          : 240      ,
-        "x3_startup"     : 0        ,
-        "x3_recovery"    : 53/60.0  ,
+        "x3.dmg"         : 0.36*3   ,
+        "x3.sp"          : 240      ,
+        "x3.startup"     : 0        ,
+        "x3.recovery"    : 53/60.0  ,
 
-        "x4_dmg"         : 0.78*2   ,
-        "x4_sp"          : 430      ,
-        "x4_startup"     : 0        ,
-        "x4_recovery"    : 64/60.0  ,
+        "x4.dmg"         : 0.78*2   ,
+        "x4.sp"          : 430      ,
+        "x4.startup"     : 0        ,
+        "x4.recovery"    : 64/60.0  ,
 
-        "x5_dmg"         : 0.3605*4+0.618 ,
-        "x5_sp"          : 600      ,
-        "x5_startup"     : 0        ,
-        #"x5_recovery"    : 68/60.0  ,
-        "x5_recovery"    : 29/60.0  ,
+        "x5.dmg"         : 0.3605*4+0.618 ,
+        "x5.sp"          : 600      ,
+        "x5.startup"     : 0        ,
+        #"x5.recovery"    : 68/60.0  ,
+        "x5.recovery"    : 29/60.0  ,
 
-        "fsf_startup"    : 0        ,
-        "fsf_recovery"   : 29/60.0  ,
+        "fs._startup"    : 0        ,
+        "fs._recovery"   : 29/60.0  ,
 
-        "fs_dmg"         : 0.9*2    ,
-        "fs_sp"          : 400      ,
-        "fs_startup"     : 42/60.0  ,
-        "fs_recovery"    : 81/60.0  ,
+        "fs.dmg"         : 0.9*2    ,
+        "fs.sp"          : 400      ,
+        "fs.startup"     : 42/60.0  ,
+        "fs.recovery"    : 81/60.0  ,
 
         "dodge_recovery" : 43/60.0  ,
 
@@ -50,7 +50,4 @@ conf.update( {
             "x4" : 0.7   ,
             "x5" : 0.7   ,
             }, 
-
-        "mod_wep" : ('crit','chance',0.02),
-
         })
