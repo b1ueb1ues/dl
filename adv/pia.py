@@ -17,7 +17,6 @@ class Pia(Adv):
             `s1, seq=5 and cancel 
             `s3, seq=5 and cancel
             """
-        this.setconfig()
         energy.Energy(this,{},{})
 
     def c_init(this):
