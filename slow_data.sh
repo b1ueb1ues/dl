@@ -3,8 +3,9 @@ time=$1
 if [ -z $1 ]; then 
     time=180
 fi
-echo "create slow chart (${time}s)"
-echo 'name,star,element,weapon,str,condition,comment,dps' > www/${1}/slow_data.csv
+echo 'dps,name,star,element,weapon,str,condition,comment' > www/${1}/slow_data.csv
+
+echo "create ex chart (${time}s)"
 python adv/ex_dagger.py     $1 | tee -a www/slow_data.csv
 python adv/ex_blade.py      $1 | tee -a www/slow_data.csv
 python adv/ex_wand.py       $1 | tee -a www/slow_data.csv
@@ -16,6 +17,8 @@ python adv/ex_wand.py       $1 | tee -a www/60/slow_data.csv
 python adv/ex_dagger.py     $1 | tee -a www/90/slow_data.csv
 python adv/ex_blade.py      $1 | tee -a www/90/slow_data.csv
 python adv/ex_wand.py       $1 | tee -a www/90/slow_data.csv
+
+echo "create slow chart (${time}s)"
 
 python adv/addis.py -2      ${1} | tee -a www/${1}/slow_data.csv
 python adv/ieyasu.py -2     ${1} | tee -a www/${1}/slow_data.csv

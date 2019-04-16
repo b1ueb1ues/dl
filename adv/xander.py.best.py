@@ -27,3 +27,16 @@ if __name__ == '__main__':
         `fs, seq=2 and cancel
         """
     adv_test.test(module(), conf, verbose=0)
+
+    
+    def foo(e):
+        return
+    module().a1 = None
+    module().s1_proc = foo
+    module().comment = 'only 2+1 with StellarShow & LC'
+    conf['slots.a'] = Stellar_Show()+LC()
+    conf['acl'] = """
+        `fs, seq=2 and cancel
+        """
+    adv_test.test(module(), conf, verbose=0)
+
