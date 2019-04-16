@@ -158,7 +158,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         line = line.replace('staff','奶')
         line = line.replace('shadow','暗').replace('light','光')
         line = line.replace('wind','风').replace('water','水').replace('flame','火')
-        line += ',%d'%(int(r['dmg_sum']['total']/sim_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency))
+        line = '%d,'%(int(r['dmg_sum']['total']/sim_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
         line += ',attack:%d'%(int(r['dmg_sum']['x']/sim_duration))
         line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/sim_duration))
         line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/sim_duration))
