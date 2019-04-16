@@ -8,6 +8,7 @@ class Vice(Adv):
     a1 = ('bk',0.2)
     comment = 'reach 100 resist with Silke Lends a Hand'
     import slot
+    conf = {}
     conf['slots.a'] = slot.a.Silke_Lends_a_Hand()+slot.a.RR()
 
 

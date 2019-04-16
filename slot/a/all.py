@@ -141,7 +141,7 @@ class KFM(Amulet):
     def on(this, c):
         if c.wt == 'axe':
             this.a = [('s',0.15)]
-            this.a = [('cc',0.12)]
+            this.a += [('cc',0.12)]
 
 class Forest_Bonds(Amulet):
     att = 64

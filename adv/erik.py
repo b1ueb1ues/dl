@@ -12,6 +12,8 @@ class Erik(adv.Adv):
     comment += '& reach 100 resist with Silke Lends a Hand'
 
     conf = {'slots.a': RR()+Silke_Lends_a_Hand()}
+    def debug(this):
+        print this.all_modifiers
 
 
 

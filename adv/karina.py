@@ -5,15 +5,7 @@ def module():
     return Karina
 
 class Karina(adv.Adv):
-    s3 = ('prep','50%')
-
-    def debug(this):
-        print this.slots.a
-        print this.slots.a.a2
-        print this.slots.a.a
-        print this.slots.a.a2.a
-        #print this.slots.abilities
-
+    a3 = ('prep','50%')
 
 
 if __name__ == '__main__':

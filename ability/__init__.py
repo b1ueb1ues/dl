@@ -28,7 +28,7 @@ class Ability(object):
         elif name == 'od':
             this.mod = [('att','killer',value*0.35, cond)]
 
-    def oninit(this, adv):
+    def oninit(this, adv, afrom=None):
         name = this.name
         cond = this.cond
         value = this.value
@@ -58,10 +58,13 @@ class Ability(object):
             adv.conf.resist = (cond, value)
 
         j = this.mod
+        i = ''
+        if afrom :
+            i = afrom
+        i += name
         if cond:
-            i = name+cond
-        else:
-            i = name
+            i += cond
+
         if type(j) == tuple:
             adv.Modifier(i,*j)
         elif type(j) == list:

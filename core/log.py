@@ -34,13 +34,13 @@ def logcat(filter=None, log=None):
     if filter == None :
         for i in log:
             if i[3] == None:
-                print("%-8.3f: %-8s\t, %-16s\t, \t\t, %s"%(i[0],i[1],i[2],i[4]))
+                print("%-8.3f: %-8s\t, %-8s\t, \t\t, %s"%(i[0],i[1],i[2],i[4]))
             elif type(i[3]) == float:
-                print("%-8.3f: %-8s\t, %-16s\t, %-8.4f\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                print("%-8.3f: %-8s\t, %-8s\t, %-8.4f\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
             elif type(i[3]) == int:
-                print("%-8.3f: %-8s\t, %-16s\t, %-8d\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                print("%-8.3f: %-8s\t, %-8s\t, %-8d\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
             else:
-                print("%-8.3f: %-8s\t, %-16s\t, %s\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                print("%-8.3f: %-8s\t, %-8s\t, %s\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
     else :
         for i in log:
             for j in filter :

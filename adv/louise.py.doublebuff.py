@@ -1,11 +1,12 @@
 import adv_test
 import adv
 from slot.a import *
+import louise
 
 def module():
     return Louise
 
-class Louise(adv.Adv):
+class Louise(louise.Louise):
 
     def init(this):
         this.dmg_make("o_s1_poison",2.91)
@@ -14,7 +15,7 @@ class Louise(adv.Adv):
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        adv.Buff('double',0.13*7,30).on()
+        adv.Buff('double',(0.13+0.08)*7,30).on()
 
 
 

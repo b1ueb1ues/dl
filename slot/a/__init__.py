@@ -13,7 +13,7 @@ class Amulet(AmuletBase):
                 's'      : 0.35,   # skill damage
                 'cc'     : 0.15,   # crit chance
                 'cd'     : 0.25,   # crit damage
-                'fs'     : 0.35,   # force strike
+                'fs'     : 0.40,   # force strike
                 'bt'     : 0.30,   # buff time
 
                 'sp'     : 0.15,   # skill haste

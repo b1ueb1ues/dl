@@ -163,8 +163,16 @@ class Slots(object):
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
         this.abilities = a
-        for i in a:
-            Ability(*i).oninit(adv)
+        #for i in a:
+        #    Ability(*i).oninit(adv)
+        for i in tmp.c.a:
+            Ability(*i).oninit(adv,'c_')
+        for i in tmp.w.a:
+            Ability(*i).oninit(adv,'w_')
+        for i in tmp.d.a:
+            Ability(*i).oninit(adv,'d_')
+        for i in tmp.a.a:
+            Ability(*i).oninit(adv,'a_')
 
 
     def att(this, forte=None):

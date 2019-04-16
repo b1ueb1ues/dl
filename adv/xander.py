@@ -11,17 +11,16 @@ class Xander(adv.Adv):
 
     a3 = ('fs',0.50)
 
-    def init(this):
-        a = 0
-        if a==1:
-            this.slots.a = RR()+FP()
-        elif a == 2:
-            this.slots.a = RR()+The_Prince_of_Dragonyule()
-        elif a == 3:
-            this.slots.a = RR()+slot.a.Stellar_Show()
-        elif a == 4:
-            this.slots.a = The_Prince_of_Dragonyule()+slot.a.Stellar_Show()
-
+    conf = {}
+    a = 3
+    if a==1:
+        conf['slots.a'] = RR()+FP()
+    elif a == 2:
+        conf['slots.a'] = RR()+The_Prince_of_Dragonyule()
+    elif a == 3:
+        conf['slots.a'] = RR()+slot.a.Stellar_Show()
+    elif a == 4:
+        conf['slots.a'] = The_Prince_of_Dragonyule()+slot.a.Stellar_Show()
 
 
 
@@ -32,7 +31,7 @@ if __name__ == '__main__':
         `s2,fsc
         `fs, seq=2 and cancel
         """
-    conf['slots.a'] = Stellar_Show() + VC() 
+    #conf['slots.a'] = Stellar_Show() + VC() 
     adv_test.test(module(), conf, verbose=0, mass=0)
     exit()
 
