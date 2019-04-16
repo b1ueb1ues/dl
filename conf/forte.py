@@ -3,7 +3,7 @@ def c(ele,wt):
     if ele == 'flame':
         r += (0.15+0.04)
     elif ele == 'water':
-        r += (0.15+0.07+0.07)
+        r += (0.15+0.07+0.07+0.04)
     elif ele == 'wind':
         r += (0.15+0.07)
     elif ele == 'light':
