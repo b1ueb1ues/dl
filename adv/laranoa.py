@@ -6,15 +6,17 @@ def module():
 
 class Laranoa(Adv):
     comment = 'doesn\'t count spbuff for teammates'
-    conf = {}
-    conf['mod_a3'] = ('s', 'passive', 0.3)
-    #conf['mod_ex'] = ('sp', 'passive', 0.15)
+
+    a3 = ('s',0.3)
     
     def pre(this):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
         if this.condition('never lose comboes'):
             this.dmg_proc = this.c_dmg_proc
+
+    def init(this):
+        this.hits = 0
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s3,s1.charged>=s1.sp
@@ -22,9 +24,6 @@ class Laranoa(Adv):
                 `s2
                 `fs, seq=4
                 """
-
-    def init(this):
-        this.hits = 0
     
     def c_s2_proc(this, e):
         Teambuff('s2_str',0.10,10).on()

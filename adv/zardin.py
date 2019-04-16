@@ -1,25 +1,21 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Zardin
 
 class Zardin(adv.Adv):
     comment = 'RR+tPoD'
+    a1 = ('a',0.10,'hp100')
     conf = {}
-    conf['mod_a1'] = ('att', 'passive', 0.10, 'hp100')
 
     a = 2
     if a==1:
-        conf["mod_wp"] = [('s','passive',0.25),
-                         ('crit','chance',0.06,'hp70') ]
-        conf["mod_wp2"] = [('fs','passive',0.40),
-                           ('crit','damage',0.13) ]
+        conf["slots.a"] = RR() + Stellar_Show()
+
     if a==2:
-        conf["mod_wp"] = [('s','passive',0.25),
-                         ('crit','chance',0.06,'hp70') ]
-        conf["mod_wp2"] = [('crit','chance',0.09,'hit15'),
-                           ('crit','damage',0.15) ]
+        conf["slots.a"] = RR() + The_Prince_of_Dragonyule()
 
 
 if __name__ == '__main__':

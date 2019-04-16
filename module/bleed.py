@@ -5,10 +5,10 @@ class Bleed(Dot):
     _static['all_bleeds'] = []
     _static['stacks'] = 0
 
-    def __init__(this, name, dmg_p):
-        Dot.__init__(this, name, dmg_p, 30, 4.99)
+    def __init__(this, name, dmg_coef):
+        Dot.__init__(this, name, dmg_coef, 30, 4.99)
         this.quickshot_event = Event("dmg_formula")
-        this.quickshot_event.dmg_p = dmg_p
+        this.quickshot_event.dmg_coef = dmg_coef
         this.quickshot_event.dname = 's_bleed'
         this.dot_end_timer = Timer(this.dot_end_proc)
 

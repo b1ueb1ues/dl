@@ -7,6 +7,7 @@ def module():
     return Maribelle_s3
 
 class Maribelle_s3(adv.maribelle.Maribelle):
+    name = 'maribelle'
     pass
 
 
@@ -20,10 +21,10 @@ if __name__ == '__main__':
         """
         
     conf.update({
-            "s3_dmg"      : 4*2.71 ,
-            "s3_sp"       : 8597   ,
-            "s3_startup"  : 0.1    ,
-            "s3_recovery" : 1.9    ,
+            "s3.dmg"      : 4*2.71 ,
+            "s3.sp"       : 8597   ,
+            "s3.startup"  : 0.1    ,
+            "s3.recovery" : 1.9    ,
         })
 
     adv_test.test(module(), conf, verbose=0)

@@ -1,4 +1,4 @@
-from log import *
+#from core.log import *
 import sys
 
 g_line = ""
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     e = 0
     epin = 'a'
     def foo():
-        print 'foo'
+        print('foo')
 
 
     acl = """
@@ -90,10 +90,8 @@ if __name__ == "__main__":
         #s3 = foo
         #pin = epin
         """
-    try:
-        acl_func(acl)(this, e)
-    except Exception, e:
-        pass
-    print g_line
+
+    acl_func_str(acl)[0](this, e)
+    print(g_line)
     
 

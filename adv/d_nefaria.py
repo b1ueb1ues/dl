@@ -5,10 +5,9 @@ def module():
     return D_Nefaria
 
 class D_Nefaria(adv.Adv):
-    conf = {
-        "mod_a1": ('s', 'passive', 0.25),
-        } 
-    def pre(this):
+    a1 = ('s',0.25)
+
+    def init(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc

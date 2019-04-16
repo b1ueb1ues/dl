@@ -7,6 +7,7 @@ def module():
 
 class Sazanka(Adv):
     comment = 'do not use weapon skill'
+
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0

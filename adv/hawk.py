@@ -15,7 +15,6 @@ class Hawk(adv.Adv):
         adv.Selfbuff('stunpunisher',0.3,20,'att','killer').on()
         this.o_init()
 
-    def pre(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc
@@ -23,6 +22,8 @@ class Hawk(adv.Adv):
                 `s3, fsc
                 `fs, seq=4
                 """
+
+    def pre(this):
         if this.condition('stun 20s(3 s1 boosted)'):
             this.init, this.o_init = this.c_init, this.init
 

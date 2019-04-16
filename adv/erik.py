@@ -1,17 +1,19 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Erik
 
 class Erik(adv.Adv):
     comment ='do not use weapon skill'
-    conf = {
-        "mod_a1": ('fs', 'passive', 0.30),
-        } 
+
+    a1 = ('fs',0.30)
     comment += '& reach 100 resist with Silke Lends a Hand'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+
+    conf = {'slots.a': RR()+Silke_Lends_a_Hand()}
+    def debug(this):
+        print this.all_modifiers
 
 
 

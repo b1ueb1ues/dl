@@ -12,6 +12,14 @@ class Nefaria(adv.Adv):
         adv.Selfbuff('blindpunisher',0.3,20,'att','killer').on()
         this.o_init()
 
+        if this.condition('c4+fs'):
+            this.conf['acl'] = """
+                `s1, fsc
+                `s2, fsc
+                `s3, fsc
+                `fs, seq=4
+                """
+
     def init(this):
         this.s2fscharge = 0
 
@@ -27,13 +35,6 @@ class Nefaria(adv.Adv):
     def pre(this):
         if this.condition('blind 20s (s1 boosted 3times)'):
             this.init, this.o_init = this.c_init, this.init
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
 
 
 if __name__ == '__main__':

@@ -7,16 +7,12 @@ def module():
 class Melody(adv.Adv):
     comment = 'RR+15%buff_time & no s2'
     conf = {}
-    if 0:
-        conf['mod_wp'] = ('buff','time',0.15)
-        conf['mod_wp2'] = [('crit','chance',0.08,'hp70'),
-                        ('crit','damage',0.13) ]
+    a1 = ('cc',0.08,'hp100')
+    import slot
+    if 1:
+        conf['slots.a'] = slot.a.Bellathorna()+slot.a.RR()
     else:
-        conf['mod_wp'] = ('buff','time',0.15)
-        conf['mod_wp2'] = [('crit','chance',0.06,'hp70'),
-                        ('s','damage',0.25) ]
-
-    conf['mod_a1'] = ('crit', 'chance', 0.08, 'hp100')
+        conf['slots.a'] = slot.a.Bellathorna()+slot.a.LC()
 
 
 if __name__ == '__main__':

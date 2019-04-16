@@ -1,15 +1,16 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Jurota
 
 class Jurota(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('att','bp',0.2*0.45)
+    a1 = ('bk',0.2)
     comment = 'reach 100 resist with Saintly Delivery'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+    conf = {}
+    conf['slots.a'] = Saintly_Delivery()+RR()
+
 
 
 

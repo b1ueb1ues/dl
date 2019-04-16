@@ -9,18 +9,16 @@ def module():
 
 
 class Albert(Adv):
-    conf = {
-            'mod_a1':('fs','passive',0.5),
-            #'mod_wp':('s','passive',0.35),
-            }
+    a1 = ('fs',0.5)
 
     def init(this):
-        this.fsa_conf = copy.deepcopy(this.conf)
-        this.fsa_conf.update( {
-                'fs_dmg':1.02,
-                'fs_sp':330,
-                'fs_recovery':26/60.0,
-                'x1fs_recovery':26/60.0,
+        this.fsaconf = Conf()
+        this.fsaconf.fs = Conf(this.conf.fs)
+        this.fsaconf( {
+                'fs.dmg':1.02,
+                'fs.sp':330,
+                'fs.recovery':26/60.0,
+                'x1fs.recovery':26/60.0,
                 })
         this.s2timer = Timer(this.s2autocharge,1,1).on()
         this.paralyze_count=3
@@ -28,7 +26,15 @@ class Albert(Adv):
         this.a2buff = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
         this.fsalttimer = Timer(this.altend)
-        fs_alt_init(this, this.fsa_conf)
+        fs_alt_init(this, this.fsaconf)
+
+        if this.condition('3s1 in on s2'):
+            this.conf['acl'] = """
+                `s2, s1.charged>=s1.sp-300
+                `s1
+                `s3, not this.s2buff.get()
+                `fs, seq=2 
+                """
 
     def altend(this,t):
         fs_back(this)
@@ -41,13 +47,6 @@ class Albert(Adv):
 
             
     def pre(this):
-        if this.condition('3s1 in on s2'):
-            this.conf['acl'] = """
-                `s2, s1.charged>=s1.sp-300
-                `s1
-                `s3, not this.s2buff.get()
-                `fs, seq=2 
-                """
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
 

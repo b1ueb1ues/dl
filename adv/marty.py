@@ -5,12 +5,11 @@ def module():
     return Marty
 
 class Marty(adv.Adv):
-    conf = {
-        'mod_a1':('sp','passive',0.05),
-    }
+    a1 = ('sp',0.05)
     comment = 'reach 100 resist with Saintly Delivery'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+    conf = {}
+    import slot
+    conf['slots.a'] = slot.a.Saintly_Delivery()+slot.a.RR()
 
 
 

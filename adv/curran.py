@@ -6,13 +6,8 @@ def module():
 
 class Curran(adv.Adv):
     comment = "do not use weapon skill and fs"
-    conf = {
-        "mod_a1": ('att', 'killer', 0.13*0.45),
-        } 
-
-    def init(this):
-        if this.condition('last_offense'):
-            adv.Selfbuff('last_offense',0.5,15).on()
+    a1 = ('od',0.13)
+    a3 = ('lo',0.5)
 
 
 if __name__ == '__main__':

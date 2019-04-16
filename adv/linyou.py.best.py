@@ -1,15 +1,18 @@
 import adv_test
 import linyou
+import slot.d.wind 
 
 def module():
     return Linyou_best
 
 class Linyou_best(linyou.Linyou):
-    adv_name = 'Linyou'
+    name = 'Linyou'
     comment = 'Kunfu & LongLong'
+
     def pre(this):
-        this.conf['mod_d'] = [('att','passive',0.45),
-                              ('crit','dmg',0.55)]
+        this.conf['slots.d'] = slot.d.wind.Longlong()
+
+                              
 
 
 if __name__ == '__main__':

@@ -1,15 +1,18 @@
 import adv_test
 from adv import *
+from slot.a import *
 
 def module():
     return Elisanne
 
 class Elisanne(Adv):
     comment = 'do not use fs & RR+15%buff_time'
-    conf = {}
-    conf['mod_a1'] = ('buff','time',0.25)
-    conf['mod_wp2'] = ('buff','time',0.15)
-    #conf['mod_wp'] = [('sp','passive',0.06),('att','passive',0.08)] 
+    a1 = ('bt',0.25)
+
+    conf = {
+            'slots.a': RR() + Bellathorna()
+            }
+
 
 
 if __name__ == '__main__':

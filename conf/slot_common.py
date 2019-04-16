@@ -1,12 +1,15 @@
 #unused now
 import slot
 from slot.a import *
+import slot.w
 
 def set(slots):
     ele = slots.c.ele
     wt = slots.c.wt
     stars = slots.c.stars
     name = slots.c.name
+
+
     if ele == 'flame':
         slots.d = slot.d.flame.Cerberus()
     elif ele == 'water':
@@ -18,7 +21,20 @@ def set(slots):
     elif ele == 'shadow':
         slots.d = slot.d.shadow.Marishiten()
 
+
     slots.a = RR()+LC()
+    if wt == 'sword': 
+        slots.a = RR()+FP()
+    if ele == 'water':
+        slots.a = RR()+The_Prince_of_Dragonyule()
+    if wt == 'axe': 
+        slots.a = RR()+KFM()
+
+    typeweapon = getattr(slot.w, wt)
+    weapon = getattr(typeweapon, ele)
+
+    slots.w = weapon()
+
     return
 
 

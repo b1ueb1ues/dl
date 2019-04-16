@@ -1,75 +1,19 @@
 from slot import *
+from ability import Ability
 
 
-mtype = {
-    'a'  : 'attack',
-    's'  : 'skill',
-    'c'  : 'crit',
-    'fs' : 'force strike',
-    'sp' : 'skill haste',
-    'b'  : 'bufftime',
-}
 
-morder = {
-    'p'    : 'passive',
-    'c'    : 'crit chance',
-    'd'    : 'crit damage',
-    'k'    : 'killer',
-    'bk'   : 'break',
-    'buff' : 'buff',
-}
-
-
-class Ability(object):
-    def __init__(this, name, value, cond=None):
-        this.name = name
-        this.value = value
-        this.cond = cond
-        this.mod = []
-        if name == 'a':
-            this.mod = [('att','passive',value, cond)]
-        elif name == 's':
-            this.mod = [('s','passive',value, cond)]
-        elif name == 'cc':
-            this.mod = [('crit','chance',value, cond)]
-        elif name == 'cd':
-            this.mod = [('crit','damage',value, cond)]
-        elif name == 'fs':
-            this.mod = [('fs','passive',value, cond)]
-        elif name == 'bt':
-            this.mod = [('buff','time',value, cond)]
-
-        elif name == 'sp':
-            if cond != 'fs':
-                this.mod = [('sp','passive',value, cond)]
-
-        elif name == 'bk':
-            this.mod = [('att','bk',value*0.15, cond)]
-        elif name == 'od':
-            this.mod = [('att','killer',value*0.45, cond)]
-
-    def oninit(this, adv):
-        pass
-
-    def __repr__(this):
-        return str((this.name,this.value,this.cond))
-
-    def __str__(this):
-        return str((this.name,this.value,this.cond))
-
-
-        
 class Amulet(AmuletBase):
     a = []
     def __init__(this):
         this.mod = []
-        this.conf = {}
+        this.conf = Conf()
         this.mmax = {
                 'a'      : 0.15,   # attack
                 's'      : 0.35,   # skill damage
                 'cc'     : 0.15,   # crit chance
                 'cd'     : 0.25,   # crit damage
-                'fs'     : 0.35,   # force strike
+                'fs'     : 0.40,   # force strike
                 'bt'     : 0.30,   # buff time
 
                 'sp'     : 0.15,   # skill haste
@@ -87,10 +31,10 @@ class Amulet(AmuletBase):
                 }
 
 
-    def oninit(this, adv):
-        super(Amulet, this).oninit(adv)
-        for i in this.a:
-            i.oninit(adv)
+ #   def oninit(this, adv):
+ #       super(Amulet, this).oninit(adv)
+ #       for i in this.a:
+ #           i.oninit(adv)
 
 
     def merge(this, a, b):
@@ -114,6 +58,10 @@ class Amulet(AmuletBase):
             this.a2.on(c)
             this.att += this.a2.att
             this.tmp = this.a + this.a2.a
+            this.a = {}
+        else:
+            this.on(c)
+            this.tmp = this.a
             this.a = {}
 
         for i in this.tmp:
@@ -140,14 +88,9 @@ class Amulet(AmuletBase):
                         this.mmax[k] = 0
 
         tmp = []
-        for i in this.a:
-            tmp.append(Ability(*this.a[i]))
+        for k,i in this.a.items():
+            tmp.append(i)
         this.a = tmp
-        for i in this.a:
-            this.mod += i.mod
-
-        #print(this.a)
-        #print('mod',this.mod)
 
 
     def on(this, c):

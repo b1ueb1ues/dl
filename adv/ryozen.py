@@ -5,10 +5,11 @@ def module():
     return Ryozen
 
 class Ryozen(Adv):
-    conf = {
-        'mod_a3':('att','op',0.08*0.45),
-        }
+    a3 = ('od',0.08)
 
+
+    def debug(this):
+        print this.all_modifiers
 
 if __name__ == '__main__':
     conf = {}

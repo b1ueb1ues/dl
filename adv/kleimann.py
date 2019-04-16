@@ -6,10 +6,8 @@ def module():
     return Kleimann
 
 class Kleimann(adv.Adv):
-    conf = {
-        "mod_a1" : ("fs", 'passive', 0.4),
-        "mod_a3" : ("s" , 'passive', 0.2),
-        } 
+    a1 = ('fs',0.4)
+    a3 = ('s',0.2)
 
 if __name__ == '__main__':
     conf = {}
@@ -37,7 +35,7 @@ if __name__ == '__main__':
             """
     if 0:  # add some sphaste also work!
         conf.update( {
-            "mod_sp":('sp','ex',0.11)
+            "mod.sp":('sp','ex',0.11)
             } )
         conf['acl'] = """
             `s1, seq=5 and cancel

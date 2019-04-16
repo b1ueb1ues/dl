@@ -5,16 +5,13 @@ def module():
     return Luca
 
 class Luca(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('att', 'passive', 0.13, 'hp100') 
+    a1 = ('a',0.13,'hp100')
 
     def init(this):
         this.dmg_make("o_s1_paralysis",2.65)
         this.dmg_make("o_s1_paralysis",2.65)
         this.dmg_make("o_s1_paralysis",2.65)
 
-
-    def pre(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc

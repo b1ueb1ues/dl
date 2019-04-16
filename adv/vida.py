@@ -6,9 +6,7 @@ def module():
 
 class Vida(Adv):
     comment = 'unsuitable resist'
-    conf = {
-        "mod_a1": ('fs', 'passive', 0.30)
-        } 
+    a1 = ('fs',0.30)
 
     def init(this):
         this.s2charge = 0

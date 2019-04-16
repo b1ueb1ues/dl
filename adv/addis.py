@@ -6,10 +6,7 @@ def module():
     return Addis
 
 class Addis(Adv):
-    conf = {
-            'mod_a3':('att','bp',0.03)
-            }
-
+    a3 = ('bk',0.20)
 
     def getbleedpunisher(this):
         if this.bleed._static['stacks'] > 0:
@@ -50,44 +47,4 @@ if __name__ == '__main__':
         `s3
         """
     adv_test.test(module(), conf,verbose=0, mass=1)
-
-
-    #def foo(this):
-    #    return ''
-    #module().condition = foo
-    #module().comment = 'with 20% skill haste'
-    #conf = {
-    #        'mod_wp':[('s','passive',0.25),
-    #                  ('sp','passive',0.05)],
-    #        'mod_ex':('sp','passive',0.15)
-    #        }
-    #conf['acl'] = """
-    #    `s2, s1.charged>=2537 and seq=5
-    #    `s1, s2.charged<4877 
-    #    `s3, this.s2buff.get()==0
-    #    """
-    #adv_test.test(module(), conf,verbose=0, mass=1)
-
-## just too little to acl before
-#    module().comment = 'another acl with 20% skill haste'
-#    conf['acl'] = """
-#        `s2, s1.charged>=2537 and seq=5
-#        `s1, s2.charged<4877 
-#        `s3, this.s2buff.get()==0
-#        `fs, this.s2buff.get() and seq=5
-#        """
-#    adv_test.test(module(), conf,verbose=0, mass=1)
-
-
-    #module().comment = 'use shapeshift bug'
-    #def cheat(this, e):
-    #    if random.random() < 0.8:
-    #        log('-special','cheated_s1')
-    #        Bleed("s1_bleed", 1.32).on()
-    #module().s1_proc = cheat
-    #conf['acl'] = """
-    #    `s1,seq=5
-    #    `s3
-    #    """
-    #adv_test.test(module(), conf,verbose=0, mass=1)
 

@@ -5,7 +5,7 @@ def module():
     return Rawn
 
 class Rawn(adv.Adv):
-    def pre(this):
+    def init(this):
         if this.condition('c1+fs'):
             this.conf['acl'] = """
                 `s1, fsc

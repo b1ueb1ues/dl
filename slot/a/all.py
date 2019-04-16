@@ -10,6 +10,7 @@ class RR(Amulet):
     a = [('s',0.25),
          ('cc',0.06,'hp70')]
 
+
 class LC(Amulet):
     att = 64
     a = [('cd',0.13),
@@ -22,7 +23,7 @@ class VC(Amulet):
 
 class FG(Amulet): # Flash of Genius
     att = 57
-    a = [('a',0.15,'15hits')]
+    a = [('a',0.15,'hit15')]
 
 class FP(Amulet):
     att = 52
@@ -44,6 +45,12 @@ class Jewels_of_the_Sun(Amulet):
     a = [('sp',0.06),
          ('a',0.08,'hp70')]
 
+class Heralds_of_Hinomoto(Amulet):
+    att = 64
+    a = [('s',0.25),
+         ('sp',0.05)]
+
+
 class One_with_the_Shadows(Amulet):
     att = 51
     a = [('cc',0.05),
@@ -59,7 +66,8 @@ class The_Prince_of_Dragonyule(Amulet):
     a = [('cd',0.15)]
     def on(this, c):
         if c.ele == 'water':
-             this.a += [('cc',0.10,'hit15')]
+            this.a = [('cd',0.15)]
+            this.a += [('cc',0.10,'hit15')]
 
 
 class Crystalian_Envoy(Amulet):
@@ -109,6 +117,7 @@ class Luck_of_the_Draw(Amulet):
     a = [('resist',20,'paralysis')]
     def on(this, c):
         if c.ele == 'shadow':
+            this.a = [('resist',20,'paralysis')]
             this.a += [('bt',0.20)]
 
 class Lunar_Festivities(Amulet):
@@ -131,6 +140,7 @@ class KFM(Amulet):
     a = [('s',0.15)]
     def on(this, c):
         if c.wt == 'axe':
+            this.a = [('s',0.15)]
             this.a += [('cc',0.12)]
 
 class Forest_Bonds(Amulet):
@@ -138,18 +148,25 @@ class Forest_Bonds(Amulet):
     a = [('sp',0.10)]
     def on(this, c):
         if c.wt == 'bow':
+            this.a = [('sp',0.10)]
             this.a += [('s',0.35)]
 
 class Dragon_and_Tamer(Amulet):
     att = 57
     def on(this, c):
         if c.wt == 'lance':
-            this.a += [('s',0.35)]
+            this.a = [('s',0.35)]
 
 class The_Shining_Overlord(Amulet):
     att = 65
     a = [('dc',2)]
     def on(this, c):
         if c.wt == 'sword':
+            this.a = [('dc',2)]
             this.a += [('s',0.35)]
 
+amulets = []
+for k,v in globals().items():
+    if type(v) == type(Conf):
+        if v.__module__ == 'slot.a.all':
+            amulets.append(v)

@@ -5,8 +5,7 @@ def module():
     return Melsa
 
 class Melsa(Adv):
-    conf = {}
-    conf['mod_a3'] = ('crit', 'passive', 0.08, 'hit15')
+    a3 = ('cc',0.08,'hit15')
 
 
 

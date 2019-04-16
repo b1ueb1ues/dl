@@ -5,9 +5,7 @@ def module():
     return Karina
 
 class Karina(adv.Adv):
-    def init(this):
-        this.charge_p("prep","50%")
-
+    a3 = ('prep','50%')
 
 
 if __name__ == '__main__':

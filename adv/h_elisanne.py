@@ -5,14 +5,10 @@ def module():
     return H_Elisanne
 
 class H_Elisanne(Adv):
-    conf = {
-        "mod_a1"  : ('s', 'passive', 0.3) ,
-        } 
+    a1 = ('s',0.3)
 
     def init(this):
         this.stance = 0
-
-    def pre(this):
         if this.condition("no s2"):
             this.conf['acl'] = """
                 `s1, seq=5 and cancel

@@ -5,8 +5,7 @@ def module():
     return Aeleen
 
 class Aeleen(Adv):
-    conf = {}
-    conf['mod_a1'] = ('buff','time',0.25)
+    a1 = ('bt',0.25)
     comment = 'no fs'
 
 

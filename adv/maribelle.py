@@ -5,13 +5,8 @@ def module():
     return Maribelle
 
 class Maribelle(adv.Adv):
-    conf = {}
-    conf['mod_a1'] = ('s', 'passive', 0.4, 'hp100')
-
-    def init(this):
-        this.charge_p("prep", "100%")
-
-
+    a1 = ('s', 0.4, 'hp100')
+    a3 = ('prep','100%')
 
 if __name__ == '__main__':
     conf = {}

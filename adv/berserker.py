@@ -5,9 +5,7 @@ def module():
     return Berserker
 
 class Berserker(Adv):
-    def init(this):
-        if this.condition('last offense'):
-            Selfbuff('last_offense',0.4,15).on()
+    a3 = ('lo',0.3)
 
 
 if __name__ == '__main__':

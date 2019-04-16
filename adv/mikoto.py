@@ -5,11 +5,8 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
-    conf = {
-        "mod_a1": ('crit', 'chance', 0.10, 'hp70') ,
-        "mod_a3": ('crit', 'chance', 0.08) ,
-        #"mod_wp2" : ('buff','time',0),
-        }
+    a1 = ('cc',0.10,'hp70')
+    a3 = ('cc',0.08)
 
     def pre(this):
         if this.condition('connect s1'):
@@ -18,7 +15,7 @@ class Mikoto(Adv):
     def init(this):
         this.s1buff = Selfbuff("s1",0.0, 20)
         this.s2buff = Selfbuff("s2",0.2, 10, 'spd')
-        this.a_s1._recovery = 1.4
+        this.conf.s1.recovery = 1.4
 
 
     def speed(this):
@@ -45,18 +42,18 @@ class Mikoto(Adv):
         if stance == 0:
             this.dmg_make('s1',5.32*2)
             this.s1buff.set(0.10,20) #.on()
-            this.a_s1._recovery = 1.4
+            this.conf.s1.recovery = 1.4
             Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 1:
             this.dmg_make('s1',3.54*3)
             this.s1buff.off()
             this.s1buff.set(0.15,15) #.on()
-            this.a_s1._recovery = 1.63
+            this.conf.s1.recovery = 1.63
             Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 2:
             this.dmg_make('s1',2.13*4+4.25)
             this.s1buff.off().set(0)
-            this.a_s1._recovery = 3.07
+            this.conf.s1.recovery = 3.07
 
     def s2_proc(this, e):
         this.s2buff.on()

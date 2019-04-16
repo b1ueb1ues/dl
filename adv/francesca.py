@@ -5,9 +5,7 @@ def module():
     return Francesca
 
 class Francesca(Adv):
-    conf = {
-        "mod_a1"  : ('fs', 'passive', 0.30) ,
-        } 
+    a1 = ('fs',0.30)
 
 
 

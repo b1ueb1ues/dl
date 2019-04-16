@@ -1,15 +1,15 @@
 import adv_test
 from adv import *
+from slot.a import *
+import slot.a
 
 def module():
     return Mikoto
 
 class Mikoto(Adv):
-    conf = {
-        "mod_a1": ('crit', 'chance', 0.10, 'hp70') ,
-        "mod_a3": ('crit', 'chance', 0.08) ,
-        #"mod_wp2" : ('buff','time',0),
-        }
+    
+    a1 = ('cc', 0.10, 'hp70')
+    a3 = ('cc', 0.08) 
 
     def pre(this):
         if this.condition('connect s1'):
@@ -69,11 +69,22 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel or fsc
         `s3, seq=5 and cancel or fsc
         """
+    adv_test.test(module(), conf, verbose=0, mass=0)
+    exit()
+
+    ams = slot.a.amulets
+    amlen = len(ams)
+    for m in range(amlen):
+        for n in range(m+1,amlen):
+            i = ams[m]
+            j = ams[n]
+            conf['slots.a'] = i() + j()
+            module().comment = '(',type(i()).__name__, type(j()).__name__,')'
+            adv_test.test(module(), conf, verbose=-1, mass=0)
 
     #conf['acl'] = """
     #    `s1
     #    `s3
     #    `s2
     #    """
-    adv_test.test(module(), conf, verbose=0, mass=0)
 

@@ -1,26 +1,26 @@
 import adv_test
 import adv
+from slot.a import *
+import slot.a
 
 def module():
     return Xander
 
 class Xander(adv.Adv):
     comment = 'c2+fs & stella show + RR'
-    conf = {
-        "mod_a3": ('fs', 'passive', 0.50) ,
-    } 
 
-    a = 1
+    a3 = ('fs',0.50)
+
+    conf = {}
+    a = 3
     if a==1:
-        conf["mod_wp"] = [('s','passive',0.25),
-                         ('crit','chance',0.06,'hp70') ]
-        conf["mod_wp2"] = [('fs','passive',0.40),
-                           ('crit','damage',0.13) ]
-    if a==2:
-        conf["mod_wp"] = [('s','passive',0.25),
-                         ('crit','chance',0.06,'hp70') ]
-        conf["mod_wp2"] = [('crit','chance',0.09,'hit15'),
-                           ('crit','damage',0.15) ]
+        conf['slots.a'] = RR()+FP()
+    elif a == 2:
+        conf['slots.a'] = RR()+The_Prince_of_Dragonyule()
+    elif a == 3:
+        conf['slots.a'] = RR()+slot.a.Stellar_Show()
+    elif a == 4:
+        conf['slots.a'] = The_Prince_of_Dragonyule()+slot.a.Stellar_Show()
 
 
 
@@ -31,11 +31,16 @@ if __name__ == '__main__':
         `s2,fsc
         `fs, seq=2 and cancel
         """
+    #conf['slots.a'] = Stellar_Show() + VC() 
     adv_test.test(module(), conf, verbose=0, mass=0)
     exit()
 
-    module().conf['mod_wp'] = [('fs','passive',0.3),('s','passive',0.15)]
-    adv_test.test(module(), conf, verbose=0)
-
-    module().conf['mod_wp'] = [('s','passive',0.25)]
-    adv_test.test(module(), conf, verbose=0)
+    ams = slot.a.amulets
+    amlen = len(ams)
+    for m in range(amlen):
+        for n in range(m+1,amlen):
+            i = ams[m]
+            j = ams[n]
+            conf['slots.a'] = i() + j()
+            module().comment = '(',type(i()).__name__, type(j()).__name__,')'
+            adv_test.test(module(), conf, verbose=-1, mass=0)

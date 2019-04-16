@@ -5,9 +5,7 @@ def module():
     return Louise
 
 class Louise(adv.Adv):
-    conf = {
-        "mod_a1": ('att', 'punisher', 0.13*0.45) ,
-        } 
+    a1 = ('od',0.13)
 
     def init(this):
         this.dmg_make("o_s1_poison",2.91)
@@ -16,6 +14,7 @@ class Louise(adv.Adv):
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
         this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
+
 
 
 

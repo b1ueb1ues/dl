@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Joe
@@ -7,14 +8,14 @@ def module():
 class Joe(adv.Adv):
     conf = {}
     comment = 'reach 100 resist with Saintly Delivery'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+
+    conf['slots.a'] = Saintly_Delivery()+RR()
+    
 
     def init(this):
         this.dmg_make("o_s2_burn",1.8)
         this.dmg_make("o_s2_burn",1.8)
         this.dmg_make("o_s2_burn",1.8)
-    def pre(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc

@@ -1,5 +1,6 @@
-import flame
-import water
-import wind
-import light
-import shadow
+import slot.d.flame 
+import slot.d.water
+import slot.d.wind 
+import slot.d.light
+import slot.d.shadow
+

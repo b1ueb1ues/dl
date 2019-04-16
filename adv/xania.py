@@ -1,16 +1,16 @@
 import adv_test
 import adv
 
+
 def module():
     return Xania
 
 class Xania(adv.Adv):
-    conf = {
-        "mod_a1": ("s", 'passive', 0.20) ,
-    } 
+    a1 = ('s',0.20)
     comment = 'reach 100 resist with Saintly Delivery'
-    conf['mod_wp2'] = ('s','passive',0.1)
-    conf['str_wp2'] = 42
+    conf = {}
+    import slot
+    conf['slots.a'] = slot.a.Saintly_Delivery()+slot.a.RR()
 
 
 

@@ -5,12 +5,8 @@ def module():
     return Lily
 
 class Lily(adv.Adv):
-    conf = {
-        'mod_a1': ('att', 'passive', 0.15, 'hp100'),
-        } 
-
-    def init(this):
-        this.charge_p("prep", "100%")
+    a1 = ('a',0.15,'hp100')
+    a3 = ('prep','100%')
 
 
 if __name__ == '__main__':

@@ -5,10 +5,8 @@ def module():
     return Aoi
 
 class Aoi(adv.Adv):
-    conf = {
-        "mod_a1": ('att', 'punisher', 0.08*0.45),
-        } 
-    
+    a1 = ('od',0.08)
+
 
 if __name__ == '__main__':
     conf = {}

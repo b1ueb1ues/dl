@@ -5,13 +5,13 @@ def module():
     return Eleonora
 
 class Eleonora(adv.Adv):
+    a3 = ('prep','50%')
+
     def init(this):
-        this.charge_p("prep",'50%')
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)
 
-    def pre(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc
@@ -19,6 +19,7 @@ class Eleonora(adv.Adv):
                 `s3, fsc
                 `fs, seq=4
                 """
+
 
 
 if __name__ == '__main__':

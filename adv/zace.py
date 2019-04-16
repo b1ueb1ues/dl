@@ -6,9 +6,7 @@ def module():
 
 class Zace(Adv):
     comment = 'do not use fs'
-    conf = {
-        'mod_a1':('s','passive',0.2),
-    }
+    a1 = ('s',0.2)
 
 
 if __name__ == '__main__':

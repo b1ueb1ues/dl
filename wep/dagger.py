@@ -1,52 +1,40 @@
 
 conf = {}
 conf.update( {
-        "x_type"         : "melee" , 
+        "xtype"         : "melee" , 
 
-        "x1_dmg"         : 75    / 100.0 ,
-        "x1_sp"          : 144           ,
-        "x1_startup"     : 12    / 60.0  ,
-        "x1_recovery"    : 22    / 60.0  ,
+        "x1.dmg"         : 75    / 100.0 ,
+        "x1.sp"          : 144           ,
+        "x1.startup"     : 12    / 60.0  ,
+        "x1.recovery"    : 22    / 60.0  ,
 
-        "x2_dmg"         : 38*2  / 100.0 ,
-        "x2_sp"          : 144           ,
-        "x2_startup"     : 0             ,
-        "x2_recovery"    : 41    / 60.0  ,
+        "x2.dmg"         : 38*2  / 100.0 ,
+        "x2.sp"          : 144           ,
+        "x2.startup"     : 0             ,
+        "x2.recovery"    : 41    / 60.0  ,
 
-        "x3_dmg"         : 54*2  / 100.0 ,
-        "x3_sp"          : 264           ,
-        "x3_startup"     : 0     / 60.0  ,
-        "x3_recovery"    : 25    / 60.0  ,
+        "x3.dmg"         : 54*2  / 100.0 ,
+        "x3.sp"          : 264           ,
+        "x3.startup"     : 0     / 60.0  ,
+        "x3.recovery"    : 25    / 60.0  ,
 
-        "x4_dmg"         : 119   / 100.0 ,
-        "x4_sp"          : 288           ,
-        "x4_startup"     : 0             ,
-        "x4_recovery"    : 36    / 60.0  ,
+        "x4.dmg"         : 119   / 100.0 ,
+        "x4.sp"          : 288           ,
+        "x4.startup"     : 0             ,
+        "x4.recovery"    : 36    / 60.0  ,
 
-        "x5_dmg"         : 119   / 100.0 ,
-        "x5_sp"          : 288           ,
-        "x5_startup"     : 0             ,
-        "x5_recovery"    : 40    / 60.0  ,
+        "x5.dmg"         : 119   / 100.0 ,
+        "x5.sp"          : 288           ,
+        "x5.startup"     : 0             ,
+        "x5.recovery"    : 40    / 60.0  ,
 
-        "fs_dmg"         : 47*3  / 100.0 ,
-        "fs_sp"          : 288           ,
-        "fs_startup"     : 54    / 60.0  ,
-        "fs_recovery"    : 14    / 60.0  ,
-        "x5fs_startup"   : 64    / 60.0  ,
+        "fs.dmg"         : 47*3  / 100.0 ,
+        "fs.sp"          : 288           ,
+        "fs.startup"     : 54    / 60.0  ,
+        "fs.recovery"    : 14    / 60.0  ,
+        "x5fs.startup"   : 64    / 60.0  ,
 
-        "dodge_recovery" : 43    / 60.0  ,
-
-        "mod_wep" : ("crit", "chance", 0.02) ,
+        "dodge.recovery" : 43    / 60.0  ,
 
         }
         )
-
-import dagger5b1
-import dagger5b2
-
-flame  = dagger5b1
-wind   = dagger5b1
-shadow = dagger5b1
-
-water  = dagger5b2
-light  = dagger5b2
