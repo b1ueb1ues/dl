@@ -166,7 +166,8 @@ class The_Shining_Overlord(Amulet):
             this.a += [('s',0.35)]
 
 amulets = []
-for k,v in globals().items():
+for k in list(globals()):
+    v = globals()[k]
     if type(v) == type(Conf):
         if v.__module__ == 'slot.a.all':
             amulets.append(v)

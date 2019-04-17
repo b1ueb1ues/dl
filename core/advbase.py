@@ -331,6 +331,7 @@ class Skill(object):
         if conf:
             this.conf = conf
             conf.sync_skill = this.syncsp
+
         this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
         this.silence_end_event = Event('silence_end')

@@ -5,13 +5,13 @@ g_line = ""
 
 def acl_func_str(acl):
     s = acl_str(acl)
-    exec(s)
-    return foo, s
+    exec(s,globals())
+    return do_act_list, s
 
 def acl_func(acl):
     s = acl_str(acl)
-    exec(s)
-    return foo
+    exec(s,globals())
+    return do_act_list
 
 def acl_str(acl):
     global g_line
@@ -43,7 +43,7 @@ def acl_str(acl):
 
     line = ""
 
-    line += "def foo(this, e):\n"
+    line += "def do_act_list(this, e):\n"
 
     for i in prepare_list:
         line += "    %s\n"%(i.strip().replace('\n','\n    '))
