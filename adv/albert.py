@@ -23,7 +23,7 @@ class Albert(Adv):
         this.s2timer = Timer(this.s2autocharge,1,1).on()
         this.paralyze_count=3
         this.s2buff = Selfbuff("s2_shapshift",1, 20,'ss','ss')
-        this.a2buff = Selfbuff('a2_str_passive',0.25,20,'att','passive')
+        this.a3 = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
@@ -41,7 +41,7 @@ class Albert(Adv):
 
 
     def s2autocharge(this, t):
-        if not this.a2buff.get():
+        if not this.s2buff.get():
             this.s2.charge(160000.0/40)
             log('sp','s2autocharge')
 
@@ -54,11 +54,17 @@ class Albert(Adv):
     def c_s1_proc(this, e):
         if this.s2buff.get():
             this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*5)
+            #this.s2buff.buff_end_timer.timing += 2.6
+            #this.a3.buff_end_timer.timing += 2.6
+            #this.s2timer.timing += 2.6
     
 
     def s1_proc(this, e):
         if this.s2buff.get():
-            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*1)
+            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*3)
+            #this.s2buff.buff_end_timer.timing += 2.6
+            #this.a3.buff_end_timer.timing += 2.6
+            #this.s2timer.timing += 2.6
 
 
     def fs_proc(this, e):
@@ -70,7 +76,7 @@ class Albert(Adv):
     def s2_proc(this, e):
         this.s2timer.on()
         this.s2buff.on()
-        this.a2buff.on()
+        this.a3.on()
         fs_alt(this)
         this.fsalttimer(20)
 
@@ -83,5 +89,5 @@ if __name__ == '__main__':
         `s3
         `fs, seq=2 and not this.s2buff.get()
         """
-    adv_test.test(module(), conf,verbose=0, mass=0)
+    adv_test.test(module(), conf,verbose=0, mass=0, duration=180)
 

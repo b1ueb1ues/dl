@@ -330,7 +330,7 @@ class Skill(object):
             this.ac = ac
         if conf:
             this.conf = conf
-            conf.sync_skill = this.syncsp
+            conf.sync_skill = this.sync_sp
 
         this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
@@ -340,13 +340,11 @@ class Skill(object):
     def __call__(this):
         return this.cast()
 
-    def syncsp(this,c):
+    def sync_sp(this,c):
         this.sp = c.sp
-
 
     def init(this):
         pass
-
 
     def charge(this,sp):
         this.charged += sp   
@@ -425,7 +423,7 @@ class Action(object):
                 this.index = 0
         if conf != None:
             this.conf = conf
-            conf.sync_action = this.configsync
+            conf.sync_action = this.sync_config
             
         if act != None:
             this.act = act
@@ -446,7 +444,7 @@ class Action(object):
         this.act_event = Event(this.name)
         this.realtime()
 
-    def configsync(this, c):
+    def sync_config(this, c):
         this._startup = c.startup
         this._recovery = c.recovery
 

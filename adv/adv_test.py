@@ -30,12 +30,17 @@ comment = ""
 dps = 0
 bps = 0
 
-def test(classname, conf, verbose=0, mass=0, no_cond=None):
+def test(classname, conf, verbose=0, mass=0, duration=180, no_cond=None):
     global mname
     global displayed_str
     global comment
     global g_condition
     global loglevel
+    global sim_duration
+
+    if duration:
+        sim_duration = duration
+
     if not loglevel:
         loglevel = verbose
     random.seed(0)
@@ -173,7 +178,7 @@ def test(classname, conf, verbose=0, mass=0, no_cond=None):
         print(line)
 
     if condition != '':
-        test(classname, conf, verbose, mass, 1)
+        test(classname, conf, verbose, mass, duration, 1)
         g_condition = ''
     elif g_condition != '':
         return
