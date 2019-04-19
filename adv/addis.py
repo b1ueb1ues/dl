@@ -1,11 +1,13 @@
 import adv_test
 from adv import *
 from module.bleed import Bleed
+from slot.a import *
 
 def module():
     return Addis
 
 class Addis(Adv):
+    comment = '2*s1 in one s2 (pretty easy since his s1 animation can stop s2timer after last patch)'
     a3 = ('bk',0.20)
 
     def getbleedpunisher(this):
@@ -17,6 +19,7 @@ class Addis(Adv):
         random.seed()
         this.poisoncount=3
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
+        this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = Bleed("g_bleed",0).reset()
@@ -24,7 +27,10 @@ class Addis(Adv):
 
 
     def s1_proc(this, e):
+
         if this.s2buff.get():
+            this.s2buff.buff_end_timer.timing += 2.5
+            this.s2str.buff_end_timer.timing += 2.5
             log('-special','s1_with_s2')
             if random.random() < 0.8:
                 Bleed("s1_bleed", 1.32).on()
@@ -36,15 +42,24 @@ class Addis(Adv):
 
     def s2_proc(this, e):
         this.s2buff.on()
+        this.s2str.on()
 
 
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp
-        `s1
-        `s2
-        `s3
+        `s2, s1.charged>=s1.sp-260 and seq=5
+        `s1, s2.charged<s2.sp
+        `s3, not this.s2buff.get()
+        `fs, this.s2buff.get() and seq=5
         """
+
+   # conf['acl'] = """
+   #     `s2, s1.charged>=s1.sp-260 and seq=5
+   #     `s1, s2.charged<s2.sp
+   #     `s3, not this.s2buff.get()
+   #     `s3, s2.sp > 2000 and sx=1
+   #     `fs, this.s2buff.get() and seq=5
+   #     """
     adv_test.test(module(), conf,verbose=0, mass=1)
 

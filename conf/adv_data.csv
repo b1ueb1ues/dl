@@ -1,5 +1,5 @@
 name,stars,element,weapon,str_adv,,s1_hitdmg,s1_hits,s1_sp,s2_hitdmg,s2hits,s2_sp,,s1_dmgpc,s2_dmgpc,s1_buff,s2_buff
-addis,4,wind,blade,509,,216,4,2537,0,0,4877,,864,0,,self;0.25;10
+addis,4,wind,blade,509,,216,4,2537,0,0,4877,,864,0,,
 aeleen,4,wind,lance,470,,838,1,2579,0,0,8534,,838,0,,
 eleonora,4,wind,bow,478,,771,1,2504,734,1,5115,,771,734,,
 francesca,3,wind,dagger,428,,169,4,2257,288,2,4892,,676,576,,debuff;0.05;10;0.3
