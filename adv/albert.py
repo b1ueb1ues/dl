@@ -9,6 +9,7 @@ def module():
 
 
 class Albert(Adv):
+    comment = 'buffed s2 make his dps lower in this specific 180s situation'
     a1 = ('fs',0.5)
 
     def init(this):
@@ -54,17 +55,17 @@ class Albert(Adv):
     def c_s1_proc(this, e):
         if this.s2buff.get():
             this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*5)
-            #this.s2buff.buff_end_timer.timing += 2.6
-            #this.a3.buff_end_timer.timing += 2.6
-            #this.s2timer.timing += 2.6
+            this.s2buff.buff_end_timer.timing += 2.6
+            this.a3.buff_end_timer.timing += 2.6
+            this.s2timer.timing += 2.6
     
 
     def s1_proc(this, e):
         if this.s2buff.get():
             this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*3)
-            #this.s2buff.buff_end_timer.timing += 2.6
-            #this.a3.buff_end_timer.timing += 2.6
-            #this.s2timer.timing += 2.6
+            this.s2buff.buff_end_timer.timing += 2.6
+            this.a3.buff_end_timer.timing += 2.6
+            this.s2timer.timing += 2.6
 
 
     def fs_proc(this, e):
