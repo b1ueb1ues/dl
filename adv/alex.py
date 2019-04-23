@@ -5,6 +5,7 @@ def module():
     return Alex
 
 class Alex(adv.Adv):
+    comment = 'not consider bk boost of her s2'
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)
 
