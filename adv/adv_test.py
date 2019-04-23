@@ -30,7 +30,7 @@ comment = ""
 dps = 0
 bps = 0
 
-def test(classname, conf, verbose=0, mass=0, duration=180, no_cond=None):
+def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global mname
     global displayed_str
     global comment
