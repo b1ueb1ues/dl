@@ -7,78 +7,78 @@ class PP(Amulet): #Plunder Pals or Hitting the Books
 
 class RR(Amulet):
     att = 64
-    a = [('s',0.25),
-         ('cc',0.06,'hp70')]
+    a = [('s',0.30),
+         ('cc',0.08,'hp70')]
 
 
 class LC(Amulet):
     att = 64
-    a = [('cd',0.13),
-         ('cc',0.08,'hp70')]
+    a = [('cd',0.15),
+         ('cc',0.10,'hp70')]
 
 class VC(Amulet):
     att = 65
-    a = [('s',0.25),
-         ('bc',0.08)]
+    a = [('s',0.30),
+         ('bc',0.10)]
 
 class FG(Amulet): # Flash of Genius
     att = 57
-    a = [('a',0.15,'hit15')]
+    a = [('a',0.20,'hit15')]
 
 class FP(Amulet):
     att = 52
-    a = [('fs',0.30),
-         ('s',0.15)]
+    a = [('fs',0.40),
+         ('s',0.20)]
 
 class Bellathorna(Amulet):
     att = 25
-    a = [('bt',0.15)]
+    a = [('bt',0.20)]
 
 
 class Together_We_Stand(Amulet):
     att = 52
-    a = [('sts',0.04),
-         ('s',0.15)]
+    a = [('sts',0.05),
+         ('s',0.20)]
 
 class Jewels_of_the_Sun(Amulet):
     att = 64
-    a = [('sp',0.06),
-         ('a',0.08,'hp70')]
+    a = [('sp',0.08),
+         ('a',0.10,'hp70')]
 
-class Heralds_of_Hinomoto(Amulet):
+class Heralds_of_Hinomoto(Amulet): #??
     att = 64
-    a = [('s',0.25),
-         ('sp',0.05)]
+    a = [('s',0.30),
+         ('sp',0.06)]
 
 
 class One_with_the_Shadows(Amulet):
     att = 51
-    a = [('cc',0.05),
-         ('bk',0.15)]
+    a = [('cc',0.06),
+         ('bk',0.20)]
 
 class Flower_in_the_Fray(Amulet):
     att = 52
-    a = [('cd',0.13),
-         ('s',0.15)]
+    a = [('cd',0.15),
+         ('s',0.20)]
 
-class The_Prince_of_Dragonyule(Amulet):
+class The_Prince_of_Dragonyule(Amulet):  
     att = 63
     a = [('cd',0.15)]
     def on(this, c):
         if c.ele == 'water':
-            this.a = [('cd',0.15)]
-            this.a += [('cc',0.10,'hit15')]
+            this.a = [('cd',0.20)]
+            this.a += [('cc',0.12,'hit15')]
 
 
-class Crystalian_Envoy(Amulet):
+class Crystalian_Envoy(Amulet):  #??
     att = 57
     a = [('a',0.10,'hp70')]
     
 
 class Evening_of_Luxury(Amulet): 
     att = 65
-    a = [('a',0.13,'hp100'),
-         ('cd',0.13)]
+    a = [('a',0.15,'hp100'),
+         ('cd',0.15)]
 
 
 class The_Chocolatiers(Amulet):
@@ -88,62 +88,62 @@ class The_Chocolatiers(Amulet):
 
 class Worthy_Rivals(Amulet):
     att = 64
-    a = [('bk',0.25),
-         ('prep',20)]
+    a = [('bk',0.30),
+         ('prep',25)]
 
 
 class Lord_of_the_Skies(Amulet):
     att = 46
-    a = [('od',0.08)]
+    a = [('od',0.10)]
 
 
-class Witchs_Kitchen(Amulet):
+class Witchs_Kitchen(Amulet):  #??
     att = 57
     a = [('s',0.35,'hp100'),
          ('resist',25,'blind')]
 
 class Silke_Lends_a_Hand(Amulet):
     att = 42
-    a = [('s',0.15),
-         ('resist',25,'blind')]
+    a = [('s',0.20),
+         ('resist',50,'blind')]
 
 class Saintly_Delivery(Amulet):
     att = 42
-    a = [('s',0.15),
-         ('resist',25,'stun')]
+    a = [('s',0.20),
+         ('resist',50,'stun')]
 
 class Luck_of_the_Draw(Amulet):
     att = 33
-    a = [('resist',20,'paralysis')]
+    a = [('resist',25,'paralysis')]
     def on(this, c):
         if c.ele == 'shadow':
-            this.a = [('resist',20,'paralysis')]
-            this.a += [('bt',0.20)]
+            this.a = [('resist',25,'paralysis')]
+            this.a += [('bt',0.25)]
 
-class Lunar_Festivities(Amulet):
+class Lunar_Festivities(Amulet): #??
     att = 51
     a = [('fs',0.30),
          ('sp',0.08,'fs')]
 
 class The_Warrioresses(Amulet):
     att = 52
-    a = [('fs',0.30),
-         ('cd',0.10)]
-
-class Stellar_Show(Amulet):
-    att = 65
     a = [('fs',0.40),
          ('cd',0.13)]
 
+class Stellar_Show(Amulet):  #??
+    att = 65
+    a = [('fs',0.50),
+         ('cd',0.15)]
+
 class KFM(Amulet):
     att = 64
-    a = [('s',0.15)]
+    a = [('s',0.20)]
     def on(this, c):
         if c.wt == 'axe':
-            this.a = [('s',0.15)]
-            this.a += [('cc',0.12)]
+            this.a = [('s',0.20)]
+            this.a += [('cc',0.14)]
 
-class Forest_Bonds(Amulet):
+class Forest_Bonds(Amulet):  #??
     att = 64
     a = [('sp',0.10)]
     def on(this, c):
@@ -151,13 +151,13 @@ class Forest_Bonds(Amulet):
             this.a = [('sp',0.10)]
             this.a += [('s',0.35)]
 
-class Dragon_and_Tamer(Amulet):
+class Dragon_and_Tamer(Amulet):  #??
     att = 57
     def on(this, c):
         if c.wt == 'lance':
             this.a = [('s',0.35)]
 
-class The_Shining_Overlord(Amulet):
+class The_Shining_Overlord(Amulet):  #??
     att = 65
     a = [('dc',2)]
     def on(this, c):

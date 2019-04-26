@@ -9,22 +9,22 @@ class Amulet(AmuletBase):
         this.mod = []
         this.conf = Conf()
         this.mmax = {
-                'a'      : 0.15,   # attack
-                's'      : 0.35,   # skill damage
+                'a'      : 0.20,   # attack
+                's'      : 0.40,   # skill damage
                 'cc'     : 0.15,   # crit chance
                 'cd'     : 0.25,   # crit damage
-                'fs'     : 0.40,   # force strike
+                'fs'     : 0.50,   # force strike
                 'bt'     : 0.30,   # buff time
 
                 'sp'     : 0.15,   # skill haste
 
-                'bk'     : 0.25,   # break killer
+                'bk'     : 0.30,   # break killer
                 'od'     : 0.15,   # od killer
 
-                'lo'     : 0.50,   # lastoffence
+                'lo'     : 0.60,   # lastoffence
                 'bc'     : 0.15,   # buffchain
                 'sts'    : 0.06,   # striker strength
-                'sls'    : 0.05,   # slayer stength
+                'sls'    : 0.06,   # slayer stength
                 'dc'     : 3,      # dragon claw
                 'prep'   : 100,    # skill prep
                 'resist' : 10000,  # resist

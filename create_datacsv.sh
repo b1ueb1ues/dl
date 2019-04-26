@@ -95,5 +95,9 @@ python adv/fleur.py -2      $1 | tee -a www/$1/data.csv
 python adv/yue.py -2        $1 | tee -a www/$1/data.csv
 python adv/sylas.py -2      $1 | tee -a www/$1/data.csv
 python adv/alex.py -2       $1 | tee -a www/$1/data.csv
+python adv/alfonse.py -2    $1 | tee -a www/$1/data.csv
+python adv/marth.py -2      $1 | tee -a www/$1/data.csv
+python adv/veronica.py -2   $1 | tee -a www/$1/data.csv
+python adv/fjorm.py -2      $1 | tee -a www/$1/data.csv
 
 

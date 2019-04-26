@@ -28,7 +28,8 @@ def set(slots):
     if ele == 'water':
         slots.a = RR()+The_Prince_of_Dragonyule()
     if wt == 'axe': 
-        slots.a = RR()+KFM()
+        #slots.a = RR()+KFM()
+        slots.a = KFM()+Flower_in_the_Fray()
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)
