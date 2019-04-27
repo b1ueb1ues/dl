@@ -9,7 +9,7 @@ def module():
 
 
 class Albert(Adv):
-    comment = 'buffed s2 make his dps lower in this specific 180s situation'
+    comment = 'buffed s2 make his dps lower in specific 180s situation'
     a1 = ('fs',0.5)
 
     def init(this):
