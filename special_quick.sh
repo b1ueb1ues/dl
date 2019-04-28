@@ -9,3 +9,4 @@ python adv/heinwald.py             -2  | tee -a www/sp/data.csv
 python adv/linyou.py.best.py       -2  | tee -a www/sp/data.csv
 python adv/louise.py.doublebuff.py -2  | tee -a www/sp/data.csv
 python adv/veronica.py.1hp.py      -2  | tee -a www/sp/data.csv
+python adv/marth.py.cheese.py      -2  | tee -a www/sp/data.csv
