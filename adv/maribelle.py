@@ -10,6 +10,8 @@ class Maribelle(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+   # import slot
+   # conf['slots.d'] = slot.d.wind.Longlong()
     conf['acl'] = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel
