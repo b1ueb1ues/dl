@@ -1,48 +1,27 @@
 import adv_test
 from adv import *
-from module.bleed import Bleed
+from module.bleed import mBleed
 import ieyasu 
 
 def module():
     return Ieyasu
 
 class Ieyasu(ieyasu.Ieyasu):
-    class Bleed(Bleed):
-        def tick_proc(this, e):
-            dmg_sum = 0
-            stacks = this._static.stacks
-            for i in this._static.all_bleeds:
-                dmg_sum += i.quickshot_event.dmg
-            if stacks == 1:
-                #this.tdmg_event.dmg = dmg_sum
-                dmg = dmg_sum * 0.8
-            elif stacks == 2:
-                #this.tdmg_event.dmg = dmg_sum * 1.5
-                dmg = dmg_sum * 1.12
-            elif stacks == 3:
-                #this.tdmg_event.dmg = dmg_sum * 2
-                dmg = dmg_sum * 1.44
-            else:
-                print "err in bleed tick_proc"
-                exit()
-
-            log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
-            e.timing += this.iv
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
-            if this.bleed._static.stacks > 0:
+            if this.bleed._static['stacks'] > 0:
                 return 0.15
         return 0
 
     def init(this):
         this.s2buff = Selfbuff("s2",0.15, 15, 'crit')
         this.s2buff.modifier.get = this.s2ifbleed
-        this.bleed = Ieyasu.Bleed("g_bleed",0).reset()
+        this.bleed = mBleed("g_bleed",0).reset()
         this.s2charge = 0
 
     def s1_proc(this, e):
-        Ieyasu.Bleed("s1_bleed", 1.46).on()
+        mBleed("s1_bleed", 1.46).on()
 
 
 if __name__ == '__main__':

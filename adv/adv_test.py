@@ -50,6 +50,14 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     else:
         mname = classname.__name__
 
+    if loglevel == 255 and verbose:
+        loglevel = -2
+    if loglevel == -3 :
+        loglevel = 255
+        import module.ra
+        module.ra.test(classname, conf, sim_duration)
+        return
+
 
     if not no_cond:
         adv = classname(conf=conf,cond=1)

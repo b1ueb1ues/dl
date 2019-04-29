@@ -6,8 +6,12 @@ def module():
     return Ieyasu
 
 class Ieyasu(Adv):
+    comment = 'RR+LC'
     a1 = ('cc',0.1,'hp70')
     a2 = ('cd',0.2)
+    import slot
+    conf = {}
+    conf['slots.a'] = slot.a.LC()+slot.a.RR()
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:

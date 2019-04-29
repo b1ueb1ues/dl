@@ -6,16 +6,16 @@ def module():
     return Zardin
 
 class Zardin(adv.Adv):
-    comment = 'RR+tPoD'
+    comment = 'Stellar_Show+RR'
     a1 = ('a',0.10,'hp100')
     conf = {}
 
-    a = 2
+    a = 1
     if a==1:
         conf["slots.a"] = RR() + Stellar_Show()
 
     if a==2:
-        conf["slots.a"] = RR() + The_Prince_of_Dragonyule()
+        conf["slots.a"] = The_Shining_Overlord() + The_Prince_of_Dragonyule()
 
 
 if __name__ == '__main__':

@@ -16,5 +16,5 @@ if __name__ == '__main__':
         `s3,fsc
         `fs, seq=3
         """
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=0)
 

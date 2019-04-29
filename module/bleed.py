@@ -66,5 +66,30 @@ class Bleed(Dot):
         this._static['stacks'] += 1
 
 
+class mBleed(Bleed):
+    _static = {}
+    _static['all_bleeds'] = []
+    _static['stacks'] = 0
+
+    def tick_proc(this, e):
+        dmg_sum = 0
+        stacks = this._static['stacks']
+        for i in this._static['all_bleeds']:
+            dmg_sum += i.quickshot_event.dmg
+        if stacks == 1:
+            #this.tdmg_event.dmg = dmg_sum
+            dmg = dmg_sum * 0.8
+        elif stacks == 2:
+            #this.tdmg_event.dmg = dmg_sum * 1.5
+            dmg = dmg_sum * 1.12
+        elif stacks == 3:
+            #this.tdmg_event.dmg = dmg_sum * 2
+            dmg = dmg_sum * 1.44
+        else:
+            print "err in bleed tick_proc"
+            exit()
+
+        log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
+        e.timing += this.iv
 
             

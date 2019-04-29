@@ -32,15 +32,8 @@ if __name__ == '__main__':
         `fs, seq=2 and cancel
         """
     #conf['slots.a'] = Stellar_Show() + VC() 
+    #from module import ra
+    #ra.test(module(), conf)
+    #exit()
     adv_test.test(module(), conf, verbose=0, mass=0)
-    exit()
 
-    ams = slot.a.amulets
-    amlen = len(ams)
-    for m in range(amlen):
-        for n in range(m+1,amlen):
-            i = ams[m]
-            j = ams[n]
-            conf['slots.a'] = i() + j()
-            module().comment = '(',type(i()).__name__, type(j()).__name__,')'
-            adv_test.test(module(), conf, verbose=-1, mass=0)

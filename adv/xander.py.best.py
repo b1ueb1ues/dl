@@ -5,6 +5,12 @@ from slot.a import *
 def module():
     return Xander_best
 
+class Together_We_Stand(Amulet):
+    att = 52
+    a = [('sts',0.05),
+         ('s',0.20)]
+
+
 class Xander_best(Xander):
     comment = 'together we stand & 10 stacks striker\'s strength'
     name = 'Xander'

@@ -22,14 +22,19 @@ def set(slots):
         slots.d = slot.d.shadow.Marishiten()
 
 
-    slots.a = RR()+LC()
-    if wt == 'sword': 
+    slots.a = RR()+CE()
+
+    if wt == 'sword':
         slots.a = RR()+FP()
-    if ele == 'water':
-        slots.a = RR()+The_Prince_of_Dragonyule()
     if wt == 'axe': 
         #slots.a = RR()+KFM()
         slots.a = KFM()+Flower_in_the_Fray()
+    if wt == 'wand': 
+        slots.a = RR()+FG()
+    if wt == 'dagger':
+        slots.a = RR()+FG()
+    if wt == 'bow':
+        slots.a = RR()+FG()
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)

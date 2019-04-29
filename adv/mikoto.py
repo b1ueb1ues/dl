@@ -5,8 +5,12 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
+    comment = 'RR+LC'
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
+    import slot
+    conf = {}
+    conf['slots.a'] = slot.a.LC()+slot.a.RR()
 
     def pre(this):
         if this.condition('connect s1'):
@@ -72,5 +76,10 @@ if __name__ == '__main__':
     #    `s3
     #    `s2
     #    """
+
+    #from module import ra
+    #ra.test(module(), conf)
+    #exit()
+
     adv_test.test(module(), conf, verbose=0, mass=0)
 

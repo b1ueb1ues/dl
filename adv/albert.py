@@ -9,7 +9,7 @@ def module():
 
 
 class Albert(Adv):
-    comment = 'buffed s2 make his dps lower in specific 180s situation'
+    comment = 'suitable skill prep; '
     a1 = ('fs',0.5)
 
     def init(this):
@@ -90,5 +90,22 @@ if __name__ == '__main__':
         `s3
         `fs, seq=2 and not this.s2buff.get()
         """
-    adv_test.test(module(), conf,verbose=0, mass=0, duration=180)
+
+    import sys
+    from slot.a import *
+    if len(sys.argv) >= 3:
+        sim_duration = int(sys.argv[2])
+    else:
+        sim_duration = 180
+    if sim_duration == 60:
+        conf['slots.a'] = RR()+Worthy_Rivals()
+        module().comment += 'RR+Worthy_Rivals'
+    elif sim_duration == 90:
+        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
+        module().comment += 'Heralds_of_Hinomoto+Chocolatiers'
+    elif sim_duration == 180:
+        conf['slots.a'] = RR()+The_Chocolatiers()
+        module().comment += 'RR+Chocolatiers'
+
+    adv_test.test(module(), conf,verbose=0, mass=0)
 
