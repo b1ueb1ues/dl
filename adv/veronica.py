@@ -7,8 +7,8 @@ def module():
 class Veronica(adv.Adv):
     a3 = ('prep','100%')
     def pre(this):
-        if this.condition('hp70'):
-            this.s1boost = 0
+        if this.condition('hp70~hp71'):
+            this.s1boost = 1.25*0.3
         else:
             this.s1boost = 1.25*0.3
 
