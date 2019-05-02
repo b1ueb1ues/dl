@@ -1,4 +1,5 @@
-# encoding:utf8
+# /usr/bin/env python
+# encoding:utf-8
 if __package__ is None or __package__ == '':
     import os
     os.sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -50,6 +51,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     else:
         mname = classname.__name__
 
+    if verbose == 255:
+        loglevel = -2
     if loglevel == 255 and verbose:
         loglevel = -2
     if loglevel == -3 :

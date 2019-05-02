@@ -18,6 +18,10 @@ class sword5b2(WeaponBase):
     wt = 'sword'
     att = 524
     s3 = {
+        "dmg"      : 0        ,
+        "sp"       : 7316     ,
+        "startup"  : 0.15     ,
+        "recovery" : 0.9      ,
         }
 
 flame  = sword5b1

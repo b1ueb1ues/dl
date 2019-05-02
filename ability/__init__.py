@@ -46,7 +46,7 @@ class Ability(object):
         elif name == 'sls':
             adv.Buff('slayerstrength',value*5,-1).on()
         elif name == 'dc':
-            pass
+            adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
         elif name == 'prep':
             if type(value) == int:
                 adv.charge_p('amulet prep',"%d%%"%value)

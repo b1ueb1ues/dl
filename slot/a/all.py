@@ -45,6 +45,11 @@ class Bellathorna(Amulet):
 #    a = [('sts',0.05),
 #         ('s',0.20)]
 
+class First_Rate_Hospitality(Amulet):
+    att = 55
+    a = [('a',0.08,'hp70'),
+         ('bc',0.10)]
+
 class Jewels_of_the_Sun(Amulet):
     att = 64
     a = [('sp',0.08),
