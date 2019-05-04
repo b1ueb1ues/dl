@@ -87,3 +87,63 @@ modules.
 
 - Each ability is named `a1`, etc., records a tuple of `(name, value, cond)`
 - See `dl.ability.Ability` for how name translates
+
+# Acronyms
+
+The code uses a lot of abbreviations.  Here is a decoder ring for
+many of them:
+
+- att - attack (as in attack modifier)
+- x - basic attack (as part of, e.g., a C5 combo)
+- fs - force strike
+- fsf -
+- s (as in s1, s2) - skill
+- ex -
+- buff - buff
+- iv -
+- dot - damage over time
+- m (as in mtype, morder) - modifier
+- crit - critical
+- ac -
+- sp - skill points
+- pin - the event name
+- cb - callback
+- spd - speed
+- acl - access control list (not really, just a DSL for specifying adventurer behavior)
+- dmg - damage
+- wt -
+- slots.c - character
+- slots.w - weapon
+- slots.d - dragon
+- slots.a - wyrmprints
+- `a_` (as in `a_s1`) - denotes an action
+- `l_` (as in `l_x`) - denotes a listener
+- `m_` (as in `m_condition`) - denotes a Python module
+- solid - computes the expected value of a modifier (this is the one
+  that actually gets used)
+- rand - randomly samples based on the probability
+- coef - coefficient
+- proc - https://gaming.stackexchange.com/questions/122163/what-does-proc-mean
+
+# Adventurer stats
+
+Adventurer stats are stored in `conf/adv_data.csv` and read into the
+`Conf` object (`conf/csv2conf.py`).  All skill damage assumes full
+upgrades.
+
+- `sX_hitdmg` how much percent damage skill X hits for
+- `sX_hits` how many hits the skill does
+- `sX_sp` SP cost of the skills
+- `sX_dmgpc` this is just `sX_hitdmg * sX_hits` (don't know why we
+  recorded it again lol)
+- `sX_buff` describes what buff the skill gives.  Buff is described
+  as semicolon separated list:
+  - Target of the buff ('team', 'self', 'debuff'); this can e
+    omitted in which case you get an ordinary 'Buff'
+  - The rest of the buff arguments, as defined by the Buff/Teambuff/etc
+    classes.  Typically, these arguments are:
+    - Value of the buff
+    - Duration of the buff
+    - Optional modifier type of the buff (e.g., att, x, fs, s, crit; defaults to att)
+    - Optional modifier order of the buff (e.g., rate, chance, buff;
+      defaults to chance for crit modifiers, and buff otherwise)
