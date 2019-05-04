@@ -87,11 +87,15 @@ class Modifier(object):
 
 
 class Dot(object):
+    """
+    Damage over time; e.g., bleed
+    """
+
     def __init__(this, name, dmg, duration, iv):
         this.name = name
         this.active = 0
         this.dmg = dmg
-        this.iv = iv
+        this.iv = iv  # Seconds between each damage tick
         this.duration = duration
         this.dmg_event = Event('dmg')
         this.tick_timer = Timer(this.tick_proc)
@@ -580,6 +584,11 @@ class Adv(object):
     #conf_default.latency.sp = 0.05
     #conf_default.latency.default = 0.05
     #conf_default.latency.idle = 0
+
+    # Latency represents the human response time, between when an event
+    # triggers a "think" event, and when the human actually triggers
+    # the input.  Right now it's set to zero, which means "perfect"
+    # response time (which is unattainable in reality.)
     conf_default.latency = Conf({'x':0,'sp':0,'default':0,'idle':0})
 
     conf_default.s1 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
@@ -903,6 +912,9 @@ class Adv(object):
         return this.mod('buff')
 
     def l_idle(this, e):
+        """
+        Listener that is called when there is nothing to do.
+        """
         this.think_pin('idle')
         prev = this.action.getprev()
         if prev.name[0] == 's':
@@ -1028,6 +1040,7 @@ class Adv(object):
         pass
 
     def think_pin(this, pin):
+        # pin as in "signal", says what kind of event happened
         def cb_think(t):
             if loglevel >= 2:
                 log('think', t.pin, t.dname)
