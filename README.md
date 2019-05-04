@@ -80,3 +80,10 @@ Right after s3 proc. If you are doing normal attack, wait for the cancel timing.
 that is useful for skill shorter than 1.9s. In that case, even if the skill end, you cannot find you skill button in the sreen but can only tap attack to wait the button comeback.  
 PS: auto controled unit don't have that limit
 
+# Adventurer ability information
+
+Adventurer passives are programmed in their individual `adv/advname.py`
+modules.
+
+- Each ability is named `a1`, etc., records a tuple of `(name, value, cond)`
+- See `dl.ability.Ability` for how name translates
