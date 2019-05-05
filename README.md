@@ -17,7 +17,7 @@ python adv/maribelle.py 1
 - adv: Try to simulate adventurer's damage. Contains charactor unique skill process function, ActionList(like APL in simcraft for wow), and you can change default equip to specific one.
 - conf: configure of default skill data to simulate, read frame data from framedata folder, configure default wp/dragon equiped.
 - wep: Contains config of weapons' frame and damage data.
-- module: Contains bleed now, TODO: add energy.
+- module: Contains bleed now.
 - framedata: Pictures that have frames number in it. Source of data in adventures and weapons config.
 - mechanics: The study of DL's mechanics, Lots of test data, formula,  (Warning: lots of Chinese inside)
 
@@ -96,26 +96,26 @@ many of them:
 - att - attack (as in attack modifier)
 - x - basic attack (as part of, e.g., a C5 combo)
 - fs - force strike
-- fsf -
+- fsf - force strike (failed)
 - s (as in s1, s2) - skill
-- ex -
+- ex - ex-skill(co-abilities)
 - buff - buff
-- iv -
+- iv - interval
 - dot - damage over time
 - m (as in mtype, morder) - modifier
 - crit - critical
-- ac -
+- ac - action
 - sp - skill points
-- pin - the event name
+- pin - the moment when think() been called
 - cb - callback
 - spd - speed
 - acl - access control list (not really, just a DSL for specifying adventurer behavior)
 - dmg - damage
-- wt -
+- wt - weapon type
 - slots.c - character
 - slots.w - weapon
 - slots.d - dragon
-- slots.a - wyrmprints
+- slots.a - amulet(wyrmprints)
 - `a_` (as in `a_s1`) - denotes an action
 - `l_` (as in `l_x`) - denotes a listener
 - `m_` (as in `m_condition`) - denotes a Python module
@@ -131,11 +131,11 @@ Adventurer stats are stored in `conf/adv_data.csv` and read into the
 `Conf` object (`conf/csv2conf.py`).  All skill damage assumes full
 upgrades.
 
-- `sX_hitdmg` how much percent damage skill X hits for
-- `sX_hits` how many hits the skill does
+- `sX_hitdmg` how much percent damage skill X hits for (not used yet)
+- `sX_hits` how many hits the skill does (not used yet)
 - `sX_sp` SP cost of the skills
-- `sX_dmgpc` this is just `sX_hitdmg * sX_hits` (don't know why we
-  recorded it again lol)
+- `sX_dmgpc` this is most likely just `sX_hitdmg * sX_hits`, but this is the real column we use, 
+   since there is some skill that deals 3 hits of 255% and 1 hit of 319% veronica for example.)
 - `sX_buff` describes what buff the skill gives.  Buff is described
   as semicolon separated list:
   - Target of the buff ('team', 'self', 'debuff'); this can e
