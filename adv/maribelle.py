@@ -18,13 +18,5 @@ if __name__ == '__main__':
         `s1, pin == 'prep'
         """
 
-    # to add a fs after c5
-    conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s1, pin == 'prep'
-        `fs, seq=5
-        """
-
     adv_test.test(module(), conf, verbose=0)
 
