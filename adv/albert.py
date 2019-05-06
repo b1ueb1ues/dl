@@ -29,7 +29,7 @@ class Albert(Adv):
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
 
-        if this.condition('3s1 in on s2'):
+        if this.condition('4s1 in on s2'):
             this.conf['acl'] = """
                 `s2, s1.charged>=s1.sp-300
                 `s1

@@ -6,12 +6,6 @@ t = 0
 def test(adv, conf, duration=180):
     print('dps,cname,star,ele,wt,att,cond,-,amulet1,amulet2,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-')
 
-    global t
-    if t == 0:
-        t = 1
-    else:
-        errrrrrrrrrr()
-
     ams = slot.a.amulets
     amlen = len(ams)
     for m in range(amlen):
