@@ -6,7 +6,7 @@ def module():
     return Elisanne
 
 class Elisanne(Adv):
-    comment = 'do not use fs & RR+15%buff_time'
+    comment = 'do not use fs & RR+Bellathorna'
     a1 = ('bt',0.25)
 
     conf = {
