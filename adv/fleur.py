@@ -39,6 +39,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s3,s1.charged>=s1.sp and seq=4
         `s1, seq=5
+        `s1, s=2
         `s2, sx=1
         `fs, seq=5
         """
