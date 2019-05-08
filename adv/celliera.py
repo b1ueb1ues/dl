@@ -11,6 +11,7 @@ class Celliera(adv.Adv):
     import slot
     conf = {}
     conf['slots.a'] = slot.a.RR() + slot.a.Jewels_of_the_Sun()
+    #conf['slots.a'] = slot.a.RR() + slot.a.CE()
 
 
 if __name__ == '__main__':
