@@ -5,7 +5,7 @@ def module():
     return Melody
 
 class Melody(adv.Adv):
-    comment = 'RR+15%buff_time & no s2'
+    comment = 'RR+Bellathorna & no s2'
     conf = {}
     a1 = ('cc',0.08,'hp100')
     import slot

@@ -72,7 +72,7 @@ class Albert(Adv):
         if this.paralyze_count > 0:
             if this.s2buff.get():
                 this.paralyze_count -= 1
-                this.dmg_make("o_s1_paralyze",0.803*3)
+                this.dmg_make("o_s2_paralyze",0.803*3)
 
     def s2_proc(this, e):
         this.s2timer.on()
