@@ -1,11 +1,16 @@
 import adv_test
 from adv import *
 from module import energy
+from slot.a import *
 
 def module():
     return Annelie
 
+
 class Annelie(Adv):
+    comment = 'RR+CE & 1121'
+    conf = {}
+    conf['slots.a'] = RR()+CE()
     a1 = ('s',0.35,'hp70')
 
     def pre(this):
@@ -79,6 +84,5 @@ if __name__ == '__main__':
         `s3
         `fs, seq=5 
         """
-    module().comment='do s1s1s2s1 loop'
     adv_test.test(module(), conf, verbose=0)
 

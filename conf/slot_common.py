@@ -26,12 +26,16 @@ def set(slots):
 
     if wt == 'sword':
         slots.a = RR()+FP()
+    if wt == 'blade':
+        slots.a = RR()+CE()
+    if wt == 'dagger':
+        slots.a = RR()+FG()
     if wt == 'axe': 
         #slots.a = RR()+KFM()
         slots.a = KFM()+Flower_in_the_Fray()
+    if wt == 'lance': 
+        slots.a = LC()+Dragon_and_Tamer()
     if wt == 'wand': 
-        slots.a = RR()+FG()
-    if wt == 'dagger':
         slots.a = RR()+FG()
     if wt == 'bow':
         slots.a = RR()+FG()

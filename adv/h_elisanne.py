@@ -1,19 +1,18 @@
 import adv_test
 from adv import *
+from slot.a import *
 
 def module():
     return H_Elisanne
 
 class H_Elisanne(Adv):
+    comment = 'RR+CE & no s2'
     a1 = ('s',0.3)
+    conf = {}
+    conf['slots.a'] = RR()+CE()
 
     def init(this):
         this.stance = 0
-        if this.condition("no s2"):
-            this.conf['acl'] = """
-                `s1, seq=5 and cancel
-                `s3, seq=5 and cancel
-                """
 
     def s1latency(this, e):
         Teambuff("s1_buff",0.1,15).on()
@@ -35,9 +34,13 @@ class H_Elisanne(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    ##conf['acl'] = """
+    ##    `s1, seq=5 and cancel
+    ##    `s2, seq=5 and cancel
+    ##    `s3, seq=5 and cancel
+    ##    """
     conf['acl'] = """
         `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
         `s3, seq=5 and cancel
         """
     adv_test.test(module(), conf, verbose=0)
