@@ -7,7 +7,7 @@ def module():
 
 
 class G_Ranzal(Adv):
-    comment = '2+fs when you do not have s2; s2 when 35%<fs_gauge<65%; 3+fs when you have s2; keep every s1 two bar'
+    comment = 'c3+fs; s1(1) s2 s1(2) s1(2) loop'
 
     a3 = ('s',0.3)
 
@@ -79,22 +79,55 @@ class G_Ranzal(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-        `s2, s=1
-        `fs, cancel and seq=3 and this.fsacharge > 0
-        `fs, cancel and seq=2 and this.fsacharge < 0  
-        """
-        #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
+#    conf['acl'] = """
+#        `s2, fsc
+#        `s1, seq=3 and this.fsacharge=3 
+#        `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000 and fsc
+#        `s1, this.gauges['x'] >=1000 and fsc
+#        `fs, cancel and seq=3 and this.fsacharge > 0
+#        `fs, cancel and seq=3 and this.fsacharge < 0  
+#        """
+#        #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
 
-    conf['acl'] = """
-        # fskeep = 0
-        # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
-        `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-        `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
-        `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
-        `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
-        `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
-        """
+   # conf['acl'] = """
+   #     # fskeep = 0
+   #     # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+   #     `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+   #     `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+   #     `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+   #     `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+   #     `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+   #     """
+    #conf['acl'] = """
+    #    # fskeep = 0
+    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] == 450 and fsc
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] == 650 and fsc
+    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+    #    """
+    if 0 :
+        conf['acl'] = """
+            `s2, fsc and this.gauges['fs'] > 1000
+            `s1, seq=3 and this.fsacharge=3 
+            `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000 and fsc
+            `s1, this.gauges['x'] >=1000 and fsc
+            `fs, cancel and seq=3 and this.fsacharge > 0
+            `fs, cancel and seq=3 and this.fsacharge < 0  
+            """
+            #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
+    else:
+        conf['acl'] = """
+            # fskeep = 0
+            # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+            `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+            `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+            `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+            `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+            `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+            """
     adv_test.test(module(), conf, verbose=0, mass=0)
 
