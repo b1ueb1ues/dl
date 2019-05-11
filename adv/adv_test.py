@@ -60,6 +60,11 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         import module.ra
         module.ra.test(classname, conf, sim_duration)
         return
+    if loglevel == -4 :
+        loglevel = 255
+        import module.racl
+        module.racl.test(classname, conf, sim_duration)
+        return
 
 
     if not no_cond:

@@ -15,9 +15,9 @@ class Alain(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
+        `s1
+        `s2
+        `s3
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)
