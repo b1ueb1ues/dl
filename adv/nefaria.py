@@ -6,9 +6,9 @@ def module():
 
 class Nefaria(adv.Adv):
     def c_init(this):
-        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
-        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
-        this.dmg_make("o_s1hitblind",(1.8444-1.06)*8)
+        this.dmg_make("o_s1hitblind",(1.8444*1.3-1.06)*8)
+        this.dmg_make("o_s1hitblind",(1.8444*1.3-1.06)*8)
+        this.dmg_make("o_s1hitblind",(1.8444*1.3-1.06)*8)
         adv.Selfbuff('blindpunisher',0.3,20,'att','killer').on()
         this.o_init()
 
