@@ -23,7 +23,7 @@ class Lucretia(adv.Adv):
     def c_init(this):
         energy.Energy(this,
                 self={'s1':1,'s2':2} ,
-                team={'s1':1,'s2':2} 
+                team={'s1':1}
                 )
         Event('energized').listener(this.energy_doublebuff)
 
