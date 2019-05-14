@@ -29,6 +29,17 @@ class blade5b3(WeaponBase):
         "recovery" : 2.65   ,
     }
 
+class blade4b2(WeaponBase):
+    ele = ['light', 'water']
+    att = 382
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 9.66   ,
+        "sp"       : 8178   ,
+        "startup"  : 0.1    ,
+        "recovery" : 1.95   ,
+    }
+
 class bladev5flame(WeaponBase):
     ele = ['flame']
     wt = 'blade'

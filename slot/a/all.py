@@ -59,6 +59,8 @@ class Heralds_of_Hinomoto(Amulet):
     att = 64
     a = [('s',0.30),
          ('sp',0.06)]
+HoH = Heralds_of_Hinomoto
+
 
 
 class One_with_the_Shadows(Amulet):
