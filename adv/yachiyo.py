@@ -34,6 +34,9 @@ class Yachiyo(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+    module().comment = 'RR+SS'
+    from slot.a import *
+    conf['slots.a'] = RR()+Stellar_Show()
     conf['acl'] = """
         `fs, this.fsa_charge and seq=5
         `s1
