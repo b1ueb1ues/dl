@@ -9,9 +9,6 @@ class Yachiyo(adv.Adv):
 
     def init(this):
         this.para_last = 0
-        if this.condition('paralysis*3'):
-            this.para_last = 3
-        
         this.fsa_charge = 0
         
 
