@@ -24,6 +24,11 @@ class Energy():
             log('dmg','o_%s_energized'%name,amount*(sd2/sd-1), 'energy boost')
 
 
+    def __call__(this):
+        if this.energized :
+            return 5
+        else:
+            return this.energy
 
     def add_energy(this, name):
         if name in this.energy_self:

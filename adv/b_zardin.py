@@ -14,13 +14,13 @@ class B_Zardin(adv.Adv):
             this.init = this.c_init
 
     def init(this):
-        energy.Energy(this,
+        this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
                 )
 
     def c_init(this):
-        energy.Energy(this,
+        this.energy = energy.Energy(this,
                 self={'s1':1,'s2':2} ,
                 team={}
                 )
@@ -38,14 +38,16 @@ if __name__ == '__main__':
         conf['acl'] = """
             `s1
             """
+            #`s2, seq=5 and this.energy() < 4
     else :
         import slot.w
         module().comment = 'no s2 & HoH+CE & 4t3'
         conf['slots.w'] = slot.w.blade4b2()
         conf['slots.a'] = HoH() + CE()  
         conf['acl'] = """
+            `s3, this.energy() = 5
             `s1
-            `s3, seq=5 and cancel
+            `s2, seq=5 and this.energy() < 4
             """
 
     adv_test.test(module(), conf, verbose=0)

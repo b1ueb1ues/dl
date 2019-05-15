@@ -5,17 +5,23 @@ def module():
     return Yachiyo
 
 class Yachiyo(adv.Adv):
-    comment = 'paralysis 3 times'
+    #comment = 'paralysis 3 times'
 
     def init(this):
-        this.dmg_make("o_s1_paralysis",2.65)
-        this.dmg_make("o_s1_paralysis",2.65)
-        this.dmg_make("o_s1_paralysis",2.65)
-        adv.Buff('a1',0.10,10*3).on()
-        adv.Buff('para killer',0.20,10*3,'att','killer').on()
-
+        this.para_last = 0
+        if this.condition('paralysis*3'):
+            this.para_last = 3
+        
         this.fsa_charge = 0
         
+
+    def s1_before(this, e):
+        if this.para_last >= 0:
+            this.para_last -= 1
+            this.dmg_make("o_s1_paralysis",1.98)
+            adv.Buff('a1',0.15,10).on()
+            adv.Buff('para killer',0.20,13,'att','killer').on()
+            return 8.64*0.86231884 # para only affect the second hit 
 
     def s2_proc(this, e):
         this.fso_dmg = this.conf.fs.dmg
@@ -39,8 +45,8 @@ if __name__ == '__main__':
     conf['slots.a'] = RR()+Stellar_Show()
     conf['acl'] = """
         `fs, this.fsa_charge and seq=5
-        `s1
         `s2
+        `s1
         """
     adv_test.test(module(), conf, verbose=0)
 

@@ -562,6 +562,16 @@ class Adv(object):
         pass
     def dmg_proc(this, name, amount):
         pass
+    def s1_before(this, e):
+        pass
+    def s2_before(this, e):
+        pass
+    def s3_before(this, e):
+        pass
+    def fs_before(this, e):
+        pass
+    def dmg_before(this, name, amount):
+        pass
     def speed(this):
         return 1
     def pre(this):
@@ -1128,6 +1138,7 @@ class Adv(object):
             dtype = name
 
         count = this.dmg_formula(dtype, dmg_coef)
+        this.dmg_before(name, count)
         
         if name[0] == 'x':
             spgain = this.conf[name[:2]+'.sp']
@@ -1150,6 +1161,7 @@ class Adv(object):
     def l_melee_fs(this, e):
         log('fs','succ')
         dmg_coef = this.conf.fs.dmg
+        this.fs_before(e)
         this.dmg_make('fs', dmg_coef)
         this.fs_proc(e)
         this.think_pin('fs')
@@ -1157,6 +1169,7 @@ class Adv(object):
 
     def l_range_fs(this, e):
         log('fs','succ')
+        this.fs_before(e)
         dmg_coef = this.conf['fs.dmg']
         sp_gain = this.conf['fs.sp']
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv']['fs'] )
@@ -1181,6 +1194,10 @@ class Adv(object):
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp, e.name, prev ) )
 
         dmg_coef = this.conf[e.name+'.dmg']
+        func = e.name + '_before'
+        tmp = getattr(this, func)(e)
+        if tmp:
+            dmg_coef = tmp
         if dmg_coef :
             this.dmg_make(e.name , dmg_coef)
 
