@@ -109,7 +109,7 @@ if __name__ == '__main__':
     #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
     #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
     #    """
-    if 0 :
+    if 1 :
         conf['acl'] = """
             `s2, fsc and this.gauges['fs'] > 1000
             `s1, seq=3 and this.fsacharge=3 

@@ -33,6 +33,7 @@ if __name__ == '__main__':
         `s3, fsc
         """
 
+
     from slot.a import *
     conf['slots.a'] = The_Shining_Overlord() + First_Rate_Hospitality()
     #conf['slots.a'] = VC() + First_Rate_Hospitality()
