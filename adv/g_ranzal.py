@@ -74,7 +74,6 @@ class G_Ranzal(Adv):
         if boost == 2:
             this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.8)
         this.ifs1ins2 = 1
-        Event('defchain')()
 
 
     def s2_proc(this, e):
@@ -84,6 +83,8 @@ class G_Ranzal(Adv):
         Event('defchain')()
 
 
+    def s3_proc(this, e):
+        Event('defchain')()
 
 
 if __name__ == '__main__':

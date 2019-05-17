@@ -7,7 +7,7 @@ def module():
     return Addis
 
 class Addis(Adv):
-    comment = '2*s1 in one s2 (pretty easy since his s1 animation can stop s2timer after last patch)'
+    comment = '2in1'
     a3 = ('bk',0.20)
 
     def getbleedpunisher(this):
