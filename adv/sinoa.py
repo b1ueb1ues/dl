@@ -6,6 +6,8 @@ def module():
     return Sinoa
 
 class Sinoa(adv.Adv):
+    comment = '5c+fs; RR+FoG'
+
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)
    # conf = {}
@@ -26,9 +28,9 @@ class Sinoa(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = '''
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1
+        `s2
+        `fs, seq=5
         '''
     adv_test.test(module(), conf, verbose=-2, mass=1)
 

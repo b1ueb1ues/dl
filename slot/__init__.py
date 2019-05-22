@@ -72,13 +72,13 @@ class WeaponBase(Slot):
         if this.onele :
             this.att *= 1.5
             this.conf.s3 = Conf(this.s3)
-        elif this.ele == 'all' :
+        elif 'all' in this.ele :
             this.conf.s3 = Conf(this.s3)
         
         if not this.onwt :
             print('Weapon can\'t equip')
             errrrrrrrrrrrrr()
-        if not this.onele:
+        if not this.onele and 'all' not in this.ele :
             print('!!!!!!!!!!\nwarning: weapon not onele')
             print(this.ele, c.ele)
             print('!!!!!!!!!!!\n')

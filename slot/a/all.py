@@ -60,6 +60,7 @@ class Heralds_of_Hinomoto(Amulet):
     a = [('s',0.30),
          ('sp',0.06)]
 HoH = Heralds_of_Hinomoto
+HH = Heralds_of_Hinomoto
 
 
 

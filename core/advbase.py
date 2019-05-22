@@ -660,6 +660,8 @@ class Adv(object):
         #tmpconf += conf
         tmpconf(this.conf_init)
 
+        tmpconf.slots(tmpconf.slot)
+
         this.slots.c.att = tmpconf.c.att
         this.slots.c.wt = tmpconf.c.wt
         this.slots.c.stars = tmpconf.c.stars
