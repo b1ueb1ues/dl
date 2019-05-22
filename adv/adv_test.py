@@ -251,11 +251,11 @@ def sum_mass_dmg(rs):
         team_buff += i['buff_sum'] / sim_times
         team_energy += i['energy_sum']  / sim_times
         
-        case = 0
-        case += i['dmg_sum']['total'] / sim_duration
-        case += i['buff_sum'] * team_dps
-        case += i['energy_sum'] * energy_efficiency
-        print case
+        #case = 0
+        #case += i['dmg_sum']['total'] / sim_duration
+        #case += i['buff_sum'] * team_dps
+        #case += i['energy_sum'] * energy_efficiency
+        #print case
 
     r = {}
     r['dmg_sum'] = dmg_sum 

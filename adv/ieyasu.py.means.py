@@ -26,10 +26,18 @@ class Ieyasu(ieyasu.Ieyasu):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5
-        """
+
+    if 1:
+        conf['acl'] = """
+            `s1, this.bleed._static['stacks'] < 3
+            `s2, this.bleed._static['stacks'] > 0
+            `s3
+            """
+    else:
+        conf['acl'] = """
+            `s1
+            `s2, this.bleed._static['stacks'] > 0
+            `s3
+            """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

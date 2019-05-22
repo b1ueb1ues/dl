@@ -13,6 +13,13 @@ class RR(Amulet):
 class CE(Amulet): 
     att = 57
     a = [('a',0.13,'hp70')]
+
+class Bonds_Between_Worlds(Amulet):
+    att = 54
+    a = [('a',0.13,'hp70'),
+         ('prep',25)]
+
+Bonds = Bonds_Between_Worlds
     
 
 
@@ -20,6 +27,7 @@ class LC(Amulet):
     att = 64
     a = [('cd',0.15),
          ('cc',0.10,'hp70')]
+
 
 class VC(Amulet):
     att = 65
@@ -61,6 +69,7 @@ class Heralds_of_Hinomoto(Amulet):
          ('sp',0.06)]
 HoH = Heralds_of_Hinomoto
 HH = Heralds_of_Hinomoto
+
 
 
 

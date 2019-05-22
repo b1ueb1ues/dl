@@ -34,7 +34,8 @@ def set(slots):
         #slots.a = RR()+KFM()
         slots.a = KFM()+Flower_in_the_Fray()
     if wt == 'lance': 
-        slots.a = LC()+Dragon_and_Tamer()
+        slots.a = RR()+CE()
+        #slots.a = LC()+Dragon_and_Tamer()
     if wt == 'wand': 
         slots.a = RR()+FG()
     if wt == 'bow':

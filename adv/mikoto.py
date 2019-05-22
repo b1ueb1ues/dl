@@ -71,12 +71,6 @@ if __name__ == '__main__':
         `s3, seq=5 and cancel or fsc
         """
 
-    conf['acl'] = """
-        `s1
-        `s3
-        `s2
-        `fs, seq=3
-        """
 
     #from module import ra
     #ra.test(module(), conf)
