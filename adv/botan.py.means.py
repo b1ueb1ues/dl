@@ -17,10 +17,13 @@ class Botan(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    from slot.a import *
+    conf['slots.a'] = Jewels_of_the_Sun() + RR()
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1
+        `s2
+        `s3
+        `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2,mass=1)
 
