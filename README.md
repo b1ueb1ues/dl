@@ -4,7 +4,15 @@
 
 
 ## Running
-python adv/[someone].py [loglevel(-1,0,1,2)]
+python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)]
+
+loglevel:
+- -4:  generate a acl recursive result
+- -3:  generate a WP set recursive result
+- -2:  generate a comma seperate result for www use
+- -1:  generate a single line result
+- 1:  generate a verbose log
+- 2:  generate a verbose verbose log
 
 python adv/mikoto.py
 

@@ -6,7 +6,7 @@ def module():
     return Fjorm
 
 class Fjorm(Adv):
-    comment = 'do not calc damage counter'
+    comment = 'do not calc damage counter; DnT+LC'
     a3 = ('prep', 100)
 
     def init(this):
@@ -14,11 +14,12 @@ class Fjorm(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.a'] = Dragon_and_Tamer()+LC()
     conf['acl'] = """
         `s1
         `s2
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 
 
