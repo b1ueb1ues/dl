@@ -45,10 +45,10 @@ if __name__ == '__main__':
 
     if 1:
         conf['acl'] = """
-            # e = this.energy.energized
-            `s1, seq=5 and cancel and not e
-            `s2, seq=5 and cancel and not e
-            `s3, seq=5 and cancel and e or ( s=1 and e )
+            # e = this.energy()
+            `s1, seq=5 and cancel and not e>=5
+            `s2, seq=5 and cancel and not e>=5
+            `s3, seq=5 and cancel and e>=5 or ( s=1 and e>=5 )
             """
 
     adv_test.test(module(), conf, verbose=0)
