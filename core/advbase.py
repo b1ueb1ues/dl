@@ -1082,20 +1082,28 @@ class Adv(object):
         #if doing.name[0] == 's': 
         #   no_deed_to_do_anythin
 
+
+    def ceiling(this, a):
+        b = int(a)
+        if b == a:
+            return b
+        else:
+            return b + 1
+
     def charge_p(this, name, sp):
         if type(sp) == str and sp[-1] == '%':
             percent = int(sp[:-1])
-            this.s1.charge(this.conf.s1.sp*percent/100)
-            this.s2.charge(this.conf.s2.sp*percent/100)
-            this.s3.charge(this.conf.s3.sp*percent/100)
+            this.s1.charge(this.ceiling(this.conf.s1.sp*percent/100))
+            this.s2.charge(this.ceiling(this.conf.s2.sp*percent/100))
+            this.s3.charge(this.ceiling(this.conf.s3.sp*percent/100))
             log('sp', name, '%d%%   '%percent,'%d/%d, %d/%d, %d/%d'%(\
                 this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
             this.think_pin('prep')
             return
 
-
     def charge(this, name, sp): 
         sp = sp * this.sp_mod(name)
+        sp = this.ceiling(sp)
         this.s1.charge(sp)
         this.s2.charge(sp)
         this.s3.charge(sp)
