@@ -5,11 +5,12 @@ def module():
     return Ezelith
 
 class Ezelith(Adv):
+    comment = 'Flurry Debilitator won\'t work in the game'
     a3 = ('bk',0.3)
 
-    def pre(this):
-        if this.condition('hp70'):
-            this.s2chance += 0.2
+   # def pre(this):
+   #     if this.condition('hp70'):
+   #         this.s2chance += 0.2
 
     s2chance = 0.15
     def init(this):
