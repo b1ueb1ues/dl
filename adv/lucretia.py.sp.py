@@ -14,14 +14,19 @@ class Lucretia(adv.Adv):
             this.init = this.c_init
 
     def init(this):
-        energy.Energy(this,
+        this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
                 )
+        this.conf['acl'] = """
+            `s1, seq=5 and cancel
+            `s2, seq=5 and cancel
+            `s3 
+            """
         Event('energized').listener(this.energy_doublebuff)
 
     def c_init(this):
-        energy.Energy(this,
+        this.energy = energy.Energy(this,
                 self={'s1':1,'s2':2} ,
                 team={'s1':1}
                 )
@@ -32,22 +37,18 @@ class Lucretia(adv.Adv):
 
 
 
+from slot.a import *
 if __name__ == '__main__':
+
     conf = {}
-    conf['acl'] = """
-        `s2, seq=5 and cancel
-        `s3, sx=2 
-        `s1, sx=3
-        `s1, seq=5 and cancel
-        """
-    from slot.a import *
     conf['slots.a'] = HH() + Jewels_of_the_Sun()
 
     if 1:
         conf['acl'] = """
-            `s1, seq=5 and cancel
-            `s2, seq=5 and cancel
-            `s3, seq=5 and cancel
+            # e = this.energy()
+            `s1, seq=5 and cancel and not e>=5
+            `s2, seq=5 and cancel and not e>=5
+            `s3, seq=5 and cancel and e>=5 or ( s=1 and e>=5 )
             """
 
     adv_test.test(module(), conf, verbose=0)

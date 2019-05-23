@@ -77,7 +77,7 @@ if __name__ == '__main__':
    # adv_test.test(module(), conf, verbose=0)
 
     conf['acl'] = """
-        # e = this.energy.energized
+        # e = this.energy()
         `s1, s2.charged<=10000
         `s1, s=2
         `s2
