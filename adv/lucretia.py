@@ -32,8 +32,10 @@ class Lucretia(adv.Adv):
 
 
 
+from slot.a import *
 if __name__ == '__main__':
     conf = {}
+    #conf['slot.a'] = RR()+CE()
     conf['acl'] = """
         `s2, seq=5 and cancel
         `s3, sx=2 
