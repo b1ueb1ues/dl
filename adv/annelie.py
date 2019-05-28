@@ -68,10 +68,10 @@ if __name__ == '__main__':
    # adv_test.test(module(), conf, verbose=0)
 
    # conf['acl'] = """
-   #     # e = this.energy.energized
-   #     `s3, e
-   #     `s1, seq=5 and not e
-   #     `s2, seq=5 and not e
+   #     #e = this.energy()
+   #     `s3, e>=5
+   #     `s1, seq=5 and not e>=5
+   #     `s2, seq=5 and not e>=5
    #     `fs, seq=5 
    #     """
    # adv_test.test(module(), conf, verbose=0)

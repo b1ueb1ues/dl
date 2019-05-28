@@ -1,5 +1,3 @@
-# I have changed all the png to jpg for less storage uses, developers need to rebase or clone again. 
-
 # dragalia lost sim and analysis
 
 
@@ -14,9 +12,12 @@ loglevel:
 - 1:  generate a verbose log
 - 2:  generate a verbose verbose log
 
-python adv/mikoto.py
-
-python adv/maribelle.py 1
+- python adv/mikoto.py
+show basic result of Mikoto's simulation
+- python adv/maribelle.py 1
+show result and combo loop of Maribelle
+- python adv/xander.py -3 > xander\_wp\_set.csv 
+then you can use excel to open that csv and sort the result by dps to choose the best WP set.
 
 ...
 
@@ -28,6 +29,8 @@ python adv/maribelle.py 1
 - module: Contains bleed now.
 - framedata: Pictures that have frames number in it. Source of data in adventures and weapons config.
 - mechanics: The study of DL's mechanics, Lots of test data, formula,  (Warning: lots of Chinese inside)
+- slot: defination of weapons, amulets(wrymprints), dragons.
+- abilities: defination abilities.
 
 ## Acl syntax
 ```
@@ -60,8 +63,10 @@ skill2
 weapon skill
 - fs  
 forse strike
+- fsf 
+forse strike(failed)
 - dodge  
-(comming soon)
+dodge
 
 
 #### build-in condition
@@ -87,6 +92,10 @@ Right after s2 proc (the moment as soon as possible you can cast next skill)
 Right after s3 proc. If you are doing normal attack, wait for the cancel timing.  
 that is useful for skill shorter than 1.9s. In that case, even if the skill end, you cannot find you skill button in the sreen but can only tap attack to wait the button comeback.  
 PS: auto controled unit don't have that limit
+- now()<10  
+the simulation time less than 10 seconds.
+- pin='prep'
+after skill prep (happened at sim start for those who have a skill prep)
 
 # Adventurer ability information
 
@@ -117,7 +126,7 @@ many of them:
 - pin - the moment when think() been called
 - cb - callback
 - spd - speed
-- acl - access control list (not really, just a DSL for specifying adventurer behavior)
+- acl - access control list (not really, just a DSL for specifying adventurer behavior, like apl in wow simc)
 - dmg - damage
 - wt - weapon type
 - slots.c - character
@@ -135,16 +144,16 @@ many of them:
 
 # Adventurer stats
 
-Adventurer stats are stored in `conf/adv_data.csv` and read into the
+Adventurer stats are stored in `conf/adv\_data.csv` and read into the
 `Conf` object (`conf/csv2conf.py`).  All skill damage assumes full
 upgrades.
 
-- `sX_hitdmg` how much percent damage skill X hits for (not used yet)
-- `sX_hits` how many hits the skill does (not used yet)
-- `sX_sp` SP cost of the skills
-- `sX_dmgpc` this is most likely just `sX_hitdmg * sX_hits`, but this is the real column we use, 
+- `sX\_hitdmg` how much percent damage skill X hits for (not used yet)
+- `sX\_hits` how many hits the skill does (not used yet)
+- `sX\_sp` SP cost of the skills
+- `sX\_dmgpc` this is most likely just `sX\_hitdmg * sX\_hits`, but this is the real column we use, 
    since there is some skill that deals 3 hits of 255% and 1 hit of 319% veronica for example.)
-- `sX_buff` describes what buff the skill gives.  Buff is described
+- `sX\_buff` describes what buff the skill gives.  Buff is described
   as semicolon separated list:
   - Target of the buff ('team', 'self', 'debuff'); this can e
     omitted in which case you get an ordinary 'Buff'

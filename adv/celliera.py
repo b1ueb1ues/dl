@@ -48,7 +48,15 @@ if __name__ == '__main__':
         adv_test.test(module(), conf, verbose=0)
         exit()
 
+
     conf['acl'] = acl21
+    #conf['acl'] = """
+    #    `s2, s1.charged>=s1.sp-260 and seq=5
+    #    `s1, s2.charged<s2.sp
+    #    `s3, not this.s2buff.get()
+    #    `fs, this.s2buff.get() and seq=5
+    #    """
+
     adv_test.test(module(), conf, verbose=0)
 
 
