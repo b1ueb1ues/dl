@@ -6,14 +6,17 @@ def module():
     return G_Mym
 
 class G_Mym(Adv):
-    comment = ''
+    comment = 'RR+Jewels; get a1 boost half way'
 
     conf = {}
+    conf['slot.a'] = RR()+Jewels_of_the_Sun()
 
     def init(this):
         this.dp = 0
         this.truemumu = 0
-        this.dragon()
+        timing = adv_test.sim_duration/2
+        Timer(this.dragon).on(timing)
+        #this.dragon(0)
 
     def s1_proc(this, e):
         this.dp += 5
@@ -23,12 +26,12 @@ class G_Mym(Adv):
 
     def s2_proc(this, e):
         if this.truemumu :
-            this.dmg_make('s2_boost', 4.16)
+            this.dmg_make('o_s2_boost', 4.16)
 
-    def dragon(this):
+    def dragon(this, t):
         if not this.truemumu:
             pass
-            this.truemym = 1
+            this.truemumu = 1
             Buff('a1',0.15,-1).on()
         else:
             pass
