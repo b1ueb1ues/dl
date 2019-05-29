@@ -135,6 +135,7 @@ class Timer(object):
 
     def on(this, timeout = None):
         if timeout:
+            this.timeout = timeout
             this.timing = _g_now + timeout
         else:
             this.timing = _g_now + this.timeout

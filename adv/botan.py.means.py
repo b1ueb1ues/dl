@@ -11,8 +11,7 @@ class Botan(Adv):
         this.bleed = mBleed("g_bleed",0).reset()
 
     def s1_proc(this, e):
-        if random.random() < 0.8:
-            mBleed("s1_bleed", 1.32).on()
+        mBleed("s1_bleed", 1.32).on()
 
 
 if __name__ == '__main__':

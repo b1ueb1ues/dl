@@ -40,7 +40,7 @@ conf.update( {
         "fs.startup"     : 42/60.0  ,
         "fs.recovery"    : 81/60.0  ,
 
-        "dodge_recovery" : 43/60.0  ,
+        "dodge.recovery" : 43/60.0  ,
 
         "missile_iv"  : {
             "fs" : 0.7/2 ,
