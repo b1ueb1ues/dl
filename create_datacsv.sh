@@ -102,5 +102,6 @@ python adv/fjorm.py -2      $1 | tee -a www/$1/data.csv
 python adv/b_zardin.py -2   $1 | tee -a www/$1/data.csv
 python adv/norwin.py -2     $1 | tee -a www/$1/data.csv
 python adv/yachiyo.py -2    $1 | tee -a www/$1/data.csv
+python adv/g_mym.py -2      $1 | tee -a www/$1/data.csv
 
 
