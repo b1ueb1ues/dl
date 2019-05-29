@@ -20,9 +20,9 @@ class G_Mym(Adv):
         this.d1 = Action('d1')
         this.d2 = Action('d2')
         this.d1.conf.startup = 1.8
-        this.d1.conf.recovery = 10
+        this.d1.conf.recovery = 10+2.5
         this.d2.conf.startup = 1.8
-        this.d2.conf.recovery = 10
+        this.d2.conf.recovery = 10+2.1
 
         Event('d1').listener(this.l_d1)
         Event('d2').listener(this.l_d2)
