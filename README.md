@@ -13,10 +13,15 @@ loglevel:
 - 2:  generate a verbose verbose log
 
 - python adv/mikoto.py
+
 show basic result of Mikoto's simulation
+
 - python adv/maribelle.py 1
+
 show result and combo loop of Maribelle
+
 - python adv/xander.py -3 > xander\_wp\_set.csv 
+
 then you can use excel to open that csv and sort the result by dps to choose the best WP set.
 
 ...

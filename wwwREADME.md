@@ -7,7 +7,7 @@
 ## skill frame
 [github/b1ueb1ues](https://github.com/b1ueb1ues/dl/tree/master/framedata/skills)
 
-
+## dps numbers indicate the neutral element damage. ( x1.5 for on-ele )
 
 ## stat
 - Level 80, circle node(50/50) adventurer.
