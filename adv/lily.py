@@ -1,10 +1,15 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Lily
 
 class Lily(adv.Adv):
+    comment = 'RR+LC(RR+EoL>RR+LC>RR+CE at hp100'
+    comment += ';RR+LC=RR+CE at hp70)'
+    conf = {}
+    conf['slot.a'] = RR()+LC()
     a1 = ('a',0.15,'hp100')
     a3 = ('prep','100%')
 
