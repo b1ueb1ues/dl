@@ -11,6 +11,10 @@ class G_Mym(Adv):
     conf = {}
     conf['slot.a'] = RR()+Jewels_of_the_Sun()
     #conf['slot.a'] = RR()+Worthy_Rivals()
+    #import slot
+    #conf['slots.d'] = slot.d.flame.Sakuya()
+
+
 
     def init(this):
         this.dp = 0

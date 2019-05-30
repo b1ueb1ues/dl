@@ -8,6 +8,7 @@ def module():
 
 class G_Mym(Adv):
 
+
     def init(this):
 
         this.dragonboost = 1.4 # max 龙哭
@@ -90,6 +91,9 @@ if __name__ == '__main__':
 
     module().comment = 'RR+CE; hold skill after c5; get 10% dp from enemy every 18s;'
     conf['slot.a'] = RR()+CE()
+#    import slot
+#    conf['slots.d'] = slot.d.flame.Sakuya()
+
     conf['acl'] = """
         `this.dragon
         `s1, seq=5

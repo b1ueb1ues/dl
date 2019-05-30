@@ -6,6 +6,7 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.Adv):
+    comment = 'Sakuya'
     a3 = ('bt',0.3)
 
     def init(this):
@@ -67,5 +68,8 @@ if __name__ == '__main__':
         `s1
         `s2
         """
-    adv_test.test(module(), conf, verbose=0)
+    import slot
+    conf['slots.d'] = slot.d.flame.Sakuya()
+
+    adv_test.test(module(), conf, verbose=-2)
 
