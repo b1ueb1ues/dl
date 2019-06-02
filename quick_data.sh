@@ -1,4 +1,4 @@
 #!/bin/bash
-./create_datacsv.sh
-./create_datacsv.sh 60
-./create_datacsv.sh 90
+./chara_quick.sh
+./chara_quick.sh 60
+./chara_quick.sh 90
