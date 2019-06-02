@@ -17,11 +17,10 @@ class Xuanzang(Adv):
 
     def s1_proc(this, e):
         if this.mod('def')!= 1:
-            this.dmg_make('o_s1_boost',2.51*3*0.2)
+            this.dmg_make('o_s1_boost',2.51*3*0.2*0.91)
 
     def s2_proc(this, e):
-        if random.random() < 0.7:
-            Debuff('s2_defdown',0.1,20).on()
+        Debuff('s2_defdown',0.1,20,0.7).on()
 
 
 
@@ -35,5 +34,5 @@ if __name__ == '__main__':
         `s3
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=0, mass=1)
+    adv_test.test(module(), conf, verbose=0, mass=0)
 
