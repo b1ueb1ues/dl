@@ -8,8 +8,8 @@ def module():
 
 class Cibella(Adv):
     conf = {}
-    conf['slots.a'] = RR() + Saintly_Delivery()
-    comment = 'reach 100 resist with Saintly Delivery'
+    #conf['slots.a'] = RR() + Saintly_Delivery()
+    #comment = 'reach 100 resist with Saintly Delivery'
 
 
 if __name__ == '__main__':

@@ -7,9 +7,8 @@ def module():
 
 class Joe(adv.Adv):
     conf = {}
-    comment = 'reach 100 resist with Saintly Delivery'
-
-    conf['slots.a'] = Saintly_Delivery()+RR()
+    #comment = 'reach 100 resist with Saintly Delivery'
+    #conf['slots.a'] = Saintly_Delivery()+RR()
     
 
     def init(this):

@@ -2,6 +2,8 @@ import adv_test
 import adv
 import veronica
 import slot.a
+from slot import *
+
 
 def module():
     return Veronica
@@ -11,6 +13,7 @@ class Veronica(veronica.Veronica):
     a3 = ('prep','100%')
     conf = {}
     conf['slots.a'] = slot.a.FG() + slot.a.Heralds_of_Hinomoto()
+
     def pre(this):
         if this.condition('hp1'):
             this.s1boost = 1.25

@@ -9,12 +9,6 @@ def module():
 class Xuanzang(Adv):
     a3 = ('cc',0.06,'hp70')
 
-    #conf = {
-    #        'slots.a': RR()+Saintly_Delivery()
-    #    }
-    def init(this):
-        random.seed()
-
     def s1_proc(this, e):
         if this.mod('def')!= 1:
             this.dmg_make('o_s1_boost',2.51*3*0.2*0.91)

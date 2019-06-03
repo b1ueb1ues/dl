@@ -7,11 +7,10 @@ def module():
 
 class Erik(adv.Adv):
     comment ='do not use weapon skill'
-
     a1 = ('fs',0.30)
-    comment += '& reach 100 resist with Silke Lends a Hand'
 
-    conf = {'slots.a': RR()+Silke_Lends_a_Hand()}
+    #comment += '& reach 100 resist with Silke Lends a Hand'
+    #conf = {'slots.a': RR()+Silke_Lends_a_Hand()}
 
 
 

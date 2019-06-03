@@ -29,7 +29,6 @@
 - Equiped MUB level100 "Kung Fu Masters"+ MUB level80 "Flower in the Fray" for axe user.
 - Equiped MUB level100 "Crystalian Envoy" for lancer.
 - Equiped MUB level100 "Flash of Genius" for wand/bow/dagger characters.
-- Equiped MUB resist WP for 3\* character who can reach 100 resist of stun & blind
 
 
 ## commen combo chain the simulation use:
