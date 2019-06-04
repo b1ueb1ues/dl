@@ -12,9 +12,9 @@ class Ezelith(Adv):
    #     if this.condition('hp70'):
    #         this.s2chance += 0.2
 
-    s2chance = 0.15
     def init(this):
         random.seed()
+        this.s2chance = 0.15
         this.s2buff = Selfbuff("s2",0.15, 15)
 
     def s2_proc(this, e):
@@ -38,5 +38,5 @@ if __name__ == '__main__':
         `fs, seq=5
         """
 
-    adv_test.test(module(), conf, mass=1)
+    adv_test.test(module(), conf, mass=1, verbose=-2)
 
