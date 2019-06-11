@@ -2,16 +2,17 @@ import adv_test
 from adv import *
 from module.fsalt import *
 from slot.a import *
+from core.timeline import *
 
 def module():
     return G_Ranzal
 
 
 class G_Ranzal(Adv):
-    comment = "split 3 alt fs into 2 s1"
+    comment = "3FS & first S1 with 1 bar"
 
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord() + First_Rate_Hospitality()
+    conf['slots.a'] = VC() + First_Rate_Hospitality()
 
     a3 = ('s',0.3)
 
@@ -35,6 +36,8 @@ class G_Ranzal(Adv):
                 "x3fs.recovery":45/60.0,
                 })
         fs_alt_init(this, this.fsaconf)
+
+        this.now = core.timeline.now
 
     def dmg_proc(this, name, amount):
         if name == 'x1':
@@ -137,16 +140,23 @@ if __name__ == '__main__':
     #    `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
     #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
     #    """
+    # conf['acl'] = """
+    #     # fskeep = 0
+    #     # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+    #     `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+    #     `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+    #     `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+    #     `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+    #     `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+    #     `s3, fsc
+    #     """
+
     conf['acl'] = """
-        # fskeep = 0
-        # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+        `s1, this.gauges['x'] >=1000 and this.now()<10
         `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-        `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
-        `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
-        `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
-        `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+        `s2, fsc
+        `fs, cancel and seq=3 
         `s3, fsc
         """
 
     adv_test.test(module(), conf, verbose=0, mass=0)
-
