@@ -9,7 +9,7 @@ def module():
     return Veronica
 
 class Veronica(veronica.Veronica):
-    comment = '1hp; only c5 & s1; FoG+HoH'
+    comment = '1hp; only c5 & s1;'
     a3 = ('prep','100%')
     conf = {}
     conf['slots.a'] = slot.a.FG() + slot.a.Heralds_of_Hinomoto()

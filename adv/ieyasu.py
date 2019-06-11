@@ -6,7 +6,7 @@ def module():
     return Ieyasu
 
 class Ieyasu(Adv):
-    comment = 'RR+Jewels'
+    #comment = 'RR+Jewels'
     a1 = ('cc',0.1,'hp70')
     a2 = ('cd',0.2)
     import slot

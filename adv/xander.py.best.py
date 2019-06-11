@@ -12,7 +12,7 @@ class Together_We_Stand(Amulet):
 
 
 class Xander_best(Xander):
-    comment = 'together we stand & 10 stacks striker\'s strength'
+    comment = '10 stacks striker\'s strength'
     name = 'Xander'
     a1 = ('sts',0.06)
     conf = {}
@@ -39,7 +39,7 @@ if __name__ == '__main__':
         return
     module().a1 = None
     module().s1_proc = foo
-    module().comment = 'only 2+1 with StellarShow & LC'
+    module().comment = 'only 2+1'
     conf['slots.a'] = Stellar_Show()+LC()
     conf['acl'] = """
         `fs, seq=2 and cancel

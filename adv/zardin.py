@@ -6,7 +6,7 @@ def module():
     return Zardin
 
 class Zardin(adv.Adv):
-    comment = 'Stellar_Show+RR'
+#    comment = 'Stellar_Show+RR'
     a1 = ('a',0.10,'hp100')
     conf = {}
 

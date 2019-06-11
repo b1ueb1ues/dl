@@ -33,7 +33,7 @@ if __name__ == '__main__':
     from slot.a import *
 
     if 1:
-        module().comment = 'no s2 & RR+Jewels'
+        module().comment = 'no s2'
         conf['slots.a'] = RR()+Jewels_of_the_Sun()
         conf['acl'] = """
             `s1
@@ -41,7 +41,7 @@ if __name__ == '__main__':
             #`s2, seq=5 and this.energy() < 4
     else :
         import slot.w
-        module().comment = 'no s2 & HoH+CE & 4t3'
+        module().comment = 'no s2 & 4t3'
         conf['slots.w'] = slot.w.blade4b2()
         conf['slots.a'] = HoH() + CE()  
         conf['acl'] = """

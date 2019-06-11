@@ -34,9 +34,10 @@ class VC(Amulet):
     a = [('s',0.30),
          ('bc',0.10)]
 
-class FG(Amulet): # Flash of Genius
+class FoG(Amulet): # Flash of Genius
     att = 57
     a = [('a',0.20,'hit15')]
+FG = FoG
 
 class FP(Amulet):
     att = 52
@@ -62,6 +63,7 @@ class Jewels_of_the_Sun(Amulet):
     att = 64
     a = [('sp',0.08),
          ('a',0.10,'hp70')]
+JotS = Jewels_of_the_Sun
 
 class Heralds_of_Hinomoto(Amulet): 
     att = 64

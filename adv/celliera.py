@@ -6,7 +6,7 @@ def module():
     return Celliera
 
 class Celliera(adv.Adv):
-    comment = 'RR+jewels_of_the_sun'
+#    comment = 'RR+jewels_of_the_sun'
     a3 = ('a',0.08,'hp70')
     import slot
     conf = {}

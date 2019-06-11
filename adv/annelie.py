@@ -8,7 +8,7 @@ def module():
 
 
 class Annelie(Adv):
-    comment = 'RR+CE & 1121'
+    comment = '1121'
     conf = {}
     conf['slots.a'] = RR()+CE()
     a1 = ('s',0.35,'hp70')
@@ -38,6 +38,11 @@ class Annelie(Adv):
                 self={},
                 team={}
                 )
+
+  #  def debug(this):
+  #      print this.slots.a.__class__.__name__
+  #      print this.slots.a.a2.__class__.__name__
+
 
     def energy_doublebuff(this, e):
         Selfbuff("double_buff", 0.2, 15).on()

@@ -6,7 +6,7 @@ def module():
     return H_Elisanne
 
 class H_Elisanne(Adv):
-    comment = 'RR+CE'
+#    comment = 'RR+CE'
     a1 = ('s',0.3)
     conf = {}
     conf['slots.a'] = RR()+CE()

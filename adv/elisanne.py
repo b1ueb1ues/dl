@@ -6,7 +6,7 @@ def module():
     return Elisanne
 
 class Elisanne(Adv):
-    comment = 'RR+Bellathorna'
+#    comment = 'RR+Bellathorna'
     a1 = ('bt',0.25)
 
     conf = {

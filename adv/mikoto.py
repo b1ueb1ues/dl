@@ -5,7 +5,7 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
-    comment = 'RR+LC'
+#    comment = 'RR+LC'
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
     import slot

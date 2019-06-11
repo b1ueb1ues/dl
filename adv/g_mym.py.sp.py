@@ -89,7 +89,7 @@ if __name__ == '__main__':
 #        `fs, seq=5
 #        """
 
-    module().comment = 'RR+CE; hold skill after c5; get 10% dp from enemy every 18s;'
+    module().comment = 'hold skill after c5; get 10% dp from enemy every 18s;'
     conf['slot.a'] = RR()+CE()
 #    import slot
 #    conf['slots.d'] = slot.d.flame.Sakuya()

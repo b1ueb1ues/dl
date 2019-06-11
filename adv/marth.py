@@ -6,6 +6,7 @@ def module():
     return Marth
 
 class Marth(adv.Adv):
+    comment = ''
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')
 

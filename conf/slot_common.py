@@ -37,9 +37,9 @@ def set(slots):
         slots.a = RR()+CE()
         #slots.a = LC()+Dragon_and_Tamer()
     if wt == 'wand': 
-        slots.a = RR()+FG()
+        slots.a = RR()+FoG()
     if wt == 'bow':
-        slots.a = RR()+FG()
+        slots.a = RR()+FoG()
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)

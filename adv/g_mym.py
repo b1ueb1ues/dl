@@ -6,7 +6,7 @@ def module():
     return G_Mym
 
 class G_Mym(Adv):
-    comment = 'RR+Jewels; get a1 boost half way; no dragon(see special page with dragon)'
+    comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
     conf['slot.a'] = RR()+Jewels_of_the_Sun()

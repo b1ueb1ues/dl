@@ -6,7 +6,7 @@ def module():
     return Fjorm
 
 class Fjorm(Adv):
-    comment = 'do not calc damage counter; DnT+LC'
+    comment = 'do not calc damage counter'
     a3 = ('prep', 100)
 
     def init(this):

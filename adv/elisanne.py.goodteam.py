@@ -7,11 +7,11 @@ def module():
     return Elisanne
 
 class Elisanne(Adv):
-    comment = 'RR+Bellathorna; 5000 team dps; no s2'
+    comment = '5000 team dps; no s2'
     a1 = ('bt',0.25)
 
     conf = {
-            'slots.a': RR() + Bellathorna()
+            'slots.a': CE() + Bellathorna()
             }
 
 

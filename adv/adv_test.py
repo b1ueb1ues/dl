@@ -75,6 +75,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     comment = adv.comment
 
     adv.run(sim_duration)
+    amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
+    comment = amulets + comment
 
     if not no_cond:
         condition = adv.m_condition.p()

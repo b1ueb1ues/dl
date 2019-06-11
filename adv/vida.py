@@ -5,7 +5,7 @@ def module():
     return Vida
 
 class Vida(Adv):
-    comment = 'unsuitable resist'
+#    comment = 'unsuitable resist'
     a1 = ('fs',0.30)
 
     def init(this):

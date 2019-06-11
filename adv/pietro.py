@@ -6,7 +6,7 @@ def module():
 
 class Pietro(adv.Adv):
     a1 = ('cd',0.13)
-    comment = 'unsuitable resist'
+#    comment = 'unsuitable resist'
 
 if __name__ == '__main__':
     conf = {}

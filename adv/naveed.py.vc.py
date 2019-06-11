@@ -17,7 +17,7 @@ class Naveed(naveed.Naveed):
 
 if __name__ == '__main__':
     conf = {}
-    Naveed.comment = 'VC + RR'
+#    Naveed.comment = 'VC + RR'
     conf['acl'] = """
         `s1, sp
         `s2, sp

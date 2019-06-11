@@ -20,7 +20,7 @@ class Louise(louise.Louise):
 
 
 if __name__ == '__main__':
-    module().comment = 'poison 3 times & no fs & VC+RR+g_ranzal+lowen'
+    module().comment = 'poison 3 times & no fs & g_ranzal+lowen'
     conf = {}
     conf['acl'] = """
         `s1, seq=5

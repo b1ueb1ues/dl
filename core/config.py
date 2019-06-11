@@ -107,9 +107,11 @@ class Conf(lobject):
                 ret[k] = v.__todict_withname()
             elif type(v) == dict:
                 ret[k] = ('__realdict',v)
-            elif type(v) == type(this.__foo):
+            elif type(v).__name__ == 'method':
                 continue
-            elif type(v) == type(Conf.__foo):
+            elif type(v).__name__ == 'instancemethod':
+                continue
+            elif type(v).__name__ == 'function':
                 continue
             else:
                 ret[k] = v

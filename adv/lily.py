@@ -6,7 +6,7 @@ def module():
     return Lily
 
 class Lily(adv.Adv):
-    comment = 'RR+LC(RR+EoL>RR+LC>RR+CE at hp100'
+    comment = '(RR+EoL>RR+LC>RR+CE at hp100'
     comment += ';RR+LC=RR+CE at hp70)'
     conf = {}
     conf['slot.a'] = RR()+LC()

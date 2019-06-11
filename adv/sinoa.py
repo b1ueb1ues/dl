@@ -6,7 +6,7 @@ def module():
     return Sinoa
 
 class Sinoa(adv.Adv):
-    comment = '5c+fs; RR+FoG'
+    comment = '5c+fs'
 
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)

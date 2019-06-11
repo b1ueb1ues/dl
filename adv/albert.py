@@ -99,13 +99,13 @@ if __name__ == '__main__':
         sim_duration = 180
     if sim_duration == 60:
         conf['slots.a'] = RR()+Worthy_Rivals()
-        module().comment += 'RR+Worthy_Rivals'
+#        module().comment += 'RR+Worthy_Rivals'
     elif sim_duration == 90:
         conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
-        module().comment += 'Heralds_of_Hinomoto+Chocolatiers'
+#        module().comment += 'Heralds_of_Hinomoto+Chocolatiers'
     elif sim_duration == 180:
         conf['slots.a'] = RR()+The_Chocolatiers()
-        module().comment += 'RR+Chocolatiers'
+#        module().comment += 'RR+Chocolatiers'
 
     adv_test.test(module(), conf,verbose=0, mass=0)
 

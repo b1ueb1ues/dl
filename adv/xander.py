@@ -7,7 +7,7 @@ def module():
     return Xander
 
 class Xander(adv.Adv):
-    comment = 'c2+fs & stella show + RR'
+    comment = 'c2+fs'
 
     a3 = ('fs',0.50)
 

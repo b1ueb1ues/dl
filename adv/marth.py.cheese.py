@@ -7,7 +7,7 @@ def module():
     return Marth
 
 class Marth(marth.Marth):
-    comment = 'miss s2p3'
+    comment = 'dodge*2 to miss s2p3 then dodge*2 back to attack'
 
     def s2_proc(this, e):
         if this.stance == 0:
@@ -18,6 +18,8 @@ class Marth(marth.Marth):
             this.stance = 2
             Teambuff('s22',0.1,10).on()
             this.dmg_make('s2',6.85)
+            this.conf.s2.startup += 42.0*2/60
+            this.conf.s2.recovery += 42.0*2/60
         elif this.stance == 2:
             Teambuff('s23',0.1,10).on()
             Teambuff('s23s',0.3,10,'att','speed').on()

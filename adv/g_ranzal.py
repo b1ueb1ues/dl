@@ -8,7 +8,7 @@ def module():
 
 
 class G_Ranzal(Adv):
-    comment = "Shining_Overlord+First_Rate_Hospitality ; split 3 alt fs into 2 s1"
+    comment = "split 3 alt fs into 2 s1"
 
     conf = {}
     conf['slots.a'] = The_Shining_Overlord() + First_Rate_Hospitality()
