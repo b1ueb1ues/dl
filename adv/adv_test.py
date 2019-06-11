@@ -76,7 +76,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
 
     adv.run(sim_duration)
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
-    comment = amulets + comment
+    #comment = amulets + comment
 
     if not no_cond:
         condition = adv.m_condition.p()
@@ -125,8 +125,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         else:
             print('\n=======================')
             #print mname,"%d"%float_dps
-            print("%s , %s (str: %d) %s ;%s"%( recount, mname, 
-                    displayed_str, '<%s>'%condition, comment ))
+            print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname, 
+                    displayed_str, amulets, '<%s>'%condition, comment ))
             print('-----------------------')
 
         dmg_sum = {}
@@ -153,7 +153,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     elif loglevel == -1:
         if condition != '':
             condition = '<%s>'%(condition)
-        print("%s , %s (str: %d) %s ;%s"%( recount, mname, displayed_str, condition, comment ))
+        print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname, displayed_str,amulets, condition, comment ))
     elif loglevel == -2:
         #comment += " (str: %d)"%(displayed_str)
         bdps = team_dps*bps
@@ -171,9 +171,9 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
                 condi = '!<%s>'%g_condition
         
 
-        line = "%s,%s,%s,%s,%s,%s,%s"%(
+        line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
                 name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
-                displayed_str, condi,comment,
+                displayed_str, amulets ,condi,comment,
                 )
         line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')

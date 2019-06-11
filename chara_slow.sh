@@ -3,7 +3,7 @@ time=$1
 if [ -z $1 ]; then 
     time=180
 fi
-echo 'dps,name,star,element,weapon,str,condition,comment' > www/${1}/slow_data.csv
+echo 'dps,name,star,element,weapon,str,condition,amulets,comment' > www/${1}/slow_data.csv
 
 echo "create ex chart (${time}s)"
 python adv/ex_dagger.py     $1 | tee -a www/${1}/slow_data.csv
