@@ -1,5 +1,6 @@
 import adv_test
 from adv import *
+from slot import *
 
 def module():
     return Linyou
