@@ -313,13 +313,16 @@ class Conf(lobject):
 
 # all method in conf will be sync funtion, so use [function] to set a config to function
     def __dosync(this):
+        func = []
         for k,i in this.__dict__.items():
             if type(i).__name__ == 'instancemethod':
-                i(this)
+                func.append(i)
             elif type(i).__name__ == 'function':
-                i(this)
+                func.append(i)
             elif type(i).__name__ == 'method':
-                i(this)
+                func.append(i)
+        for i in func:
+            i(this)
 
 
 class Test(object):
