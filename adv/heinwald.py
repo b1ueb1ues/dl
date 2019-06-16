@@ -1,11 +1,14 @@
 import adv_test
 from adv import *
+from slot.a.all import *
 
 def module():
     return Heinwald
 
 class Heinwald(Adv):
     a1 = ('s',0.35)
+    conf = {}
+    conf['slots.a'] = RR()+JotS()
 
     def pre(this):
         if this.condition("buff all teammates"):
@@ -32,7 +35,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, seq=5
         `s2, seq=5
-        `s3, seq=5
+        `s3
         """
     adv_test.test(module(), conf,verbose=0, mass=0)
 
