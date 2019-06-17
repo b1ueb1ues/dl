@@ -41,9 +41,9 @@ if __name__ == '__main__':
             #`s2, seq=5 and this.energy() < 4
     else :
         import slot.w
-        module().comment = 'no s2 & 4t3'
+        module().comment = 'with s2 & 4t3'
         conf['slots.w'] = slot.w.blade4b2()
-        conf['slots.a'] = HoH() + CE()  
+        conf['slots.a'] = RR() + JotS()  
         conf['acl'] = """
             `s3, this.energy() = 5
             `s1
