@@ -5,7 +5,7 @@ def c(ele,wt):
     elif ele == 'water':
         r += (0.15+0.07+0.07+0.04)
     elif ele == 'wind':
-        r += (0.15+0.07)
+        r += (0.15+0.07+0.04)
     elif ele == 'light':
         r += (0.15+0.07+0.07)
     elif ele == 'shadow':
