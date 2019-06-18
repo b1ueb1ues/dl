@@ -1,5 +1,6 @@
 #from core.log import *
 import sys
+from core.timeline import now
 
 g_line = ""
 

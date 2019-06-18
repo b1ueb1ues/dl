@@ -2,7 +2,6 @@ import adv_test
 from adv import *
 from module.fsalt import *
 from slot.a import *
-from core.timeline import *
 
 def module():
     return G_Ranzal
@@ -17,7 +16,6 @@ class G_Ranzal(Adv):
     a3 = ('s',0.3)
 
     def init(this):
-        this.now = now
         this.ifs1ins2 = 0
         this.gauges = {
                 'x':0,
@@ -153,7 +151,8 @@ if __name__ == '__main__':
     #     """
 
     conf['acl'] = """
-        `s1, this.gauges['x'] >=1000 and this.now()<10
+        # from core.timeline import now
+        `s1, this.gauges['x'] >=1000 and now()<10
         `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
         `s2, fsc
         `fs, cancel and seq=3 

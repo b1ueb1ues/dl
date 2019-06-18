@@ -9,13 +9,14 @@ def module():
 class axe(WeaponBase):
     ele = ['wind']
     wt = 'axe'
-    att = ??? # todo
+    att = 357 
     a = [('k',0.3), ('prep','50%')]
 
 
 class Linyou(linyou.Linyou):
     conf = {}
     conf['slot.w'] = axe()
+    conf['slot.a'] = slot.a.KFM() + slot.a.Evening_of_Luxury()
 
 if __name__ == '__main__':
     conf = {

@@ -40,7 +40,7 @@ if __name__ == '__main__':
         }
 
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp-440
+        `s2, s1.charged>=s1.sp-440 
         `s1
         `s2, seq=4
         `s3, seq=5
