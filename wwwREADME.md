@@ -12,13 +12,12 @@
 ## stat
 - Level 80, circle node(50/50) adventurer.
 - Dojo(30/30) altar(30/30) 
-- Have all facilities (include limited) (except dracolith and fafnir) in level 30.
+- Have all facilities (include limited) (include dracolith, except fafnir) in level 30.
 - Equiped level100 str 60% dragon except water unit, which use "Dragonyule Jeanne". if you don't have "Dragonyule Jeanne", water unit will lose about 4% DPS.
 - Equiped MUB 5star element weapon
 
 ## WP
 - Most common used WP is RR
-- Will leave comment if the WP set is not default.
 
 ### first WP
 - Equiped MUB level100 "Resounding Rendition". (Since WP is additive with Dragon, 15% str provide less than 10% damage. And for most character, skill damage is more than half of all damage.)
@@ -56,7 +55,7 @@
 - Flurry Strength/Crit
 - Flurry Debilitator
 - 30 Hits = Energy Level Up
-- Affliction and damage boost from affliction. One type of Affliction can proc 3 times in one simulation. (You can't proc any affliction to High Dragon Trial)
+- Affliction and damage boost from affliction. One type of Affliction can proc 3 times in one simulation. (You can't proc any affliction to HBH, at most 5 poison to HMC, at most 3 burn to HMS)
 - Trigger Last Offense at simulation start
 
 ## special mechanics
@@ -67,8 +66,15 @@
 - Consider break punisher to have 15% efficiency
 - Consider od punisher to have 35% efficiency
 
+## why 3500 team?
+- The underestimate of team dps is intend.
+- This chart is not always for people who aimming at HDT, someone just want to know who can deal more damage to decide who to invest. I don't think eli/melody is good for investment outside HDT, their most power need no equip to archieve.
+- It's pretty easy for those who only care about HDT preformance to do teamdps / 3500 * whateverYouWant
+- Buff decrease more after reduce active action time. (btw so does bleed). Unlike Xania will lose 50% damage if you take off her 50% damage time to dodge. Buff is likely to lose 75% damage when you take off 50% active action time, because buff loss 50% uptime by the mean time the action buffed by this buff lose 50%.
+
+
 ## Author
 b1ueb1ues, tiara, luciferz2012
 
 ## Acknowledgement
-Totakeke, Shark3143, SanyamBansal, emrysduvent, ZedK, B3GG, 6tennis, qwewqa, CarelessParsley
+Totakeke, Shark3143, SanyamBansal, emrysduvent, ZedK, B3GG, 6tennis, qwewqa, CarelessParsley, Matt
