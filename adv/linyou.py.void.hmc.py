@@ -1,16 +1,17 @@
 import adv_test
 from adv import *
-from slot import *
 import linyou
 
-def module():
-    return Linyou
 
+from slot import *
 class axe(WeaponBase):
     ele = ['wind']
     wt = 'axe'
     att = 357 
     a = [('k',0.3), ('prep','50%')]
+
+def module():
+    return Linyou
 
 
 class Linyou(linyou.Linyou):
