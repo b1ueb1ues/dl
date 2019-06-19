@@ -30,13 +30,13 @@ if __name__ == '__main__':
     if 1:
         conf['acl'] = """
             `s1, this.bleed._static['stacks'] < 3
-            `s2, this.bleed._static['stacks'] > 0
+            `s2, seq=5 and this.bleed._static['stacks'] > 0
             `s3
             """
     else:
         conf['acl'] = """
             `s1
-            `s2, this.bleed._static['stacks'] > 0
+            `s2, seq=5 and this.bleed._static['stacks'] > 0
             `s3
             """
     adv_test.test(module(), conf, verbose=0, mass=0)
