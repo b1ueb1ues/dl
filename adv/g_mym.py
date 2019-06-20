@@ -9,7 +9,7 @@ class G_Mym(Adv):
     comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
-    conf['slot.a'] = RR()+Jewels_of_the_Sun()
+    conf['slot.a'] = RR()+CE()
     #conf['slot.a'] = RR()+Worthy_Rivals()
     #import slot
     #conf['slots.d'] = slot.d.flame.Sakuya()
@@ -46,8 +46,8 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
-        `s2
-        `s3
+        `s2, fsc
+        `s3, fsc
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)
