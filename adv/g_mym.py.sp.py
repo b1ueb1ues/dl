@@ -89,17 +89,26 @@ if __name__ == '__main__':
 #        `fs, seq=5
 #        """
 
-    module().comment = 'hold skill after c5; get 10% dp from enemy every 18s;'
+    module().comment = 'c5 fs; get 10% dp from enemy every 18s;'
     conf['slot.a'] = RR()+CE()
 #    import slot
 #    conf['slots.d'] = slot.d.flame.Sakuya()
 
+#    performs better after ~4.5 minutes
+#    conf['acl'] = """
+#        `this.dragon, seq=5
+#        `s1
+#        `s2, seq=5
+#        `s3, seq=5
+#        `fs, seq=5
+#        """
+
     conf['acl'] = """
-        `this.dragon
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
+        `this.dragon, seq=5
+        `s1
+        `s2, fsc
+        `s3, fsc
+        `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)
-
 
