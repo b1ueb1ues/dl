@@ -92,7 +92,7 @@ if __name__ == '__main__':
     module().comment = 'c5 fs; get 10% dp from enemy every 18s;'
     conf['slot.a'] = RR()+CE()
 #    import slot
-#    conf['slots.d'] = slot.d.flame.
+#    conf['slots.d'] = slot.d.flame.Sakuya()
 
 #    performs better after ~4.5 minutes
 #    conf['acl'] = """
