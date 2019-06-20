@@ -8,10 +8,19 @@ class W_Aoi(adv.Adv):
     comment = ''
     a3 = ('sp',0.1,'fs')
 
+
+    def pre(this):
+        if this.condition('big hitbox'):
+            this.s1_addition = 3
+        else:
+            this.s1_addition = 1
+
     def init(this):
         this.sleep_last = 0
         if this.condition('sleep*3'):
             this.sleep_last = 3
+
+        this.conf.s1.dmg += this.s1_addition * 1.47
         
         this.fsa_charge = 0
         
