@@ -9,9 +9,9 @@ class Elisanne(Adv):
 #    comment = 'RR+Bellathorna'
     a1 = ('bt',0.25)
 
-    conf = {
-            'slots.a': RR() + Bellathorna()
-            }
+    conf = {}
+    conf['slots.a'] = RR() + Bellathorna()
+    #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
 
 
 
