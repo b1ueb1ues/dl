@@ -10,9 +10,9 @@ class Elisanne(Adv):
     comment = '5000 team dps; no s2'
     a1 = ('bt',0.25)
 
-    conf = {
-            'slots.a': CE() + Bellathorna()
-            }
+    conf = {}
+    conf['slots.a'] = CE() + Bellathorna()
+    #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
 
 
 

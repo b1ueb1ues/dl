@@ -185,6 +185,10 @@ class The_Shining_Overlord(Amulet):  #??
             this.a = [('dc',3)]
             this.a += [('s',0.40)]
 
+#class Halidom_Grooms(Amulet):
+#    att = ??
+#    a = [('bt',0.2)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
