@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Melody
@@ -11,6 +12,7 @@ class Melody(adv.Adv):
     import slot
     if 1:
         conf['slots.a'] = slot.a.Bellathorna()+slot.a.RR()
+        #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
     else:
         conf['slots.a'] = slot.a.Bellathorna()+slot.a.LC()
 

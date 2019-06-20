@@ -11,8 +11,8 @@ class Elisanne(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slots.a'] = CE() + Bellathorna()
-    #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
+    #conf['slots.a'] = CE() + Bellathorna()
+    conf['slots.a'] = Halidom_Grooms() + Bellathorna()
 
 
 
