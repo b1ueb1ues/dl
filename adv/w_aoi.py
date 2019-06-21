@@ -19,9 +19,9 @@ class W_Aoi(adv.Adv):
         this.sleep_last = 0
         if this.condition('sleep*3'):
             this.sleep_last = 3
-            this.dmg_make('s2boost',1.33*5)
-            this.dmg_make('s2boost',1.33*5)
-            this.dmg_make('s2boost',1.33*5)
+            this.dmg_make('o_s2boost',1.33*5)
+            this.dmg_make('o_s2boost',1.33*5)
+            this.dmg_make('o_s2boost',1.33*5)
 
         #this.conf.s1.dmg += this.s1_addition * 1.47
         
