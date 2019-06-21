@@ -28,6 +28,7 @@ mname = ""
 displayed_str = 0
 
 g_condition = ""
+g_condicomment = ''
 comment = ""
 dps = 0
 bps = 0
@@ -174,14 +175,14 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
 
         line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
                 name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
-                displayed_str, amulets ,condi,comment,
+                displayed_str, amulets+g_condicomment ,condi,comment,
                 )
         line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
-        line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
-        line = line.replace('lance','枪').replace('wand','法').replace('bow','弓')
-        line = line.replace('staff','奶')
-        line = line.replace('shadow','暗').replace('light','光')
-        line = line.replace('wind','风').replace('water','水').replace('flame','火')
+        line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
+        line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
+        line = line.replace(',staff,',',奶,')
+        line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
+        line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
         line = '%d,'%(int(r['dmg_sum']['total']/sim_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
         line += ',attack:%d'%(int(r['dmg_sum']['x']/sim_duration))
         line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/sim_duration))
@@ -229,6 +230,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     return r
 
 def sum_mass_dmg(rs):
+    global g_condicomment
     dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'total':0 }
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
@@ -239,6 +241,8 @@ def sum_mass_dmg(rs):
     team_buff = 0
     team_energy = 0
 
+    cmax = 0
+    cmin = 0
     for i in rs:
         for j in i['dmg_sum'] :
             dmg_sum[j] += i['dmg_sum'][j] / sim_times
@@ -254,11 +258,18 @@ def sum_mass_dmg(rs):
         team_buff += i['buff_sum'] / sim_times
         team_energy += i['energy_sum']  / sim_times
         
-        #case = 0
-        #case += i['dmg_sum']['total'] / sim_duration
-        #case += i['buff_sum'] * team_dps
-        #case += i['energy_sum'] * energy_efficiency
-        #print case
+        case = 0
+        case += i['dmg_sum']['total'] / sim_duration
+        case += i['buff_sum'] * team_dps
+        case += i['energy_sum'] * energy_efficiency
+    #    print case
+        if not cmin:
+            cmin = case
+        if case > cmax:
+            cmax = case
+        if case < cmin:
+            cmin = case
+    g_condicomment = ";dpsrange:(%d~%d)"%(cmin, cmax)
 
     r = {}
     r['dmg_sum'] = dmg_sum 
