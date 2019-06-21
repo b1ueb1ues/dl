@@ -54,7 +54,12 @@ class Albert(Adv):
 
     def c_s1_proc(this, e):
         if this.s2buff.get():
-            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*5)
+            this.dmg_make("o_s1_s2boost",12.38-0.825)
+            this.dmg_make("o_s1_hit2", 0.83)
+            this.dmg_make("o_s1_hit3", 0.83)
+            this.dmg_make("o_s1_hit4", 0.83)
+            this.dmg_make("o_s1_hit5", 0.83)
+            this.dmg_make("o_s1_hit6", 0.83)
             this.s2buff.buff_end_timer.timing += 2.6
             this.a3.buff_end_timer.timing += 2.6
             this.s2timer.timing += 2.6
@@ -62,7 +67,10 @@ class Albert(Adv):
 
     def s1_proc(this, e):
         if this.s2buff.get():
-            this.dmg_make("o_s1_s2boost",12.38-0.825+0.83*3)
+            this.dmg_make("o_s1_s2boost",12.38-0.825)
+            this.dmg_make("o_s1_hit2", 0.83)
+            this.dmg_make("o_s1_hit3", 0.83)
+            this.dmg_make("o_s1_hit4", 0.83)
             this.s2buff.buff_end_timer.timing += 2.6
             this.a3.buff_end_timer.timing += 2.6
             this.s2timer.timing += 2.6

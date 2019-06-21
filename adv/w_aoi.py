@@ -11,7 +11,7 @@ class W_Aoi(adv.Adv):
 
     def pre(this):
         if this.condition('big hitbox'):
-            this.s1_addition = 3
+            this.s1_addition = 4
         else:
             this.s1_addition = 1
 
@@ -19,16 +19,30 @@ class W_Aoi(adv.Adv):
         this.sleep_last = 0
         if this.condition('sleep*3'):
             this.sleep_last = 3
+            this.dmg_make('s2boost',1.33*5)
+            this.dmg_make('s2boost',1.33*5)
+            this.dmg_make('s2boost',1.33*5)
 
-        this.conf.s1.dmg += this.s1_addition * 1.47
+        #this.conf.s1.dmg += this.s1_addition * 1.47
         
         this.fsa_charge = 0
+
+    def s1_proc(this, e):
+        if this.s1_addition == 4:
+            this.dmg_make('o_s1_hit1',1.47)
+            this.dmg_make('o_s1_hit2',1.47)
+            this.dmg_make('o_s1_hit3',1.47)
+            this.dmg_make('o_s1_hit4',1.47)
+        elif this.s1_addition == 1:
+            this.dmg_make('o_s1_hit1',1.47)
+
         
 
     def s1_before(this, e):
         if this.sleep_last > 0:
             this.sleep_last -= 1
             adv.Teambuff('a1',0.15,10).on()
+
 
 
 
