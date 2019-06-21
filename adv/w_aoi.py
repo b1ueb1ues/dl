@@ -6,7 +6,7 @@ def module():
 
 class W_Aoi(adv.Adv):
     comment = ''
-    a3 = ('sp',0.1,'fs')
+    a3 = ('sp',0.12,'fs')
 
 
     def pre(this):
