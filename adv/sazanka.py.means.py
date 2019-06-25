@@ -6,7 +6,6 @@ def module():
     return Sazanka
 
 class Sazanka(Adv):
-    comment = 'do not use weapon skill'
 
     def init(this):
         this.bleed = mBleed("g_bleed",0).reset()
@@ -36,9 +35,9 @@ class Sazanka(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1 
-        `s2 
-        `fs,seq=5
+        `s1
+        `s3, fsc
+        `s2, fsc
+        `fs, seq=5
         """
     adv_test.test(module(), conf, mass=0)
-
