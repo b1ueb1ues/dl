@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
 #    performs better after ~4.5 minutes
 #    conf['acl'] = """
-#        `this.dragon, seq=5
+#        `this.dragon
 #        `s1
 #        `s2, seq=5
 #        `s3, seq=5
@@ -104,7 +104,7 @@ if __name__ == '__main__':
 #        """
 
     conf['acl'] = """
-        `this.dragon, seq=5
+        `this.dragon
         `s1
         `s2, fsc
         `s3, fsc
