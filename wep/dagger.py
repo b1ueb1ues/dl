@@ -32,6 +32,11 @@ conf.update( {
         "fs.sp"          : 288           ,
         "fs.startup"     : 54    / 60.0  ,
         "fs.recovery"    : 14    / 60.0  ,
+
+        "x1fs.startup"   : 62    / 60.0  ,
+        "x2fs.startup"   : 52    / 60.0  ,
+        "x3fs.startup"   : 56    / 60.0  ,
+        "x4fs.startup"   : 54    / 60.0  ,
         "x5fs.startup"   : 64    / 60.0  ,
 
         "dodge.recovery" : 43    / 60.0  ,
