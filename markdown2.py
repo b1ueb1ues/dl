@@ -1,9 +1,15 @@
 #!/usr/bin/env python
+# -*- encoding: utf8 -*-
 # Copyright (c) 2012 Trent Mick.
 # Copyright (c) 2007-2008 ActiveState Corp.
 # License: MIT (http://www.opensource.org/licenses/mit-license.php)
 
 from __future__ import generators
+
+import sys
+import codecs
+sys.stdout=codecs.getwriter('utf-8')(sys.stdout)
+
 
 r"""A fast and complete Python implementation of Markdown.
 

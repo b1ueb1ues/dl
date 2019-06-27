@@ -1,5 +1,7 @@
 # README for dl simulation
 
+## dps numbers indicate the neutral element damage. ( x1.5 for on-ele )
+
 
 ## simulator in python
 [github/b1ueb1ues](https://github.com/b1ueb1ues/dl)
@@ -7,7 +9,9 @@
 ## skill frame
 [github/b1ueb1ues](https://github.com/b1ueb1ues/dl/tree/master/framedata/skills)
 
-## dps numbers indicate the neutral element damage. ( x1.5 for on-ele )
+## 护符对照表
+[link](https://github.com/b1ueb1ues/b1ueb1ues.github.io/blob/master/amulet.txt)
+
 
 ## stat
 - Level 80, circle node(50/50) adventurer.
