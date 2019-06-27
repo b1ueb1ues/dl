@@ -11,20 +11,20 @@ class Maribelle_s3(adv.maribelle.Maribelle):
     name = 'maribelle'
     conf = {}
     conf['slots.a'] = Heralds_of_Hinomoto() + CE()
+    conf['slots.a'] = RR() + JotS()
     
 
 
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        # from core.log import *
+        # import core.log
+        # log = core.log.log
         # log('debug',dname)
-        `s1, seq=5 and cancel
-        `s1, sp and dname == 'fs'
-        `s2, seq=5 and cancel
+        `s1, cancel
+        `s2, cancel
         `s1, pin == 'prep'
-        `fs, seq=5 and s1.charged>1600
-        `s3, s
+        `fs, seq=5 
         """
     adv_test.test(module(), conf, verbose=0)
 
