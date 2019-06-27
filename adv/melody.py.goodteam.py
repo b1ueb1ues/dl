@@ -11,7 +11,7 @@ class Melody(adv.Adv):
     a1 = ('cc',0.08,'hp100')
     import slot
     if 1:
-        conf['slots.a'] = slot.a.Bellathorna()+slot.a.RR()
+        conf['slots.a'] = slot.a.HG()+slot.a.RR()
         #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
     else:
         conf['slots.a'] = slot.a.Bellathorna()+slot.a.LC()

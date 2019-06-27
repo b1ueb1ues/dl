@@ -186,8 +186,10 @@ class The_Shining_Overlord(Amulet):  #??
             this.a += [('s',0.40)]
 
 class Halidom_Grooms(Amulet):
-    att = 40 # not sure
+    att = 50 
     a = [('bt',0.2)]
+
+HG = Halidom_Grooms
 
 amulets = []
 for k in list(globals()):

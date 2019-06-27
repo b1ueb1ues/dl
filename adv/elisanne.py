@@ -10,7 +10,7 @@ class Elisanne(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slots.a'] = RR() + Bellathorna()
+    conf['slots.a'] = RR() + HG()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
 
 
