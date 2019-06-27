@@ -250,7 +250,7 @@ def sum_mass_dmg(rs):
             for k in i['sdmg_sum'][j]:
                 sdmg_sum[j][k] += i['sdmg_sum'][j][k] / sim_times
         for j in i['x_sum'] :
-            x_sum[j] += i['x_sum'][j] / sim_times
+            x_sum[j] += float(i['x_sum'][j]) / sim_times
         for j in i['o_sum'] :
             if j not in o_sum:
                 o_sum[j] = 0

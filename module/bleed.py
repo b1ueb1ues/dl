@@ -29,7 +29,7 @@ class Bleed(Dot):
         elif stacks == 3:
             dmg = dmg_sum * 2
         else:
-            print "err in bleed tick_proc"
+            print("err in bleed tick_proc")
             exit()
         log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
         e.timing += this.iv
@@ -40,7 +40,7 @@ class Bleed(Dot):
         this._static['stacks'] -= 1
         log('debuff','bleed','stack_end',"stack <%d>"%this._static['stacks'])
         if this._static['stacks'] < 0:
-            print 'err in bleed dot_end_proc'
+            print('err in bleed dot_end_proc')
             exit()
         if this._static['stacks'] == 0:
             this._static['tick_event'].off()
@@ -51,7 +51,7 @@ class Bleed(Dot):
             log('resist','bleed')
             return
         elif this._static['stacks'] > 3:
-            print "err in bleed on"
+            print("err in bleed on")
             exit()
 
         log('debuff','bleed')
@@ -86,7 +86,7 @@ class mBleed(Bleed):
             #this.tdmg_event.dmg = dmg_sum * 2
             dmg = dmg_sum * 1.44
         else:
-            print "err in bleed tick_proc"
+            print("err in bleed tick_proc")
             exit()
 
         log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
