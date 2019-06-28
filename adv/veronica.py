@@ -6,6 +6,7 @@ def module():
     return Veronica
 
 class Veronica(adv.Adv):
+    comment = 'Shinobi'
     a3 = ('prep','100%')
     conf = {}
     conf['slot.d'] = Shinobi()
