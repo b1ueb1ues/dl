@@ -2,13 +2,16 @@ import adv_test
 from adv import *
 from module.bleed import Bleed
 from slot.d import *
+from slot.a import *
 
 def module():
     return Sazanka
 
 class Sazanka(Adv):
+    comment = 'Shinobi;'
     conf = {}
-    #conf['slot.d'] = Shinobi()
+    conf['slot.d'] = Shinobi()
+    conf['slot.a'] = KFM()+CE()
 
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()
