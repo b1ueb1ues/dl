@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Alex
@@ -9,6 +10,8 @@ class Alex(adv.Adv):
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)
 
+    #conf = {}
+    #conf['slot.d'] = Shinobi()
 
 
 if __name__ == '__main__':

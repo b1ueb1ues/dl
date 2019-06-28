@@ -1,7 +1,7 @@
 import adv_test
 import adv
 import veronica
-import slot.a
+import slot
 from slot import *
 
 
@@ -13,6 +13,7 @@ class Veronica(veronica.Veronica):
     a3 = ('prep','100%')
     conf = {}
     conf['slots.a'] = slot.a.FG() + slot.a.Heralds_of_Hinomoto()
+    conf['slots.d'] = slot.d.Shinobi()
 
     def pre(this):
         if this.condition('hp1'):

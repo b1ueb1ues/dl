@@ -51,10 +51,11 @@ class Addis(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp-260 and seq=5
-        `s1, s2.charged<s2.sp
+        # bs = this.bleed._static['stacks']
+        `s2, s1.charged>=s1.sp-260 and seq=5 and bs != 3
+        `s1, s2.charged<s2.sp and bs != 3
         `s3, not this.s2buff.get()
-        `fs, this.s2buff.get() and seq=5
+        `fs, this.s2buff.get() and seq=4 and this.s1.charged>=s1.sp-200
         """
 
    # conf['acl'] = """

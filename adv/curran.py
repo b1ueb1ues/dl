@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Curran

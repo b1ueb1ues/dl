@@ -1,18 +1,20 @@
 import adv_test
 from adv import *
 from module.bleed import Bleed
+import slot
 
 def module():
     return Ieyasu
 
 class Ieyasu(Adv):
+    comment = "Shinobi"
     #comment = 'RR+Jewels'
     a1 = ('cc',0.1,'hp70')
     a2 = ('cd',0.2)
-    import slot
     conf = {}
     #conf['slots.a'] = slot.a.LC()+slot.a.RR()
     conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
+    conf['slots.d'] = slot.d.Shinobi()
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
@@ -44,7 +46,7 @@ if __name__ == '__main__':
         `s2, seq=5 and this.bleed._static['stacks'] > 0
         `s3
         """
-    adv_test.test(module(), conf, verbose=1, mass=1)
+    adv_test.test(module(), conf, verbose=-2, mass=1)
 
     exit()
     def foo(this, e):

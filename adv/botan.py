@@ -2,15 +2,18 @@ import adv_test
 from adv import *
 from module.bleed import Bleed
 from slot.a import *
+from slot.d import *
 
 def module():
     return Botan
 
 class Botan(Adv):
+    comment = "Shinobi"
 #    comment = "RR+Jewels"
     a3 = ('prep','50%')
     conf = {}
     conf['slots.a'] = RR() + Jewels_of_the_Sun()
+    conf['slots.d'] = Shinobi()
 
     def init(this):
         this.bleed = Bleed("g_bleed",0).reset()

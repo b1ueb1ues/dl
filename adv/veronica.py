@@ -1,11 +1,15 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Veronica
 
 class Veronica(adv.Adv):
     a3 = ('prep','100%')
+    conf = {}
+    conf['slot.d'] = Shinobi()
+
     def pre(this):
         if this.condition('hp=80%'):
             this.s1boost = 1.25*0.2*0.2

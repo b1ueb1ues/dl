@@ -1,15 +1,17 @@
 import adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Zace
 
 class Zace(Adv):
-    #comment = 'RR+Jewels'
+    comment = 'Shinobi'
     a1 = ('s',0.2)
     conf = {}
     conf['slot.a'] = Jewels_of_the_Sun() + RR()
+    conf['slot.d'] = Shinobi()
 
 
 if __name__ == '__main__':
