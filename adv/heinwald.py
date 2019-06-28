@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 from slot.a.all import *
+from slot.d import *
 
 def module():
     return Heinwald

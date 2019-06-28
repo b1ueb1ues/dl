@@ -7,7 +7,7 @@ def module():
 
 
 class W_Elisanne(Adv):
-    comment = '2863 when FRH+tSO'
+    comment = '2863 when tSO+JotS'
 
     conf = {}
     conf['slot.a'] = First_Rate_Hospitality() + The_Shining_Overlord()
