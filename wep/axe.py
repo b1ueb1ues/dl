@@ -32,15 +32,10 @@ conf = {
         "fs.recovery"    : 34    / 60.0  ,
 
         "x1fs.startup"     : 68    / 60.0  ,
-        "x1fs.recovery"    : 34    / 60.0  ,
         "x2fs.startup"     : 62    / 60.0  ,
-        "x2fs.recovery"    : 34    / 60.0  ,
         "x3fs.startup"     : 65    / 60.0  ,
-        "x3fs.recovery"    : 34    / 60.0  ,
-        "x4fs.startup"     : 70    / 60.0  ,
-        "x4fs.recovery"    : 34    / 60.0  ,
+        "x4fs.startup"     : 67    / 60.0  ,
         "x5fs.startup"     : 40    / 60.0  ,
-        "x5fs.recovery"    : 34    / 60.0  ,
 
         "fsf.startup"    : 0             ,
         "fsf.recovery"   : 41    / 60.0  ,
