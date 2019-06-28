@@ -5,6 +5,9 @@ class Energy():
     def e_dmg_proc(this, name, amount):
         this.dmg_proc_old(name, amount)  # should prevent damage in next dmg_proc
 
+        if name[:2] == 'o_':
+            name = name[2:]
+
         if not this.energized :
             return
         if this.energized == 1 and name[0] != 's':
