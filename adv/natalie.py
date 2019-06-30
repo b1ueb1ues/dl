@@ -82,6 +82,7 @@ if __name__ == '__main__':
         `s2
         `s1
         `s3, seq=5
+        `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
         """
 
     adv_test.test(module(), conf, verbose=-2, mass=1)
