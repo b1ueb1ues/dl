@@ -34,6 +34,11 @@ class VC(Amulet):
     a = [('s',0.30),
          ('bc',0.10)]
 
+class TL(Amulet):
+    att = 65
+    a = [('s',0.25),
+         ('lo',0.50)]
+
 class FoG(Amulet): # Flash of Genius
     att = 57
     a = [('a',0.20,'hit15')]

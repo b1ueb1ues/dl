@@ -5,9 +5,6 @@ class Energy():
     def e_dmg_proc(this, name, amount):
         this.dmg_proc_old(name, amount)  # should prevent damage in next dmg_proc
 
-        if name[:2] == 'o_':
-            name = name[2:]
-
         if not this.energized :
             return
         if this.energized == 1 and name[0] != 's':
@@ -20,11 +17,16 @@ class Energy():
                 this.energized = name[:2]
 
         if this.energized == name[:2] :
+            boost = this.get_energy_boost()
+            log('dmg','o_%s_energized'%name,amount*boost, 'energy boost')
+
+    def get_energy_boost(this):
             sd = this.a.mod('s')
             this.energy_mod.on()
             sd2 = this.a.mod('s')
             this.energy_mod.off()
-            log('dmg','o_%s_energized'%name,amount*(sd2/sd-1), 'energy boost')
+            return sd2/sd-1
+
 
 
     def __call__(this):

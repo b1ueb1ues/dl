@@ -15,6 +15,11 @@ class Yaten(adv.Adv):
                 `s2, fsc and this.energy() < 4
                 `fs, seq=3
                 """
+            this.conf['acl'] = """
+                `s1, s=2
+                `s2, fsc and this.energy() < 4
+                `fs, seq=3
+                """
         else:
             this.conf['acl'] = """
                 `s1
@@ -86,8 +91,8 @@ if __name__ == '__main__':
     from slot.a import *
     from slot.d import *
 
-    #conf['slot.a'] = HoH()+JotS()
-    conf['slot.a'] = The_Shining_Overlord()+LC()
+    conf['slot.a'] = HoH()+JotS()
+    conf['slot.a'] = RR()+JotS()
      
  #   conf['acl'] = """
  #       `s1

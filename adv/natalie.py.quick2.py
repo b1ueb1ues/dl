@@ -2,37 +2,30 @@ import adv_test
 import adv
 from adv import *
 from module import energy
-from slot.d import *
 from slot.a import Amulet
-import slot
-import random
+from slot.d import *
 
 def module():
     return Natalie
+
 
 class JotS(Amulet):
     att = 64
     a = [('sp',0.08)]
 
-class RR(Amulet):
-    att = 64
-    a = [('s',0.30)]
-
-
 class Natalie(adv.Adv):
     conf = {}
-    #conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
-    #conf['slot.a'] = slot.a.HoH() + slot.a.TL()
-    #conf['slot.a'] = slot.a.HoH() + JotS()
-    conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
+    conf['slot.a'] = slot.a.HoH() + JotS()
+    conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     conf['slot.d'] = Shinobi()
      
     def pre(this):
-        random.seed()
         this.crisis = 0
+
+        this.init = this.c_init
         if this.condition('energy'):
             this.init = this.c_init
-        if this.condition('hp20 & s2 without str buff'):
+        if this.condition('hp20'):
             this.crisis = -1
 
     def init(this):
@@ -52,15 +45,13 @@ class Natalie(adv.Adv):
 
     def s1_proc(this, e):
         if this.crisis > 0:
-            this.dmg_make('o_s1_crisis', this.crisis*10.62)
-        if random.random() < 0.8:
-            this.energy.add_energy('a1')
+            this.dmg_make('o_s1_crisis', this.crisis*10.84)
 
     def s2_proc(this, e):
         if this.crisis == -1:
             this.crisis = 1*0.8*0.8
-      #  else:
-      #      Selfbuff('s2str',0.15,10).on()
+        else:
+            Selfbuff('s2str',0.15,10).on()
 
 
 
@@ -75,11 +66,11 @@ if __name__ == '__main__':
 
     conf = {}
     conf['acl'] = """
-        `s2
         `s1
+        `s2
         `s3, seq=5
         """
 
-    adv_test.test(module(), conf, verbose=-2, mass=1)
+    adv_test.test(module(), conf, verbose=-2, mass=0)
 
 

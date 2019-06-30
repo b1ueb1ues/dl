@@ -21,10 +21,7 @@ class RR(Amulet):
 
 class Natalie(adv.Adv):
     conf = {}
-    #conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
-    #conf['slot.a'] = slot.a.HoH() + slot.a.TL()
-    #conf['slot.a'] = slot.a.HoH() + JotS()
-    conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
+    conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     conf['slot.d'] = Shinobi()
      
     def pre(this):
@@ -32,8 +29,8 @@ class Natalie(adv.Adv):
         this.crisis = 0
         if this.condition('energy'):
             this.init = this.c_init
-        if this.condition('hp20 & s2 without str buff'):
-            this.crisis = -1
+        if this.condition('hp1'):
+            this.crisis = 1
 
     def init(this):
         this.energy = energy.Energy(this,
@@ -53,14 +50,13 @@ class Natalie(adv.Adv):
     def s1_proc(this, e):
         if this.crisis > 0:
             this.dmg_make('o_s1_crisis', this.crisis*10.62)
+            if this.energy() == 5:
+                this.dmg_make('o_s1_crisis_energized', this.crisis*10.62*this.energy.get_energy_boost())
         if random.random() < 0.8:
             this.energy.add_energy('a1')
 
     def s2_proc(this, e):
-        if this.crisis == -1:
-            this.crisis = 1*0.8*0.8
-      #  else:
-      #      Selfbuff('s2str',0.15,10).on()
+        Selfbuff('s2str',0.15,10).on()
 
 
 
