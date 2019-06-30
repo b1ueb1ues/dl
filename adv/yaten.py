@@ -4,15 +4,13 @@ from adv import *
 from module import energy
 
 def module():
-    return new2
+    return Yaten
 
-class new2(adv.Adv):
+class Yaten(adv.Adv):
      
     def pre(this):
         if this.condition('energy'):
             this.init = this.c_init
-        this.conf['s2.recovery'] = 0.9
-        this.conf['s2.startup'] = 0.15
 
     def init(this):
         this.energy = energy.Energy(this,
@@ -83,6 +81,6 @@ if __name__ == '__main__':
         `fs, seq=3
         """
 
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 
 

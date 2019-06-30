@@ -18,3 +18,4 @@ python adv/sinoa.py -2      ${1} | tee -a www/${1}/slow_data.csv
 python adv/ezelith.py -2    ${1} | tee -a www/${1}/slow_data.csv
 python adv/sazanka.py -2    ${1} | tee -a www/${1}/slow_data.csv
 python adv/botan.py -2      ${1} | tee -a www/${1}/slow_data.csv
+python adv/natalie.py -2    ${1} | tee -a www/${1}/slow_data.csv

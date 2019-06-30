@@ -108,5 +108,6 @@ python adv/s_maribelle.py -2 $1 | tee -a www/$1/data.csv
 python adv/xuanzang.py -2    $1 | tee -a www/$1/data.csv
 python adv/w_elisanne.py -2  $1 | tee -a www/$1/data.csv
 python adv/w_aoi.py -2       $1 | tee -a www/$1/data.csv
+python adv/yaten.py -2       $1 | tee -a www/$1/data.csv
 
 
