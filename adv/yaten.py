@@ -57,7 +57,7 @@ class Yaten(adv.Adv):
 
     def s1_proc(this, e):
         if this.energy() == 5:
-            this.dmg_make('o_s1_boost',8)
+            this.dmg_make('o_s1_boost',6*0.69)
         Timer(this.a1change).on()
 
     def s2_proc(this, e):
