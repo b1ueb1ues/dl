@@ -2,17 +2,23 @@ import adv_test
 import adv
 from adv import *
 from module import energy
-from slot.a import *
 from slot.d import *
+from slot.a import Amulet
+import slot
 import random
 
 def module():
     return Natalie
 
+class JotS(Amulet):
+    att = 64
+    a = [('sp',0.08)]
+
+
 
 class Natalie(adv.Adv):
     conf = {}
-    conf['slot.a'] = HoH() + JotS()
+    conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     conf['slot.d'] = Shinobi()
      
     def pre(this):
