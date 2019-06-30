@@ -53,6 +53,10 @@ class Natalie(adv.Adv):
     def s1_proc(this, e):
         if this.crisis > 0:
             this.dmg_make('o_s1_crisis', this.crisis*10.62)
+            if this.energy() == 5:
+                dmg = this.crisis * 10.62 * this.energy.get_energy_boost()
+                this.dmg_make('o_s1_crisis_energized', dmg )
+
         if random.random() < 0.8:
             this.energy.add_energy('a1')
 
