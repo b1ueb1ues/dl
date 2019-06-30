@@ -46,8 +46,6 @@ class Natalie(adv.Adv):
                 self={'s1':1,'a1':1} ,
                 team={}
                 )
-        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive').on()
-        this.a3spd = Selfbuff('a3spd',0.10,-1,'spd').on()
 
 
     def s1_proc(this, e):
@@ -63,6 +61,8 @@ class Natalie(adv.Adv):
     def s2_proc(this, e):
         if this.crisis == -1:
             this.crisis = 1*0.8*0.8
+            this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive').on()
+            this.a3spd = Selfbuff('a3spd',0.10,-1,'spd').on()
       #  else:
       #      Selfbuff('s2str',0.15,10).on()
 

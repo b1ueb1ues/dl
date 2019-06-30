@@ -22,7 +22,7 @@ class RR(Amulet):
 class Natalie(adv.Adv):
     conf = {}
     conf['slot.a'] = slot.a.RR() + slot.a.Bonds()
-    conf['slot.d'] = Shinobi()
+#    conf['slot.d'] = Shinobi()
      
     def pre(this):
         random.seed()
@@ -40,8 +40,8 @@ class Natalie(adv.Adv):
                 self={'s1':1,'a1':1} ,
                 team={}
                 )
-        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive').on()
-        this.a3spd = Selfbuff('a3spd',0.10,-1,'spd').on()
+        #this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive').on()
+        #this.a3spd = Selfbuff('a3spd',0.10,-1,'spd').on()
 
 
     def s1_proc(this, e):
