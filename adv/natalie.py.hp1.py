@@ -20,7 +20,7 @@ class RR(Amulet):
 
 
 class Natalie(adv.Adv):
-    comment = '1hp; Shinobi'
+    comment = '1hp; Shinobi;'
     conf = {}
     conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     conf['slot.d'] = Shinobi()
