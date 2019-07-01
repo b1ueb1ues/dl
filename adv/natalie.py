@@ -20,10 +20,12 @@ class RR(Amulet):
 
 
 class Natalie(adv.Adv):
+    comment = 'Shinobi'
     conf = {}
     #conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     #conf['slot.a'] = slot.a.HoH() + slot.a.TL()
     #conf['slot.a'] = slot.a.HoH() + JotS()
+    #conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
     conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
     conf['slot.d'] = Shinobi()
      
@@ -77,13 +79,26 @@ if __name__ == '__main__':
     #    `s3, seq=5 and this.energy() = 5
     #    """
 
+
     conf = {}
     conf['acl'] = """
-        `s2
+        `s2, pin='prep'
+        `s2, seq=5
         `s1
-        `s3, seq=5
+        `s3, fsc
+        `s3, seq=5 and s1.charged < s1.sp-200
         `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
+        `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
         """
+
+    import sys
+    from slot.a import *
+    if len(sys.argv) >= 3:
+        sim_duration = int(sys.argv[2])
+    else:
+        sim_duration = 180
+    if sim_duration == 60:
+        conf['slot.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
 
     adv_test.test(module(), conf, verbose=-2, mass=1)
 

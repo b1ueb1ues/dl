@@ -20,7 +20,7 @@ class RR(Amulet):
 
 
 class Natalie(adv.Adv):
-    comment = '1hp'
+    comment = '1hp; Shinobi'
     conf = {}
     conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     conf['slot.d'] = Shinobi()
@@ -77,6 +77,16 @@ if __name__ == '__main__':
         `s3, seq=5
         `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
         """
+ #   conf['acl'] = """
+ #       `s2, pin='prep'
+ #       `s2, seq=5
+ #       `s1
+ #       `s3, fsc
+ #       `s3, seq=5 and s1.charged < s1.sp-200
+ #       `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
+ #       `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
+ #       """
+
 
     adv_test.test(module(), conf, verbose=-2, mass=1)
 
