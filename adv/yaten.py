@@ -78,12 +78,12 @@ class Yaten(adv.Adv):
     def energy_doublebuff(this, e):
         Selfbuff("double_buff", 0.2, 15).on()
 
-    def debug(this):
-        this.energy.add_energy('s1')
-        this.energy.add_energy('s1')
-        this.energy.add_energy('s1')
-        this.energy.add_energy('s1')
-        this.energy.add_energy('s1')
+#    def debug(this):
+#        this.energy.add_energy('s1')
+#        this.energy.add_energy('s1')
+#        this.energy.add_energy('s1')
+#        this.energy.add_energy('s1')
+#        this.energy.add_energy('s1')
 
 
 
