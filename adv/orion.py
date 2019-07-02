@@ -14,10 +14,10 @@ class Orion(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `s1, seq=4 and cancel or fsc
+        `s2, seq=4 and cancel or fsc
+        `s3, seq=4 and cancel or fsc
+        `fs, seq=4
         """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

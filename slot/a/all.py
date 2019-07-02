@@ -194,6 +194,10 @@ class Halidom_Grooms(Amulet):
     att = 50 
     a = [('bt',0.2)]
 
+class Hanetsuki_Rally(Amulet):
+    att = 51
+    a = [('cc',0.05),('lo',0.4)]
+
 HG = Halidom_Grooms
 
 amulets = []

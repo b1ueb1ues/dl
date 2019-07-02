@@ -25,7 +25,7 @@ class Natalie(adv.Adv):
     #conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     #conf['slot.a'] = slot.a.HoH() + slot.a.TL()
     #conf['slot.a'] = slot.a.HoH() + JotS()
-    #conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
+    #conf['slot.a'] = slot.a.HoH() + slot.a.Hanetsuki_Rally()
     conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
     conf['slot.d'] = Shinobi()
      
@@ -98,7 +98,16 @@ if __name__ == '__main__':
     else:
         sim_duration = 180
     if sim_duration == 60:
-        conf['slot.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
+        conf['slot.a'] = TL()+The_Chocolatiers()
+        conf['acl'] = """
+            `s2, pin='prep'
+            `s2, seq=5
+            `s1
+            `s3, sx=1 and now()<10
+            `s3, fsc
+            `s3, seq=5 and s1.charged < s1.sp-212
+            `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
+        """
 
     adv_test.test(module(), conf, verbose=-2, mass=1)
 

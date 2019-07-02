@@ -8,6 +8,8 @@ def module():
 class G_Sarisse(adv.Adv):
     comment = 'Sakuya'
     a3 = ('bt',0.3)
+    conf = {}
+    #conf['mod'] = {'ex':('sp','passive',0.15)}
 
     def init(this):
         this.hits = 0
