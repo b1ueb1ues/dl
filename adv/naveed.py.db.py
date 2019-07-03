@@ -24,7 +24,7 @@ if __name__ == '__main__':
         `s3, sp
         `fs, seq=3 and cancel
         """
-    conf['slots.a'] = VC()+RR()
+    conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
     #conf['slots.a'] = VC()+Evening_of_Luxury()
     adv_test.test(module(), conf, verbose=0)
 

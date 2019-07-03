@@ -49,7 +49,7 @@ class Event(object):
             add_event_listener(this.name, cb)
 
 
-    def on(this, e):
+    def on(this, e=None):
         for i in this._trigger:
             i(this)
 
