@@ -555,6 +555,9 @@ class Action(object):
 
 
 class Adv(object):
+    Timer = Timer
+    Event = Event
+    Listener = Listener
     # vvvvvvvvv rewrite this to provide advanced tweak vvvvvvvvvv
     name = None
     def s1_proc(this, e):

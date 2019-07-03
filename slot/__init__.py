@@ -119,11 +119,11 @@ class AmuletBase(Slot):
         this.a2.stype = 'a2'
         return this
 
-
- #   def oninit(this, adv):
- #       if this.a2:
- #           this.a2.a2 = None
- #           this.a2.oninit(adv)
+    def oninit(this, adv):
+        Slot.oninit(this, adv)
+        if this.a2:
+            this.a2.a2 = None
+            this.a2.oninit(adv)
     
     
 

@@ -1,11 +1,20 @@
 import adv_test
 import adv
+from slot import *
+from slot.w import *
+
+class w530(WeaponBase):
+    ele = ['water','light']
+    wt = 'blade'
+    att = 468
+
 
 def module():
     return Yachiyo
 
 class Yachiyo(adv.Adv):
     #comment = 'paralysis 3 times'
+
 
     def init(this):
         this.para_last = 0
@@ -48,5 +57,15 @@ if __name__ == '__main__':
         `s2
         `s1
         """
+
+    #conf['slot.w'] = w530()
+    #conf['slot.w'] = blade5b2()
+    #conf['slot.w'] = blade4b2()
+    #conf['acl'] = """
+    #    `fs, this.fsa_charge and seq=5
+    #    `s2
+    #    `s1
+    #    `s3
+    #    """
     adv_test.test(module(), conf, verbose=0)
 

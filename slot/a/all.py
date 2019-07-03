@@ -190,9 +190,39 @@ class The_Shining_Overlord(Amulet):  #??
             this.a = [('dc',3)]
             this.a += [('s',0.40)]
 
+
 class Halidom_Grooms(Amulet):
     att = 50 
     a = [('bt',0.2)]
+
+    def dc_energy(this, e):
+        e = this.adv.Event('add_energy')
+        e.name = 'self'
+        e()
+
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        this.adv = adv
+        adv.Listener('defchain',this.dc_energy)
+
+
+class The_Petal_Queen(Amulet):
+    att = 53 
+
+    def startup(this, t):
+        e = this.adv.Event('add_energy')
+        e.name = 'self'
+        e()
+        e()
+        e()
+        e()
+        e()
+
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        this.adv = adv
+        adv.Timer(this.startup).on()
+
 
 class Hanetsuki_Rally(Amulet):
     att = 51

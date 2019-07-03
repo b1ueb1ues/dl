@@ -36,10 +36,18 @@ class Energy():
             return this.energy
 
     def add_energy(this, name):
+        self = 0
+        team = 0
+
+        if name == 'self':
+            self = 1
+        elif name == 'team':
+            team = 1
+            log('energy','team',team)
+
         if name in this.energy_self:
             self = this.energy_self[name]
-        else:
-            self = 0
+
         if name in this.energy_team:
             team = this.energy_team[name]
             if team:
@@ -79,6 +87,10 @@ class Energy():
             this.energized = 0
             this.energy_buff.off()
 
+    def l_add_energy(this, e):
+        this.add_energy(e.name)
+
+
 
     def __init__(this, a, self, team, consume=None):
         this.a = a
@@ -104,5 +116,7 @@ class Energy():
         a.s2_proc = this.e_s2_proc
         a.s3_proc = this.e_s3_proc
         a.dmg_proc = this.e_dmg_proc
+
+        Listener('add_energy', this.l_add_energy)
 
 

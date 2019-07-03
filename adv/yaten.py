@@ -78,30 +78,20 @@ class Yaten(adv.Adv):
     def energy_doublebuff(this, e):
         Selfbuff("double_buff", 0.2, 15).on()
 
-#    def debug(this):
-#        this.energy.add_energy('s1')
-#        this.energy.add_energy('s1')
-#        this.energy.add_energy('s1')
-#        this.energy.add_energy('s1')
-#        this.energy.add_energy('s1')
-
-
-
+    def s3_proc(this, e):
+        Event('defchain')()
 
 if __name__ == '__main__':
     conf = {}
     from slot.a import *
     from slot.d import *
+    conf['slot.a'] = The_Shining_Overlord()+LC()
 
     #conf['slot.a'] = HoH()+JotS()
-    conf['slot.a'] = The_Shining_Overlord()+LC()
+    #conf['slot.a'] = The_Shining_Overlord()+ The_Petal_Queen()
+    #conf['slot.a'] = The_Shining_Overlord()+ Halidom_Grooms()
+    #conf['slot.d'] = Shinobi()
      
- #   conf['acl'] = """
- #       `s1
- #       `s2, fsc and this.energy() < 4
- #       `fs, seq=3
- #       """
-
     adv_test.test(module(), conf, verbose=-2)
 
 

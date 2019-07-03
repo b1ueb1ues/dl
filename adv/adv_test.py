@@ -22,7 +22,10 @@ sim_times = 1000
 
 team_dps = 3500 #(1500+1500+500)
 #team_dps = 5000
-energy_efficiency = 5000 * 0.5 * 2 / 5 / sim_duration
+
+# 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
+energy_efficiency = 5000 * 0.5 * 2 / 5 / sim_duration 
+
 mname = ""
 #base_str = 0
 displayed_str = 0
