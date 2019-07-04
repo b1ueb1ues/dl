@@ -14,11 +14,7 @@ class Yaten(yaten.Yaten):
             this.conf['acl'] = """
                 `s1
                 `s2, fsc and this.energy() < 4
-                `fs, seq=3
-                """
-            this.conf['acl'] = """
-                `s1, s=2
-                `s2, fsc and this.energy() < 4
+                `s3, fsc
                 `fs, seq=3
                 """
         else:
@@ -45,13 +41,18 @@ class Yaten(yaten.Yaten):
         this.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
 
 
+    def s3_proc(this, e):
+        Event('defchain')()
+
+
+
 if __name__ == '__main__':
     conf = {}
     from slot.a import *
     from slot.d import *
 
-    conf['slot.a'] = HoH()+JotS()
-    conf['slot.a'] = RR()+JotS()
+    #conf['slot.a'] = HoH()+JotS()
+    conf['slot.a'] = The_Shining_Overlord()+First_Rate_Hospitality()
      
  #   conf['acl'] = """
  #       `s1

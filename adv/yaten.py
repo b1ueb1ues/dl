@@ -43,20 +43,20 @@ class Yaten(adv.Adv):
         this.a1atk.off()
         this.a1crit.off()
         if this.energy() == 5:
-            this.a1atk.set(0.2)
+            this.a1atk.set(0.20)
             this.a1crit.set(0.08)
         elif this.energy() == 4:
-            this.a1atk.set(0.2)
-            this.a1crit.set(0.08)
-        elif this.energy() == 3:
-            this.a1atk.set(0.15)
-            this.a1crit.set(0.06)
-        elif this.energy() == 2:
             this.a1atk.set(0.10)
             this.a1crit.set(0.04)
-        elif this.energy() == 1:
-            this.a1atk.set(0.05)
+        elif this.energy() == 3:
+            this.a1atk.set(0.08)
+            this.a1crit.set(0.03)
+        elif this.energy() == 2:
+            this.a1atk.set(0.06)
             this.a1crit.set(0.02)
+        elif this.energy() == 1:
+            this.a1atk.set(0.04)
+            this.a1crit.set(0.01)
         elif this.energy() == 0:
             this.a1atk.set(0)
             this.a1crit.set(0)
