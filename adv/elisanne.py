@@ -10,9 +10,9 @@ class Elisanne(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slots.a'] = RR() + HG()
+    #conf['slots.a'] = RR() + HG()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
-
+    conf['slots.a'] = HG() + Indelible_Summer()
 
 
 if __name__ == '__main__':
@@ -24,10 +24,7 @@ if __name__ == '__main__':
     #    """
     conf['acl'] = """
         `s1
-        `s2
-        `s3
+        `s2, fsc
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2)
-
-
