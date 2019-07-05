@@ -10,7 +10,7 @@ class RR(Amulet):
     a = [('s',0.30),
          ('cc',0.08,'hp70')]
 
-class CE(Amulet): 
+class CE(Amulet):
     att = 57
     a = [('a',0.13,'hp70')]
 
@@ -20,7 +20,7 @@ class Bonds_Between_Worlds(Amulet):
          ('prep',25)]
 
 Bonds = Bonds_Between_Worlds
-    
+
 
 
 class LC(Amulet):
@@ -70,7 +70,7 @@ class Jewels_of_the_Sun(Amulet):
          ('a',0.10,'hp70')]
 JotS = Jewels_of_the_Sun
 
-class Heralds_of_Hinomoto(Amulet): 
+class Heralds_of_Hinomoto(Amulet):
     att = 64
     a = [('s',0.30),
          ('sp',0.06)]
@@ -90,9 +90,9 @@ class Flower_in_the_Fray(Amulet):
     a = [('cd',0.15),
          ('s',0.20)]
 
-class The_Prince_of_Dragonyule(Amulet):  
+class The_Prince_of_Dragonyule(Amulet):
     att = 63
-    a = [('cd',0.15)]
+    a = [('cd',0.20)]
     def on(this, c):
         if c.ele == 'water':
             this.a = [('cd',0.20)]
@@ -100,7 +100,7 @@ class The_Prince_of_Dragonyule(Amulet):
 
 
 
-class Evening_of_Luxury(Amulet): 
+class Evening_of_Luxury(Amulet):
     att = 65
     a = [('a',0.15,'hp100'),
          ('cd',0.15)]
@@ -155,7 +155,7 @@ class The_Warrioresses(Amulet):
     a = [('fs',0.40),
          ('cd',0.13)]
 
-class Stellar_Show(Amulet):  
+class Stellar_Show(Amulet):
     att = 65
     a = [('fs',0.50),
          ('cd',0.15)]
@@ -192,7 +192,7 @@ class The_Shining_Overlord(Amulet):  #??
 
 
 class Halidom_Grooms(Amulet):
-    att = 50 
+    att = 50
     a = [('bt',0.2)]
 
     def dc_energy(this, e):
@@ -205,9 +205,11 @@ class Halidom_Grooms(Amulet):
         this.adv = adv
         adv.Listener('defchain',this.dc_energy)
 
+HG = Halidom_Grooms
+
 
 class The_Petal_Queen(Amulet):
-    att = 53 
+    att = 53
 
     def startup(this, t):
         e = this.adv.Event('add_energy')
@@ -228,7 +230,11 @@ class Hanetsuki_Rally(Amulet):
     att = 51
     a = [('cc',0.05),('lo',0.4)]
 
-HG = Halidom_Grooms
+class Indelible_Summer(Amulet):
+    att = 52
+    def on(this, c):
+        if c.ele == 'water':
+            this.a = [('sp',0.09)]
 
 amulets = []
 for k in list(globals()):
