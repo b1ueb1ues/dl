@@ -2,7 +2,6 @@ import adv_test
 from adv import *
 from slot.a import *
 
-
 def module():
     return Elisanne
 
@@ -12,8 +11,8 @@ class Elisanne(Adv):
 
     conf = {}
     #conf['slots.a'] = CE() + Bellathorna()
-    conf['slots.a'] = Halidom_Grooms() + Bellathorna()
-
+    #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
+    conf['slots.a'] = HG() + Indelible_Summer()
 
 
 if __name__ == '__main__':
@@ -29,5 +28,3 @@ if __name__ == '__main__':
         """
     adv_test.team_dps = 2500+2000+500
     adv_test.test(module(), conf, verbose=-2)
-
-
