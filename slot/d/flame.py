@@ -11,3 +11,9 @@ class Sakuya(DragonBase):
             ('s','passive',0.7)]
 
 
+class Arctos(DragonBase):
+    ele = 'flame'
+    att = 121
+    aura = [('att','passive',0.45),
+            ('crit','damage',0.55)]
+

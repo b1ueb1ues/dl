@@ -292,8 +292,8 @@ class Conf(lobject):
             if this.__sync:
                 this.__dosync()
             else:
-                if i == 'sync_skill':
-                    print(type(v).__name__)
+                #if i == 'sync_skill':
+                #    print(type(v).__name__)
                 if type(v).__name__ == 'instancemethod':
                     object.__setattr__(this, '_Conf__sync', 1)
                     v(this)

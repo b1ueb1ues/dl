@@ -11,6 +11,7 @@ class Mikoto(Adv):
     import slot
     conf = {}
     conf['slots.a'] = slot.a.LC()+slot.a.RR()
+    conf['slots.d'] = slot.d.Arctos()
 
     def pre(this):
         if this.condition('connect s1'):
