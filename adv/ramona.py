@@ -6,12 +6,14 @@ def module():
     return Ramona
 
 class Ramona(Adv):
-    comment = ''
+    comment = 'no fs'
+    a3 = ('bc',0.13)
     conf = {}
     conf['slots.a'] = KFM()+VC()
 
     def init(this):
         this.s1tmp = Conf(this.conf.s1)
+        this.a1_iscding = 0
 
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
@@ -29,6 +31,22 @@ class Ramona(Adv):
     def s2_proc(this, e):
        Event('defchain')()
 
+    def a1_cooldown(this, t):
+        this.a1_iscding = 0
+
+    def a1_act(this):
+        this.a1_iscding = 1
+        Timer(this.a1_cooldown).on(15)
+        Selfbuff('a1',0.1,10).on()
+
+    def charge(this, name, sp):
+        if this.s1.check():
+            return Adv.charge(this, name, sp)
+        Adv.charge(this, name, sp)
+        if this.s1.check():
+            this.a1_act()
+
+
 
 
 if __name__ == '__main__':
@@ -37,11 +55,11 @@ if __name__ == '__main__':
         # s1a = this.s1a
         `s1a
         `s2,seq=5
-        `s3,seq=4
+        `s3,seq=4 
         """
-    conf['acl'] = """
-        # s1a = this.s1a
-        `s1a
-        """
+    #conf['acl'] = """
+    #    # s1a = this.s1a
+    #    `s1a
+    #    """
     adv_test.test(module(), conf, verbose=0)
 
