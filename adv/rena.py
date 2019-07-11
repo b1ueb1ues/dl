@@ -8,14 +8,30 @@ def module():
     return Rena
 
 class Rena(Adv):
-    comment = ''
-    conf = {}
-    conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+FRH()
 
+    def pre(this):
+        if this.condition('burn*3 s1@burn*1'):
+            this.init, this.o_init = this.c_init, this.init
 
     def init(this):
         this.a1_iscding = 0
+        this.stance = 0
+
+    def c_init(this):
+        this.o_init()
+        this.dmg_make("o_s1_burn",(0.97*3*3))
+        this.dmg_make("o_s1_hit_burn",this.conf.s1.dmg*0.8)
+
+    
+    def s1_proc(this, e):
+        if this.stance == 0:
+            this.stance = 1
+        elif this.stance == 1:
+            this.stance = 2
+            Selfbuff('s1crit',0.1,15,'crit','chance').on()
+        elif this.stance == 2:
+            this.stance = 0
+            Selfbuff('s1crit',0.1,15,'crit','chance').on()
 
     def s2_proc(this, e):
         this.s1.charge(this.s1.sp)
@@ -45,11 +61,16 @@ class Rena(Adv):
 
 
 if __name__ == '__main__':
+    module().comment = 'Sakuya'
     conf = {}
+    conf['slot.d'] = Sakuya()
+    conf['slot.a'] = RR()+FRH()
     conf['acl'] = """
         `s1
         `s2, s=1
-        `s3, seq=5
+        `s3, fsc
+        `fs, seq=5
         """
+
     adv_test.test(module(), conf, verbose=0)
 
