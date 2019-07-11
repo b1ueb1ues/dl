@@ -49,7 +49,10 @@ class Rena(Adv):
             Timer(this.a1_cooldown).on(15)
             log('cd','a1','start')
             Selfbuff('a1',0.15,10,'def').on()
+            #Teambuff('db_test',0.10,15).on()
             Event('defchain')()
+        else:
+            log('cd','a1','trigger failed')
 
     def charge(this, name, sp):
         if this.s1.check():
@@ -73,4 +76,5 @@ if __name__ == '__main__':
         """
 
     adv_test.test(module(), conf, verbose=0)
+    #logcat(['cd'])
 
