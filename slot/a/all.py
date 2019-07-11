@@ -20,6 +20,7 @@ class Bonds_Between_Worlds(Amulet):
          ('prep',25)]
 
 Bonds = Bonds_Between_Worlds
+BBW = Bonds_Between_Worlds
 
 
 
@@ -52,6 +53,7 @@ class FP(Amulet):
 class Bellathorna(Amulet):
     att = 25
     a = [('bt',0.20)]
+BT = Bellathorna
 
 
 #class Together_We_Stand(Amulet):
@@ -63,6 +65,7 @@ class First_Rate_Hospitality(Amulet):
     att = 55
     a = [('a',0.08,'hp70'),
          ('bc',0.10)]
+FRH = First_Rate_Hospitality
 
 class Jewels_of_the_Sun(Amulet):
     att = 64
@@ -90,6 +93,8 @@ class Flower_in_the_Fray(Amulet):
     a = [('cd',0.15),
          ('s',0.20)]
 
+FitF = Flower_in_the_Fray
+
 class The_Prince_of_Dragonyule(Amulet):
     att = 63
     a = [('cd',0.20)]
@@ -99,16 +104,19 @@ class The_Prince_of_Dragonyule(Amulet):
             this.a += [('cc',0.12,'hit15')]
 
 
-
 class Evening_of_Luxury(Amulet):
     att = 65
     a = [('a',0.15,'hp100'),
          ('cd',0.15)]
 
+EoL = Evening_of_Luxury
+
 
 class The_Chocolatiers(Amulet):
     att = 62
     a = [('prep',100)]
+
+Choco = The_Chocolatiers
 
 
 class Worthy_Rivals(Amulet):
@@ -160,6 +168,8 @@ class Stellar_Show(Amulet):
     a = [('fs',0.50),
          ('cd',0.15)]
 
+SS = Stellar_Show
+
 class KFM(Amulet):
     att = 64
     a = [('s',0.20)]
@@ -175,12 +185,15 @@ class Forest_Bonds(Amulet):
         if c.wt == 'bow':
             this.a = [('sp',0.12,'fs')]
             this.a += [('s',0.40)]
+FB = Forest_Bonds
+
 
 class Dragon_and_Tamer(Amulet):  #??
     att = 57
     def on(this, c):
         if c.wt == 'lance':
             this.a = [('s',0.40)]
+DnT = Dragon_and_Tamer
 
 class The_Shining_Overlord(Amulet):  #??
     att = 65
@@ -189,6 +202,7 @@ class The_Shining_Overlord(Amulet):  #??
         if c.wt == 'sword':
             this.a = [('dc',3)]
             this.a += [('s',0.40)]
+TSO = The_Shining_Overlord
 
 
 class Halidom_Grooms(Amulet):
@@ -229,6 +243,8 @@ class The_Petal_Queen(Amulet):
 class Hanetsuki_Rally(Amulet):
     att = 51
     a = [('cc',0.05),('lo',0.4)]
+
+HR = Hanetsuki_Rally
 
 class Indelible_Summer(Amulet):
     att = 52

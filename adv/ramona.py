@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Ramona
@@ -9,7 +10,9 @@ class Ramona(Adv):
     comment = 'no fs'
     a3 = ('bc',0.13)
     conf = {}
-    conf['slots.a'] = KFM()+VC()
+    #conf['slots.a'] = KFM()+VC()
+    conf['slots.a'] = KFM()+TL()
+    conf['slots.d'] = Sakuya()
 
     def init(this):
         this.s1tmp = Conf(this.conf.s1)
@@ -33,11 +36,15 @@ class Ramona(Adv):
 
     def a1_cooldown(this, t):
         this.a1_iscding = 0
+        log('cd','a1','end')
+
 
     def a1_act(this):
-        this.a1_iscding = 1
-        Timer(this.a1_cooldown).on(15)
-        Selfbuff('a1',0.1,10).on()
+        if not this.a1_iscding :
+            this.a1_iscding = 1
+            Timer(this.a1_cooldown).on(15)
+            log('cd','a1','start')
+            Selfbuff('a1',0.1,10).on()
 
     def charge(this, name, sp):
         if this.s1.check():
