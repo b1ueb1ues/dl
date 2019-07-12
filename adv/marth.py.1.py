@@ -12,7 +12,9 @@ class Marth(adv.Adv):
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')
     conf = {}
-    conf['slot.a'] = TSO()+FoG()
+    conf['slot.d'] = Arctos()
+    conf['slot.a'] = RR()+FoG()
+    #conf['slot.a'] = TSO()+LC()
 
     def pre(this):
         this.stance = 0

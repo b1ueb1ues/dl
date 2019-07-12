@@ -9,6 +9,7 @@ def module():
     return Serena
 
 class Serena(adv.Adv):
+    comment = 'Arctos'
     conf = {}
     conf['slot.d'] = Arctos()
     conf['slot.a'] = TSO()+LC()

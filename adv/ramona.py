@@ -7,7 +7,7 @@ def module():
     return Ramona
 
 class Ramona(Adv):
-    comment = 'no fs; '
+    comment = 'no fs; Sakuya'
     a3 = ('bc',0.13)
     conf = {}
     conf['slots.a'] = KFM()+VC()
@@ -24,8 +24,8 @@ class Ramona(Adv):
 
     def s1a(this):
         if this.s1.check():
-            this.conf.s1.dmg += 3*6
-            this.conf.s1.recovery = 7
+            this.conf.s1.dmg += 2.93*6
+            this.conf.s1.recovery = 6.25
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
             return this.s1()
         else:

@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Aoi
@@ -10,6 +11,8 @@ class Aoi(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+    module().comment = 'Sakuya'
+    conf['slot.d'] = Sakuya()
     conf['acl'] = """
         `s1, seq=5 
         `s2, seq=5 
