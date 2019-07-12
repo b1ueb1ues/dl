@@ -6,7 +6,7 @@ def module():
 
 class Jakob(adv.Adv):
     def pre(this):
-        if this.condition('bog'):
+        if this.condition('bog<=3'):
             this.o_init = this.init
             this.init = this.c_init
 
@@ -29,7 +29,6 @@ class Jakob(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'bog 3 times'
     conf = {}
     conf['acl'] = """
         `s1
