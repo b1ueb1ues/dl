@@ -72,11 +72,11 @@ if __name__ == '__main__':
     else:
         sim_duration = 180
     if sim_duration == 60:
-        module().comment += 'TL>EoL>CE>VC if trigger'
+        module().comment += ';TL>EoL>CE>VC if trigger'
     elif sim_duration == 90:
-        module().comment += 'TL>EoL>CE>VC if trigger'
+        module().comment += ';TL>EoL>CE>VC if trigger'
     elif sim_duration == 180:
-        module().comment += 'EoL>TL>VC>CE if trigger'
+        module().comment += ';EoL>TL>VC>CE if trigger'
 
     adv_test.test(module(), conf, verbose=0)
 
