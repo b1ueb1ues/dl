@@ -24,7 +24,7 @@ def loginit(log=None):
 def log(t, name, amount=None, misc=""):
     g_log_active.append([now(), t, name, amount, misc])
     #e = Event('log_'+name)
-    #e.log = g_log_active[-1]
+    #e.log = [now(), t, name, amount, misc]
     #e.trigger()
 
 def logcat(filter=None, log=None):

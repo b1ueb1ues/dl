@@ -106,14 +106,14 @@ if __name__ == '__main__':
     else:
         sim_duration = 180
     if sim_duration == 60:
-        conf['slots.a'] = RR()+Worthy_Rivals()
-#        module().comment += 'RR+Worthy_Rivals'
+        #conf['slots.a'] = RR()+Worthy_Rivals()
+        #conf['slots.a'] = TSO()+BBW()
+        conf['slots.a'] = TSO()+Sisters_Day_Out()
     elif sim_duration == 90:
-        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
-#        module().comment += 'Heralds_of_Hinomoto+Chocolatiers'
+#        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
+         conf['slots.a'] = TSO()+The_Chocolatiers()
     elif sim_duration == 180:
-        conf['slots.a'] = RR()+The_Chocolatiers()
-#        module().comment += 'RR+Chocolatiers'
+        conf['slots.a'] = TSO()+Sisters_Day_Out()
 
     adv_test.test(module(), conf,verbose=0, mass=0)
 

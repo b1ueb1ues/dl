@@ -6,7 +6,7 @@ def module():
 
 class Waike(adv.Adv):
     def pre(this):
-        if this.condition('bog'):
+        if this.condition('bog<=3'):
             this.init = this.c_init
 
     def init(this):
@@ -34,7 +34,6 @@ class Waike(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'bog 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 or fsc

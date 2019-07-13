@@ -252,6 +252,22 @@ class Indelible_Summer(Amulet):
         if c.ele == 'water':
             this.a = [('sp',0.09)]
 
+class Sisters_Day_Out(Amulet):
+    att = 64
+    a = [('fs',0.40)]
+    def fs_proc(this, e):
+        this.o_fs_proc(e)
+        if this.charges > 0:
+            this.adv.charge_p('sisters_day_out','25%')
+            this.charges -= 1
+
+    def oninit(this, adv):
+        this.charges = 3
+        this.adv = adv
+        this.o_fs_proc = adv.fs_proc
+        adv.fs_proc = this.fs_proc
+
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

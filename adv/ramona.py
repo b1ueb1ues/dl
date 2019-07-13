@@ -10,8 +10,8 @@ class Ramona(Adv):
     comment = 'no fs; Sakuya'
     a3 = ('bc',0.13)
     conf = {}
-    #conf['slots.a'] = KFM()+VC()
-    conf['slots.a'] = KFM()+TL()
+    conf['slots.a'] = KFM()+VC()
+    #conf['slots.a'] = KFM()+TL()
     conf['slots.d'] = Sakuya()
 
     def init(this):
@@ -64,9 +64,19 @@ if __name__ == '__main__':
         `s2,seq=5
         `s3,seq=4 
         """
-    #conf['acl'] = """
-    #    # s1a = this.s1a
-    #    `s1a
-    #    """
+        
+    import sys
+    from slot.a import *
+    if len(sys.argv) >= 3:
+        sim_duration = int(sys.argv[2])
+    else:
+        sim_duration = 180
+    if sim_duration == 60:
+        module().comment += ';TL>EoL>CE>VC if trigger'
+    elif sim_duration == 90:
+        module().comment += ';TL>EoL>CE>VC if trigger'
+    elif sim_duration == 180:
+        module().comment += ';EoL>TL>VC>CE if trigger'
+
     adv_test.test(module(), conf, verbose=0)
 
