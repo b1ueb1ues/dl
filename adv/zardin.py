@@ -10,12 +10,11 @@ class Zardin(adv.Adv):
     a1 = ('a',0.10,'hp100')
     conf = {}
 
-    a = 1
+    a = 2
     if a==1:
         conf["slots.a"] = RR() + Stellar_Show()
-
     if a==2:
-        conf["slots.a"] = The_Shining_Overlord() + The_Prince_of_Dragonyule()
+        conf["slots.a"] = TSO() + LC()
 
 
 if __name__ == '__main__':

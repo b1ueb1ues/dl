@@ -35,8 +35,8 @@ class Marth(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1,fsc
         `s2
+        `s1,fsc
         `s3,fsc
         `fs, seq=3
         """
