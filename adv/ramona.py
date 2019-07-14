@@ -61,7 +61,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         # s1a = this.s1a
         `s1a
-        `s2,seq=5
+        `s2,seq=4
         `s3,seq=4 
         """
         
