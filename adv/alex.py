@@ -10,9 +10,14 @@ class Alex(adv.Adv):
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)
 
+   # conf = {}
+   # conf['rotation'] = """
+   #     c4fsc4fss1c
+   #         """
 
-    #rotation = [1,1,2,3,1]
-    #def act_get(this):
+   # def init(this):
+   #     this.conf.rotation = [1,1,2,3,1]
+   # #def rotation(this):
 
 
 
