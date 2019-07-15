@@ -631,6 +631,7 @@ class Adv(object):
         #pname=prev.name
         #pidx=prev.index
         #pstat=prev.status
+        #rotation = this.rotation
 
         #xseq = -1
         #if dname[0] == 'x': xseq = didx
@@ -802,7 +803,11 @@ class Adv(object):
         this.fsf = this.a_fsf
         this.dodge = this.a_dodge
 
-
+        if type(this.conf.rotation) == str:
+            this.rotation_stat = 0
+            this.act_next = 0
+            this.rt_len = len(this.conf.rotation)
+            this.o_rt = this.conf.rotation
 
 
 
@@ -1236,6 +1241,79 @@ class Adv(object):
 
         func = e.name + '_proc'
         getattr(this, func)(e)
+
+
+    def rotation(this):
+        r = 0
+        if not this.act_next:
+            this.act_next = this.get_next_act()
+        anext = this.act_next
+
+        doing = this.action.getdoing()
+        dname = doing.name
+        dstat = doing.status
+        #didx = doing.index
+
+        #print(anext)
+        if anext[0] == 'c':
+            if dname != 'x'+anext[1] :
+                r = 0
+            elif dstat==1:
+                r = 1
+            else :
+                r = 0
+        elif anext[0] == 's':
+            #print(dname, anext)
+            r = vars(this)[anext]()
+        elif anext == 'fs':
+            #print(dname, anext)
+            r = this.fs()
+
+        if r :
+            this.act_next = this.get_next_act()
+        return r
+
+
+
+    def get_next_act(this):
+        p = this.rotation_stat
+        rt = this.conf.rotation
+        if this.o_rt != rt:
+            print('cannot change rotation after run')
+            errrrrrrrrrrrrrrrrr()
+        ret = ''
+        while(1):
+            if p >= this.rt_len:
+                p = 0
+            if rt[p] in [' ','\t','\r','\n']:
+                p += 1
+            else:
+                break
+        if rt[p] == 'c':
+            xidx = int(rt[p+1])
+            if xidx > 5 or xidx < 1:
+                print(rt+'\nlocation:%d,%s'%(p+1,xidx))
+                errrrrrrrrrrrrrrrr()
+            ret += rt[p:p+2]
+            p += 2
+        elif rt[p] == 's':
+            sidx = int(rt[p+1])
+            if sidx > 3 or sidx < 1:
+                print(xt+'\nlocation:%d,%s'%(p+1,sidx))
+                errrrrrrrrrrrrrrrr()
+            ret += rt[p:p+2]
+            p += 2
+        elif rt[p:p+2] == 'fs':
+            ret = 'fs'
+            p += 2
+        else:
+            print(xt+'\nlocation:%d'%(p))
+            errrrrrrrrrrrrrrrrrr()
+        if p >= this.rt_len:
+            p = 0
+        this.rotation_stat = p
+        return ret
+
 
 
 
