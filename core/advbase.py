@@ -534,11 +534,13 @@ class Action(object):
         if not doing.idle : # doing != this
             if doing.status == -1: # try to interrupt an action
                 if this.name in doing.interrupt_by : # can interrupt action
+                    doing.startup_timer.off()
                     log('interrupt', doing.name , 'by '+this.name+'\t', 'after %.2fs'%(now()-doing.startup_start) )
                 else:
                     return 0
             elif doing.status == 1: # try to cancel an action
                 if this.name in doing.cancel_by : # can interrupt action
+                    doing.recovery_timer.off()
                     log('cancel', doing.name , 'by '+this.name+'\t', 'after %.2fs'%(now()-doing.recover_start) )
                 else:
                     return 0
@@ -550,6 +552,8 @@ class Action(object):
         this.startup_start = now()
         this.startup_timer.on(this.getstartup())
         this._setdoing()
+        if now() <= 3:
+            log('debug', this.getstartup())
         return 1
 
 
@@ -738,12 +742,15 @@ class Adv(object):
 
 
         fsconf = this.conf.fs
-        xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf]
+        xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf,fsconf]
 
         for i in range(5):
             xnfs = 'x%dfs'%(i+1)
             if xnfs in this.conf:
                 xnfsconf[i] += this.conf[xnfs]
+
+        if 'dfs' in this.conf:
+            xnfsconf[5] += this.conf.dfs
 
         this.a_fs = Action('fs',fsconf)
         this.a_x1fs = Action('fs',xnfsconf[0])
@@ -751,6 +758,7 @@ class Adv(object):
         this.a_x3fs = Action('fs',xnfsconf[2])
         this.a_x4fs = Action('fs',xnfsconf[3])
         this.a_x5fs = Action('fs',xnfsconf[4])
+        this.a_dfs = Action('fs',xnfsconf[5])
 
         this.a_x1.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
         this.a_x2.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
@@ -764,6 +772,7 @@ class Adv(object):
         this.a_x3fs.cancel_by = ['dodge','s1','s2','s3']
         this.a_x4fs.cancel_by = ['dodge','s1','s2','s3']
         this.a_x5fs.cancel_by = ['dodge','s1','s2','s3']
+        this.a_dfs.cancel_by = ['dodge','s1','s2','s3']
 
         this.a_x1.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
         this.a_x2.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
@@ -777,6 +786,7 @@ class Adv(object):
         this.a_x4fs.interrupt_by = ['s1','s2','s3']
         this.a_x5fs.interrupt_by = ['s1','s2','s3']
 
+        this.a_dodge.cancel_by = ['fs']
 
 
         this.s1 = Skill('s1', this.conf.s1, this.a_s1)
@@ -802,12 +812,6 @@ class Adv(object):
         #this.fs = this.a_fs
         this.fsf = this.a_fsf
         this.dodge = this.a_dodge
-
-        if type(this.conf.rotation) == str:
-            this.rotation_stat = 0
-            this.act_next = 0
-            this.rt_len = len(this.conf.rotation)
-            this.o_rt = this.conf.rotation
 
 
 
@@ -969,6 +973,8 @@ class Adv(object):
         if doing.name[0] == 'x':
             a = getattr(this, 'a_'+doing.name+'fs')
             return a()
+        elif doing.name == 'dodge':
+            return this.a_dfs()
         else:
             return this.a_fs()
 
@@ -1017,6 +1023,9 @@ class Adv(object):
         this.think_pin('x')
         this.charge('%s'%xseq, sp)
 
+    def l_dodge(this, e):
+        this.think_pin('dodge')
+
 
     def run(this, d = 300):
         this.ctx.on()
@@ -1025,6 +1034,7 @@ class Adv(object):
 
         this.l_idle        = Listener('idle',this.l_idle)
         this.l_x           = Listener(['x1','x2','x3','x4','x5'],this.l_x)
+        this.l_dodge       = Listener('dodge',this.l_dodge)
         this.l_fs          = Listener(['fs','x1fs','x2fs','x3fs','x4fs','x5fs'],this.l_fs)
         this.l_s           = Listener(['s1','s2','s3'],this.l_s)
         this.l_silence_end = Listener('silence_end' , this.l_silence_end  )
@@ -1057,6 +1067,19 @@ class Adv(object):
             this._acl, this._acl_str = acl.acl_func_str(
                     this.acl_prepare_default+this.conf.acl
                     )
+
+        if type(this.conf.rotation) == str:
+            this.rotation_stat = 0
+            this.act_next = 0
+            this.rt_len = len(this.conf.rotation)
+            this.o_rt = this.conf.rotation
+        elif type(this.conf.rotation) == list:
+            this.rotation_stat = 0
+            this.act_next = 0
+            this.rt_len = len(this.conf.rotation)
+            this.o_rt = this.conf.rotation
+            this.get_next_act = this.get_next_act_from_list
+
         Event('idle')()
         this.debug()
         Timeline.run(d)
@@ -1254,6 +1277,8 @@ class Adv(object):
         dstat = doing.status
         #didx = doing.index
 
+        #if dname[0]!='x' and dstat != 1:
+        #    return 
         #print(anext)
         if anext[0] == 'c':
             if dname != 'x'+anext[1] :
@@ -1262,17 +1287,34 @@ class Adv(object):
                 r = 1
             else :
                 r = 0
+            this.x()
         elif anext[0] == 's':
             #print(dname, anext)
             r = vars(this)[anext]()
         elif anext == 'fs':
             #print(dname, anext)
             r = this.fs()
+        elif anext == 'dodge':
+            r = this.dodge()
 
         if r :
             this.act_next = this.get_next_act()
         return r
 
+
+    def get_next_act_from_list(this):
+        p = this.rotation_stat
+        rt = this.conf.rotation
+        if this.o_rt != rt:
+            print('cannot change rotation after run')
+            errrrrrrrrrrrrrrrrr()
+        ret = ''
+        ret += rt[p]
+        p += 1
+        if p >= this.rt_len:
+            p = 0
+        this.rotation_stat = p
+        return ret
 
 
     def get_next_act(this):
@@ -1285,7 +1327,7 @@ class Adv(object):
         while(1):
             if p >= this.rt_len:
                 p = 0
-            if rt[p] in [' ','\t','\r','\n']:
+            if rt[p] in [' ','\t','\r','\n','-']:
                 p += 1
             else:
                 break
@@ -1306,6 +1348,9 @@ class Adv(object):
         elif rt[p:p+2] == 'fs':
             ret = 'fs'
             p += 2
+        elif rt[p] == 'd':
+            ret = 'dodge'
+            p += 1
         else:
             print(xt+'\nlocation:%d'%(p))
             errrrrrrrrrrrrrrrrrr()

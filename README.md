@@ -73,6 +73,28 @@ forse strike(failed)
 - dodge  
 dodge
 
+## Rotation method
+use acl 
+```
+`rotation
+```
+add conf.rotation
+```
+conf['rotation'] = "c4fsc4fss1c4fsc4fss1c3s2c4fsc4fss1c1s3"
+```
+space, linefeed, tabulators are ignored in the rotation 
+you can make a readable rotation like this
+```
+conf['rotation'] = """
+    c4fs c4fs s1
+    c4fs c4fs s1
+    c3 s2
+    c4fs c4fs s1
+    c1 s3
+    """
+```
+
+
 
 #### build-in condition
 - s1.charged >= s1.sp  

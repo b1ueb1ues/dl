@@ -22,6 +22,14 @@ class Joe(adv.Adv):
                 `s3, fsc
                 `fs, seq=4
                 """
+            #this.conf['acl'] = """
+            #    `s1, fsc
+            #    `s2, fsc
+            #    `s3, fsc
+            #    `dodge, fsc
+            #    `fs
+            #    """
+
 
 
 if __name__ == '__main__':

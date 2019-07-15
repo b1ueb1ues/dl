@@ -36,6 +36,8 @@ conf.update( {
         "fsf.startup"    : 0        , 
         "fsf.recovery"   : 32/60.0  , 
 
+        "dfs.startup"    : 86/60.0  ,
+        "dfs.recovery"   : 37/60.0  ,
         "dodge.recovery" : 43/60.0  ,
 
         "missile_iv"  : {

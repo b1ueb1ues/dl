@@ -22,6 +22,14 @@ class G_Sarisse(adv.Adv):
                 `s2
                 `fs, seq=4
                 """
+            #this.conf['acl'] = """
+            #    `s3,s1.charged>=2803
+            #    `s1
+            #    `s2
+            #    `dodge, fsc
+            #    `fs
+            #    """
+
 
     def pre(this):
         if this.condition('never lose combos'):
@@ -70,8 +78,9 @@ if __name__ == '__main__':
         `s1
         `s2
         """
+
     import slot
     conf['slots.d'] = slot.d.flame.Sakuya()
 
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=0)
 

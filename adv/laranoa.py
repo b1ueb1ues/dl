@@ -24,6 +24,14 @@ class Laranoa(Adv):
                 `s2
                 `fs, seq=4
                 """
+            #this.conf['acl'] = """
+            #    `s3,s1.charged>=s1.sp
+            #    `s1
+            #    `s2
+            #    `dodge, fsc
+            #    `fs
+            #    """
+
     
     def c_s2_proc(this, e):
         Teambuff('s2_str',0.10,10).on()
