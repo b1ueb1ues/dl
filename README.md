@@ -82,7 +82,7 @@ add conf.rotation
 ```
 conf['rotation'] = "c4fsc4fss1c4fsc4fss1c3s2c4fsc4fss1c1s3"
 ```
-space, linefeed, tabulators are ignored in the rotation 
+space, linefeed, tabulators are ignored in the rotation  
 you can make a readable rotation like this
 ```
 conf['rotation'] = """
