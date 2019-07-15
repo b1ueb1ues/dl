@@ -75,6 +75,8 @@ if __name__ == '__main__':
         module().comment += ';TL>EoL>CE>VC if trigger'
     elif sim_duration == 90:
         module().comment += ';TL>EoL>CE>VC if trigger'
+    elif sim_duration == 120:
+        module().comment += ';TL>EoL>VC>CE if trigger'
     elif sim_duration == 180:
         module().comment += ';EoL>TL>VC>CE if trigger'
 

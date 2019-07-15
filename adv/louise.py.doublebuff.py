@@ -20,12 +20,15 @@ class Louise(louise.Louise):
 
 
 if __name__ == '__main__':
-    module().comment = 'poison 3 times & no fs & g_ranzal+lowen'
+    module().comment = 'poison 3 times & roll fs & g_ranzal+lowen'
     conf = {}
     conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
+        `s1
+        `s2
+        `s3
+        `dodge, fsc
+        `fs
         """
-    conf['slots.a'] = RR()+VC()
+    conf['slots.a'] = Stellar_Show() + Forest_Bonds()
+
     adv_test.test(module(), conf, verbose=0)

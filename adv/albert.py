@@ -112,6 +112,9 @@ if __name__ == '__main__':
     elif sim_duration == 90:
 #        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
          conf['slots.a'] = TSO()+The_Chocolatiers()
+    elif sim_duration == 120:
+#        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
+         conf['slots.a'] = TSO()+The_Sisters_Day_Out()
     elif sim_duration == 180:
         conf['slots.a'] = TSO()+Sisters_Day_Out()
 

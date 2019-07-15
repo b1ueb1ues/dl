@@ -20,6 +20,7 @@ class Nefaria(adv.Adv):
                 `fs, seq=4
                 """
 
+
     def init(this):
         this.s2fscharge = 0
 

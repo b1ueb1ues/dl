@@ -10,7 +10,12 @@ class Alex(adv.Adv):
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)
 
+
+if __name__ == '__main__':
     conf = {}
+    conf['acl'] = """
+        `rotation
+    """
     conf['rotation'] = """
         c4fs c4fs s1
         c4fs c4fs s1
@@ -18,12 +23,6 @@ class Alex(adv.Adv):
         c4fs c4fs s1
         c1 s3
         """
-
-if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `rotation
-    """
     adv_test.test(module(), conf, verbose=0)
 
 
