@@ -33,7 +33,6 @@ class Albert(Adv):
             this.conf['acl'] = """
                 `s2, s1.charged>=s1.sp-300
                 `s1
-                `s3, not this.s2buff.get()
                 `fs, seq=2 
                 """
 
