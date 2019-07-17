@@ -1069,11 +1069,14 @@ class Adv(object):
                     )
 
         if type(this.conf.rotation) == str:
+            this.conf.rotation = this.conf.rotation.lower()
             this.rotation_stat = 0
             this.act_next = 0
             this.rt_len = len(this.conf.rotation)
             this.o_rt = this.conf.rotation
         elif type(this.conf.rotation) == list:
+            for i in this.conf.rotation:
+                i = i.lower()
             this.rotation_stat = 0
             this.act_next = 0
             this.rt_len = len(this.conf.rotation)
@@ -1280,7 +1283,7 @@ class Adv(object):
         #if dname[0]!='x' and dstat != 1:
         #    return 
         #print(anext)
-        if anext[0] == 'c':
+        if anext[0] in ['c','x'] :
             if dname != 'x'+anext[1] :
                 r = 0
             elif dstat==1:
@@ -1294,7 +1297,7 @@ class Adv(object):
         elif anext == 'fs':
             #print(dname, anext)
             r = this.fs()
-        elif anext == 'dodge':
+        elif anext in ['dodge','d']:
             r = this.dodge()
 
         if r :
@@ -1314,12 +1317,13 @@ class Adv(object):
         if p >= this.rt_len:
             p = 0
         this.rotation_stat = p
-        return ret
+        return ret.lower()
 
 
     def get_next_act(this):
         p = this.rotation_stat
         rt = this.conf.rotation
+
         if this.o_rt != rt:
             print('cannot change rotation after run')
             errrrrrrrrrrrrrrrrr()
@@ -1327,10 +1331,19 @@ class Adv(object):
         while(1):
             if p >= this.rt_len:
                 p = 0
-            if rt[p] in [' ','\t','\r','\n','-']:
-                p += 1
-            else:
+            #if rt[p] in [' ','\t','\r','\n','-']:
+            #    p += 1
+            #else:
+            #    break
+            c = ord(rt[p])
+            if c > ord('a') and c < ord('z') :
                 break
+            elif c > ord('A') and c < ord('Z') :
+                break
+            elif c > ord('0') and c < ord('9') :
+                break
+            else:
+                p += 1
         if rt[p] == 'c':
             xidx = int(rt[p+1])
             if xidx > 5 or xidx < 1:
@@ -1338,10 +1351,14 @@ class Adv(object):
                 errrrrrrrrrrrrrrrr()
             ret += rt[p:p+2]
             p += 2
+        elif rt[p] in ['1','2','3','4','5'] and rt[p+1] in ['x','c']:
+            xidx = int(rt[p])
+            ret += 'c'+rt[p]
+            p += 2
         elif rt[p] == 's':
             sidx = int(rt[p+1])
             if sidx > 3 or sidx < 1:
-                print(xt+'\nlocation:%d,%s'%(p+1,sidx))
+                print(rt+'\nlocation:%d,%s'%(p+1,sidx))
                 errrrrrrrrrrrrrrrr()
             ret += rt[p:p+2]
             p += 2
@@ -1352,7 +1369,8 @@ class Adv(object):
             ret = 'dodge'
             p += 1
         else:
-            print(xt+'\nlocation:%d'%(p))
+            print(rt+'\nlocation:%d'%(p))
+            print(rt[p])
             errrrrrrrrrrrrrrrrrr()
         if p >= this.rt_len:
             p = 0

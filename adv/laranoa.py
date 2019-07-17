@@ -1,5 +1,6 @@
 import adv_test
 from adv import *
+from slot.a import *
 
 def module():
     return Laranoa
@@ -10,27 +11,32 @@ class Laranoa(Adv):
     a3 = ('s',0.3)
     
     def pre(this):
+        this.conf.slot.a = FB()+SS()
+
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
         if this.condition('never lose comboes'):
             this.dmg_proc = this.c_dmg_proc
 
+
+
     def init(this):
         this.hits = 0
-        if this.condition('c4+fs'):
+        #if this.condition('c4+fs'):
+        #    this.conf['acl'] = """
+        #        `s3,s1.charged>=s1.sp
+        #        `s1
+        #        `s2
+        #        `fs, seq=4
+        #        """
+        if this.condition('rollfs'):
             this.conf['acl'] = """
                 `s3,s1.charged>=s1.sp
                 `s1
                 `s2
-                `fs, seq=4
+                `dodge, fsc
+                `fs
                 """
-            #this.conf['acl'] = """
-            #    `s3,s1.charged>=s1.sp
-            #    `s1
-            #    `s2
-            #    `dodge, fsc
-            #    `fs
-            #    """
 
     
     def c_s2_proc(this, e):
