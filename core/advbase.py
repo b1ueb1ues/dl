@@ -88,36 +88,47 @@ class Modifier(object):
 
 class Dot(object):
     """
-    Damage over time; e.g., bleed
+    Damage over time; e.g. poison
     """
 
-    def __init__(this, name, dmg, duration, iv):
+    def __init__(this, name, coef, duration, iv):
         this.name = name
         this.active = 0
-        this.dmg = dmg
+        this.coef = coef
         this.iv = iv  # Seconds between each damage tick
         this.duration = duration
-        this.dmg_event = Event('dmg')
+        this.dmg_event = Event('dmg_make')
         this.tick_timer = Timer(this.tick_proc)
         this.dotend_timer = Timer(this.dot_end_proc)
 
-    def dot_end_proc(this, e):
+    def dot_end_proc(this, t):
+        log('dot',this.name,'end\t')
         this.active = 0
+        this.tick_timer.off()
 
-    def tick_proc(this, e):
+    def tick_proc(this, t):
         if this.active == 0:
             return
-        this.tick_event.timing += this.iv
-        this.dmg_event.dmg = this.dmg
+        t.timing += this.iv
+        this.dmg_event.dmg_coef = this.coef
         this.dmg_event.dname = this.name
-        this.dmg_event.trigger()
+        this.dmg_event.on()
         
+    def __call__(this):
+        return this.on()
+
+    def get(this):
+        return this.active
 
     def on(this):
+        if this.active :
+            log('dot',this.name,'failed\t')
+            return 0
         this.active = 1
         this.tick_timer.on(this.iv)
         this.dotend_timer.on(this.duration)
-
+        log('dot',this.name,'start\t','%f/%d'%(this.iv,this.duration))
+        return 1
 
 
 class Buff(object):
@@ -1173,7 +1184,10 @@ class Adv(object):
         log('dmg', e.dname, e.count, e.comment)
 
     def l_dmg_make(this, e):
-        dmg_make(e.dname, e.dmg_coef)
+        if 'dtype' in vars(e):
+            this.dmg_make(e.dname, e.dmg_coef, e.dtype)
+        else:
+            this.dmg_make(e.dname, e.dmg_coef)
 
     def dmg_make(this, name, dmg_coef, dtype=None):
         if dtype == None:

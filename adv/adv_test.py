@@ -274,6 +274,8 @@ def sum_mass_dmg(rs):
             cmin = case
     g_condicomment = ";dpsrange:(%d~%d)"%(cmin, cmax)
 
+    for i in x_sum:
+        x_sum[i] = int(x_sum[i]+0.01)
     r = {}
     r['dmg_sum'] = dmg_sum 
     r['sdmg_sum'] = sdmg_sum 
