@@ -8,8 +8,11 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.Adv):
+    comment = 'Sakuya'
     a3 = ('bt',0.3)
     conf = {}
+    #conf['mod'] = {'ex':('sp','passive',0.15)}
+    conf['slot.d'] = slot.d.Sakuya()
 
     def init(this):
         this.hits = 0
@@ -20,17 +23,14 @@ class G_Sarisse(adv.Adv):
     def pre(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
-        this.conf['slot.a'] = FB()+SS()
-        if this.condition('rollfs'):
+        if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s3,s1.charged>=2803
-                `s1,fsc
-                `s2,fsc
-                `dodge, fsc
-                `fs
+                `s1
+                `s2
+                `fs, seq=4
                 """
         else:
-#            this.conf['slot.a'] = RR()+FoG()
             this.conf['acl'] = """
                 `s3,s1.charged>=2803
                 `s1

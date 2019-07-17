@@ -3,6 +3,11 @@ from adv import *
 from slot.a import *
 from slot.d import *
 import random
+from slot import *
+
+class bane(Amulet):
+    att = 54
+
 
 
 def module():
@@ -28,6 +33,10 @@ class Rena(Adv):
             if random.random() < (120.0-this.burnresist)/100:
                 if this.s1_burn.on():
                     this.burnresist += 20
+                    Buff('bane',0.3,12,'att','killer').on()
+                    log('resistance','burn',this.burnresist)
+            else:
+                    log('resist','burn','resisted')
         if this.stance == 0:
             this.stance = 1
         elif this.stance == 1:
@@ -74,13 +83,14 @@ class Rena(Adv):
 if __name__ == '__main__':
     module().comment = 'Sakuya'
     conf = {}
+    conf['mod'] = {'ex':('sp','passive',0.15)}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+FRH()
+    conf['slot.a'] = RR()+bane()
+    #conf['slot.a'] = RR()+CE()
     conf['acl'] = """
         `s1
         `s2, s=1
-        `s3, fsc
-        `fs, seq=5
+        `s3
         """
 
     adv_test.test(module(), conf, verbose=0, duration=120, mass=1)

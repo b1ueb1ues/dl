@@ -11,32 +11,30 @@ class Laranoa(Adv):
     a3 = ('s',0.3)
     
     def pre(this):
-        this.conf.slot.a = FB()+SS()
-
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
         if this.condition('never lose comboes'):
             this.dmg_proc = this.c_dmg_proc
 
-
-
-    def init(this):
-        this.hits = 0
-        #if this.condition('c4+fs'):
-        #    this.conf['acl'] = """
-        #        `s3,s1.charged>=s1.sp
-        #        `s1
-        #        `s2
-        #        `fs, seq=4
-        #        """
+        this.conf['slot.a'] = FB()+SS()
         if this.condition('rollfs'):
+            this.conf['acl'] = """
+                `s3,s1.charged>=s1.sp
+                `s1,fsc
+                `s2,fsc
+                `dodge, fsc
+                `fs
+                """
+        else:
             this.conf['acl'] = """
                 `s3,s1.charged>=s1.sp
                 `s1
                 `s2
-                `dodge, fsc
-                `fs
                 """
+
+
+    def init(this):
+        this.hits = 0
 
     
     def c_s2_proc(this, e):
@@ -70,11 +68,6 @@ class Laranoa(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s3,s1.charged>=s1.sp
-        `s1
-        `s2
-        """
     adv_test.test(module(), conf, verbose=-2)
 
 
