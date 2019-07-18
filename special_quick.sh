@@ -13,3 +13,7 @@ python adv/marth.py.cheese.py      -2  | tee -a www/sp/data.csv
 python adv/elisanne.py.goodteam.py -2  | tee -a www/sp/data.csv
 python adv/melody.py.goodteam.py   -2  | tee -a www/sp/data.csv
 python adv/g_mym.py.sp.py          -2  | tee -a www/sp/data.csv
+python adv/g_sarisse.py.rollfs.py  -2  | tee -a www/sp/data.csv
+python adv/laranoa.py.rollfs.py    -2  | tee -a www/sp/data.csv
+python adv/louise.py.rollfs.py     -2  | tee -a www/sp/data.csv
+

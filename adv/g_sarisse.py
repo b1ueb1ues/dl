@@ -11,8 +11,9 @@ class G_Sarisse(adv.Adv):
     comment = 'Sakuya'
     a3 = ('bt',0.3)
     conf = {}
-    #conf['mod'] = {'ex':('sp','passive',0.15)}
     conf['slot.d'] = slot.d.Sakuya()
+    #conf['mod'] = {'ex':('sp','passive',0.15)}
+    #conf['slot.a'] = FB()+FoG()
 
     def init(this):
         this.hits = 0

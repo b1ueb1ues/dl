@@ -16,12 +16,14 @@ class Laranoa(Adv):
         if this.condition('never lose comboes'):
             this.dmg_proc = this.c_dmg_proc
 
-        if this.condition('c4+fs'):
+        this.conf['slot.a'] = FB()+SS()
+        if this.condition('rollfs'):
             this.conf['acl'] = """
                 `s3,s1.charged>=s1.sp
-                `s1
+                `s1,fsc
                 `s2,fsc
-                `fs, seq=4
+                `dodge, fsc
+                `fs
                 """
         else:
             this.conf['acl'] = """
