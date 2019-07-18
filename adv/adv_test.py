@@ -223,17 +223,19 @@ def do_mass_sim(classname, conf, no_cond=None):
                     adv.acl_prepare_default+adv.conf['acl'] 
                     )
     real_duration = 0
+    sum_duration = 0
     for i in range(sim_times):
         if not no_cond:
             adv = classname(conf=conf,cond=1)
         else:
             adv = classname(conf=conf,cond=0)
         adv._acl = _acl
-        real_duration += adv.run(sim_duration)
+        real_duration = adv.run(sim_duration)
+        sum_duration += real_duration
         #condi = adv.m_condition.p()
         r = sum_dmg()
         results.append(r)
-    real_duration /= sim_times
+    real_duration = sum_duration / sim_times
     r = sum_mass_dmg(results)
     return r
 
@@ -251,6 +253,7 @@ def sum_mass_dmg(rs):
 
     cmax = 0
     cmin = 0
+
     for i in rs:
         for j in i['dmg_sum'] :
             dmg_sum[j] += i['dmg_sum'][j] / sim_times
@@ -449,6 +452,7 @@ def sum_dmg():
             team_buff_power = i[3]
         elif i[1] == 'energy' and i[2] == 'team':
             team_energy += i[3]
+    #print real_duration , team_buff_start, team_buff_power
     team_buff_powertime += (real_duration - team_buff_start)*team_buff_power
 
 
