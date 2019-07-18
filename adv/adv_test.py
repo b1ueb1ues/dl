@@ -345,7 +345,7 @@ def sum_ac():
             if i[2] == 'x5':
                 ret.append('c5')
             prev = int(i[2][1])
-        if i[1] == 'cast' or i[1] == 'fs' or i[1] == 'fs_alt':
+        if i[1] == 'cast' or i[1] == 'fs' or i[1][:3] == 'fs_':
             if prev:
                 if prev != 5:
                     ret.append("c%d"%prev)
