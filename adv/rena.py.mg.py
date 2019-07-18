@@ -83,7 +83,7 @@ class Rena(Adv):
 if __name__ == '__main__':
     module().comment = 'Sakuya'
     conf = {}
-    conf['mod'] = {'ex':('sp','passive',0.15)}
+    conf['mod'] = {'blade':('att','ex',0.1),'bow':('sp','passive',0.15),'wand':('s','ex',0.15)}
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = RR()+bane()
     #conf['slot.a'] = RR()+CE()

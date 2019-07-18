@@ -1096,7 +1096,7 @@ class Adv(object):
 
         Event('idle')()
         this.debug()
-        Timeline.run(d)
+        return Timeline.run(d)
 
     def debug(this):
         pass

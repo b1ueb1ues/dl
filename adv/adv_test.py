@@ -35,6 +35,7 @@ g_condicomment = ''
 comment = ""
 dps = 0
 bps = 0
+real_duration = 0
 
 def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global mname
@@ -43,6 +44,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global g_condition
     global loglevel
     global sim_duration
+    global real_duration
 
     if duration:
         sim_duration = duration
@@ -79,7 +81,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
 
     comment = adv.comment
 
-    adv.run(sim_duration)
+    real_duration = adv.run(sim_duration)
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
     #comment = amulets + comment
 
@@ -111,7 +113,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     else:
         r = sum_dmg()
 
-    dps = r['dmg_sum']['total']/sim_duration
+    dps = r['dmg_sum']['total']/real_duration
     bps = r['buff_sum'] #* team_dps
     team_energy = r['energy_sum'] #* energy_efficiency
 
@@ -164,7 +166,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         bdps = team_dps*bps
         name = mname
         condi = ' '
-        exdps = team_dps + int(r['dmg_sum']['total']/sim_duration)
+        exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
 
 
         if condition != '':
@@ -186,18 +188,18 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         line = line.replace(',staff,',',奶,')
         line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
         line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
-        line = '%d,'%(int(r['dmg_sum']['total']/sim_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
-        line += ',attack:%d'%(int(r['dmg_sum']['x']/sim_duration))
-        line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/sim_duration))
-        line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/sim_duration))
-        line += ',skill_2:%d'%(int(r['sdmg_sum']['s2']['dmg']/sim_duration))
-        line += ',skill_3:%d'%(int(r['sdmg_sum']['s3']['dmg']/sim_duration))
+        line = '%d,'%(int(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
+        line += ',attack:%d'%(int(r['dmg_sum']['x']/real_duration))
+        line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/real_duration))
+        line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/real_duration))
+        line += ',skill_2:%d'%(int(r['sdmg_sum']['s2']['dmg']/real_duration))
+        line += ',skill_3:%d'%(int(r['sdmg_sum']['s3']['dmg']/real_duration))
         line += ',team_buff:%d'%(int(r['buff_sum']*team_dps))
         if r['energy_sum']:
             line += ',team_energy:%d'%(int(r['energy_sum']*energy_efficiency))
         if r['o_sum'] != {}:
             for i in r['o_sum']:
-                line += ',%s:%d'%(i, int(r['o_sum'][i]/sim_duration))
+                line += ',%s:%d'%(i, int(r['o_sum'][i]/real_duration))
         print(line)
 
     if condition != '':
@@ -214,21 +216,24 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     return
 
 def do_mass_sim(classname, conf, no_cond=None):
+    global real_duration
     results = []
     adv = classname(conf=conf)
     _acl, _acl_str = acl_func_str(
                     adv.acl_prepare_default+adv.conf['acl'] 
                     )
+    real_duration = 0
     for i in range(sim_times):
         if not no_cond:
             adv = classname(conf=conf,cond=1)
         else:
             adv = classname(conf=conf,cond=0)
         adv._acl = _acl
-        adv.run(sim_duration)
+        real_duration += adv.run(sim_duration)
         #condi = adv.m_condition.p()
         r = sum_dmg()
         results.append(r)
+    real_duration /= sim_times
     r = sum_mass_dmg(results)
     return r
 
@@ -262,7 +267,7 @@ def sum_mass_dmg(rs):
         team_energy += i['energy_sum']  / sim_times
         
         case = 0
-        case += i['dmg_sum']['total'] / sim_duration
+        case += i['dmg_sum']['total'] / real_duration
         case += i['buff_sum'] * team_dps
         case += i['energy_sum'] * energy_efficiency
     #    print case
@@ -444,7 +449,7 @@ def sum_dmg():
             team_buff_power = i[3]
         elif i[1] == 'energy' and i[2] == 'team':
             team_energy += i[3]
-    team_buff_powertime += (sim_duration - team_buff_start)*team_buff_power
+    team_buff_powertime += (real_duration - team_buff_start)*team_buff_power
 
 
     total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs'] + dmg_sum['others']
@@ -473,7 +478,7 @@ def sum_dmg():
     r['sdmg_sum'] = sdmg_sum
     r['x_sum'] = x_sum
     r['o_sum'] = o_sum
-    r['buff_sum'] = team_buff_powertime/sim_duration
+    r['buff_sum'] = team_buff_powertime/real_duration
     r['energy_sum'] = team_energy
     return r
 

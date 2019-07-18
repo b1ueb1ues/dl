@@ -240,11 +240,11 @@ class Timeline(object):
         last += _g_now
         while 1:
             if _g_now > last:
-                return
+                return _g_now
 
             r = this.process_head()
             if r == -1:
-                return
+                return _g_now
 
 
     def __str__(this):

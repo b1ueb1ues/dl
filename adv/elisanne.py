@@ -13,6 +13,7 @@ class Elisanne(Adv):
     #conf['slots.a'] = RR() + HG()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
     conf['slots.a'] = HG() + Indelible_Summer()
+    #conf['mod'] = {'ex':('sp','passive',0.15)}
 
 
 if __name__ == '__main__':
