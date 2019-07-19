@@ -12,11 +12,15 @@ class Francesca(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `rotation
         """
+    conf['rotation_init'] = """
+        C4FS C4FS C1- 
+    """
+    conf['rotation'] = """
+        S1 C4FS C4FS C1- S1 C1- S2 C4FS C5- S1 C1- S3 
+        C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 c4fs c5
+    """
 
     #conf['acl'] = """
     #    `s1

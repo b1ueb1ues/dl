@@ -23,7 +23,21 @@ if __name__ == '__main__':
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
+    import sys
+    from slot.a import *
+    if len(sys.argv) >= 3:
+        sim_duration = int(sys.argv[2])
+    else:
+        sim_duration = 180
 
+    if sim_duration == 120:
+        conf['acl'] = """
+            `rotation
+        """
+        conf['rotation'] = """
+            C4FS C5- S1 C4FS C5- S1 C1- S2 C4FS C5- S1 C5- S3 C5- S1
+            C5- S2 C5- S1 C4FS C5- S1 C4- S3 C4- S2 C3- S1
+        """
 
     adv_test.test(module(), conf, verbose=0)
 

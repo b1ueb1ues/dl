@@ -1087,6 +1087,14 @@ class Adv(object):
         elif type(this.conf.rotation) == str:
             this.conf.rotation = this.conf.rotation.lower()
 
+        if type(this.conf.rotation_init) == list:
+            for i in this.conf.rotation_init:
+                i = i.lower()
+            this.get_next_act = this.get_next_act_from_list
+        elif type(this.conf.rotation_init) == str:
+            this.conf.rotation_init = this.conf.rotation_init.lower()
+
+        this.rotation_init = 0
         if type(this.conf.rotation_init) in [str,list]:
             this.rotation_init = 1
             this.rotation_repeat = this.conf.rotation
@@ -1094,6 +1102,7 @@ class Adv(object):
 
         if type(this.conf.rotation) in [str, list]:
             this.rotation_stat = 0
+            this.xstat_prev = ''
             this.act_next = 0
             this.rt_len = len(this.conf.rotation)
             this.o_rt = this.conf.rotation
@@ -1294,7 +1303,6 @@ class Adv(object):
         getattr(this, func)(e)
 
 
-    xstat_prev = ''
     def rotation(this):
         r = 0
         if not this.act_next:
@@ -1312,12 +1320,12 @@ class Adv(object):
         if this.xstat_prev != dname:
             this.xstat_prev = ''
         if anext[0] in ['c','x'] :
-            log('debug','-',this.xstat_prev,dname)
+            #log('debug','-',this.xstat_prev,dname)
             if dname != 'x'+anext[1] :
                 r = 0
             elif dstat==1 and this.xstat_prev=='':
                 this.xstat_prev = dname
-                log('debug','rotation',dname)
+                #log('debug','rotation',dname)
                 r = 1
             else :
                 r = 0
@@ -1362,6 +1370,7 @@ class Adv(object):
         while(1):
             if p >= this.rt_len:
                 this.rotation_reset()
+                rt = this.conf.rotation
                 p = 0
             #if rt[p] in [' ','\t','\r','\n','-']:
             #    p += 1

@@ -1,5 +1,6 @@
 import adv_test
 from adv import *
+from slot.a import *
 
 def module():
     return Orsem
@@ -11,11 +12,14 @@ class Orsem(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    #conf['slot.a'] = RR()+JotS()
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `rotation
         """
+    conf['rotation'] = """
+        C4FS C4FS C2- S1 C4FS C5- S2 C1- S1 C4FS C5- S3 C1- S1 C4FS C5-
+        S2 C1- S1 C4FS C4FS C1- S1 C4FS C5- S3 C1- S2 C1- S1
+    """
+
     adv_test.test(module(), conf, verbose=0, mass=0)
 

@@ -7,13 +7,21 @@ def module():
 class Renelle(Adv):
     a1 = ('cc',0.08,'hit15')
 
+    def rinit(this):
+        this.rotation('')
+
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `rotation
         """
+    conf['rotation_init'] = """
+        c4fs C4FS C1- 
+    """
+    conf['rotation'] = """
+        S1 C4FS C4FS C1- S1 C1- S2 C4FS C5- S1 C1- S3
+        C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 C4fs !c5!
+    """
+    # why c4fs at end, not c5
     adv_test.test(module(), conf, verbose=0, mass=0)
 

@@ -17,8 +17,12 @@ if __name__ == '__main__':
         """
     conf['slot.a'] = RR()+SS()
     conf['rotation'] = """
-        C2FS C2FS- S1 C2FS C2FS- S1 C2FS- S2 C2FS C2FS- S1 C2FS- S3 C2FS C2FS- S1
-        C2FS C2FS- S2 C2FS C2FS- S1 C2FS C2FS- S1 C2FS C2FS- S3 C2FS- S2 C2FS- S1
+        C2FSC2FSC2FS C2FS- S1 
+        C2FSC2FSC2FS C2FS- S1 C2FS- S2 
+        C2FSC2FS C2FS- S1 C2FS- S3
+        C2FSC2FS C2FS- S1
+        C2FS C2FS- S2 C2FS C2FS- S1 
+        C2FSC2FSC2FS C2FS- S1 C2FS C2FS- S3 C2FS- S2 C2FS- S1
     """
 
     #conf['acl'] = """
