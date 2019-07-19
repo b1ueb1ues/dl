@@ -1096,7 +1096,9 @@ class Adv(object):
 
         Event('idle')()
         this.debug()
-        return Timeline.run(d)
+        end = Timeline.run(d)
+        log('sim','end')
+        return end
 
     def debug(this):
         pass
@@ -1177,6 +1179,8 @@ class Adv(object):
     def dmg_formula(this, name, dmg_coef):
         att = 1.0 * this.att_mod() * this.base_att
         armor = 10.0 * this.def_mod()
+        #return float(dmg_coef) * this.dmg_mod(name) * this.att_mod() / this.def_mod()
+        #return float(dmg_coef) * this.dmg_mod(name) * this.def_mod()
         return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor   # true formula 
         #return att/armor * dmg_coef * this.dmg_mod(name)
 
