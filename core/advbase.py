@@ -1087,17 +1087,18 @@ class Adv(object):
         elif type(this.conf.rotation) == str:
             this.conf.rotation = this.conf.rotation.lower()
 
-        if type(this.conf.rotation) in [str, list]:
-            this.rotation_repeat = this.conf.rotation
-            this.rotation_stat = 0
-            this.act_next = 0
-
         if type(this.conf.rotation_init) in [str,list]:
             this.rotation_init = 1
+            this.rotation_repeat = this.conf.rotation
             this.conf.rotation = this.conf.rotation_init
 
-        this.rt_len = len(this.conf.rotation)
-        this.o_rt = this.conf.rotation
+        if type(this.conf.rotation) in [str, list]:
+            this.rotation_stat = 0
+            this.act_next = 0
+            this.rt_len = len(this.conf.rotation)
+            this.o_rt = this.conf.rotation
+
+    
 
 
         Event('idle')()
