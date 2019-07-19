@@ -361,9 +361,14 @@ def sum_ac():
     prin = ''
     for i in ret:
         if prev == 'c' and i[0] != 'c' and c5count!=0:
-            prin += 'c5*%d '%(c5count)
-            c5count = 0
-            row += 5
+            if c5count == 1:
+                prin += 'c5 '
+                c5count = 0
+                row += 3
+            else:
+                prin += 'c5*%d '%(c5count)
+                c5count = 0
+                row += 5
 
         if i[0] == 's':
             if prev != 's':
@@ -385,6 +390,10 @@ def sum_ac():
                 if c5count == 0:
                     prin += i+' '
                     row += 3
+                elif c5count == 1:
+                    prin += 'c5 %s '%(i)
+                    c5count=0
+                    row += 6
                 else:
                     prin += 'c5*%d %s '%(c5count, i)
                     c5count=0

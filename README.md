@@ -106,7 +106,9 @@ use acl
 ```
 `rotation
 ```
-add conf.rotation
+add conf.rotation and conf.rotation\_init  
+rotation\_init will do only once before rotation
+the rotation will reset to the beginning if it ends
 ```
 conf['rotation'] = "c4fsc4fss1c4fsc4fss1c3s2c4fsc4fss1c1s3"
 ```

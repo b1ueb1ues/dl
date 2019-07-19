@@ -1079,20 +1079,26 @@ class Adv(object):
                     this.acl_prepare_default+this.conf.acl
                     )
 
-        if type(this.conf.rotation) == str:
-            this.conf.rotation = this.conf.rotation.lower()
-            this.rotation_stat = 0
-            this.act_next = 0
-            this.rt_len = len(this.conf.rotation)
-            this.o_rt = this.conf.rotation
-        elif type(this.conf.rotation) == list:
+
+        if type(this.conf.rotation) == list:
             for i in this.conf.rotation:
                 i = i.lower()
+            this.get_next_act = this.get_next_act_from_list
+        elif type(this.conf.rotation) == str:
+            this.conf.rotation = this.conf.rotation.lower()
+
+        if type(this.conf.rotation) in [str, list]:
+            this.rotation_repeat = this.conf.rotation
             this.rotation_stat = 0
             this.act_next = 0
-            this.rt_len = len(this.conf.rotation)
-            this.o_rt = this.conf.rotation
-            this.get_next_act = this.get_next_act_from_list
+
+        if type(this.conf.rotation_init) in [str,list]:
+            this.rotation_init = 1
+            this.conf.rotation = this.conf.rotation_init
+
+        this.rt_len = len(this.conf.rotation)
+        this.o_rt = this.conf.rotation
+
 
         Event('idle')()
         this.debug()
@@ -1302,10 +1308,10 @@ class Adv(object):
         #if dname[0]!='x' and dstat != 1:
         #    return 
         #print(anext)
+        if this.xstat_prev != dname:
+            this.xstat_prev = ''
         if anext[0] in ['c','x'] :
             log('debug','-',this.xstat_prev,dname)
-            if this.xstat_prev != dname:
-                this.xstat_prev = ''
             if dname != 'x'+anext[1] :
                 r = 0
             elif dstat==1 and this.xstat_prev=='':
@@ -1354,6 +1360,7 @@ class Adv(object):
         ret = ''
         while(1):
             if p >= this.rt_len:
+                this.rotation_reset()
                 p = 0
             #if rt[p] in [' ','\t','\r','\n','-']:
             #    p += 1
@@ -1396,10 +1403,19 @@ class Adv(object):
             print(rt+'\nlocation:%d'%(p))
             print(rt[p])
             errrrrrrrrrrrrrrrrrr()
+
         if p >= this.rt_len:
+            this.rotation_reset()
             p = 0
         this.rotation_stat = p
         return ret
+    
+    def rotation_reset(this):
+        if this.rotation_init :
+            this.rotation_init = 0
+            this.conf.rotation = this.rotation_repeat
+            this.rt_len = len(this.conf.rotation)
+            this.o_rt = this.conf.rotation
 
 
 

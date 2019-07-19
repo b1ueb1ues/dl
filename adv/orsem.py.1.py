@@ -12,15 +12,13 @@ class Orsem(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.a'] = RR()+JotS()
+    #conf['slot.a'] = RR()+JotS()
     conf['acl'] = """
         `rotation
         """
     conf['rotation'] = """
-        4C+FS+4C+FS+1C s1
-        4C+FS+4C+FS+1C s1
-        s2
-        4C+FS+4C+FS+1C s3 s1
+        C4FS C4FS C2- S1 C4FS C5- S2 C1- S1 C4FS C5- S3 C1- S1 C4FS C5-
+        S2 C1- S1 C4FS C4FS C1- S1 C4FS C5- S3 C1- S2 C1- S1
     """
 
     adv_test.test(module(), conf, verbose=0, mass=0)
