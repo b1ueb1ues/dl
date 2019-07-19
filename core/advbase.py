@@ -1287,6 +1287,7 @@ class Adv(object):
         getattr(this, func)(e)
 
 
+    xstat_prev = ''
     def rotation(this):
         r = 0
         if not this.act_next:
@@ -1302,9 +1303,14 @@ class Adv(object):
         #    return 
         #print(anext)
         if anext[0] in ['c','x'] :
+            log('debug','-',this.xstat_prev,dname)
+            if this.xstat_prev != dname:
+                this.xstat_prev = ''
             if dname != 'x'+anext[1] :
                 r = 0
-            elif dstat==1:
+            elif dstat==1 and this.xstat_prev=='':
+                this.xstat_prev = dname
+                log('debug','rotation',dname)
                 r = 1
             else :
                 r = 0
