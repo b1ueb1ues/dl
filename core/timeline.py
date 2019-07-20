@@ -163,16 +163,18 @@ class Timer(object):
         return this.online
 
     def callback_repeat(this):
-        this.process(this)
+        r = this.process(this)
         if this.timing == _g_now :
             this.timing += this.timeout
+        return r
 
     def callback_once(this):
-        this.process(this)
+        r = this.process(this)
         if this.timing <= _g_now:
             if this.online:
                 this.online = 0
                 this.timeline.rm(this)
+        return r
 
     def callback(this):
         pass
@@ -225,10 +227,12 @@ class Timeline(object):
         if headtiming >= _g_now:
             _g_now = headtiming
             headt = this._tlist[headindex]
-            headt.callback()
+            r = headt.callback()
         else:
             print('timeline time err')
             exit()
+        if r == -1:
+            return -1
         return 0
     
     @classmethod

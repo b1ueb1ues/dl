@@ -1338,6 +1338,10 @@ class Adv(object):
             r = this.fs()
         elif anext in ['dodge','d']:
             r = this.dodge()
+        elif anext == 'end':
+            def end(t):
+                return -1
+            Timer(end).on()
 
         if r :
             this.act_next = this.get_next_act()
@@ -1409,6 +1413,9 @@ class Adv(object):
         elif rt[p] == 'd':
             ret = 'dodge'
             p += 1
+        elif rt[p:p+3] == 'end':
+            ret = 'end'
+            p += 3
         else:
             print(rt+'\nlocation:%d'%(p))
             print(rt[p])
