@@ -338,12 +338,16 @@ def sum_ac():
     l = logget()
     prev = 0
     ret = []
+    lastc = 0
     for i in l:
         if i[2] == 'succ':
             i[2] = 'fs'
         if i[1] == 'x':
             if i[2] == 'x5':
                 ret.append('c5')
+                lastc = 0
+            else:
+                lastc = 'c'+i[2][1]
             prev = int(i[2][1])
         if i[1] == 'cast' or i[1] == 'fs' or i[1][:3] == 'fs_':
             if prev:
@@ -353,6 +357,9 @@ def sum_ac():
                 prev = 0
             else:
                 ret.append(i[2])
+    if lastc:
+        ret.append(lastc)
+
     print(ret)
     prev = 'c0'
     row = 0
