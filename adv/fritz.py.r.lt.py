@@ -36,7 +36,6 @@ if __name__ == '__main__':
         S1 C3- S2
         C2FSc2fsc2fs C2- S1
         C4FSc4fs C5- S2 C3- S3 C1FS- S1 C1FS C1FS C4FS C3-
-        end
     """
 
     adv_test.test(module(), conf, verbose=0)

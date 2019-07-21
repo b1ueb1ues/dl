@@ -1339,10 +1339,7 @@ class Adv(object):
         elif anext in ['dodge','d']:
             r = this.dodge()
         elif anext == 'end':
-            def end(t):
-                return -1
-            Timer(end).on()
-
+            Timeline.stop()
         if r :
             this.act_next = this.get_next_act()
         return r

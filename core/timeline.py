@@ -163,18 +163,16 @@ class Timer(object):
         return this.online
 
     def callback_repeat(this):
-        r = this.process(this)
+        this.process(this)
         if this.timing == _g_now :
             this.timing += this.timeout
-        return r
 
     def callback_once(this):
-        r = this.process(this)
+        this.process(this)
         if this.timing <= _g_now:
             if this.online:
                 this.online = 0
                 this.timeline.rm(this)
-        return r
 
     def callback(this):
         pass
@@ -227,18 +225,26 @@ class Timeline(object):
         if headtiming >= _g_now:
             _g_now = headtiming
             headt = this._tlist[headindex]
-            r = headt.callback()
+            headt.callback()
         else:
             print('timeline time err')
             exit()
-        if r == -1:
-            return -1
         return 0
     
     @classmethod
     def run(cls, last = 100):
         global _g_timeline
         return _g_timeline._run(last)
+
+    @classmethod
+    def stop(cls, last = 100):
+        global _g_timeline
+        return _g_timeline._stop()
+
+    def _stop(this):
+        global _g_stop
+        _g_stop = 1
+
 
     def _run(this, last = 100):
         last += _g_now
@@ -248,6 +254,9 @@ class Timeline(object):
 
             r = this.process_head()
             if r == -1:
+                return _g_now
+            
+            if _g_stop :
                 return _g_now
 
 
@@ -260,6 +269,7 @@ class Timeline(object):
 Ctx().on()
 Ctx.register(globals(),{
     '_g_now'             : 0 ,
+    '_g_stop'            : 0 ,
     '_g_timeline'        : Timeline() ,
     '_g_event_listeners' : {} ,
     })
