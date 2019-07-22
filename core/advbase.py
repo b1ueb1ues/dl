@@ -341,11 +341,13 @@ class Skill(object):
         this.charged = 0
         if name:
             this.name = name
-        if ac :
-            this.ac = ac
         if conf:
             this.conf = conf
             conf.sync_skill = this.sync_sp
+        if ac :
+            this.ac = ac
+        elif conf:
+            this.ac = S(this.name, this.conf)
 
         this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
@@ -398,11 +400,11 @@ class Skill(object):
                 log('silence','start')
             return 1
 
-    def ac(this):
-        #this.cast_event = Event(this.name+'_cast')
-        #this.cast_event()
-        return 1
-
+#    def ac(this):
+#        #this.cast_event = Event(this.name+'_cast')
+#        #this.cast_event()
+#        return 1
+#
 
 class Action(object):   
     _static = Static({
@@ -436,6 +438,8 @@ class Action(object):
             else:
                 this.name = name
                 this.index = 0
+            this.atype = this.name
+
         if conf != None:
             this.conf = conf
             this.conf.sync_action = this.sync_config
@@ -447,6 +451,7 @@ class Action(object):
             
         if act != None:
             this.act = act
+
 
         if this._static.spd_func == 0:
             this._static.spd_func = this.nospeed
@@ -532,10 +537,10 @@ class Action(object):
 
         if doing.idle :
             if loglevel >= 2:
-                log('tap',this.name, None, 'idle')
+                log('tap',this.name, this.atype+'\t', 'idle:%d'%doing.status)
         else:
             if loglevel >= 2:
-                log('tap',this.name, None, 'doing '+doing.name)
+                log('tap',this.name, this.atype+'\t', 'doing '+doing.name+':%d'%doing.status)
 
         if doing == this : # self is doing
             return 0
@@ -544,13 +549,13 @@ class Action(object):
         #    pass
         if not doing.idle : # doing != this
             if doing.status == -1: # try to interrupt an action
-                if this.name in doing.interrupt_by : # can interrupt action
+                if this.atype in doing.interrupt_by : # can interrupt action
                     doing.startup_timer.off()
                     log('interrupt', doing.name , 'by '+this.name+'\t', 'after %.2fs'%(now()-doing.startup_start) )
                 else:
                     return 0
             elif doing.status == 1: # try to cancel an action
-                if this.name in doing.cancel_by : # can interrupt action
+                if this.atype in doing.cancel_by : # can interrupt action
                     doing.recovery_timer.off()
                     log('cancel', doing.name , 'by '+this.name+'\t', 'after %.2fs'%(now()-doing.recover_start) )
                 else:
@@ -564,8 +569,55 @@ class Action(object):
         this.startup_timer.on(this.getstartup())
         this._setdoing()
         if now() <= 3:
-            log('debug', this.getstartup())
+            log('debug','tap,startup', this.getstartup())
         return 1
+
+class X(Action):
+    def __init__(this, name, conf, act=None):
+        Action.__init__(this, name, conf, act)
+        this.atype = 'x'
+        this.interrupt_by = ['fs','s','dodge']
+        this.cancel_by = ['fs','s','dodge']
+
+    def realtime(this):
+        this.act_event = Event('x')
+        this.act_event.name = this.name
+
+
+class Fs(Action):
+    def __init__(this, name, conf, act=None):
+        Action.__init__(this, name, conf, act)
+        this.atype = 'fs'
+        this.interrupt_by = ['s']
+        this.cancel_by = ['s','dodge']
+
+    def realtime(this):
+        this.act_event = Event('fs')
+        this.act_event.name = this.name
+
+
+class S(Action):
+    def __init__(this, name, conf, act=None):
+        Action.__init__(this, name, conf, act)
+        this.atype = 's'
+        this.interrupt_by = []
+        this.cancel_by = []
+
+    def realtime(this):
+        this.act_event = Event('s')
+        this.act_event.name = this.name
+
+
+class Dodge(Action):
+    def __init__(this, name, conf, act=None):
+        Action.__init__(this, name, conf, act)
+        this.atype = 'dodge'
+        this.cancel_by = ['fs','s']
+
+    def realtime(this):
+        this.act_event = Event('dodge')
+        this.act_event.name = this.name
+
 
 
 
@@ -738,20 +790,7 @@ class Adv(object):
 
 
         # init actions
-        this.a_s1 = Action(('s1',1),this.conf.s1)
-        this.a_s2 = Action(('s2',2),this.conf.s2)
-        this.a_s3 = Action(('s3',3),this.conf.s3)
-        this.a_x1 = Action(('x1',1),this.conf.x1)
-        this.a_x2 = Action(('x2',2),this.conf.x2)
-        this.a_x3 = Action(('x3',3),this.conf.x3)
-        this.a_x4 = Action(('x4',4),this.conf.x4)
-        this.a_x5 = Action(('x5',5),this.conf.x5)
-
-
-        this.a_dodge = Action('dodge', this.conf.dodge)
-        this.a_fsf = Action('fsf', this.conf.fsf)
-
-
+        # this.a_fs 
         fsconf = this.conf.fs
         xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf,fsconf]
 
@@ -763,48 +802,29 @@ class Adv(object):
         if 'dfs' in this.conf:
             xnfsconf[5] += this.conf.dfs
 
-        this.a_fs = Action('fs',fsconf)
-        this.a_x1fs = Action('fs',xnfsconf[0])
-        this.a_x2fs = Action('fs',xnfsconf[1])
-        this.a_x3fs = Action('fs',xnfsconf[2])
-        this.a_x4fs = Action('fs',xnfsconf[3])
-        this.a_x5fs = Action('fs',xnfsconf[4])
-        this.a_dfs = Action('fs',xnfsconf[5])
+        this.a_x1 = X(('x1',1),this.conf.x1)
+        this.a_x2 = X(('x2',2),this.conf.x2)
+        this.a_x3 = X(('x3',3),this.conf.x3)
+        this.a_x4 = X(('x4',4),this.conf.x4)
+        this.a_x5 = X(('x5',5),this.conf.x5)
 
-        this.a_x1.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
-        this.a_x2.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
-        this.a_x3.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
-        this.a_x4.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
-        this.a_x5.cancel_by = ['dodge','fs','fsf','s1','s2','s3']
+        this.a_fs = Fs('fs',fsconf)
+        this.a_x1fs = Fs('fs',xnfsconf[0])
+        this.a_x2fs = Fs('fs',xnfsconf[1])
+        this.a_x3fs = Fs('fs',xnfsconf[2])
+        this.a_x4fs = Fs('fs',xnfsconf[3])
+        this.a_x5fs = Fs('fs',xnfsconf[4])
+        this.a_dfs = Fs('fs',xnfsconf[5])
+        this.a_fsf = Fs('fsf', this.conf.fsf)
 
-        this.a_fs.cancel_by = ['dodge','s1','fsf','s2','s3']
-        this.a_x1fs.cancel_by = ['dodge','s1','s2','s3']
-        this.a_x2fs.cancel_by = ['dodge','s1','s2','s3']
-        this.a_x3fs.cancel_by = ['dodge','s1','s2','s3']
-        this.a_x4fs.cancel_by = ['dodge','s1','s2','s3']
-        this.a_x5fs.cancel_by = ['dodge','s1','s2','s3']
-        this.a_dfs.cancel_by = ['dodge','s1','s2','s3']
+        this.a_dodge = Dodge('dodge', this.conf.dodge)
 
-        this.a_x1.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
-        this.a_x2.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
-        this.a_x3.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
-        this.a_x4.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
-        this.a_x5.interrupt_by = ['dodge', 'fs','fsf','s1','s2','s3']
-        this.a_fs.interrupt_by = ['s1','s2','s3']
-        this.a_x1fs.interrupt_by = ['s1','s2','s3']
-        this.a_x2fs.interrupt_by = ['s1','s2','s3']
-        this.a_x3fs.interrupt_by = ['s1','s2','s3']
-        this.a_x4fs.interrupt_by = ['s1','s2','s3']
-        this.a_x5fs.interrupt_by = ['s1','s2','s3']
+        # skill init
+        this.s1 = Skill('s1', this.conf.s1)
+        this.s2 = Skill('s2', this.conf.s2)
+        this.s3 = Skill('s3', this.conf.s3)
 
-        this.a_dodge.cancel_by = ['fs']
-
-
-        this.s1 = Skill('s1', this.conf.s1, this.a_s1)
-        this.s2 = Skill('s2', this.conf.s2, this.a_s2)
-        this.s3 = Skill('s3', this.conf.s3, this.a_s3)
         
-
         if this.conf.xtype == 'ranged':
             this.l_x = this.l_range_x
             this.l_fs = this.l_range_fs
@@ -1035,6 +1055,7 @@ class Adv(object):
         this.charge('%s'%xseq, sp)
 
     def l_dodge(this, e):
+        log('dodge','-')
         this.think_pin('dodge')
 
 
@@ -1044,10 +1065,10 @@ class Adv(object):
         this.doconfig()
 
         this.l_idle        = Listener('idle',this.l_idle)
-        this.l_x           = Listener(['x1','x2','x3','x4','x5'],this.l_x)
+        this.l_x           = Listener(['x','x1','x2','x3','x4','x5'],this.l_x)
         this.l_dodge       = Listener('dodge',this.l_dodge)
         this.l_fs          = Listener(['fs','x1fs','x2fs','x3fs','x4fs','x5fs'],this.l_fs)
-        this.l_s           = Listener(['s1','s2','s3'],this.l_s)
+        this.l_s           = Listener(['s','s1','s2','s3'],this.l_s)
         this.l_silence_end = Listener('silence_end' , this.l_silence_end  )
         this.l_dmg_make    = Listener('dmg_make'    , this.l_dmg_make     )
         this.l_true_dmg    = Listener('true_dmg'    , this.l_true_dmg     )

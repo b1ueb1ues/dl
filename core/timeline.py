@@ -33,6 +33,7 @@ class Event(object):
     def __init__(this, name=None):
         if name :
             this.name = name
+            this.__name = name
             this._trigger = get_event_trigger(name)
         else:
             this._trigger = []
@@ -55,6 +56,10 @@ class Event(object):
 
     def __call__(this, expand=None):
         this.on(this)
+
+    def __str__(this):
+        return this.__name
+
 
     #__call__ = on
 
