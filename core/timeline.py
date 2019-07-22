@@ -47,7 +47,7 @@ class Event(object):
             else:
                 add_event_listener(eventname, cb)
         else:
-            add_event_listener(this.name, cb)
+            add_event_listener(this.__name, cb)
 
 
     def on(this, e=None):

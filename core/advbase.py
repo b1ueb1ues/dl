@@ -487,6 +487,8 @@ class Action(object):
 
     def rt_tap(this):
         if this.rt_name != this.name:
+            if this.atype == this.rt_name:
+                this.atype = this.name
             this.rt_name = this.name
             this.act_event = Event(this.name)
         return this.o_tap()
@@ -529,6 +531,7 @@ class Action(object):
     def act(this, action):
         if loglevel >= 2:
             log('act',this.name)
+        this.act_event.name = this.name
         this.act_event()
 
 
@@ -582,6 +585,16 @@ class X(Action):
     def realtime(this):
         this.act_event = Event('x')
         this.act_event.name = this.name
+        this.rt_name = this.name
+        this.tap, this.o_tap = this.rt_tap, this.tap
+
+    def rt_tap(this):
+        if this.rt_name != this.name:
+            if this.atype == this.rt_name:
+                this.atype = this.name
+            this.rt_name = this.name
+            this.act_event.name = this.name
+        return this.o_tap()
 
 
 class Fs(Action):
@@ -594,6 +607,40 @@ class Fs(Action):
     def realtime(this):
         this.act_event = Event('fs')
         this.act_event.name = this.name
+
+class Fs_group(object):
+    def __init__(this, name, conf, act=None):
+        this.actions = {}
+        this.conf = conf
+        fsconf = conf.fs
+        xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf,fsconf]
+
+        for i in range(5):
+            xnfs = 'x%dfs'%(i+1)
+            if xnfs in this.conf:
+                xnfsconf[i] += this.conf[xnfs]
+
+        if 'dfs' in this.conf:
+            xnfsconf[5] += this.conf.dfs
+
+        this.add('default', Fs(name, fsconf     , act))
+        this.add('x1',      Fs(name, xnfsconf[0], act))
+        this.add('x2',      Fs(name, xnfsconf[1], act))
+        this.add('x3',      Fs(name, xnfsconf[2], act))
+        this.add('x4',      Fs(name, xnfsconf[3], act))
+        this.add('x5',      Fs(name, xnfsconf[4], act))
+        this.add('dodge',   Fs(name, xnfsconf[5], act))
+
+    def add(this, name, action):
+        this.actions[name] = action
+
+    def __call__(this, before):
+        if before in this.actions:
+            return this.actions[before]()
+        else:
+            return this.actions['default']()
+
+
 
 
 class S(Action):
@@ -808,13 +855,14 @@ class Adv(object):
         this.a_x4 = X(('x4',4),this.conf.x4)
         this.a_x5 = X(('x5',5),this.conf.x5)
 
-        this.a_fs = Fs('fs',fsconf)
-        this.a_x1fs = Fs('fs',xnfsconf[0])
-        this.a_x2fs = Fs('fs',xnfsconf[1])
-        this.a_x3fs = Fs('fs',xnfsconf[2])
-        this.a_x4fs = Fs('fs',xnfsconf[3])
-        this.a_x5fs = Fs('fs',xnfsconf[4])
-        this.a_dfs = Fs('fs',xnfsconf[5])
+        this.a_fs = Fs_group('fs',this.conf)
+        #this.a_fs = Fs('fs',fsconf)
+        #this.a_x1fs = Fs('fs',xnfsconf[0])
+        #this.a_x2fs = Fs('fs',xnfsconf[1])
+        #this.a_x3fs = Fs('fs',xnfsconf[2])
+        #this.a_x4fs = Fs('fs',xnfsconf[3])
+        #this.a_x5fs = Fs('fs',xnfsconf[4])
+        #this.a_dfs = Fs('fs',xnfsconf[5])
         this.a_fsf = Fs('fsf', this.conf.fsf)
 
         this.a_dodge = Dodge('dodge', this.conf.dodge)
@@ -1001,6 +1049,12 @@ class Adv(object):
 
     def fs(this):
         doing = this.action.getdoing()
+        return this.a_fs(doing.name)
+        #if doing.atype in ['x','dodge']:
+        #    return this.a_fs(doing.name)
+        #else:
+        #    return this.a_fs()
+
         if doing.name[0] == 'x':
             a = getattr(this, 'a_'+doing.name+'fs')
             return a()
@@ -1054,6 +1108,9 @@ class Adv(object):
         this.think_pin('x')
         this.charge('%s'%xseq, sp)
 
+    def dodge(this):
+        return this.a_dodge()
+
     def l_dodge(this, e):
         log('dodge','-')
         this.think_pin('dodge')
@@ -1065,15 +1122,17 @@ class Adv(object):
         this.doconfig()
 
         this.l_idle        = Listener('idle',this.l_idle)
-        this.l_x           = Listener(['x','x1','x2','x3','x4','x5'],this.l_x)
+        this.l_x           = Listener('x',this.l_x)
         this.l_dodge       = Listener('dodge',this.l_dodge)
-        this.l_fs          = Listener(['fs','x1fs','x2fs','x3fs','x4fs','x5fs'],this.l_fs)
-        this.l_s           = Listener(['s','s1','s2','s3'],this.l_s)
+        this.l_fs          = Listener('fs',this.l_fs)
+        this.l_s           = Listener('s',this.l_s)
+        #this.l_x           = Listener(['x','x1','x2','x3','x4','x5'],this.l_x)
+        #this.l_fs          = Listener(['fs','x1fs','x2fs','x3fs','x4fs','x5fs'],this.l_fs)
+        #this.l_s           = Listener(['s','s1','s2','s3'],this.l_s)
         this.l_silence_end = Listener('silence_end' , this.l_silence_end  )
         this.l_dmg_make    = Listener('dmg_make'    , this.l_dmg_make     )
         this.l_true_dmg    = Listener('true_dmg'    , this.l_true_dmg     )
         this.l_dmg_formula = Listener('dmg_formula' , this.l_dmg_formula  )
-
 
         this.ctx.on()
 
@@ -1394,10 +1453,6 @@ class Adv(object):
                 this.rotation_reset()
                 rt = this.conf.rotation
                 p = 0
-            #if rt[p] in [' ','\t','\r','\n','-']:
-            #    p += 1
-            #else:
-            #    break
             c = ord(rt[p])
             if c > ord('a') and c < ord('z') :
                 break

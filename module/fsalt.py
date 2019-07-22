@@ -6,69 +6,13 @@ class Foo(object):
 def fs_alt(adv):
     adv._fs_alt_status = 1
     adv.a_fs   = adv._fs_alt.a_fs 
-    adv.a_x1fs = adv._fs_alt.a_x1fs
-    adv.a_x2fs = adv._fs_alt.a_x2fs
-    adv.a_x3fs = adv._fs_alt.a_x3fs
-    adv.a_x4fs = adv._fs_alt.a_x4fs
-    adv.a_x5fs = adv._fs_alt.a_x5fs
 
 def fs_back(adv):
     adv._fs_alt_status = 0
     adv.a_fs   = adv._fs_origin.a_fs 
-    adv.a_x1fs = adv._fs_origin.a_x1fs
-    adv.a_x2fs = adv._fs_origin.a_x2fs
-    adv.a_x3fs = adv._fs_origin.a_x3fs
-    adv.a_x4fs = adv._fs_origin.a_x4fs
-    adv.a_x5fs = adv._fs_origin.a_x5fs
 
 def fs_alt_init(adv, altconf):
-    this = Foo()
-    origin = Foo()
-
-    fsconf = altconf.fs
-    xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf]
-
-    for i in range(5):
-        xnfs = 'x%dfs'%(i+1)
-        if xnfs in altconf:
-            xnfsconf[i] += altconf[xnfs]
-
-    this.a_fs = Action('fs',fsconf)
-    this.a_x1fs = Action('fs',xnfsconf[0])
-    this.a_x2fs = Action('fs',xnfsconf[1])
-    this.a_x3fs = Action('fs',xnfsconf[2])
-    this.a_x4fs = Action('fs',xnfsconf[3])
-    this.a_x5fs = Action('fs',xnfsconf[4])
-
-
-    this.a_fs.cancel_by = ['dodge','s1','fsf','s2','s3']
-    this.a_x1fs.cancel_by = ['dodge','s1','s2','s3']
-    this.a_x2fs.cancel_by = ['dodge','s1','s2','s3']
-    this.a_x3fs.cancel_by = ['dodge','s1','s2','s3']
-    this.a_x4fs.cancel_by = ['dodge','s1','s2','s3']
-    this.a_x5fs.cancel_by = ['dodge','s1','s2','s3']
-
-    this.a_fs.interrupt_by = ['s1','s2','s3']
-    this.a_x1fs.interrupt_by = ['s1','s2','s3']
-    this.a_x2fs.interrupt_by = ['s1','s2','s3']
-    this.a_x3fs.interrupt_by = ['s1','s2','s3']
-    this.a_x4fs.interrupt_by = ['s1','s2','s3']
-    this.a_x5fs.interrupt_by = ['s1','s2','s3']
-
-    origin.a_fs   = adv.a_fs
-    origin.a_x1fs = adv.a_x1fs
-    origin.a_x2fs = adv.a_x2fs
-    origin.a_x3fs = adv.a_x3fs
-    origin.a_x4fs = adv.a_x4fs
-    origin.a_x5fs = adv.a_x5fs
-
-    adv._fs_alt = this
-    adv._fs_origin = origin
-    adv._fs_alt_status = 0
-
-    adv.l_fs.off()
-
-    def l_fs_alt(e):
+    def act_fs_alt(e):
         if adv._fs_alt_status :
             log("fs_alt","succ")
             dmg_coef = altconf["fs.dmg"]
@@ -78,6 +22,18 @@ def fs_alt_init(adv, altconf):
             adv.charge("fs",altconf["fs.sp"])
         else:
             adv.l_fs(e)
+    alt = Foo()
+    origin = Foo()
 
-    adv.l_fs_alt = Listener(['fs','x1fs','x2fs','x3fs','x4fs','x5fs'], l_fs_alt)
+    alt.a_fs = Fs_group('fs_alt',altconf, act_fs_alt)
+
+    origin.a_fs   = adv.a_fs
+
+    adv._fs_alt = alt
+    adv._fs_origin = origin
+    adv._fs_alt_status = 0
+
+    #adv.l_fs.off()
+
+
     
