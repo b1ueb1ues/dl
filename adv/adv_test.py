@@ -415,8 +415,8 @@ def sum_ac():
                 prin += 'fs '
                 row +=3
             prev = 'fs'
-    if prev == 'c' :
-        prin += i
+    #if prev == 'c' :
+    #    prin += i
     print(prin)
 
 def sum_dmg():

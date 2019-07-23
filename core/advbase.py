@@ -1394,9 +1394,10 @@ class Adv(object):
         dstat = doing.status
         #didx = doing.index
 
-        #if dname[0]!='x' and dstat != 1:
-        #    return 
+        if dname[0]!='x' and dstat != 1:
+            return 0
         #print(anext)
+        print(dname, anext, dstat)
         if this.xstat_prev != dname:
             this.xstat_prev = ''
         if anext[0] in ['c','x'] :
@@ -1414,16 +1415,16 @@ class Adv(object):
             #print(dname, anext)
             r = vars(this)[anext]()
         elif anext == 'fs':
-            #print(dname, anext)
             r = this.fs()
+            #r = this.fs()
         elif anext in ['dodge','d']:
             r = this.dodge()
         elif anext == 'end':
-            def end(e):
-                Timeline.stop()
-            Listener('idle',end).on()
+            #def end(foo):
+            #    Timeline.stop()
+            ##Listener('idle',end).on()
             #Timer(end).on()
-            #Timeline.stop()
+            Timeline.stop()
         if r :
             this.act_next = this.get_next_act()
         return r

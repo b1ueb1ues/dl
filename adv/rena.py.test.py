@@ -91,7 +91,7 @@ if __name__ == '__main__':
         `rotation
     """
     conf['rotation'] = """
-        c5fs c5 c5fs s3  c1fs s1 end
+        c5fs c5 c5fs s3  c1fs s1 c5 end
     """
 
     adv_test.test(module(), conf, verbose=0, duration=120, mass=0)

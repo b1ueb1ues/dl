@@ -71,10 +71,6 @@ class G_Ranzal(Adv):
             "%d, %d"%(this.gauges['x'],this.gauges['fs']))
 
     def fs_proc(this, e):
-
-        print e.name
-        if e.name != 'fs':
-            exit()
         if this.fsacharge > 0:
             this.fsacharge -= 1
             if this.fsacharge == 0:
