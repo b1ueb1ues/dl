@@ -27,7 +27,7 @@ team_dps = 3500 #(1500+1500+500)
 energy_efficiency = 5000 * 0.5 * 2 / 5 / sim_duration 
 
 mname = ""
-#base_str = 0
+base_str = 0
 displayed_str = 0
 
 g_condition = ""
@@ -40,6 +40,7 @@ real_duration = 0
 def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global mname
     global displayed_str
+    global base_str
     global comment
     global g_condition
     global loglevel
@@ -93,6 +94,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         g_condition = condition
 
     displayed_str = adv.displayed_att
+    base_str = adv.base_att
     
 
     if loglevel > 0 and loglevel & 1:
@@ -132,8 +134,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         else:
             print('\n=======================')
             #print mname,"%d"%float_dps
-            print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname, 
-                    displayed_str, amulets, '<%s>'%condition, comment ))
+            print("%s , %s (str: %d|%d) %s ;%s ;%s"%( recount, mname, 
+                    base_str, displayed_str, amulets, '<%s>'%condition, comment ))
             print('-----------------------')
 
         dmg_sum = {}

@@ -814,7 +814,7 @@ class Adv(object):
             this.slots.a = tmpconf.slots.a
 
         this.conf = tmpconf
-        this.base_att = this.slots.att(globalconf.forte)
+        this.base_att = int(this.slots.att(globalconf.forte))
         this.displayed_att = int(this.slots._att(globalconf.forte))
         #this.slots.oninit(this)
 
@@ -1397,7 +1397,7 @@ class Adv(object):
         if dname[0]!='x' and dstat != 1:
             return 0
         #print(anext)
-        print(dname, anext, dstat)
+        #print(dname, anext, dstat)
         if this.xstat_prev != dname:
             this.xstat_prev = ''
         if anext[0] in ['c','x'] :

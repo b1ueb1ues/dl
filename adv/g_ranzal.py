@@ -180,12 +180,12 @@ if __name__ == '__main__':
         module().comment += '3FS & dont hold S1'
     else:
         conf['acl'] = """
-        # from core.timeline import now
-        `s1, this.gauges['x'] >=1000 and now()<10
-        `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-        `s2, fsc and this.gauges['fs'] >= 300
-        `fs, cancel and seq=3 
-        `s3, fsc
+            # from core.timeline import now
+            `s1, this.gauges['x'] >=1000 and now()<10
+            `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+            `s2, fsc and this.gauges['fs'] >= 300
+            `fs, cancel and seq=3 
+            `s3, fsc
         """
         module().comment += '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
 

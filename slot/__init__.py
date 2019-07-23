@@ -187,13 +187,13 @@ class Slots(object):
         a = this.att(forte)
         dm = this.tmp.d.mod
         md = 0
-        if type(dm)==list:
+        if type(dm) == list:
             for i in dm:
                 if i[0] == 'att':
-                    md = i[2]
-        elif type(dm)==tuple:
+                    md += i[2]
+        elif type(dm) == tuple:
             if dm[0] == 'att':
-                md = dm[2]
+                md += dm[2]
         return a+a*md
 
 import slot.d as d

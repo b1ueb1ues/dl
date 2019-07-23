@@ -23,6 +23,10 @@ class Fs_alt(object):
         else:
             this.adv.l_fs(e)
 
+    def __call__(this):
+        doing = this.adv.action.getdoing()
+        return this.a_fs_alt(doing.name)
+
     def __init__(this, adv, altconf):
         this.adv = adv
         this.altconf = altconf
