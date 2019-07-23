@@ -1419,7 +1419,11 @@ class Adv(object):
         elif anext in ['dodge','d']:
             r = this.dodge()
         elif anext == 'end':
-            Timeline.stop()
+            def end(e):
+                Timeline.stop()
+            Listener('idle',end).on()
+            #Timer(end).on()
+            #Timeline.stop()
         if r :
             this.act_next = this.get_next_act()
         return r

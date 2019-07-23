@@ -21,9 +21,9 @@ class G_Ranzal(Adv):
                 'fs':0,
                 }
         this.fsacharge = -1
-        this.fsaconf = Conf()
-        this.fsaconf.fs = Conf(this.conf.fs)
-        this.fsaconf({
+        this.fsa3conf = Conf()
+        this.fsa3conf.fs = Conf(this.conf.fs)
+        this.fsa3conf({
                 'fs.dmg':0.83*2+0.92,
                 'fs.sp' :330,
                 "fs.startup":33/60.0,
@@ -33,7 +33,22 @@ class G_Ranzal(Adv):
                 "x3fs.startup":18/60.0,
                 "x3fs.recovery":45/60.0,
                 })
-        fs_alt_init(this, this.fsaconf)
+        this.fsa1conf = Conf()
+        this.fsa1conf.fs = Conf(this.conf.fs)
+        this.fsa1conf({
+                'fs.dmg':0.83,
+                'fs.sp' :330,
+                "fs.startup":33/60.0,
+                "fs.recovery":45/60.0,
+                "x2fs.startup":18/60.0,
+                "x2fs.recovery":45/60.0,
+                "x3fs.startup":18/60.0,
+                "x3fs.recovery":45/60.0,
+                })
+        this.fs_alt3 = Fs_alt(this, this.fsa3conf)
+        this.fs_alt1 = Fs_alt(this, this.fsa1conf)
+        this.fs_alt = this.fs_alt3
+        #fs_alt_init(this, this.fsaconf)
 
         this.now = core.timeline.now
 
@@ -56,10 +71,14 @@ class G_Ranzal(Adv):
             "%d, %d"%(this.gauges['x'],this.gauges['fs']))
 
     def fs_proc(this, e):
+
+        print e.name
+        if e.name != 'fs':
+            exit()
         if this.fsacharge > 0:
             this.fsacharge -= 1
             if this.fsacharge == 0:
-                fs_back(this)
+                this.fs_alt.off()
                 this.fsacharge = -1
 
     def s1_proc(this, e):
@@ -79,7 +98,7 @@ class G_Ranzal(Adv):
 
     def s2_proc(this, e):
         this.fsacharge = 3
-        fs_alt(this)
+        this.fs_alt.on()
         this.ifs1ins2 = 0
         Event('defchain')()
 

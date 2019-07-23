@@ -350,6 +350,7 @@ def sum_ac():
                 lastc = 'c'+i[2][1]
             prev = int(i[2][1])
         if i[1] == 'cast' or i[1] == 'fs' or i[1][:3] == 'fs_':
+            lastc = 0
             if prev:
                 if prev != 5:
                     ret.append("c%d"%prev)
@@ -414,6 +415,8 @@ def sum_ac():
                 prin += 'fs '
                 row +=3
             prev = 'fs'
+    if prev == 'c' :
+        prin += i
     print(prin)
 
 def sum_dmg():
