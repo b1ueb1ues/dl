@@ -14,6 +14,12 @@ class G_Ranzal(Adv):
 
     a3 = ('s',0.3)
 
+    #c3 770
+    #fs1 802
+    #fs3 832
+    #fsend 854-9
+    #c1 854
+
     def init(this):
         this.ifs1ins2 = 0
         this.gauges = {
@@ -26,12 +32,15 @@ class G_Ranzal(Adv):
         this.fsa3conf({
                 'fs.dmg':0.83*2+0.92,
                 'fs.sp' :330,
-                "fs.startup":33/60.0,
-                "fs.recovery":45/60.0,
-                "x2fs.startup":18/60.0,
-                "x2fs.recovery":45/60.0,
-                "x3fs.startup":18/60.0,
-                "x3fs.recovery":45/60.0,
+                "fs.startup":68/60.0,
+                "x1fs.startup":77/60.0,
+                "x2fs.startup":62/60.0,
+                "x3fs.startup":62/60.0,
+
+                "fs.recovery":13/60.0,
+                "x1fs.recovery":13/60.0,
+                "x2fs.recovery":13/60.0,
+                "x3fs.recovery":13/60.0,
                 })
         this.fsa1conf = Conf()
         this.fsa1conf.fs = Conf(this.conf.fs)
@@ -39,11 +48,14 @@ class G_Ranzal(Adv):
                 'fs.dmg':0.83,
                 'fs.sp' :330,
                 "fs.startup":33/60.0,
-                "fs.recovery":45/60.0,
-                "x2fs.startup":18/60.0,
-                "x2fs.recovery":45/60.0,
-                "x3fs.startup":18/60.0,
-                "x3fs.recovery":45/60.0,
+                "x1fs.startup":47/60.0,
+                "x2fs.startup":32/60.0,
+                "x3fs.startup":32/60.0,
+
+                "fs.recovery":43/60.0,
+                "x1fs.recovery":43/60.0,
+                "x2fs.recovery":43/60.0,
+                "x3fs.recovery":43/60.0,
                 })
         this.fs_alt3 = Fs_alt(this, this.fsa3conf)
         this.fs_alt1 = Fs_alt(this, this.fsa1conf)
@@ -184,9 +196,12 @@ if __name__ == '__main__':
             `s1, this.gauges['x'] >=1000 and now()<10
             `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
             `s2, fsc and this.gauges['fs'] >= 300
-            `fs, cancel and seq=3 
+            `fs, cancel and seq=3
             `s3, fsc
         """
+            #`this.fs_alt1, s1.charged >= s1.sp-330 and this.gauges['fs'] >= 650 and  cancel and seq=3 and this.fsacharge > 0
+            #`this.fs_alt3, cancel and seq=3 and this.fsacharge > 0
+            #`fs, cancel and seq=3 and this.fsacharge <= 0
         module().comment += '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
 
     adv_test.test(module(), conf, verbose=0, mass=0)
