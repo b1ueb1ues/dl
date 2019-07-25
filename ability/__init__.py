@@ -30,7 +30,7 @@ class Ability(object):
 
         elif name == 'ex':
             if value == 'blade':
-                this.mod = [('att','ex',0.15)]
+                this.mod = [('att','ex',0.10)]
             elif value == 'dagger':
                 this.mod = [('crit','chance',0.10)]
             elif value == 'bow':
