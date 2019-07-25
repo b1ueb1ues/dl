@@ -59,17 +59,12 @@ class CharacterBase(Slot):
         Slot.oninit(this, adv)
         j = this.ex
         if type(j) == tuple:
-            adv.Modifier('ex',*j)
+            this.a.append(j)
         elif type(j) == list:
-            idx = 0
-            for k in j:
-                adv.Modifier('ex_%d'%idx,*k)
-                idx += 1
+            this.a += j
         elif type(j) == dict:
-            idx = 0
-            for k in j:
-                adv.Modifier('ex_'+k+'_%d'%idx,*j[k])
-                idx += 1
+            for i in j:
+                this.a.append(j[i])
 
 
 

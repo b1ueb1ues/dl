@@ -1322,6 +1322,7 @@ class Adv(object):
         count = this.dmg_formula(dtype, dmg_coef)
         log('dmg', name, count)
         this.dmg_proc(name, count)
+        return count
 
     def dmg_make_withspshow(this, name, dmg_coef, dtype=None):
         if dtype == None:

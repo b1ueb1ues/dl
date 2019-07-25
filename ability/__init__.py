@@ -28,10 +28,39 @@ class Ability(object):
         elif name == 'od':
             this.mod = [('att','killer',value*0.35, cond)]
 
+        elif name == 'ex':
+            if value == 'blade':
+                this.mod = [('att','ex',0.15)]
+            elif value == 'dagger':
+                this.mod = [('crit','chance',0.10)]
+            elif value == 'bow':
+                this.mod = [('sp','passive',0.15)]
+            elif value == 'wand':
+                pass 
+
+
+    def ex_dmg_make(this, name, dmg_coef, dtype=None):
+        count = this.adv_dmg_make(name, dmg_coef, dtype)
+
+        if dtype == None:
+            dtype = name
+        if dtype[:2] == 'o_':
+            dtype = dtype[2:]
+        if dtype[0] == 's':
+            this.adv.log('dmg', 'o_ex_wand', count*0.15);
+
+
+    def ex_wand(this, adv):
+        this.adv = adv
+        this.adv_dmg_make = adv.dmg_make
+        adv.dmg_make = this.ex_dmg_make
+        
+
     def oninit(this, adv, afrom=None):
         name = this.name
         cond = this.cond
         value = this.value
+
         if name == 'sp':
             if cond == 'fs':
                 adv.conf.fs.sp *=(1+value)
@@ -56,6 +85,9 @@ class Ability(object):
                 adv.charge_p('amulet prep',"%d%%"%(value*100))
         elif name == 'resist':
             adv.conf.resist = (cond, value)
+
+        elif name == 'ex' and value == 'wand':
+            this.ex_wand(adv)
 
         j = this.mod
         i = ''
