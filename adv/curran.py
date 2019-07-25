@@ -12,6 +12,7 @@ class Curran(adv.Adv):
     a3 = ('lo',0.5)
 
 
+
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
@@ -19,4 +20,5 @@ if __name__ == '__main__':
         `s2, seq=2
         `s3
         """
+    #conf['slot.d'] = Shinobi()
     adv_test.test(module(), conf, verbose=-2)
