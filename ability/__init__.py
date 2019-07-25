@@ -47,13 +47,29 @@ class Ability(object):
         if dtype[:2] == 'o_':
             dtype = dtype[2:]
         if dtype[0] == 's':
-            this.adv.log('dmg', 'o_ex_wand', count*0.15);
+            this.adv.log('dmg', 'o_ex_wand', count*0.15)
+
+
+    def defchain(this, e):
+        this.adv.Buff('defchain',this.value,15).on()
+
+
+    def ex_true_dmg(this, e):
+        if 'dtype' in vars(e):
+            if e.dtype == 's':
+                this.adv.log('dmg', 'o_ex_wand', e.count*0.15, e.comment)
+
+        if e.name[:2] == 'o_':
+            e.name = e[2:]
+        if e.name[0] == 's':
+            this.adv.log('dmg', 'o_ex_wand', e.count*0.15, e.comment)
 
 
     def ex_wand(this, adv):
         this.adv = adv
         this.adv_dmg_make = adv.dmg_make
         adv.dmg_make = this.ex_dmg_make
+        adv.Listener('true_dmg', this.ex_true_dmg)
         
 
     def oninit(this, adv, afrom=None):
@@ -109,10 +125,6 @@ class Ability(object):
             for k in j:
                 adv.Modifier(i+k+'_%d'%idx,*j[k])
                 idx += 1
-
-
-    def defchain(this, e):
-        this.adv.Buff('defchain',this.value,15).on()
 
 
     def __repr__(this):
