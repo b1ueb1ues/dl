@@ -11,6 +11,9 @@ class Bleed(Dot):
         this.quickshot_event.dmg_coef = dmg_coef
         this.quickshot_event.dname = 's_bleed'
         this.dot_end_timer = Timer(this.dot_end_proc)
+        this.true_dmg_event = Event("true_dmg")
+        this.true_dmg_event.dname = 'o_bleed'
+        this.true_dmg_event.dtype = 's'
 
     def reset(this):
         this._static['all_bleeds'] = []
@@ -31,7 +34,10 @@ class Bleed(Dot):
         else:
             print("err in bleed tick_proc")
             exit()
-        log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
+        this.true_dmg_event.comment = "%d stacks"%stacks
+        this.true_dmg_event.count = dmg 
+        this.true_dmg_event.on()
+        #log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
         e.timing += this.iv
 
     def dot_end_proc(this, e):
@@ -89,7 +95,10 @@ class mBleed(Bleed):
             print("err in bleed tick_proc")
             exit()
 
-        log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
+        this.true_dmg_event.comment = "%d stacks"%stacks
+        this.true_dmg_event.count = dmg 
+        this.true_dmg_event.on()
+        #log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
         e.timing += this.iv
 
             

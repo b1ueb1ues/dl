@@ -28,10 +28,55 @@ class Ability(object):
         elif name == 'od':
             this.mod = [('att','killer',value*0.35, cond)]
 
+        elif name == 'ex':
+            if value == 'blade':
+                this.mod = [('att','ex',0.10)]
+            elif value == 'dagger':
+                this.mod = [('crit','chance',0.10)]
+            elif value == 'bow':
+                this.mod = [('sp','passive',0.15)]
+            elif value == 'wand':
+                pass 
+
+
+    def ex_dmg_make(this, name, dmg_coef, dtype=None):
+        count = this.adv_dmg_make(name, dmg_coef, dtype)
+
+        if dtype == None:
+            dtype = name
+        if dtype[:2] == 'o_':
+            dtype = dtype[2:]
+        if dtype[0] == 's':
+            this.adv.log('dmg', 'o_ex_wand', count*0.15)
+
+
+    def defchain(this, e):
+        this.adv.Buff('defchain',this.value,15).on()
+
+
+    def ex_true_dmg(this, e):
+        if 'dtype' in vars(e):
+            if e.dtype == 's':
+                this.adv.log('dmg', 'o_ex_wand', e.count*0.15, e.comment)
+
+        if e.name[:2] == 'o_':
+            e.name = e[2:]
+        if e.name[0] == 's':
+            this.adv.log('dmg', 'o_ex_wand', e.count*0.15, e.comment)
+
+
+    def ex_wand(this, adv):
+        this.adv = adv
+        this.adv_dmg_make = adv.dmg_make
+        adv.dmg_make = this.ex_dmg_make
+        adv.Listener('true_dmg', this.ex_true_dmg)
+        
+
     def oninit(this, adv, afrom=None):
         name = this.name
         cond = this.cond
         value = this.value
+
         if name == 'sp':
             if cond == 'fs':
                 adv.conf.fs.sp *=(1+value)
@@ -57,6 +102,9 @@ class Ability(object):
         elif name == 'resist':
             adv.conf.resist = (cond, value)
 
+        elif name == 'ex' and value == 'wand':
+            this.ex_wand(adv)
+
         j = this.mod
         i = ''
         if afrom :
@@ -77,10 +125,6 @@ class Ability(object):
             for k in j:
                 adv.Modifier(i+k+'_%d'%idx,*j[k])
                 idx += 1
-
-
-    def defchain(this, e):
-        this.adv.Buff('defchain',this.value,15).on()
 
 
     def __repr__(this):
