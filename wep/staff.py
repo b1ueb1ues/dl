@@ -29,8 +29,8 @@ conf.update( {
         #"x._recovery"    : 68/60.0  ,
         "x5.recovery"    : 40/60.0  ,
 
-        "fs._startup"    : 0        ,
-        "fs._recovery"   : 40/60.0  ,
+        "fsf._startup"    : 0        ,
+        "fsf._recovery"   : 40/60.0  ,
 
         "fs.dmg"         : 0.61*4   ,
         "fs.sp"          : 580      ,

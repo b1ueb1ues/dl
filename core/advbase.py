@@ -405,6 +405,30 @@ class Skill(object):
 #        #this.cast_event()
 #        return 1
 #
+class Actionparts(object):
+    def __init__(this, host, timing):
+        this.atype = host.atype
+        this.timing = timing
+        this.timer = []
+        idx = 0
+        for i in timing :
+            idx += 1
+            t = Timer(this.cb, i)
+            t.idx = idx
+            this.timer.append(t)
+
+    def on(this):
+        for i in this.timer :
+            i.on()
+
+    def off(this):
+        for i in this.timer :
+            i.off()
+    
+    def cb(this, t):
+        this.host._act(t.idx)
+
+
 
 class Action(object):   
     _static = Static({
@@ -472,6 +496,7 @@ class Action(object):
     def sync_config(this, c):
         this._startup = c.startup
         this._recovery = c.recovery
+        this._active = c.active
 
     def __call__(this):
         return this.tap()
@@ -512,7 +537,7 @@ class Action(object):
     def _cb_acting(this, e):
         if this.getdoing() == this:
             this.status = 0
-            this.act(this)
+            this._act(1)
             this.status = 1
             this.recover_start = now() 
             this.recovery_timer.on(this.getrecovery())
@@ -528,10 +553,16 @@ class Action(object):
             this.idle_event()
 
 
-    def act(this, action):
+    def _act(this, partidx):
+        this.idx = partidx
         if loglevel >= 2:
             log('act',this.name)
+        this.act(this)
+
+
+    def act(this, action):
         this.act_event.name = this.name
+        this.act_event.idx = this.idx
         this.act_event()
 
 
@@ -709,6 +740,7 @@ class Adv(object):
     a1 = None
     a2 = None
     a3 = None
+    ex = None
 
     conf_default = Conf()
 
@@ -755,7 +787,7 @@ class Adv(object):
         #cancel=0
         #x=0
         #fsc=0
-        #if pin == 'x': \n    x=1\n    cancel=1\n    x_cancel=1
+        #if pin == 'x': \n    x=didx\n    cancel=1\n    x_cancel=1
         #if pin == 'fs':\n    fsc=1\n    cancel=1
 
         #s=0
@@ -791,6 +823,7 @@ class Adv(object):
         this.slots.c.ele = tmpconf.c.ele
 
 
+
         slots_save = slot.Slots()
         slots_save.w = this.slots.w
         slots_save.d = this.slots.d
@@ -798,6 +831,11 @@ class Adv(object):
 
         this.slot_common = tmpconf.slot_common[0]
         this.slot_common(this.slots)
+
+        if this.ex:
+            this.slots.c.ex = this.ex
+
+
 
         if slots_save.w :
             this.slots.w = tmpconf.slots.w
@@ -1050,18 +1088,7 @@ class Adv(object):
     def fs(this):
         doing = this.action.getdoing()
         return this.a_fs(doing.name)
-        #if doing.atype in ['x','dodge']:
-        #    return this.a_fs(doing.name)
-        #else:
-        #    return this.a_fs()
 
-        if doing.name[0] == 'x':
-            a = getattr(this, 'a_'+doing.name+'fs')
-            return a()
-        elif doing.name == 'dodge':
-            return this.a_dfs()
-        else:
-            return this.a_fs()
 
     def x(this):
         prev = this.action.getprev() 
@@ -1277,7 +1304,7 @@ class Adv(object):
         armor = 10.0 * this.def_mod()
         #return float(dmg_coef) * this.dmg_mod(name) * this.att_mod() / this.def_mod()
         #return float(dmg_coef) * this.dmg_mod(name) * this.def_mod()
-        return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor   # true formula 
+        return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor * 1.5   # true formula 
         #return att/armor * dmg_coef * this.dmg_mod(name)
 
     def l_true_dmg(this, e):

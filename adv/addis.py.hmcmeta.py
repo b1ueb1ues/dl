@@ -18,7 +18,7 @@ def module():
 
 
 class Addis(Adv):
-    comment = 'with max co-abilities of wand+self; v534 against HMC; (still WITHOUT on-ele*1.5)'
+    comment = 'v534 against HMC; '
     a3 = ('bk',0.20)
 
     def getbleedpunisher(this):
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.w'] = blade()
     conf['slots.a'] = Evening_of_Luxury() + RR()
-    conf['mod'] = {'wand':('s','ex',0.15),'blade':('att','ex',0.1)}
+    #conf['mod'] = {'wand':('s','ex',0.15),'blade':('att','ex',0.1)}
 
     conf['acl'] = """
         # bs = this.bleed._static['stacks']
