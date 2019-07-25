@@ -40,6 +40,13 @@ def set(slots):
         slots.a = RR()+FoG()
     if wt == 'bow':
         slots.a = RR()+FoG()
+    
+
+    slots.c.ex = {'wand':('s','ex',0.15), 'blade':('att','ex',0.1)}
+    if wt == 'dagger' :
+        slots.c.ex = {'dagger':('crit','chance',0.1), 'wand':('s','ex',0.15), 'blade':('att','ex',0.1)}
+    elif wt == 'bow' :
+        slots.c.ex = {'bow':('sp','passive',0.15), 'wand':('s','ex',0.15), 'blade':('att','ex',0.1)}
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)

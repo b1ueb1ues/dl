@@ -6,7 +6,7 @@ def module():
     return Melody
 
 class Melody(adv.Adv):
-    comment = 'RR+Bellathorna & no s2 & 5000 team dps'
+    comment = 'RR+Bellathorna & no s2 & 10000 team dps'
     conf = {}
     a1 = ('cc',0.08,'hp100')
     import slot
@@ -23,6 +23,6 @@ if __name__ == '__main__':
         `s1
         `s3, seq=5
         """
-    adv_test.team_dps = 5000
+    adv_test.team_dps = 10000
     adv_test.test(module(), conf, verbose=-2)
 

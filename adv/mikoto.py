@@ -67,9 +67,9 @@ class Mikoto(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc 
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
+        `s1, x=5
+        `s2, x=5
+        `s3, x=5
         """
 
 
