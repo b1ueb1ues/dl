@@ -733,6 +733,10 @@ class Adv(object):
         pass
     def setup(this):
         pass
+    def d_acl(this):
+        pass
+    def d_slots(this):
+        pass
     def prerun(this): 
         pass
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
@@ -875,6 +879,7 @@ class Adv(object):
         # set ex
         if this.ex:
             this.slots.c.ex.update(this.ex)
+        this.ex = this.slots.c.ex
 
         # init actions
         # this.a_fs 
@@ -1185,10 +1190,12 @@ class Adv(object):
         this.equip()
         this.setup()
 
+        this.d_slots()
         this.slots.oninit(this)
 
         this.prerun()
 
+        this.d_acl()
 
         if not this._acl:
             this._acl, this._acl_str = acl.acl_func_str(

@@ -67,7 +67,7 @@ class D_Cleo(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'cy; can you give us the true cleo?'
+    module().comment = ''
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
