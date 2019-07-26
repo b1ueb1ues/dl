@@ -84,7 +84,6 @@ if __name__ == '__main__':
     #module().comment = 'RR+SS'
     #conf['slots.a'] = RR()+FoG()
     conf['acl'] = """
-        `fs, this.fsa_charge and seq=5
         `s2
         `s1
         """

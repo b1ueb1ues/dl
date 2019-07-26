@@ -22,6 +22,11 @@ else:
     sim_duration = 180
 sim_times = 1000
 
+team_dps = 6000 
+#team_dps = 5000
+
+# 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
+energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
 
 ex_set = {}
 if len(sys.argv) >= 4:
@@ -29,19 +34,21 @@ if len(sys.argv) >= 4:
     for i in ex_str:
         if i == 'k':
             ex_set['blade'] = ('ex','blade')
+            team_dps *= 1.1
+            energy_efficiency *= 1.1
         elif i == 'r':
             ex_set['wand'] = ('ex','wand')
+            team_dps *= 1.08
+            energy_efficiency *= 1.15
         elif i == 'd':
             ex_set['dagger'] = ('ex','dagger')
+            team_dps *= 1.07
+            energy_efficiency *= 1.07
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
+            team_dps *= 1.05
 
 
-team_dps = 7000 
-#team_dps = 5000
-
-# 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
-energy_efficiency = 9400 * 0.5 * 2 / 5 / sim_duration 
 
 mname = ""
 base_str = 0
