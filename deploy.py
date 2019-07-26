@@ -3,6 +3,17 @@
 import os
 import sys
 
+# windows platform + git bash
+# use python deploy.py -s [character] > [filename]
+# bash [filename]
+# python deploy.py -c
+# emply [character] will generate all characters script
+
+# linux platform
+# python deploy.py [character]
+# python deploy.py -c
+
+
 redirect = 'tee -a'
 #redirect = '>>'
 
