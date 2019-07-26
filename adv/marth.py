@@ -14,7 +14,7 @@ class Marth(adv.Adv):
     conf = {}
     conf['slot.a'] = TSO()+FoG()
 
-    def pre(this):
+    def init(this):
         this.stance = 0
 
     def s2_proc(this, e):

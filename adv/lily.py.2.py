@@ -18,7 +18,7 @@ class Lily(lily.Lily):
     conf['slot.a'] = RR()+F()
     #conf['slot.a'] = RR()+CE()
 
-    def init(this):
+    def prerun(this):
         #this.conf.s2.recovery += 43.0/60*2
         this.fbuff = Selfbuff('f',0.2,-1,'att','passive')
         #this.fbuff = Selfbuff('f',0,-1,'nop')

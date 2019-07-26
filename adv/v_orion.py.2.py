@@ -12,7 +12,7 @@ class V_Orion(adv.Adv):
     #conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
 
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s2_burn",0.803*3)
         this.dmg_make("o_s2_burn",0.803*3)
         this.dmg_make("o_s2_burn",0.803*3)

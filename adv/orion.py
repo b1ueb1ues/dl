@@ -7,7 +7,7 @@ def module():
 class Orion(Adv):
     a1 = ('cc',0.10,'hit15')
 
-    def init(this):
+    def prerun(this):
         this.charge_p('prep','50%')
 
 

@@ -7,7 +7,7 @@ def module():
 
 class Botan(Adv):
     a3 = ('prep','50%')
-    def init(this):
+    def prerun(this):
         this.bleed = mBleed("g_bleed",0).reset()
 
     def s1_proc(this, e):

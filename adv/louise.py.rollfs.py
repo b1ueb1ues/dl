@@ -9,7 +9,7 @@ class Louise(adv.Adv):
     comment = ''
     a1 = ('od',0.13)
 
-    def pre(this):
+    def init(this):
         this.conf.mod = {'ex':('sp','passive',0.15)}
         this.conf['slot.a'] = FB()+SS()
         if this.condition('rollfs'):
@@ -28,7 +28,7 @@ class Louise(adv.Adv):
                 """
 
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s1_poison",2.91)
         this.dmg_make("o_s1_poison",2.91)
         this.dmg_make("o_s1_poison",2.91)

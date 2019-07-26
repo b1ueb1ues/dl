@@ -36,7 +36,7 @@ class Ability(object):
             elif value == 'bow':
                 this.mod = [('sp','passive',0.15)]
             elif value == 'wand':
-                pass 
+                this.mod = [('s','ex',0.15)]
 
 
     def ex_dmg_make(this, name, dmg_coef, dtype=None):
@@ -102,8 +102,8 @@ class Ability(object):
         elif name == 'resist':
             adv.conf.resist = (cond, value)
 
-        elif name == 'ex' and value == 'wand':
-            this.ex_wand(adv)
+#        elif name == 'ex' and value == 'wand':
+#            this.ex_wand(adv)
 
         j = this.mod
         i = ''

@@ -6,13 +6,13 @@ def module():
 
 class Veronica(adv.Adv):
     a3 = ('prep','100%')
-    def pre(this):
+    def init(this):
         if this.condition('s1 boost by hp80'):
             this.s1boost = 1.25*0.2
         else:
             this.s1boost = 1.25*0.3
 
-    def init(this):
+    def prerun(this):
         adv.Teambuff('last',2.28,1).on()
 
 

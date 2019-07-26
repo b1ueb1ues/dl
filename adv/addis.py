@@ -16,7 +16,7 @@ class Addis(Adv):
             return 0.08
         return 0
 
-    def init(this):
+    def prerun(this):
         random.seed()
         this.poisoncount=3
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')

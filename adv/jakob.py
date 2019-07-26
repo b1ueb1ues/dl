@@ -5,18 +5,18 @@ def module():
     return Jakob
 
 class Jakob(adv.Adv):
-    def pre(this):
-        if this.condition('bog<=3'):
-            this.o_init = this.init
-            this.init = this.c_init
-
     def init(this):
+        if this.condition('bog<=3'):
+            this.o_prerun = this.prerun
+            this.prerun = this.c_prerun
+
+    def prerun(this):
         this.charge_p('prep','50%')
         this.bogcountlast = 0
         this.bogbuff = adv.Debuff('s1_bog',-0.5,8,1,'att','bog')
 
 
-    def c_init(this):
+    def c_prerun(this):
         this.bogcountlast = 3
         this.bogbuff = adv.Debuff('s1_bog',-0.5,8,1,'att','bog')
 

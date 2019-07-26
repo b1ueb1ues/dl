@@ -727,9 +727,17 @@ class Adv(object):
         pass
     def speed(this):
         return 1
-    def pre(this):
+    def init(this):
         pass
-    def init(this): 
+    def equip(this):
+        pass
+    def setup(this):
+        pass
+    def d_acl(this):
+        pass
+    def d_slots(this):
+        pass
+    def prerun(this): 
         pass
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
 
@@ -832,11 +840,6 @@ class Adv(object):
         this.slot_common = tmpconf.slot_common[0]
         this.slot_common(this.slots)
 
-        if this.ex:
-            this.slots.c.ex = this.ex
-
-
-
         if slots_save.w :
             this.slots.w = tmpconf.slots.w
         if slots_save.d :
@@ -873,6 +876,10 @@ class Adv(object):
         this.all_modifiers = []
         this.modifier._static.all_modifiers = this.all_modifiers
 
+        # set ex
+        if this.ex:
+            this.slots.c.ex.update(this.ex)
+        this.ex = this.slots.c.ex
 
         # init actions
         # this.a_fs 
@@ -932,6 +939,9 @@ class Adv(object):
 
 
 
+
+
+
     def __init__(this,conf={},cond=0):
         this.Event = Event
         this.Buff = Buff
@@ -966,7 +976,7 @@ class Adv(object):
         this._acl = None
 
         #this.classconf = this.conf
-        this.pre()
+        this.init()
         this.preconfig()
 
         #this.ctx.off()
@@ -1176,10 +1186,16 @@ class Adv(object):
         if this.a3 :
             this.slots.c.a.append(this.a3)
         
+
+        this.equip()
+        this.setup()
+
+        this.d_slots()
         this.slots.oninit(this)
 
-        this.init()
+        this.prerun()
 
+        this.d_acl()
 
         if not this._acl:
             this._acl, this._acl_str = acl.acl_func_str(
@@ -1213,8 +1229,6 @@ class Adv(object):
             this.act_next = 0
             this.rt_len = len(this.conf.rotation)
             this.o_rt = this.conf.rotation
-
-    
 
 
         Event('idle')()

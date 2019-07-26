@@ -6,7 +6,7 @@ def module():
 
 class Norwin(adv.Adv):
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s2hitblind",(4.035-2.69)*3)
         this.dmg_make("o_s2hitblind",(4.035-2.69)*3)
         this.dmg_make("o_s2hitblind",(4.035-2.69)*3)

@@ -9,7 +9,7 @@ def module():
 class Vanessa(vanessa.Vanessa):
     comment = 'void weapon vs HMS'
 
-    def pre(this):
+    def init(this):
         this.conf['slots.w'] = slot.w.axe.axev5flame()
 
 

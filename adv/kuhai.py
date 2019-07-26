@@ -12,10 +12,10 @@ class Kuhai(Adv):
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
 
-    def pre(this):
+    def init(this):
         if this.condition('huge hitbox eneny'):
-            this.o_init = this.init
-            this.init = this.c_init
+            this.o_prerun = this.prerun
+            this.prerun = this.c_prerun
         else:
             this.missc1 = this.c_missc1
             this.backc1 = this.c_backc1
@@ -23,8 +23,8 @@ class Kuhai(Adv):
     def pre2(this):
         pass
     
-    def c_init(this):
-        this.o_init()
+    def c_prerun(this):
+        this.o_prerun()
         this.fsaconf['fs.dmg'] = 0.83*3
 
     def missc1(this):
@@ -44,7 +44,7 @@ class Kuhai(Adv):
         this.conf['x1.sp'] = this.x1spb
 
 
-    def init(this):
+    def prerun(this):
         this.fsaconf = Conf()
         this.fsaconf.fs = Conf(this.conf.fs)
         this.fsaconf({

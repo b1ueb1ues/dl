@@ -9,15 +9,15 @@ class Fleur(Adv):
     conf = {}
     a1 = ('sp',0.08,'hp70')
     
-    def pre(this):
+    def prerun(this):
         if this.condition('paralysis 40s (s1 boosted when)'):
-            this.init, this.o_init = this.c_init, this.init
+            this.prerun, this.o_prerun = this.c_prerun, this.prerun
 
 
-    def init(this):
+    def prerun(this):
         this.ss = Selfbuff('paralysis killer',0.2,40,'att','killer') # is off
 
-    def c_init(this):
+    def c_prerun(this):
         #this.dmg_make("o_s1hitpara",(5.994*1.2-3.33)*2)
         #this.dmg_make("o_s1hitpara",(5.994*1.2-3.33)*2)
         #this.dmg_make("o_s1hitpara",(5.994*1.2-3.33)*2)

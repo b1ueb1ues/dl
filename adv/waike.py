@@ -5,16 +5,16 @@ def module():
     return Waike
 
 class Waike(adv.Adv):
-    def pre(this):
-        if this.condition('bog<=3'):
-            this.init = this.c_init
-
     def init(this):
+        if this.condition('bog<=3'):
+            this.prerun = this.c_prerun
+
+    def prerun(this):
         this.bogcountlast = 0
         this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
 
 
-    def c_init(this):
+    def c_prerun(this):
         this.bogcountlast = 3
         this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
         if this.condition('c4+fs'):

@@ -5,15 +5,15 @@ def module():
     return Hawk
 
 class Hawk(adv.Adv):
-    def init(this):
+    def prerun(this):
         this.s2fscharge = 0
 
-    def c_init(this):
+    def c_prerun(this):
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         this.dmg_make("o_s1hitstun",18.232*1.3-8.48)
         adv.Selfbuff('stunpunisher',0.3,20,'att','killer').on()
-        this.o_init()
+        this.o_prerun()
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
@@ -23,9 +23,9 @@ class Hawk(adv.Adv):
                 `fs, seq=4
                 """
 
-    def pre(this):
+    def init(this):
         if this.condition('stun 20s(3 s1 boosted)'):
-            this.init, this.o_init = this.c_init, this.init
+            this.prerun, this.o_prerun = this.c_prerun, this.prerun
 
     def s2_proc(this, e):
         this.s2fscharge = 3

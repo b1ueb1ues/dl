@@ -15,13 +15,13 @@ class G_Sarisse(adv.Adv):
     #conf['mod'] = {'ex':('sp','passive',0.15)}
     #conf['slot.a'] = FB()+FoG()
 
-    def init(this):
+    def prerun(this):
         this.hits = 0
         this.bc = adv.Selfbuff()
         this.s2stance = 0
 
 
-    def pre(this):
+    def init(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
         if this.condition('c4+fs'):

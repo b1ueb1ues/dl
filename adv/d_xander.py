@@ -10,18 +10,18 @@ class D_Xander(adv.Adv):
     a3 = ('sp',0.05)
 
 
-    def pre(this):
-        if this.condition('energy'):
-            this.init = this.c_init
-
-
     def init(this):
+        if this.condition('energy'):
+            this.prerun = this.c_prerun
+
+
+    def prerun(this):
         energy.Energy(this,
                 self={},
                 team={}
                 )
 
-    def c_init(this):
+    def c_prerun(this):
         energy.Energy(this,
                 self={'s2':1},
                 team={'s2':1}

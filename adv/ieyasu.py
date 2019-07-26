@@ -22,7 +22,7 @@ class Ieyasu(Adv):
                 return 0.15
         return 0
 
-    def init(this):
+    def prerun(this):
         random.seed()
         this.s2buff = Selfbuff("s2",0.15, 15, 'crit')
         this.s2buff.modifier.get = this.s2ifbleed

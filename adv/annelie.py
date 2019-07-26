@@ -13,18 +13,18 @@ class Annelie(Adv):
     conf['slots.a'] = RR()+CE()
     a1 = ('s',0.35,'hp70')
 
-    def pre(this):
+    def init(this):
         if this.condition('energy'):
-            this.init = this.c_init
+            this.prerun = this.c_prerun
 
-    def c_init(this):
+    def c_prerun(this):
         this.stance = 0
         this.energy = energy.Energy(this, 
                 self={},
                 team={}
                 )
 
-    def c_init(this):
+    def c_prerun(this):
         this.stance = 0
         this.energy = energy.Energy(this, 
                 self={'1':1,'2':2,'s2':2},
@@ -32,7 +32,7 @@ class Annelie(Adv):
                 )
         Event('energized').listener(this.energy_doublebuff)
 
-    def init(this):
+    def prerun(this):
         this.stance = 0
         this.energy = energy.Energy(this, 
                 self={},

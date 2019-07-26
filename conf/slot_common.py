@@ -42,11 +42,12 @@ def set(slots):
         slots.a = RR()+FoG()
     
 
-    slots.c.ex = [('ex', 'blade'), ('ex', 'wand')]
-    if wt == 'dagger' :
-        slots.c.ex = [('ex', 'blade'), ('ex', 'wand'), ('ex', 'dagger')]
-    elif wt == 'bow' :
-        slots.c.ex = [('ex', 'blade'), ('ex', 'wand'), ('ex', 'bow')]
+    slots.c.ex = {wt:('ex',wt)}
+    #slots.c.ex = [('ex', 'blade'), ('ex', 'wand')]
+    #if wt == 'dagger' :
+    #    slots.c.ex = [('ex', 'blade'), ('ex', 'wand'), ('ex', 'dagger')]
+    #elif wt == 'bow' :
+    #    slots.c.ex = [('ex', 'blade'), ('ex', 'wand'), ('ex', 'bow')]
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)

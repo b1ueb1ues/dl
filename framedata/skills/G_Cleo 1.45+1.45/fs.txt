@@ -1,0 +1,19 @@
+s1 = 87
+s2 = 87
+c1 startup = 18
+
+c5h-fs-c1h = 142
+x5fs.total = 142-18 = 124
+
+c5h-fs-s1s = 63
+x5fs.startup = 63-6 = 57
+x5fs.recovery = 124-57=67
+
+s1s-fs-c1h = 221
+s1e-fs = 221-18-87-6=110
+s1fs.startup = 43
+fs.recovery = 67
+
+pure fs
+fs.startup = 51
+fs.recovery = 71

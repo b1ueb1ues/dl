@@ -9,16 +9,16 @@ def module():
 
 class Rena(Adv):
 
-    def pre(this):
-        if this.condition('burn*3 s1@burn*1'):
-            this.init, this.o_init = this.c_init, this.init
-
     def init(this):
+        if this.condition('burn*3 s1@burn*1'):
+            this.prerun, this.o_prerun = this.c_prerun, this.prerun
+
+    def prerun(this):
         this.a1_iscding = 0
         this.stance = 0
 
-    def c_init(this):
-        this.o_init()
+    def c_prerun(this):
+        this.o_prerun()
         this.dmg_make("o_s1_burn",(0.97*3*3))
         this.dmg_make("o_s1_hit_burn",this.conf.s1.dmg*0.8)
 

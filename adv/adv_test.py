@@ -14,10 +14,27 @@ from core.acl import *
 
 
 if len(sys.argv) >= 3:
-    sim_duration = int(sys.argv[2])
+    if sys.argv[2] == 'sp':
+        sim_duration = 180
+    else:
+        sim_duration = int(sys.argv[2])
 else:
     sim_duration = 180
 sim_times = 1000
+
+
+ex_set = {}
+if len(sys.argv) >= 4:
+    ex_str = sys.argv[3]
+    for i in ex_str:
+        if i == 'k':
+            ex_set['blade'] = ('ex','blade')
+        elif i == 'r':
+            ex_set['wand'] = ('ex','wand')
+        elif i == 'd':
+            ex_set['dagger'] = ('ex','dagger')
+        elif i == 'b':
+            ex_set['bow'] = ('ex','bow')
 
 
 team_dps = 7000 
@@ -75,10 +92,13 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         return
 
 
+    global ex_set
     if not no_cond:
         adv = classname(conf=conf,cond=1)
+        adv.ex = ex_set
     else:
         adv = classname(conf=conf,cond=0)
+        adv.ex = ex_set
 
     comment = adv.comment
 
@@ -219,8 +239,10 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
 
 def do_mass_sim(classname, conf, no_cond=None):
     global real_duration
+    global ex_set
     results = []
     adv = classname(conf=conf)
+    adv.ex = ex_set
     _acl, _acl_str = acl_func_str(
                     adv.acl_prepare_default+adv.conf['acl'] 
                     )
@@ -229,8 +251,10 @@ def do_mass_sim(classname, conf, no_cond=None):
     for i in range(sim_times):
         if not no_cond:
             adv = classname(conf=conf,cond=1)
+            adv.ex = ex_set
         else:
             adv = classname(conf=conf,cond=0)
+            adv.ex = ex_set
         adv._acl = _acl
         real_duration = adv.run(sim_duration)
         sum_duration += real_duration

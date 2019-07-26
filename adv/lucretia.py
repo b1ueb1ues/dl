@@ -9,18 +9,18 @@ def module():
 class Lucretia(adv.Adv):
     a3 = ('bk',0.3)
      
-    def pre(this):
-        if this.condition('energy'):
-            this.init = this.c_init
-
     def init(this):
+        if this.condition('energy'):
+            this.prerun = this.c_prerun
+
+    def prerun(this):
         energy.Energy(this,
                 self={} ,
                 team={} 
                 )
         Event('energized').listener(this.energy_doublebuff)
 
-    def c_init(this):
+    def c_prerun(this):
         energy.Energy(this,
                 self={'s1':1,'s2':2} ,
                 team={'s1':1}

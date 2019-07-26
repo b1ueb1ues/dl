@@ -14,7 +14,7 @@ class Ramona(Adv):
     #conf['slots.a'] = KFM()+TL()
     conf['slots.d'] = Sakuya()
 
-    def init(this):
+    def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
         this.a1_iscding = 0
 

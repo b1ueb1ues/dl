@@ -6,7 +6,7 @@ def module():
     return Naveed
 
 class Naveed(adv.Adv):
-    def init(this):
+    def prerun(this):
         this.s1level = 0
         this.charge_p('prep','100%')
         pass

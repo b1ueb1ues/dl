@@ -8,7 +8,7 @@ class Philia(adv.Adv):
     conf = {}
     a1 = ('a',0.1,'hp100')
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s2_paralysis",1.8)
         this.dmg_make("o_s2_paralysis",1.8)
         this.dmg_make("o_s2_paralysis",1.8)

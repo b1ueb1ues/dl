@@ -11,12 +11,12 @@ class Heinwald(Adv):
     conf = {}
     conf['slots.a'] = RR()+JotS()
 
-    def pre(this):
+    def init(this):
         if this.condition("buff all teammates"):
             this.s2_proc = this.c_s2_proc
 
 
-    def init(this):
+    def prerun(this):
         this.charge_p('prep','100%')
         this.s2ssbuff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
 

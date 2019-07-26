@@ -16,7 +16,7 @@ class G_Mym(Adv):
 
 
 
-    def init(this):
+    def prerun(this):
         this.dp = 0
         this.truemumu = 0
         timing = adv_test.sim_duration/2

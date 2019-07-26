@@ -9,20 +9,20 @@ def module():
 class D_Cleo(adv.Adv):
     a1 = ('a',0.13,'hp70')
 
-    def pre(this):
+    def init(this):
         if this.condition('energy'):
-            this.init = this.c_init
+            this.prerun = this.c_prerun
         if this.condition('always connect hits'):
             this.dmg_proc = this.c_dmg_proc
 
-    def c_init(this):
+    def c_prerun(this):
         this.stance = 0
         this.hits = 0
         this.energy = energy.Energy(this, 
                 self={'s1':1,'hit':1},
                 team={'s1':1}
                 )
-    def init(this):
+    def prerun(this):
         this.stance = 0
         this.hits = 0
         this.energy = energy.Energy(this, 
@@ -67,7 +67,7 @@ class D_Cleo(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'cy; can you give us the true cleo?'
+    module().comment = ''
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc

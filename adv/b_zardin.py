@@ -9,17 +9,17 @@ def module():
 class B_Zardin(adv.Adv):
     a3 = ('s',0.35,'hp70')
      
-    def pre(this):
-        if this.condition('energy'):
-            this.init = this.c_init
-
     def init(this):
+        if this.condition('energy'):
+            this.prerun = this.c_prerun
+
+    def prerun(this):
         this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
                 )
 
-    def c_init(this):
+    def c_prerun(this):
         this.energy = energy.Energy(this,
                 self={'s1':1,'s2':2} ,
                 team={}

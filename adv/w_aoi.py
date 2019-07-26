@@ -9,13 +9,13 @@ class W_Aoi(adv.Adv):
     a3 = ('sp',0.12,'fs')
 
 
-    def pre(this):
+    def init(this):
         if this.condition('big hitbox'):
             this.s1_addition = 4
         else:
             this.s1_addition = 1
 
-    def init(this):
+    def prerun(this):
         this.sleep_last = 0
         if this.condition('sleep*3'):
             this.sleep_last = 3

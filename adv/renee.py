@@ -6,19 +6,19 @@ def module():
     return Renee
 
 class Renee(adv.Adv):
-    def pre(this):
-        if this.condition('bog<=3'):
-            this.o_init = this.init
-            this.init = this.c_init
-
     def init(this):
+        if this.condition('bog<=3'):
+            this.o_prerun = this.prerun
+            this.prerun = this.c_prerun
+
+    def prerun(this):
         this.a1_iscding = 0
         this.bogcountlast = 0
         this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
 
 
-    def c_init(this):
-        this.o_init()
+    def c_prerun(this):
+        this.o_prerun()
         this.bogcountlast = 3
 
     def s1_proc(this, e):

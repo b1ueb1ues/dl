@@ -14,7 +14,7 @@ class Odetta(Adv):
     a1 = ('a',0.1,'hp70')
     a3 = ('bt',0.2)
 
-    def pre(this):
+    def init(this):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
 

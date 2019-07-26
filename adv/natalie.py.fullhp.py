@@ -24,18 +24,18 @@ class Natalie(adv.Adv):
     conf['slot.a'] = slot.a.RR() + slot.a.Bonds()
 #    conf['slot.d'] = Shinobi()
      
-    def pre(this):
+    def init(this):
         random.seed()
         if this.condition('energy'):
-            this.init = this.c_init
+            this.prerun = this.c_prerun
 
-    def init(this):
+    def prerun(this):
         this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
                 )
 
-    def c_init(this):
+    def c_prerun(this):
         this.energy = energy.Energy(this,
                 self={'s1':1,'a1':1} ,
                 team={}

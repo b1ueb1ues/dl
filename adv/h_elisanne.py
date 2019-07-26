@@ -11,7 +11,7 @@ class H_Elisanne(Adv):
     conf = {}
     conf['slots.a'] = RR()+CE()
 
-    def init(this):
+    def prerun(this):
         this.stance = 0
 
     def s1latency(this, e):

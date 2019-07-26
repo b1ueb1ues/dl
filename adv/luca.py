@@ -7,7 +7,7 @@ def module():
 class Luca(adv.Adv):
     a1 = ('a',0.13,'hp100')
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s1_paralysis",2.65)
         this.dmg_make("o_s1_paralysis",2.65)
         this.dmg_make("o_s1_paralysis",2.65)
