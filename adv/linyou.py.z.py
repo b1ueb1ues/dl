@@ -9,7 +9,7 @@ class Linyou_best(linyou.Linyou):
     name = 'Linyou'
     comment = '2in1 ; Zephyr'
 
-    def pre(this):
+    def init(this):
         pass
 
                               

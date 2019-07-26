@@ -15,7 +15,7 @@ class Botan(Adv):
     conf['slots.a'] = RR() + Jewels_of_the_Sun()
     conf['slots.d'] = Shinobi()
 
-    def init(this):
+    def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
 
     def s1_proc(this, e):

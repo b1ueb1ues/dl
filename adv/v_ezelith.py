@@ -9,8 +9,8 @@ def module():
 class V_Ezelith(Adv):
     a3 = ('bk',0.2)
 
-    def c_init(this):
-        this.o_init()
+    def c_prerun(this):
+        this.o_prerun()
         this.energy = energy.Energy(this, 
                 self={'hit':1},
                 team={}
@@ -23,7 +23,7 @@ class V_Ezelith(Adv):
                 `fs, seq=4
                 """
 
-    def init(this):
+    def prerun(this):
         this.hits = 0
         this.energy = energy.Energy(this, 
                 self={},
@@ -33,10 +33,10 @@ class V_Ezelith(Adv):
         this.dmg_make("o_s1_burn",0.883*3)
         this.dmg_make("o_s1_burn",0.883*3)
 
-    def pre(this):
+    def init(this):
         if this.condition('never lose combos'):
-            this.o_init = this.init
-            this.init = this.c_init
+            this.o_prerun = this.prerun
+            this.prerun = this.c_prerun
             this.dmg_proc = this.c_dmg_proc
 
     def c_dmg_proc(this, name, amount):

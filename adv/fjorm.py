@@ -9,7 +9,7 @@ class Fjorm(Adv):
     comment = 'do not calc damage counter'
     a3 = ('prep', 100)
 
-    def init(this):
+    def prerun(this):
         Teambuff('last bravery',0.3,15).on()
 
 if __name__ == '__main__':

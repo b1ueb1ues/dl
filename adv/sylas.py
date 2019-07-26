@@ -10,7 +10,7 @@ class Sylas(adv.Adv):
 
     comment = 'not consider skill haste for team'
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s1_poison",0.582*5)
         this.dmg_make("o_s1_poison",0.582*5)
         this.dmg_make("o_s1_poison",0.582*5)

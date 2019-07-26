@@ -11,13 +11,13 @@ class Veronica(adv.Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
 
-    def pre(this):
+    def init(this):
         if this.condition('hp=80%'):
             this.s1boost = 1.25*0.2*0.2
         else:
             this.s1boost = 1.25*0.3*0.3
 
-    def init(this):
+    def prerun(this):
         adv.Teambuff('last',2.28,1).on()
 
 

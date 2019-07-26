@@ -11,7 +11,7 @@ class Joe(adv.Adv):
     #conf['slots.a'] = Saintly_Delivery()+RR()
     
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s2_burn",1.8)
         this.dmg_make("o_s2_burn",1.8)
         this.dmg_make("o_s2_burn",1.8)

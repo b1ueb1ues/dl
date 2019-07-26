@@ -7,11 +7,11 @@ def module():
 
 class Elias(adv.Adv):
     a3 = ('lo',0.4)
-    def pre(this):
+    def init(this):
         if this.condition('energy'):
-            this.init = this.c_init
+            this.prerun = this.c_prerun
 
-    def c_init(this):
+    def c_prerun(this):
         energy.Energy(this,{'s2':1},{'s2':1})
         if this.condition('c4+fs & no s2'):
             this.conf['acl'] = """
@@ -20,7 +20,7 @@ class Elias(adv.Adv):
                 `fs, seq=4
                 """
 
-    def init(this):
+    def prerun(this):
         energy.Energy(this,{},{})
 
 if __name__ == '__main__':

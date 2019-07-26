@@ -8,11 +8,11 @@ class Ezelith(Adv):
     comment = 'Flurry Debilitator won\'t work in the game'
     a3 = ('bk',0.3)
 
-   # def pre(this):
+   # def init(this):
    #     if this.condition('hp70'):
    #         this.s2chance += 0.2
 
-    def init(this):
+    def prerun(this):
         random.seed()
         this.s2chance = 0.15
         this.s2buff = Selfbuff("s2",0.15, 15)

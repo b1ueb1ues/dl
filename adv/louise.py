@@ -7,7 +7,7 @@ def module():
 class Louise(adv.Adv):
     a1 = ('od',0.13)
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s1_poison",2.91)
         this.dmg_make("o_s1_poison",2.91)
         this.dmg_make("o_s1_poison",2.91)

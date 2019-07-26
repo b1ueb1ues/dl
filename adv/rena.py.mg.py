@@ -15,13 +15,13 @@ def module():
 
 class Rena(Adv):
 
-    def pre(this):
+    def init(this):
         if this.condition('0 burn resist'):
             this.burnresist = 0
         else:
             this.burnresist = 40
 
-    def init(this):
+    def prerun(this):
         this.a1_iscding = 0
         this.stance = 0
         this.s1_burn = Dot('o_s1_burn',0.97,12,3.9)

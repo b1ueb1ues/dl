@@ -18,12 +18,12 @@ class Serena(adv.Adv):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()
 
 
-    def pre(this):
+    def init(this):
         if this.condition('always connect hits'):
             this.dmg_proc = this.c_dmg_proc
 
 
-    def init(this):
+    def prerun(this):
         this.hits = 0
         this.a1count = 0
         this.a3count = 0

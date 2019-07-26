@@ -12,7 +12,7 @@ class Veronica(Adv):
     #comment = 'paralysis 3 times'
 
 
-    def init(this):
+    def prerun(this):
         this.s1p = 0 
         this.fsa_charge = 0
         this.fso_dmg = this.conf.fs.dmg

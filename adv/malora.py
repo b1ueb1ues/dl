@@ -7,7 +7,7 @@ def module():
 class Malora(adv.Adv):
     a1 = ('bk',0.2)
 
-    def init(this):
+    def prerun(this):
         if this.condition('spawn c1+fs'):
             this.conf['acl'] = """
                 `s1,fsc

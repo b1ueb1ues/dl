@@ -14,7 +14,7 @@ class G_Ranzal(Adv):
 
     a3 = ('s',0.3)
 
-    def init(this):
+    def prerun(this):
         this.ifs1ins2 = 0
         this.gauges = {
                 'x':0,

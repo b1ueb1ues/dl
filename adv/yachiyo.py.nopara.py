@@ -7,7 +7,7 @@ def module():
 class Yachiyo(adv.Adv):
     #comment = 'paralysis 3 times'
 
-    def init(this):
+    def prerun(this):
         this.para_last = 0
         this.fsa_charge = 0
         

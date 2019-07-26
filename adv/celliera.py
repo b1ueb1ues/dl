@@ -13,7 +13,7 @@ class Celliera(adv.Adv):
     conf['slots.a'] = slot.a.RR() + slot.a.Jewels_of_the_Sun()
     #conf['slots.a'] = slot.a.RR() + slot.a.CE()
 
-    def init(this):
+    def prerun(this):
         this.s2buff = adv.Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = adv.Selfbuff("s2_str",0.25,10)
 

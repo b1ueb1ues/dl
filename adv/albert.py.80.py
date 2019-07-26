@@ -11,8 +11,8 @@ def module():
 
 
 class Albert(albert.Albert):
-    def pre(this):
-        super(Albert,this).pre()
+    def init(this):
+        super(Albert,this).init()
         this.conf.slots.a = RR() + The_Chocolatiers()
 
 

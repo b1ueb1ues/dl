@@ -16,7 +16,7 @@ class Yachiyo(adv.Adv):
     #comment = 'paralysis 3 times'
 
 
-    def init(this):
+    def prerun(this):
         this.para_last = 0
         if this.condition('paralysis*3'):
             this.para_last = 3

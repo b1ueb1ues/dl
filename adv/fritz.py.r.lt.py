@@ -7,7 +7,7 @@ def module():
 
 class Fritz(adv.Adv):
 
-    def init(this):
+    def prerun(this):
         this.stance = 0
         this.s2fscharge = 0
 

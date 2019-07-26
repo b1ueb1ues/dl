@@ -11,11 +11,11 @@ class Mikoto(Adv):
     a1 = ('cc', 0.10, 'hp70')
     a3 = ('cc', 0.08) 
 
-    def pre(this):
+    def init(this):
         if this.condition('connect s1'):
             this.s1_proc = this.c_s1_proc
 
-    def init(this):
+    def prerun(this):
         this.s1buff = Selfbuff("s1",0.0, 20)
         this.s2buff = Selfbuff("s2",0.2, 10, 'spd')
         this.a_s1._recovery = 1.4

@@ -16,7 +16,7 @@ class W_Elisanne(Adv):
     a1 = ('sp',0.08)
     a3 = ('bc',0.13)
 
-    def init(this):
+    def prerun(this):
         this.s2on = 0
         if this.condition('s2 defdown for 10s'):
             this.s2defdown = 1

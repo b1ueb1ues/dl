@@ -14,7 +14,7 @@ class Ieyasu(ieyasu.Ieyasu):
                 return 0.15
         return 0
 
-    def init(this):
+    def prerun(this):
         this.s2buff = Selfbuff("s2",0.15, 15, 'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = mBleed("g_bleed",0).reset()

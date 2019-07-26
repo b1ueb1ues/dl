@@ -20,7 +20,7 @@ class G_Ranzal(Adv):
     #fsend 854-9
     #c1 854
 
-    def init(this):
+    def prerun(this):
         this.ifs1ins2 = 0
         this.gauges = {
                 'x':0,

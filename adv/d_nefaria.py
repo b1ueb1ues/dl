@@ -7,7 +7,7 @@ def module():
 class D_Nefaria(adv.Adv):
     a1 = ('s',0.25)
 
-    def init(this):
+    def prerun(this):
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc

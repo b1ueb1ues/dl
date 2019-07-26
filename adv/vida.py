@@ -8,7 +8,7 @@ class Vida(Adv):
 #    comment = 'unsuitable resist'
     a1 = ('fs',0.30)
 
-    def init(this):
+    def prerun(this):
         this.s2charge = 0
 
     def s2_proc(this, e):

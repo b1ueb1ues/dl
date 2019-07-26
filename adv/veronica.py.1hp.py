@@ -15,7 +15,7 @@ class Veronica(veronica.Veronica):
     conf['slots.a'] = slot.a.FG() + slot.a.Heralds_of_Hinomoto()
     conf['slots.d'] = slot.d.Shinobi()
 
-    def pre(this):
+    def init(this):
         if this.condition('hp1'):
             this.s1boost = 1.25
         else:

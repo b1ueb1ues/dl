@@ -12,7 +12,7 @@ class Albert(Adv):
     comment = 'suitable skill prep; '
     a1 = ('fs',0.5)
 
-    def init(this):
+    def prerun(this):
         this.fsaconf = Conf()
         this.fsaconf.fs = Conf(this.conf.fs)
         this.fsaconf( {
@@ -46,7 +46,7 @@ class Albert(Adv):
             log('sp','s2autocharge')
 
             
-    def pre(this):
+    def init(this):
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
 

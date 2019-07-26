@@ -11,13 +11,13 @@ class G_Sarisse(adv.Adv):
     a3 = ('bt',0.3)
     conf = {}
 
-    def init(this):
+    def prerun(this):
         this.hits = 0
         this.bc = adv.Selfbuff()
         this.s2stance = 0
 
 
-    def pre(this):
+    def init(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
         this.conf['slot.a'] = FB()+SS()

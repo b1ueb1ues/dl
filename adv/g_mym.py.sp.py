@@ -9,7 +9,7 @@ def module():
 class G_Mym(Adv):
 
 
-    def init(this):
+    def prerun(this):
 
         this.dragonboost = 1.4 # max 龙哭
 

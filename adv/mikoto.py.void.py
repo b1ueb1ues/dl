@@ -8,7 +8,7 @@ def module():
 
 class Mikoto(mikoto.Mikoto):
 
-    def pre(this):
+    def init(this):
         this.conf['slots.w'] = slot.w.blade.bladev5flame()
 
 

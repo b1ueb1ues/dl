@@ -20,7 +20,7 @@ class Melody(adv.Adv):
     conf['slots.a'] = slot.a.Bellathorna()+slot.a.HG()
     conf['slots.d'] = new()
 
-#    def pre(this):
+#    def init(this):
 #        this.conf['mod'] = {'ex':('sp','passive',0.15)}
 
 

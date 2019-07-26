@@ -8,9 +8,9 @@ def module():
     return Yaten
 
 class Yaten(yaten.Yaten):
-    def pre(this):
+    def init(this):
         if this.condition('energy'):
-            this.init = this.c_init
+            this.prerun = this.c_prerun
             this.conf['acl'] = """
                 `s1
                 `s2, fsc and this.energy() < 4
@@ -27,7 +27,7 @@ class Yaten(yaten.Yaten):
                 `fs, seq=3
                 """
 
-    def init(this):
+    def prerun(this):
         this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
@@ -35,7 +35,7 @@ class Yaten(yaten.Yaten):
         this.a1atk = Selfbuff('a1atk',0.00,-1,'att','passive').on()
         this.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
 
-    def c_init(this):
+    def c_prerun(this):
         this.energy = energy.Energy(this,
                 self={'s1':1,'s2':2} ,
                 team={'s2':2}

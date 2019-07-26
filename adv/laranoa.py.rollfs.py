@@ -10,7 +10,7 @@ class Laranoa(Adv):
 
     a3 = ('s',0.3)
     
-    def pre(this):
+    def init(this):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
         if this.condition('never lose comboes'):
@@ -33,7 +33,7 @@ class Laranoa(Adv):
                 """
 
 
-    def init(this):
+    def prerun(this):
         this.hits = 0
 
     

@@ -25,7 +25,7 @@ class G_Sarisse(adv.Adv):
     #conf['mod'] = {'ex':('sp','passive',0.15)}
     conf['slot.w'] = test()
 
-    def init(this):
+    def prerun(this):
         this.hits = 0
         this.bc = adv.Selfbuff()
         this.s2stance = 0
@@ -37,7 +37,7 @@ class G_Sarisse(adv.Adv):
                 `fs, seq=4
                 """
 
-    def pre(this):
+    def init(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
         return 'never lose combos & c4+fs'

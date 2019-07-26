@@ -7,17 +7,17 @@ def module():
 
 class Sazanka(Adv):
 
-    def init(this):
+    def prerun(this):
         this.bleed = mBleed("g_bleed",0).reset()
         this.s2fscharge = 0
 
-    def c_init(this):
-        this.o_init()
+    def c_prerun(this):
+        this.o_prerun()
         Selfbuff('sleep',0.2,14,'att','killer').on()
 
-    def pre(this):
+    def init(this):
         if this.condition('sleep'):
-            this.init, this.o_init = this.c_init, this.init
+            this.prerun, this.o_prerun = this.c_prerun, this.prerun
 
     def s1_proc(this, e):
         if random.random() < 0.8:

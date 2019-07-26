@@ -19,22 +19,22 @@ class Natalie(adv.Adv):
     conf['slot.a'] = slot.a.HoH() + slot.a.FoG()
     conf['slot.d'] = Shinobi()
      
-    def pre(this):
+    def init(this):
         this.crisis = 0
 
-        this.init = this.c_init
+        this.prerun = this.c_prerun
         if this.condition('energy'):
-            this.init = this.c_init
+            this.prerun = this.c_prerun
         if this.condition('hp20'):
             this.crisis = -1
 
-    def init(this):
+    def prerun(this):
         this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
                 )
 
-    def c_init(this):
+    def c_prerun(this):
         this.energy = energy.Energy(this,
                 self={'s1':1,'a1':1} ,
                 team={}
