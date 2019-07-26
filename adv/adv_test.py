@@ -14,7 +14,10 @@ from core.acl import *
 
 
 if len(sys.argv) >= 3:
-    sim_duration = int(sys.argv[2])
+    if sys.argv[2] == 'sp':
+        sim_duration = 180
+    else:
+        sim_duration = int(sys.argv[2])
 else:
     sim_duration = 180
 sim_times = 1000

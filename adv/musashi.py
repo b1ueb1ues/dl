@@ -9,7 +9,7 @@ class Musashi(adv.Adv):
     a1 = ('lo',0.40)
     a3 = ('od',0.08)
 
-    def init(this):
+    def prerun(this):
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)
         this.dmg_make("o_s1_poison",2.65)

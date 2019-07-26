@@ -9,8 +9,6 @@ def module():
     return Veronica
 
 class Veronica(Adv):
-    #comment = 'paralysis 3 times'
-
 
     def prerun(this):
         this.s1p = 0 
