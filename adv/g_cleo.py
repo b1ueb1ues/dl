@@ -15,7 +15,7 @@ class G_Cleo(Adv):
     comment = 'Shinobi; (the true cleo is here)'
 
     def d_slots(this):
-        this.slots.a = RR()+CE()
+        this.slots.a = RR()+JotS()
         this.slots.d = Shinobi()
 
     def d_acl(this):
@@ -53,7 +53,7 @@ class G_Cleo(Adv):
     def s1_proc(this, e):
         this.s1p += 1
         if this.s1p > 3 :
-            this.s1p = 0
+            this.s1p = 1
 
         if this.s1p == 1:
             pass

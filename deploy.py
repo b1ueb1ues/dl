@@ -71,9 +71,9 @@ def main(argv):
         combine()
         return
 
-    if '-s' in opt and name:
-        one_character(name)
-        return
+    #if '-s' in opt and name:
+    #    one_character(name)
+    #    return
 
     if not name : 
         chara_quick()
