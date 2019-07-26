@@ -118,8 +118,13 @@ def combine():
     global chart_title
     global fs
     clean()
-    sp_combine('chara_sp_quick.txt')
+
     time_combine('chara_quick.txt')
+    sp_combine('chara_sp_quick.txt')
+
+    time_combine('chara_slow.txt')
+    sp_combine('chara_sp_slow.txt')
+
 
 def time_combine(fname):
     global chart_title
@@ -128,6 +133,9 @@ def time_combine(fname):
     for c in fcs:
         c = c.strip()
         print c
+        if c == '':
+            continue
+
         fc = open('www/dl-sim/chara/'+c+'.csv')
         for i in fc:
             if i[0] == '-':
@@ -147,6 +155,8 @@ def sp_combine(fname):
     for c in fcs:
         c = c.strip()
         print c
+        if c == '':
+            continue
         fc = open('www/dl-sim/chara/'+c+'.csv','r')
         for i in fc:
             if i[0] == '-':
@@ -164,24 +174,32 @@ def sp_quick():
     f = open('chara_sp_quick.txt')
     for i in f:
         name = i.strip()
+        if name == '':
+            continue
         sp_character(name)
 
 def sp_slow():
     f = open('chara_sp_slow.txt')
     for i in f:
         name = i.strip()
+        if name == '':
+            continue
         sp_character(name)
 
 def chara_quick():
     f = open('chara_quick.txt')
     for i in f:
         name = i.strip()
+        if name == '':
+            continue
         one_character(name)
 
 def chara_slow():
     f = open('chara_slow.txt')
     for i in f:
         name = i.strip()
+        if name == '':
+            continue
         one_character(name)
 
 
