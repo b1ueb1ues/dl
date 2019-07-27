@@ -15,7 +15,7 @@ class G_Cleo(Adv):
     comment = 'Shinobi; (the true cleo is here)'
 
     def d_slots(this):
-        this.slots.a = RR()+JotS()
+        #this.slots.a = RR()+JotS()
         this.slots.d = Shinobi()
 
     def d_acl(this):
@@ -23,10 +23,20 @@ class G_Cleo(Adv):
             pass
         if this.condition('always in a1'):
             this.conf['acl'] = """
-                `fs, this.fsa_charge and seq=5
-                `s2
-                `s1
+                `rotation
                 """
+            this.conf['rotation_init'] = """
+                s2s1
+            """
+            this.conf['rotation'] = """
+                c5c5fss1
+                c5c5s2fss1
+            """
+         #   this.conf['acl'] = """
+         #       `fs, this.fsa_charge and seq=5
+         #       `s2
+         #       `s1
+         #       """
 
     def prerun(this):
         this.s1p = 0 
