@@ -15,7 +15,7 @@ class G_Cleo(Adv):
     comment = 'Shinobi; (the true cleo is here)'
 
     def d_slots(this):
-        #this.slots.a = RR()+JotS()
+        this.slots.a = RR()+CE()  # c5 s2 fs s1  break comboes
         this.slots.d = Shinobi()
 
     def d_acl(this):
