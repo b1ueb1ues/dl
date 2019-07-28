@@ -119,7 +119,7 @@ class mBleed(Bleed):
 
             # find if a currently cached call has the same set of active bleed stacks
             # if so just add to its probability instead of adding more cached called
-            equivalents = filter(lambda p: p.keywords['active'] == active, cache)
+            equivalents = list(filter(lambda p: p.keywords['active'] == active, cache))
             if equivalents:
                 equivalents[0].keywords['probability'] += probability
             else:
