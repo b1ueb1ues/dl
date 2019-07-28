@@ -1,37 +1,23 @@
 import adv_test
 from adv import *
+from adv import addis
 from module.bleed import mBleed
 from slot.a import *
-from slot.d.wind import *
 
 def module():
     return Addis
 
-class Addis(Adv):
-    comment = '2in1'
-    a3 = ('bk',0.20)
-    conf = {}
-    #conf['slot.a'] = RR()+Evening_of_Luxury()
-    #conf['slot.d'] = Longlong()
-
-    def getbleedpunisher(this):
-        if this.bleed._static['stacks'] > 0:
-            return 0.08
-        return 0
-
+class Addis(addis.Addis):
     def prerun(this):
-        #random.seed()
         this.poisoncount=3
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)
         this.bleedpunisher.get = this.getbleedpunisher
         this.bleed = mBleed("g_bleed",0).reset()
-        #this.crit_mod = this.rand_crit_mod
 
 
     def s1_proc(this, e):
-
         if this.s2buff.get():
             this.s2buff.buff_end_timer.timing += 2.5
             this.s2str.buff_end_timer.timing += 2.5
@@ -41,11 +27,6 @@ class Addis(Adv):
             if this.poisoncount > 0:
                 this.poisoncount -= 1
                 this.dmg_make("o_s1_poison",2.65)
-
-
-    def s2_proc(this, e):
-        this.s2buff.on()
-        this.s2str.on()
 
 
 if __name__ == '__main__':
