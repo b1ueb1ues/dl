@@ -99,7 +99,7 @@ class mBleed(Bleed):
             The list of currently active bleed instances
         probability : float, optional
             The probability that this particular situation happens
-        index : optional
+        index : int, optional
             The index in the list of bleeds we're current at
             If equal to the length, it instead adds up damage and also caches for the next tick
         """
@@ -118,7 +118,7 @@ class mBleed(Bleed):
             cache = this._static['cache']
 
             # find if a currently cached call has the same set of active bleed stacks
-            # if so just add to its probability instead of adding more cached called
+            # if so just add to its probability instead of adding more cached calls
             equivalents = list(filter(lambda p: p.keywords['active'] == active, cache))
             if equivalents:
                 equivalents[0].keywords['probability'] += probability
@@ -161,7 +161,7 @@ class mBleed(Bleed):
         else:
             dmg = this.sum_bleeds(bleeds)
 
-        this.true_dmg_event.comment = "%d lifetime stacks"%stacks
+        this.true_dmg_event.comment = "%d active stacks"%stacks
         this.true_dmg_event.count = dmg
         this.true_dmg_event.on()
         #log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
