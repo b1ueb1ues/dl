@@ -13,6 +13,7 @@ def module():
 
 class G_Cleo(Adv):
     comment = 'Shinobi; (the true cleo is here)'
+    a3 = ('prep','100%')
 
     def d_slots(this):
         this.slots.a = RR()+CE()  # c5 s2 fs s1  break comboes
