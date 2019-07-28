@@ -15,13 +15,13 @@ def module():
 
 class Rena(Adv):
 
-    def pre(this):
+    def init(this):
         if this.condition('0 burn resist'):
             this.burnresist = 0
         else:
             this.burnresist = 40
 
-    def init(this):
+    def prerun(this):
         this.a1_iscding = 0
         this.stance = 0
         this.s1_burn = Dot('o_s1_burn',0.97,12,3.9)
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         `rotation
         """
     conf['rotation'] = """
-c5c5fs ------ s1
+c5fs ------ s1
 c5c5 ------ s1 s2
 
 c2 -------- s1
