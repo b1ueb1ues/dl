@@ -1,12 +1,11 @@
 import adv_test
-from adv import *
+from adv import botan
 from module.bleed import mBleed
 
 def module():
     return Botan
 
-class Botan(Adv):
-    a3 = ('prep','50%')
+class Botan(botan.Botan):
     def prerun(this):
         this.bleed = mBleed("g_bleed",0).reset()
 
@@ -16,14 +15,10 @@ class Botan(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    from slot.a import *
-    conf['slots.a'] = Jewels_of_the_Sun() + RR()
     conf['acl'] = """
         `s1
-        `s2
+        `s2, fsc
         `s3
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2,mass=0)
-
-
