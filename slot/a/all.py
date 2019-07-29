@@ -273,7 +273,7 @@ class Elegant_Escort(Amulet):
     att = 54
     def oninit(this, adv):
         this.adv = adv
-        m = adv.Modifier('Elegant_Escort','att','killer',0.3)
+        m = adv.Modifier('Elegant_Escort','att','killer',3)
         m.get = this.getbane
 
     def getbane(this):

@@ -250,6 +250,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     results = []
     adv = classname(conf=conf)
     adv.ex = ex_set
+    adv.run(1)
     _acl, _acl_str = acl_func_str(
                     adv.acl_prepare_default+adv.conf['acl'] 
                     )

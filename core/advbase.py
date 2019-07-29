@@ -1289,8 +1289,8 @@ class Adv(object):
         this.setup()
 
         this.d_slots()
-        this.slots.oninit(this)
         this.displayed_att = int(this.slots._att(globalconf.forte))
+        this.slots.oninit(this)
 
         this.prerun()
 
