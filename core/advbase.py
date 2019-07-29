@@ -100,6 +100,7 @@ class Afflics(object):
         this.resist['sleep'] = 80
         this.dot = []
         this.cc = {}
+        this.luck = 1
     
     def add(this, name, atype, rate, duration, coef=0, iv=0):
         if atype == 'burning':
@@ -122,6 +123,9 @@ class Afflics(object):
             if atype in this.cc:
                 return this.cc[atype].get()
 
+    def r(this):
+        return random.random()/this.luck
+
     def refresh_dot(this):
         tmp = []
         for i in this.dot:
@@ -140,7 +144,7 @@ class Afflics(object):
         if not iv :
             errrrrr()
         if this.resist[atype] < 100:
-            r = random.random()
+            r = this.r()
             log('afflic',rate, this.resist[atype],r*100)
             if rate < this.resist[atype]:
                 return 0
@@ -150,7 +154,7 @@ class Afflics(object):
                 dot = Dot('o_'+name+'_'+atype, coef, duration, iv)
                 dot.on()
                 this.dot.append((atype,dot))
-                this.resist[atype] += 5
+                this.resist[atype] += 20 # 5
                 return 1
         else:
             log('afflic','perfect_resist')
@@ -158,7 +162,7 @@ class Afflics(object):
 
     def add_cc(this, name, atype, rate, coef, duration, iv):
         if this.resist[atype] < 100:
-            r = random.random()
+            r = this.r()
             log('afflic',rate, this.resist[atype],r*100)
             if atype in this.cc:
                 this.cc[atype].on()
@@ -173,7 +177,7 @@ class Afflics(object):
                 this.cc[atype] = cc
 
                 if atype == 'blind':
-                    this.resist[atype] += 10
+                    this.resist[atype] += 20 # 10
                 else:  #elif atype in ['freeze','stun','sleep','bog']:
                     this.resist[atype] += 20
                 return 1
@@ -1141,7 +1145,7 @@ class Adv(object):
         if chance > 1:
             chance = 1
         cdmg = m['dmg'] + m['damage'] + 1.7
-        r = random.random()
+        r = this.r()
         if r < chance:
             return cdmg
         else: 

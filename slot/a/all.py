@@ -262,6 +262,7 @@ class Sisters_Day_Out(Amulet):
             this.charges -= 1
 
     def oninit(this, adv):
+        Amulet.oninit(this, adv)
         this.charges = 3
         this.adv = adv
         this.o_fs_proc = adv.fs_proc
@@ -272,8 +273,9 @@ SDO = Sisters_Day_Out
 class Elegant_Escort(Amulet):
     att = 54
     def oninit(this, adv):
+        Amulet.oninit(this, adv)
         this.adv = adv
-        m = adv.Modifier('Elegant_Escort','att','killer',3)
+        m = adv.Modifier('Elegant_Escort','att','killer',0)
         m.get = this.getbane
 
     def getbane(this):

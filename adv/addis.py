@@ -17,7 +17,7 @@ class Addis(Adv):
         return 0
 
     def prerun(this):
-        random.seed()
+        #random.seed()
         this.poisoncount=3
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
@@ -65,5 +65,5 @@ if __name__ == '__main__':
    #     `s3, s2.sp > 2000 and sx=1
    #     `fs, this.s2buff.get() and seq=5
    #     """
-    adv_test.test(module(), conf,verbose=0, mass=1)
+    adv_test.test(module(), conf,verbose=0, mass=1000)
 

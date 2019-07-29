@@ -11,6 +11,7 @@ class Jakob(adv.Adv):
             this.afflics.resist['bog'] = 60
         this.charge_p('prep','50%')
         this.bogbuff = adv.Debuff('s1_bog',-0.5,8,1,'att','bog')
+        this.afflics.luck = 100
 
 
     def s1_proc(this, e):
@@ -24,5 +25,5 @@ if __name__ == '__main__':
         `s1
         `fs,seq=5
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=0, mass=0)
 

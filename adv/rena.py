@@ -24,8 +24,6 @@ class Rena(Adv):
                 `s2, s=1
                 `s3
             '''
-        else:
-            exit()
     
     def s1_proc(this, e):
         this.afflics.add('s1','burn',120, 12, 0.97, 3.9)
@@ -84,6 +82,6 @@ if __name__ == '__main__':
         `fs, seq=5
         """
 
-    adv_test.test(module(), conf, verbose=0, mass=1)
+    adv_test.test(module(), conf, verbose=0, mass=100)
     #logcat(['cd'])
 

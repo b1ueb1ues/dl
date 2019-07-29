@@ -70,13 +70,14 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global loglevel
     global sim_duration
     global real_duration
+    global sim_times
 
     if duration:
         sim_duration = duration
 
     if not loglevel:
         loglevel = verbose
-    random.seed(0)
+    #random.seed()
     a = time.time()
     if classname.name :
         mname = classname.name
@@ -138,6 +139,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
             logcat(['x','dmg','cancel','fs','cast','buff'])
 
     if mass and loglevel <=0 :
+        if mass != 1:
+            sim_times = mass
         r = do_mass_sim(classname,conf,no_cond)
     else:
         r = sum_dmg()
@@ -257,6 +260,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     real_duration = 0
     sum_duration = 0
     for i in range(sim_times):
+        random.seed(i*1100)
         if not no_cond:
             adv = classname(conf=conf,cond=1)
             adv.ex = ex_set
