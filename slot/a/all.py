@@ -267,6 +267,24 @@ class Sisters_Day_Out(Amulet):
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
 
+SDO = Sisters_Day_Out
+
+class Elegant_Escort(Amulet):
+    att = 54
+    def oninit(this, adv):
+        this.adv = adv
+        m = adv.Modifier('Elegant_Escort','att','killer',0.3)
+        m.get = this.getbane
+
+    def getbane(this):
+        if this.adv.afflics.get('burn'):
+            return 0.3
+        else:
+            return 0
+    
+        
+EE = Elegant_Escort
+
 
 amulets = []
 for k in list(globals()):

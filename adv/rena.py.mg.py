@@ -32,7 +32,7 @@ class Rena(Adv):
         if this.burnresist < 100:
             if random.random() < (120.0-this.burnresist)/100:
                 if this.s1_burn.on():
-                    this.burnresist += 20
+                    this.burnresist += 5
                     Buff('bane',0.3,12,'att','killer').on()
                     log('resistance','burn',this.burnresist)
             else:

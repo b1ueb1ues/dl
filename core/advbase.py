@@ -86,6 +86,102 @@ class Modifier(object):
         return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
 
 
+class Afflics(object):
+    def __init__(this):
+        this.resist = {}
+        this.resist['poison'] = 0
+        this.resist['burn'] = 0
+        this.resist['freeze'] = 80
+        this.resist['paralysis'] = 80
+        this.resist['blind'] = 80
+        this.resist['stun'] = 80
+        this.resist['curse'] = 0
+        this.resist['bog'] = 80
+        this.resist['sleep'] = 80
+        this.dot = []
+        this.cc = {}
+    
+    def add(this, name, atype, rate, duration, coef=0, iv=0):
+        if atype == 'burning':
+            atype = 'burn'
+        if atype == 'para':
+            atype = 'paralysis'
+        if atype in ['poison','burn','paralysis']:
+            return this.add_dot(name, atype, rate, coef, duration, iv)
+        elif atype in ['blind','freeze','stun','sleep','bog']:
+            return this.add_cc(name, atype, rate, coef, duration, iv)
+
+    def get(this, atype):
+        if atype in ['poison','burn','paralysis']:
+            stack = 0
+            for i in this.dot:
+                if i[0] == atype and i[1].get():
+                    stack += 1
+            return stack
+        elif atype in ['blind','freeze','stun','sleep','bog']:
+            if atype in this.cc:
+                return this.cc[atype].get()
+
+    def refresh_dot(this):
+        tmp = []
+        for i in this.dot:
+            if i[1].get():
+                tmp.append(i)
+        this.dot = tmp
+
+    def refresh_cc(this):
+        tmp = {}
+        for i in this.cc:
+            if this.cc[i].get():
+                tmp.append(i)
+        this.cc = tmp
+
+    def add_dot(this, name, atype, rate, coef, duration, iv):
+        if not iv :
+            errrrrr()
+        if this.resist[atype] < 100:
+            r = random.random()
+            log('afflic',rate, this.resist[atype],r*100)
+            if rate < this.resist[atype]:
+                return 0
+            if random.random()*100 < (rate-this.resist[atype]):
+                log('afflic', 'succ', name, atype)
+                this.refresh_dot()
+                dot = Dot('o_'+name+'_'+atype, coef, duration, iv)
+                dot.on()
+                this.dot.append((atype,dot))
+                this.resist[atype] += 5
+                return 1
+        else:
+            log('afflic','perfect_resist')
+        return 0
+
+    def add_cc(this, name, atype, rate, coef, duration, iv):
+        if this.resist[atype] < 100:
+            log('afflic',rate, this.resist[atype],r*100)
+            if atype in this.cc:
+                this.cc[atype].on()
+                return 0
+            elif rate < this.resist[atype]:
+                return 0
+            elif random.random()*100 < (rate-this.resist[atype]):
+                log('afflic', 'succ', name, atype)
+                this.refresh_cc(this)
+                cc = Dot('o_'+name+'_'+atype, 0, duration, duration+1)
+                cc.on()
+                this.cc[atype] = cc
+
+                if atype == 'blind':
+                    this.resist[atype] += 10
+                else:  #elif atype in ['freeze','stun','sleep','bog']:
+                    this.resist[atype] += 20
+                return 1
+        else:
+            log('afflic','perfect_resist')
+        return 0
+
+
+
 class Dot(object):
     """
     Damage over time; e.g. poison
@@ -875,6 +971,8 @@ class Adv(object):
         this.modifier = Modifier(0,0,0,0)
         this.all_modifiers = []
         this.modifier._static.all_modifiers = this.all_modifiers
+        # set afflic
+        this.afflics = Afflics()
 
         # set ex
         if this.ex:
