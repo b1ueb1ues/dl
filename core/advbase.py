@@ -144,7 +144,7 @@ class Afflics(object):
             log('afflic',rate, this.resist[atype],r*100)
             if rate < this.resist[atype]:
                 return 0
-            if random.random()*100 < (rate-this.resist[atype]):
+            if r*100 < (rate-this.resist[atype]):
                 log('afflic', 'succ', name, atype)
                 this.refresh_dot()
                 dot = Dot('o_'+name+'_'+atype, coef, duration, iv)
@@ -158,16 +158,17 @@ class Afflics(object):
 
     def add_cc(this, name, atype, rate, coef, duration, iv):
         if this.resist[atype] < 100:
+            r = random.random()
             log('afflic',rate, this.resist[atype],r*100)
             if atype in this.cc:
                 this.cc[atype].on()
                 return 0
             elif rate < this.resist[atype]:
                 return 0
-            elif random.random()*100 < (rate-this.resist[atype]):
+            elif r*100 < (rate-this.resist[atype]):
                 log('afflic', 'succ', name, atype)
-                this.refresh_cc(this)
-                cc = Dot('o_'+name+'_'+atype, 0, duration, duration+1)
+                this.refresh_cc()
+                cc = Dot('o_'+name+'_'+atype, 0, duration, duration+0.01)
                 cc.on()
                 this.cc[atype] = cc
 
