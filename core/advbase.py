@@ -869,7 +869,8 @@ class Adv(object):
     conf_default.s3 = Conf({'dmg':0,'sp':0,'startup':0.1,'recovery':1.9})
     conf_default.dodge = Conf({'startup':0,'recovery':43.0/60.0})
     conf_default.fsf = Conf({'startup':0,'recovery':41.0/60.0})
-    conf_default.slots = Conf({'w':None,'d':None,'a':None})
+    #conf_default.slots = Conf({'w':None,'d':None,'a':None})
+    conf_default.slots = Conf()
 
     conf_default.acl = '''
         `s1
@@ -916,51 +917,6 @@ class Adv(object):
     '''
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print(sx)\n    print(pin)\n    errrrrrrr()
 
-    def preconfig(this):
-        tmpconf = Conf()
-        tmpconf += this.conf_default
-        tmpconf += globalconf.get(this.name)
-        tmpconf += Conf(this.conf)
-        #tmpconf += conf
-        tmpconf(this.conf_init)
-
-        tmpconf.slots(tmpconf.slot)
-
-        this.slots.c.att = tmpconf.c.att
-        this.slots.c.wt = tmpconf.c.wt
-        this.slots.c.stars = tmpconf.c.stars
-        this.slots.c.ele = tmpconf.c.ele
-
-
-
-        slots_save = slot.Slots()
-        slots_save.w = this.slots.w
-        slots_save.d = this.slots.d
-        slots_save.a = this.slots.a
-
-        this.slot_common = tmpconf.slot_common[0]
-        this.slot_common(this.slots)
-
-        if slots_save.w :
-            this.slots.w = tmpconf.slots.w
-        if slots_save.d :
-            this.slots.d = tmpconf.slots.d
-        if slots_save.a :
-            this.slots.a = tmpconf.slots.a
-
-        if tmpconf.slots.w :
-            this.slots.w = tmpconf.slots.w
-        if tmpconf.slots.d :
-            this.slots.d = tmpconf.slots.d
-        if tmpconf.slots.a :
-            this.slots.a = tmpconf.slots.a
-
-        this.conf = tmpconf
-        this.base_att = int(this.slots.att(globalconf.forte))
-        this.displayed_att = int(this.slots._att(globalconf.forte))
-        #this.slots.oninit(this)
-
-
 
     def doconfig(this):
 
@@ -1004,13 +960,6 @@ class Adv(object):
         this.a_x5 = X(('x5',5),this.conf.x5)
 
         this.a_fs = Fs_group('fs',this.conf)
-        #this.a_fs = Fs('fs',fsconf)
-        #this.a_x1fs = Fs('fs',xnfsconf[0])
-        #this.a_x2fs = Fs('fs',xnfsconf[1])
-        #this.a_x3fs = Fs('fs',xnfsconf[2])
-        #this.a_x4fs = Fs('fs',xnfsconf[3])
-        #this.a_x5fs = Fs('fs',xnfsconf[4])
-        #this.a_dfs = Fs('fs',xnfsconf[5])
         this.a_fsf = Fs('fsf', this.conf.fsf)
 
         this.a_dodge = Dodge('dodge', this.conf.dodge)
@@ -1020,7 +969,6 @@ class Adv(object):
         this.s2 = Skill('s2', this.conf.s2)
         this.s3 = Skill('s3', this.conf.s3)
 
-        
         if this.conf.xtype == 'ranged':
             this.l_x = this.l_range_x
             this.l_fs = this.l_range_fs
@@ -1041,11 +989,59 @@ class Adv(object):
         this.dodge = this.a_dodge
 
 
+    def sync_slot(this, conf_slots):
+        #this.cmnslots(conf)
+        #this.slots = slot.Slots()
+        if now():
+            print('cannot change slots after run')
+            errrrrrrrrrrrr()
+        if 'c' in conf_slots :
+            print '!'
+            this.slots.c = conf_slots.c
+        elif not this.slots.c :
+            print '?'
+            this.slots.c = this.cmnslots.c
+
+        if 'd' in conf_slots :
+            this.slots.d = conf_slots.d
+        elif not this.slots.d :
+            this.slots.d = this.cmnslots.d
+
+        if 'w' in conf_slots :
+            this.slots.w = conf_slots.w
+        elif not this.slots.w :
+            this.slots.w = this.cmnslots.w
+
+        if 'a' in conf_slots :
+            this.slots.a = conf_slots.a
+        elif not this.slots.a :
+            this.slots.a = this.cmnslots.a
+        #print this.slots
 
 
+    def pre_conf(this):
+        tmpconf = Conf()
+        tmpconf += this.conf_default
+        tmpconf += globalconf.get(this.name)
+        tmpconf += Conf(this.conf)
+        tmpconf(this.conf_init)
+        this.conf = tmpconf
 
+
+    def default_slot(this):
+        this.cmnslots = slot.Slots()
+        this.cmnslots.c.att = this.conf.c.att
+        this.cmnslots.c.wt = this.conf.c.wt
+        this.cmnslots.c.stars = this.conf.c.stars
+        this.cmnslots.c.ele = this.conf.c.ele
+        this.slot_common = this.conf.slot_common[0]
+        this.slot_common(this.cmnslots)
+        this.slots = this.cmnslots
+        #print this.cmnslots
 
     def __init__(this,conf={},cond=0):
+        if not this.name:
+            this.name = this.__class__.__name__
         this.Event = Event
         this.Buff = Buff
         this.Debuff = Debuff
@@ -1065,10 +1061,13 @@ class Adv(object):
 
         if not this.conf:
             this.conf = Conf()
-        this.slots = slot.Slots()
+        this.pre_conf()
 
-        if not this.name:
-            this.name = this.__class__.__name__
+        #this.slots = slot.Slots()
+        this.default_slot()
+
+        this.conf.slot.sync_slot = this.sync_slot
+        this.conf.slots.sync_slot = this.sync_slot
 
         if 1:
             this.crit_mod = this.solid_crit_mod
@@ -1080,7 +1079,11 @@ class Adv(object):
 
         #this.classconf = this.conf
         this.init()
-        this.preconfig()
+
+        #if type(this.conf).__name__ != 'Conf':
+        #    this.pre_conf()
+        #    this.conf.slot.sync_slot = this.sync_slot
+        #    this.conf.slots.sync_slot = this.sync_slot
 
         #this.ctx.off()
 
@@ -1294,6 +1297,8 @@ class Adv(object):
         this.setup()
 
         this.d_slots()
+        #print this.slots
+        this.base_att = int(this.slots.att(globalconf.forte))
         this.displayed_att = int(this.slots._att(globalconf.forte))
         this.slots.oninit(this)
 

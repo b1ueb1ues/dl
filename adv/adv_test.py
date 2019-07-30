@@ -36,20 +36,13 @@ if len(sys.argv) >= 4:
     for i in ex_str:
         if i == 'k':
             ex_set['blade'] = ('ex','blade')
-            team_dps *= 1.1
-            energy_efficiency *= 1.1
             katana = 1
         elif i == 'r':
             ex_set['wand'] = ('ex','wand')
-            team_dps *= 1.08
-            energy_efficiency *= 1.15
         elif i == 'd':
             ex_set['dagger'] = ('ex','dagger')
-            team_dps *= 1.07
-            energy_efficiency *= 1.07
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
-            team_dps *= 1.05
 
 
 
@@ -67,6 +60,8 @@ line = ''
 line_k = ''
 
 def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
+    global team_dps
+    global energy_efficiency
     global mname
     global displayed_str
     global base_str
@@ -119,6 +114,22 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     comment = adv.comment
 
     real_duration = adv.run(sim_duration)
+
+    for i in adv.ex:
+        if i == 'blade':
+            team_dps *= 1.1
+            energy_efficiency *= 1.1
+        elif i == 'wand':
+            team_dps *= 1.08
+            energy_efficiency *= 1.15
+        elif i == 'dagger':
+            team_dps *= 1.07
+            energy_efficiency *= 1.07
+        elif i == 'bow':
+            team_dps *= 1.05
+
+
+
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
     #comment = amulets + comment
 
@@ -217,18 +228,22 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         line += report__2(condition, exdps, r, name, adv, amulets)
         #print '-------'+line
         #print('-,%s,%s\n'%(sim_duration,ex_str)+line)
-        line_k += '\n'
-        line_k += report__2_k(condition, exdps, r, name, adv, amulets)
-        if no_cond or condition == '':
-            output = '-,%s,%s'%(sim_duration, ex_str)
-            if ex_str == '_' :
-                output_k = '-,%s,k'%(sim_duration)
-            else:
-                output_k = '-,%s,k%s'%(sim_duration, ex_str)
-            output += line
-            output_k += line_k
-            print(output)
-            print(output_k)
+        if katana:
+            print('cannot blade when -5')
+            errrrrrrrrrrrrrrr()
+        else:
+            line_k += '\n'
+            line_k += report__2_k(condition, exdps, r, name, adv, amulets)
+            if no_cond or condition == '':
+                output = '-,%s,%s'%(sim_duration, ex_str)
+                if ex_str == '_' :
+                    output_k = '-,%s,k'%(sim_duration)
+                else:
+                    output_k = '-,%s,k%s'%(sim_duration, ex_str)
+                output += line
+                output_k += line_k
+                print(output)
+                print(output_k)
 
 
     if condition != '':

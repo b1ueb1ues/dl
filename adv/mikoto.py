@@ -13,6 +13,11 @@ class Mikoto(Adv):
     conf['slots.a'] = slot.a.LC()+slot.a.RR()
     conf['slots.d'] = slot.d.Arctos()
 
+    def d_slots(this):
+        if 'wand' in this.ex:
+            this.conf['slots.d'] = slot.d.Sakuya()
+
+
     def init(this):
         if this.condition('connect s1'):
             this.s1_proc = this.c_s1_proc

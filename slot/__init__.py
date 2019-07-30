@@ -150,6 +150,15 @@ class Slots(object):
     #a = AmuletBase()+AmuletBase()
     #c = CharacterBase()
     #a2 = AmuletBase()
+    def __str__(this):
+        r = str(this.c) + '\n'
+        r += str(this.d) + '\n'
+        r += str(this.w) + '\n'
+        r += str(this.a) + '\n'
+        r += str(this.a.a2) + '\n'
+        return r
+
+
     def __init__(this):
         this.c = CharacterBase()
         #this.w = WeaponBase()
