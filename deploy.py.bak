@@ -17,9 +17,10 @@ import sys
 redirect = 'tee -a'
 #redirect = '>>'
 
-ex = [ '_', 'r', 'd', 'b',
-       'rd','rb','db',
-       'rdb' ]
+ex = [ '_', 'k', 'r', 'd', 'b',
+       'kr','kd','kb','rd','rb','db',
+       'rdb','kdb','krb','krd',
+       'krdb' ]
 
 chart_title = 'dps,name,star,element,weapon,str,amulets,condition,comment,\n' 
 
@@ -223,9 +224,8 @@ def sp_character(name):
         single_sim(name, 180, i)
 
 def single_sim(name, time, ex):
-    #cmd = "echo '-,%s,%s' >> www/dl-sim/chara/%s.csv ; "%(time, ex, name)
-    cmd = ''
-    cmd += 'python adv/%s -5 %s %s | %s www/dl-sim/chara/%s.csv'%(name, time, ex, redirect, name)
+    cmd = "echo '-,%s,%s' >> www/dl-sim/chara/%s.csv ; "%(time, ex, name)
+    cmd += 'python adv/%s -2 %s %s | %s www/dl-sim/chara/%s.csv'%(name, time, ex, redirect, name)
     sh(cmd)
 
 

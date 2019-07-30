@@ -29,6 +29,7 @@ team_dps = 6000
 energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
 katana = 0
 
+ex_str = '_'
 ex_set = {}
 if len(sys.argv) >= 4:
     ex_str = sys.argv[3]
@@ -62,6 +63,8 @@ comment = ""
 dps = 0
 bps = 0
 real_duration = 0
+line = ''
+line_k = ''
 
 def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global mname
@@ -73,6 +76,9 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global sim_duration
     global real_duration
     global sim_times
+    global ex_str
+    global line
+    global line_k
 
     if duration:
         sim_duration = duration
@@ -201,7 +207,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         name = mname
         condi = ' '
         exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
-        line = report__2(condi, exdps, r, name, adv, amulets)
+        line = report__2(condition, exdps, r, name, adv, amulets)
         print(line)
     elif loglevel == -5:
         #comment += " (str: %d)"%(displayed_str)
@@ -209,6 +215,22 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         name = mname
         condi = ' '
         exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
+        line += '\n'
+        line += report__2(condition, exdps, r, name, adv, amulets)
+        #print '-------'+line
+        #print('-,%s,%s\n'%(sim_duration,ex_str)+line)
+        line_k += '\n'
+        line_k += report__2_k(condition, exdps, r, name, adv, amulets)
+        if no_cond:
+            output = '-,%s,%s'%(sim_duration, ex_str)
+            if ex_str == '_' :
+                output_k = '-,%s,k'%(sim_duration)
+            else:
+                output_k = '-,%s,k%s'%(sim_duration, ex_str)
+            output += line
+            output_k += line_k
+            print(output)
+            print(output_k)
 
 
     if condition != '':
@@ -266,6 +288,54 @@ def report__2(condition, exdps, r, name, adv, amulets):
         for i in r['o_sum']:
             line += ',%s:%d'%(i, int(r['o_sum'][i]/real_duration))
     return line
+
+def report__2_k(condition, exdps, r, name, adv, amulets):
+    global mname
+    global displayed_str
+    global base_str
+    global comment
+    global g_condition
+    global loglevel
+    global sim_duration
+    global real_duration
+    global sim_times
+
+    if condition != '':
+        condition = '<%s>'%condition
+        condi = condition
+    else :
+        if g_condition:
+            name = '_c_'+mname
+            condi = '!<%s>'%g_condition
+
+    katana = 1.1
+    if adv.conf['c.wt'] == 'blade':
+        katana = 1.0
+
+    line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
+            name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
+            displayed_str, amulets+g_condicomment ,condi,comment,
+            )
+    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
+    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
+    line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
+    line = line.replace(',staff,',',奶,')
+    line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
+    line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
+    line = '%d,'%(int(katana*(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency))) + line
+    line += ',attack:%d'%(int(katana*r['dmg_sum']['x']/real_duration))
+    line += ',force_strike:%d'%(int(katana*r['dmg_sum']['fs']/real_duration))
+    line += ',skill_1:%d'%(int(katana*r['sdmg_sum']['s1']['dmg']/real_duration))
+    line += ',skill_2:%d'%(int(katana*r['sdmg_sum']['s2']['dmg']/real_duration))
+    line += ',skill_3:%d'%(int(katana*r['sdmg_sum']['s3']['dmg']/real_duration))
+    line += ',team_buff:%d'%(int(katana*r['buff_sum']*team_dps))
+    if r['energy_sum']:
+        line += ',team_energy:%d'%(int(katana*r['energy_sum']*energy_efficiency))
+    if r['o_sum'] != {}:
+        for i in r['o_sum']:
+            line += ',%s:%d'%(i, int(katana*r['o_sum'][i]/real_duration))
+    return line
+
 
 def do_mass_sim(classname, conf, no_cond=None):
     global real_duration
