@@ -27,6 +27,7 @@ team_dps = 6000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
 energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
+katana = 0
 
 ex_set = {}
 if len(sys.argv) >= 4:
@@ -36,6 +37,7 @@ if len(sys.argv) >= 4:
             ex_set['blade'] = ('ex','blade')
             team_dps *= 1.1
             energy_efficiency *= 1.1
+            katana = 1
         elif i == 'r':
             ex_set['wand'] = ('ex','wand')
             team_dps *= 1.08
@@ -199,40 +201,15 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         name = mname
         condi = ' '
         exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
-
-
-        if condition != '':
-            condition = '<%s>'%condition
-            condi = condition
-        else :
-            if g_condition:
-                name = '_c_'+mname
-                condi = '!<%s>'%g_condition
-        
-
-        line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
-                name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
-                displayed_str, amulets+g_condicomment ,condi,comment,
-                )
-        line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
-        line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
-        line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
-        line = line.replace(',staff,',',奶,')
-        line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
-        line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
-        line = '%d,'%(int(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
-        line += ',attack:%d'%(int(r['dmg_sum']['x']/real_duration))
-        line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/real_duration))
-        line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/real_duration))
-        line += ',skill_2:%d'%(int(r['sdmg_sum']['s2']['dmg']/real_duration))
-        line += ',skill_3:%d'%(int(r['sdmg_sum']['s3']['dmg']/real_duration))
-        line += ',team_buff:%d'%(int(r['buff_sum']*team_dps))
-        if r['energy_sum']:
-            line += ',team_energy:%d'%(int(r['energy_sum']*energy_efficiency))
-        if r['o_sum'] != {}:
-            for i in r['o_sum']:
-                line += ',%s:%d'%(i, int(r['o_sum'][i]/real_duration))
+        line = report__2(condi, exdps, r, name, adv, amulets)
         print(line)
+    elif loglevel == -5:
+        #comment += " (str: %d)"%(displayed_str)
+        bdps = team_dps*bps
+        name = mname
+        condi = ' '
+        exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
+
 
     if condition != '':
         test(classname, conf, verbose, mass, duration, 1)
@@ -246,6 +223,49 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     elif loglevel < 0 and not loglevel-1 & 8:
         print('-----------------------\nrun in %f'%(b-a))
     return
+
+def report__2(condition, exdps, r, name, adv, amulets):
+    global mname
+    global displayed_str
+    global base_str
+    global comment
+    global g_condition
+    global loglevel
+    global sim_duration
+    global real_duration
+    global sim_times
+
+    if condition != '':
+        condition = '<%s>'%condition
+        condi = condition
+    else :
+        if g_condition:
+            name = '_c_'+mname
+            condi = '!<%s>'%g_condition
+
+    line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
+            name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
+            displayed_str, amulets+g_condicomment ,condi,comment,
+            )
+    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
+    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
+    line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
+    line = line.replace(',staff,',',奶,')
+    line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
+    line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
+    line = '%d,'%(int(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
+    line += ',attack:%d'%(int(r['dmg_sum']['x']/real_duration))
+    line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/real_duration))
+    line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/real_duration))
+    line += ',skill_2:%d'%(int(r['sdmg_sum']['s2']['dmg']/real_duration))
+    line += ',skill_3:%d'%(int(r['sdmg_sum']['s3']['dmg']/real_duration))
+    line += ',team_buff:%d'%(int(r['buff_sum']*team_dps))
+    if r['energy_sum']:
+        line += ',team_energy:%d'%(int(r['energy_sum']*energy_efficiency))
+    if r['o_sum'] != {}:
+        for i in r['o_sum']:
+            line += ',%s:%d'%(i, int(r['o_sum'][i]/real_duration))
+    return line
 
 def do_mass_sim(classname, conf, no_cond=None):
     global real_duration
