@@ -17,6 +17,13 @@ import sys
 redirect = 'tee -a'
 #redirect = '>>'
 
+ex_all = [ '_', 'r', 'd', 'b',
+       'rd','rb','db',
+       'rdb' ] 
+ex_all += [ 'k', 'kr', 'kd', 'kb',
+       'krd','krb','kdb',
+       'krdb' ] 
+
 ex = [ '_', 'r', 'd', 'b',
        'rd','rb','db',
        'rdb' ]
@@ -90,25 +97,25 @@ def clean():
     dr = 'www/dl-sim/'
 
     time = '60'
-    for i in ex:
+    for i in ex_all:
         f = open(dr+time+'/data_'+i+'.csv','w')
         f.write(chart_title)
         fs[time+'_'+i] = f
 
     time = '120'
-    for i in ex:
+    for i in ex_all:
         f = open(dr+time+'/data_'+i+'.csv','w')
         f.write(chart_title)
         fs[time+'_'+i] = f
 
     time = '180'
-    for i in ex:
+    for i in ex_all:
         f = open(dr+time+'/data_'+i+'.csv','w')
         f.write(chart_title)
         fs[time+'_'+i] = f
 
     time = 'sp'
-    for i in ex:
+    for i in ex_all:
         f = open(dr+time+'/data_'+i+'.csv','w')
         f.write(chart_title)
         fs[time+'_'+i] = f
@@ -131,7 +138,7 @@ def time_combine(fname):
     fcs = open(fname,'r')
     for c in fcs:
         c = c.strip()
-        print c
+        print(c)
         if c == '':
             continue
 

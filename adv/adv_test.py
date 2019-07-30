@@ -205,7 +205,6 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         #comment += " (str: %d)"%(displayed_str)
         bdps = team_dps*bps
         name = mname
-        condi = ' '
         exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
         line = report__2(condition, exdps, r, name, adv, amulets)
         print(line)
@@ -213,7 +212,6 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         #comment += " (str: %d)"%(displayed_str)
         bdps = team_dps*bps
         name = mname
-        condi = ' '
         exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
         line += '\n'
         line += report__2(condition, exdps, r, name, adv, amulets)
@@ -257,6 +255,7 @@ def report__2(condition, exdps, r, name, adv, amulets):
     global real_duration
     global sim_times
 
+    condi = ' '
     if condition != '':
         condition = '<%s>'%condition
         condi = condition
@@ -300,6 +299,7 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     global real_duration
     global sim_times
 
+    condi = ' '
     if condition != '':
         condition = '<%s>'%condition
         condi = condition
