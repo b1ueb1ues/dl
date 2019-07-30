@@ -5,17 +5,16 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
-    comment = 'Arctos'
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
     import slot
     conf = {}
     conf['slots.a'] = slot.a.LC()+slot.a.RR()
-    conf['slots.d'] = slot.d.Arctos()
 
     def d_slots(this):
-        if 'wand' in this.ex:
-            this.conf['slots.d'] = slot.d.Sakuya()
+        if 'wand' not in this.ex:
+           this.conf['slots.d'] = slot.d.Arctos()
+        return
 
 
     def init(this):

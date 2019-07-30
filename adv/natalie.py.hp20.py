@@ -20,7 +20,7 @@ class RR(Amulet):
 
 
 class Natalie(adv.Adv):
-    comment = '20hp; Shinobi; 120s; can\'t maintain comboes'
+    comment = '20hp; 120s; can\'t maintain comboes'
     conf = {}
     conf['slot.a'] = slot.a.TL() + slot.a.Choco()
     conf['slot.d'] = Shinobi()

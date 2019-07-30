@@ -8,7 +8,6 @@ def module():
     return Sazanka
 
 class Sazanka(Adv):
-    comment = 'Shinobi;'
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['slot.a'] = KFM()+CE()

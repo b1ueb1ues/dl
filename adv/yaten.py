@@ -90,7 +90,7 @@ if __name__ == '__main__':
     #conf['slot.a'] = HoH()+JotS()
     #conf['slot.a'] = The_Shining_Overlord()+ The_Petal_Queen()
     #conf['slot.a'] = The_Shining_Overlord()+ Halidom_Grooms()
-    #conf['slot.d'] = Shinobi()
+    #conf['slot.d'] = Marishiten()
      
     adv_test.test(module(), conf, verbose=-2)
 

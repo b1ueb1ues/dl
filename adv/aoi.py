@@ -11,7 +11,6 @@ class Aoi(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    module().comment = 'Sakuya'
     conf['slot.d'] = Sakuya()
     conf['acl'] = """
         `s1, seq=5 

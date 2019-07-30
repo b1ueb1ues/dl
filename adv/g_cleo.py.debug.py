@@ -14,7 +14,7 @@ def module():
 class G_Cleo(Adv):
     
     a3 = ('prep','100%')
-    comment = 'Shinobi; (the true cleo is here)'
+    comment = '(the true cleo is here)'
 
     def d_slots(this):
         #this.slots.a = RR()+CE()

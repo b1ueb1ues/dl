@@ -12,7 +12,6 @@ class Rena(rena.Rena):
     comment = ''
 
 if __name__ == '__main__':
-    module().comment = 'Sakuya'
     conf = {}
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = RR()+FRH()

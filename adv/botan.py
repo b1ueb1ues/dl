@@ -8,7 +8,6 @@ def module():
     return Botan
 
 class Botan(Adv):
-    comment = "Shinobi"
 #    comment = "RR+Jewels"
     a3 = ('prep','50%')
     conf = {}

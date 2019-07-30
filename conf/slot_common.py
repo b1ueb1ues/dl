@@ -11,7 +11,8 @@ def set(slots):
 
 
     if ele == 'flame':
-        slots.d = slot.d.flame.Cerberus()
+        slots.d = slot.d.flame.Sakuya()
+        #slots.d = slot.d.flame.Cerberus()
     elif ele == 'water':
         slots.d = slot.d.water.DJ()
     elif ele == 'wind':
@@ -19,7 +20,8 @@ def set(slots):
     elif ele == 'light':
         slots.d = slot.d.light.Cupid()
     elif ele == 'shadow':
-        slots.d = slot.d.shadow.Marishiten()
+        slots.d = slot.d.shadow.Shinobi()
+        #slots.d = slot.d.shadow.Marishiten()
 
 
     slots.a = RR()+CE()

@@ -13,6 +13,7 @@ class Marth(adv.Adv):
     a3 = ('cc',0.13,'hit15')
     conf = {}
     conf['slot.a'] = TSO()+FoG()
+    #conf['slot.d'] = Cerberus()
 
     def init(this):
         this.stance = 0

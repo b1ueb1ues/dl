@@ -20,5 +20,5 @@ if __name__ == '__main__':
         `s2, seq=2
         `s3
         """
-    #conf['slot.d'] = Shinobi()
+    conf['slot.d'] = Shinobi()
     adv_test.test(module(), conf, verbose=-2)

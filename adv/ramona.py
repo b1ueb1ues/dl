@@ -7,7 +7,7 @@ def module():
     return Ramona
 
 class Ramona(Adv):
-    comment = 'no fs; Sakuya'
+    comment = 'no fs'
     a3 = ('bc',0.13)
     conf = {}
     conf['slots.a'] = KFM()+VC()

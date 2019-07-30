@@ -26,6 +26,6 @@ if __name__ == '__main__':
         `s1
         `s3, s
         """
-    conf['slot.d'] = Pazuzu()
+    #conf['slot.d'] = Pazuzu()
     adv_test.test(module(), conf, verbose=0, mass=10)
 

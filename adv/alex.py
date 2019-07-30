@@ -10,8 +10,8 @@ class Alex(adv.Adv):
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)
 
-    #conf = {}
-    #conf['slot.d'] = Shinobi()
+    conf = {}
+    conf['slot.d'] = Shinobi()
     tmp = 0
 
 

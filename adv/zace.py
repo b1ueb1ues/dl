@@ -7,11 +7,10 @@ def module():
     return Zace
 
 class Zace(Adv):
-    comment = 'Shinobi'
     a1 = ('s',0.2)
     conf = {}
     conf['slot.a'] = Jewels_of_the_Sun() + RR()
-    conf['slot.d'] = Shinobi()
+    #conf['slot.d'] = Marishiten()
 
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@ import adv
 from adv import *
 import slot
 from slot.a import *
+from slot.d import *
 
 def module():
     return G_Sarisse
@@ -10,6 +11,7 @@ def module():
 class G_Sarisse(adv.Adv):
     a3 = ('bt',0.3)
     conf = {}
+    #conf['slot.d'] = Cerberus()
 
     def prerun(this):
         this.hits = 0

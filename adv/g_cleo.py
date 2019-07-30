@@ -12,7 +12,7 @@ def module():
     return G_Cleo
 
 class G_Cleo(Adv):
-    comment = 'Shinobi; (the true cleo is here)'
+    comment = '(the true cleo is here)'
     a3 = ('prep','100%')
 
     def d_slots(this):
