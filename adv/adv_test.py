@@ -219,7 +219,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         #print('-,%s,%s\n'%(sim_duration,ex_str)+line)
         line_k += '\n'
         line_k += report__2_k(condition, exdps, r, name, adv, amulets)
-        if no_cond:
+        if no_cond or condition == '':
             output = '-,%s,%s'%(sim_duration, ex_str)
             if ex_str == '_' :
                 output_k = '-,%s,k'%(sim_duration)
