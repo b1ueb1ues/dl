@@ -6,7 +6,7 @@ def module():
     return Linyou
 
 class Linyou(Adv):
-    comment = '2in1 ; Longlong' 
+    comment = '2in1 ' 
     a1 = ('cc',0.10,'hp70')
     a3 = ('sp',0.08)
 

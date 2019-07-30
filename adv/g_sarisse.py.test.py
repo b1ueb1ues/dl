@@ -19,7 +19,6 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.Adv):
-    comment = 'Sakuya'
     a3 = ('bt',0.3)
     conf = {}
     #conf['mod'] = {'ex':('sp','passive',0.15)}
