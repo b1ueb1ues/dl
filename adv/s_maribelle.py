@@ -1,6 +1,7 @@
 import adv_test
 import adv
 import slot
+from slot.d import *
 
 def module():
     return S_Maribelle
@@ -17,8 +18,7 @@ if __name__ == '__main__':
         `s2, seq=5 and cancel
         """
 
-    #from slot.d.flame import *
-    #conf['slots.d'] = Sakuya()
+    #conf['slots.d'] = Cerberus()
     #from slot.w import *
     #conf['slots.w'] = wand5b2p2()
     #conf['acl'] = """

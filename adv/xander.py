@@ -2,6 +2,7 @@ import adv_test
 import adv
 from slot.a import *
 import slot.a
+from slot.d import *
 
 def module():
     return Xander
@@ -26,13 +27,8 @@ class Xander(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1,fsc
-        `s2,fsc
-        `fs, seq=2 and cancel
-        """
-
     conf['slots.a'] = TSO()+JotS()
+    conf['slots.d'] = Siren()
     conf['acl'] = """
         `s1,fsc
         `s2,fsc
