@@ -25,7 +25,7 @@ if __name__ == '__main__':
     conf = {}
     acl12 = """
         `s1, seq=5 and cancel
-        `s2, seq=5 and cancel or s
+        `s2, seq=5 and cancel 
         `s3, seq=5 and cancel
         """
     acl21 = """
