@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Laranoa
@@ -9,6 +10,8 @@ class Laranoa(Adv):
     comment = 'doesn\'t count spbuff for teammates'
 
     a3 = ('s',0.3)
+    conf = {}
+    conf['slot.d'] = DJ()
     
     def init(this):
         if this.condition('buff all team'):

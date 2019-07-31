@@ -1,11 +1,15 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Rex
 
 class Rex(adv.Adv):
-    pass
+
+    def d_slots(this):
+        #this.conf.slot.d = DJ()
+        return
 
 if __name__ == '__main__':
     conf = {}

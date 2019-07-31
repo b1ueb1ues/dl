@@ -1,11 +1,16 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return D_Nefaria
 
 class D_Nefaria(adv.Adv):
     a1 = ('s',0.25)
+
+    def d_slots(this):
+        this.conf.slot.d = DJ()
+        return
 
     def prerun(this):
         if this.condition('c4+fs'):

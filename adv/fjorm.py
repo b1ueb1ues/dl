@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Fjorm
@@ -15,6 +16,7 @@ class Fjorm(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = Dragon_and_Tamer()+LC()
+    #conf['slot.d'] = DJ()
     conf['acl'] = """
         `s1
         `s2

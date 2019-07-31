@@ -1,10 +1,14 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Jakob
 
 class Jakob(adv.Adv):
+    def d_slots(this):
+        this.conf.slot.d = DJ()
+        return
 
     def prerun(this):
         if this.condition('60 bog resist'):

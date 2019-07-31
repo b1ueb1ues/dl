@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Elisanne
@@ -13,6 +14,7 @@ class Elisanne(Adv):
     #conf['slots.a'] = CE() + Bellathorna()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
     conf['slots.a'] = HG() + Indelible_Summer()
+    conf['slots.d'] = DJ()
 
 
 if __name__ == '__main__':
