@@ -1,11 +1,14 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Karina
 
 class Karina(adv.Adv):
     a3 = ('prep','50%')
+    conf = Conf()
+    conf.slot.a = KFM()+CE()
 
 
 if __name__ == '__main__':

@@ -5,6 +5,7 @@ from ability import Ability
 from core import *
 from core.timeline import *
 from core.log import *
+from core.afflic import *
 import core.acl
 import conf as globalconf
 import core.condition 
@@ -85,151 +86,6 @@ class Modifier(object):
     def __repr__(this):
         return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
 
-
-class Afflics(object):
-    def __init__(this):
-        this.resist = {}
-        this.resist['poison'] = 0
-        this.resist['burn'] = 0
-        this.resist['freeze'] = 80
-        this.resist['paralysis'] = 80
-        this.resist['blind'] = 80
-        this.resist['stun'] = 80
-        this.resist['curse'] = 0
-        this.resist['bog'] = 80
-        this.resist['sleep'] = 80
-        this.dot = []
-        this.cc = {}
-        this.luck = 1
-    
-    def add(this, name, atype, rate, duration, coef=0, iv=0):
-        if atype == 'burning':
-            atype = 'burn'
-        if atype == 'para':
-            atype = 'paralysis'
-        if atype in ['poison','burn','paralysis']:
-            return this.add_dot(name, atype, rate, coef, duration, iv)
-        elif atype in ['blind','freeze','stun','sleep','bog']:
-            return this.add_cc(name, atype, rate, coef, duration, iv)
-
-    def get(this, atype):
-        if atype in ['poison','burn','paralysis']:
-            stack = 0
-            for i in this.dot:
-                if i[0] == atype and i[1].get():
-                    stack += 1
-            return stack
-        elif atype in ['blind','freeze','stun','sleep','bog']:
-            if atype in this.cc:
-                return this.cc[atype].get()
-
-    def r(this):
-        return random.random()/this.luck
-
-    def refresh_dot(this):
-        tmp = []
-        for i in this.dot:
-            if i[1].get():
-                tmp.append(i)
-        this.dot = tmp
-
-    def refresh_cc(this):
-        tmp = {}
-        for i in this.cc:
-            if this.cc[i].get():
-                tmp.append(i)
-        this.cc = tmp
-
-    def add_dot(this, name, atype, rate, coef, duration, iv):
-        if not iv :
-            errrrrr()
-        if this.resist[atype] < 100:
-            r = this.r()
-            log('afflic',rate, this.resist[atype],r*100)
-            if rate < this.resist[atype]:
-                return 0
-            if r*100 < (rate-this.resist[atype]):
-                log('afflic', 'succ', name, atype)
-                this.refresh_dot()
-                dot = Dot('o_'+name+'_'+atype, coef, duration, iv)
-                dot.on()
-                this.dot.append((atype,dot))
-                this.resist[atype] += 20 # 5
-                return 1
-        else:
-            log('afflic','perfect_resist')
-        return 0
-
-    def add_cc(this, name, atype, rate, coef, duration, iv):
-        if this.resist[atype] < 100:
-            r = this.r()
-            log('afflic',rate, this.resist[atype],r*100)
-            if atype in this.cc:
-                this.cc[atype].on()
-                return 0
-            elif rate < this.resist[atype]:
-                return 0
-            elif r*100 < (rate-this.resist[atype]):
-                log('afflic', 'succ', name, atype)
-                this.refresh_cc()
-                cc = Dot('o_'+name+'_'+atype, 0, duration, duration+0.01)
-                cc.on()
-                this.cc[atype] = cc
-
-                if atype == 'blind':
-                    this.resist[atype] += 20 # 10
-                else:  #elif atype in ['freeze','stun','sleep','bog']:
-                    this.resist[atype] += 20
-                return 1
-        else:
-            log('afflic','perfect_resist')
-        return 0
-
-
-
-class Dot(object):
-    """
-    Damage over time; e.g. poison
-    """
-
-    def __init__(this, name, coef, duration, iv):
-        this.name = name
-        this.active = 0
-        this.coef = coef
-        this.iv = iv  # Seconds between each damage tick
-        this.duration = duration
-        this.dmg_event = Event('dmg_make')
-        this.tick_timer = Timer(this.tick_proc)
-        this.dotend_timer = Timer(this.dot_end_proc)
-
-    def dot_end_proc(this, t):
-        log('dot',this.name,'end\t')
-        this.active = 0
-        this.tick_timer.off()
-
-    def tick_proc(this, t):
-        if this.active == 0:
-            return
-        t.timing += this.iv
-        this.dmg_event.dmg_coef = this.coef
-        this.dmg_event.dname = this.name
-        this.dmg_event.on()
-        
-    def __call__(this):
-        return this.on()
-
-    def get(this):
-        return this.active
-
-    def on(this):
-        if this.active :
-            log('dot',this.name,'failed\t')
-            return 0
-        this.active = 1
-        this.tick_timer.on(this.iv)
-        this.dotend_timer.on(this.duration)
-        log('dot',this.name,'start\t','%f/%d'%(this.iv,this.duration))
-        return 1
 
 
 class Buff(object):
@@ -932,8 +788,6 @@ class Adv(object):
         this.modifier = Modifier(0,0,0,0)
         this.all_modifiers = []
         this.modifier._static.all_modifiers = this.all_modifiers
-        # set afflic
-        this.afflics = Afflics()
 
         # set ex
         if this.ex:
@@ -1076,6 +930,9 @@ class Adv(object):
 
         this.skill = Skill()
         this._acl = None
+        
+        # set afflic
+        this.afflics = Afflics()
 
         #this.classconf = this.conf
         this.init()

@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Pietro
@@ -7,6 +8,10 @@ def module():
 class Pietro(adv.Adv):
     a1 = ('cd',0.13)
 #    comment = 'unsuitable resist'
+
+    def d_slots(this):
+        this.conf.slots.d = DJ()
+
 
 if __name__ == '__main__':
     conf = {}

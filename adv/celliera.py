@@ -1,17 +1,17 @@
 import adv_test
 import adv
+from slot.d import *
+from slot.a import *
 
 
 def module():
     return Celliera
 
 class Celliera(adv.Adv):
-#    comment = 'RR+jewels_of_the_sun'
     a3 = ('a',0.08,'hp70')
-    import slot
     conf = {}
-    conf['slots.a'] = slot.a.RR() + slot.a.Jewels_of_the_Sun()
-    #conf['slots.a'] = slot.a.RR() + slot.a.CE()
+    conf['slots.a'] = RR()+JotS()
+    #conf['slots.d'] = DJ()
 
     def prerun(this):
         this.s2buff = adv.Selfbuff("s2_shapshifts1",1, 10,'ss','ss')

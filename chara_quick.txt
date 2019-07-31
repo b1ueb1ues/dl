@@ -102,3 +102,6 @@ ramona.py
 rena.py
 renee.py
 g_cleo.py
+s_estelle.py
+s_ranzal.py
+s_julietta.py

@@ -1,10 +1,17 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Waike
 
+
 class Waike(adv.Adv):
+
+    def d_slots(this):
+        #this.conf.slot.d = DJ()
+        return
+
     def init(this):
         if this.condition('bog<=3'):
             this.prerun = this.c_prerun

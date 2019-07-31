@@ -2,8 +2,6 @@ import adv_test
 from adv import *
 from slot.a import *
 from slot.d import *
-import random
-from slot import *
 
 
 def module():
@@ -14,11 +12,18 @@ class Rena(Adv):
         if this.condition('0 burn resist'):
             this.afflics.resist['burn'] = 0
         else:
-            this.afflics.resist['burn'] = 0.55
+            this.afflics.resist['burn'] = 55
         this.a1_iscding = 0
         this.stance = 0
         random.seed()
 
+    def d_acl(this):
+        if 'bow' in this.ex:
+            this.conf['acl'] = '''
+                `s1
+                `s2, s=1
+                `s3
+            '''
     
     def s1_proc(this, e):
         this.afflics.add('s1','burn',120, 12, 0.97, 3.9)
@@ -33,7 +38,6 @@ class Rena(Adv):
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
             if this.afflics.get('burn'):
                 this.dmg_make("o_s1_boost",this.conf.s1.dmg*0.8)
-
 
 
     def s2_proc(this, e):
@@ -70,13 +74,13 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = RR()+EE()
-    #conf['slot.a'] = RR()+CE()
     conf['acl'] = """
         `s1
         `s2, s=1
-        `s3
+        `s3, fsc
+        `fs, seq=5
         """
 
-    adv_test.test(module(), conf, verbose=0, duration=120, mass=1)
+    adv_test.test(module(), conf, verbose=0, mass=1)
     #logcat(['cd'])
 

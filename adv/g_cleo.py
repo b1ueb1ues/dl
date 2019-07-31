@@ -6,6 +6,8 @@ from slot.a import *
 from slot.d import *
 from module.fsalt import *
 
+import random
+random.seed()
 
 
 def module():
@@ -14,6 +16,7 @@ def module():
 class G_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
+    
 
     def d_slots(this):
         this.slots.a = RR()+CE()  # c5 s2 fs s1  break comboes
