@@ -64,6 +64,8 @@ def main(argv):
             continue
 
         name = argv[1]
+        if name[:4] == 'adv/':
+            name = name[4:]
         argv.pop(1)
         one_character(name)
         continue

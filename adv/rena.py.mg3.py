@@ -5,6 +5,18 @@ from slot.d import *
 import random
 from slot import *
 
+class E(Amulet):
+    att = 54
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        this.adv = adv
+        m = adv.Modifier('Elegant_Escort','att','killer',0)
+        m.get = this.getbane
+
+    def getbane(this):
+        log('debug','getbane', this.adv.afflic.get()*0.3 )
+        return this.adv.afflic.get()*0.3
+
 
 def module():
     return Rena
@@ -12,16 +24,24 @@ def module():
 class Rena(Adv):
     def prerun(this):
         if this.condition('0 burn resist'):
-            this.afflics.resist['burn'] = 0
+            this.afflic = Afflic()
+            this.afflic.resist = 0
+            this.afflic.rate = 1.2
+            this.afflic.tolerance = 0.2
         else:
-            this.afflics.resist['burn'] = 0.55
+            this.afflic = Afflic()
+            this.afflic.resist = 0.55
+            this.afflic.rate = 1.2
+            this.afflic.tolerance = 0.2
         this.a1_iscding = 0
         this.stance = 0
         random.seed()
 
     
     def s1_proc(this, e):
-        this.afflics.add('s1','burn',120, 12, 0.97, 3.9)
+        coef_x_chance = this.afflic.on() * 0.97
+        Dot('o_s1_burn',coef_x_chance, 12, 3.9).on()
+        #this.afflics.add('s1','burn',120, 12, 0.97, 3.9)
 
         if this.stance == 0:
             this.stance = 1
@@ -31,8 +51,10 @@ class Rena(Adv):
         elif this.stance == 2:
             this.stance = 0
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-            if this.afflics.get('burn'):
-                this.dmg_make("o_s1_boost",this.conf.s1.dmg*0.8)
+            coef = this.conf.s1.dmg*0.8* this.afflic.get()
+            if coef:
+                log('debug','s1_boost', this.afflic.get())
+                this.dmg_make("o_s1_boost", coef)
 
 
 
@@ -69,7 +91,7 @@ class Rena(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+EE()
+    conf['slot.a'] = RR()+E()
     #conf['slot.a'] = RR()+CE()
     conf['acl'] = """
         `s1
@@ -77,6 +99,6 @@ if __name__ == '__main__':
         `s3
         """
 
-    adv_test.test(module(), conf, verbose=0, duration=120, mass=1)
+    adv_test.test(module(), conf, verbose=0, duration=120, mass=0)
     #logcat(['cd'])
 
