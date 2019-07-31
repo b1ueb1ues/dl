@@ -7,7 +7,7 @@ def module():
     return Xainfried
 
 class Xainfried(Adv):
-    comment = 'use s1 only to cancel c5 of fs'
+    comment = 'use s1 only to cancel c5 or fs'
     def d_slots(this):
         if 'wand' not in this.ex:
             this.conf.slot.d = DJ()
