@@ -13,7 +13,7 @@ class Renee(adv.Adv):
 
 
     def s1_proc(this, e):
-        r = this.afflics.bog('s1',80)
+        r = this.afflics.bog('s1',100)
         if r:
            Debuff('s1_bog',-0.5*r,8,1,'att','bog').on()
 

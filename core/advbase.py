@@ -788,8 +788,6 @@ class Adv(object):
         this.modifier = Modifier(0,0,0,0)
         this.all_modifiers = []
         this.modifier._static.all_modifiers = this.all_modifiers
-        # set afflic
-        this.afflics = Afflics()
 
         # set ex
         if this.ex:
@@ -932,6 +930,9 @@ class Adv(object):
 
         this.skill = Skill()
         this._acl = None
+        
+        # set afflic
+        this.afflics = Afflics()
 
         #this.classconf = this.conf
         this.init()

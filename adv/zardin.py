@@ -1,6 +1,7 @@
 import adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Zardin
@@ -9,6 +10,7 @@ class Zardin(adv.Adv):
 #    comment = 'Stellar_Show+RR'
     a1 = ('a',0.10,'hp100')
     conf = {}
+    #conf['slot.d'] = DJ
 
     a = 2
     if a==1:
