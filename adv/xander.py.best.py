@@ -1,6 +1,7 @@
 import adv_test
 from xander import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Xander_best
@@ -41,6 +42,7 @@ if __name__ == '__main__':
     module().s1_proc = foo
     module().comment = 'only 2+1'
     conf['slots.a'] = Stellar_Show()+LC()
+    conf['slots.d'] = DJ()
     conf['acl'] = """
         `fs, seq=2 and cancel
         """
