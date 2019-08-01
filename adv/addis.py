@@ -6,11 +6,6 @@ from slot.a import *
 def module():
     return Addis
 
-        this.afflics.paralysis('s1',100,0.53)
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
-        else:
-            this.afflics.paralysis.resist=100
 
 class Addis(Adv):
     comment = 's2 c2 s1 c5fsf c4fs s1; hold s2s1 until bleed under 3'

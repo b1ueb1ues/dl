@@ -1373,7 +1373,7 @@ class Adv(object):
         dmg_coef = this.conf[e.name+'.dmg']
         func = e.name + '_before'
         tmp = getattr(this, func)(e)
-        if tmp:
+        if tmp!= None:
             dmg_coef = tmp
         if dmg_coef :
             this.dmg_make(e.name , dmg_coef)

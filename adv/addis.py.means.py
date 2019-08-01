@@ -9,7 +9,11 @@ def module():
 
 class Addis(addis.Addis):
     def prerun(this):
-        this.poisoncount=3
+        if this.condition('0 resist'):
+            this.afflics.poison.resist=0
+        else:
+            this.afflics.poison.resist=100
+
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)
@@ -24,9 +28,8 @@ class Addis(addis.Addis):
             log('-special','s1_with_s2')
             mBleed("s1_bleed", 1.32).on()
         else:
-            if this.poisoncount > 0:
-                this.poisoncount -= 1
-                this.dmg_make("o_s1_poison",2.65)
+            this.afflics.poison('s1',100,0.53)
+
 
 
 if __name__ == '__main__':

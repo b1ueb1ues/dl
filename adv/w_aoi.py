@@ -1,10 +1,10 @@
 import adv_test
-import adv
+from adv import *
 
 def module():
     return W_Aoi
 
-class W_Aoi(adv.Adv):
+class W_Aoi(Adv):
     comment = ''
     a3 = ('sp',0.12,'fs')
 
@@ -15,33 +15,38 @@ class W_Aoi(adv.Adv):
         else:
             this.s1_addition = 1
 
-    def prerun(this):
-        this.sleep_last = 0
-        if this.condition('sleep*3'):
-            this.sleep_last = 3
-            this.dmg_make('o_s2boost',1.33*5)
-            this.dmg_make('o_s2boost',1.33*5)
-            this.dmg_make('o_s2boost',1.33*5)
+        if this.condition('80 resist'):
+            this.afflics.sleep.resist=80
+        else:
+            this.afflics.sleep.resist=100
 
-        #this.conf.s1.dmg += this.s1_addition * 1.47
-        
-        this.fsa_charge = 0
+
+    def s1_before(this, e):
+        this.dmg_make('o_s1_hit1',1.47)
+        this.afflics.sleep('s1',110,6.5)
+        Teambuff('a1',0.15*this.afflics.sleep.get(),10).on()
 
     def s1_proc(this, e):
         if this.s1_addition == 4:
-            this.dmg_make('o_s1_hit1',1.47)
             this.dmg_make('o_s1_hit2',1.47)
             this.dmg_make('o_s1_hit3',1.47)
             this.dmg_make('o_s1_hit4',1.47)
         elif this.s1_addition == 1:
-            this.dmg_make('o_s1_hit1',1.47)
+            pass
 
-        
 
-    def s1_before(this, e):
-        if this.sleep_last > 0:
-            this.sleep_last -= 1
-            adv.Teambuff('a1',0.15,10).on()
+
+    def s2_before(this, e):
+        r = this.afflics.sleep.get()
+        coef = 1.40*5 * (1-r)
+        return coef
+
+    def s2_proc(this, e):
+        r = this.afflics.sleep.get()
+        coef = 1.40*5 * r
+        this.dmg_make('s2',coef)
+        coef = (2.80-1.40)*5 * r
+        this.dmg_make('o_s2_boost',coef)
 
 
 

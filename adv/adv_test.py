@@ -370,7 +370,6 @@ def do_mass_sim(classname, conf, no_cond=None):
     real_duration = 0
     sum_duration = 0
     for i in range(sim_times):
-        random.seed(i*1100)
         if not no_cond:
             adv = classname(conf=conf,cond=1)
             adv.ex = ex_set

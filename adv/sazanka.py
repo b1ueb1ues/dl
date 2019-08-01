@@ -15,14 +15,18 @@ class Sazanka(Adv):
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0
+        this.m = Modifier('skiller','att','killer',0.2)
+        this.m.get = this.getbane
 
-    def c_prerun(this):
-        this.o_prerun()
-        Selfbuff('sleep',0.2,14,'att','killer').on()
+    def getbane(this):
+        return this.afflics.blind.get()*0.2
 
     def init(this):
-        if this.condition('sleep'):
-            this.prerun, this.o_prerun = this.c_prerun, this.prerun
+        if this.condition('80 resist'):
+            this.afflics.sleep.resist=80
+        else:
+            this.afflics.sleep.resist=100
+
 
     def s1_proc(this, e):
         if random.random() < 0.8:
@@ -35,6 +39,8 @@ class Sazanka(Adv):
         if this.s2fscharge > 0:
             this.s2fscharge -= 1
             this.dmg_make("o_s2fs",0.38)
+            this.afflics.sleep('s2_fs', 100, 4.5)
+
 
 
 if __name__ == '__main__':

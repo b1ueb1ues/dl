@@ -31,7 +31,7 @@ class Yachiyo(Adv):
     def s1_proc(this, e):
         this.dmg_make('s1',4.32)
         this.afflics.paralysis('s1',100,0.66)
-        Buff('a1',0.15*this.afflics.paralysis.get(),10).on()
+        Selfbuff('a1',0.15*this.afflics.paralysis.get(),10).on()
         this.dmg_make('s1',4.32)
 
 

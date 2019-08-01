@@ -74,7 +74,6 @@ fs d -------- s1 fs d -------- s2 fs d
 
 
 if __name__ == '__main__':
-    module().comment = 'poison 3 times & no fs'
     conf = {}
     conf['acl'] = """
         `rotation
