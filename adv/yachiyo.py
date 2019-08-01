@@ -1,5 +1,5 @@
 import adv_test
-import adv
+from adv import *
 from slot import *
 from slot.w import *
 
@@ -12,25 +12,28 @@ class w530(WeaponBase):
 def module():
     return Yachiyo
 
-class Yachiyo(adv.Adv):
-    #comment = 'paralysis 3 times'
-
+class Yachiyo(Adv):
 
     def prerun(this):
-        this.para_last = 0
-        if this.condition('paralysis*3'):
-            this.para_last = 3
-        
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
         this.fsa_charge = 0
+        this.m = Modifier('pkiller','att','killer',0.2)
+        this.m.get = this.getbane
+
+
+    def getbane(this):
+        return this.afflics.paralysis.get()*0.2
         
 
-    def s1_before(this, e):
-        if this.para_last > 0:
-            this.para_last -= 1
-            this.dmg_make("o_s1_paralysis",1.98)
-            adv.Buff('a1',0.15,10).on()
-            adv.Buff('para killer',0.20,13,'att','killer').on()
-            return 8.64*0.86231884 # para only affect the second hit 
+    def s1_proc(this, e):
+        this.dmg_make('s1',4.32)
+        this.afflics.paralysis('s1',100,0.66)
+        Buff('a1',0.15*this.afflics.paralysis.get(),10).on()
+        this.dmg_make('s1',4.32)
+
 
     def s2_proc(this, e):
         this.fso_dmg = this.conf.fs.dmg

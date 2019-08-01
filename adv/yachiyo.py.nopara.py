@@ -1,24 +1,17 @@
 import adv_test
-import adv
+from adv import *
+import yachiyo
 
 def module():
     return Yachiyo
 
-class Yachiyo(adv.Adv):
+class Yachiyo(yachiyo.Yachiyo):
     #comment = 'paralysis 3 times'
 
     def prerun(this):
-        this.para_last = 0
-        this.fsa_charge = 0
-        
+        super(Yachiyo, this).prerun()
+        this.afflics.paralysis.resist=100
 
-    def s1_before(this, e):
-        if this.para_last > 0:
-            this.para_last -= 1
-            this.dmg_make("o_s1_paralysis",1.98)
-            adv.Buff('a1',0.15,10).on()
-            adv.Buff('para killer',0.20,13,'att','killer').on()
-            return 8.64*0.86231884 # para only affect the second hit 
 
     def s2_proc(this, e):
         this.fso_dmg = this.conf.fs.dmg

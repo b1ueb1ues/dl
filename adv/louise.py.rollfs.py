@@ -1,13 +1,12 @@
 import adv_test
 import adv
 from slot.a import *
+import louise
 
 def module():
     return Louise
 
-class Louise(adv.Adv):
-    comment = ''
-    a1 = ('od',0.13)
+class Louise(louise.Louise):
 
     def init(this):
         this.conf.mod = {'ex':('sp','passive',0.15)}
@@ -28,17 +27,8 @@ class Louise(adv.Adv):
                 """
 
 
-    def prerun(this):
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-
-
-
 if __name__ == '__main__':
-    module().comment = 'poison*3'
     conf = {}
+    from slot.d import *
+    conf['slot.d'] = Pazuzu()
     adv_test.test(module(), conf, verbose=0)

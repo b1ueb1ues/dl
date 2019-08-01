@@ -8,9 +8,14 @@ class Eleonora(adv.Adv):
     a3 = ('prep','50%')
 
     def prerun(this):
-        this.dmg_make("o_s1_poison",2.65)
-        this.dmg_make("o_s1_poison",2.65)
-        this.dmg_make("o_s1_poison",2.65)
+        if this.condition('0 resist'):
+            this.afflics.poison.resist=0
+        else:
+            this.afflics.poison.resist=100
+        if this.condition('fullhp=poison'):
+            this.fullhp = 1
+        else:
+            this.fullhp = 0
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
@@ -20,10 +25,14 @@ class Eleonora(adv.Adv):
                 `fs, seq=4
                 """
 
+    def s1_proc(this, e):
+        this.afflics.poison('s1',110+50*this.fullhp,0.53)
+
+    def s2_proc(this, e):
+        this.afflics.poison('s2',100+50*this.fullhp,0.396)
 
 
 if __name__ == '__main__':
-    module().comment = 'poison by s1 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 

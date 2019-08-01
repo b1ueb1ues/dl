@@ -11,9 +11,13 @@ class Sylas(adv.Adv):
     comment = 'not consider skill haste for team'
 
     def prerun(this):
-        this.dmg_make("o_s1_poison",0.582*5)
-        this.dmg_make("o_s1_poison",0.582*5)
-        this.dmg_make("o_s1_poison",0.582*5)
+        if this.condition('0 resist'):
+            this.afflics.poison.resist=0
+        else:
+            this.afflics.poison.resist=100
+
+    def s1_proc(this, e):
+        this.afflics.poison('s1',120,0.582)
 
     def s2_proc(this, e):
         adv.Selfbuff('s2_shaste',0.20,15,'sp','buff').on()
@@ -27,5 +31,7 @@ if __name__ == '__main__':
         `s2
         `fs, seq=5
         """
+    from slot.d import *
+    #conf['slot.d'] = Pazuzu()
     adv_test.test(module(), conf, verbose=0)
 

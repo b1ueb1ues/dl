@@ -1,22 +1,14 @@
 import adv_test
 import adv
+import louise
 
 def module():
     return Louise
 
-class Louise(adv.Adv):
-    a1 = ('od',0.13)
-
-    def init(this):
-        this.conf.mod = {'ex':('sp','passive',0.15)}
+class Louise(louise.Louise):
 
     def prerun(this):
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
+        super(Louise, this).prerun()
         this.conf.rotation = """
 fs d 
 fs d 

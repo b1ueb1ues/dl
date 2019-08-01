@@ -14,12 +14,10 @@ def module():
     return Rena
 
 class Rena(Adv):
+    comment = '0 burn resist'
 
     def init(this):
-        if this.condition('0 burn resist'):
-            this.burnresist = 0
-        else:
-            this.burnresist = 40
+        this.burnresist = 0
 
     def prerun(this):
         this.a1_iscding = 0
@@ -82,7 +80,6 @@ class Rena(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['mod'] = {'blade':('att','ex',0.1),'bow':('sp','passive',0.15),'wand':('s','ex',0.15)}
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = RR()+bane()
     #conf['slot.a'] = RR()+CE()

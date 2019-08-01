@@ -129,10 +129,15 @@ class Afflic(object):
         this.tolerance = this.get_tolerance()
         this.history.append(this.rate)
         t = Timer(this.stack_end)
-        t.p = this.p(1, len(this.history), this.resist)
-        this.stack[t] = t.p
-        t.on(this.duration)
-        return t.p
+        count = len(this.history)
+        # in order not too deep
+        if count > (1-this.resist)/this.tolerance*5:
+            return 0
+        else:
+            t.p = this.p(1, count, this.resist)
+            this.stack[t] = t.p
+            t.on(this.duration)
+            return t.p
 
 class Afflic_dot(Afflic):
     def __init__(this, name=None):

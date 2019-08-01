@@ -11,12 +11,13 @@ class Musashi(adv.Adv):
 
     def prerun(this):
         if this.condition('0 resist'):
-            this.afflics.resist['poison'] = 0
-            #this.afflics.luck = 100
+            this.afflics.poison.resist=0
+            #this.afflics.poison.tolerance = 5
+        else:
+            this.afflics.poison.resist=100
 
     def s1_proc(this, e):
-        this.afflics.add('s1','poison',110,15,0.53,2.99)
-
+        this.afflics.poison('s1',110,0.53)
 
 
 if __name__ == '__main__':
@@ -26,6 +27,6 @@ if __name__ == '__main__':
         `s1
         `s3, s
         """
-    #conf['slot.d'] = Pazuzu()
-    adv_test.test(module(), conf, verbose=0, mass=10)
+    conf['slot.d'] = Pazuzu()
+    adv_test.test(module(), conf, verbose=0, mass=0)
 

@@ -12,7 +12,15 @@ class Albert(Adv):
     comment = 'suitable skill prep; '
     a1 = ('fs',0.5)
 
+    def init(this):
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+            #this.afflics.paralysis.tolerance=5
+        else:
+            this.afflics.paralysis.resist=100
+
     def prerun(this):
+
         this.fsaconf = Conf()
         this.fsaconf.fs = Conf(this.conf.fs)
         this.fsaconf( {
@@ -76,10 +84,8 @@ class Albert(Adv):
 
 
     def fs_proc(this, e):
-        if this.paralyze_count > 0:
-            if this.s2buff.get():
-                this.paralyze_count -= 1
-                this.dmg_make("o_s2_paralyze",0.803*3)
+        if this.s2buff.get():
+            this.afflics.paralysis('s2_fs',100,0.803)
 
     def s2_proc(this, e):
         this.s2timer.on()

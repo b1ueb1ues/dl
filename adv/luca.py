@@ -8,9 +8,10 @@ class Luca(adv.Adv):
     a1 = ('a',0.13,'hp100')
 
     def prerun(this):
-        this.dmg_make("o_s1_paralysis",2.65)
-        this.dmg_make("o_s1_paralysis",2.65)
-        this.dmg_make("o_s1_paralysis",2.65)
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
@@ -20,10 +21,12 @@ class Luca(adv.Adv):
                 `fs, seq=4
                 """
 
+    def s1_proc(this, e):
+        this.afflics.paralysis('s1',110,0.883)
+
 
 
 if __name__ == '__main__':
-    module().comment = 'paralysis 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 

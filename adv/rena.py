@@ -9,13 +9,14 @@ def module():
 
 class Rena(Adv):
     def prerun(this):
-        if this.condition('0 burn resist'):
-            this.afflics.resist['burn'] = 0
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+            #this.afflics.burn.tolerance=5
         else:
-            this.afflics.resist['burn'] = 55
+            this.afflics.burn.resist=100
+
         this.a1_iscding = 0
         this.stance = 0
-        random.seed()
 
     def d_acl(this):
         if 'bow' in this.ex:
@@ -26,7 +27,7 @@ class Rena(Adv):
             '''
     
     def s1_proc(this, e):
-        this.afflics.add('s1','burn',120, 12, 0.97, 3.9)
+        this.afflics.burn('s1',120,0.97)
 
         if this.stance == 0:
             this.stance = 1
@@ -36,8 +37,8 @@ class Rena(Adv):
         elif this.stance == 2:
             this.stance = 0
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-            if this.afflics.get('burn'):
-                this.dmg_make("o_s1_boost",this.conf.s1.dmg*0.8)
+            coef = this.afflics.burn.get()*this.conf.s1.dmg*0.8
+            this.dmg_make("o_s1_boost", coef)
 
 
     def s2_proc(this, e):
@@ -73,7 +74,7 @@ class Rena(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+EE()
+#    conf['slot.a'] = RR()+EE()
     conf['acl'] = """
         `s1
         `s2, s=1
@@ -81,6 +82,6 @@ if __name__ == '__main__':
         `fs, seq=5
         """
 
-    adv_test.test(module(), conf, verbose=0, mass=100)
+    adv_test.test(module(), conf, verbose=0, mass=0)
     #logcat(['cd'])
 

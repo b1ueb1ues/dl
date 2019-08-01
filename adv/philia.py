@@ -9,9 +9,10 @@ class Philia(adv.Adv):
     a1 = ('a',0.1,'hp100')
 
     def prerun(this):
-        this.dmg_make("o_s2_paralysis",1.8)
-        this.dmg_make("o_s2_paralysis",1.8)
-        this.dmg_make("o_s2_paralysis",1.8)
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
@@ -21,11 +22,11 @@ class Philia(adv.Adv):
                 `fs, seq=4
                 """
 
-
+    def s2_proc(this, e):
+        this.afflics.paralysis('s2',90,0.60)
 
 
 if __name__ == '__main__':
-    module().comment = 'paralysis 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5 or fsc

@@ -7,14 +7,20 @@ def module():
 
 class Joe(adv.Adv):
     conf = {}
-    #comment = 'reach 100 resist with Saintly Delivery'
-    #conf['slots.a'] = Saintly_Delivery()+RR()
+    #conf['slots.a'] = RR()+EE()
     
 
     def prerun(this):
-        this.dmg_make("o_s2_burn",1.8)
-        this.dmg_make("o_s2_burn",1.8)
-        this.dmg_make("o_s2_burn",1.8)
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+            #this.afflics.burn.tolerance = 5
+        else:
+            this.afflics.burn.resist=100
+        if this.condition('fullhp=burn'):
+            this.fullhp = 1
+        else:
+            this.fullhp = 0
+
         if this.condition('c4+fs'):
             this.conf['acl'] = """
                 `s1, fsc
@@ -22,18 +28,14 @@ class Joe(adv.Adv):
                 `s3, fsc
                 `fs, seq=4
                 """
-            #this.conf['acl'] = """
-            #    `s1, fsc
-            #    `s2, fsc
-            #    `s3, fsc
-            #    `dodge, fsc
-            #    `fs
-            #    """
+
+    def s2_proc(this, e):
+        this.afflics.burn('s2',90+40*this.fullhp,0.6)
+
 
 
 
 if __name__ == '__main__':
-    module().comment = 'burn 3 times'
     conf = {}
     conf['acl'] = """
         `s1, seq=5

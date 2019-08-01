@@ -2,12 +2,15 @@ import adv_test
 import adv
 from adv import *
 from module import energy
+from slot.a import *
 
 def module():
     return V_Ezelith
 
 class V_Ezelith(Adv):
     a3 = ('bk',0.2)
+    conf = {}
+    #conf['slot.a'] = RR()+EE()
 
     def c_prerun(this):
         this.o_prerun()
@@ -29,15 +32,17 @@ class V_Ezelith(Adv):
                 self={},
                 team={}
                 )
-        this.dmg_make("o_s1_burn",0.883*3)
-        this.dmg_make("o_s1_burn",0.883*3)
-        this.dmg_make("o_s1_burn",0.883*3)
 
     def init(this):
         if this.condition('never lose combos'):
             this.o_prerun = this.prerun
             this.prerun = this.c_prerun
             this.dmg_proc = this.c_dmg_proc
+
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+        else:
+            this.afflics.burn.resist=100
 
     def c_dmg_proc(this, name, amount):
         if name[:2] == 'x1':
@@ -57,6 +62,7 @@ class V_Ezelith(Adv):
             this.hits -= 35
 
     def s1_proc(this, e):
+        this.afflics.burn('s1',110,0.883)
         this.hits += 8
             
     def s2_proc(this, e):

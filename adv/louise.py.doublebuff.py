@@ -7,20 +7,14 @@ def module():
     return Louise
 
 class Louise(louise.Louise):
-
     def prerun(this):
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s1_poison",2.91)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
-        this.dmg_make("o_s2hitpoison",(4.035-2.69)*3)
+        super(Louise, this).prerun()
         adv.Buff('double',(0.13+0.08)*7,30).on()
 
 
 
 if __name__ == '__main__':
-    module().comment = 'poison 3 times & roll fs & g_ranzal+lowen'
+    module().comment = 'roll fs & g_ranzal+lowen'
     conf = {}
     conf['acl'] = """
         `s1
@@ -30,5 +24,7 @@ if __name__ == '__main__':
         `fs
         """
     conf['slots.a'] = Stellar_Show() + Forest_Bonds()
+    from slot.d import *
+    conf['slot.d'] = Pazuzu()
 
     adv_test.test(module(), conf, verbose=0)

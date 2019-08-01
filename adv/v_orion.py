@@ -7,12 +7,17 @@ def module():
     return V_Orion
 
 class V_Orion(adv.Adv):
+    conf = {}
 
     def prerun(this):
-        this.dmg_make("o_s2_burn",0.803*3)
-        this.dmg_make("o_s2_burn",0.803*3)
-        this.dmg_make("o_s2_burn",0.803*3)
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+        else:
+            this.afflics.burn.resist=100
         this.dc_event = Event('defchain')
+
+    def s1_proc(this, e):
+        this.afflics.burn('s1',100,0.803)
 
     def s2_proc(this, e):
         this.dc_event()
@@ -20,13 +25,6 @@ class V_Orion(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-   # conf['acl'] = """
-   #     `s1
-   #     `s2
-   #     `s3
-   #     `fs, seq=3 and cancel
-   #     """
-   # conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
 
     module().comment = 'no s2'
     conf['acl'] = """
@@ -35,5 +33,6 @@ if __name__ == '__main__':
         `fs, seq=3 and cancel
         """
     conf['slots.a'] = The_Shining_Overlord()+LC()
+    #conf['slots.a'] = RR()+EE()
     adv_test.test(module(), conf, verbose=0)
 

@@ -6,6 +6,12 @@ from slot.a import *
 def module():
     return Addis
 
+        this.afflics.paralysis('s1',100,0.53)
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
+
 class Addis(Adv):
     comment = 's2 c2 s1 c5fsf c4fs s1; hold s2s1 until bleed under 3'
 
@@ -17,8 +23,12 @@ class Addis(Adv):
         return 0
 
     def prerun(this):
-        #random.seed()
-        this.poisoncount=3
+        random.seed()
+        if this.condition('0 resist'):
+            this.afflics.poison.resist=0
+        else:
+            this.afflics.poison.resist=100
+
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)
@@ -38,9 +48,7 @@ class Addis(Adv):
             else:
                 log('-special','s1_bleed_failed')
         else:
-            if this.poisoncount > 0:
-                this.poisoncount -= 1
-                this.dmg_make("o_s1_poison",2.65)
+            this.afflics.poison('s1',100,0.53)
 
 
     def s2_proc(this, e):
