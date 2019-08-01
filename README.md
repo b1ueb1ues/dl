@@ -2,7 +2,7 @@
 
 
 ## Running
-python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)]
+python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)] [time] [ex/co-abilities]
 
 loglevel:
 - -4:  generate a acl recursive result
@@ -12,6 +12,12 @@ loglevel:
 - 1:  generate a verbose log
 - 2:  generate a verbose verbose log
 
+Ex-Skill / Co-abilities
+k: blade
+r: wand
+d: dagger
+b: bow
+
 - python adv/mikoto.py
 
 show basic result of Mikoto's simulation
@@ -19,6 +25,9 @@ show basic result of Mikoto's simulation
 - python adv/maribelle.py 1
 
 show result and combo loop of Maribelle
+
+- python adv/g_sarisse.py -2 180 kr
+show result of Gala Sarisse for 180s with blade and dagger ex/co-abilities
 
 - python adv/xander.py -3 > xander\_wp\_set.csv 
 
