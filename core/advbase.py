@@ -1238,12 +1238,18 @@ class Adv(object):
         #   no_deed_to_do_anythin
 
 
+    # this ceiling is the true ceiling
+    #def ceiling(this, a):
+    #    b = int(a)
+    #    if b == a:
+    #        return b
+    #    else:
+    #        return b + 1
+
+    # this ceiling is bugged as if in the game 
     def ceiling(this, a):
-        b = int(a)
-        if b == a:
-            return b
-        else:
-            return b + 1
+        b = a+1.00000000001
+        return int(b)
 
     def charge_p(this, name, sp):
         if type(sp) == str and sp[-1] == '%':

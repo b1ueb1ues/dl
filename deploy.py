@@ -62,12 +62,19 @@ def main(argv):
             opt += ['-s']
             argv.pop(argv.index('-s'))
             continue
+        if '-sp' in argv:
+            opt += ['-sp']
+            argv.pop(argv.index('-sp'))
+            continue
 
         name = argv[1]
         if name[:4] == 'adv/':
             name = name[4:]
         argv.pop(1)
-        one_character(name)
+        if '-sp' in opt:
+            sp_character(name)
+        else:
+            one_character(name)
         continue
 
 

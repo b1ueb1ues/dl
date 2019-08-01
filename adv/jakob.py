@@ -6,21 +6,14 @@ def module():
     return Jakob
 
 class Jakob(adv.Adv):
+    comment = 'no bog'
+
     def d_slots(this):
         this.conf.slot.d = DJ()
         return
 
     def prerun(this):
-        if this.condition('60 bog resist'):
-            this.afflics.resist['bog'] = 60
         this.charge_p('prep','50%')
-        this.bogbuff = adv.Debuff('s1_bog',-0.5,8,1,'att','bog')
-        this.afflics.luck = 100
-
-
-    def s1_proc(this, e):
-        if this.afflics.add('s1','bog',90,8):
-            this.bogbuff.on()
 
 
 if __name__ == '__main__':

@@ -6,26 +6,11 @@ def module():
     return Renee
 
 class Renee(adv.Adv):
-    def init(this):
-        if this.condition('bog<=2'):
-            this.o_prerun = this.prerun
-            this.prerun = this.c_prerun
+    comment = 'no bog'
+
 
     def prerun(this):
         this.a1_iscding = 0
-        this.bogcountlast = 0
-        this.bogbuff = adv.Debuff('s2_bog',-0.5,8,1,'att','bog')
-
-
-    def c_prerun(this):
-        this.o_prerun()
-        this.bogcountlast = 2
-
-    def s1_proc(this, e):
-        if this.bogcountlast > 0:
-            if not this.bogbuff.get():
-                this.bogcountlast -= 1
-                this.bogbuff.on()
 
     def a1_cooldown(this, t):
         this.a1_iscding = 0
