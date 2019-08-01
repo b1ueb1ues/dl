@@ -8,7 +8,7 @@ def module():
 class S_Julietta(Adv):
     comment = 'no fs; no bog'
     conf = {}
-    conf['slot.a'] = KFM() + CE()
+    conf['slot.a'] = KFM() + JotS()
 
     def init(this):
         this.s2_stance = 1
@@ -77,8 +77,8 @@ class S_Julietta(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `s2
         `s1
-        `s2,seq=4
-        `s3,seq=4 
+        `s3
         """
     adv_test.test(module(), conf, verbose=-2)

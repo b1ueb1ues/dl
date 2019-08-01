@@ -39,10 +39,9 @@ if __name__ == '__main__':
         `s2
         `s1,fsc
         `s3,fsc
-        `fs, seq=3
+        `fs, seq=2
         """
 #    import slot
 #    conf['slots.d'] = slot.d.flame.Sakuya()
 
     adv_test.test(module(), conf, verbose=-2)
-
