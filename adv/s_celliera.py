@@ -7,8 +7,9 @@ def module():
     return S_Celliera
 
 class S_Celliera(Adv):
-    comment = 'no bog'
+    comment = 'no bog; don\'t s3'
     conf = {}
+    #conf['slot.a'] = VC() + JotS()
     conf['slot.a'] = TSO() + JotS()
     #conf['slot.d'] = DJ()
 
@@ -46,7 +47,6 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1,fsc
         `s2,fsc
-        `s3,fsc
         `fs, x=3
         """
     adv_test.test(module(), conf, verbose=-2)
