@@ -31,11 +31,13 @@ class S_Celliera(Adv):
         elif this.s2_stance == 2:
             Teambuff('s2def',0.0,10).on()
             Teambuff('s2atk',0.1,10).on()
+            Event('defchain').on()
             this.s2_stance = 3
         elif this.s2_stance == 3:
             Teambuff('s2def',0.0,10).on()
             Teambuff('s2atk',0.1,10).on()
             Teambuff('s2spd',0.2,10,'att','spd').on()
+            Event('defchain').on()
             this.s2_stance = 1
 
 
