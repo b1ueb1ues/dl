@@ -10,8 +10,6 @@ class S_Julietta(Adv):
     conf = {}
     conf['slot.a'] = KFM() + CE()
 
-    a1 = ('bc',0.13)
-
     def init(this):
         this.s2_stance = 1
         this.a3_iscding = 0

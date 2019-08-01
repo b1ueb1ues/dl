@@ -22,8 +22,5 @@ class Pazuzu(DragonBase):
         m.get = this.getbane
 
     def getbane(this):
-        if this.adv.afflics.get('poison'):
-            return 0.2
-        else:
-            return 0
+        return this.adv.afflics.poison.get()*0.2
 

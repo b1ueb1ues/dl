@@ -21,7 +21,7 @@ class Xander_best(Xander):
 
 
     def s1_proc(this,e):
-        this.dmg_make('s1_boost',this.conf['s1.dmg']*0.5)
+        this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.5)
 
 
 

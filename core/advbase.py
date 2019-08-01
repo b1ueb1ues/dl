@@ -148,6 +148,14 @@ class Buff(object):
             this.duration = d
         return this
 
+    def stack(this):
+        stack = 0
+        for i in this._static.all_buffs:
+            if i.name == this.name:
+                if i.__active != 0:
+                    stack += 1
+        return stack
+
     def buff_end_proc(this, e):
         log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff end <timeout>')
         this.__active = 0
@@ -162,11 +170,7 @@ class Buff(object):
                     this._static.all_buffs.pop(idx)
                     break
             this.__stored = 0
-        stack = 0
-        for i in this._static.all_buffs:
-            if i.name == this.name:
-                if i.__active != 0:
-                    stack += 1
+        stack = this.stack()
         if stack > 0:
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.__value*stack), this.name+' buff stack <%d>'%stack)
         this.modifier.off()
@@ -190,11 +194,7 @@ class Buff(object):
                 this.buff_end_timer.on(d)
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff refresh <%ds>'%d)
 
-        stack = 0
-        for i in this._static.all_buffs:
-            if i.name == this.name:
-                if i.__active != 0:
-                    stack += 1
+        stack = this.stack()
         if stack > 1:
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()*stack), this.name+' buff stack <%d>'%stack)
 

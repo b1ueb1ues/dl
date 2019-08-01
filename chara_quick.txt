@@ -105,3 +105,4 @@ g_cleo.py
 s_estelle.py
 s_ranzal.py
 s_julietta.py
+s_celliera.py
