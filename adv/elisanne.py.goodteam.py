@@ -13,7 +13,8 @@ class Elisanne(Adv):
     conf = {}
     #conf['slots.a'] = CE() + Bellathorna()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
-    conf['slots.a'] = HG() + Indelible_Summer()
+    #conf['slots.a'] = HG() + Indelible_Summer()
+    conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
 
 
@@ -28,5 +29,7 @@ if __name__ == '__main__':
         `s1
         `fs, seq=5
         """
+
+
     adv_test.team_dps = 10000
     adv_test.test(module(), conf, verbose=-2)

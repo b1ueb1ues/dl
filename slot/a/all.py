@@ -18,10 +18,8 @@ class Bonds_Between_Worlds(Amulet):
     att = 54
     a = [('a',0.13,'hp70'),
          ('prep',25)]
-
 Bonds = Bonds_Between_Worlds
 BBW = Bonds_Between_Worlds
-
 
 
 class LC(Amulet):
@@ -92,7 +90,6 @@ class Flower_in_the_Fray(Amulet):
     att = 52
     a = [('cd',0.15),
          ('s',0.20)]
-
 FitF = Flower_in_the_Fray
 
 class The_Prince_of_Dragonyule(Amulet):
@@ -108,7 +105,6 @@ class Evening_of_Luxury(Amulet):
     att = 65
     a = [('a',0.15,'hp100'),
          ('cd',0.15)]
-
 EoL = Evening_of_Luxury
 
 
@@ -167,7 +163,6 @@ class Stellar_Show(Amulet):
     att = 65
     a = [('fs',0.50),
          ('cd',0.15)]
-
 SS = Stellar_Show
 
 class KFM(Amulet):
@@ -188,12 +183,29 @@ class Forest_Bonds(Amulet):
 FB = Forest_Bonds
 
 
-class Dragon_and_Tamer(Amulet):  #??
+class Dragon_and_Tamer(Amulet):  
     att = 57
     def on(this, c):
         if c.wt == 'lance':
             this.a = [('s',0.40)]
 DnT = Dragon_and_Tamer
+
+class Summer_Paladyns(Amulet):  
+    att = 64
+    def on(this, c):
+        if c.wt == 'axe':
+            this.a = [('s',0.40)]
+
+    def dc_energy(this, e):
+        e = this.adv.Event('add_energy')
+        e.name = 'self'
+        e()
+
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        this.adv = adv
+        adv.Listener('defchain',this.dc_energy)
+
 
 class The_Shining_Overlord(Amulet):  #??
     att = 65
@@ -218,8 +230,15 @@ class Halidom_Grooms(Amulet):
         Amulet.oninit(this, adv)
         this.adv = adv
         adv.Listener('defchain',this.dc_energy)
-
 HG = Halidom_Grooms
+
+class Beach_Battle(Amulet):
+    att = 50
+    a = [('bt',0.2)]
+    def on(this, c):
+        if c.ele == 'water':
+            this.a = [('bt',0.2), ('sp',0.07)]
+BB = Beach_Battle
 
 
 class The_Petal_Queen(Amulet):
@@ -243,7 +262,6 @@ class The_Petal_Queen(Amulet):
 class Hanetsuki_Rally(Amulet):
     att = 51
     a = [('cc',0.05),('lo',0.4)]
-
 HR = Hanetsuki_Rally
 
 class Indelible_Summer(Amulet):
@@ -267,7 +285,6 @@ class Sisters_Day_Out(Amulet):
         this.adv = adv
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
-
 SDO = Sisters_Day_Out
 
 class Elegant_Escort(Amulet):
@@ -280,9 +297,8 @@ class Elegant_Escort(Amulet):
 
     def getbane(this):
         return this.adv.afflics.burn.get()*0.3
-    
-        
 EE = Elegant_Escort
+
 
 
 amulets = []

@@ -13,7 +13,8 @@ class Elisanne(Adv):
     conf = {}
     #conf['slots.a'] = RR() + HG()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
-    conf['slots.a'] = HG() + Indelible_Summer()
+    #conf['slots.a'] = HG() + Indelible_Summer()
+    conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
     #conf['mod'] = {'ex':('sp','passive',0.15)}
 
@@ -30,4 +31,14 @@ if __name__ == '__main__':
         `s2, fsc
         `fs, seq=5
         """
+
+#    conf['acl'] = '''
+#        `rotation
+#    '''
+#    conf['rotation'] = """
+#        c5c5fss1
+#    """
+#    conf['rotation'] = """
+#        c5fsc5s1
+#    """
     adv_test.test(module(), conf, verbose=-2)

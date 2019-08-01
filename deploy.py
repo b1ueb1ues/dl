@@ -93,8 +93,8 @@ def main(argv):
     if not name : 
         chara_quick()
         sp_quick()
-        #chara_slow()
-        #sp_slow()
+        chara_slow()
+        sp_slow()
         if '-s' not in opt:
             combine()
 
