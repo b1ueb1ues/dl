@@ -7,7 +7,7 @@ def module():
     return S_Celliera
 
 class S_Celliera(Adv):
-    comment = 'no bog; don\'t s3'
+    comment = 'no bog; don\'t s3; c2fs'
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}
