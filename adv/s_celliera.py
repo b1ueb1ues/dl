@@ -45,8 +45,8 @@ class S_Celliera(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1,fsc
-        `s2,fsc
-        `fs, x=3
+        `s2
+        `s1
+        `fs, x=2
         """
     adv_test.test(module(), conf, verbose=-2)

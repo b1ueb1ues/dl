@@ -8,7 +8,7 @@ def module():
     return Marth
 
 class Marth(adv.Adv):
-    comment = ''
+    comment = 'c2fs'
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')
     conf = {}
@@ -39,10 +39,9 @@ if __name__ == '__main__':
         `s2
         `s1,fsc
         `s3,fsc
-        `fs, seq=3
+        `fs, seq=2
         """
 #    import slot
 #    conf['slots.d'] = slot.d.flame.Sakuya()
 
     adv_test.test(module(), conf, verbose=-2)
-
