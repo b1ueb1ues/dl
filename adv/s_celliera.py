@@ -8,13 +8,16 @@ def module():
 
 class S_Celliera(Adv):
     comment = 'no bog; don\'t s3'
-    conf = {}
-    #conf['slot.a'] = VC() + JotS()
-    conf['slot.a'] = TSO() + JotS()
-    #conf['slot.d'] = DJ()
-
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
+    conf = {}
+    #conf['slot.a'] = TSO() + JotS()
+    conf['slot.a'] = VC() + JotS()
+    conf['slot.d'] = DJ()
+    def d_slots(this):
+        if 'wand' in this.ex:
+            this.conf['slot.d'] = Siren()
+
 
     def init(this):
         this.s2_stance = 1
