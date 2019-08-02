@@ -1,5 +1,7 @@
 import adv_test
 from adv import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Mikoto
@@ -7,13 +9,17 @@ def module():
 class Mikoto(Adv):
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
-    import slot
     conf = {}
-    conf['slots.a'] = slot.a.LC()+slot.a.RR()
 
     def d_slots(this):
-        if 'wand' not in this.ex:
-           this.conf['slots.d'] = slot.d.Arctos()
+        if 'wand' in this.ex:
+            this.conf['slots.d'] = slot.d.Sakuya()
+            this.conf['slots.a'] = RR()+CE()
+        else:
+            this.conf['slots.d'] = slot.d.Sakuya()
+            this.conf['slots.a'] = RR()+CE()
+            #this.conf['slots.d'] = slot.d.Arctos()
+            #this.conf['slots.a'] = RR()+LC()
         return
 
 

@@ -156,6 +156,16 @@ class Buff(object):
                     stack += 1
         return stack
 
+    def valuestack(this):
+        stack = 0
+        value = 0
+        for i in this._static.all_buffs:
+            if i.name == this.name:
+                if i.__active != 0:
+                    stack += 1
+                    value += i.__value
+        return value, stack
+
     def buff_end_proc(this, e):
         log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff end <timeout>')
         this.__active = 0
@@ -170,9 +180,9 @@ class Buff(object):
                     this._static.all_buffs.pop(idx)
                     break
             this.__stored = 0
-        stack = this.stack()
+        value, stack = this.valuestack()
         if stack > 0:
-            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.__value*stack), this.name+' buff stack <%d>'%stack)
+            log('buff', this.name, '%s: %.2f'%(this.mod_type, value), this.name+' buff stack <%d>'%stack)
         this.modifier.off()
 
 
@@ -194,9 +204,9 @@ class Buff(object):
                 this.buff_end_timer.on(d)
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff refresh <%ds>'%d)
 
-        stack = this.stack()
+        value, stack = this.valuestack()
         if stack > 1:
-            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()*stack), this.name+' buff stack <%d>'%stack)
+            log('buff', this.name, '%s: %.2f'%(this.mod_type, value), this.name+' buff stack <%d>'%stack)
 
         this.modifier.on()
         return this
@@ -694,6 +704,8 @@ class Adv(object):
         pass
     def d_slots(this):
         pass
+    def slot_backdoor(this):
+        pass
     def prerun(this): 
         pass
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
@@ -850,10 +862,8 @@ class Adv(object):
             print('cannot change slots after run')
             errrrrrrrrrrrr()
         if 'c' in conf_slots :
-            print '!'
             this.slots.c = conf_slots.c
         elif not this.slots.c :
-            print '?'
             this.slots.c = this.cmnslots.c
 
         if 'd' in conf_slots :
@@ -919,6 +929,10 @@ class Adv(object):
 
         #this.slots = slot.Slots()
         this.default_slot()
+
+       # def slot_backdoor():
+       #     pass
+       # this.slot_backdoor = slot_backdoor
 
         this.conf.slot.sync_slot = this.sync_slot
         this.conf.slots.sync_slot = this.sync_slot
@@ -1154,6 +1168,7 @@ class Adv(object):
         this.setup()
 
         this.d_slots()
+        this.slot_backdoor()
         #print this.slots
         this.base_att = int(this.slots.att(globalconf.forte))
         this.displayed_att = int(this.slots._att(globalconf.forte))
