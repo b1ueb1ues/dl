@@ -92,7 +92,7 @@ class G_Cleo(Adv):
             this.fsa_charge = 0
             this.fs_alt.off()
             # ground buff doesnt affect by buff time, so use -debuff to emulate that.
-            Debuff('a1_str',-0.25,10,1,'att','buff').on()
+            Debuff('a1_str',-0.25,1,1,'att','buff').on()
 
 
 

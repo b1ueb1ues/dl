@@ -6,18 +6,21 @@ from slot.a import *
 from slot.d import *
 from module.fsalt import *
 
+import random
+random.seed()
 
 
 def module():
     return G_Cleo
 
 class G_Cleo(Adv):
-    
-    a3 = ('prep','100%')
     comment = '(the true cleo is here)'
+    a3 = ('prep','100%')
+    
 
     def d_slots(this):
-        #this.slots.a = RR()+CE()
+        this.slots.a = RR()+CE()  # c5 s2 fs s1  break comboes
+        this.slots.a = RR()+JotS()  # wand c2*1.08 = 217
         this.slots.d = Shinobi()
 
     def d_acl(this):
@@ -31,15 +34,14 @@ class G_Cleo(Adv):
                 s2s1
             """
             this.conf['rotation'] = """
-                c5c5fss1
+                c5c4fss1
                 c5c5s2fss1
             """
-          #  this.conf['acl'] = """
-          #      `fs, this.fsa_charge and seq=5 and (s1.charged>s1.sp or s2.charged>s2.sp)
-          #      `s2, seq=5 or fsc
-          #      `s1, seq=5 or fsc
-          #      """
-
+         #   this.conf['acl'] = """
+         #       `fs, this.fsa_charge and seq=5
+         #       `s2
+         #       `s1
+         #       """
 
     def prerun(this):
         this.s1p = 0 
@@ -66,14 +68,14 @@ class G_Cleo(Adv):
     def s1_proc(this, e):
         this.s1p += 1
         if this.s1p > 3 :
-            this.s1p = 0
+            this.s1p = 1
 
         if this.s1p == 1:
-            pass
+            this.dmg_make('s1',3.53*1)
         elif this.s1p == 2:
-            this.dmg_make('s1p2_boost',this.conf.s1.dmg/3)
+            this.dmg_make('s1',3.53*1)
         elif this.s1p == 3:
-            this.dmg_make('s1p3_boost',this.conf.s1.dmg/3*2)
+            this.dmg_make('s1',3.53*1)
 
         this.fs_alt.on()
         #this.conf.fs.dmg = 0
@@ -96,9 +98,10 @@ if __name__ == '__main__':
     conf = {}
     #module().comment = 'RR+SS'
     #conf['slots.a'] = RR()+FoG()
+
     conf['acl'] = """
-        `s2,seq=5
-        `s1,seq=5
+        `s2
+        `s1
         """
 
     adv_test.test(module(), conf, verbose=0)
