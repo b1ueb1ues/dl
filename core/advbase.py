@@ -10,6 +10,7 @@ import core.acl
 import conf as globalconf
 import core.condition 
 import slot
+import floatsingle
 m_condition = condition
 conf = Conf()
 
@@ -1253,20 +1254,18 @@ class Adv(object):
         #   no_deed_to_do_anythin
 
 
+    # implement single float of c in python
+    def float_problem(this, a):
+        return floatsingle.tofloat(a)
+
     #this ceiling is the true ceiling
     def ceiling(this, a):
         b = int(a)
-        if b == 216:  # bug: 200*1.08=217
-            return 217
         if b == a:
             return b
         else:
             return b + 1
 
-    # this ceiling is bugged as if in the game 
-    #def ceiling(this, a):
-    #    b = a+1.00000000001
-    #    return int(b)
 
     def charge_p(this, name, sp):
         if type(sp) == str and sp[-1] == '%':
@@ -1280,7 +1279,9 @@ class Adv(object):
             return
 
     def charge(this, name, sp): 
-        sp = sp * this.sp_mod(name)
+        # sp should be integer
+        sp = int(sp) * this.float_problem(this.sp_mod(name))
+        sp = this.float_problem(sp)
         sp = this.ceiling(sp)
         this.s1.charge(sp)
         this.s2.charge(sp)
