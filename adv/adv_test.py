@@ -79,7 +79,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     if duration:
         sim_duration = duration
 
-    if not loglevel:
+    if loglevel==None:
         loglevel = verbose
     #random.seed()
     a = time.time()

@@ -4,8 +4,6 @@ import sys
 loglevel = None
 if len(sys.argv) >= 2:
     loglevel = int(sys.argv[1])
-if not loglevel:
-    loglevel = 0
 
 #g_log = []
 g_log_active = []

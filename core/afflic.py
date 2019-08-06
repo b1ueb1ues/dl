@@ -65,7 +65,40 @@ class Dot(object):
         log('dot',this.name,'end by other reason')
 
 
+
+    
 class Afflic(object):
+    class Node(object):
+        resist_after = 0
+        chance = 0
+        proc = 0
+        lnode = 0
+        rnode = 0
+        def __init__(this, chance, resist_after, proc):
+            this.chance = chance
+            this.resist_after = resist_after
+            this.proc = proc
+
+        def add(this, rate, tolerance):
+            if this.resist_after >= 1:
+                this.lnode = Afflic.Node(this.chance, 1, 0)
+                this.rnode = 0 #Afflic.Node(0, 1, 0)
+                return
+            if rate < this.resist_after:
+                this.lnode = Afflic.Node(this.chance, this.resist_after, 0)
+                this.rnode = 0 #Afflic.Node(0, this.resist_after, 0)
+                return
+
+            chance = rate-this.resist_after
+            if chance > 1:
+                chance = 1
+            if chance == 1:
+                this.lnode = 0 #Afflic.Node(this.chance * (1-chance), this.resist_after, 0)
+                this.rnode = Afflic.Node(this.chance , this.resist_after+tolerance, 1)
+                return
+            this.lnode = Afflic.Node(this.chance * (1-chance), this.resist_after, 0)
+            this.rnode = Afflic.Node(this.chance * chance, this.resist_after+tolerance, 1)
+
     def __init__(this, name=None):
         this.name = name
         this.resist = 0
@@ -73,10 +106,12 @@ class Afflic(object):
         this.tolerance = 0.2
         #this.history = 0
         this.history = []
-        this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
+        #this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
+        this.maxdeep = 25
         this.duration = 12
         this.stack = {}
         this.stack_x_chance = 0.0
+        this.tree = []
 
     def get_tolerance(this):
         if this.tolerance > 1:
@@ -90,13 +125,37 @@ class Afflic(object):
         else:
             return this.rate
 
+
     def get_resist(this):
         if this.resist > 1 :
             return float(this.resist)/100.0
         else:
             return this.resist
 
-    def p(this, count, cmax ,resist):
+    def p_tree(this, serial):
+        this.tree.append([])
+        rate = this.history[serial-1]
+        rsum = 0
+        if serial == 1:
+            root = Afflic.Node(1, this.resist, 0)
+            root.add(rate, this.get_tolerance())
+            if root.lnode :
+                this.tree[serial-1].append(root.lnode)
+            if root.rnode :
+                this.tree[serial-1].append(root.rnode)
+                rsum += root.rnode.chance
+        else:
+            for i in this.tree[serial-2]:
+                i.add(rate, this.get_tolerance())
+                if i.lnode:
+                    this.tree[serial-1].append(i.lnode)
+                if i.rnode:
+                    this.tree[serial-1].append(i.rnode)
+                    rsum += i.rnode.chance
+        return rsum
+
+
+    def p_recursive(this, count, cmax ,resist):
         rate = this.history[count-1]
         if resist >= 1:
             return 0
@@ -107,12 +166,14 @@ class Afflic(object):
             pchance = 0
         if count == cmax:
             return pchance
-        p1 = pchance * this.p(count+1, cmax, resist+this.tolerance)
-        p2 = (1-pchance) * this.p(count+1,cmax, resist)
+        p1 = pchance * this.p_recursive(count+1, cmax, resist+this.tolerance)
+        p2 = (1-pchance) * this.p_recursive(count+1,cmax, resist)
         return p1+p2
+
 
     def stack_end(this, t):
         this.stack.pop(t)
+
 
     def get(this):
         nostackchance = 1.0
@@ -130,11 +191,13 @@ class Afflic(object):
         this.history.append(this.rate)
         t = Timer(this.stack_end)
         count = len(this.history)
-        # in order not too deep
-        if count > (1-this.resist)/this.tolerance*5:
+        #in order not too deep
+        #if count > (1-this.resist)/this.tolerance*5:
+        if count > this.maxdeep:
             return 0
         else:
-            t.p = this.p(1, count, this.resist)
+            #t.p = this.p_recursive(1, count, this.resist)
+            t.p = this.p_tree(count)
             this.stack[t] = t.p
             t.on(this.duration)
             return t.p
