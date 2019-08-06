@@ -490,6 +490,10 @@ def sum_ac():
         if i[2] == 'succ':
             i[2] = 'fs'
         if i[1] == 'x':
+            if i[2] == 'x1':
+                if lastc != 0:
+                    ret.append(lastc)
+                    lastc = 'x1'
             if i[2] == 'x5':
                 ret.append('c5')
                 lastc = 0
