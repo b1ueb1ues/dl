@@ -828,6 +828,7 @@ class Adv(object):
 
         this.a_fs = Fs_group('fs',this.conf)
         this.a_fsf = Fs('fsf', this.conf.fsf)
+        this.a_fsf.act_event = Event('none')
 
         this.a_dodge = Dodge('dodge', this.conf.dodge)
 
