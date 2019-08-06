@@ -36,7 +36,7 @@ if __name__ == '__main__':
         """
         conf['rotation'] = """
             C4FS C5- S1 C4FS C5- S1 C1- S2 C4FS C5- S1 C5- S3 C5- S1
-            C5- S2 C5- S1 C4FS C5- S1 C4- S3 C4- S2 C3- S1
+            C5- S2 C5- S1 C4FS C5- S1 C4FS C2- S2 C2- S3 C3- S1
         """
 
     adv_test.test(module(), conf, verbose=0)

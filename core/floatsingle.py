@@ -25,12 +25,12 @@ def tofloat(a):
 
 if __name__ == '__main__':
     a = b2f(f2b(1.08))* 600
-    print b2f(f2b(a))
-    print b2f(f2b(1.08*600))
-    print b2f(f2b(1.08*200))
+   #print b2f(f2b(a))
+   #print b2f(f2b(1.08*600))
+   #print b2f(f2b(1.08*200))
 
-    print '-----------'
-    print b2f(f2b(1.08))
+   #print '-----------'
+   #print b2f(f2b(1.08))
     x = tofloat(1.08)*600
-    print tofloat(x)
+    print( tofloat(x) )
     exit()
