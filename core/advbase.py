@@ -10,7 +10,7 @@ import core.acl
 import conf as globalconf
 import core.condition 
 import slot
-import floatsingle
+from core.floatsingle import tofloat
 m_condition = condition
 conf = Conf()
 
@@ -1257,7 +1257,7 @@ class Adv(object):
 
     # implement single float of c in python
     def float_problem(this, a):
-        return floatsingle.tofloat(a)
+        return tofloat(a)
 
     #this ceiling is the true ceiling
     def ceiling(this, a):
