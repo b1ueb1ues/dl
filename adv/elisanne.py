@@ -17,6 +17,18 @@ class Elisanne(Adv):
     conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
     #conf['mod'] = {'ex':('sp','passive',0.15)}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf['acl'] = """
+                        `s1
+                        `s2, seq=5
+                        """
+        else:
+            this.conf['acl'] = """
+                        `s1
+                        `s2, fsc
+                        `fs, seq=5
+                        """
 
 
 if __name__ == '__main__':
@@ -26,11 +38,11 @@ if __name__ == '__main__':
     #    `s2, seq=5 and cancel
     #    `s3, seq=5 and cancel
     #    """
-    conf['acl'] = """
-        `s1
-        `s2, fsc
-        `fs, seq=5
-        """
+    # conf['acl'] = """
+    #     `s1
+    #     `s2, fsc
+    #     `fs, seq=5
+    #     """
 
 #    conf['acl'] = '''
 #        `rotation
