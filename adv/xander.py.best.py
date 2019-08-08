@@ -1,4 +1,4 @@
-import adv_test
+import adv.adv_test
 from xander import *
 from slot.a import *
 from slot.d import *

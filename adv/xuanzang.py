@@ -1,4 +1,4 @@
-import adv_test
+import adv.adv_test
 from adv import *
 from slot.a import *
 import random

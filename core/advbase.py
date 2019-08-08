@@ -11,7 +11,7 @@ import conf as globalconf
 import core.condition 
 import slot
 from core.floatsingle import tofloat
-m_condition = condition
+m_condition = core.condition
 conf = Conf()
 
 class Modifier(object):
@@ -1181,7 +1181,7 @@ class Adv(object):
         this.d_acl()
 
         if not this._acl:
-            this._acl, this._acl_str = acl.acl_func_str(
+            this._acl, this._acl_str = core.acl.acl_func_str(
                     this.acl_prepare_default+this.conf.acl
                     )
 

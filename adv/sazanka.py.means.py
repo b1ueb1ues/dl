@@ -1,4 +1,4 @@
-import adv_test
+import adv.adv_test
 from adv import *
 from adv import sazanka
 from module.bleed import mBleed

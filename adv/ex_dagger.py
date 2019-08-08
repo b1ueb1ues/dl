@@ -1,4 +1,4 @@
-import adv_test
+import adv.adv_test
 exit()
 td = adv_test.team_dps/7.0*10.0
 

@@ -1,8 +1,9 @@
 from core.timeline import *
+import datetime
 import sys
 
 loglevel = 0
-if len(sys.argv) >= 2:
+if __name__ == '__main__' and len(sys.argv) >= 2:
     loglevel = int(sys.argv[1])
 
 #g_log = []
@@ -20,7 +21,7 @@ def loginit(log=None):
         return 1
 
 def log(t, name, amount=None, misc=""):
-    g_log_active.append([now(), t, name, amount, misc])
+    g_log_active.append([datetime.datetime.now(), t, name, amount, misc])
     #e = Event('log_'+name)
     #e.log = [now(), t, name, amount, misc]
     #e.trigger()

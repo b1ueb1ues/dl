@@ -1,5 +1,5 @@
 import slot
-from adv import adv_test
+from adv import adv.adv_test
 
 t = 0
 
