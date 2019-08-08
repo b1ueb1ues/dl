@@ -2,7 +2,6 @@ if __name__ == '__main__':
     import adv_test
 else:
     import adv.adv_test
-
 from adv import *
 from module.bleed import Bleed
 from slot.d import *
