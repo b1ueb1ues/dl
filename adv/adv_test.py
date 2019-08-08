@@ -12,8 +12,7 @@ import random
 from core import condition as m_condition
 from core.acl import *
 
-
-if __name__ == '__main__' and len(sys.argv) >= 3:
+if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
     if sys.argv[2] == 'sp':
         sim_duration = 180
     else:
@@ -31,7 +30,7 @@ katana = 0
 
 ex_str = '_'
 ex_set = {}
-if __name__ == '__main__' and len(sys.argv) >= 4:
+if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
     ex_str = sys.argv[3]
     for i in ex_str:
         if i == 'k':

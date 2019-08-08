@@ -1,4 +1,7 @@
-import adv.adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 import adv
 from module import energy
 from slot.a import *

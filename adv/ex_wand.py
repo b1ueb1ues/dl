@@ -1,4 +1,7 @@
-import adv.adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 exit()
 td = adv_test.team_dps/7.0*10.0
 
