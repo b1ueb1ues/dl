@@ -23,6 +23,7 @@ class G_Cleo(Adv):
         this.slots.a = RR()+JotS()  # wand c2*1.08 = 217
         this.slots.d = Shinobi()
 
+
     def d_acl(this):
         if 'blade' in this.ex:
             pass
@@ -30,18 +31,23 @@ class G_Cleo(Adv):
             this.conf['acl'] = """
                 `rotation
                 """
-            this.conf['rotation_init'] = """
-                s2s1
-            """
-            this.conf['rotation'] = """
-                c5c4fss1
-                c5c5s2fss1
-            """
-         #   this.conf['acl'] = """
-         #       `fs, this.fsa_charge and seq=5
-         #       `s2
-         #       `s1
-         #       """
+            if 'bow' in this.ex:
+                this.conf['rotation_init'] = """
+                    s2s1
+                """
+                this.conf['rotation'] = """
+                    c5c4fss1
+                    c5c4s2fss1
+                """
+            else:
+                this.conf['rotation_init'] = """
+                    s2s1
+                """
+                this.conf['rotation'] = """
+                    c5c4fss1
+                    c5c5s2fss1
+                """
+
 
     def prerun(this):
         this.s1p = 0 

@@ -296,7 +296,8 @@ class Elegant_Escort(Amulet):
         m.get = this.getbane
 
     def getbane(this):
-        #print this.adv.afflics.burn.get()*0.3
+        #log('debug', 'bane', this.adv.afflics.burn.get())
+        #print this.adv.afflics.burn.get()
         return this.adv.afflics.burn.get()*0.3
 EE = Elegant_Escort
 
