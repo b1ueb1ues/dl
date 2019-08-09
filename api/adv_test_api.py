@@ -23,8 +23,9 @@ def run_adv_test():
         dra = request.args.get('dra', default=None)
         ex  = request.args.get('ex', default='')
         wep = request.args.get('wep', default=None)
-        # verbose = int(request.args.get('verbose', default=0))
-        verbose = -2
+        log = int(request.args.get('log', default=0))
+        if log not in [-2, 0]:
+            log = 0
 
         import adv.adv_test
         adv.adv_test.set_ex(ex)
@@ -42,8 +43,8 @@ def run_adv_test():
 
         f = io.StringIO()
         with redirect_stdout(f):
-            adv.adv_test.test(adv_module, conf, verbose=verbose)
-        return f.getvalue()
+            adv.adv_test.test(adv_module, conf, verbose=log)
+        return '<pre>' + f.getvalue() + '</pre>';
     else:
         return 'Bad Request'
 

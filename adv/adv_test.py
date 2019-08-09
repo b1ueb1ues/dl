@@ -30,13 +30,19 @@ energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration
 katana = 0
 ex_str = '_'
 ex_set = {}
-if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
-    set_ex(sys.argv[3])
 ex_team_init = 0
 
 def set_ex(ex_str):
     global katana
     global ex_set
+    global ex_team_init
+    global team_dps
+    global energy_efficiency
+    team_dps = 6000
+    energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration
+    ex_set = {}
+    katana = 0
+
     for i in ex_str:
         if i == 'k':
             ex_set['blade'] = ('ex','blade')
@@ -47,7 +53,10 @@ def set_ex(ex_str):
             ex_set['dagger'] = ('ex','dagger')
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
+    ex_team_init = 0
 
+if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
+    set_ex(sys.argv[3])
 
 mname = ""
 base_str = 0
@@ -62,7 +71,7 @@ real_duration = 0
 line = ''
 line_k = ''
 
-def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
+def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     global team_dps
     global energy_efficiency
     global mname
@@ -81,7 +90,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     if duration:
         sim_duration = duration
 
-    if loglevel == 0:
+    if verbose is not None:
         loglevel = verbose
     #random.seed()
     a = time.time()
