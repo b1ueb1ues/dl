@@ -1,5 +1,3 @@
-import types
-import importlib.machinery
 import io
 import os
 import inspect
@@ -11,6 +9,7 @@ from flask import jsonify
 import slot.a
 import slot.d
 import slot.w
+
 app = Flask(__name__)
 
 @app.route('/advtest', methods=['GET'])
@@ -23,7 +22,7 @@ def run_adv_test():
         wp2 = request.args.get('wp2', default=None)
         dra = request.args.get('dra', default=None)
         ex  = request.args.get('ex', default='')
-        # wep = request.args.get('wep', default=None)
+        wep = request.args.get('wep', default=None)
         # verbose = int(request.args.get('verbose', default=0))
         verbose = -2
 
@@ -31,15 +30,14 @@ def run_adv_test():
         adv.adv_test.set_ex(ex)
         
         adv_module = getattr(__import__('adv.{}'.format(adv_name.lower())), adv_name.lower()).module()
-
         conf = {}
         def slot_injection(this):
             if wp1 is not None and wp2 is not None:
                 this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
             if dra is not None:
                 this.conf['slots.d'] = getattr(slot.d, dra)()
-            # if wep is not None:
-            #     this.conf['slots.w'] = getattr(slot.w, wep)()
+            if wep is not None:
+                this.conf['slots.w'] = getattr(slot.w, wep)()
         adv_module.slot_backdoor = slot_injection
 
         f = io.StringIO()
@@ -79,5 +77,5 @@ def slotlist():
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
     result['dragons'] = list_members(slot.d, is_dragon)
-    result['weapons'] = list_members(slot.w, is_weapon, alias=True)
+    result['weapons'] = list_members(slot.w, is_weapon, alias=False)
     return jsonify(result)
