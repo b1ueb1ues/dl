@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route('/advtest', methods=['GET'])
 def run_adv_test():
     if request.method == 'GET':
-        adv_name = request.args.get('name')
+        adv_name = request.args.get('name', default='euden')
         wp1 = request.args.get('wp1', default=None)
         wp2 = request.args.get('wp2', default=None)
         dra = request.args.get('dra', default=None)
@@ -43,7 +43,7 @@ def run_adv_test():
 
         f = io.StringIO()
         with redirect_stdout(f):
-            adv.adv_test.test(adv_module, conf, verbose=log, duration=sec)
+            adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
         return '<pre>' + f.getvalue() + '</pre>';
     else:
         return 'Bad Request'
