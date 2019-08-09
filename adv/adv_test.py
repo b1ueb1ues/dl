@@ -26,12 +26,17 @@ team_dps = 6000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
 energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
-katana = 0
 
+katana = 0
 ex_str = '_'
 ex_set = {}
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
-    ex_str = sys.argv[3]
+    set_ex(sys.argv[3])
+ex_team_init = 0
+
+def set_ex(ex_str):
+    global katana
+    global ex_set
     for i in ex_str:
         if i == 'k':
             ex_set['blade'] = ('ex','blade')
@@ -42,8 +47,6 @@ if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
             ex_set['dagger'] = ('ex','dagger')
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
-ex_team_init = 0
-
 
 
 mname = ""

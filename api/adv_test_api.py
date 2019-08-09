@@ -28,6 +28,8 @@ def run_adv_test():
         verbose = -2
 
         import adv.adv_test
+        adv.adv_test.set_ex(ex)
+        
         adv_module = getattr(__import__('adv.{}'.format(adv_name.lower())), adv_name.lower()).module()
 
         conf = {}
