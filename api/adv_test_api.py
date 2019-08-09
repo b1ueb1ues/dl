@@ -16,13 +16,13 @@ app = Flask(__name__)
 def run_adv_test():
     if request.method == 'GET':
         adv_name = request.args.get('name')
-        if not adv_name:
-            return 'No ADV'
         wp1 = request.args.get('wp1', default=None)
         wp2 = request.args.get('wp2', default=None)
         dra = request.args.get('dra', default=None)
         ex  = request.args.get('ex', default='')
         wep = request.args.get('wep', default=None)
+        t   = abs(int(request.args.get('t', default=180)))
+
         log = int(request.args.get('log', default=0))
         if log not in [-2, 0]:
             log = 0
@@ -43,7 +43,7 @@ def run_adv_test():
 
         f = io.StringIO()
         with redirect_stdout(f):
-            adv.adv_test.test(adv_module, conf, verbose=log)
+            adv.adv_test.test(adv_module, conf, verbose=log, duration=sec)
         return '<pre>' + f.getvalue() + '</pre>';
     else:
         return 'Bad Request'
