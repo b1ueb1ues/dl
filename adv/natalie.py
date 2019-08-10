@@ -1,20 +1,10 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 if __name__ == '__main__':
     import adv_test
     from adv_test import sim_duration
 else:
     import adv.adv_test
     from adv.adv_test import sim_duration
-=======
 import adv.adv_test
-
-=======
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
->>>>>>> cmd compatability hack
 import adv
 from adv import *
 from module import energy

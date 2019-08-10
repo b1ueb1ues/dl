@@ -22,6 +22,16 @@ class Fleur(Adv):
 
     a3 = ('k_paralysis',0.2)
     
+
+    conf = {}
+    conf['acl'] = """
+        `s3,s1.charged>=s1.sp and seq=4
+        `s1, seq=5
+        `s1, s=2
+        `s2, sx=1
+        `fs, seq=5
+        """
+
     def init(this):
         this.s1_stance = 1
 
