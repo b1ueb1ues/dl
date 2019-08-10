@@ -13,7 +13,11 @@ def module():
 class V_Ezelith(Adv):
     a3 = ('bk',0.2)
     conf = {}
-    #conf['slot.a'] = RR()+EE()
+    conf['acl'] = """
+        `s3,s1.charged>=s1.sp
+        `s1
+        `s2
+        """
 
     def c_prerun(this):
         this.o_prerun()
@@ -74,10 +78,5 @@ class V_Ezelith(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s3,s1.charged>=s1.sp
-        `s1
-        `s2
-        """
     adv_test.test(module(), conf, verbose=0)
 

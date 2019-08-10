@@ -8,15 +8,15 @@ def module():
     return Taro
 
 class Taro(adv.Adv):
-    pass
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
         `s2
         `s3
         """
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=1)
 

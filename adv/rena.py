@@ -11,6 +11,16 @@ def module():
     return Rena
 
 class Rena(Adv):
+    conf = {}
+    conf['slot.d'] = Sakuya()
+#    conf['slot.a'] = RR()+EE()
+    conf['acl'] = """
+        `s1
+        `s2, s=1
+        `s3, fsc
+        `fs, seq=5
+        """
+
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.burn.resist=0
@@ -76,15 +86,6 @@ class Rena(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.d'] = Sakuya()
-#    conf['slot.a'] = RR()+EE()
-    conf['acl'] = """
-        `s1
-        `s2, s=1
-        `s3, fsc
-        `fs, seq=5
-        """
-
     adv_test.test(module(), conf, verbose=0, mass=0)
     #logcat(['cd'])
 

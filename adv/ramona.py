@@ -1,7 +1,9 @@
 if __name__ == '__main__':
     import adv_test
+    from adv_test import sim_duration
 else:
     import adv.adv_test
+    from adv_test import sim_duration
 from adv import *
 from slot.a import *
 from slot.d import *
@@ -16,6 +18,21 @@ class Ramona(Adv):
     conf['slots.a'] = KFM()+VC()
     #conf['slots.a'] = KFM()+TL()
     conf['slots.d'] = Sakuya()
+    conf['acl'] = """
+        # s1a = this.s1a
+        `s1a
+        `s2,seq=4
+        `s3,seq=4 
+        """
+    def d_slot(this):
+        if sim_duration == 60:
+            comment += ';TL>EoL>CE>VC if trigger'
+        elif sim_duration == 90:
+            comment += ';TL>EoL>CE>VC if trigger'
+        elif sim_duration == 120:
+            comment += ';TL>EoL>VC>CE if trigger'
+        elif sim_duration == 180:
+            comment += ';EoL>TL>VC>CE if trigger'
 
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
@@ -61,27 +78,5 @@ class Ramona(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        # s1a = this.s1a
-        `s1a
-        `s2,seq=4
-        `s3,seq=4 
-        """
-        
-    import sys
-    from slot.a import *
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
-    if sim_duration == 60:
-        module().comment += ';TL>EoL>CE>VC if trigger'
-    elif sim_duration == 90:
-        module().comment += ';TL>EoL>CE>VC if trigger'
-    elif sim_duration == 120:
-        module().comment += ';TL>EoL>VC>CE if trigger'
-    elif sim_duration == 180:
-        module().comment += ';EoL>TL>VC>CE if trigger'
-
     adv_test.test(module(), conf, verbose=0)
 

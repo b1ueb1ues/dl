@@ -17,6 +17,12 @@ class Marth(adv.Adv):
     conf = {}
     conf['slot.a'] = TSO()+FoG()
     #conf['slot.d'] = Cerberus()
+    conf['acl'] = """
+        `s2
+        `s1,fsc
+        `s3,fsc
+        `fs, seq=2
+        """
 
     def init(this):
         this.stance = 0
@@ -38,13 +44,4 @@ class Marth(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2
-        `s1,fsc
-        `s3,fsc
-        `fs, seq=2
-        """
-#    import slot
-#    conf['slots.d'] = slot.d.flame.Sakuya()
-
     adv_test.test(module(), conf, verbose=-2)

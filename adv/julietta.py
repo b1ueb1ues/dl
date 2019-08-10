@@ -9,14 +9,14 @@ def module():
 
 class Julietta(adv.Adv):
     comment = 'no fs & no s2'
-    pass
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
         `s3,seq=4
         """
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

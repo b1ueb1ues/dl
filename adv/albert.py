@@ -1,7 +1,9 @@
 if __name__ == '__main__':
     import adv_test
+    from adv_test import sim_duration
 else:
     import adv.adv_test
+    from adv.adv_test import sim_duration
 from adv import *
 import copy
 from module.fsalt import *
@@ -21,6 +23,24 @@ class Albert(Adv):
             #this.afflics.paralysis.tolerance=5
         else:
             this.afflics.paralysis.resist=100
+
+    conf = {}
+    conf['acl'] = """
+        `s2
+        `s1, this.s2.charged > 900
+        `s3
+        `fs, seq=2 and not this.s2buff.get()
+        """
+
+    def d_slots(this):
+        if sim_duration <= 60:
+            this.conf['slots.a'] = TSO()+Sisters_Day_Out()
+        elif sim_duration == 90:
+            this.conf['slots.a'] = TSO()+The_Chocolatiers()
+        elif sim_duration == 120:
+            this.conf['slots.a'] = TSO()+Sisters_Day_Out()
+        elif sim_duration >= 180:
+            this.conf['slots.a'] = TSO()+Sisters_Day_Out()
 
     def prerun(this):
 
@@ -100,12 +120,6 @@ class Albert(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2
-        `s1, this.s2.charged > 900
-        `s3
-        `fs, seq=2 and not this.s2buff.get()
-        """
 
     import sys
     from slot.a import *

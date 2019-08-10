@@ -12,6 +12,11 @@ class S_Julietta(Adv):
     comment = 'no fs; no bog'
     conf = {}
     conf['slot.a'] = KFM() + JotS()
+    conf['acl'] = """
+        `s2
+        `s1
+        `s3
+        """
 
     def init(this):
         this.s2_stance = 1
@@ -79,9 +84,4 @@ class S_Julietta(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2
-        `s1
-        `s3
-        """
     adv_test.test(module(), conf, verbose=-2)

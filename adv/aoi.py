@@ -10,15 +10,15 @@ def module():
 
 class Aoi(adv.Adv):
     a1 = ('od',0.08)
-
-
-if __name__ == '__main__':
     conf = {}
-    conf['slot.d'] = Sakuya()
     conf['acl'] = """
         `s1, seq=5 
         `s2, seq=5 
         `s3, seq=5
         """
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

@@ -13,11 +13,6 @@ class Vice(Adv):
     #import slot
     #conf = {}
     #conf['slots.a'] = slot.a.Silke_Lends_a_Hand()+slot.a.RR()
-
-
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
@@ -25,5 +20,11 @@ if __name__ == '__main__':
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
+
+
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0, mass=0)
 

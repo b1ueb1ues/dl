@@ -10,6 +10,12 @@ def module():
 
 class Xania(adv.Adv):
     a1 = ('s',0.20)
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 and cancel
+        `s2, seq=5 and cancel
+        `s3, seq=5 and cancel
+        """
     #comment = 'reach 100 resist with Saintly Delivery'
     #conf = {}
     #import slot
@@ -19,10 +25,5 @@ class Xania(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
-        """
     adv_test.test(module(), conf, verbose=0)
 

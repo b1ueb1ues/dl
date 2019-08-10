@@ -11,7 +11,13 @@ def module():
 
 class Lucretia(adv.Adv):
     a3 = ('bk',0.3)
-     
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 and cancel
+        `s2, seq=5 and cancel
+        `s3, seq=5 and cancel
+        """
+
     def init(this):
         if this.condition('energy'):
             this.prerun = this.c_prerun
@@ -38,21 +44,6 @@ class Lucretia(adv.Adv):
 from slot.a import *
 if __name__ == '__main__':
     conf = {}
-    #conf['slot.a'] = RR()+CE()
-    conf['acl'] = """
-        `s2, seq=5 and cancel
-        `s3, sx=2 
-        `s1, sx=3
-        `s1, seq=5 and cancel
-        """
-
-    if 1:
-        conf['acl'] = """
-            `s1, seq=5 and cancel
-            `s2, seq=5 and cancel
-            `s3, seq=5 and cancel
-            """
-
     adv_test.test(module(), conf, verbose=0)
 
 

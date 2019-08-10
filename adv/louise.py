@@ -3,12 +3,21 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.d import *
 
 def module():
     return Louise
 
 class Louise(adv.Adv):
     a1 = ('od',0.13)
+    comment = 'no fs'
+    conf = {}
+    conf['slot.d'] = Pazuzu()
+    conf['acl'] = """
+        `s1, seq=5
+        `s2, seq=5
+        `s3, seq=5
+        """
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -27,13 +36,5 @@ class Louise(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'no fs'
     conf = {}
-    from slot.d import *
-    conf['slot.d'] = Pazuzu()
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)

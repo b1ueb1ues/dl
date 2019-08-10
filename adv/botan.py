@@ -16,6 +16,12 @@ class Botan(Adv):
     conf = {}
     conf['slots.a'] = RR() + Jewels_of_the_Sun()
     conf['slots.d'] = Shinobi()
+    conf['acl'] = """
+        `s1
+        `s2, fsc
+        `s3
+        `fs, seq=5
+        """
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
@@ -27,12 +33,6 @@ class Botan(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, fsc
-        `s3
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2,mass=1)
 
 

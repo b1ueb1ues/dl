@@ -10,6 +10,18 @@ def module():
 
 class S_Estelle(Adv):
     a3 = ('bt',0.2)
+    conf = {}
+    acl12 = """
+        `s1, seq=5 and cancel
+        `s2, seq=5 and cancel 
+        `s3, seq=5 and cancel
+        """
+    acl21 = """
+        `s2, seq=5 and cancel
+        `s1, seq=5 and cancel
+        `s3, seq=5
+        """ 
+    conf['acl'] = acl12
 
     def init(this):
         if this.condition('buff all team'):
@@ -26,17 +38,6 @@ class S_Estelle(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    acl12 = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel 
-        `s3, seq=5 and cancel
-        """
-    acl21 = """
-        `s2, seq=5 and cancel
-        `s1, seq=5 and cancel
-        `s3, seq=5
-        """ 
-    conf['acl'] = acl12
     adv_test.test(module(), conf, verbose=0)
 
 

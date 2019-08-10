@@ -11,12 +11,6 @@ def module():
 class Lily(adv.Adv):
     conf = {}
     conf['slot.a'] = RR()+CE()
-    a1 = ('a',0.15,'hp100')
-    a3 = ('prep','100%')
-
-
-if __name__ == '__main__':
-    conf = {}
     conf['acl'] = """
         #prep=0
         #if pin=='prep': prep=1
@@ -27,6 +21,12 @@ if __name__ == '__main__':
         `s2, pin='prep'
         """
 
+    a1 = ('a',0.15,'hp100')
+    a3 = ('prep','100%')
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 
 

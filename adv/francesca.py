@@ -9,10 +9,6 @@ def module():
 
 class Francesca(Adv):
     a1 = ('fs',0.30)
-
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `rotation
@@ -25,10 +21,9 @@ if __name__ == '__main__':
         C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 c4fs c5
     """
 
-    #conf['acl'] = """
-    #    `s1
-    #    `s3
-    #    `s2
-    #    """
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0, mass=0)
 

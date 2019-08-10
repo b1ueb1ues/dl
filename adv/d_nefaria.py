@@ -10,6 +10,11 @@ def module():
 
 class D_Nefaria(adv.Adv):
     a1 = ('s',0.25)
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5
+        `s3, seq=5
+        """
 
     def d_slots(this):
         this.conf.slot.d = DJ()
@@ -26,9 +31,5 @@ class D_Nefaria(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s3, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)
 

@@ -11,12 +11,6 @@ def module():
 
 class Xainfried(Adv):
     comment = 'use s1 only to cancel c5 or fs'
-    def d_slots(this):
-        if 'wand' not in this.ex:
-            this.conf.slot.d = DJ()
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
@@ -24,5 +18,13 @@ if __name__ == '__main__':
         `s3
         `fs, seq=5
         """
+
+    def d_slots(this):
+        if 'wand' not in this.ex:
+            this.conf.slot.d = DJ()
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=-2)
 

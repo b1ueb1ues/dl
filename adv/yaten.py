@@ -5,11 +5,21 @@ else:
 import adv
 from adv import *
 from module import energy
+from slot.a import *
+from slot.d import *
 
 def module():
     return Yaten
 
 class Yaten(adv.Adv):
+    conf = {}
+    conf['slot.a'] = The_Shining_Overlord()+LC()
+
+    #conf['slot.a'] = HoH()+JotS()
+    #conf['slot.a'] = The_Shining_Overlord()+ The_Petal_Queen()
+    #conf['slot.a'] = The_Shining_Overlord()+ Halidom_Grooms()
+    #conf['slot.d'] = Marishiten()
+
     def init(this):
         if this.condition('energy'):
             this.prerun = this.c_prerun
@@ -86,15 +96,6 @@ class Yaten(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    from slot.a import *
-    from slot.d import *
-    conf['slot.a'] = The_Shining_Overlord()+LC()
-
-    #conf['slot.a'] = HoH()+JotS()
-    #conf['slot.a'] = The_Shining_Overlord()+ The_Petal_Queen()
-    #conf['slot.a'] = The_Shining_Overlord()+ Halidom_Grooms()
-    #conf['slot.d'] = Marishiten()
-     
     adv_test.test(module(), conf, verbose=-2)
 
 

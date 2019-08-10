@@ -10,10 +10,12 @@ def module():
 
 class Jakob(adv.Adv):
     comment = 'no bog'
-
-    def d_slots(this):
-        this.conf.slot.d = DJ()
-        return
+    conf = {}
+    conf['acl'] = """
+        `s1
+        `fs,seq=5
+        """
+    conf['slot.d'] = DJ()
 
     def prerun(this):
         this.charge_p('prep','50%')
@@ -21,9 +23,5 @@ class Jakob(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `fs,seq=5
-        """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

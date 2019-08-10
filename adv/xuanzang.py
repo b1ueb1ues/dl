@@ -11,6 +11,13 @@ def module():
 
 class Xuanzang(Adv):
     a3 = ('cc',0.06,'hp70')
+    conf = {}
+    conf['acl'] = """
+    `s1
+    `s2
+    `s3
+    `fs, seq=5
+    """
 
     def s1_proc(this, e):
         if this.mod('def')!= 1:
@@ -25,11 +32,5 @@ class Xuanzang(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

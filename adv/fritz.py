@@ -9,6 +9,13 @@ def module():
     return Fritz
 
 class Fritz(adv.Adv):
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 and cancel or fsc
+        `s2
+        `s3, seq=5 and cancel or fsc
+        `fs, seq=5
+        """
 
     def prerun(this):
         this.stance = 0
@@ -26,11 +33,4 @@ class Fritz(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
-        """
-
     adv_test.test(module(), conf, verbose=0)

@@ -9,6 +9,12 @@ def module():
 
 class Eleonora(adv.Adv):
     a3 = ('prep','50%')
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 
+        `s2, seq=5 
+        `s3, seq=5 
+        """
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -37,9 +43,4 @@ class Eleonora(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5 
-        """
     adv_test.test(module(), conf, verbose=0)

@@ -13,6 +13,11 @@ class Odetta(Adv):
 
     conf = {}
     conf['slot.a'] = RR() + Stellar_Show()
+    conf['acl'] = """
+        `s2, fsc
+        `s1, fsc
+        `fs, seq=2
+        """
 
     a1 = ('a',0.1,'hp70')
     a3 = ('bt',0.2)
@@ -30,9 +35,4 @@ class Odetta(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2, fsc
-        `s1, fsc
-        `fs, seq=2
-        """
     adv_test.test(module(), conf, verbose=-2)

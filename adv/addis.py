@@ -14,6 +14,22 @@ class Addis(Adv):
     comment = 's2 c2 s1 c5fsf c4fs s1; hold s2s1 until bleed under 3'
 
     a3 = ('bk',0.20)
+    conf = {}
+    conf['acl'] = """
+        # bs = this.bleed._static['stacks']
+        `s2, s1.charged>=s1.sp-260 and seq=5 and bs != 3
+        `s1, s2.charged<s2.sp and bs != 3
+        `s3, not this.s2buff.get()
+        `fs, this.s2buff.get() and seq=4 and this.s1.charged>=s1.sp-200
+        """
+
+   # conf['acl'] = """
+   #     `s2, s1.charged>=s1.sp-260 and seq=5
+   #     `s1, s2.charged<s2.sp
+   #     `s3, not this.s2buff.get()
+   #     `s3, s2.sp > 2000 and sx=1
+   #     `fs, this.s2buff.get() and seq=5
+   #     """
 
     def getbleedpunisher(this):
         if this.bleed._static['stacks'] > 0:
@@ -56,20 +72,5 @@ class Addis(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        # bs = this.bleed._static['stacks']
-        `s2, s1.charged>=s1.sp-260 and seq=5 and bs != 3
-        `s1, s2.charged<s2.sp and bs != 3
-        `s3, not this.s2buff.get()
-        `fs, this.s2buff.get() and seq=4 and this.s1.charged>=s1.sp-200
-        """
-
-   # conf['acl'] = """
-   #     `s2, s1.charged>=s1.sp-260 and seq=5
-   #     `s1, s2.charged<s2.sp
-   #     `s3, not this.s2buff.get()
-   #     `s3, s2.sp > 2000 and sx=1
-   #     `fs, this.s2buff.get() and seq=5
-   #     """
     adv_test.test(module(), conf,verbose=0, mass=1000)
 

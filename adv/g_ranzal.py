@@ -67,6 +67,28 @@ class G_Ranzal(Adv):
 
         this.now = core.timeline.now
 
+    def d_acl(this):
+        if sim_duration <= 60:
+            this.conf['acl'] = """
+            # from core.timeline import now
+            `s1, fsc
+            `s2, fsc
+            `fs, cancel and seq=3 
+            `s3, fsc
+            """
+            this.comment += '3FS & dont hold S1'
+        else:
+            this.conf['acl'] = """
+                # from core.timeline import now
+                `s1, this.gauges['x'] >=1000 and now()<10
+                `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+                `s2, fsc and this.gauges['fs'] >= 300
+                `fs, cancel and seq=3
+                `s3, fsc
+            """
+            this.comment += '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
+
+
     def dmg_proc(this, name, amount):
         if name == 'x1':
             this.gauges['x'] += 77
@@ -120,91 +142,4 @@ class G_Ranzal(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    #conf['acl'] = """
-    #    `s2, fsc
-    #    `s1, seq=3 and this.fsacharge=3 
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000 and fsc
-    #    `s1, this.gauges['x'] >=1000 and fsc
-    #    `fs, cancel and seq=3 and this.fsacharge > 0
-    #    `fs, cancel and seq=3 and this.fsacharge < 0  
-    #    """
-    #    #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
-
-    #conf['acl'] = """
-    #    # fskeep = 0
-    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
-    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
-    #    `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
-    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
-    #    """
-    #conf['acl'] = """
-    #    # fskeep = 0
-    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] == 450 and fsc
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] == 650 and fsc
-    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
-    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
-    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
-    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
-    #    """
-    #conf['acl'] = """
-    #    `s2, fsc and this.gauges['fs'] > 1000
-    #    `s1, seq=3 and this.fsacharge=3 
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000 and fsc
-    #    `s1, this.gauges['x'] >=1000 and fsc
-    #    `fs, cancel and seq=3 and this.fsacharge > 0
-    #    `fs, cancel and seq=3 and this.fsacharge < 0  
-    #    """
-    #    #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
-    #conf['acl'] = """
-    #    # fskeep = 0
-    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
-    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
-    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
-    #    `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
-    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
-    #    """
-    # conf['acl'] = """
-    #     # fskeep = 0
-    #     # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
-    #     `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-    #     `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
-    #     `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
-    #     `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
-    #     `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
-    #     `s3, fsc
-    #     """
-
-    import sys
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
-    if sim_duration <= 60:
-        conf['acl'] = """
-        # from core.timeline import now
-        `s1, fsc
-        `s2, fsc
-        `fs, cancel and seq=3 
-        `s3, fsc
-        """
-        module().comment += '3FS & dont hold S1'
-    else:
-        conf['acl'] = """
-            # from core.timeline import now
-            `s1, this.gauges['x'] >=1000 and now()<10
-            `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-            `s2, fsc and this.gauges['fs'] >= 300
-            `fs, cancel and seq=3
-            `s3, fsc
-        """
-            #`this.fs_alt1, s1.charged >= s1.sp-330 and this.gauges['fs'] >= 650 and  cancel and seq=3 and this.fsacharge > 0
-            #`this.fs_alt3, cancel and seq=3 and this.fsacharge > 0
-            #`fs, cancel and seq=3 and this.fsacharge <= 0
-        module().comment += '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
-
     adv_test.test(module(), conf, verbose=0, mass=0)

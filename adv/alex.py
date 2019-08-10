@@ -1,7 +1,9 @@
 if __name__ == '__main__':
     import adv_test
+    from adv_test import sim_duration
 else:
     import adv.adv_test
+    from adv.adv_test import sim_duration
 import adv
 from slot.d import *
 
@@ -14,34 +16,25 @@ class Alex(adv.Adv):
     a3 = ('sp',0.05)
 
     conf = {}
-    conf['slot.d'] = Shinobi()
-    tmp = 0
-
-
-if __name__ == '__main__':
-    conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
         `s2, seq=5 and cancel 
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
-    import sys
-    from slot.a import *
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
+    def d_slots(this):
+        if sim_duration == 120:
+            conf['acl'] = """
+                `rotation
+            """
+            conf['rotation'] = """
+                C4FS C5- S1 C4FS C5- S1 C1- S2 C4FS C5- S1 C5- S3 C5- S1
+                C5- S2 C5- S1 C4FS C5- S1 C4FS C2- S2 C2- S3 C3- S1
+            """
 
-    if sim_duration == 120:
-        conf['acl'] = """
-            `rotation
-        """
-        conf['rotation'] = """
-            C4FS C5- S1 C4FS C5- S1 C1- S2 C4FS C5- S1 C5- S3 C5- S1
-            C5- S2 C5- S1 C4FS C5- S1 C4FS C2- S2 C2- S3 C3- S1
-        """
 
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 
 

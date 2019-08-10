@@ -17,6 +17,12 @@ class S_Celliera(Adv):
     #conf['slot.a'] = TSO() + JotS()
     conf['slot.a'] = VC() + JotS()
     conf['slot.d'] = DJ()
+    conf['acl'] = """
+        `s2
+        `s1
+        `fs, x=2
+        """
+
     def d_slots(this):
         if 'wand' in this.ex:
             this.conf['slot.d'] = Siren()
@@ -50,9 +56,4 @@ class S_Celliera(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2
-        `s1
-        `fs, x=2
-        """
     adv_test.test(module(), conf, verbose=-2)

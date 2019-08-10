@@ -15,6 +15,17 @@ class Celliera(adv.Adv):
     conf = {}
     conf['slots.a'] = RR()+JotS()
     #conf['slots.d'] = DJ()
+    acl12 = """
+        `s1
+        `s2
+        `s3
+        """
+    acl21 = """
+        `s2
+        `s1
+        `s3
+        """ 
+    conf['acl'] = acl21
 
     def prerun(this):
         this.s2buff = adv.Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
@@ -35,31 +46,6 @@ class Celliera(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    acl12 = """
-        `s1
-        `s2
-        `s3
-        """
-    acl21 = """
-        `s2
-        `s1
-        `s3
-        """ 
-    # test that 21 is better than 12
-    if 0:
-        conf['acl'] = acl12
-        adv_test.test(module(), conf, verbose=0)
-        exit()
-
-
-    conf['acl'] = acl21
-    #conf['acl'] = """
-    #    `s2, s1.charged>=s1.sp-260 and seq=5
-    #    `s1, s2.charged<s2.sp
-    #    `s3, not this.s2buff.get()
-    #    `fs, this.s2buff.get() and seq=5
-    #    """
-
     adv_test.test(module(), conf, verbose=0)
 
 

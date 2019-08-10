@@ -8,6 +8,14 @@ def module():
     return Norwin
 
 class Norwin(Adv):
+    comment = 'blind 3 times & c5+fs'
+    conf = {}
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3
+        `fs, seq=5
+        """
 
     def prerun(this):
         if this.condition('80 resist'):
@@ -50,12 +58,5 @@ class Norwin(Adv):
 
 
 if __name__ == '__main__':
-    module().comment = 'blind 3 times & c5+fs'
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)

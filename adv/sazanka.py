@@ -14,6 +14,12 @@ class Sazanka(Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['slot.a'] = KFM()+CE()
+    conf['acl'] = """
+        `s1
+        `s3, fsc
+        `s2, fsc
+        `fs, seq=5
+        """
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
@@ -48,10 +54,4 @@ class Sazanka(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s3, fsc
-        `s2, fsc
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, mass=1)

@@ -12,6 +12,12 @@ class Veronica(adv.Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['slot.d'] = Shinobi()
+    conf['acl'] = """
+        `s1, seq=5 and cancel or fsc
+        `s2, seq=5 and cancel
+        `s1, pin == 'prep'
+        `fs, seq=5 and s1.charged >= 2500
+        """
 
     def init(this):
         if this.condition('hp=80%'):
@@ -30,12 +36,5 @@ class Veronica(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel
-        `s1, pin == 'prep'
-        `fs, seq=5 and s1.charged >= 2500
-        """
-
     adv_test.test(module(), conf, verbose=0)
 

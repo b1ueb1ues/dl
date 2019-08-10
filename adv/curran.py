@@ -10,7 +10,12 @@ def module():
 
 class Curran(adv.Adv):
     comment = "no fs"
-
+    conf = {}
+    conf['acl'] = """
+        `s1
+        `s2, seq=2
+        `s3
+        """
     a1 = ('od',0.13)
     a3 = ('lo',0.5)
 
@@ -18,10 +23,4 @@ class Curran(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=2
-        `s3
-        """
-    conf['slot.d'] = Shinobi()
     adv_test.test(module(), conf, verbose=-2)

@@ -12,6 +12,11 @@ def module():
 
 class Cibella(Adv):
     conf = {}
+    conf['acl'] = """
+        `s2
+        `s3
+        `fs, seq=5
+        """
     #conf['slots.a'] = RR() + Saintly_Delivery()
     #comment = 'reach 100 resist with Saintly Delivery'
     conf['slots.d'] = DJ()
@@ -19,9 +24,4 @@ class Cibella(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2
-        `s3
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)

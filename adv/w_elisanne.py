@@ -12,6 +12,12 @@ def module():
 class W_Elisanne(Adv):
     conf = {}
     conf['slot.a'] = First_Rate_Hospitality() + The_Shining_Overlord()
+    conf['acl'] = """
+        `s1,fsc
+        `s2
+        `s3,fsc
+        `fs, seq=3 and cancel
+    """
 
     a1 = ('sp',0.08)
     a3 = ('bc',0.13)
@@ -34,11 +40,4 @@ class W_Elisanne(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1,fsc
-        `s2
-        `s3,fsc
-        `fs, seq=3 and cancel
-    """
-
     adv_test.test(module(), conf, verbose=-2, mass=0)

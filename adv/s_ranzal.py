@@ -13,6 +13,10 @@ class S_Ranzal(Adv):
 
     conf = {}
     conf['slot.a'] = RR() + FRH()
+    conf['acl'] = """
+        `s1, x=5
+        `s2, x=5
+        """
 
     a1 = ('lo',0.4)
 
@@ -63,8 +67,4 @@ class S_Ranzal(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, x=5
-        `s2, x=5
-        """
     adv_test.test(module(), conf, verbose=-2)

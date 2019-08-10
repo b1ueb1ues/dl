@@ -9,9 +9,17 @@ def module():
 
 class Fleur(Adv):
     comment = 'don\'t use s2 in s3 nor s3 in s2'
-    conf = {}
     a1 = ('sp',0.08,'hp70')
-    
+
+    conf = {}
+    conf['acl'] = """
+        `s3,s1.charged>=s1.sp and seq=4
+        `s1, seq=5
+        `s1, s=2
+        `s2, sx=1
+        `fs, seq=5
+        """
+
     def init(this):
         this.s1_stance = 1
 
@@ -58,13 +66,6 @@ class Fleur(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s3,s1.charged>=s1.sp and seq=4
-        `s1, seq=5
-        `s1, s=2
-        `s2, sx=1
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)
 
 

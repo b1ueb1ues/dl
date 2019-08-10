@@ -12,6 +12,13 @@ class Linyou(Adv):
     comment = '2in1 ' 
     a1 = ('cc',0.10,'hp70')
     a3 = ('sp',0.08)
+    conf = {}
+    conf['acl'] = """
+        `s2, s1.charged>=s1.sp-440 
+        `s1
+        `s2, seq=4
+        `s3, seq=5
+        """
 
     def init(this):
         this.conf['slots.d'] = slot.d.wind.Longlong()
@@ -39,14 +46,6 @@ class Linyou(Adv):
 
 
 if __name__ == '__main__':
-    conf = {
-        }
-
-    conf['acl'] = """
-        `s2, s1.charged>=s1.sp-440 
-        `s1
-        `s2, seq=4
-        `s3, seq=5
-        """
+    conf = {}
     adv_test.test(module(), conf, verbose=0, mass=0)
 

@@ -12,6 +12,12 @@ class Sylas(adv.Adv):
     a3 = ('a',0.13,'hp70')
 
     comment = 'not consider skill haste for team'
+    conf = {}
+    conf['acl'] = """
+        `s1
+        `s2
+        `fs, seq=5
+        """
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -28,13 +34,5 @@ class Sylas(adv.Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `fs, seq=5
-        """
-    from slot.d import *
-    #conf['slot.d'] = Pazuzu()
     adv_test.test(module(), conf, verbose=0)
 

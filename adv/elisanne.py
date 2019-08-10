@@ -20,7 +20,7 @@ class Elisanne(Adv):
     conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
     #conf['mod'] = {'ex':('sp','passive',0.15)}
-    def d_slots(this):
+    def d_acl(this):
         if 'bow' in this.ex:
             this.conf['acl'] = """
                         `s1

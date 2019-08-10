@@ -13,6 +13,12 @@ class H_Elisanne(Adv):
     a1 = ('s',0.3)
     conf = {}
     conf['slots.a'] = RR()+CE()
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3
+        `fs, seq=5
+        """
 
     def prerun(this):
         this.stance = 0
@@ -37,22 +43,4 @@ class H_Elisanne(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    ##conf['acl'] = """
-    ##    `s1, seq=5 and cancel
-    ##    `s2, seq=5 and cancel
-    ##    `s3, seq=5 and cancel
-    ##    """
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2)
-
-    #module().comment = 'do not use s2'
-    #conf['acl'] = """
-    #    `s1, seq=5 and cancel
-    #    `s3, seq=5 and cancel
-    #    """
-    #adv_test.test(module(), conf, verbose=0)

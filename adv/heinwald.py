@@ -13,6 +13,12 @@ class Heinwald(Adv):
     a1 = ('s',0.35)
     conf = {}
     conf['slots.a'] = RR()+JotS()
+    conf['slot.d'] = Marishiten()
+    conf['acl'] = """
+        `s1, seq=5
+        `s2, seq=5
+        `s3
+        """
 
     def init(this):
         if this.condition("buff all teammates"):
@@ -36,10 +42,5 @@ class Heinwald(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3
-        """
     adv_test.test(module(), conf,verbose=0, mass=0)
 

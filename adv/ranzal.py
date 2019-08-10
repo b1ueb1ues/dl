@@ -9,13 +9,13 @@ def module():
 
 class Ranzal(adv.Adv):
     comment = 'do not use fs'
-    pass
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1 
         `s3
         """
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

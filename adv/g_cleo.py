@@ -107,13 +107,4 @@ class G_Cleo(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    #module().comment = 'RR+SS'
-    #conf['slots.a'] = RR()+FoG()
-
-    conf['acl'] = """
-        `s2
-        `s1
-        """
-
     adv_test.test(module(), conf, verbose=0)
-

@@ -13,17 +13,15 @@ class Jurota(adv.Adv):
     #comment = 'reach 100 resist with Saintly Delivery'
     #conf = {}
     #conf['slots.a'] = Saintly_Delivery()+RR()
-
-
-
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
         `s2, seq=5
         `s3
         """
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

@@ -15,6 +15,14 @@ class Annelie(Adv):
     conf = {}
     conf['slots.a'] = RR()+CE()
     a1 = ('s',0.35,'hp70')
+    conf['acl'] = """
+        # e = this.energy()
+        `s1, s2.charged<=10000
+        `s1, s=2
+        `s2
+        `s3
+        `fs, seq=5 
+        """
 
     def init(this):
         if this.condition('energy'):
@@ -67,31 +75,5 @@ class Annelie(Adv):
 
 if __name__ == '__main__':
     conf = {}
-   # conf['acl'] = """
-   #     `s1, seq=5 
-   #     `s2, seq=5
-   #     `s3
-   #     `fs, seq=5
-   #     """
-   # adv_test.test(module(), conf, verbose=0)
-
-   # conf['acl'] = """
-   #     #e = this.energy()
-   #     `s3, e>=5
-   #     `s1, seq=5 and not e>=5
-   #     `s2, seq=5 and not e>=5
-   #     `fs, seq=5 
-   #     """
-   # adv_test.test(module(), conf, verbose=0)
-
-    conf['acl'] = """
-        # e = this.energy()
-        `s1, s2.charged<=10000
-        `s1, s=2
-        `s2
-        `s3
-        `fs, seq=5 
-        """
-
     adv_test.test(module(), conf, verbose=0)
 

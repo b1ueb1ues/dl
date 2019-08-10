@@ -11,6 +11,13 @@ def module():
 
 class D_Cleo(adv.Adv):
     a1 = ('a',0.13,'hp70')
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 and cancel or fsc
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
+        `fs, seq=5
+        """
 
     def init(this):
         if this.condition('energy'):
@@ -70,19 +77,10 @@ class D_Cleo(adv.Adv):
 
 
 if __name__ == '__main__':
-    module().comment = ''
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
-        """
-
     adv_test.test(module(), conf, verbose=0)
-    exit()
-    conf['s1_sp'] = 2400
-    conf['s1_dmg'] = 0.63*11
-    conf['str_adv'] = 474-17
-    module().comment = 'use s1 in lvl2'
-    adv_test.test(module(), conf, verbose=0)
+    # conf['s1_sp'] = 2400
+    # conf['s1_dmg'] = 0.63*11
+    # conf['str_adv'] = 474-17
+    # module().comment = 'use s1 in lvl2'
+    # adv_test.test(module(), conf, verbose=0)

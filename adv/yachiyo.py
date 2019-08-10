@@ -3,7 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 from adv import *
-from slot import *
+from slot.a import *
 from slot.w import *
 
 class w530(WeaponBase):
@@ -16,7 +16,13 @@ def module():
     return Yachiyo
 
 class Yachiyo(Adv):
-
+    conf = {}
+    conf['slots.a'] = RR()+Stellar_Show()
+    conf['acl'] = """
+        `fs, this.fsa_charge and seq=5
+        `s2
+        `s1
+        """
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
@@ -55,23 +61,5 @@ class Yachiyo(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    #module().comment = 'RR+SS'
-    from slot.a import *
-    conf['slots.a'] = RR()+Stellar_Show()
-    conf['acl'] = """
-        `fs, this.fsa_charge and seq=5
-        `s2
-        `s1
-        """
-
-    #conf['slot.w'] = w530()
-    #conf['slot.w'] = blade5b2()
-    #conf['slot.w'] = blade4b2()
-    #conf['acl'] = """
-    #    `fs, this.fsa_charge and seq=5
-    #    `s2
-    #    `s1
-    #    `s3
-    #    """
     adv_test.test(module(), conf, verbose=0)
 

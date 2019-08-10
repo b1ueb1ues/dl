@@ -11,9 +11,19 @@ def module():
 
 
 class Kuhai(Adv):
-    comment = 'c2+fs during s2 & stellar show + RR'
+    comment = 'c2+fs during s2'
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
+    conf = {}
+    # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
+    # c2+fs_alt fs can init quicker than c1+fs_alt 
+    conf['acl'] = """
+        `s1
+        `s2
+        `fs, seq=2 and this.s2fsbuff.get()
+        `fs, seq=3
+        """
+    conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
 
     def init(this):
         if this.condition('huge hitbox eneny'):
@@ -77,14 +87,5 @@ class Kuhai(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
-    # c2+fs_alt fs can init quicker than c1+fs_alt 
-    conf['acl'] = """
-        `s1
-        `s2
-        `fs, seq=2 and this.s2fsbuff.get()
-        `fs, seq=3
-        """
-    conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
     adv_test.test(module(), conf, verbose=0, mass=0)
 

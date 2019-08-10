@@ -10,6 +10,13 @@ def module():
 class Vida(Adv):
 #    comment = 'unsuitable resist'
     a1 = ('fs',0.30)
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 and cancel or fsc
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
+        `fs, seq=5
+        """
 
     def prerun(this):
         this.s2charge = 0
@@ -26,11 +33,5 @@ class Vida(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

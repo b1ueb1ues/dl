@@ -13,15 +13,16 @@ class Marty(adv.Adv):
     #conf = {}
     #import slot
     #conf['slots.a'] = slot.a.Saintly_Delivery()+slot.a.RR()
-
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1,fsc
         `s3,fsc
         `fs, seq=3
         """
+
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

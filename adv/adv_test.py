@@ -12,20 +12,19 @@ import random
 from core import condition as m_condition
 from core.acl import *
 
+sim_duration = 180
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
     if sys.argv[2] == 'sp':
         sim_duration = 180
     else:
         sim_duration = int(sys.argv[2])
-else:
-    sim_duration = 180
 sim_times = 1000
 
-team_dps = 6000 
+g_team_dps = 6000 
 #team_dps = 5000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
-energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
+g_energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
 
 katana = 0
 ex_str = '_'
@@ -36,13 +35,9 @@ def set_ex(ex_str):
     global katana
     global ex_set
     global ex_team_init
-    global team_dps
-    global energy_efficiency
-    team_dps = 6000
-    energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration
-    ex_set = {}
     katana = 0
-
+    ex_set = {}
+    ex_team_init = 0
     for i in ex_str:
         if i == 'k':
             ex_set['blade'] = ('ex','blade')
@@ -53,7 +48,6 @@ def set_ex(ex_str):
             ex_set['dagger'] = ('ex','dagger')
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
-    ex_team_init = 0
 
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
     set_ex(sys.argv[3])
@@ -72,8 +66,8 @@ line = ''
 line_k = ''
 
 def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
-    global team_dps
-    global energy_efficiency
+    global g_team_dps
+    global g_energy_efficiency
     global mname
     global displayed_str
     global base_str
@@ -90,7 +84,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     if duration:
         sim_duration = duration
 
-    if verbose is not None:
+    if verbose is not None and loglevel == 0:
         loglevel = verbose
     #random.seed()
     a = time.time()
@@ -118,16 +112,18 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     global ex_set
     if not no_cond:
         adv = classname(conf=conf,cond=1)
-        adv.ex = ex_set
     else:
         adv = classname(conf=conf,cond=0)
-        adv.ex = ex_set
-
+    adv.ex = ex_set
     comment = adv.comment
 
+    print(adv.ex)
     real_duration = adv.run(sim_duration)
+    print(adv.ex)
 
     global ex_team_init
+    team_dps = g_team_dps
+    energy_efficiency = g_energy_efficiency
     if not ex_team_init :
         ex_team_init = 1
         for i in adv.ex:
@@ -383,10 +379,9 @@ def do_mass_sim(classname, conf, no_cond=None):
     for i in range(sim_times):
         if not no_cond:
             adv = classname(conf=conf,cond=1)
-            adv.ex = ex_set
         else:
             adv = classname(conf=conf,cond=0)
-            adv.ex = ex_set
+        adv.ex = ex_set
         adv._acl = _acl
         real_duration = adv.run(sim_duration)
         sum_duration += real_duration

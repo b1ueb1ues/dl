@@ -13,6 +13,11 @@ class Mikoto(Adv):
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
     conf = {}
+    conf['acl'] = """
+        `s1, x=5
+        `s2, x=5
+        `s3, x=5
+        """
 
     def d_slots(this):
         if 'wand' in this.ex:
@@ -79,16 +84,5 @@ class Mikoto(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, x=5
-        `s2, x=5
-        `s3, x=5
-        """
-
-
-    #from module import ra
-    #ra.test(module(), conf)
-    #exit()
-
     adv_test.test(module(), conf, verbose=0, mass=0)
 

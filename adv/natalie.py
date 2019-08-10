@@ -1,7 +1,9 @@
 if __name__ == '__main__':
     import adv_test
+    from adv_test import sim_duration
 else:
     import adv.adv_test
+    from adv_test import sim_duration
 import adv
 from adv import *
 from module import energy
@@ -30,7 +32,32 @@ class Natalie(adv.Adv):
     #conf['slot.a'] = slot.a.HoH() + slot.a.Hanetsuki_Rally()
     conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
     conf['slot.d'] = Shinobi()
-     
+    conf['acl'] = """
+        `s2, pin='prep'
+        `s2, seq=5
+        `s1
+        `s3, fsc
+        `s3, seq=5 and s1.charged < s1.sp-200
+        `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
+        `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
+        """
+
+    def d_slot(this):
+        if sim_duration <= 60:
+            conf['slot.a'] = TL()+The_Chocolatiers()
+
+    def d_acl(this):
+        if sim_duration <= 60:
+            conf['acl'] = """
+                `s2, pin='prep'
+                `s2, seq=5
+                `s1
+                `s3, sx=1 and now()<10
+                `s3, fsc
+                `s3, seq=5 and s1.charged < s1.sp-212
+                `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
+            """
+
     def init(this):
         random.seed()
         this.crisis = 0
@@ -75,42 +102,7 @@ class Natalie(adv.Adv):
 
 
 if __name__ == '__main__':
-    #conf = {}
-    #conf['acl'] = """
-    #    `s1, this.energy() < 5
-    #    `s3, seq=5 and this.energy() = 5
-    #    """
-
-
     conf = {}
-    conf['acl'] = """
-        `s2, pin='prep'
-        `s2, seq=5
-        `s1
-        `s3, fsc
-        `s3, seq=5 and s1.charged < s1.sp-200
-        `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
-        `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
-        """
-
-    import sys
-    from slot.a import *
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
-    if sim_duration == 60:
-        conf['slot.a'] = TL()+The_Chocolatiers()
-        conf['acl'] = """
-            `s2, pin='prep'
-            `s2, seq=5
-            `s1
-            `s3, sx=1 and now()<10
-            `s3, fsc
-            `s3, seq=5 and s1.charged < s1.sp-212
-            `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
-        """
-
     adv_test.test(module(), conf, verbose=-2, mass=1)
 
 

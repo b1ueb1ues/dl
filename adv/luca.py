@@ -9,6 +9,12 @@ def module():
 
 class Luca(adv.Adv):
     a1 = ('a',0.13,'hp100')
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 
+        `s2, seq=5 
+        `s3, seq=5 
+        """
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -31,9 +37,4 @@ class Luca(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5 
-        """
     adv_test.test(module(), conf, verbose=0)

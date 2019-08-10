@@ -11,6 +11,12 @@ def module():
 
 class Waike(adv.Adv):
     comment = 'no bog'
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 or fsc
+        `s2, seq=5 or fsc
+        `s3, seq=5 or fsc
+        """
 
     def d_slots(this):
         #this.conf.slot.d = DJ()
@@ -27,10 +33,5 @@ class Waike(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        """
     adv_test.test(module(), conf, verbose=0)
 

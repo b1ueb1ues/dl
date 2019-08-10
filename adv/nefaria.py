@@ -8,6 +8,11 @@ def module():
     return Nefaria
 
 class Nefaria(Adv):
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5
+        `s3, seq=5
+        """
 
     def init(this):
         if this.condition('80 resist'):
@@ -62,9 +67,5 @@ class Nefaria(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s3, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)
 

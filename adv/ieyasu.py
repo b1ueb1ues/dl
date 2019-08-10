@@ -17,6 +17,11 @@ class Ieyasu(Adv):
     #conf['slots.a'] = slot.a.LC()+slot.a.RR()
     conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
     conf['slots.d'] = slot.d.Shinobi()
+    conf['acl'] = """
+        `s1
+        `s2, seq=5 and this.bleed._static['stacks'] > 0
+        `s3
+        """
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
@@ -43,20 +48,15 @@ class Ieyasu(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
-        """
     adv_test.test(module(), conf, verbose=-2, mass=1)
 
-    exit()
-    def foo(this, e):
-        return
-    module().s1_proc = foo
-    conf['acl'] = """
-        `s1
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=1, mass=1)
+    # exit()
+    # def foo(this, e):
+    #     return
+    # module().s1_proc = foo
+    # conf['acl'] = """
+    #     `s1
+    #     `s2, seq=5 and this.bleed._static['stacks'] > 0
+    #     `s3
+    #     """
+    # adv_test.test(module(), conf, verbose=1, mass=1)

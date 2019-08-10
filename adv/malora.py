@@ -9,6 +9,12 @@ def module():
 
 class Malora(adv.Adv):
     a1 = ('bk',0.2)
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 or fsc
+        `s2, seq=5 or fsc
+        `s3, seq=5 or fsc
+        """
 
     def prerun(this):
         if this.condition('spawn c1+fs'):
@@ -23,9 +29,4 @@ class Malora(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        """
     adv_test.test(module(), conf, verbose=0)

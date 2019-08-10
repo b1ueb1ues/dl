@@ -16,6 +16,12 @@ class Serena(adv.Adv):
     conf = {}
     conf['slot.d'] = Arctos()
     conf['slot.a'] = TSO()+LC()
+    conf['acl'] = """
+        `s1
+        `s2,fsc
+        `s3,fsc 
+        `fs, seq=3
+        """
 
     def s1_before(this, e):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()
@@ -77,11 +83,5 @@ class Serena(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2,fsc
-        `s3,fsc 
-        `fs, seq=3
-        """
     adv_test.test(module(), conf, verbose=0)
 

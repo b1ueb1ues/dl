@@ -12,6 +12,15 @@ def module():
 class V_Orion(adv.Adv):
     conf = {}
 
+    comment = 'no s2'
+    conf['acl'] = """
+        `s1
+        `s3
+        `fs, seq=3 and cancel
+        """
+    conf['slots.a'] = The_Shining_Overlord()+LC()
+    #conf['slots.a'] = RR()+EE()
+
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.burn.resist=0
@@ -28,14 +37,5 @@ class V_Orion(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-
-    module().comment = 'no s2'
-    conf['acl'] = """
-        `s1
-        `s3
-        `fs, seq=3 and cancel
-        """
-    conf['slots.a'] = The_Shining_Overlord()+LC()
-    #conf['slots.a'] = RR()+EE()
     adv_test.test(module(), conf, verbose=0)
 

@@ -169,7 +169,7 @@ def sp_combine(fname):
     fcs = open(fname,'r')
     for c in fcs:
         c = c.strip()
-        print c
+        print(c)
         if c == '':
             continue
         fc = open('www/dl-sim/chara/'+c+'.csv','r')

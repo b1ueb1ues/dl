@@ -10,6 +10,13 @@ def module():
 class Ezelith(Adv):
     comment = 'Flurry Debilitator won\'t work in the game'
     a3 = ('bk',0.3)
+    conf = {}
+    conf['acl'] = """
+        `s1, seq=5 and cancel or fsc
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
+        `fs, seq=5
+        """
 
    # def init(this):
    #     if this.condition('hp70'):
@@ -34,12 +41,5 @@ class Ezelith(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
-        """
-
     adv_test.test(module(), conf, mass=1, verbose=-2)
 

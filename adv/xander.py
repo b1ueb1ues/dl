@@ -16,6 +16,14 @@ class Xander(adv.Adv):
     a3 = ('fs',0.50)
 
     conf = {}
+    conf['slots.a'] = TSO()+JotS()
+    conf['slots.d'] = Siren()
+    conf['acl'] = """
+        `s1,fsc
+        `s2,fsc
+        `s3,fsc
+        `fs, seq=2 and cancel
+        """
     #a = 3
     #if a==1:
     #    conf['slots.a'] = RR()+FP()
@@ -30,13 +38,5 @@ class Xander(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = TSO()+JotS()
-    conf['slots.d'] = Siren()
-    conf['acl'] = """
-        `s1,fsc
-        `s2,fsc
-        `s3,fsc
-        `fs, seq=2 and cancel
-        """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

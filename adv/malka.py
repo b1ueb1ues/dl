@@ -8,10 +8,6 @@ def module():
     return Malka
 
 class Malka(Adv):
-    comment = ''
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
@@ -19,5 +15,9 @@ if __name__ == '__main__':
         `s3
         `fs, seq=5
         """
+
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 
