@@ -12,49 +12,12 @@ import slot.w
 
 app = Flask(__name__)
 
+# Helpers
 def get_adv_module(adv_name):
     return getattr(
                 __import__('adv.{}'.format(adv_name.lower())), 
                 adv_name.lower()
            ).module()
-
-@app.route('/adv_test', methods=['GET'])
-def run_adv_test():
-    if request.method == 'GET':
-        adv_name = request.args.get('adv', default='euden')
-        wp1 = request.args.get('wp1', default=None)
-        wp2 = request.args.get('wp2', default=None)
-        dra = request.args.get('dra', default=None)
-        ex  = request.args.get('ex', default='')
-        wep = request.args.get('wep', default=None)
-        t   = abs(int(request.args.get('t', default=180)))
-
-        # log = int(request.args.get('log', default=0))
-        # if log not in [-2, 0]:
-        #     log = 0
-        log = -2
-
-        import adv.adv_test
-        adv.adv_test.set_ex(ex)
-        
-        adv_module = get_adv_module(adv_name)
-        conf = {}
-        def slot_injection(this):
-            if wp1 is not None and wp2 is not None:
-                this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
-            if dra is not None:
-                this.conf['slots.d'] = getattr(slot.d, dra)()
-            if wep is not None:
-                this.conf['slots.w'] = getattr(slot.w, wep)()
-        adv_module.slot_backdoor = slot_injection
-
-        f = io.StringIO()
-        with redirect_stdout(f):
-            adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
-        return '<pre>' + f.getvalue() + '</pre>';
-    else:
-        return 'Bad Request'
-
 def is_amulet(obj):
     return (inspect.isclass(obj) and issubclass(obj, slot.a.Amulet) 
             and obj.__module__ != 'slot.a' 
@@ -67,7 +30,6 @@ def is_weapon(obj):
     return (inspect.isclass(obj) and issubclass(obj, slot.d.WeaponBase) 
             and obj.__module__ != 'slot.w' 
             and obj.__module__ != 'slot')    
-
 def list_members(module, predicate, element=None, weapon=None):
     members = inspect.getmembers(module, predicate)
     member_list = []
@@ -88,9 +50,44 @@ def list_members(module, predicate, element=None, weapon=None):
             member_list.append(fullname)
     return member_list
 
+# API
+@app.route('/adv_test', methods=['GET', 'POST'])
+def run_adv_test():
+    adv_name = request.args.get('adv', default='euden')
+    wp1 = request.args.get('wp1', default=None)
+    wp2 = request.args.get('wp2', default=None)
+    dra = request.args.get('dra', default=None)
+    ex  = request.args.get('ex', default='')
+    wep = request.args.get('wep', default=None)
+    t   = abs(int(request.args.get('t', default=180)))
 
-@app.route('/adv_slotlist', methods=['GET'])
-def slotlist():
+    # log = int(request.args.get('log', default=0))
+    # if log not in [-2, 0]:
+    #     log = 0
+    log = -2
+
+    import adv.adv_test
+    adv.adv_test.set_ex(ex)
+    
+    adv_module = get_adv_module(adv_name)
+    conf = {}
+    def slot_injection(this):
+        if wp1 is not None and wp2 is not None:
+            this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+        if dra is not None:
+            this.conf['slots.d'] = getattr(slot.d, dra)()
+        if wep is not None:
+            this.conf['slots.w'] = getattr(slot.w, wep)()
+    adv_module.slot_backdoor = slot_injection
+
+    f = io.StringIO()
+    with redirect_stdout(f):
+        adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
+    return '<pre>' + f.getvalue() + '</pre>';
+
+
+@app.route('/adv_slotlist', methods=['GET', 'POST'])
+def get_adv_slotlist():
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
     adv_name = request.args.get('adv', default=None)
