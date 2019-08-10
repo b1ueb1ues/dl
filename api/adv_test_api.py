@@ -12,10 +12,16 @@ import slot.w
 
 app = Flask(__name__)
 
-@app.route('/advtest', methods=['GET'])
+def get_adv_module(adv_name):
+    return getattr(
+                __import__('adv.{}'.format(adv_name.lower())), 
+                adv_name.lower()
+           ).module()
+
+@app.route('/adv_test', methods=['GET'])
 def run_adv_test():
     if request.method == 'GET':
-        adv_name = request.args.get('name', default='euden')
+        adv_name = request.args.get('adv', default='euden')
         wp1 = request.args.get('wp1', default=None)
         wp2 = request.args.get('wp2', default=None)
         dra = request.args.get('dra', default=None)
@@ -23,14 +29,15 @@ def run_adv_test():
         wep = request.args.get('wep', default=None)
         t   = abs(int(request.args.get('t', default=180)))
 
-        log = int(request.args.get('log', default=0))
-        if log not in [-2, 0]:
-            log = 0
+        # log = int(request.args.get('log', default=0))
+        # if log not in [-2, 0]:
+        #     log = 0
+        log = -2
 
         import adv.adv_test
         adv.adv_test.set_ex(ex)
         
-        adv_module = getattr(__import__('adv.{}'.format(adv_name.lower())), adv_name.lower()).module()
+        adv_module = get_adv_module(adv_name)
         conf = {}
         def slot_injection(this):
             if wp1 is not None and wp2 is not None:
@@ -59,24 +66,40 @@ def is_dragon(obj):
 def is_weapon(obj):
     return (inspect.isclass(obj) and issubclass(obj, slot.d.WeaponBase) 
             and obj.__module__ != 'slot.w' 
-            and obj.__module__ != 'slot')
-def list_members(module, predicate, alias=False):
+            and obj.__module__ != 'slot')    
+
+def list_members(module, predicate, element=None, weapon=None):
     members = inspect.getmembers(module, predicate)
     member_list = []
     for m in members:
         n, c = m
-        if alias:
-            fullname = (c.__module__, n)
-        else:
-            fullname = (c.__module__, c.__qualname__)
+
+        if weapon is not None:
+            if module == slot.w and c.__module__ != 'slot.w.{}'.format(weapon):
+                continue
+        if element is not None:
+            if module == slot.d and c.__module__ != 'slot.d.{}'.format(element):
+                continue
+            if module == slot.w and element not in getattr(c, 'ele'):
+                continue
+
+        fullname = (c.__module__, c.__qualname__)
         if fullname not in member_list:
             member_list.append(fullname)
     return member_list
 
-@app.route('/slotlist')
+
+@app.route('/adv_slotlist', methods=['GET'])
 def slotlist():
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
-    result['dragons'] = list_members(slot.d, is_dragon)
-    result['weapons'] = list_members(slot.w, is_weapon, alias=False)
+    adv_name = request.args.get('adv', default=None)
+    adv_ele = None
+    adv_wt = None
+    if adv_name is not None:
+        adv_instance = get_adv_module(adv_name)()
+        adv_ele = adv_instance.slots.c.ele.lower()
+        adv_wt = adv_instance.slots.c.wt.lower()
+    result['dragons'] = list_members(slot.d, is_dragon, element=adv_ele, weapon=adv_wt)
+    result['weapons'] = list_members(slot.w, is_weapon, element=adv_ele, weapon=adv_wt)
     return jsonify(result)
