@@ -93,6 +93,7 @@ def main(argv):
     if not name : 
         chara_quick()
         sp_quick()
+        exit()
         chara_slow()
         sp_slow()
         if '-s' not in opt:
