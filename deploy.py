@@ -93,7 +93,7 @@ def main(argv):
     if not name : 
         chara_quick()
         sp_quick()
-        exit()
+        #exit()
         chara_slow()
         sp_slow()
         if '-s' not in opt:
@@ -152,15 +152,15 @@ def time_combine(fname):
         if c == '':
             continue
 
-        fc = open('www/dl-sim/chara/'+c+'.csv')
+        fc = open('www/dl-sim/chara/'+c+'.csv', 'r')
         for i in fc:
             if i[0] == '-':
                 c = i.strip().split(',')
-                time = c[1]
+                page = c[1]
                 affix = c[2]
                 continue
             else:
-                fname = time + '_' + affix
+                fname = page + '_' + affix
                 f = fs[fname]
                 f.write(i)
 
@@ -221,7 +221,8 @@ def chara_slow():
 
 def one_character(name):
     global ex
-    sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
+    open('www/dl-sim/chara/%s.csv'%name, 'w').close()
+    #sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
     time = 60
     for i in ex:
         single_sim(name, time, i)
@@ -235,9 +236,10 @@ def one_character(name):
 
 def sp_character(name):
     global ex
-    sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
+    open('www/dl-sim/chara/%s.csv'%name, 'w').close()
+    #sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
     for i in ex:
-        single_sim(name, 180, i)
+        single_sim(name, 'sp', i)
 
 def single_sim(name, time, ex):
     #cmd = "echo '-,%s,%s' >> www/dl-sim/chara/%s.csv ; "%(time, ex, name)

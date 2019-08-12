@@ -16,6 +16,7 @@ sim_duration = 180
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
     if sys.argv[2] == 'sp':
         sim_duration = 180
+        page = 'sp'
     else:
         sim_duration = int(sys.argv[2])
 sim_times = 1000
@@ -247,11 +248,11 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
             line_k += '\n'
             line_k += report__2_k(condition, exdps, r, name, adv, amulets)
             if no_cond or condition == '':
-                output = '-,%s,%s'%(sim_duration, ex_str)
+                output = '-,%s,%s'%(page, ex_str)
                 if ex_str == '_' :
-                    output_k = '-,%s,k'%(sim_duration)
+                    output_k = '-,%s,k'%(page)
                 else:
-                    output_k = '-,%s,k%s'%(sim_duration, ex_str)
+                    output_k = '-,%s,k%s'%(page, ex_str)
                 output += line
                 output_k += line_k
                 print(output)

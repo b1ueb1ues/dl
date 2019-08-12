@@ -13,6 +13,7 @@ def module():
 class Rena(Adv):
     conf = {}
     conf['slot.d'] = Sakuya()
+    conf['slot.a'] = RR()+FRH()
 #    conf['slot.a'] = RR()+EE()
     conf['acl'] = """
         `s1
