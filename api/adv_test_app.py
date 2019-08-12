@@ -5,12 +5,14 @@ from contextlib import redirect_stdout
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask_cors import CORS
 
 import slot.a
 import slot.d
 import slot.w
 
 app = Flask(__name__)
+CORS(app)
 
 # Helpers
 def get_adv_module(adv_name):
@@ -51,7 +53,7 @@ def list_members(module, predicate, element=None, weapon=None):
     return member_list
 
 # API
-@app.route('/adv_test', methods=['GET', 'POST'])
+@app.route('/adv_test', methods=['GET'])
 def run_adv_test():
     adv_name = request.args.get('adv', default='euden')
     wp1 = request.args.get('wp1', default=None)
@@ -83,20 +85,20 @@ def run_adv_test():
     f = io.StringIO()
     with redirect_stdout(f):
         adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
-    return '<pre>' + f.getvalue() + '</pre>';
+    return f.getvalue()
 
 
-@app.route('/adv_slotlist', methods=['GET', 'POST'])
+@app.route('/adv_slotlist', methods=['GET'])
 def get_adv_slotlist():
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
-    adv_name = request.args.get('adv', default=None)
-    adv_ele = None
-    adv_wt = None
-    if adv_name is not None:
-        adv_instance = get_adv_module(adv_name)()
-        adv_ele = adv_instance.slots.c.ele.lower()
-        adv_wt = adv_instance.slots.c.wt.lower()
-    result['dragons'] = list_members(slot.d, is_dragon, element=adv_ele, weapon=adv_wt)
-    result['weapons'] = list_members(slot.w, is_weapon, element=adv_ele, weapon=adv_wt)
+    result['adv_name'] = request.args.get('adv', default=None)
+    result['adv_ele'] = None
+    result['adv_wt'] = None
+    if result['adv_name'] is not None:
+        adv_instance = get_adv_module(result['adv_name'])()
+        result['adv_ele'] = adv_instance.slots.c.ele.lower()
+        result['adv_wt'] = adv_instance.slots.c.wt.lower()
+    result['dragons'] = list_members(slot.d, is_dragon, element=result['adv_ele'], weapon=result['adv_wt'])
+    result['weapons'] = list_members(slot.w, is_weapon, element=result['adv_ele'], weapon=result['adv_wt'])
     return jsonify(result)

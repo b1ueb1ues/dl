@@ -3,7 +3,7 @@ if __name__ == '__main__':
     from adv_test import sim_duration
 else:
     import adv.adv_test
-    from adv_test import sim_duration
+    from adv.adv_test import sim_duration
 import adv
 from adv import *
 from module import energy
