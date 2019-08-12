@@ -67,7 +67,7 @@ def acl_str(acl):
             #line_list.append( "if %s :\n    %s()\n"%(i[1],i[0]) )
 
     line += '    return 0'
-    g_line = line
+    #g_line = line
     return line
 
 
