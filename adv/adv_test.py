@@ -20,11 +20,11 @@ if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
         sim_duration = int(sys.argv[2])
 sim_times = 1000
 
-g_team_dps = 6000 
+team_dps = 6000 
 #team_dps = 5000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
-g_energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
+energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
 
 katana = 0
 ex_str = '_'
@@ -35,9 +35,13 @@ def set_ex(ex_str):
     global katana
     global ex_set
     global ex_team_init
+    global team_dps
+    global energy_efficiency
     katana = 0
     ex_set = {}
     ex_team_init = 0
+    team_dps = 6000
+    energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
     for i in ex_str:
         if i == 'k':
             ex_set['blade'] = ('ex','blade')
@@ -66,8 +70,8 @@ line = ''
 line_k = ''
 
 def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
-    global g_team_dps
-    global g_energy_efficiency
+    global team_dps
+    global energy_efficiency
     global mname
     global displayed_str
     global base_str
@@ -117,13 +121,9 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     adv.ex = ex_set
     comment = adv.comment
 
-    print(adv.ex)
     real_duration = adv.run(sim_duration)
-    print(adv.ex)
 
     global ex_team_init
-    team_dps = g_team_dps
-    energy_efficiency = g_energy_efficiency
     if not ex_team_init :
         ex_team_init = 1
         for i in adv.ex:
