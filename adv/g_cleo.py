@@ -36,7 +36,7 @@ class G_Cleo(Adv):
                 """
                 this.conf['rotation'] = """
                     c5c4fss1
-                    c5c4s2fss1
+                    c5s2c4fss1
                 """
             else:
                 this.conf['rotation_init'] = """

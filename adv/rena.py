@@ -11,7 +11,7 @@ class Rena(Adv):
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.burn.resist=0
-            #this.afflics.burn.tolerance=5
+#            this.afflics.burn.tolerance=5
         else:
             this.afflics.burn.resist=100
 
@@ -74,8 +74,8 @@ class Rena(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Sakuya()
-#    conf['slot.a'] = RR()+EE()
     conf['slot.a'] = RR()+FRH()
+    #conf['slot.a'] = RR()+EE()
     conf['acl'] = """
         `s1
         `s2, s=1
