@@ -75,6 +75,7 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Sakuya()
 #    conf['slot.a'] = RR()+EE()
+    conf['slot.a'] = RR()+FRH()
     conf['acl'] = """
         `s1
         `s2, s=1
