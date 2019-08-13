@@ -45,7 +45,7 @@ class Natalie(adv.Adv):
                 team={}
                 )
         this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive').on()
-        this.a3spd = Selfbuff('a3spd',0.10,-1,'spd').on()
+        this.a3spd = Spdbuff('a3spd',0.10,-1).on()
 
 
     def s1_proc(this, e):
