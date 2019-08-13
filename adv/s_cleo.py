@@ -10,35 +10,46 @@ def module():
 class S_Cleo(Adv):
     a3 = ('k_paralysis',0.3)
     conf = {}
-    #conf['slot.a'] = FB()+FoG()
+    comment = 'nofs'
 
     def init(this):
         this.bc = Selfbuff()
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
 
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s3,s1.charged>=s1.sp
-                `s2
-                `s1
-                `fs, seq=4
-                """
-        else:
-            this.conf['acl'] = """
-                `s3,s1.charged>=s1.sp
-                `s2
-                `s1
-                """
+        this.conf['acl'] = """
+            `s3
+            `s2,s1.charged>=s1.sp
+            `s1
+            """
+
+        #if this.condition('c4+fs'):
+        #    this.conf['acl'] = """
+        #        `s3,s1.charged>=s1.sp
+        #        `s2
+        #        `s1
+        #        `fs, seq=4
+        #        """
+        #else:
+        #    this.conf['acl'] = """
+        #        `s3,s1.charged>=s1.sp
+        #        `s2
+        #        `s1
+        #        """
 
     def s1_proc(this, e):
+        this.dmg_make('s1_missile',1.06)
         this.afflics.paralysis('s1',100,0.66)
-        Selfbuff('a1',0.10*this.afflics.paralysis.get(),20,'sp','passive').on()
-
         buffcount = this.bc.buffcount()
+        Selfbuff('a1',0.10*this.afflics.paralysis.get(),20,'sp','passive').on()
+        this.dmg_make('s1_missile',1.06)
+        this.dmg_make('s1_missile',1.06)
+        this.dmg_make('s1_big_missile',5.3)
+
         if buffcount > 4:
             buffcount = 4
-        this.dmg_make('s1_missile*%d'%buffcount,0.95*buffcount)
+        for i in range(buffcount):
+            this.dmg_make('o_s1_boost',1.06)
 
     def c_s2_proc(this, e):
         Teambuff('s2str',0.05,10).on()
