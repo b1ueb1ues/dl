@@ -275,6 +275,51 @@ class Teambuff(Buff):
         team_buff_dmg = this.dmg_test_event.dmg
         log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
 
+
+class Spdbuff(Buff):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='self'):  
+        mtype = 'spd'
+        morder = 'passive'
+        Buff.__init__(this, name,value,duration,mtype,morder)
+        this.bufftype = wide
+        this.bufftime = this._bufftime
+        Event('speed')()
+
+    def _bufftime(this):
+        return this._static.time_func()
+
+    def on(this, duration=None):
+        Buff.on(this, duration)
+        this.count_team_buff()
+        return this
+
+    def off(this):
+        Buff.off(this)
+        this.count_team_buff()
+        return this
+
+    def buff_end_proc(this,e):
+        Buff.buff_end_proc(this,e)
+        this.count_team_buff()
+
+    def count_team_buff(this):
+        this.dmg_test_event.modifiers = []
+        this.dmg_test_event()
+        no_team_buff_dmg = this.dmg_test_event.dmg
+        modifiers = []
+        for i in this._static.all_buffs:
+            if i.bufftype=='team' or i.bufftype=='debuff':
+                modifiers.append(i.modifier)
+        this.dmg_test_event.modifiers = modifiers
+        this.dmg_test_event()
+        team_buff_dmg = this.dmg_test_event.dmg
+        spd = this.stack() * this.value()
+        if this.bufftype=='team' or this.bufftype=='debuff':
+            team_buff_dmg += team_buff_dmg * spd
+        log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
+
+
+
 class Debuff(Teambuff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None):  
         value = 0-value
@@ -989,6 +1034,14 @@ class Adv(object):
             ret *= m[i]
         return ret
 
+    def l_have_speed(this, e):
+        this.speed = this.have_speed
+        this.action._static.spd_func = this.speed
+
+    def have_speed(this):
+        return this.mod('spd')
+
+
     def crit_mod(this):
         pass
 
@@ -1149,6 +1202,7 @@ class Adv(object):
         this.l_dmg_make    = Listener('dmg_make'    , this.l_dmg_make     )
         this.l_true_dmg    = Listener('true_dmg'    , this.l_true_dmg     )
         this.l_dmg_formula = Listener('dmg_formula' , this.l_dmg_formula  )
+        this.l_have_speed = Listener('speed' , this.l_have_speed  )
 
         this.ctx.on()
 

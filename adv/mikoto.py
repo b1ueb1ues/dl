@@ -29,13 +29,9 @@ class Mikoto(Adv):
 
     def prerun(this):
         this.s1buff = Selfbuff("s1",0.0, 20)
-        this.s2buff = Selfbuff("s2",0.2, 10, 'spd')
+        this.s2buff = Spdbuff("s2",0.2, 10)
         this.conf.s1.recovery = 1.4
 
-
-    def speed(this):
-        return 1+this.s2buff.get()
-    
     def s1latency(this, e):
         this.s1buff.off()
         this.s1buff.on()

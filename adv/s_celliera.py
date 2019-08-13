@@ -21,11 +21,7 @@ class S_Celliera(Adv):
 
     def init(this):
         this.s2_stance = 1
-        this.spdbuff = Teambuff('s2spd',0.2,10)
 
-
-    def speed(this):
-        return this.spdbuff.stack()*0.2 + 1
 
     def s2_proc(this, e):
         if this.s2_stance == 1:
@@ -40,7 +36,7 @@ class S_Celliera(Adv):
         elif this.s2_stance == 3:
             Teambuff('s2def',0.0,10).on()
             Teambuff('s2atk',0.1,10).on()
-            Teambuff('s2spd',0.2,10,'att','spd').on()
+            Spdbuff('s2spd',0.2,10,wide='team').on()
             Event('defchain').on()
             this.s2_stance = 1
 
