@@ -20,6 +20,8 @@ class Fleur(Adv):
         `fs, seq=5
         """
 
+    a3 = ('k_paralysis',0.2)
+    
     def init(this):
         this.s1_stance = 1
 
@@ -33,8 +35,6 @@ class Fleur(Adv):
         else:
             this.afflics.paralysis.resist=100
 
-        this.m = Modifier('pkiller','att','killer',0.2)
-        this.m.get = this.getbane
 
 
     def s1_proc(this, e):

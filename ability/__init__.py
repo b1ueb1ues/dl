@@ -16,8 +16,10 @@ class Ability(object):
             this.mod = [('fs','passive',value, cond)]
         elif name == 'bt':
             this.mod = [('buff','time',value, cond)]
-        elif name == 'k':
-            this.mod = [('att','killer',value, cond)]
+    #    elif name[:2]== 'k_':
+    #        this.kvalue = value
+    #        this.ktype = name[2:]
+
 
         elif name == 'sp':
             if cond != 'fs':
@@ -53,6 +55,10 @@ class Ability(object):
     def defchain(this, e):
         this.adv.Buff('defchain',this.value,15).on()
 
+    def get_killer(this):
+        aff = vars(this.adv.afflics)[this.ktype]
+        return aff.get()*this.kvalue
+
 
     def ex_true_dmg(this, e):
         if 'dtype' in vars(e):
@@ -73,6 +79,7 @@ class Ability(object):
         
 
     def oninit(this, adv, afrom=None):
+        this.adv = adv
         name = this.name
         cond = this.cond
         value = this.value
@@ -101,6 +108,11 @@ class Ability(object):
                 adv.charge_p('amulet prep',"%d%%"%(value*100))
         elif name == 'resist':
             adv.conf.resist = (cond, value)
+        elif name[:2] == 'k_':
+            this.m = adv.Modifier('afflic_killer','att','killer',0.0)
+            this.m.get = this.get_killer
+            this.kvalue = value
+            this.ktype = name[2:]
 
 #        elif name == 'ex' and value == 'wand':
 #            this.ex_wand(adv)
