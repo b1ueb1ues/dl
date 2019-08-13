@@ -13,7 +13,6 @@ class S_Luca(Adv):
     a1 = ('a',0.1,'hp70')
 
     conf = {}
-    conf['slot.a'] = KFM() + JotS()
 
     def init(this):
         random.seed()
@@ -45,5 +44,6 @@ if __name__ == '__main__':
         `s1
         `s2
         `s3,seq=4
+        `fs, x=5
         """
     adv_test.test(module(), conf, verbose=-2, mass=100)
