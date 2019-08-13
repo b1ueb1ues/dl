@@ -37,7 +37,7 @@ class Marth(adv.Adv):
         elif this.stance == 2:
             this.stance = 0
             Teambuff('s23',0.1,10).on()
-            Teambuff('s23s',0.3,10,'att','speed').on()
+            Spdbuff('s23s',0.3,10, wide='team').on()
 
 
 

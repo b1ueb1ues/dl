@@ -1,77 +1,42 @@
 import adv_test
 from adv import *
 from slot.a import *
+from module import energy
+import random
+
 
 def module():
-    return S_Cleo
+    return S_Luca
 
-class S_Cleo(Adv):
+class S_Luca(Adv):
     #comment = 'no fs; no bog'
+    a1 = ('a',0.1,'hp70')
+
     conf = {}
     conf['slot.a'] = KFM() + JotS()
 
     def init(this):
-        this.s2_stance = 1
-        this.a3_iscding = 0
-        if this.condition('buff all team'):
-            this.s2_proc = this.c_s2_proc
-        #if this.condition('bog resist 60'):
-        #    this.afflics.bog.resist = 60
-        #else:
-        #    this.afflics.bog.resist = 100
+        random.seed()
+        if this.condition('energy'):
+            this.prerun = this.c_prerun
 
-    #def s1_proc(this, e):
-    #    r = this.afflics.bog('s1',110)
-    #    if r:
-    #       Debuff('s1_bog',-0.5*r,8,1,'att','bog').on()
+    def prerun(this):
+        this.energy = energy.Energy(this,
+                self={} ,
+                team={} 
+                )
+
+    def c_prerun(this):
+        this.energy = energy.Energy(this,
+                self={'s2':1,'a1':1} ,
+                team={}
+                )
 
     def s2_proc(this, e):
-        if this.s2_stance == 1:
-            Selfbuff('s2',0.15,15).on()
-            this.s2_stance = 2
-        elif this.s2_stance == 2:
-            Selfbuff('s2',0.15,15).on()
-            Selfbuff('s2',0.10,15, 'crit','chance').on()
-            this.s2_stance = 3
-        elif this.s2_stance == 3:
-            Selfbuff('s2',0.15,15).on()
-            Selfbuff('s2',0.10,15, 'crit','chance').on()
-            this.s2_stance = 1
+        Spdbuff('s2',0.2,10).on()
+        if random.random() < 0.4:
+            this.energy.add_energy('a3')
 
-    def c_s2_proc(this, e):
-        if this.s2_stance == 1:
-            Teambuff('s2',0.15,15).on()
-            this.s2_stance = 2
-        elif this.s2_stance == 2:
-            Teambuff('s2',0.15,15).on()
-            Teambuff('s2',0.10,15, 'crit','chance').on()
-            this.s2_stance = 3
-        elif this.s2_stance == 3:
-            Teambuff('s2',0.15,15).on()
-            Teambuff('s2',0.10,15, 'crit','chance').on()
-            this.s2_stance = 1
-
-    def a3_cooldown(this, t):
-        this.a3_iscding = 0
-        log('cd','a3','end')
-
-    def a3_act(this):
-        if not this.a3_iscding :
-            this.a3_iscding = 1
-            Timer(this.a3_cooldown).on(15)
-            log('cd','a3','start')
-            Selfbuff('a3',0.10,10).on()
-            #Teambuff('db_test',0.10,15).on()
-        else:
-            log('cd','a3','trigger failed')
-
-    def charge(this, name, sp):
-        if this.s1.check():
-            return Adv.charge(this, name, sp)
-        r = Adv.charge(this, name, sp)
-        if this.s1.check():
-            this.a3_act()
-        return r
 
 
 if __name__ == '__main__':

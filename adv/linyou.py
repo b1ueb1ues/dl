@@ -25,13 +25,8 @@ class Linyou(Adv):
 
     def prerun(this):
         this.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')
-        this.s2spdbuff = Selfbuff("s2_spd",0.2, 10, 'spd')
+        this.s2spdbuff = Spdbuff("s2_spd",0.2, 10)
 
-    def speed(this):
-        if this.s2spdbuff.get():
-            return 1.2
-        return 1
-    
 
     def s1_proc(this, e):
         if this.s2ssbuff.get():
