@@ -28,7 +28,7 @@ class S_Luca(Adv):
 
     def c_prerun(this):
         this.energy = energy.Energy(this,
-                self={'s2':1,'a1':1} ,
+                self={'s2':1,'a3':1} ,
                 team={}
                 )
 
@@ -42,8 +42,8 @@ class S_Luca(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2
         `s1
-        `s3
+        `s2
+        `s3,seq=4
         """
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=-2, mass=100)

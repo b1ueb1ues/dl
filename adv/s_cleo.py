@@ -5,10 +5,10 @@ import slot
 from slot.a import *
 
 def module():
-    return G_Sarisse
+    return S_Cleo
 
-class G_Sarisse(Adv):
-    a3 = ('k_burn',0.3)
+class S_Cleo(Adv):
+    a3 = ('k_paralysis',0.3)
     conf = {}
     #conf['slot.a'] = FB()+FoG()
 
