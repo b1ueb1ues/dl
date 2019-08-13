@@ -289,16 +289,7 @@ SDO = Sisters_Day_Out
 
 class Elegant_Escort(Amulet):
     att = 54
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        this.adv = adv
-        m = adv.Modifier('Elegant_Escort','att','killer',0)
-        m.get = this.getbane
-
-    def getbane(this):
-        #log('debug', 'bane', this.adv.afflics.burn.get())
-        #print this.adv.afflics.burn.get()
-        return this.adv.afflics.burn.get()*0.3
+    a = [('k_burn',0.3)]
 EE = Elegant_Escort
 
 

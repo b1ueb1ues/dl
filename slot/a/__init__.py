@@ -28,6 +28,7 @@ class Amulet(AmuletBase):
                 'dc'     : 3,      # dragon claw
                 'prep'   : 100,    # skill prep
                 'resist' : 10000,  # resist
+                #'k_paralysis'      : 0.3,    # afflic killer
                 }
 
 
@@ -67,7 +68,9 @@ class Amulet(AmuletBase):
         for i in this.tmp:
             if len(i)==2 or (len(i)==3 and i[2]==None):
                 k = i[0]
-                if this.mmax[k] > 0:
+                if k not in this.mmax:
+                    this.merge(this.a, i)
+                elif this.mmax[k] > 0:
                     if this.mmax[k] > i[1]:
                         this.merge(this.a, i)
                         this.mmax[k] -= i[1]
@@ -78,7 +81,9 @@ class Amulet(AmuletBase):
         for i in this.tmp:
             if len(i)==3 and i[2]!=None:
                 k = i[0]
-                if this.mmax[k] > 0:
+                if k not in this.mmax:
+                    this.merge_cond(this.a, i)
+                elif this.mmax[k] > 0:
                     if this.mmax[k] > i[1]:
                         this.merge_cond(this.a, i)
                         this.mmax[k] -= i[1]
