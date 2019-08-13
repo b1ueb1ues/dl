@@ -122,9 +122,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     adv.ex = ex_set
     comment = adv.comment
 
-    print(adv.ex)
     real_duration = adv.run(sim_duration)
-    print(adv.ex)
 
     global ex_team_init
     team_dps = g_team_dps
