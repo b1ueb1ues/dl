@@ -13,6 +13,7 @@ class S_Cleo(Adv):
     comment = 'nofs'
 
     def init(this):
+        random.seed()
         this.bc = Selfbuff()
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
@@ -39,9 +40,11 @@ class S_Cleo(Adv):
 
     def s1_proc(this, e):
         this.dmg_make('s1_missile',1.06)
-        this.afflics.paralysis('s1',120,0.97)
+        p = this.afflics.paralysis('s1',120,0.97)
         buffcount = this.bc.buffcount()
-        Selfbuff('a1',0.10*this.afflics.paralysis.get(),20,'sp','passive').on()
+        this.afflics.paralysis.get()
+        if random.random() < p :
+            Selfbuff('a1',0.10,20,'sp','passive').on()
         this.dmg_make('s1_missile',1.06)
         this.dmg_make('s1_missile',1.06)
         this.dmg_make('s1_big_missile',5.3)
@@ -67,5 +70,5 @@ class S_Cleo(Adv):
 if __name__ == '__main__':
     conf = {}
 
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=-2, mass=100)
 
