@@ -1,13 +1,11 @@
 if __name__ == '__main__':
     import adv_test
-    from adv_test import sim_duration
 else:
     import adv.adv_test
-    from adv.adv_test import sim_duration
 from adv import *
 import copy
 from module.fsalt import *
-
+from slot.a import *
 
 def module():
     return Albert
@@ -33,6 +31,10 @@ class Albert(Adv):
         """
 
     def d_slots(this):
+        if __name__ == '__main__':
+            from adv_test import sim_duration
+        else:
+            from adv.adv_test import sim_duration
         if sim_duration <= 60:
             this.conf['slots.a'] = TSO()+Sisters_Day_Out()
         elif sim_duration == 90:

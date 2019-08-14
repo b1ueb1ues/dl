@@ -1,9 +1,7 @@
 if __name__ == '__main__':
     import adv_test
-    from adv_test import sim_duration
 else:
     import adv.adv_test
-    from adv.adv_test import sim_duration
 import adv
 from slot.d import *
 
@@ -22,12 +20,16 @@ class Alex(adv.Adv):
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
-    def d_slots(this):
+    def d_acl(this):
+        if __name__ == '__main__':
+            from adv_test import sim_duration
+        else:
+            from adv.adv_test import sim_duration
         if sim_duration == 120:
-            conf['acl'] = """
+            this.conf['acl'] = """
                 `rotation
             """
-            conf['rotation'] = """
+            this.conf['rotation'] = """
                 C4FS C5- S1 C4FS C5- S1 C1- S2 C4FS C5- S1 C5- S3 C5- S1
                 C5- S2 C5- S1 C4FS C5- S1 C4FS C2- S2 C2- S3 C3- S1
             """

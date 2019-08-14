@@ -7,6 +7,7 @@ from flask import request
 from flask import jsonify
 from flask_cors import CORS
 
+from core.advbase import Adv
 import slot.a
 import slot.d
 import slot.w
@@ -32,24 +33,16 @@ def is_weapon(obj):
     return (inspect.isclass(obj) and issubclass(obj, slot.d.WeaponBase) 
             and obj.__module__ != 'slot.w' 
             and obj.__module__ != 'slot')    
-def list_members(module, predicate, element=None, weapon=None):
+def list_members(module, predicate, element=None):
     members = inspect.getmembers(module, predicate)
     member_list = []
     for m in members:
         n, c = m
-
-        if weapon is not None:
-            if module == slot.w and c.__module__ != 'slot.w.{}'.format(weapon):
-                continue
         if element is not None:
-            if module == slot.d and c.__module__ != 'slot.d.{}'.format(element):
+            if issubclass(c, slot.d.WeaponBase)  and element not in getattr(c, 'ele'):
                 continue
-            if module == slot.w and element not in getattr(c, 'ele'):
-                continue
-
-        fullname = (c.__module__, c.__qualname__)
-        if fullname not in member_list:
-            member_list.append(fullname)
+        if c.__qualname__ not in member_list:
+            member_list.append(c.__qualname__)
     return member_list
 
 # API
@@ -70,7 +63,6 @@ def run_adv_test():
 
     import adv.adv_test
     adv.adv_test.set_ex(ex)
-    
     adv_module = get_adv_module(adv_name)
     conf = {}
     def slot_injection(this):
@@ -93,12 +85,19 @@ def get_adv_slotlist():
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
     result['adv_name'] = request.args.get('adv', default=None)
-    result['adv_ele'] = None
-    result['adv_wt'] = None
+    adv_ele = None
+    dragon_module = slot.d
+    weap_module = slot.w
     if result['adv_name'] is not None:
         adv_instance = get_adv_module(result['adv_name'])()
-        result['adv_ele'] = adv_instance.slots.c.ele.lower()
+        adv_ele = adv_instance.slots.c.ele.lower()
+        result['adv_ele'] = adv_ele
+        dragon_module = getattr(slot.d, result['adv_ele'])
         result['adv_wt'] = adv_instance.slots.c.wt.lower()
-    result['dragons'] = list_members(slot.d, is_dragon, element=result['adv_ele'], weapon=result['adv_wt'])
-    result['weapons'] = list_members(slot.w, is_weapon, element=result['adv_ele'], weapon=result['adv_wt'])
+        weap_module = getattr(slot.w, result['adv_wt'])
+        result['adv_pref_dra'] = type(adv_instance.slots.d).__qualname__
+        result['adv_pref_wep'] = type(adv_instance.slots.w).__qualname__
+    result['dragons'] = list_members(dragon_module, is_dragon, element=adv_ele)
+    result['weapons'] = list_members(weap_module, is_weapon, element=adv_ele)
     return jsonify(result)
+

@@ -1,9 +1,7 @@
 if __name__ == '__main__':
     import adv_test
-    from adv_test import sim_duration
 else:
     import adv.adv_test
-    from adv_test import sim_duration
 from adv import *
 from slot.a import *
 from slot.d import *
@@ -24,15 +22,19 @@ class Ramona(Adv):
         `s2,seq=4
         `s3,seq=4 
         """
-    def d_slot(this):
+    def d_slots(this):
+        if __name__ == '__main__':
+            from adv_test import sim_duration
+        else:
+            from adv.adv_test import sim_duration
         if sim_duration == 60:
-            comment += ';TL>EoL>CE>VC if trigger'
+            this.comment += ';TL>EoL>CE>VC if trigger'
         elif sim_duration == 90:
-            comment += ';TL>EoL>CE>VC if trigger'
+            this.comment += ';TL>EoL>CE>VC if trigger'
         elif sim_duration == 120:
-            comment += ';TL>EoL>VC>CE if trigger'
+            this.comment += ';TL>EoL>VC>CE if trigger'
         elif sim_duration == 180:
-            comment += ';EoL>TL>VC>CE if trigger'
+            this.comment += ';EoL>TL>VC>CE if trigger'
 
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)

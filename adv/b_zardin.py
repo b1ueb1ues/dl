@@ -21,7 +21,7 @@ class B_Zardin(adv.Adv):
         `s1
         """
     # conf['slots.w'] = slot.w.blade4b2()
-    def d_slot():
+    def d_slots():
         if this.conf['slots.w'] == slot.w.blade4b2():
             this.comment = 'with s2 & 4t3'
             this.conf['acl'] = """

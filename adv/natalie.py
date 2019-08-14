@@ -1,28 +1,18 @@
 if __name__ == '__main__':
     import adv_test
-    from adv_test import sim_duration
 else:
     import adv.adv_test
-    from adv.adv_test import sim_duration
 import adv.adv_test
 import adv
 from adv import *
 from module import energy
 from slot.d import *
-from slot.a import Amulet
+from slot.a import *
 import slot
 import random
 
 def module():
     return Natalie
-
-class JotS(Amulet):
-    att = 64
-    a = [('sp',0.08)]
-
-class RR(Amulet):
-    att = 64
-    a = [('s',0.30)]
 
 
 class Natalie(adv.Adv):
@@ -43,13 +33,14 @@ class Natalie(adv.Adv):
         `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
         """
 
-    def d_slot(this):
+    def d_slots(this):
+        if __name__ == '__main__':
+            from adv_test import sim_duration
+        else:
+            from adv.adv_test import sim_duration
         if sim_duration <= 60:
-            conf['slot.a'] = TL()+The_Chocolatiers()
-
-    def d_acl(this):
-        if sim_duration <= 60:
-            conf['acl'] = """
+            this.conf['slot.a'] = TL()+The_Chocolatiers()
+            this.conf['acl'] = """
                 `s2, pin='prep'
                 `s2, seq=5
                 `s1

@@ -1,9 +1,7 @@
 if __name__ == '__main__':
     import adv_test
-    from adv_test import sim_duration
 else:
     import adv.adv_test
-    from adv.adv_test import sim_duration
 import adv
 from slot.a import *
 
@@ -19,14 +17,18 @@ class Naveed(adv.Adv):
         `fs, seq=3 and cancel
         """
 
-    def d_slot(this):
+    def d_slots(this):
+        if __name__ == '__main__':
+            from adv_test import sim_duration
+        else:
+            from adv.adv_test import sim_duration
         if sim_duration == 60:
-            conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
+            this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
         elif sim_duration == 90:
-            conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
+            this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
         elif sim_duration == 180:
-            conf['slot.a'] = The_Shining_Overlord()+Jewels_of_the_Sun()
-            conf['s2stop'] = 1
+            this.conf['slot.a'] = The_Shining_Overlord()+Jewels_of_the_Sun()
+            this.conf['s2stop'] = 1
 
 
     def prerun(this):
