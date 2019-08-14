@@ -55,13 +55,13 @@ class S_Cleo(Adv):
         Teambuff('s2str',0.05,10).on()
         Teambuff('s2crit',0.03,10,'crit','chance').on()
         Teambuff('s2sd',0.10,10,'s').on()
-        Teambuff('s2sp',0.20,10,'sp','passive').on()
+        Teambuff('s2sp',0.10,10,'sp','passive').on()
 
     def s2_proc(this, e):
         Selfbuff('s2str',0.05,10).on()
         Selfbuff('s2crit',0.03,10,'crit','chance').on()
         Selfbuff('s2sd',0.10,10,'s').on()
-        Selfbuff('s2sp',0.20,10,'sp','passive').on()
+        Selfbuff('s2sp',0.10,10,'sp','passive').on()
 
 
 if __name__ == '__main__':
