@@ -39,7 +39,7 @@ class S_Cleo(Adv):
 
     def s1_proc(this, e):
         this.dmg_make('s1_missile',1.06)
-        this.afflics.paralysis('s1',100,0.66)
+        this.afflics.paralysis('s1',120,0.97)
         buffcount = this.bc.buffcount()
         Selfbuff('a1',0.10*this.afflics.paralysis.get(),20,'sp','passive').on()
         this.dmg_make('s1_missile',1.06)
