@@ -62,6 +62,8 @@ bps = 0
 real_duration = 0
 line = ''
 line_k = ''
+dmax = 0
+dmin = 0
 
 def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global team_dps
@@ -321,6 +323,8 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     global sim_duration
     global real_duration
     global sim_times
+    global dmin
+    global dmax
 
     condi = ' '
     if condition != '':
@@ -334,6 +338,8 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     katana = 1.1
     if adv.conf['c.wt'] == 'blade':
         katana = 1.0
+
+    g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
@@ -391,6 +397,8 @@ def do_mass_sim(classname, conf, no_cond=None):
 
 def sum_mass_dmg(rs):
     global g_condicomment
+    global dmax
+    global dmin
     dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'total':0 }
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
@@ -401,8 +409,8 @@ def sum_mass_dmg(rs):
     team_buff = 0
     team_energy = 0
 
-    cmax = 0
-    cmin = 0
+    dmax = 0
+    dmin = 0
 
     for i in rs:
         for j in i['dmg_sum'] :
@@ -424,13 +432,13 @@ def sum_mass_dmg(rs):
         case += i['buff_sum'] * team_dps
         case += i['energy_sum'] * energy_efficiency
     #    print case
-        if not cmin:
-            cmin = case
-        if case > cmax:
-            cmax = case
-        if case < cmin:
-            cmin = case
-    g_condicomment = ";dpsrange:(%d~%d)"%(cmin, cmax)
+        if not dmin:
+            dmin = case
+        if case > dmax:
+            dmax = case
+        if case < dmin:
+            dmin = case
+    g_condicomment = ";dpsrange:(%d~%d)"%(dmin, dmax)
 
     for i in x_sum:
         x_sum[i] = int(x_sum[i]+0.01)
