@@ -10,7 +10,7 @@ import core.acl
 import conf as globalconf
 import core.condition 
 import slot
-import floatsingle
+import core.floatsingle as floatsingle
 m_condition = condition
 conf = Conf()
 
@@ -1186,6 +1186,10 @@ class Adv(object):
 
 
     def run(this, d = 300):
+        global loglevel
+        if not loglevel:
+            loglevel = 0
+
         this.ctx.on()
 
         this.doconfig()
