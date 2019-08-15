@@ -21,11 +21,7 @@ class Alex(adv.Adv):
         `fs, seq=5
         """
     def d_acl(this):
-        if __name__ == '__main__':
-            from adv_test import sim_duration
-        else:
-            from adv.adv_test import sim_duration
-        if sim_duration == 120:
+        if adv_test.sim_duration == 120:
             this.conf['acl'] = """
                 `rotation
             """

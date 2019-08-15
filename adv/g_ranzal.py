@@ -68,7 +68,7 @@ class G_Ranzal(Adv):
         this.now = core.timeline.now
 
     def d_acl(this):
-        if sim_duration <= 60:
+        if adv_test.sim_duration <= 60:
             this.conf['acl'] = """
             # from core.timeline import now
             `s1, fsc

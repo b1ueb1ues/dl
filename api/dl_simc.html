@@ -22,6 +22,20 @@
         #test_params {
             margin: 0rem 1rem;
         }
+
+        #test_results {
+            margin: 0.5rem;
+        }
+
+        .result-bar {
+            width: 100%;
+        }
+
+        .result-bar>a {
+            float: left;
+            /*border: 0.0625rem solid gray;*/
+            height: 2rem
+        }
     </style>
 </head>
 
@@ -30,10 +44,26 @@
         <div class="form-group">
             <label for="input-adv">Adventurer</label><input id="input-adv" class="form-control" type="text"
                 name="adv" />
-            <label for="input-wep">Weapon</label><select id="input-wep" class="form-control" name="wep"></select>
-            <label for="input-dra">Dragon</label><select id="input-dra" class="form-control" name="dra"></select>
-            <label for="input-wp1">Wyrmprint 1</label><select id="input-wp1" class="form-control" name="wp1"></select>
-            <label for="input-wp2">Wyrmprint 2</label><select id="input-wp2" class="form-control" name="wp2"></select>
+            <div class="form-row">
+                <div class="col">
+                    <label for="input-wep">Weapon</label><select id="input-wep" class="form-control"
+                        name="wep"></select>
+                </div>
+                <div class="col">
+                    <label for="input-dra">Dragon</label><select id="input-dra" class="form-control"
+                        name="dra"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="input-wp1">Wyrmprint 1</label><select id="input-wp1" class="form-control"
+                        name="wp1"></select>
+                </div>
+                <div class="col">
+                    <label for="input-wp2">Wyrmprint 2</label><select id="input-wp2" class="form-control"
+                        name="wp2"></select>
+                </div>
+            </div>
             <label for="input-t">Simulation Time (seconds)</label><input id="input-t" class="form-control" type="text"
                 name="t" value="180" />
             <label>Co-Abilities:</label>

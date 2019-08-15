@@ -34,11 +34,7 @@ class Natalie(adv.Adv):
         """
 
     def d_slots(this):
-        if __name__ == '__main__':
-            from adv_test import sim_duration
-        else:
-            from adv.adv_test import sim_duration
-        if sim_duration <= 60:
+        if adv_test.sim_duration <= 60:
             this.conf['slot.a'] = TL()+The_Chocolatiers()
             this.conf['acl'] = """
                 `s2, pin='prep'

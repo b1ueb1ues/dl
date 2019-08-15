@@ -18,11 +18,7 @@ class Naveed(adv.Adv):
         """
 
     def d_slots(this):
-        if __name__ == '__main__':
-            from adv_test import sim_duration
-        else:
-            from adv.adv_test import sim_duration
-        if sim_duration == 60:
+        if adv_test.sim_duration == 60:
             this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
         elif sim_duration == 90:
             this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()

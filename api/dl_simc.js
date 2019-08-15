@@ -19,6 +19,64 @@ function populateSelect(id, data, addDefault = false) {
         )
     }
 }
+colorMap = {
+    'attack': 'FireBrick',
+    'force_strike': 'Maroon'
+}
+colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
+function createDpsBar(arr, total_dps = undefined) {
+    total = parseInt(arr[0])
+    total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
+    adv = arr[1];
+    slots = ' ' + arr[6];
+    cond = (arr[7] != undefined && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
+    comment = (arr[8] != undefined) ? arr[8] : '';
+    cond_comment_str = ''
+    if (!cond.startsWith('!')) {
+        console.log(cond, comment)
+        console.log(cond.length, comment.length)
+        cond_comment_str = '<br/>';
+        if (cond.length == 0 && comment.length == 0) {
+            cond_comment_str = ''
+        } else if (cond.length > 0 && comment.length == 0) {
+            cond_comment_str += cond
+        } else if (cond.length == 0 && comment.length > 0) {
+            cond_comment_str += comment
+        } else if (cond.length > 0 && comment.length > 0) {
+            cond_comment_str += cond + '; ' + comment
+        }
+    }
+    $('#test_results').append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'))
+    $('#test_results').append($('<div></div>').attr({ id: 'result-' + adv, class: 'result-bar' }))
+    colorIdx = 0
+    for (var i = 9; i < arr.length; i++) {
+        dmg = arr[i].split(':')
+        if (dmg.length == 2) {
+            dmg_val = parseInt(dmg[1]);
+            if (dmg_val > 0) {
+                color = undefined
+                if (colorMap.hasOwnProperty(dmg[0])) {
+                    color = colorMap[dmg[0]]
+                } else {
+                    color = colorList[colorIdx % colorList.length]
+                    colorIdx += 1
+                }
+                // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
+                portion = 100 * (parseInt(dmg[1]) / total_dps)
+                $('#result-' + adv).append($('<a></a>')
+                    .css('width', portion + '%')
+                    .css('background-color', color)
+                    .attr({
+                        'data-toggle': 'tooltip',
+                        'data-placement': 'top',
+                        'title': dmg[0] + ': ' + dmg[1]
+                    })
+                )
+            }
+        }
+    }
+    $('[data-toggle="tooltip"]').tooltip()
+}
 function loadAdvSlots() {
     if ($('#input-adv').val() == '') {
         return false;
@@ -53,6 +111,7 @@ function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
     }
+    $('#test_results').empty()
     var requestStr =
         'adv=' + $('#input-adv').val() +
         '&dra=' + $('#input-dra').val() +
@@ -73,7 +132,6 @@ function runAdvTest() {
     if (!isNaN(parseInt($('#input-t').val()))) {
         requestStr += '&t=' + $('#input-t').val();
     }
-    console.log(requestStr)
 
     $.ajax({
         url: APP_URL + 'adv_test',
@@ -84,6 +142,14 @@ function runAdvTest() {
         success: function (data, textStatus, jQxhr) {
             if (jQxhr.status == 200) {
                 console.log(data)
+                result = data.split('\n')
+                cond_true = result[0].split(',')
+                $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'))
+                createDpsBar(cond_true)
+                if (result.length > 1 && result[1].includes(',')) {
+                    cond_false = result[1].split(',')
+                    createDpsBar(cond_false, cond_true[0])
+                }
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {
