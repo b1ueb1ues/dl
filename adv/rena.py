@@ -86,6 +86,19 @@ class Rena(Adv):
 
 if __name__ == '__main__':
     conf = {}
+<<<<<<< HEAD
+=======
+    conf['slot.d'] = Sakuya()
+    conf['slot.a'] = RR()+FRH()
+   # conf['slot.a'] = RR()+EE()
+    conf['acl'] = """
+        `s1
+        `s2, s=1
+        `s3, fsc
+        `fs, seq=5
+        """
+
+>>>>>>> bbc10c7a70ba47b69195ed5a2dff77051d5626b1
     adv_test.test(module(), conf, verbose=0, mass=0)
     #logcat(['cd'])
 
