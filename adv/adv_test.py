@@ -319,6 +319,7 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     global base_str
     global comment
     global g_condition
+    global g_condicomment
     global loglevel
     global sim_duration
     global real_duration
@@ -339,7 +340,8 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     if adv.conf['c.wt'] == 'blade':
         katana = 1.0
 
-    g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
+    if 0 < dmin < dmax:
+        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
