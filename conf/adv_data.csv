@@ -2,7 +2,7 @@ name,stars,element,weapon,str_adv,,s1_hitdmg,s1_hits,s1_sp,s2_hitdmg,s2hits,s2_s
 addis,4,wind,blade,509,,216,4,2537,0,0,4877,,864,0,,
 aeleen,4,wind,lance,470,,838,1,2579,0,0,8534,,838,0,,
 alain,3,flame,lance,438,,254,3,2581,343,2,5112,,762,686,,
-albert,5,light,sword,502,,825,1,2714,0,0,160000,,825,0,,
+albert,5,light,sword,502,,825,1,2351,0,0,160000,,825,0,,
 alex,4,shadow,dagger,476,,166,4,2243,121,5,4925,,664,605,debuff;0.05;10;0.4,
 alfonse,5,light,sword,487,,335,2,3500,351,2,4983,,670,702,,
 althemia,3,shadow,wand,465,,895,1,2759,805,1,5570,,895,805,,
