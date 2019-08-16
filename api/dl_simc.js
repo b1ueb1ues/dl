@@ -5,14 +5,9 @@ EX_MAP = {
     'bow': 'b',
     'dagger': 'd'
 }
-function populateSelect(id, data, addDefault = false) {
+function populateSelect(id, data) {
     var t = id.split('-')[1]
     $(id).empty();
-    if (addDefault) {
-        $(id).append($('<option>Default</option>')
-            .attr({ id: t + '-default', value: '' })
-        )
-    }
     for (let d of data) {
         $(id).append($('<option>' + d + '</option>')
             .attr({ id: t + '-' + d, value: d })
@@ -95,8 +90,10 @@ function loadAdvSlots() {
                 $('#wep-' + slots.adv_pref_wep).prop('selected', true);
                 populateSelect('#input-dra', slots.dragons);
                 $('#dra-' + slots.adv_pref_dra).prop('selected', true);
-                populateSelect('#input-wp1', slots.amulets, true);
-                populateSelect('#input-wp2', slots.amulets, true);
+                populateSelect('#input-wp1', slots.amulets);
+                $('#wp1-' + slots.adv_pref_wp.wp1).prop('selected', true);
+                populateSelect('#input-wp2', slots.amulets);
+                $('#wp2-' + slots.adv_pref_wp.wp2).prop('selected', true);
                 $('input[id^="ex-"]').prop('checked', false);
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv_wt).prop('checked', true);
@@ -149,6 +146,7 @@ function runAdvTest() {
         data: JSON.stringify(requestJson),
         success: function (data, textStatus, jQxhr) {
             if (jQxhr.status == 200) {
+                console.log(data)
                 result = data.split('\n')
                 cond_true = result[0].split(',')
                 $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'))

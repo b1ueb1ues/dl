@@ -1459,7 +1459,7 @@ class Adv(object):
             this.dmg_make(e.name , dmg_coef)
 
 
-        if 'buff' in this.conf[e.name]:
+        if 'buff' in this.conf[e.name] and this.conf[e.name+'.buff'] is not None:
             buffarg = this.conf[e.name+'.buff']
             wide = buffarg[0]
             buffarg = buffarg[1:]

@@ -101,6 +101,10 @@ def get_adv_slotlist():
         weap_module = getattr(slot.w, result['adv_wt'])
         result['adv_pref_dra'] = type(adv_instance.slots.d).__qualname__
         result['adv_pref_wep'] = type(adv_instance.slots.w).__qualname__
+        result['adv_pref_wp'] = {
+            'wp1': type(adv_instance.slots.a).__qualname__, 
+            'wp2': type(adv_instance.slots.a.a2).__qualname__
+        }
         result['adv_acl'] = adv_instance.conf.acl
     result['dragons'] = list_members(dragon_module, is_dragon, element=adv_ele)
     result['weapons'] = list_members(weap_module, is_weapon, element=adv_ele)
