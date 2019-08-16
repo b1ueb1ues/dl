@@ -22,11 +22,11 @@ if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
         page = sys.argv[2]
 sim_times = 1000
 
-g_team_dps = 6000 
+team_dps = 6000 
 #team_dps = 5000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
-g_energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
+energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
 
 katana = 0
 ex_str = '_'
@@ -74,8 +74,8 @@ dmax = 0
 dmin = 0
 
 def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
-    global g_team_dps
-    global g_energy_efficiency
+    global team_dps
+    global energy_efficiency
     global mname
     global displayed_str
     global base_str
@@ -128,8 +128,6 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     real_duration = adv.run(sim_duration)
 
     global ex_team_init
-    team_dps = g_team_dps
-    energy_efficiency = g_energy_efficiency
     if not ex_team_init :
         ex_team_init = 1
         for i in adv.ex:
@@ -327,6 +325,7 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     global base_str
     global comment
     global g_condition
+    global g_condicomment
     global loglevel
     global sim_duration
     global real_duration
@@ -347,7 +346,8 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     if adv.conf['c.wt'] == 'blade':
         katana = 1.0
 
-    g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
+    if 0 < dmin < dmax:
+        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 

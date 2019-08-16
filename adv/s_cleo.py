@@ -22,9 +22,9 @@ class S_Cleo(Adv):
             this.s2_proc = this.c_s2_proc
 
         this.conf['acl'] = """
-            `s3
-            `s2,s1.charged>=s1.sp
+            `s2
             `s1
+            `s3
             """
 
         #if this.condition('c4+fs'):

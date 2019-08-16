@@ -10,7 +10,7 @@ import core.acl
 import conf as globalconf
 import core.condition 
 import slot
-from core.floatsingle import tofloat
+import core.floatsingle as floatsingle
 m_condition = core.condition
 conf = Conf()
 
@@ -1188,6 +1188,10 @@ class Adv(object):
 
 
     def run(this, d = 300):
+        global loglevel
+        if not loglevel:
+            loglevel = 0
+
         this.ctx.on()
 
         this.doconfig()
@@ -1314,7 +1318,7 @@ class Adv(object):
 
     # implement single float of c in python
     def float_problem(this, a):
-        return tofloat(a)
+        return floatsingle.tofloat(a)
 
     #this ceiling is the true ceiling
     def ceiling(this, a):
