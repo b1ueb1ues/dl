@@ -19,16 +19,16 @@ class Elisanne(Adv):
     #conf['slots.a'] = HG() + Indelible_Summer()
     conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
+    conf['acl'] = """
+                    `s1
+                    `s2, fsc
+                    `fs, seq=5
+                    """
     def d_acl(this):
         if 'bow' in this.ex:
             this.conf['acl'] = """
                         `s1
-                        """
-        else:
-            this.conf['acl'] = """
-                        `s1
-                        `s2, fsc
-                        `fs, seq=5
+                        `s2, seq=5
                         """
 
 

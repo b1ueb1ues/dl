@@ -14,6 +14,15 @@ class G_Ranzal(Adv):
 
     conf = {}
     conf['slots.a'] = VC() + First_Rate_Hospitality()
+    conf['acl'] = """
+        # from core.timeline import now
+        `s1, this.gauges['x'] >=1000 and now()<10
+        `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+        `s2, fsc and this.gauges['fs'] >= 300
+        `fs, cancel and seq=3
+        `s3, fsc
+    """
+    comment = '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
 
     a3 = ('s',0.3)
 
@@ -76,17 +85,7 @@ class G_Ranzal(Adv):
             `fs, cancel and seq=3 
             `s3, fsc
             """
-            this.comment += '3FS & dont hold S1'
-        else:
-            this.conf['acl'] = """
-                # from core.timeline import now
-                `s1, this.gauges['x'] >=1000 and now()<10
-                `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
-                `s2, fsc and this.gauges['fs'] >= 300
-                `fs, cancel and seq=3
-                `s3, fsc
-            """
-            this.comment += '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
+            this.comment = '3FS & dont hold S1'
 
 
     def dmg_proc(this, name, amount):

@@ -23,6 +23,10 @@
             margin: 0rem 1rem;
         }
 
+        #input-acl {
+            height: 10em;
+        }
+
         #test_results {
             margin: 0.5rem;
         }
@@ -42,46 +46,60 @@
 <body>
     <form id="test_params" method="POST">
         <div class="form-group">
-            <label for="input-adv">Adventurer</label><input id="input-adv" class="form-control" type="text"
-                name="adv" />
             <div class="form-row">
                 <div class="col">
-                    <label for="input-wep">Weapon</label><select id="input-wep" class="form-control"
-                        name="wep"></select>
+                    <label for="input-adv">Adventurer</label><input id="input-adv" class="form-control" type="text" />
                 </div>
                 <div class="col">
-                    <label for="input-dra">Dragon</label><select id="input-dra" class="form-control"
-                        name="dra"></select>
+                    <label for="input-t">Simulation Time (seconds)</label><input id="input-t" class="form-control"
+                        type="text" value="180" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
-                    <label for="input-wp1">Wyrmprint 1</label><select id="input-wp1" class="form-control"
-                        name="wp1"></select>
+                    <label for="input-wep">Weapon</label><select id="input-wep" class="form-control"></select>
                 </div>
                 <div class="col">
-                    <label for="input-wp2">Wyrmprint 2</label><select id="input-wp2" class="form-control"
-                        name="wp2"></select>
+                    <label for="input-dra">Dragon</label><select id="input-dra" class="form-control"></select>
                 </div>
             </div>
-            <label for="input-t">Simulation Time (seconds)</label><input id="input-t" class="form-control" type="text"
-                name="t" value="180" />
-            <label>Co-Abilities:</label>
-            <div class="form-check">
-                <input id="ex-blade" class="form-check-input" type="checkbox" name="ex-k" />
-                <label for="ex-blade" class="form-check-label">Blade</label>
+            <div class="form-row">
+                <div class="col">
+                    <label for="input-wp1">Wyrmprint 1</label><select id="input-wp1" class="form-control"></select>
+                </div>
+                <div class="col">
+                    <label for="input-wp2">Wyrmprint 2</label><select id="input-wp2" class="form-control"></select>
+                </div>
             </div>
-            <div class="form-check">
-                <input id="ex-wand" class="form-check-input" type="checkbox" name="ex-r" />
-                <label for="ex-wand" class="form-check-label">Wand</label>
+            <div class="form-row">
+                <label>Co-Abilities:&nbsp;</label>
+                <div class="form-check form-check-inline">
+                    <input id="ex-blade" class="form-check-input" type="checkbox" />
+                    <label for="ex-blade" class="form-check-label">Blade</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="ex-wand" class="form-check-input" type="checkbox" />
+                    <label for="ex-wand" class="form-check-label">Wand</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="ex-dagger" class="form-check-input" type="checkbox" />
+                    <label for="ex-dagger" class="form-check-label">Dagger</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="ex-bow" class="form-check-input" type="checkbox" />
+                    <label for="ex-bow" class="form-check-label">Bow</label>
+                </div>
             </div>
-            <div class="form-check">
-                <input id="ex-dagger" class="form-check-input" type="checkbox" name="ex-d" />
-                <label for="ex-dagger" class="form-check-label">Dagger</label>
+            <div class="form-row">
+                <label for="input-acl" class="form-check-label">ACL</label>
+                &nbsp;
+                <div class="form-check form-check-inline">
+                    (<input id="input-edit-acl" class="form-check-input" type="checkbox" />
+                    <label for="input-edit-acl" class="form-check-label">Edit</label>)
+                </div>
             </div>
-            <div class="form-check">
-                <input id="ex-bow" class="form-check-input" type="checkbox" name="ex-b" />
-                <label for="ex-bow" class="form-check-label">Bow</label>
+            <div class="form-row">
+                <textarea id="input-acl" class="form-control" disabled></textarea>
             </div>
             <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
         </div>

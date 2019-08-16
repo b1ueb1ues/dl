@@ -10,7 +10,7 @@ function populateSelect(id, data, addDefault = false) {
     $(id).empty();
     if (addDefault) {
         $(id).append($('<option>Default</option>')
-            .attr({ id: t + '-default', value: 'default' })
+            .attr({ id: t + '-default', value: '' })
         )
     }
     for (let d of data) {
@@ -33,8 +33,6 @@ function createDpsBar(arr, total_dps = undefined) {
     comment = (arr[8] != undefined) ? arr[8] : '';
     cond_comment_str = ''
     if (!cond.startsWith('!')) {
-        console.log(cond, comment)
-        console.log(cond.length, comment.length)
         cond_comment_str = '<br/>';
         if (cond.length == 0 && comment.length == 0) {
             cond_comment_str = ''
@@ -100,6 +98,9 @@ function loadAdvSlots() {
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv_wt).prop('checked', true);
                 $('#ex-' + slots.adv_wt).prop('disabled', true);
+                $('#input-acl').val(slots.adv_acl);
+
+                runAdvTest();
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -112,13 +113,14 @@ function runAdvTest() {
         return false;
     }
     $('#test_results').empty()
-    var requestStr =
-        'adv=' + $('#input-adv').val() +
-        '&dra=' + $('#input-dra').val() +
-        '&wep=' + $('#input-wep').val();
+    var requestJson = {
+        'adv': $('#input-adv').val(),
+        'dra': $('#input-dra').val(),
+        'wep': $('#input-wep').val()
+    }
     if ($('#input-wp1').val() != '' && $('#input-wp2').val() != '') {
-        '&wp1=' + $('#input-wp1').val();
-        '&wp2=' + $('#input-wp2').val();
+        requestJson['wp1'] = $('#input-wp1').val();
+        requestJson['wp2'] = $('#input-wp2').val();
     }
     var exStr = '';
     for (let ex of Object.keys(EX_MAP)) {
@@ -127,21 +129,23 @@ function runAdvTest() {
         }
     }
     if (exStr != '') {
-        requestStr += '&ex=' + exStr;
+        requestJson['ex'] = exStr;
     }
     if (!isNaN(parseInt($('#input-t').val()))) {
-        requestStr += '&t=' + $('#input-t').val();
+        requestJson['t'] = $('#input-t').val();
+    }
+    if ($('#input-edit-acl').prop('checked')) {
+        requestJson['acl'] = $('#input-acl').val();
     }
 
     $.ajax({
         url: APP_URL + 'adv_test',
         dataType: 'text',
-        type: 'get',
-        contentType: 'application/x-www-form-urlencoded',
-        data: requestStr,
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(requestJson),
         success: function (data, textStatus, jQxhr) {
             if (jQxhr.status == 200) {
-                console.log(data)
                 result = data.split('\n')
                 cond_true = result[0].split(',')
                 $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'))
@@ -157,8 +161,12 @@ function runAdvTest() {
         }
     });
 }
+function editAcl() {
+    $('#input-acl').prop('disabled', !$(this).prop('checked'))
+}
 
 window.onload = function () {
     $('#input-adv').change(loadAdvSlots);
     $('#run-test').click(runAdvTest);
+    $('#input-edit-acl').change(editAcl)
 }

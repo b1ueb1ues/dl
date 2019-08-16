@@ -752,6 +752,8 @@ class Adv(object):
         pass
     def slot_backdoor(this):
         pass
+    def acl_backdoor(this):
+        pass
     def prerun(this): 
         pass
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
@@ -1233,6 +1235,7 @@ class Adv(object):
         this.prerun()
 
         this.d_acl()
+        this.acl_backdoor()
 
         if not this._acl:
             this._acl, this._acl_str = core.acl.acl_func_str(
