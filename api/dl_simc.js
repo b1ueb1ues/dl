@@ -75,6 +75,9 @@ function createDpsBar(arr, total_dps = undefined) {
     }
     $('[data-toggle="tooltip"]').tooltip()
 }
+function trimAcl(acl_str) {
+    return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
+}
 function loadAdvSlots() {
     if ($('#input-adv').val() == '') {
         return false;
@@ -98,7 +101,7 @@ function loadAdvSlots() {
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv_wt).prop('checked', true);
                 $('#ex-' + slots.adv_wt).prop('disabled', true);
-                $('#input-acl').val(slots.adv_acl);
+                $('#input-acl').val(trimAcl(slots.adv_acl));
 
                 runAdvTest();
             }
