@@ -55,4 +55,4 @@ if __name__ == '__main__':
 #    conf['rotation'] = """
 #        c5fsc5s1
 #    """
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=0)

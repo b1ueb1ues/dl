@@ -17,12 +17,14 @@ def get_skillframe(name):
                 conf.s1.startup = 0.25
                 conf.s1.recovery = 0.90
             else:
+                conf.s1.startup = 0.1
                 conf.s1.recovery = float(sf[0])
 
             if sf[1] == '1':
                 conf.s2.startup = 0.25
                 conf.s2.recovery = 0.90
             else:
+                conf.s2.startup = 0.1
                 conf.s2.recovery = float(sf[1])
 
 def get(name):

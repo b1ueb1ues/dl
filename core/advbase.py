@@ -483,8 +483,6 @@ class Action(object):
         else:
             this.conf = Conf()
             this.conf.sync_action = this.sync_config
-            this.conf.startup = 0.1
-            this.conf.recovery = 1.9
             
         if act != None:
             this.act = act

@@ -294,7 +294,6 @@ def report__2(condition, exdps, r, name, adv, amulets):
         if g_condition:
             name = '_c_'+mname
             condi = '!<%s>'%g_condition
-
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
             displayed_str, amulets+g_condicomment ,condi,comment,
