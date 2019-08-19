@@ -40,5 +40,6 @@ if __name__ == '__main__':
         `s2, seq=4
         `s3, seq=5
         """
+
     adv_test.test(module(), conf, verbose=0, mass=0)
 
