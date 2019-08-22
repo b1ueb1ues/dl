@@ -1,18 +1,24 @@
 from slot.a import *
 
 
-class PP(Amulet): #Plunder Pals or Hitting the Books
+class Plunder_Pals(Amulet): #Plunder Pals or Hitting the Books
     att = 54
     a = [('s',0.25)]
+PP = Plunder_Pals
 
-class RR(Amulet):
+
+class Resounding_Rendition(Amulet):
     att = 64
     a = [('s',0.30),
          ('cc',0.08,'hp70')]
+RR = Resounding_Rendition
 
-class CE(Amulet):
+
+class Crystalian_Envoy(Amulet):
     att = 57
     a = [('a',0.13,'hp70')]
+CE = Crystalian_Envoy	
+
 
 class Bonds_Between_Worlds(Amulet):
     att = 54
@@ -22,31 +28,40 @@ Bonds = Bonds_Between_Worlds
 BBW = Bonds_Between_Worlds
 
 
-class LC(Amulet):
+class Levins_Champion(Amulet):
     att = 64
     a = [('cd',0.15),
          ('cc',0.10,'hp70')]
+LC = Levins_Champion
 
 
-class VC(Amulet):
+class Valiant_Crown(Amulet):
     att = 65
     a = [('s',0.30),
          ('bc',0.10)]
+VC = Valiant_Crown
 
-class TL(Amulet):
+
+class Tough_Love(Amulet):
     att = 65
     a = [('s',0.25),
          ('lo',0.50)]
+TL = Tough_Love
 
-class FoG(Amulet): # Flash of Genius
+
+class Flash_of_Genius(Amulet): # Flash of Genius
     att = 57
     a = [('a',0.20,'hit15')]
-FG = FoG
+FG = Flash_of_Genius
+FoG = Flash_of_Genius
 
-class FP(Amulet):
+
+class Fresh_Perspective(Amulet):
     att = 52
     a = [('fs',0.40),
          ('s',0.20)]
+FP = Fresh_Perspective
+
 
 class Bellathorna(Amulet):
     att = 25
@@ -59,17 +74,29 @@ BT = Bellathorna
 #    a = [('sts',0.05),
 #         ('s',0.20)]
 
+
 class First_Rate_Hospitality(Amulet):
     att = 55
     a = [('a',0.08,'hp70'),
          ('bc',0.10)]
 FRH = First_Rate_Hospitality
 
+
+class The_Bustling_Hut(Amulet):
+    att = 50
+    a = [('bc',0.08)]
+    def on(this, c):
+        if c.ele == 'light':
+            a = [('bc',0.08),
+                 ('sp',0.07)]
+
+
 class Jewels_of_the_Sun(Amulet):
     att = 64
     a = [('sp',0.08),
          ('a',0.10,'hp70')]
 JotS = Jewels_of_the_Sun
+
 
 class Heralds_of_Hinomoto(Amulet):
     att = 64
@@ -79,18 +106,18 @@ HoH = Heralds_of_Hinomoto
 HH = Heralds_of_Hinomoto
 
 
-
-
 class One_with_the_Shadows(Amulet):
     att = 51
     a = [('cc',0.06),
          ('bk',0.20)]
+
 
 class Flower_in_the_Fray(Amulet):
     att = 52
     a = [('cd',0.15),
          ('s',0.20)]
 FitF = Flower_in_the_Fray
+
 
 class The_Prince_of_Dragonyule(Amulet):
     att = 63
@@ -108,10 +135,15 @@ class Evening_of_Luxury(Amulet):
 EoL = Evening_of_Luxury
 
 
+class Seaside_Princess(Amulet):
+    att = 65
+    a = [('a',0.15,'hp100'),
+         ('cd',0.22,'hp100')]
+
+
 class The_Chocolatiers(Amulet):
     att = 62
     a = [('prep',100)]
-
 Choco = The_Chocolatiers
 
 
@@ -126,20 +158,23 @@ class Lord_of_the_Skies(Amulet):
     a = [('od',0.10)]
 
 
-class Witchs_Kitchen(Amulet):  #??
+class Witchs_Kitchen(Amulet):
     att = 57
     a = [('s',0.40,'hp100'),
          ('resist',50,'blind')]
+
 
 class Silke_Lends_a_Hand(Amulet):
     att = 42
     a = [('s',0.20),
          ('resist',50,'blind')]
 
+
 class Saintly_Delivery(Amulet):
     att = 42
     a = [('s',0.20),
          ('resist',50,'stun')]
+
 
 class Luck_of_the_Draw(Amulet):
     att = 33
@@ -149,15 +184,18 @@ class Luck_of_the_Draw(Amulet):
             this.a = [('resist',25,'paralysis')]
             this.a += [('bt',0.25)]
 
-class Lunar_Festivities(Amulet): #??
+
+class Lunar_Festivities(Amulet): 
     att = 51
     a = [('fs',0.40),
          ('sp',0.10,'fs')]
+
 
 class The_Warrioresses(Amulet):
     att = 52
     a = [('fs',0.40),
          ('cd',0.13)]
+
 
 class Stellar_Show(Amulet):
     att = 65
@@ -165,13 +203,16 @@ class Stellar_Show(Amulet):
          ('cd',0.15)]
 SS = Stellar_Show
 
-class KFM(Amulet):
+
+class Kung_Fu_Masters(Amulet):
     att = 64
     a = [('s',0.20)]
     def on(this, c):
         if c.wt == 'axe':
             this.a = [('s',0.20)]
             this.a += [('cc',0.14)]
+KFM = Kung_Fu_Masters
+
 
 class Forest_Bonds(Amulet):
     att = 64
@@ -190,6 +231,7 @@ class Dragon_and_Tamer(Amulet):
             this.a = [('s',0.40)]
 DnT = Dragon_and_Tamer
 
+
 class Summer_Paladyns(Amulet):  
     att = 64
     def on(this, c):
@@ -207,7 +249,7 @@ class Summer_Paladyns(Amulet):
         adv.Listener('defchain',this.dc_energy)
 
 
-class The_Shining_Overlord(Amulet):  #??
+class The_Shining_Overlord(Amulet):
     att = 65
     a = [('dc',3)]
     def on(this, c):
@@ -231,6 +273,7 @@ class Halidom_Grooms(Amulet):
         this.adv = adv
         adv.Listener('defchain',this.dc_energy)
 HG = Halidom_Grooms
+
 
 class Beach_Battle(Amulet):
     att = 50
@@ -264,11 +307,14 @@ class Hanetsuki_Rally(Amulet):
     a = [('cc',0.05),('lo',0.4)]
 HR = Hanetsuki_Rally
 
+
 class Indelible_Summer(Amulet):
     att = 52
     def on(this, c):
         if c.ele == 'water':
             this.a = [('sp',0.09)]
+IS = Indelible_Summer
+
 
 class Sisters_Day_Out(Amulet):
     att = 64
@@ -286,6 +332,7 @@ class Sisters_Day_Out(Amulet):
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
 SDO = Sisters_Day_Out
+
 
 class Elegant_Escort(Amulet):
     att = 54
