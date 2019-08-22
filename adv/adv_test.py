@@ -342,7 +342,7 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
         katana = 1.0
 
     if 0 < dmin < dmax:
-        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
+        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*katana, dmax*katana)
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
