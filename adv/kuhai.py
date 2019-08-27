@@ -8,7 +8,7 @@ def module():
 
 
 class Kuhai(Adv):
-    comment = 'c2+fs during s2 & stellar show + RR'
+    comment = 'c2+fs during s2'
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
 
@@ -25,7 +25,18 @@ class Kuhai(Adv):
     
     def c_prerun(this):
         this.o_prerun()
-        this.fsaconf['fs.dmg'] = 0.83*3
+        this.fshit = 3
+        this.fsaconf['fs.dmg'] = 0
+
+    def fs_proc(this, e):
+        if e.name != 'fs_alt' :
+            return
+        this.dmg_make('o_fs_alt_hit1',0.83)
+        if this.fshit >= 2:
+            this.dmg_make('o_fs_alt_hit2',0.83)
+        if this.fshit >= 3:
+            this.dmg_make('o_fs_alt_hit3',0.83)
+
 
     def missc1(this):
         pass
@@ -48,7 +59,7 @@ class Kuhai(Adv):
         this.fsaconf = Conf()
         this.fsaconf.fs = Conf(this.conf.fs)
         this.fsaconf({
-                'fs.dmg':0.83*2,
+                'fs.dmg':0,
                 'fs.sp' :330,
                 "fs.startup":33/60.0,
                 "fs.recovery":33/60.0,
@@ -57,6 +68,7 @@ class Kuhai(Adv):
                 "x3fs.startup":18/60.0,
                 "x3fs.recovery":33/60.0,
                 })
+        this.fshit = 2
         this.s2fsbuff = Selfbuff('s2ss',1,10,'ss','ss')
         this.alttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
