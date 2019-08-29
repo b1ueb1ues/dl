@@ -10,6 +10,7 @@ class V_Orion(adv.Adv):
     conf = {}
 
     def prerun(this):
+        this.afflics.burn.maxdepth = 15
         if this.condition('0 resist'):
             this.afflics.burn.resist=0
         else:

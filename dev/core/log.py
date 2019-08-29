@@ -1,33 +1,28 @@
-from core.timeline import *
-import sys
-
-loglevel = None
-if len(sys.argv) >= 2:
-    loglevel = int(sys.argv[1])
-
-#g_log = []
-g_log_active = []
-#g_logs = {"default":g_log_active}
 
 
-def loginit(log=None):
-    global g_log_active
-    if log == None :
-        g_log_active = []
-        return g_log_active
-    else:
-        g_log_active = log
-        return 1
+_g_log = []
+
+
+class Log(object):
+    @classmethod
+    def init(cls, l=None):
+        global _g_log
+        if l:
+            _g_log = l
+        else:
+            return _g_log
+
 
 def log(t, name, amount=None, misc=""):
-    g_log_active.append([now(), t, name, amount, misc])
+    _g_log.append([now(), t, name, amount, misc])
     #e = Event('log_'+name)
     #e.log = [now(), t, name, amount, misc]
     #e.trigger()
 
+
 def logcat(filter=None, log=None):
     if log == None:
-        log = g_log_active
+        log = _g_log
         
     if filter == None :
         for i in log:
@@ -51,11 +46,5 @@ def logcat(filter=None, log=None):
                         print("%-8.3f: %-8s\t, %-16s\t, %-8s\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
 
 
-
 def logget():
-    return g_log_active
-
-def logreset():
-    global g_log_active
-    g_log_active = []
-
+    return _g_log

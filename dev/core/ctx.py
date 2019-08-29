@@ -4,16 +4,19 @@ if __package__ is None or __package__ == '':
 
 from core.timer import *
 from core.event import *
-from core.conf import *
+from core.conf  import *
+from core.log   import *
 
 
 class Ctx(object):
     def __init__(this):
         this.el = Event.init()
         this.tl = Timer.init()
+        this.log = Log.init()
 
     def on(this):
         Event.init(this.el)
         Timer.init(this.tl)
+        Log.init(this.log)
 
 Ctx()

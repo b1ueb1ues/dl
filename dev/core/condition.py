@@ -1,19 +1,28 @@
 
+
+_g_cond = 0
+
+
 class Condition(object):
 
     @classmethod
-    def init(cls):
-        cls.if_condition = 0
-        cls.conditions = {}
-        cls.switch = -1
+    def init(cls, c=None):
+        global _g_cond
+        if c:
+            _g_cond = c
+        else:
+            _g_cond = cls()
+            return _g_cond
+
 
     def __init__(this):
         this.if_condition = 0
         this.conditions = {}
         this.switch = -1
 
-    def __str__():
-        a = get()
+
+    def __str__(this):
+        a = this.conditions
         ret = ''
         for i in a:
             if ret != '':
@@ -21,7 +30,16 @@ class Condition(object):
             ret += i
         return ret
 
-    def condition_do(this):
+
+    def set(this, c=1):
+        this.if_condition = c
+
+
+    def unset():
+        this.if_condition = 0
+
+
+    def __call__(this):
         this.conditions[cond] = 1
         if this.switch == -1:
             this.switch = this.if_condition
@@ -32,6 +50,10 @@ class Condition(object):
         return this.if_condition
 
 
+a = Condition.init()
+print(a.conditions)
+
+exit()
 
 Ctx.register(globals(),{
     '_if_condition':0,
@@ -85,9 +107,6 @@ def condition_do(cond):
 
     return _if_condition
 
-
-do = condition_do
-on = condition_do
 
 def __test():
     Ctx().on()

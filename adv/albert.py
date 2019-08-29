@@ -18,6 +18,7 @@ class Albert(Adv):
 
 
     def prerun(this):
+        this.afflics.paralysis.maxdepth=15
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
         else:
