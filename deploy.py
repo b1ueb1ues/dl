@@ -89,10 +89,21 @@ def main(argv):
     #    one_character(name)
     #    return
 
+    if name == 'quick':
+        chara_quick()
+        sp_quick()
+        if '-s' not in opt:
+            combine()
+
+    if name == 'slow':
+        chara_slow()
+        sp_slow()
+        if '-s' not in opt:
+            combine()
+
     if not name : 
         chara_quick()
         sp_quick()
-        #exit()
         chara_slow()
         sp_slow()
         if '-s' not in opt:
@@ -169,7 +180,7 @@ def sp_combine(fname):
     fcs = open(fname,'r')
     for c in fcs:
         c = c.strip()
-        print c
+        print(c)
         if c == '':
             continue
         fc = open('www/dl-sim/chara/'+c+'.csv','r')

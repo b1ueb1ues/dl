@@ -37,6 +37,12 @@ class S_Cleo(Adv):
         #        `s2
         #        `s1
         #        """
+    def prerun(this):
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
+
 
     def s1_lantency(this, t):
         this.dmg_make('s1_missile',1.06)
