@@ -67,39 +67,42 @@ def main(argv):
             continue
 
         name = argv[1]
-        if name[:4] == 'adv/':
-            name = name[4:]
-        argv.pop(1)
-        if '-sp' in opt:
-            sp_character(name)
+        if name == 'quick':
+            opt += ['quick']
+        elif name == 'slow':
+            opt += ['slow']
         else:
-            one_character(name)
-        continue
-
+            if name[:4] == 'adv/':
+                name = name[4:]
+        argv.pop(1)
+        break
 
     if '-c' in opt and '-s' in opt:
         print('can not -c -s both')
         errrrrr()
-
-    if '-c' in opt:
-        combine()
-        return
-
-    #if '-s' in opt and name:
-    #    one_character(name)
-    #    return
-
+    
     if name == 'quick':
         chara_quick()
         sp_quick()
         if '-s' not in opt:
             combine()
+        return
 
     if name == 'slow':
         chara_slow()
         sp_slow()
         if '-s' not in opt:
             combine()
+        return
+
+    if '-sp' in opt :
+        sp_character(name)
+    else:
+        one_character(name)
+
+    if '-c' in opt:
+        combine()
+
 
     if not name : 
         chara_quick()
