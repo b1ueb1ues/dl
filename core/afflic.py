@@ -84,7 +84,7 @@ class Afflic(object):
                 this.lnode = Afflic.Node(this.chance, 1, 0)
                 this.rnode = 0 #Afflic.Node(0, 1, 0)
                 return
-            if rate < this.resist_after:
+            if rate <= this.resist_after:
                 this.lnode = Afflic.Node(this.chance, this.resist_after, 0)
                 this.rnode = 0 #Afflic.Node(0, this.resist_after, 0)
                 return
@@ -196,8 +196,8 @@ class Afflic(object):
         if count > this.maxdeep:
             return 0
         else:
-            #t.p = this.p_recursive(1, count, this.resist)
-            t.p = this.p_tree(count)
+            t.p = this.p_recursive(1, count, this.resist)
+            #t.p = this.p_tree(count)
             this.stack[t] = t.p
             t.on(this.duration)
             return t.p

@@ -10,7 +10,7 @@ def module():
 class V_Ezelith(Adv):
     a3 = ('bk',0.2)
     conf = {}
-    #conf['slot.a'] = RR()+EE()
+    conf['slot.a'] = RR()+EE()
 
     def c_prerun(this):
         this.o_prerun()
