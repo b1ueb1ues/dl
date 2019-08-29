@@ -107,7 +107,7 @@ class Afflic(object):
         #this.history = 0
         this.history = []
         #this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
-        this.maxdeep = 15
+        this.maxdepth = 25
         this.duration = 12
         this.stack = {}
         this.stack_x_chance = 0.0
@@ -193,7 +193,7 @@ class Afflic(object):
         count = len(this.history)
         #in order not too deep
         #if count > (1-this.resist)/this.tolerance*5:
-        if count > this.maxdeep:
+        if count > this.maxdepth:
             return 0
         else:
             #t.p = this.p_recursive(1, count, this.resist)
