@@ -12,7 +12,6 @@ class Musashi(adv.Adv):
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.poison.resist=0
-            #this.afflics.poison.tolerance = 5
         else:
             this.afflics.poison.resist=100
 

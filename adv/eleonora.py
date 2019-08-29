@@ -1,11 +1,14 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Eleonora
 
 class Eleonora(adv.Adv):
     a3 = ('prep','50%')
+    conf = {}
+    conf['slot.d'] = Pazuzu()
 
     def prerun(this):
         if this.condition('0 resist'):

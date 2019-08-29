@@ -32,6 +32,6 @@ if __name__ == '__main__':
         `fs, seq=5
         """
     from slot.d import *
-    #conf['slot.d'] = Pazuzu()
+    conf['slot.d'] = Pazuzu()
     adv_test.test(module(), conf, verbose=0)
 

@@ -321,17 +321,17 @@ class Afflics(object):
 
         this.poison.resist    = 0
         this.burn.resist      = 0
-        this.paralysis.resist = 0
-        this.blind.resist     = 60
-        this.bog.resist       = 60
-        this.freeze.resist    = 60
-        this.stun.resist      = 60
-        this.sleep.resist     = 60
+        this.paralysis.resist = 80
+        this.blind.resist     = 80
+        this.bog.resist       = 80
+        this.freeze.resist    = 80
+        this.stun.resist      = 80
+        this.sleep.resist     = 80
 
-        this.poison.tolerance    = 20
-        this.burn.tolerance      = 20
-        this.paralysis.tolerance = 20
-        this.blind.tolerance     = 20
+        this.poison.tolerance    = 5
+        this.burn.tolerance      = 5
+        this.paralysis.tolerance = 5
+        this.blind.tolerance     = 10
         this.bog.tolerance       = 20
         this.freeze.tolerance    = 20
         this.stun.tolerance      = 20

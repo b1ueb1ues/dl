@@ -19,7 +19,6 @@ class Fleur(Adv):
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
-            #this.afflics.paralysis.tolerance=5
         else:
             this.afflics.paralysis.resist=100
 
