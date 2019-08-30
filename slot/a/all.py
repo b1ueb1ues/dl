@@ -139,6 +139,7 @@ class Seaside_Princess(Amulet):
     att = 65
     a = [('a',0.15,'hp100'),
          ('cd',0.22,'hp100')]
+SSP = Seaside_Princess
 
 
 class The_Chocolatiers(Amulet):

@@ -27,7 +27,7 @@ if __name__ == '__main__':
     module().comment = 'no fs'
     conf = {}
     from slot.d import *
-    conf['slot.d'] = Pazuzu()
+#    conf['slot.d'] = Pazuzu()
     conf['acl'] = """
         `s1, seq=5
         `s2, seq=5
