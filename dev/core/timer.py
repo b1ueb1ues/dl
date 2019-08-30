@@ -1,6 +1,7 @@
 
 
 _g_now = 0
+_g_timeline = 0
 
 
 def now():
@@ -15,7 +16,6 @@ def set_time(time):
 class Timeline(object):
     def __init__(this):
         this._tlist = []
-        this._now = 0
         this._stop = 0
 
 
@@ -62,7 +62,6 @@ class Timeline(object):
 
     def run(this, last = 100):
         global _g_now
-        _g_now = this._now
         last += _g_now
         while 1:
             if _g_now > last:
@@ -86,15 +85,17 @@ class Timeline(object):
 
 
 class Timer(object):
-    __static = {}
-
     @classmethod
     def init(cls, tl=None):
-        if tl:
-            cls.__static['timeline'] = tl
-        else:
-            cls.__static['timeline'] = Timeline()
-        return cls.__static['timeline']
+        global _g_now
+        global _g_timeline
+        if not tl:
+            tl = {}
+            tl['timeline'] = Timeline()
+            tl['now'] = 0
+        _g_timeline = tl['timeline']
+        _g_now = tl['now']
+        return tl
             
     def __init__(this, proc=None):
         if proc:
@@ -102,7 +103,7 @@ class Timer(object):
         else:
             this.process = this._process
 
-        this.timeline = this.__static['timeline']
+        this.timeline = _g_timeline
 
         this.timeout = 0
         this.timing = 0
@@ -150,18 +151,24 @@ class Timer(object):
                 this.timeline.rm(this)
 
 
+    @classmethod
+    def run(cls, duration=100):
+        _g_timeline.run(duration)
+
+
     def __str__(this):
-        return '%f: Timer:%s'%(this.timing,this.process)
+        return '%f: Timer:%s'%(this.timing, this.process)
 
 
     def __repr__(this):
-        return '%f: Timer:%s'%(this.timing,this.process)
+        return '%f: Timer:%s'%(this.timing, this.process)
 
 
     def _process(this):
         # sample plain _process
         print('-- plain timer ','@', t.timing)
         return 1
+
 #} class Timer
 
 
@@ -171,5 +178,5 @@ if __name__ == '__main__':
         print(t)
         t()
     t = Timer(test)(3)
-    tl.run()
+    Timer.run(120)
 

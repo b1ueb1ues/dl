@@ -1,4 +1,4 @@
-
+from timer import *
 
 _g_log = []
 
@@ -7,22 +7,19 @@ class Log(object):
     @classmethod
     def init(cls, l=None):
         global _g_log
-        if l:
-            _g_log = l
-        else:
-            return _g_log
+        if not l:
+            l = {}
+            l['log'] = []
+        _g_log = l['log']
+        return l
 
 
 def log(t, name, amount=None, misc=""):
     _g_log.append([now(), t, name, amount, misc])
-    #e = Event('log_'+name)
-    #e.log = [now(), t, name, amount, misc]
-    #e.trigger()
 
 
-def logcat(filter=None, log=None):
-    if log == None:
-        log = _g_log
+def logcat(filter=None):
+    log = _g_log
         
     if filter == None :
         for i in log:

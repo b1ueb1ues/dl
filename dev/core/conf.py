@@ -1,3 +1,5 @@
+
+
 class lobject(object):
     def __init__(this, conf={}):
         for i in conf:
@@ -53,16 +55,6 @@ class lobject(object):
     def __delitem__(this, i):
         v = this.__getattribute__(i)
         del(v)
-
-   # def __repr__(this):
-   #     ret = ''
-   #     line = ''
-   #     for i in this.__dict__:
-   #         line = '%s='%i
-   #         line += this.__dict__[i]
-   #         line += '\n'
-   #         ret += line
-   #     return ret
 
 #} //class lobject
 
@@ -326,7 +318,8 @@ class Conf(lobject):
         return fn(this, (i, v))
 
 
-# all method in conf will be sync funtion, so use [function] to set a config to function
+    # all method in conf will be sync funtion, 
+    # so use [function] to contain a function in config
     def __dosync(this, i, v):
         func = []
         for j,k in this.__dict__.items():

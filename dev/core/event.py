@@ -71,16 +71,15 @@ class Listener(object):
 
 
 class Event(object):
-    __static = {}
 
     @classmethod
     def init(cls, el=None):
         global _g_event_listeners
-        if el:
-            _g_event_listeners = el
-        else:
-            _g_event_listeners = {}
-            return _g_event_listeners
+        if not el:
+            el = {}
+            el['event_listeners'] = {}
+        _g_event_listeners = el['event_listeners']
+        return el
 
 
     def __init__(this, name=None):
