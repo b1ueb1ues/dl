@@ -24,3 +24,10 @@ class Pazuzu(DragonBase):
     def getbane(this):
         return this.adv.afflics.poison.get()*0.2
 
+class Vayu(DragonBase):
+    ele = 'wind'
+    att = 127
+    aura = [('att','passive',0.2),
+            ('s','passive',0.9)]
+
+

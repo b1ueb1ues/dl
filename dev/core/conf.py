@@ -22,7 +22,7 @@ class lobject(object):
     def __getattr__(this, k):
         if k[:2] != '__':
             i = this.__new__(this.__class__)
-            this.__setattr__(k, i)
+            object.__setattr__(this, k, i)
             return i
         else:
             return object.__getattr__(this,k)
@@ -39,12 +39,12 @@ class lobject(object):
                 if type(this[p]) == this.__class__:
                     this[p](tmp)
                 else:
-                    this.__setattr__(p,tmp)
+                    object.__setattr__(this, p, tmp)
             else:
-                this.__setattr__(p,tmp)
+                object.__setattr__(this, p, tmp)
             return 
         elif l < 0 and i != '':
-            this.__setattr__(i,v)
+            object.__setattr__(this, i, v)
             return
         print('can\' set item')
         errrrrrrrrrrr()
@@ -87,7 +87,7 @@ class Conf(lobject):
             if type(v) == this.__class__:
                 ret[k] = v.__todict()
             elif type(v) == dict:
-                ret[k] = ('__realdict',v)
+                ret[k] = ('___realdict',v)
             elif type(v).__name__ == 'method':
                 continue
             elif type(v).__name__ == 'instancemethod':
@@ -97,7 +97,6 @@ class Conf(lobject):
             else:
                 ret[k] = v
         return ret
-
 
 
     def __todict_withname(this):
@@ -106,7 +105,7 @@ class Conf(lobject):
             if type(v) == this.__class__:
                 ret[k] = v.__todict_withname()
             elif type(v) == dict:
-                ret[k] = ('__realdict',v)
+                ret[k] = ('___realdict',v)
             elif type(v).__name__ == 'method':
                 continue
             elif type(v).__name__ == 'instancemethod':
@@ -117,23 +116,25 @@ class Conf(lobject):
                 ret[k] = v
         return ret
 
+
     def __todict_all(this):
         ret = {}
         for k,v in this.__dict__.items():
             if type(v) == this.__class__:
                 ret[k] = v.__todict_all()
             elif type(v) == dict:
-                ret[k] = ('__realdict',v)
+                ret[k] = ('___realdict',v)
             else:
                 ret[k] = v
         return ret
+
 
     def __fromdict(this,dic):
         if type(dic) != dict:
             print('err fromdict')
             errrrrrrrrr()
         for k,v in dic.items():
-            if type(v) == tuple and v[0] == '__realdict':
+            if type(v) == tuple and v[0] == '___realdict':
                 this[k] = v[1]
             elif type(v) == dict:
                 tmp = this.__new__(this.__class__)
@@ -142,8 +143,10 @@ class Conf(lobject):
             else:
                 this[k] = v
 
+
     def __str__(this):
         return this.__tostr()
+
 
     def __tostr(this):
         ret = ''
@@ -188,6 +191,7 @@ class Conf(lobject):
                     ret += '%s.%s.%s=%s\n'%(this.__parentname, this.__name, k, repr(i))
         return ret+ret2
 
+
     @staticmethod
     def showsync(this):
         ret = ''
@@ -229,6 +233,7 @@ class Conf(lobject):
                     ret += '%s.%s.%s=%s\n'%(this.__parentname, this.__name, k, repr(i))
         return ret+ret2
 
+
     @staticmethod
     def show(this, name):
         this.__name = name
@@ -253,6 +258,7 @@ class Conf(lobject):
             print('Conf can only update from Conf/dict')
             errrrrrrrrrrrrrrrrrrrr()
 
+
     def __add__(this, a):
         if type(a) != Conf:
             print('Conf can only add Conf')
@@ -269,62 +275,69 @@ class Conf(lobject):
                 merge[k] = i
         return merge
 
+
     def __setitem__(this,i,v):
         super(Conf, this).__setitem__(i,v)
         if i[:7] != '_Conf__':
             if this.__sync:
-                this.__dosync()
+                print('do')
+                this.__dosync(i, v)
             else:
                 if type(v).__name__ == 'instancemethod':
                     object.__setattr__(this, '_Conf__sync', 1)
-                    v(this)
+                    this.__one_sync(v, 0, v)
                 elif type(v).__name__ == 'function':
                     object.__setattr__(this, '_Conf__sync', 1)
-                    v(this)
+                    this.__one_sync(v, 0, v)
                 elif type(v).__name__ == 'method':
                     object.__setattr__(this, '_Conf__sync', 1)
-                    v(this)
+                    this.__one_sync(v, 0, v)
 
 
     def __setattr__(this,i,v):
         super(Conf, this).__setattr__(i,v)
         if i[:7] != '_Conf__':
             if this.__sync:
-                this.__dosync()
+                this.__dosync(i, v)
             else:
-                #if i == 'sync_skill':
-                #    print(type(v).__name__)
                 if type(v).__name__ == 'instancemethod':
                     object.__setattr__(this, '_Conf__sync', 1)
-                    v(this)
+                    this.__one_sync(v, 0, v)
                 elif type(v).__name__ == 'function':
                     object.__setattr__(this, '_Conf__sync', 1)
-                    v(this)
+                    this.__one_sync(v, 0, v)
                 elif type(v).__name__ == 'method':
                     object.__setattr__(this, '_Conf__sync', 1)
-                    v(this)
+                    this.__one_sync(v, 0, v)
 
-    def __call__(this, a):
+    def __call__(this, a=None):
         if type(a) == this.__class__:
             Conf.update(this, a)
         elif type(a) == dict:
             Conf.update(this, a)
+        elif a==None:
+            this.__dosync(0, 0)
+        else:
+            print('update conf with none dict/conf')
+            errrrrrrrrrrrrrrrrrrr()
+
+
+    def __one_sync(this, fn, i, v):
+        return fn(this, (i, v))
 
 
 # all method in conf will be sync funtion, so use [function] to set a config to function
-    def __dosync(this):
+    def __dosync(this, i, v):
         func = []
-        for k,i in this.__dict__.items():
-            if type(i).__name__ == 'instancemethod':
-                func.append(i)
-            elif type(i).__name__ == 'function':
-                func.append(i)
-            elif type(i).__name__ == 'method':
-                func.append(i)
-        for i in func:
-            i(this)
-
-
+        for j,k in this.__dict__.items():
+            if type(k).__name__ == 'instancemethod':
+                func.append(k)
+            elif type(k).__name__ == 'function':
+                func.append(k)
+            elif type(k).__name__ == 'method':
+                func.append(k)
+        for f in func:
+            this.__one_sync(f, i, v)
 
 
 if __name__ == '__main__':

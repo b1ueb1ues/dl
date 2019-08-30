@@ -13,6 +13,7 @@ class Melody(adv.Adv):
         conf['slots.a'] = slot.a.HG()+slot.a.RR()
     else:
         conf['slots.a'] = slot.a.HG()+slot.a.LC()
+    conf['slots.d'] = slot.d.Zephyr()
 
 
 if __name__ == '__main__':

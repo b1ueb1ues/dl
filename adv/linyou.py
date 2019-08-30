@@ -10,8 +10,8 @@ class Linyou(Adv):
     a1 = ('cc',0.10,'hp70')
     a3 = ('sp',0.08)
 
-    def init(this):
-        this.conf['slots.d'] = slot.d.wind.Longlong()
+#    def init(this):
+#        this.conf['slots.d'] = slot.d.wind.Longlong()
 
     def prerun(this):
         this.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')

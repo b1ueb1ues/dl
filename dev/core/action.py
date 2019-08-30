@@ -38,21 +38,23 @@ class Action(object):
                 this.index = 0
 
 
-        def sync_config(c):
+        def sync_config(c, i):
             this.__startup = c.startup
             this.__recovery = c.recovery
             this.__active = c.active
+            print('sync', i)
             if 'action' in c:
                 this.act = c.action
 
-        if not conf :
+        if conf :
             this.conf = conf
-            this.conf.sync_action = this.sync_config
+            this.conf.sync_action = sync_config
         else:
             this.conf = Conf()
-            this.conf.sync_action = this.sync_config
             this.conf.startup = 0.1
+            this.conf.active = 0
             this.conf.recovery = 1.9
+            this.conf.sync_action = sync_config
 
         this.cancel_by = []
         this.interrupt_by = []
@@ -165,4 +167,6 @@ class Action(object):
 
 
 if __name__ == '__main__' :
-    Action()
+    a = Action()
+    #print(a.conf)
+

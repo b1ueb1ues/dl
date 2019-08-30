@@ -33,5 +33,6 @@ if __name__ == '__main__':
         """
     from slot.d import *
     conf['slot.d'] = Pazuzu()
+    #conf['slot.a'] = HoH()+SDO()
     adv_test.test(module(), conf, verbose=0)
 

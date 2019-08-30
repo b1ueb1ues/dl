@@ -15,7 +15,7 @@ def set(slots):
     elif ele == 'water':
         slots.d = slot.d.water.Siren()
     elif ele == 'wind':
-        slots.d = slot.d.wind.Zephyr()
+        slots.d = slot.d.wind.Vayu()
     elif ele == 'light':
         slots.d = slot.d.light.Cupid()
     elif ele == 'shadow':
