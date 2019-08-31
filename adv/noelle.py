@@ -2,6 +2,7 @@ import adv_test
 from adv import *
 from slot.d import *
 from slot.a import *
+from module import energy
 
 
 def module():
@@ -16,6 +17,7 @@ class Noelle(Adv):
 
 
     def init(this):
+        energy.Energy(this,{},{})
         this.a1_iscding = 0
         if this.condition('buff all team'):
             this.s1_proc = this.c_s1_proc
