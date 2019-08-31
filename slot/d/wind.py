@@ -26,8 +26,14 @@ class Pazuzu(DragonBase):
 
 class Vayu(DragonBase):
     ele = 'wind'
-    att = 127
+    att = 126
     aura = [('att','passive',0.2),
             ('s','passive',0.9)]
+
+
+class Freyja(DragonBase):
+    ele = 'wind'
+    att = 120
+    aura = [('sp','passive',0.35)]
 
 
