@@ -1,6 +1,7 @@
 import adv_test
 from adv import *
 from slot import *
+from slot.a import *
 
 def module():
     return Linyou
@@ -10,7 +11,8 @@ class Linyou(Adv):
     a1 = ('cc',0.10,'hp70')
     a3 = ('sp',0.08)
 
-#    def init(this):
+    def init(this):
+        this.conf['slots.a'] = CE()+KFM()
 #        this.conf['slots.d'] = slot.d.wind.Longlong()
 
     def prerun(this):
