@@ -2,6 +2,7 @@ import adv_test
 from adv import *
 from module.fsalt import *
 import slot
+from slot.d import *
 
 def module():
     return Kuhai
@@ -11,6 +12,8 @@ class Kuhai(Adv):
     comment = 'c2+fs during s2'
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
+    conf = {}
+    conf['slot.d'] = Zephyr()
 
     def init(this):
         if this.condition('huge hitbox eneny'):

@@ -1,7 +1,8 @@
 import adv_test
 from adv import *
 from module.bleed import Bleed
-import slot
+from slot.a import *
+from slot.d import *
 
 def module():
     return Victor
@@ -11,6 +12,9 @@ class Victor(Adv):
     conf = {}
     #conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
 
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = HoH()+JotS()
 
     def prerun(this):
         random.seed()

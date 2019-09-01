@@ -233,6 +233,16 @@ class Dragon_and_Tamer(Amulet):
 DnT = Dragon_and_Tamer
 
 
+class Twinfold_Bonds(Amulet):  
+    att = 65
+    a = ['a',0.15,'hit15']
+    def on(this, c):
+        if c.wt == 'dagger':
+            this.a = [('s',0.40)]
+            this.a += [('a',0.15,'hit15')]
+TB = Twinfold_Bonds
+
+
 class Summer_Paladyns(Amulet):  
     att = 64
     def on(this, c):

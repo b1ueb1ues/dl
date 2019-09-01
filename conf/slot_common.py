@@ -29,7 +29,10 @@ def set(slots):
     if wt == 'blade':
         slots.a = RR()+CE()
     if wt == 'dagger':
-        slots.a = RR()+FG()
+        if ele == 'water':
+            slots.a = TB()+The_Prince_of_Dragonyule()
+        else:
+            slots.a = TB()+LC()
     if wt == 'axe': 
         #slots.a = RR()+KFM()
         slots.a = KFM()+Flower_in_the_Fray()
