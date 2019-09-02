@@ -97,15 +97,19 @@ class Timer(object):
         _g_now = tl['now']
         return tl
             
-    def __init__(this, proc=None):
+    def __init__(this, proc=None, timeout=None):
         if proc:
             this.process = proc
         else:
             this.process = this._process
 
+        if timeout :
+            this.timeout = timeout
+        else:
+            this.timeout = 0
+
         this.timeline = _g_timeline
 
-        this.timeout = 0
         this.timing = 0
         this.__online = 0
 

@@ -14,7 +14,7 @@ class Ctx(object):
         this.tl = Timer.init()
         this.log = Log.init()
 
-    def on(this):
+    def __call__(this):
         Event.init(this.el)
         Timer.init(this.tl)
         Log.init(this.log)
