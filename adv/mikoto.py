@@ -23,26 +23,18 @@ class Mikoto(Adv):
         return
 
 
-    def init(this):
-        if this.condition('connect s1'):
-            this.s1_proc = this.c_s1_proc
-
     def prerun(this):
         this.s1buff = Selfbuff("s1",0.0, 20)
         this.s2buff = Spdbuff("s2",0.2, 10)
         this.conf.s1.recovery = 1.4
 
+
     def s1latency(this, e):
         this.s1buff.off()
         this.s1buff.on()
 
-    def s1_proc(this, e):
-        this.s1buff.off()
-        this.dmg_make('s1',5.32*2)
-        this.s1buff.set(0.10).on()
-        Timer(this.s1latency).on(1.5/this.speed())
 
-    def c_s1_proc(this, e):
+    def s1_proc(this, e):
         buff = this.s1buff.get()
         if buff == 0:
             stance = 0
@@ -62,7 +54,7 @@ class Mikoto(Adv):
             this.conf.s1.recovery = 1.63
             Timer(this.s1latency).on(1.5/this.speed())
         elif stance == 2:
-            this.dmg_make('s1',2.13*4+4.25)
+            this.dmg_make('s1',2.13*3+4.25)
             this.s1buff.off().set(0)
             this.conf.s1.recovery = 3.07
 
