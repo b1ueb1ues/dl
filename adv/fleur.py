@@ -54,12 +54,11 @@ class Fleur(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s3,s1.charged>=s1.sp and seq=4
-        `s1, seq=5
-        `s1, s=2
-        `s2, sx=1
-        `fs, seq=5
-        """
+        `s3, s1.charged>=s1.sp
+        `s1
+        `s2, s1.charged<=679 
+        `fs, seq=4
+    """
     adv_test.test(module(), conf, verbose=0)
 
 

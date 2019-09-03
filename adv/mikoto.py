@@ -21,6 +21,13 @@ class Mikoto(Adv):
             #this.conf['slots.d'] = slot.d.Arctos()
             #this.conf['slots.a'] = RR()+LC()
         return
+    
+    def d_acl(this):
+        this.conf.acl = """
+            `s1, x=5
+            `s2, x=5
+            `s3, x=5
+        """
 
 
     def prerun(this):
