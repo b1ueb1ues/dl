@@ -10,6 +10,7 @@ def module():
     return Noelle
 
 class Noelle(Adv):
+    comment = '10000 team dps'
     a1 = ('bt',0.25)
 
     conf = {}
