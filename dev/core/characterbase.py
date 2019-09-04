@@ -27,5 +27,8 @@ class Hits(object):
 
 
 class characterbase(object):
-    pass
-
+    base_atk = 2000
+    base_def = 10
+    hp = 0
+    od = 0
+    bk = 0
