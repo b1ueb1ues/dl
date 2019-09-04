@@ -54,8 +54,8 @@ class Fleur(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2, s1.charged<=679
-        `s3, s2.charged<=679
+        `s2, s=1
+        `s3, s=2
         `s1 
         `fs, seq=4
     """
