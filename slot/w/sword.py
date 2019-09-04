@@ -24,6 +24,13 @@ class sword5b2(WeaponBase):
         "recovery" : 0.9      ,
         }
 
+class swordv5wind(WeaponBase):
+    ele = ['wind']
+    wt = 'sword'
+    att = 333
+    a = [('k',0.3), ('prep','50%')]
+
+
 flame  = sword5b1
 water  = sword5b1
 light  = sword5b1

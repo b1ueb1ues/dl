@@ -87,6 +87,11 @@ class Damagecalc(object):
         Event('dc_cbd')(l_calc) # damageCalculation::calculationBaseDamage
 
 
+    def __init__(this, src, dst):
+        this.src = src
+        this.dst = dst
+
+
     def calc_basedmg(this, name, src, dst):
         atk = 1.0 * src.mod('atk') * src.base_atk
         _def = dst.mod('def') * dst.base_def

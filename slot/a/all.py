@@ -235,7 +235,7 @@ DnT = Dragon_and_Tamer
 
 class Twinfold_Bonds(Amulet):  
     att = 65
-    a = ['a',0.15,'hit15']
+    a = [('a',0.15,'hit15')]
     def on(this, c):
         if c.wt == 'dagger':
             this.a = [('s',0.40)]
