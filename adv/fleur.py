@@ -5,7 +5,7 @@ def module():
     return Fleur
 
 class Fleur(Adv):
-    comment = 'don\'t use s2 in s3 nor s3 in s2'
+    comment = 'c4fs; S1, then S1 S2 S3 S1'
     conf = {}
     a1 = ('sp',0.08,'hp70')
     a3 = ('k_paralysis',0.2)
@@ -54,9 +54,9 @@ class Fleur(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s3, s1.charged>=s1.sp
-        `s1
-        `s2, s1.charged<=679
+        `s2, s=1
+        `s3, s=2
+        `s1 
         `fs, seq=4
     """
     adv_test.test(module(), conf, verbose=0)
