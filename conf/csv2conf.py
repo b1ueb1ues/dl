@@ -62,7 +62,7 @@ def get(mname):
     conf.s2.dmg = float(csvconf['s2_dmgpc'])/100.0
     conf.s2.sp = int(csvconf['s2_sp'])
     if 's2_buff' in csvconf:
-        conf.s1.buff = csvconf['s2_buff']
+        conf.s2.buff = csvconf['s2_buff']
 
     conf.c.att = int(csvconf['str_adv'])
     conf.c.ele = csvconf['element']
