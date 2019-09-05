@@ -8,7 +8,7 @@ from core.log import *
 import time
 import sys
 import conf as globalconf
-import random
+#import random
 from core import condition as m_condition
 from core.acl import *
 
@@ -176,6 +176,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     if mass and loglevel <=0 :
         if mass != 1:
             sim_times = mass
+        import random
         r = do_mass_sim(classname,conf,no_cond)
     else:
         r = sum_dmg()
@@ -298,12 +299,12 @@ def report__2(condition, exdps, r, name, adv, amulets):
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
             displayed_str, amulets+g_condicomment ,condi,comment,
             )
-    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
-    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
-    line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
-    line = line.replace(',staff,',',奶,')
-    line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
-    line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
+#    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
+#    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
+#    line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
+#    line = line.replace(',staff,',',奶,')
+#    line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
+#    line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
     line = '%d,'%(int(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
     line += ',attack:%d'%(int(r['dmg_sum']['x']/real_duration))
     line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/real_duration))
@@ -346,18 +347,18 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
         katana = 1.0
 
     if 0 < dmin < dmax:
-        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*1.1, dmax*1.1)
+        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*katana, dmax*katana)
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
             displayed_str, amulets+g_condicomment ,condi,comment,
             )
-    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
-    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
-    line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
-    line = line.replace(',staff,',',奶,')
-    line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
-    line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
+    #line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
+    #line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
+    #line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
+    #line = line.replace(',staff,',',奶,')
+    #line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
+    #line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
     line = '%d,'%(int(katana*(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency))) + line
     line += ',attack:%d'%(int(katana*r['dmg_sum']['x']/real_duration))
     line += ',force_strike:%d'%(int(katana*r['dmg_sum']['fs']/real_duration))

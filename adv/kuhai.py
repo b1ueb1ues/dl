@@ -5,6 +5,7 @@ else:
 from adv import *
 from module.fsalt import *
 import slot
+from slot.d import *
 
 def module():
     return Kuhai
@@ -15,6 +16,7 @@ class Kuhai(Adv):
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
     conf = {}
+<<<<<<< HEAD
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
     # c2+fs_alt fs can init quicker than c1+fs_alt 
     conf['acl'] = """
@@ -24,6 +26,9 @@ class Kuhai(Adv):
         `fs, seq=3
         """
     conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
+=======
+    conf['slot.d'] = Zephyr()
+>>>>>>> 6b78f8fa15998993caa80b6c544dd8cbfe1a11b9
 
     def init(this):
         if this.condition('huge hitbox eneny'):
@@ -38,7 +43,18 @@ class Kuhai(Adv):
     
     def c_prerun(this):
         this.o_prerun()
-        this.fsaconf['fs.dmg'] = 0.83*3
+        this.fshit = 3
+        this.fsaconf['fs.dmg'] = 0
+
+    def fs_proc(this, e):
+        if e.name != 'fs_alt' :
+            return
+        this.dmg_make('o_fs_alt_hit1',0.83)
+        if this.fshit >= 2:
+            this.dmg_make('o_fs_alt_hit2',0.83)
+        if this.fshit >= 3:
+            this.dmg_make('o_fs_alt_hit3',0.83)
+
 
     def missc1(this):
         pass
@@ -61,7 +77,7 @@ class Kuhai(Adv):
         this.fsaconf = Conf()
         this.fsaconf.fs = Conf(this.conf.fs)
         this.fsaconf({
-                'fs.dmg':0.83*2,
+                'fs.dmg':0,
                 'fs.sp' :330,
                 "fs.startup":33/60.0,
                 "fs.recovery":33/60.0,
@@ -70,6 +86,7 @@ class Kuhai(Adv):
                 "x3fs.startup":18/60.0,
                 "x3fs.recovery":33/60.0,
                 })
+        this.fshit = 2
         this.s2fsbuff = Selfbuff('s2ss',1,10,'ss','ss')
         this.alttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)

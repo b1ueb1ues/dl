@@ -20,13 +20,14 @@ class Hawk(Adv):
             this.fullhp = 1
         else:
             this.fullhp = 0
+
+
+    def prerun(this):
         if this.condition('80 resist'):
             this.afflics.stun.resist=80
         else:
             this.afflics.stun.resist=100
 
-
-    def prerun(this):
         this.m = Modifier('skiller','att','killer',0.3)
         this.m.get = this.getbane
 

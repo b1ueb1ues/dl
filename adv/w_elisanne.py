@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return W_Elisanne

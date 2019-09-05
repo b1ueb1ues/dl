@@ -16,9 +16,8 @@ class Ability(object):
             this.mod = [('fs','passive',value, cond)]
         elif name == 'bt':
             this.mod = [('buff','time',value, cond)]
-    #    elif name[:2]== 'k_':
-    #        this.kvalue = value
-    #        this.ktype = name[2:]
+        elif name == 'k':
+            this.mod = [('att','killer',value, cond)]
 
 
         elif name == 'sp':

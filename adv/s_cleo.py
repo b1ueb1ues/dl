@@ -40,8 +40,14 @@ class S_Cleo(Adv):
         #        `s2
         #        `s1
         #        """
+    def prerun(this):
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
 
-    def s1_proc(this, e):
+
+    def s1_lantency(this, t):
         this.dmg_make('s1_missile',1.06)
         p = this.afflics.paralysis('s1',120,0.97)
         buffcount = this.bc.buffcount()
@@ -56,6 +62,9 @@ class S_Cleo(Adv):
             buffcount = 4
         for i in range(buffcount):
             this.dmg_make('o_s1_boost',1.06)
+
+    def s1_proc(this, e):
+        Timer(this.s1_lantency).on(1)
 
     def c_s2_proc(this, e):
         Teambuff('s2str',0.05,10).on()

@@ -25,7 +25,7 @@ class Addis(addis.Addis):
     comment = 'v534 against HMC; '
     conf = {}
     conf['slot.w'] = blade()
-    conf['slots.a'] = Evening_of_Luxury() + RR()
+    conf['slots.a'] = SSP() + RR()
 
     conf['acl'] = """
         # bs = this.bleed._static['stacks']

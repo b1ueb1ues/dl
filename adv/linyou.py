@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 from adv import *
 from slot import *
+from slot.a import *
 
 def module():
     return Linyou
@@ -21,7 +22,8 @@ class Linyou(Adv):
         """
 
     def init(this):
-        this.conf['slots.d'] = slot.d.wind.Longlong()
+        this.conf['slots.a'] = CE()+KFM()
+#        this.conf['slots.d'] = slot.d.wind.Longlong()
 
     def prerun(this):
         this.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')
@@ -41,6 +43,19 @@ class Linyou(Adv):
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     conf = {}
+=======
+    conf = {
+        }
+
+    conf['acl'] = """
+        `s2, s1.charged>=s1.sp-440 
+        `s1
+        `s2, seq=4
+        `s3, seq=5
+        """
+
+>>>>>>> 6b78f8fa15998993caa80b6c544dd8cbfe1a11b9
     adv_test.test(module(), conf, verbose=0, mass=0)
 

@@ -8,29 +8,18 @@ def module():
     return Fleur
 
 class Fleur(Adv):
-    comment = 'don\'t use s2 in s3 nor s3 in s2'
+    comment = 'c4fs; S1, then S1 S2 S3 S1'
     a1 = ('sp',0.08,'hp70')
-
-    conf = {}
-    conf['acl'] = """
-        `s3,s1.charged>=s1.sp and seq=4
-        `s1, seq=5
-        `s1, s=2
-        `s2, sx=1
-        `fs, seq=5
-        """
-
     a3 = ('k_paralysis',0.2)
     
 
     conf = {}
     conf['acl'] = """
-        `s3,s1.charged>=s1.sp and seq=4
-        `s1, seq=5
-        `s1, s=2
-        `s2, sx=1
-        `fs, seq=5
-        """
+        `s2, s=1
+        `s3, s=2
+        `s1 
+        `fs, seq=4
+    """
 
     def init(this):
         this.s1_stance = 1
@@ -41,7 +30,6 @@ class Fleur(Adv):
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
-            #this.afflics.paralysis.tolerance=5
         else:
             this.afflics.paralysis.resist=100
 

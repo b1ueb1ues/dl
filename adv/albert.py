@@ -16,9 +16,14 @@ class Albert(Adv):
     a1 = ('fs',0.5)
 
     def init(this):
+        if this.condition('big hitbox'):
+            this.s1_proc = this.c_s1_proc
+
+
+    def prerun(this):
+        this.afflics.paralysis.maxdepth=15
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
-            #this.afflics.paralysis.tolerance=5
         else:
             this.afflics.paralysis.resist=100
 
@@ -75,9 +80,6 @@ class Albert(Adv):
             log('sp','s2autocharge')
 
             
-    def init(this):
-        if this.condition('big hitbox'):
-            this.s1_proc = this.c_s1_proc
 
 
     def c_s1_proc(this, e):
@@ -106,7 +108,7 @@ class Albert(Adv):
 
     def fs_proc(this, e):
         if this.s2buff.get():
-            this.afflics.paralysis('s2_fs',100,0.803)
+            this.afflics.paralysis('s2',100,0.803)
 
     def s2_proc(this, e):
         this.s2timer.on()

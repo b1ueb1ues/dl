@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- encoding:utf8 -*-
 import os
 import sys
@@ -13,7 +13,7 @@ import sys
 # python deploy.py 
 
 
-redirect = 'tee -a'
+redirect = '|tee -a'
 #redirect = '>>'
 
 ex_all = [ '_', 'r', 'd', 'b',
@@ -67,37 +67,55 @@ def main(argv):
             continue
 
         name = argv[1]
-        if name[:4] == 'adv/':
-            name = name[4:]
-        argv.pop(1)
-        if '-sp' in opt:
-            sp_character(name)
+        if name == 'quick':
+            opt += ['quick']
+        elif name == 'slow':
+            opt += ['slow']
         else:
-            one_character(name)
-        continue
+            if name[:4] == 'adv/':
+                name = name[4:]
+        argv.pop(1)
+        break
 
 
     if '-c' in opt and '-s' in opt:
         print('can not -c -s both')
         errrrrr()
+    
+
+    if name == 'quick':
+        chara_quick()
+        sp_quick()
+        if '-s' not in opt:
+            combine()
+        return
+
+    if name == 'slow':
+        chara_slow()
+        sp_slow()
+        if '-s' not in opt:
+            combine()
+        return
+
+    if name:
+        if '-sp' in opt :
+            sp_character(name)
+        else:
+            one_character(name)
 
     if '-c' in opt:
         combine()
         return
 
-    #if '-s' in opt and name:
-    #    one_character(name)
-    #    return
-
-    if not name : 
+    if not name : # && ! '-c'
         chara_quick()
         sp_quick()
-        #exit()
         chara_slow()
         sp_slow()
         if '-s' not in opt:
             combine()
 
+#} main()
 
 
 fs = {}
@@ -220,6 +238,7 @@ def chara_slow():
 
 def one_character(name):
     global ex
+    print('sim:'+name)
     open('www/dl-sim/chara/%s.csv'%name, 'w').close()
     #sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
     time = 60
@@ -235,6 +254,7 @@ def one_character(name):
 
 def sp_character(name):
     global ex
+    print('sim:'+name)
     open('www/dl-sim/chara/%s.csv'%name, 'w').close()
     #sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
     for i in ex:
@@ -243,7 +263,7 @@ def sp_character(name):
 def single_sim(name, time, ex):
     #cmd = "echo '-,%s,%s' >> www/dl-sim/chara/%s.csv ; "%(time, ex, name)
     cmd = ''
-    cmd += 'python adv/%s -5 %s %s | %s www/dl-sim/chara/%s.csv'%(name, time, ex, redirect, name)
+    cmd += 'python adv/%s -5 %s %s %s www/dl-sim/chara/%s.csv'%(name, time, ex, redirect, name)
     sh(cmd)
 
 

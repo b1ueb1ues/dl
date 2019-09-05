@@ -1,25 +1,16 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv_test
 from adv import *
 from module.fsalt import *
 from slot.a import *
+from slot.w import *
 
 def module():
     return G_Ranzal
 
 
 class G_Ranzal(Adv):
-    comment = 'only s1'
 
     conf = {}
-    conf['acl'] = """
-        `s1, fsc
-        `fs, seq=2 and this.gauges['x'] <= 500
-        `fs, seq=3
-    """
-    conf['slots.a'] = JotS() + TSO()
 
     a3 = ('s',0.3)
 
@@ -72,18 +63,6 @@ class G_Ranzal(Adv):
         #fs_alt_init(this, this.fsaconf)
 
         this.now = core.timeline.now
-
-    def d_acl(this):
-        if adv_test.sim_duration <= 60:
-            this.conf['acl'] = """
-            # from core.timeline import now
-            `s1, fsc
-            `s2, fsc
-            `fs, cancel and seq=3 
-            `s3, fsc
-            """
-            this.comment = '3FS & dont hold S1'
-
 
     def dmg_proc(this, name, amount):
         if name == 'x1':
@@ -138,4 +117,12 @@ class G_Ranzal(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.a'] = TSO()+FoG()
+    conf['slot.w'] = swordv5wind()
+    conf['acl'] = """
+        `s1, fsc
+        `fs, cancel and seq=2 and this.gauges['x']<500 
+        `fs, cancel and seq=3
+    """
+
     adv_test.test(module(), conf, verbose=0, mass=0)

@@ -11,7 +11,6 @@ class Rena(Adv):
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.burn.resist=0
-            this.afflics.burn.tolerance=5
         else:
             this.afflics.burn.resist=100
 

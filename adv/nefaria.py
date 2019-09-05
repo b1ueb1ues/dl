@@ -14,13 +14,11 @@ class Nefaria(Adv):
         `s3, seq=5
         """
 
-    def init(this):
+    def prerun(this):
         if this.condition('80 resist'):
             this.afflics.blind.resist=80
         else:
             this.afflics.blind.resist=100
-
-    def prerun(this):
         this.m = Modifier('bkiller','att','killer',0.3)
         this.m.get = this.getbane
         this.s2fscharge = 0

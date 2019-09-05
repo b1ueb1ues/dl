@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Sylas
@@ -18,6 +19,7 @@ class Sylas(adv.Adv):
         `s2
         `fs, seq=5
         """
+    conf['slot.d'] = Pazuzu()
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -34,5 +36,6 @@ class Sylas(adv.Adv):
 
 
 if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

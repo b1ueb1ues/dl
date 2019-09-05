@@ -17,13 +17,10 @@ class Melody(adv.Adv):
         `s3, seq=5
         """
     conf['slots.a'] = slot.a.HG()+slot.a.RR()
+    conf['slots.d'] = slot.d.Zephyr()
 
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s3, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2)
 

@@ -84,7 +84,7 @@ class Afflic(object):
                 this.lnode = Afflic.Node(this.chance, 1, 0)
                 this.rnode = 0 #Afflic.Node(0, 1, 0)
                 return
-            if rate < this.resist_after:
+            if rate <= this.resist_after:
                 this.lnode = Afflic.Node(this.chance, this.resist_after, 0)
                 this.rnode = 0 #Afflic.Node(0, this.resist_after, 0)
                 return
@@ -107,7 +107,7 @@ class Afflic(object):
         #this.history = 0
         this.history = []
         #this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
-        this.maxdeep = 25
+        this.maxdepth = 25
         this.duration = 12
         this.stack = {}
         this.stack_x_chance = 0.0
@@ -193,7 +193,7 @@ class Afflic(object):
         count = len(this.history)
         #in order not too deep
         #if count > (1-this.resist)/this.tolerance*5:
-        if count > this.maxdeep:
+        if count > this.maxdepth:
             return 0
         else:
             #t.p = this.p_recursive(1, count, this.resist)
@@ -321,17 +321,17 @@ class Afflics(object):
 
         this.poison.resist    = 0
         this.burn.resist      = 0
-        this.paralysis.resist = 0
-        this.blind.resist     = 60
-        this.bog.resist       = 60
-        this.freeze.resist    = 60
-        this.stun.resist      = 60
-        this.sleep.resist     = 60
+        this.paralysis.resist = 80
+        this.blind.resist     = 80
+        this.bog.resist       = 80
+        this.freeze.resist    = 80
+        this.stun.resist      = 80
+        this.sleep.resist     = 80
 
-        this.poison.tolerance    = 20
-        this.burn.tolerance      = 20
-        this.paralysis.tolerance = 20
-        this.blind.tolerance     = 20
+        this.poison.tolerance    = 5
+        this.burn.tolerance      = 5
+        this.paralysis.tolerance = 5
+        this.blind.tolerance     = 10
         this.bog.tolerance       = 20
         this.freeze.tolerance    = 20
         this.stun.tolerance      = 20

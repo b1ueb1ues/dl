@@ -37,4 +37,14 @@ class Louise(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+<<<<<<< HEAD
+=======
+    from slot.d import *
+#    conf['slot.d'] = Pazuzu()
+    conf['acl'] = """
+        `s1, seq=5
+        `s2, seq=5
+        `s3, seq=5
+        """
+>>>>>>> 6b78f8fa15998993caa80b6c544dd8cbfe1a11b9
     adv_test.test(module(), conf, verbose=0)

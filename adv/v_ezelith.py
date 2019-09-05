@@ -18,6 +18,7 @@ class V_Ezelith(Adv):
         `s1
         `s2
         """
+    conf['slot.a'] = RR()+EE()
 
     def c_prerun(this):
         this.o_prerun()

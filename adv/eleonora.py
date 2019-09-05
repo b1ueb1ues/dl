@@ -3,6 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.d import *
 
 def module():
     return Eleonora
@@ -15,6 +16,7 @@ class Eleonora(adv.Adv):
         `s2, seq=5 
         `s3, seq=5 
         """
+    conf['slot.d'] = Pazuzu()
 
     def prerun(this):
         if this.condition('0 resist'):
