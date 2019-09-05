@@ -73,18 +73,6 @@ class G_Ranzal(Adv):
 
         this.now = core.timeline.now
 
-    def d_acl(this):
-        if adv_test.sim_duration <= 60:
-            this.conf['acl'] = """
-            # from core.timeline import now
-            `s1, fsc
-            `s2, fsc
-            `fs, cancel and seq=3 
-            `s3, fsc
-            """
-            this.comment = '3FS & dont hold S1'
-
-
     def dmg_proc(this, name, amount):
         if name == 'x1':
             this.gauges['x'] += 77
