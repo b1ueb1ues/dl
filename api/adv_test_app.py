@@ -1,8 +1,6 @@
 import io
-import os
 import inspect
 from contextlib import redirect_stdout
-import base64
 from flask import Flask
 from flask import request
 from flask import jsonify
@@ -19,21 +17,21 @@ CORS(app)
 # Helpers
 def get_adv_module(adv_name):
     return getattr(
-                __import__('adv.{}'.format(adv_name.lower())), 
+                __import__('adv.{}'.format(adv_name.lower())),
                 adv_name.lower()
            ).module()
 def is_amulet(obj):
-    return (inspect.isclass(obj) and issubclass(obj, slot.a.Amulet) 
-            and obj.__module__ != 'slot.a' 
+    return (inspect.isclass(obj) and issubclass(obj, slot.a.Amulet)
+            and obj.__module__ != 'slot.a'
             and obj.__module__ != 'slot')
 def is_dragon(obj):
-    return (inspect.isclass(obj) and issubclass(obj, slot.d.DragonBase) 
-            and obj.__module__ != 'slot.d' 
+    return (inspect.isclass(obj) and issubclass(obj, slot.d.DragonBase)
+            and obj.__module__ != 'slot.d'
             and obj.__module__ != 'slot')
 def is_weapon(obj):
-    return (inspect.isclass(obj) and issubclass(obj, slot.d.WeaponBase) 
-            and obj.__module__ != 'slot.w' 
-            and obj.__module__ != 'slot')    
+    return (inspect.isclass(obj) and issubclass(obj, slot.d.WeaponBase)
+            and obj.__module__ != 'slot.w'
+            and obj.__module__ != 'slot')
 def list_members(module, predicate, element=None):
     members = inspect.getmembers(module, predicate)
     member_list = []
@@ -50,8 +48,8 @@ def list_members(module, predicate, element=None):
 @app.route('/adv_test', methods=['POST'])
 def run_adv_test():
     params = request.get_json(silent=True)
-    adv_name = params['adv'] if 'adv' in params else 'euden' 
-    wp1 = params['wp1'] if 'wp1' in params else None 
+    adv_name = params['adv'] if 'adv' in params else 'euden'
+    wp1 = params['wp1'] if 'wp1' in params else None
     wp2 = params['wp2'] if 'wp2' in params else None
     dra = params['dra'] if 'dra' in params else None
     wep = params['wep'] if 'wep' in params else None
@@ -102,7 +100,7 @@ def get_adv_slotlist():
         result['adv_pref_dra'] = type(adv_instance.slots.d).__qualname__
         result['adv_pref_wep'] = type(adv_instance.slots.w).__qualname__
         result['adv_pref_wp'] = {
-            'wp1': type(adv_instance.slots.a).__qualname__, 
+            'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
         result['adv_acl'] = adv_instance.conf.acl

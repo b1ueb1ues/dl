@@ -1,4 +1,4 @@
-APP_URL = 'http://localhost:5000/';
+APP_URL = 'https://wildshinobu.pythonanywhere.com/';
 EX_MAP = {
     'blade': 'k',
     'wand': 'r',
