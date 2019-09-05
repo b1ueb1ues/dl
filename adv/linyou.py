@@ -43,19 +43,6 @@ class Linyou(Adv):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     conf = {}
-=======
-    conf = {
-        }
-
-    conf['acl'] = """
-        `s2, s1.charged>=s1.sp-440 
-        `s1
-        `s2, seq=4
-        `s3, seq=5
-        """
-
->>>>>>> 6b78f8fa15998993caa80b6c544dd8cbfe1a11b9
     adv_test.test(module(), conf, verbose=0, mass=0)
 

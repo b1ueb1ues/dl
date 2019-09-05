@@ -16,7 +16,6 @@ class Kuhai(Adv):
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
     conf = {}
-<<<<<<< HEAD
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
     # c2+fs_alt fs can init quicker than c1+fs_alt 
     conf['acl'] = """
@@ -26,9 +25,7 @@ class Kuhai(Adv):
         `fs, seq=3
         """
     conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
-=======
     conf['slot.d'] = Zephyr()
->>>>>>> 6b78f8fa15998993caa80b6c544dd8cbfe1a11b9
 
     def init(this):
         if this.condition('huge hitbox eneny'):
