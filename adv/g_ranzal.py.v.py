@@ -1,0 +1,209 @@
+import adv_test
+from adv import *
+from module.fsalt import *
+from slot.a import *
+from slot.w import *
+
+def module():
+    return G_Ranzal
+
+
+class G_Ranzal(Adv):
+
+    conf = {}
+    conf['slots.a'] = VC() + FoG()
+    conf['slots.w'] = swordv5wind()
+
+    a3 = ('s',0.3)
+
+    #c3 770
+    #fs1 802
+    #fs3 832
+    #fsend 854-9
+    #c1 854
+
+    def prerun(this):
+        this.ifs1ins2 = 0
+        this.gauges = {
+                'x':0,
+                'fs':0,
+                }
+        this.fsacharge = -1
+        this.fsa3conf = Conf()
+        this.fsa3conf.fs = Conf(this.conf.fs)
+        this.fsa3conf({
+                'fs.dmg':0.83*2+0.92,
+                'fs.sp' :330,
+                "fs.startup":68/60.0,
+                "x1fs.startup":77/60.0,
+                "x2fs.startup":62/60.0,
+                "x3fs.startup":62/60.0,
+
+                "fs.recovery":13/60.0,
+                "x1fs.recovery":13/60.0,
+                "x2fs.recovery":13/60.0,
+                "x3fs.recovery":13/60.0,
+                })
+        this.fsa1conf = Conf()
+        this.fsa1conf.fs = Conf(this.conf.fs)
+        this.fsa1conf({
+                'fs.dmg':0.83,
+                'fs.sp' :330,
+                "fs.startup":33/60.0,
+                "x1fs.startup":47/60.0,
+                "x2fs.startup":32/60.0,
+                "x3fs.startup":32/60.0,
+
+                "fs.recovery":43/60.0,
+                "x1fs.recovery":43/60.0,
+                "x2fs.recovery":43/60.0,
+                "x3fs.recovery":43/60.0,
+                })
+        this.fs_alt3 = Fs_alt(this, this.fsa3conf)
+        this.fs_alt1 = Fs_alt(this, this.fsa1conf)
+        this.fs_alt = this.fs_alt3
+        #fs_alt_init(this, this.fsaconf)
+
+        this.now = core.timeline.now
+
+    def dmg_proc(this, name, amount):
+        if name == 'x1':
+            this.gauges['x'] += 77
+        elif name == 'x2':
+            this.gauges['x'] += 77
+        elif name == 'x3':
+            this.gauges['x'] += 100
+        elif name == 'x4':
+            this.gauges['x'] += 136
+        elif name == 'x5':
+            this.gauges['x'] += 200
+        elif name == 'fs':
+            this.gauges['fs'] += 150
+        elif name == 'o_fs_alt':
+            this.gauges['fs'] += 350
+        log('debug','gauges',"%d, %d"%(this.gauges['x'],this.gauges['fs']), \
+            "%d, %d"%(this.gauges['x'],this.gauges['fs']))
+
+    def fs_proc(this, e):
+        if this.fsacharge > 0:
+            this.fsacharge -= 1
+            if this.fsacharge == 0:
+                this.fs_alt.off()
+                this.fsacharge = -1
+
+    def s1_proc(this, e):
+        boost = 0
+        if this.gauges['x'] >= 1000:
+            boost += 1
+            this.gauges['x'] = 0
+        if this.gauges['fs'] >= 1000:
+            boost += 1
+            this.gauges['fs'] = 0
+        if boost == 1:
+            this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.2)
+        if boost == 2:
+            this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.8)
+        this.ifs1ins2 = 1
+
+
+    def s2_proc(this, e):
+        this.fsacharge = 3
+        this.fs_alt.on()
+        this.ifs1ins2 = 0
+        Event('defchain')()
+
+
+    def s3_proc(this, e):
+        Event('defchain')()
+
+
+if __name__ == '__main__':
+    conf = {}
+    #conf['acl'] = """
+    #    `s2, fsc
+    #    `s1, seq=3 and this.fsacharge=3 
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000 and fsc
+    #    `s1, this.gauges['x'] >=1000 and fsc
+    #    `fs, cancel and seq=3 and this.fsacharge > 0
+    #    `fs, cancel and seq=3 and this.fsacharge < 0  
+    #    """
+    #    #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
+
+    #conf['acl'] = """
+    #    # fskeep = 0
+    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+    #    `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+    #    """
+    #conf['acl'] = """
+    #    # fskeep = 0
+    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] == 450 and fsc
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] == 650 and fsc
+    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+    #    """
+    #conf['acl'] = """
+    #    `s2, fsc and this.gauges['fs'] > 1000
+    #    `s1, seq=3 and this.fsacharge=3 
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000 and fsc
+    #    `s1, this.gauges['x'] >=1000 and fsc
+    #    `fs, cancel and seq=3 and this.fsacharge > 0
+    #    `fs, cancel and seq=3 and this.fsacharge < 0  
+    #    """
+    #    #`fs, cancel and seq=2 and this.fsacharge < 0 and not ( this.gauges['x']>930 and this.gauges['fs']>1000 )
+    #conf['acl'] = """
+    #    # fskeep = 0
+    #    # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+    #    `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+    #    `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+    #    `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+    #    `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+    #    `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+    #    """
+    # conf['acl'] = """
+    #     # fskeep = 0
+    #     # if not this.ifs1ins2 and this.fsacharge <= 1 : fskeep = 1 
+    #     `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+    #     `s2, this.gauges['fs'] >= 300 and this.gauges['fs'] < 800
+    #     `fs, cancel and seq=3 and this.fsacharge > 0 and not fskeep and this.gauges['fs'] < 1000
+    #     `fs, cancel and seq=2 and this.fsacharge < 0 and this.gauges['x'] >= this.gauges['fs']
+    #     `fs, cancel and seq=3 and this.fsacharge < 0 and this.gauges['x'] < this.gauges['fs']
+    #     `s3, fsc
+    #     """
+
+    import sys
+    if len(sys.argv) >= 3:
+        sim_duration = int(sys.argv[2])
+    else:
+        sim_duration = 180
+    if sim_duration <= 60:
+        conf['acl'] = """
+        # from core.timeline import now
+        `s1, fsc
+        `s2, fsc
+        `fs, cancel and seq=3 
+        `s3, fsc
+        """
+        module().comment += '3FS & dont hold S1'
+    else:
+        conf['acl'] = """
+            # from core.timeline import now
+            `s1, this.gauges['x'] >=1000 and now()<10
+            `s1, this.gauges['x'] >=1000 and this.gauges['fs'] >= 1000
+            `s2, fsc and this.gauges['fs'] >= 300
+            `fs, cancel and seq=3
+            `s3, fsc
+        """
+            #`this.fs_alt1, s1.charged >= s1.sp-330 and this.gauges['fs'] >= 650 and  cancel and seq=3 and this.fsacharge > 0
+            #`this.fs_alt3, cancel and seq=3 and this.fsacharge > 0
+            #`fs, cancel and seq=3 and this.fsacharge <= 0
+        module().comment += '3FS & first S1 with 1 gauge & S2 with >=30% gauge'
+
+    adv_test.test(module(), conf, verbose=0, mass=0)
