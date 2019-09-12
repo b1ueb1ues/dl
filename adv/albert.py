@@ -22,8 +22,8 @@ class Albert(Adv):
 
     def prerun(this):
         this.afflics.paralysis.maxdepth=15
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 
@@ -34,6 +34,7 @@ class Albert(Adv):
         `s3
         `fs, seq=2 and not this.s2buff.get()
         """
+    conf['cond_afflict_res'] = 0
 
     def d_slots(this):
         if adv_test.sim_duration <= 60:

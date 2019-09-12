@@ -20,6 +20,7 @@ class Fleur(Adv):
         `s1 
         `fs, seq=4
     """
+    conf['cond_afflict_res'] = 0
 
     def init(this):
         this.s1_stance = 1
@@ -28,8 +29,8 @@ class Fleur(Adv):
         return this.afflics.paralysis.get()*0.2
 
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 

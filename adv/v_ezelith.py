@@ -19,6 +19,7 @@ class V_Ezelith(Adv):
         `s2
         """
     conf['slot.a'] = RR()+EE()
+    conf['cond_afflict_res'] = 0
 
     def c_prerun(this):
         this.o_prerun()
@@ -47,8 +48,8 @@ class V_Ezelith(Adv):
             this.prerun = this.c_prerun
             this.dmg_proc = this.c_dmg_proc
 
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.burn.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.burn.resist=100
 

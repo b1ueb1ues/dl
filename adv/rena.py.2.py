@@ -9,8 +9,8 @@ def module():
 
 class Rena(Adv):
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.burn.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.burn.resist=100
 

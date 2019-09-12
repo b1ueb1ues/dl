@@ -14,18 +14,17 @@ class S_Cleo(Adv):
     a3 = ('k_paralysis',0.3)
     conf = {}
     comment = 'nofs'
-
+    conf['cond_afflict_res'] = 0
+    conf['acl'] = """
+            `s2
+            `s1
+            `s3
+            """
     def init(this):
         random.seed()
         this.bc = Selfbuff()
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
-
-        this.conf['acl'] = """
-            `s2
-            `s1
-            `s3
-            """
 
         #if this.condition('c4+fs'):
         #    this.conf['acl'] = """
@@ -41,8 +40,8 @@ class S_Cleo(Adv):
         #        `s1
         #        """
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 

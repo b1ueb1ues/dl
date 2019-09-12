@@ -1,12 +1,17 @@
 import io
 import inspect
+from os import listdir
+from os.path import isfile, join
+import re
+
 from contextlib import redirect_stdout
 from flask import Flask
 from flask import request
 from flask import jsonify
 from flask_cors import CORS
 
-from core.advbase import Adv
+from core.advbase import Adv as adventurer
+import adv
 import slot.a
 import slot.d
 import slot.w
@@ -55,6 +60,7 @@ def run_adv_test():
     wep = params['wep'] if 'wep' in params else None
     ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
+    afflict = max(abs(int(params['afflict'])), 100) if 'afflict' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
 
     log = -2
@@ -70,6 +76,8 @@ def run_adv_test():
             this.conf['slots.d'] = getattr(slot.d, dra)()
         if wep is not None:
             this.conf['slots.w'] = getattr(slot.w, wep)()
+        if afflict is not None:
+            this.conf['cond_afflict_res'] = afflict
     def acl_injection(this):
         if acl is not None:
             this.conf['acl'] = acl
@@ -82,29 +90,45 @@ def run_adv_test():
     return f.getvalue()
 
 
+ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv'
 @app.route('/adv_slotlist', methods=['GET'])
 def get_adv_slotlist():
     result = {}
-    result['amulets'] = list_members(slot.a, is_amulet)
-    result['adv_name'] = request.args.get('adv', default=None)
+    result['adv'] = {}
+    result['adv']['name'] = request.args.get('adv', default=None)
     adv_ele = None
     dragon_module = slot.d
     weap_module = slot.w
-    if result['adv_name'] is not None:
-        adv_instance = get_adv_module(result['adv_name'])()
+    if result['adv']['name'] is not None:
+        adv_instance = get_adv_module(result['adv']['name'])()
         adv_ele = adv_instance.slots.c.ele.lower()
-        result['adv_ele'] = adv_ele
-        dragon_module = getattr(slot.d, result['adv_ele'])
-        result['adv_wt'] = adv_instance.slots.c.wt.lower()
-        weap_module = getattr(slot.w, result['adv_wt'])
-        result['adv_pref_dra'] = type(adv_instance.slots.d).__qualname__
-        result['adv_pref_wep'] = type(adv_instance.slots.w).__qualname__
-        result['adv_pref_wp'] = {
+        result['adv']['ele'] = adv_ele
+        dragon_module = getattr(slot.d, adv_ele)
+        result['adv']['wt'] = adv_instance.slots.c.wt.lower()
+        weap_module = getattr(slot.w, result['adv']['wt'])
+        result['adv']['dragon'] = type(adv_instance.slots.d).__qualname__
+        result['adv']['pref_wep'] = type(adv_instance.slots.w).__qualname__
+        result['adv']['pref_wp'] = {
             'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
-        result['adv_acl'] = adv_instance.conf.acl
+        result['adv']['acl'] = adv_instance.conf.acl
+        result['adv']['afflict_res'] = adv_instance.conf.cond_afflict_res
+    # result['amulets'] = list_members(slot.a, is_amulet)
     result['dragons'] = list_members(dragon_module, is_dragon, element=adv_ele)
     result['weapons'] = list_members(weap_module, is_weapon, element=adv_ele)
     return jsonify(result)
 
+
+ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv'
+@app.route('/adv_wp_list', methods=['GET'])
+def get_adv_wp_list():
+    result = {}
+    result['adv'] = []
+    result['amulets'] = list_members(slot.a, is_amulet)
+    py_pattern = re.compile(r'([A-Za-z]*)\.py')
+    for f in listdir(ADV_DIR):
+        match = py_pattern.fullmatch(f)
+        if isfile(join(ADV_DIR, f)) and match is not None:
+            result['adv'].append(match.group(1))
+    return jsonify(result)

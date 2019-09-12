@@ -23,9 +23,11 @@ class Yachiyo(Adv):
         `s2
         `s1
         """
+    conf['cond_afflict_res'] = 0
+
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
         this.fsa_charge = 0

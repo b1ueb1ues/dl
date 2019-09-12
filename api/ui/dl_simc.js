@@ -1,4 +1,5 @@
-APP_URL = 'https://wildshinobu.pythonanywhere.com/';
+//APP_URL = 'https://wildshinobu.pythonanywhere.com/';
+APP_URL = 'http://127.0.0.1:5000/'
 EX_MAP = {
     'blade': 'k',
     'wand': 'r',
@@ -73,6 +74,28 @@ function createDpsBar(arr, total_dps = undefined) {
 function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
 }
+function loadAdvWPList() {
+    $.ajax({
+        url: APP_URL + 'adv_wp_list',
+        dataType: 'text',
+        type: 'get',
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data, textStatus, jqXHR) {
+            if (jqXHR.status == 200) {
+                var advwp = JSON.parse(data);
+                populateSelect('#input-adv', advwp.adv);
+                $('#adv-euden').prop('selected', true);
+                populateSelect('#input-wp1', advwp.amulets);
+                populateSelect('#input-wp2', advwp.amulets);
+
+                loadAdvSlots();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#test_results').html(errorThrown);
+        }
+    });
+}
 function loadAdvSlots() {
     if ($('#input-adv').val() == '') {
         return false;
@@ -82,29 +105,28 @@ function loadAdvSlots() {
         dataType: 'text',
         type: 'get',
         contentType: 'application/x-www-form-urlencoded',
-        data: 'adv=' + $(this).val(),
-        success: function (data, textStatus, jQxhr) {
-            if (jQxhr.status == 200) {
+        data: 'adv=' + $('#input-adv').val(),
+        success: function (data, textStatus, jqXHR) {
+            if (jqXHR.status == 200) {
                 var slots = JSON.parse(data);
                 populateSelect('#input-wep', slots.weapons);
-                $('#wep-' + slots.adv_pref_wep).prop('selected', true);
+                $('#wep-' + slots.adv.pref_wep).prop('selected', true);
                 populateSelect('#input-dra', slots.dragons);
-                $('#dra-' + slots.adv_pref_dra).prop('selected', true);
-                populateSelect('#input-wp1', slots.amulets);
-                $('#wp1-' + slots.adv_pref_wp.wp1).prop('selected', true);
-                populateSelect('#input-wp2', slots.amulets);
-                $('#wp2-' + slots.adv_pref_wp.wp2).prop('selected', true);
+                $('#dra-' + slots.adv.pref_dra).prop('selected', true);
+                $('#wp1-' + slots.adv.pref_wp.wp1).prop('selected', true);
+                $('#wp2-' + slots.adv.pref_wp.wp2).prop('selected', true);
                 $('input[id^="ex-"]').prop('checked', false);
                 $('input[id^="ex-"]').prop('disabled', false);
-                $('#ex-' + slots.adv_wt).prop('checked', true);
-                $('#ex-' + slots.adv_wt).prop('disabled', true);
-                $('#input-acl').val(trimAcl(slots.adv_acl));
+                $('#ex-' + slots.adv.wt).prop('checked', true);
+                $('#ex-' + slots.adv.wt).prop('disabled', true);
+                $('#input-acl').val(trimAcl(slots.adv.acl));
+                $('#input-afflict').val(slots.adv.afflict_res);
 
                 runAdvTest();
             }
         },
-        error: function (jqXhr, textStatus, errorThrown) {
-            console.log(errorThrown);
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#test_results').html(errorThrown);
         }
     });
 }
@@ -134,6 +156,9 @@ function runAdvTest() {
     if (!isNaN(parseInt($('#input-t').val()))) {
         requestJson['t'] = $('#input-t').val();
     }
+    if (!isNaN(parseInt($('#input-afflict').val()))) {
+        requestJson['afflict'] = $('#input-afflict').val();
+    }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
@@ -144,8 +169,8 @@ function runAdvTest() {
         type: 'post',
         contentType: 'application/json',
         data: JSON.stringify(requestJson),
-        success: function (data, textStatus, jQxhr) {
-            if (jQxhr.status == 200) {
+        success: function (data, textStatus, jqXHR) {
+            if (jqXHR.status == 200) {
                 console.log(data)
                 result = data.split('\n')
                 cond_true = result[0].split(',')
@@ -157,8 +182,8 @@ function runAdvTest() {
                 }
             }
         },
-        error: function (jqXhr, textStatus, errorThrown) {
-            console.log(errorThrown);
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#test_results').html(errorThrown);
         }
     });
 }
@@ -169,5 +194,6 @@ function editAcl() {
 window.onload = function () {
     $('#input-adv').change(loadAdvSlots);
     $('#run-test').click(runAdvTest);
-    $('#input-edit-acl').change(editAcl)
+    $('#input-edit-acl').change(editAcl);
+    loadAdvWPList()
 }

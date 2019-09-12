@@ -13,6 +13,7 @@ class Hawk(Adv):
         `s1, seq=5
         `s3, seq=5
         """
+    conf['cond_afflict_res'] = 80
 
     def init(this):
         this.s2fscharge = 0
@@ -23,8 +24,8 @@ class Hawk(Adv):
 
 
     def prerun(this):
-        if this.condition('80 resist'):
-            this.afflics.stun.resist=80
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.stun.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.stun.resist=100
 

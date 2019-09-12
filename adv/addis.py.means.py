@@ -12,8 +12,8 @@ def module():
 
 class Addis(addis.Addis):
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.poison.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.poison.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.poison.resist=100
 

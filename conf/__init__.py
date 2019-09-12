@@ -45,7 +45,7 @@ def get(name):
     wepconf = weapon.conf
 
     conf += Conf(wepconf)
-    
+
     return conf
     
 

@@ -22,7 +22,7 @@ if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
         page = sys.argv[2]
 sim_times = 1000
 
-team_dps = 6000 
+team_dps = 6000
 #team_dps = 5000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
@@ -54,6 +54,7 @@ def set_ex(ex_str):
             ex_set['dagger'] = ('ex','dagger')
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
+
 
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
     set_ex(sys.argv[3])

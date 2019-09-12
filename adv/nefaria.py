@@ -13,10 +13,11 @@ class Nefaria(Adv):
         `s1, seq=5
         `s3, seq=5
         """
+    conf['cond_afflict_res'] = 80
 
     def prerun(this):
-        if this.condition('80 resist'):
-            this.afflics.blind.resist=80
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.blind.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.blind.resist=100
         this.m = Modifier('bkiller','att','killer',0.3)

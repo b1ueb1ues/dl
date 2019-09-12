@@ -17,7 +17,7 @@ class W_Aoi(Adv):
         `s3, seq=5 or fsc
         `fs, seq=5
         """
-
+    conf['cond_afflict_res'] = 80
 
     def init(this):
         if this.condition('big hitbox'):
@@ -25,8 +25,8 @@ class W_Aoi(Adv):
         else:
             this.s1_addition = 1
 
-        if this.condition('80 resist'):
-            this.afflics.sleep.resist=80
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.sleep.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.sleep.resist=100
 
