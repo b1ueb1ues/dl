@@ -5,7 +5,7 @@ def module():
     return Fleur
 
 class Fleur(Adv):
-    comment = 'c4fs; S1, then S1 S2 S3 S1'
+    comment = 'c4fs; S1 then S1 S2 S3 S1'
     conf = {}
     a1 = ('sp',0.08,'hp70')
     a3 = ('k_paralysis',0.2)
