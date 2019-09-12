@@ -17,6 +17,13 @@ class S_Celliera(Adv):
     def d_slots(this):
         if 'wand' in this.ex:
             this.conf['slot.d'] = Siren()
+        if 'bow' in this.ex:
+            this.conf['slot.a'] = TSO() + FRH()
+            this.conf['acl'] = """
+                    `s2
+                    `s1
+                    `fs, seq=3
+                    """
 
 
     def init(this):
@@ -46,6 +53,6 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s2
         `s1
-        `fs, x=2
+        `fs, seq=2
         """
     adv_test.test(module(), conf, verbose=-2)

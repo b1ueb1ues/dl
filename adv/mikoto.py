@@ -14,10 +14,10 @@ class Mikoto(Adv):
     def d_slots(this):
         if 'wand' in this.ex:
             this.conf['slots.d'] = slot.d.Sakuya()
-            this.conf['slots.a'] = RR()+CE()
+            this.conf['slots.a'] = RR()+VN()
         else:
             this.conf['slots.d'] = slot.d.Sakuya()
-            this.conf['slots.a'] = RR()+CE()
+            this.conf['slots.a'] = RR()+VN()
             #this.conf['slots.d'] = slot.d.Arctos()
             #this.conf['slots.a'] = RR()+LC()
         return
