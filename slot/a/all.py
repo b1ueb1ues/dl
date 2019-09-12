@@ -350,10 +350,10 @@ class Elegant_Escort(Amulet):
     a = [('k_burn',0.3)]
 EE = Elegant_Escort
 
-class Void_Nidhogg(Amulet):
+class Beautiful_Nothingness(Amulet):
     att = 52
     a = [('a',0.10,'hp70'),('cc',0.05)]
-VN = Void_Nidhogg
+BN = Beautiful_Nothingness
 
 class Resurgent_Despair(Amulet):
     att = 64
