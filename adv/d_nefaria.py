@@ -15,7 +15,7 @@ class D_Nefaria(adv.Adv):
         `s1, seq=5
         `s3, seq=5
         """
-    conf.slot.d = DJ()
+    conf['slots.d'] = DJ()
 
     def prerun(this):
         if this.condition('c4+fs'):

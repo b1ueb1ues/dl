@@ -120,7 +120,14 @@ function loadAdvSlots() {
                 $('#ex-' + slots.adv.wt).prop('checked', true);
                 $('#ex-' + slots.adv.wt).prop('disabled', true);
                 $('#input-acl').val(trimAcl(slots.adv.acl));
-                $('#input-afflict').val(slots.adv.afflict_res);
+                if (slots.adv.afflict_res != undefined){
+                    $('#input-afflict').prop('disabled', false);
+                    $('#input-afflict').val(slots.adv.afflict_res);
+                }else{
+                    $('#input-afflict').prop('disabled', true);
+                    $('#input-afflict').val(slots.adv.afflict_res);
+
+                }
 
                 runAdvTest();
             }

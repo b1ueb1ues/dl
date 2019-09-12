@@ -21,8 +21,8 @@ class B_Zardin(adv.Adv):
         `s1
         """
     # conf['slots.w'] = slot.w.blade4b2()
-    def d_slots():
-        if this.conf['slots.w'] == slot.w.blade4b2():
+    def d_slots(this):
+        if this.slots.w == slot.w.blade4b2():
             this.comment = 'with s2 & 4t3'
             this.conf['acl'] = """
                 `s3, this.energy() = 5
@@ -37,7 +37,7 @@ class B_Zardin(adv.Adv):
     def prerun(this):
         this.energy = energy.Energy(this,
                 self={} ,
-                team={} 
+                team={}
                 )
 
     def c_prerun(this):

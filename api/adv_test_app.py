@@ -116,7 +116,7 @@ def get_adv_slotlist():
         if 'cond_afflict_res' in adv_instance.conf:
             result['adv']['afflict_res'] = adv_instance.conf.cond_afflict_res
         else:
-            result['adv']['afflict_res'] = ''
+            result['adv']['afflict_res'] = None
     # result['amulets'] = list_members(slot.a, is_amulet)
     result['dragons'] = list_members(dragon_module, is_dragon, element=adv_ele)
     result['weapons'] = list_members(weap_module, is_weapon, element=adv_ele)
@@ -129,8 +129,10 @@ def get_adv_wp_list():
     result = {}
     result['adv'] = []
     result['amulets'] = list_members(slot.a, is_amulet)
-    py_pattern = re.compile(r'([A-Za-z]*)\.py')
+    py_pattern = re.compile(r'([A-Za-z_]*)\.py')
     for f in listdir(ADV_DIR):
+        if f == 'adv_test.py' or f == '__init__.py':
+            continue
         match = py_pattern.fullmatch(f)
         if isfile(join(ADV_DIR, f)) and match is not None:
             result['adv'].append(match.group(1))
