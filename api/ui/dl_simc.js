@@ -1,5 +1,4 @@
-//APP_URL = 'https://wildshinobu.pythonanywhere.com/';
-APP_URL = 'http://127.0.0.1:5000/'
+APP_URL = 'https://wildshinobu.pythonanywhere.com/';
 EX_MAP = {
     'blade': 'k',
     'wand': 'r',
@@ -83,6 +82,7 @@ function loadAdvWPList() {
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 var advwp = JSON.parse(data);
+                advwp.adv.sort();
                 populateSelect('#input-adv', advwp.adv);
                 $('#adv-euden').prop('selected', true);
                 populateSelect('#input-wp1', advwp.amulets);

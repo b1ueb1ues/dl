@@ -18,6 +18,7 @@ class Louise(adv.Adv):
         `s2, seq=5
         `s3, seq=5
         """
+    conf['cond_afflict_res'] = 0
 
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):

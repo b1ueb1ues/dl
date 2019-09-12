@@ -123,7 +123,7 @@ def get_adv_slotlist():
     return jsonify(result)
 
 
-ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv'
+ADV_DIR = '/home/wildshinobu/dl/adv/'
 @app.route('/adv_wp_list', methods=['GET'])
 def get_adv_wp_list():
     result = {}

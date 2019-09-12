@@ -2,6 +2,7 @@ if __name__ == '__main__':
     import adv_test
 else:
     import adv.adv_test
+from adv import *
 import adv
 from slot.d import *
 
@@ -16,7 +17,7 @@ class Alex(adv.Adv):
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel 
+        `s2, seq=5 and cancel
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
