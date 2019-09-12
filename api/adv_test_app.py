@@ -60,7 +60,7 @@ def run_adv_test():
     wep = params['wep'] if 'wep' in params else None
     ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
-    afflict = max(abs(int(params['afflict'])), 100) if 'afflict' in params else None
+    afflict = min(abs(int(params['afflict'])), 100) if 'afflict' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
 
     log = -2
