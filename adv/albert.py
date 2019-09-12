@@ -12,7 +12,7 @@ def module():
 
 
 class Albert(Adv):
-    comment = 'suitable skill prep; '
+    comment = 'suitable skill prep; don\'t use s3 in s2'
     a1 = ('fs',0.5)
 
     def init(this):
@@ -67,7 +67,8 @@ class Albert(Adv):
             this.conf['acl'] = """
                 `s2, s1.charged>=s1.sp-300
                 `s1
-                `fs, seq=2 
+                `s3, not this.s2buff.get()
+                `fs, seq=2
                 """
 
     def altend(this,t):
