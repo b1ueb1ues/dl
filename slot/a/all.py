@@ -350,7 +350,27 @@ class Elegant_Escort(Amulet):
     a = [('k_burn',0.3)]
 EE = Elegant_Escort
 
+class Beautiful_Nothingness(Amulet):
+    att = 52
+    a = [('a',0.10,'hp70'),('cc',0.05)]
+BN = Beautiful_Nothingness
 
+class Resurgent_Despair(Amulet):
+    att = 64
+    a = [('sp',0.06)]
+    def fs_proc(this, e):
+        this.o_fs_proc(e)
+        if this.charges > 0:
+            this.adv.charge_p('Resurgent_Despair','25%')
+            this.charges -= 1
+
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        this.charges = 3
+        this.adv = adv
+        this.o_fs_proc = adv.fs_proc
+        adv.fs_proc = this.fs_proc
+RD = Resurgent_Despair
 
 amulets = []
 for k in list(globals()):
