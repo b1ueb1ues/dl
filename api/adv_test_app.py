@@ -113,7 +113,10 @@ def get_adv_slotlist():
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
         result['adv']['acl'] = adv_instance.conf.acl
-        result['adv']['afflict_res'] = adv_instance.conf.cond_afflict_res
+        if 'cond_afflict_res' in adv_instance.conf:
+            result['adv']['afflict_res'] = adv_instance.conf.cond_afflict_res
+        else:
+            result['adv']['afflict_res'] = ''
     # result['amulets'] = list_members(slot.a, is_amulet)
     result['dragons'] = list_members(dragon_module, is_dragon, element=adv_ele)
     result['weapons'] = list_members(weap_module, is_weapon, element=adv_ele)

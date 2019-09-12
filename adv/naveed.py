@@ -2,6 +2,7 @@ if __name__ == '__main__':
     import adv_test
 else:
     import adv.adv_test
+from adv import *
 import adv
 from slot.a import *
 
@@ -20,9 +21,9 @@ class Naveed(adv.Adv):
     def d_slots(this):
         if adv_test.sim_duration == 60:
             this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
-        elif sim_duration == 90:
+        elif adv_test.sim_duration == 90:
             this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
-        elif sim_duration == 180:
+        elif adv_test.sim_duration == 180:
             this.conf['slot.a'] = The_Shining_Overlord()+Jewels_of_the_Sun()
             this.conf['s2stop'] = 1
 

@@ -171,7 +171,6 @@ function runAdvTest() {
         data: JSON.stringify(requestJson),
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
-                console.log(data)
                 result = data.split('\n')
                 cond_true = result[0].split(',')
                 $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'))
