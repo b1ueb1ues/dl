@@ -46,6 +46,12 @@ class bladev5flame(WeaponBase):
     att = 353
     a = [('k',0.2), ('prep','50%')]
 
+class bladeHZDBane(WeaponBase):
+    ele = ['light']
+    wt = 'blade'
+    att = 383
+    a = [('k',0.3)]
+
 
 flame  = blade5b1
 wind   = blade5b1

@@ -75,7 +75,7 @@ function trimAcl(acl_str) {
 }
 function loadAdvWPList() {
     $.ajax({
-        url: APP_URL + 'adv_wp_list',
+        url: APP_URL + 'simc_adv_wp_list',
         dataType: 'text',
         type: 'get',
         contentType: 'application/x-www-form-urlencoded',
@@ -101,7 +101,7 @@ function loadAdvSlots() {
         return false;
     }
     $.ajax({
-        url: APP_URL + 'adv_slotlist',
+        url: APP_URL + 'simc_adv_slotlist',
         dataType: 'text',
         type: 'get',
         contentType: 'application/x-www-form-urlencoded',
@@ -133,7 +133,9 @@ function loadAdvSlots() {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $('#test_results').html(errorThrown);
+            if (errorThrown == 'INTERNAL SERVER ERROR'){
+                $('#test_results').html('Something went wrong :(');
+            }
         }
     });
 }
@@ -171,7 +173,7 @@ function runAdvTest() {
     }
 
     $.ajax({
-        url: APP_URL + 'adv_test',
+        url: APP_URL + 'simc_adv_test',
         dataType: 'text',
         type: 'post',
         contentType: 'application/json',

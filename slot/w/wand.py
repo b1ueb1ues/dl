@@ -48,6 +48,13 @@ class wand5b2(WeaponBase):
         "recovery" : 1.9      ,
         }
 
+class wandHZDBane(WeaponBase):
+    ele = ['light']
+    wt = 'wand'
+    att = 351
+    a = [('k',0.3)]
+
+
 flame  = wand5b1
 wind   = wand5b1
 shadow = wand5b1

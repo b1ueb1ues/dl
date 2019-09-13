@@ -29,6 +29,12 @@ class axev5flame(WeaponBase):
     att = 380
     a = [('k',0.2), ('prep','50%')]
 
+class axeHZDBane(WeaponBase):
+    ele = ['light']
+    wt = 'axe'
+    att = 357
+    a = [('k',0.3)]
+
 
 
 flame  = axe5b1

@@ -30,6 +30,12 @@ class swordv5wind(WeaponBase):
     att = 333
     a = [('k',0.3), ('prep','50%')]
 
+class swordHZDBane(WeaponBase):
+    ele = ['light']
+    wt = 'sword'
+    att = 362
+    a = [('k',0.3)]
+
 
 flame  = sword5b1
 water  = sword5b1

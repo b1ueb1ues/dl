@@ -23,6 +23,11 @@ class dagger5b2(WeaponBase):
         "recovery" : 1.05-0.15  ,
         }
 
+class daggerHZDBane(WeaponBase):
+    ele = ['light']
+    wt = 'dagger'
+    att = 344
+    a = [('k',0.3)]
 
 
 flame  = dagger5b1

@@ -12,34 +12,28 @@ def module():
 
 
 class Albert(Adv):
-    comment = 'suitable skill prep; don\'t use s3 in s2'
+    comment = 'don\'t use s3 in s2; 4s1 in s2'
     a1 = ('fs',0.5)
+    conf = {}
+    conf['acl'] = """
+        `s2, s1.charged>=s1.sp-300
+        `s1
+        `s3, not this.s2buff.get()
+        `fs, seq=2
+        """
+    conf['cond_afflict_res'] = 0
+    conf['slots.a'] = TSO()+Sisters_Day_Out()
+
 
     def init(this):
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
 
 
-    def prerun(this):
-        this.afflics.paralysis.maxdepth=15
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
-
-    conf = {}
-    conf['acl'] = """
-        `s2
-        `s1, this.s2.charged > 900
-        `s3
-        `fs, seq=2 and not this.s2buff.get()
-        """
-    conf['cond_afflict_res'] = 0
-
     def d_slots(this):
         if adv_test.sim_duration <= 60:
             this.conf['slots.a'] = TSO()+Sisters_Day_Out()
-        elif adv_test.sim_duration == 90:
+        if adv_test.sim_duration == 90:
             this.conf['slots.a'] = TSO()+The_Chocolatiers()
         elif adv_test.sim_duration == 120:
             this.conf['slots.a'] = TSO()+Sisters_Day_Out()
@@ -57,20 +51,17 @@ class Albert(Adv):
                 'x1fs.recovery':26/60.0,
                 })
         this.s2timer = Timer(this.s2autocharge,1,1).on()
-        this.paralyze_count=3
+        this.afflics.paralysis.maxdepth=15
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
+        else:
+            this.afflics.paralysis.resist=100
         this.s2buff = Selfbuff("s2_shapshift",1, 20,'ss','ss')
         this.a3 = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
 
-        if this.condition('4s1 in on s2'):
-            this.conf['acl'] = """
-                `s2, s1.charged>=s1.sp-300
-                `s1
-                `s3, not this.s2buff.get()
-                `fs, seq=2
-                """
 
     def altend(this,t):
         fs_back(this)
@@ -81,7 +72,7 @@ class Albert(Adv):
             this.s2.charge(160000.0/40)
             log('sp','s2autocharge')
 
-            
+
 
 
     def c_s1_proc(this, e):
@@ -95,7 +86,7 @@ class Albert(Adv):
             this.s2buff.buff_end_timer.timing += 2.6
             this.a3.buff_end_timer.timing += 2.6
             this.s2timer.timing += 2.6
-    
+
 
     def s1_proc(this, e):
         if this.s2buff.get():

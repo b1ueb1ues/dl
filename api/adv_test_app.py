@@ -50,7 +50,7 @@ def list_members(module, predicate, element=None):
     return member_list
 
 # API
-@app.route('/adv_test', methods=['POST'])
+@app.route('/simc_adv_test', methods=['POST'])
 def run_adv_test():
     params = request.get_json(silent=True)
     adv_name = params['adv'] if 'adv' in params else 'euden'
@@ -91,7 +91,7 @@ def run_adv_test():
 
 
 ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv'
-@app.route('/adv_slotlist', methods=['GET'])
+@app.route('/simc_adv_slotlist', methods=['GET'])
 def get_adv_slotlist():
     result = {}
     result['adv'] = {}
@@ -124,7 +124,7 @@ def get_adv_slotlist():
 
 
 ADV_DIR = '/home/wildshinobu/dl/adv/'
-@app.route('/adv_wp_list', methods=['GET'])
+@app.route('/simc_adv_wp_list', methods=['GET'])
 def get_adv_wp_list():
     result = {}
     result['adv'] = []
