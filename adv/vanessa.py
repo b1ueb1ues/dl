@@ -8,6 +8,9 @@ class Vanessa(adv.Adv):
     comment = ''
     a1 = ('fs',0.4)
     a3 = ('lo',0.3)
+    import slot.a
+    conf = {}
+    conf['slot.a'] = slot.a.KFM()+slot.a.CE()
 
 
 

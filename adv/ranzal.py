@@ -1,12 +1,16 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Ranzal
 
 class Ranzal(adv.Adv):
     comment = 'do not use fs'
-    pass
+    import slot.a
+    conf = {}
+    conf['slot.a'] = slot.a.KFM()+slot.a.CE()
+
 
 if __name__ == '__main__':
     conf = {}

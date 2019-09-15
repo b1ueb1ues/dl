@@ -5,7 +5,10 @@ def module():
     return Johanna
 
 class Johanna(adv.Adv):
-    pass
+    import slot.a
+    conf = {}
+    conf['slot.a'] = slot.a.KFM()+slot.a.CE()
+
 
 if __name__ == '__main__':
     conf = {}

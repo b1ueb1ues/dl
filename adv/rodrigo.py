@@ -1,11 +1,14 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Rodrigo
 
 class Rodrigo(adv.Adv):
     a1 = ('a',0.08,'hp70')
+    conf ={}
+    conf['slot.a'] = TSO()+BN()
 
 
 if __name__ == '__main__':

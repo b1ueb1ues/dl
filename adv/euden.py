@@ -1,11 +1,14 @@
 import adv_test
 import adv
+from slot.a import *
 
 
 def module():
     return Euden
 
 class Euden(adv.Adv):
+    conf ={}
+    conf['slot.a'] = TSO()+BN()
     pass
 
 

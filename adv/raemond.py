@@ -1,11 +1,13 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Raemond
 
 class Raemond(adv.Adv):
-    pass
+    conf = {}
+    conf['slot.a'] = TSO()+BN()
 
 
 if __name__ == '__main__':

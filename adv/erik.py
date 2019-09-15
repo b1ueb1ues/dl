@@ -8,9 +8,9 @@ def module():
 class Erik(adv.Adv):
     comment =''
     a1 = ('fs',0.30)
-
-    #comment += '& reach 100 resist with Silke Lends a Hand'
-    #conf = {'slots.a': RR()+Silke_Lends_a_Hand()}
+    import slot.a
+    conf = {}
+    conf['slot.a'] = slot.a.KFM()+slot.a.CE()
 
 
 
