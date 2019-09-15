@@ -8,8 +8,9 @@ def module():
 
 
 class W_Elisanne(Adv):
+    comment = 'c2+fs; 2in1'
     conf = {}
-    conf['slot.a'] = First_Rate_Hospitality() + The_Shining_Overlord()
+    conf['slot.a'] = VC() + JotS()
 
     a1 = ('sp',0.08)
     a3 = ('bc',0.13)
@@ -33,10 +34,10 @@ class W_Elisanne(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1,fsc
+        `s1,fsc and s2.charged<s2.sp-749
         `s2
         `s3,fsc
-        `fs, seq=3 and cancel
+        `fs,seq=2 and cancel
     """
 
     adv_test.test(module(), conf, verbose=-2, mass=0)
