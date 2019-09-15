@@ -21,7 +21,7 @@ class Emma(Adv):
                         `s3, seq=5
                         """
         else:
-            this.conf.slot.a = HG()+HR()
+            this.conf.slot.a = HG()+BB()
             this.conf['acl'] = """
                         `s1
                         `s3, fsc
