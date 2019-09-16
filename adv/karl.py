@@ -3,6 +3,8 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.a import *
+
 
 def module():
     return Karl
@@ -10,6 +12,7 @@ def module():
 class Karl(adv.Adv):
     a3 = ('a',0.08,'hp70')
     conf = {}
+    conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1
         `s2

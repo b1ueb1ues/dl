@@ -4,6 +4,8 @@ else:
     import adv.adv_test
 import adv
 from slot.d import *
+from slot.a import *
+
 
 def module():
     return Curran
@@ -16,9 +18,9 @@ class Curran(adv.Adv):
         `s2, seq=2
         `s3
         """
+    conf['slot.a'] = KFM()+CE()
     a1 = ('od',0.13)
     a3 = ('lo',0.5)
-
 
 
 if __name__ == '__main__':

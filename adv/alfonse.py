@@ -5,6 +5,7 @@ else:
 import adv
 from adv import *
 from core.log import *
+from slot.a import *
 
 def module():
     return Alfonse
@@ -13,6 +14,7 @@ class Alfonse(adv.Adv):
     a1 = ('lo',0.50*10.0/15.0)
     a3 = ('sp',0.08)
     conf = {}
+    conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1
         `s2,fsc

@@ -3,6 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.a import *
 
 def module():
     return Vanessa
@@ -12,6 +13,7 @@ class Vanessa(adv.Adv):
     a1 = ('fs',0.4)
     a3 = ('lo',0.3)
     conf = {}
+    conf['slot.a'] = KFM()+CE()
     conf['acl'] = """
         `s1
         `s2

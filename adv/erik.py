@@ -18,11 +18,7 @@ class Erik(adv.Adv):
     `s3,fsc
     `fs,seq=5
     """
-
-    #comment += '& reach 100 resist with Silke Lends a Hand'
-    #conf = {'slots.a': RR()+Silke_Lends_a_Hand()}
-
-
+    conf['slot.a'] = KFM()+CE()
 
 if __name__ == '__main__':
     conf = {}

@@ -107,3 +107,5 @@ s_ranzal.py
 s_julietta.py
 s_celliera.py
 noelle.py
+lea.py
+emma.py

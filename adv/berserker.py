@@ -3,18 +3,21 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 from adv import *
+from slot.a import *
 from slot.d import *
 
 def module():
     return Berserker
 
 class Berserker(Adv):
+    a3 = ('lo',0.3)
     conf = {}
+    conf['slot.a'] = RR()+SS()
+    conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1
-        `fs, seq=3 and cancel
+        `fs, seq=2 and cancel
         """
-    conf['slot.d'] = Marishiten()
     a3 = ('lo',0.3)
 
 

@@ -3,6 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.a import *
 
 
 def module():
@@ -10,6 +11,7 @@ def module():
 
 class Euden(adv.Adv):
     conf = {}
+    conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1, fsc
         `s2, fsc
