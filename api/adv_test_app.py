@@ -90,7 +90,6 @@ def run_adv_test():
     return f.getvalue()
 
 
-ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv'
 @app.route('/simc_adv_slotlist', methods=['GET'])
 def get_adv_slotlist():
     result = {}

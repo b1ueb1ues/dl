@@ -74,6 +74,10 @@ function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
 }
 function loadAdvWPList() {
+    var selectedAdv = 'euden';
+    if (localStorage.getItem('selectedAdv')){
+        selectedAdv = localStorage.getItem('selectedAdv');
+    }
     $.ajax({
         url: APP_URL + 'simc_adv_wp_list',
         dataType: 'text',
@@ -84,7 +88,7 @@ function loadAdvWPList() {
                 var advwp = JSON.parse(data);
                 advwp.adv.sort();
                 populateSelect('#input-adv', advwp.adv);
-                $('#adv-euden').prop('selected', true);
+                $('#adv-' + selectedAdv).prop('selected', true);
                 populateSelect('#input-wp1', advwp.amulets);
                 populateSelect('#input-wp2', advwp.amulets);
 
@@ -100,6 +104,7 @@ function loadAdvSlots() {
     if ($('#input-adv').val() == '') {
         return false;
     }
+    localStorage.setItem('selectedAdv', $('#input-adv').val());
     $.ajax({
         url: APP_URL + 'simc_adv_slotlist',
         dataType: 'text',

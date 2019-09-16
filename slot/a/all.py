@@ -17,7 +17,7 @@ RR = Resounding_Rendition
 class Crystalian_Envoy(Amulet):
     att = 57
     a = [('a',0.13,'hp70')]
-CE = Crystalian_Envoy	
+CE = Crystalian_Envoy
 
 
 class Bonds_Between_Worlds(Amulet):
@@ -186,7 +186,7 @@ class Luck_of_the_Draw(Amulet):
             this.a += [('bt',0.25)]
 
 
-class Lunar_Festivities(Amulet): 
+class Lunar_Festivities(Amulet):
     att = 51
     a = [('fs',0.40),
          ('sp',0.10,'fs')]
@@ -225,7 +225,7 @@ class Forest_Bonds(Amulet):
 FB = Forest_Bonds
 
 
-class Dragon_and_Tamer(Amulet):  
+class Dragon_and_Tamer(Amulet):
     att = 57
     def on(this, c):
         if c.wt == 'lance':
@@ -233,7 +233,7 @@ class Dragon_and_Tamer(Amulet):
 DnT = Dragon_and_Tamer
 
 
-class Twinfold_Bonds(Amulet):  
+class Twinfold_Bonds(Amulet):
     att = 65
     a = [('a',0.15,'hit15')]
     def on(this, c):
@@ -243,7 +243,7 @@ class Twinfold_Bonds(Amulet):
 TB = Twinfold_Bonds
 
 
-class Summer_Paladyns(Amulet):  
+class Summer_Paladyns(Amulet):
     att = 64
     def on(this, c):
         if c.wt == 'axe':
@@ -333,7 +333,7 @@ class Sisters_Day_Out(Amulet):
     def fs_proc(this, e):
         this.o_fs_proc(e)
         if this.charges > 0:
-            this.adv.charge_p('sisters_day_out','25%')
+            this.adv.charge_p('fs_charge','25%')
             this.charges -= 1
 
     def oninit(this, adv):
@@ -355,13 +355,13 @@ class Beautiful_Nothingness(Amulet):
     a = [('a',0.10,'hp70'),('cc',0.05)]
 BN = Beautiful_Nothingness
 
-class Resurgent_Despair(Amulet):
+class Castle_Cheer_Corps(Amulet):
     att = 64
     a = [('sp',0.06)]
     def fs_proc(this, e):
         this.o_fs_proc(e)
         if this.charges > 0:
-            this.adv.charge_p('Resurgent_Despair','25%')
+            this.adv.charge_p('fs_charge','25%')
             this.charges -= 1
 
     def oninit(this, adv):
@@ -370,7 +370,9 @@ class Resurgent_Despair(Amulet):
         this.adv = adv
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
-RD = Resurgent_Despair
+
+class High_Dragon_WP(Amulet):
+    att = 39
 
 amulets = []
 for k in list(globals()):
