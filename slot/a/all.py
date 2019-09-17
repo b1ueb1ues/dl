@@ -371,6 +371,12 @@ class Castle_Cheer_Corps(Amulet):
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
 
+class Honest_Repose(Amulet):
+    att = 53
+    def on(this, c):
+        if c.ele == 'flame':
+            this.a = [('sp', 10)]
+
 class High_Dragon_WP(Amulet):
     att = 39
 

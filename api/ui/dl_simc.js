@@ -6,7 +6,7 @@ EX_MAP = {
     'dagger': 'd'
 }
 function populateSelect(id, data) {
-    var t = id.split('-')[1]
+    const t = id.split('-')[1]
     $(id).empty();
     for (let d of data) {
         $(id).append($('<option>' + d + '</option>')
@@ -16,17 +16,18 @@ function populateSelect(id, data) {
 }
 colorMap = {
     'attack': 'FireBrick',
-    'force_strike': 'Maroon'
+    'force_strike': 'Maroon',
+    'team_buff': 'IndianRed'
 }
 colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
 function createDpsBar(arr, total_dps = undefined) {
-    total = parseInt(arr[0])
+    const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
-    adv = arr[1];
-    slots = ' ' + arr[6];
-    cond = (arr[7] != undefined && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
-    comment = (arr[8] != undefined) ? arr[8] : '';
-    cond_comment_str = ''
+    const adv = arr[1];
+    const slots = ' ' + arr[6];
+    const cond = (arr[7] != undefined && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
+    const comment = (arr[8] != undefined) ? arr[8] : '';
+    let cond_comment_str = ''
     if (!cond.startsWith('!')) {
         cond_comment_str = '<br/>';
         if (cond.length == 0 && comment.length == 0) {
@@ -41,13 +42,13 @@ function createDpsBar(arr, total_dps = undefined) {
     }
     $('#test_results').append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'))
     $('#test_results').append($('<div></div>').attr({ id: 'result-' + adv, class: 'result-bar' }))
-    colorIdx = 0
-    for (var i = 9; i < arr.length; i++) {
-        dmg = arr[i].split(':')
+    let colorIdx = 0
+    for (let i = 9; i < arr.length; i++) {
+        const dmg = arr[i].split(':')
         if (dmg.length == 2) {
-            dmg_val = parseInt(dmg[1]);
+            const dmg_val = parseInt(dmg[1]);
             if (dmg_val > 0) {
-                color = undefined
+                let color = undefined
                 if (colorMap.hasOwnProperty(dmg[0])) {
                     color = colorMap[dmg[0]]
                 } else {
@@ -55,14 +56,15 @@ function createDpsBar(arr, total_dps = undefined) {
                     colorIdx += 1
                 }
                 // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-                portion = 100 * (parseInt(dmg[1]) / total_dps)
-                $('#result-' + adv).append($('<a></a>')
+                const portion = 100 * (parseInt(dmg[1]) / total_dps)
+                const damageTxt = dmg[0] + ': ' + dmg[1];
+                $('#result-' + adv).append($('<a>' + damageTxt + '</a>')
                     .css('width', portion + '%')
                     .css('background-color', color)
                     .attr({
                         'data-toggle': 'tooltip',
                         'data-placement': 'top',
-                        'title': dmg[0] + ': ' + dmg[1]
+                        'title': damageTxt
                     })
                 )
             }
@@ -74,7 +76,7 @@ function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
 }
 function loadAdvWPList() {
-    var selectedAdv = 'euden';
+    let selectedAdv = 'euden';
     if (localStorage.getItem('selectedAdv')){
         selectedAdv = localStorage.getItem('selectedAdv');
     }
@@ -85,7 +87,7 @@ function loadAdvWPList() {
         contentType: 'application/x-www-form-urlencoded',
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
-                var advwp = JSON.parse(data);
+                const advwp = JSON.parse(data);
                 advwp.adv.sort();
                 populateSelect('#input-adv', advwp.adv);
                 $('#adv-' + selectedAdv).prop('selected', true);
@@ -113,7 +115,7 @@ function loadAdvSlots() {
         data: 'adv=' + $('#input-adv').val(),
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
-                var slots = JSON.parse(data);
+                const slots = JSON.parse(data);
                 populateSelect('#input-wep', slots.weapons);
                 $('#wep-' + slots.adv.pref_wep).prop('selected', true);
                 populateSelect('#input-dra', slots.dragons);
@@ -149,7 +151,7 @@ function runAdvTest() {
         return false;
     }
     $('#test_results').empty()
-    var requestJson = {
+    let requestJson = {
         'adv': $('#input-adv').val(),
         'dra': $('#input-dra').val(),
         'wep': $('#input-wep').val()
@@ -158,7 +160,7 @@ function runAdvTest() {
         requestJson['wp1'] = $('#input-wp1').val();
         requestJson['wp2'] = $('#input-wp2').val();
     }
-    var exStr = '';
+    let exStr = '';
     for (let ex of Object.keys(EX_MAP)) {
         if ($('#ex-' + ex).prop('checked')) {
             exStr += EX_MAP[ex]
