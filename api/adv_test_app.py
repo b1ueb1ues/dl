@@ -75,8 +75,6 @@ def run_adv_test():
             this.conf['slots.d'] = getattr(slot.d, dra)()
         if wep is not None:
             this.conf['slots.w'] = getattr(slot.w, wep)()
-        if afflict is not None:
-            this.conf['cond_afflict_res'] = afflict
     def acl_injection(this):
         if acl is not None:
             this.conf['acl'] = acl
@@ -85,8 +83,11 @@ def run_adv_test():
 
     f = io.StringIO()
     r = None
+    conf = {}
+    if afflict is not None:
+        conf['cond_afflict_res'] = afflict
     with redirect_stdout(f):
-        r = adv.adv_test.test(adv_module, {}, verbose=log, duration=t)
+        r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
     result = {'test_output': f.getvalue(), 'extra': {}}
     if r is not None:
         if r['buff_sum'] > 0:
