@@ -154,7 +154,8 @@ function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
     }
-    $('#test_results').empty()
+    $('#test_results').empty();
+    $('div[role="tooltip"]').remove();
     let requestJson = {
         'adv': $('#input-adv').val(),
         'dra': $('#input-dra').val(),
