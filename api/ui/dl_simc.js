@@ -5,6 +5,7 @@ EX_MAP = {
     'bow': 'b',
     'dagger': 'd'
 }
+BASE_TEAM_DPS = 6000
 function populateSelect(id, data) {
     const t = id.split('-')[1]
     $(id).empty();
@@ -20,7 +21,7 @@ colorMap = {
     'team_buff': 'IndianRed'
 }
 colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
-function createDpsBar(arr, total_dps = undefined) {
+function createDpsBar(arr, extra, total_dps = undefined) {
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
@@ -56,8 +57,11 @@ function createDpsBar(arr, total_dps = undefined) {
                     colorIdx += 1
                 }
                 // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-                const portion = 100 * (parseInt(dmg[1]) / total_dps)
-                const damageTxt = dmg[0] + ': ' + dmg[1];
+                const portion = 100 * (parseInt(dmg[1]) / total_dps);
+                let damageTxt = dmg[0] + ': ' + dmg[1];
+                if (dmg[0] in extra) {
+                    damageTxt += ' (' + extra[dmg[0]] + ')'
+                }
                 $('#result-' + adv).append($('<a>' + damageTxt + '</a>')
                     .css('width', portion + '%')
                     .css('background-color', color)
@@ -77,7 +81,7 @@ function trimAcl(acl_str) {
 }
 function loadAdvWPList() {
     let selectedAdv = 'euden';
-    if (localStorage.getItem('selectedAdv')){
+    if (localStorage.getItem('selectedAdv')) {
         selectedAdv = localStorage.getItem('selectedAdv');
     }
     $.ajax({
@@ -127,10 +131,10 @@ function loadAdvSlots() {
                 $('#ex-' + slots.adv.wt).prop('checked', true);
                 $('#ex-' + slots.adv.wt).prop('disabled', true);
                 $('#input-acl').val(trimAcl(slots.adv.acl));
-                if (slots.adv.afflict_res != undefined){
+                if (slots.adv.afflict_res != undefined) {
                     $('#input-afflict').prop('disabled', false);
                     $('#input-afflict').val(slots.adv.afflict_res);
-                }else{
+                } else {
                     $('#input-afflict').prop('disabled', true);
                     $('#input-afflict').val(slots.adv.afflict_res);
 
@@ -140,7 +144,7 @@ function loadAdvSlots() {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            if (errorThrown == 'INTERNAL SERVER ERROR'){
+            if (errorThrown == 'INTERNAL SERVER ERROR') {
                 $('#test_results').html('Something went wrong :(');
             }
         }
@@ -187,13 +191,14 @@ function runAdvTest() {
         data: JSON.stringify(requestJson),
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
-                result = data.split('\n')
-                cond_true = result[0].split(',')
-                $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'))
-                createDpsBar(cond_true)
+                const res = JSON.parse(data);
+                const result = res.test_output.split('\n');
+                const cond_true = result[0].split(',');
+                $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'));
+                createDpsBar(cond_true, res.extra)
                 if (result.length > 1 && result[1].includes(',')) {
                     cond_false = result[1].split(',')
-                    createDpsBar(cond_false, cond_true[0])
+                    createDpsBar(cond_false, res.extra, cond_true[0])
                 }
             }
         },

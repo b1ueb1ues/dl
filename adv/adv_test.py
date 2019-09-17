@@ -268,14 +268,14 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         test(classname, conf, verbose, mass, duration, 1)
         g_condition = ''
     elif g_condition != '':
-        return
+        return r
 
     b = time.time()
     if loglevel > 0 and loglevel & 8:
         print('-----------------------\nrun in %f'%(b-a))
     elif loglevel < 0 and not loglevel-1 & 8:
         print('-----------------------\nrun in %f'%(b-a))
-    return
+    return r
 
 def report__2(condition, exdps, r, name, adv, amulets):
     global mname

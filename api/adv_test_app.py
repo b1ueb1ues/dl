@@ -11,6 +11,7 @@ from flask import jsonify
 from flask_cors import CORS
 
 from core.advbase import Adv as adventurer
+import adv.adv_test
 import adv
 import slot.a
 import slot.d
@@ -65,10 +66,8 @@ def run_adv_test():
 
     log = -2
 
-    import adv.adv_test
     adv.adv_test.set_ex(ex)
     adv_module = get_adv_module(adv_name)
-    conf = {}
     def slot_injection(this):
         if wp1 is not None and wp2 is not None:
             this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
@@ -85,9 +84,16 @@ def run_adv_test():
     adv_module.acl_backdoor = acl_injection
 
     f = io.StringIO()
+    r = None
     with redirect_stdout(f):
-        adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
-    return f.getvalue()
+        r = adv.adv_test.test(adv_module, {}, verbose=log, duration=t)
+    result = {'test_output': f.getvalue(), 'extra': {}}
+    if r is not None:
+        if r['buff_sum'] > 0:
+            result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
+        if r['energy_sum'] > 0:
+            result['extra']['team_energy'] = '{} stacks'.format(r['energy_sum'])
+    return jsonify(result)
 
 
 @app.route('/simc_adv_slotlist', methods=['GET'])
