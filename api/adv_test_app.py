@@ -106,7 +106,7 @@ def get_adv_slotlist():
     dragon_module = slot.d
     weap_module = slot.w
     if result['adv']['name'] is not None:
-        adv_instance = get_adv_module(result['adv']['name'])()
+        adv_instance = get_adv_module(result['adv']['name'])(cond=1)
         adv_ele = adv_instance.slots.c.ele.lower()
         result['adv']['ele'] = adv_ele
         dragon_module = getattr(slot.d, adv_ele)
