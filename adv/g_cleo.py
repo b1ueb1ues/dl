@@ -19,7 +19,11 @@ def module():
 class G_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
-    
+    conf['acl'] = """
+        `fs, this.fsa_charge and seq=5
+        `s2,
+        `s1
+    """
 
     def d_slots(this):
         this.slots.a = RR()+JotS()  # wand c2*1.08 = 217
