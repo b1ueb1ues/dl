@@ -26,7 +26,7 @@ class dagger5b2(WeaponBase):
 class daggerHZDBane(WeaponBase):
     ele = ['light']
     wt = 'dagger'
-    att = 344
+    att = 327
     a = [('k',0.3)]
 
 

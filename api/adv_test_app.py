@@ -23,7 +23,6 @@ CORS(app)
 
 # Helpers
 ADV_DIR = '/home/wildshinobu/dl/adv/'
-ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv\\'
 MEANS_ADV = {
     'addis': 'addis.py.means',
     'botan': 'botan.py.means',

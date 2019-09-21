@@ -130,6 +130,9 @@ function loadAdvSlots() {
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv.wt).prop('checked', true);
                 $('#ex-' + slots.adv.wt).prop('disabled', true);
+                $('#input-acl').blur();
+                $('#input-edit-acl').prop('checked', false);
+                $('#input-acl').prop('disabled', true);
                 $('#input-acl').val(trimAcl(slots.adv.acl));
                 if (slots.adv.afflict_res != undefined) {
                     $('#input-afflict').prop('disabled', false);
