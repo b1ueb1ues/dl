@@ -14,6 +14,12 @@ class Victor(Adv):
     a1 = ('a',0.13,'hp70')
     conf = {}
     #conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
+    conf['acl'] = """
+        # bs = this.bleed._static['stacks']
+        `s1
+        `s2, seq=5
+        `s3, seq=5
+        """
 
     def d_slots(this):
         if 'bow' in this.ex:
@@ -30,11 +36,5 @@ class Victor(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        # bs = this.bleed._static['stacks']
-        `s1
-        `s2, seq=5
-        `s3, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2, mass=1)
 

@@ -18,6 +18,11 @@ class Noelle(Adv):
     conf['slots.d'] = Zephyr()
     conf['slots.a'] = HoH()+HG()
 
+    conf['acl'] = """
+        `s1
+        `s2, seq=5
+        `fs, seq=5
+        """
 
     def init(this):
         energy.Energy(this,{},{})
@@ -61,10 +66,5 @@ class Noelle(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=5
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2)
 
