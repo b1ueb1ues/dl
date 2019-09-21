@@ -3,6 +3,7 @@ import inspect
 from os import listdir
 from os.path import isfile, join
 import re
+import imp
 
 from contextlib import redirect_stdout
 from flask import Flask
@@ -21,11 +22,30 @@ app = Flask(__name__)
 CORS(app)
 
 # Helpers
+ADV_DIR = '/home/wildshinobu/dl/adv/'
+ADV_DIR = 'D:\\Desktop\\degenlost\\dl\\adv\\'
+MEANS_ADV = {
+    'addis': 'addis.py.means',
+    'botan': 'botan.py.means',
+    'ieyasu': 'ieyasu.py.means',
+    'sazanka': 'sazanka.py.means',
+    'sinoa': 'sinoa.py.means',
+    'victor': 'victor.py.m',
+}
 def get_adv_module(adv_name):
-    return getattr(
-                __import__('adv.{}'.format(adv_name.lower())),
-                adv_name.lower()
-           ).module()
+    if adv_name in MEANS_ADV:
+        with open('{}{}.py'.format(ADV_DIR, MEANS_ADV[adv_name]), 'rb') as fp:
+            return imp.load_module(
+                adv_name, fp, MEANS_ADV[adv_name],
+                ('.py', 'rb', imp.PY_SOURCE)
+            ).module()
+    else:
+        return getattr(
+            __import__('adv.{}'.format(adv_name.lower())),
+            adv_name.lower()
+        ).module()
+
+
 def is_amulet(obj):
     return (inspect.isclass(obj) and issubclass(obj, slot.a.Amulet)
             and obj.__module__ != 'slot.a'
@@ -54,7 +74,7 @@ def list_members(module, predicate, element=None):
 @app.route('/simc_adv_test', methods=['POST'])
 def run_adv_test():
     params = request.get_json(silent=True)
-    adv_name = params['adv'] if 'adv' in params else 'euden'
+    adv_name = params['adv'].lower() if 'adv' in params else 'euden'
     wp1 = params['wp1'] if 'wp1' in params else None
     wp2 = params['wp2'] if 'wp2' in params else None
     dra = params['dra'] if 'dra' in params else None
@@ -129,7 +149,6 @@ def get_adv_slotlist():
     return jsonify(result)
 
 
-ADV_DIR = '/home/wildshinobu/dl/adv/'
 @app.route('/simc_adv_wp_list', methods=['GET'])
 def get_adv_wp_list():
     result = {}

@@ -23,20 +23,4 @@ class Ieyasu(ieyasu.Ieyasu):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=-2, mass=0)
-
-    exit()
-    def foo(this, e):
-        return
-    module().s1_proc = foo
-    conf['acl'] = """
-        `s1
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
-        """
     adv_test.test(module(), conf, verbose=1, mass=0)

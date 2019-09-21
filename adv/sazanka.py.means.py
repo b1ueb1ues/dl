@@ -22,10 +22,4 @@ class Sazanka(sazanka.Sazanka):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s3, fsc
-        `s2, fsc
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, mass=0)
