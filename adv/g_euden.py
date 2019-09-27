@@ -28,14 +28,14 @@ class G_Euden(Adv):
         this.s2timer = Timer(this.s2autocharge,1,1).on()
 
     def s2autocharge(this, t):
-        this.afflics.paralysis('s2', 120, 0.97)
         this.s2.charge(999999.0/63)
         log('sp','s2autocharge')
-        Event('defchain')()
 
     def s1_proc(this, e):
         if this.s1on :
             Debuff('s1str',-0.20,10,1,'att').on()
+        this.afflics.paralysis('s2', 120, 0.97)
+        Event('defchain')()
 
 
 if __name__ == '__main__':
