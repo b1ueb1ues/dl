@@ -34,8 +34,10 @@ class G_Euden(Adv):
     def s1_proc(this, e):
         if this.s1on :
             Debuff('s1str',-0.20,10,1,'att').on()
-        this.afflics.paralysis('s2', 120, 0.97)
+
+    def s2_proc(this, e)
         Event('defchain')()
+        this.afflics.paralysis('s2', 120, 0.97)
 
 
 if __name__ == '__main__':
@@ -45,5 +47,18 @@ if __name__ == '__main__':
         `s2,fsc
         `fs,seq=2 and cancel
     """
+#    import sys
+#    from slot.a import *
+#    if len(sys.argv) >= 3:
+#        sim_duration = int(sys.argv[2])
+#    else:
+#        sim_duration = 180
+#    if sim_duration == 60:
+#        conf['slot.a'] = Choco()+SDO()
+#        conf['acl'] = """
+#            `s1
+#            `s2
+#            `fs, seq=2
+#            """
 
     adv_test.test(module(), conf, verbose=-2, mass=0)
