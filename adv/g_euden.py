@@ -35,7 +35,7 @@ class G_Euden(Adv):
         if this.s1on :
             Debuff('s1str',-0.20,10,1,'att').on()
 
-    def s2_proc(this, e)
+    def s2_proc(this, e):
         Event('defchain')()
         this.afflics.paralysis('s2', 120, 0.97)
 
