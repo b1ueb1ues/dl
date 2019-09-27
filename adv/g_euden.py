@@ -11,10 +11,16 @@ class G_Euden(Adv):
     comment = 'c2+fs'
     conf = {}
     conf['slot.a'] = TSO() + SDO()
+    conf['acl'] = """
+        `s1,fsc
+        `s2,fsc
+        `fs,seq=2 and cancel
+    """
+    conf['cond_afflict_res'] = 0
 
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 
@@ -42,23 +48,4 @@ class G_Euden(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1,fsc
-        `s2,fsc
-        `fs,seq=2 and cancel
-    """
-#    import sys
-#    from slot.a import *
-#    if len(sys.argv) >= 3:
-#        sim_duration = int(sys.argv[2])
-#    else:
-#        sim_duration = 180
-#    if sim_duration == 60:
-#        conf['slot.a'] = Choco()+SDO()
-#        conf['acl'] = """
-#            `s1
-#            `s2
-#            `fs, seq=2
-#            """
-
     adv_test.test(module(), conf, verbose=-2, mass=0)
