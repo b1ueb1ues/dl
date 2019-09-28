@@ -4,7 +4,8 @@ class Cupid(DragonBase):
     ele = 'light'
     att = 119
 
-class Gilgamesh(DragonBase):
+class LightSkillDmg(DragonBase):
     ele = 'light'
-    att = 124
-    aura = ('att','passive',0.50)
+    att = 125
+    aura = [('att','passive',0.2),
+            ('s','passive',0.9)]
