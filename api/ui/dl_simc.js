@@ -202,7 +202,7 @@ function runAdvTest() {
                 createDpsBar(cond_true, res.extra)
                 if (result.length > 1 && result[1].includes(',')) {
                     cond_false = result[1].split(',')
-                    createDpsBar(cond_false, res.extra, cond_true[0])
+                    createDpsBar(cond_false, res.extra_no_cond, cond_true[0])
                 }
             }
         },

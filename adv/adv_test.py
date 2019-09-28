@@ -265,8 +265,10 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
 
 
     if condition != '':
-        test(classname, conf, verbose, mass, duration, 1)
+        r2 = test(classname, conf, verbose, mass, duration, 1)
         g_condition = ''
+        r['buff_sum_no_cond'] = r2['buff_sum']
+        r['energe_sum_no_cond'] = r2['energy_sum']
     elif g_condition != '':
         return r
 

@@ -107,12 +107,17 @@ def run_adv_test():
         conf['cond_afflict_res'] = afflict
     with redirect_stdout(f):
         r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
-    result = {'test_output': f.getvalue(), 'extra': {}}
+    result = {'test_output': f.getvalue(), 'extra': {}, 'extra_no_cond': {}}
     if r is not None:
         if r['buff_sum'] > 0:
             result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
+        if r['buff_sum_no_cond'] > 0:
+            result['extra_no_cond']['team_buff'] = '+{}%'.format(round(r['buff_sum_no_cond'] * 100))
         if r['energy_sum'] > 0:
             result['extra']['team_energy'] = '{} stacks'.format(r['energy_sum'])
+        if r['energy_sum'] > 0:
+            result['extra_no_cond']['team_energy'] = '{} stacks'.format(r['energy_sum'])
+
     return jsonify(result)
 
 

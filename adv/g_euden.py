@@ -51,4 +51,5 @@ class G_Euden(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2, mass=0)
+    r = adv_test.test(module(), conf, verbose=0, mass=0)
+    print(r['buff_sum'])
