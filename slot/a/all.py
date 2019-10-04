@@ -98,6 +98,12 @@ class Jewels_of_the_Sun(Amulet):
 JotS = Jewels_of_the_Sun
 
 
+class United_by_One_Vision(Amulet):
+    att = 54
+    a = [('sp',0.08),
+         ('a',0.13,'hp70')]
+
+
 class Heralds_of_Hinomoto(Amulet):
     att = 64
     a = [('s',0.30),
