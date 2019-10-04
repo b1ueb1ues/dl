@@ -49,11 +49,10 @@ class Delphi(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = RR()+SDO()
+    conf['slots.a'] = TB()+SDO()
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1
-        `s2
         `s3
         `fs,seq=2 and cancel
     """
