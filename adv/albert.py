@@ -101,7 +101,7 @@ class Albert(Adv):
 
     def fs_proc(this, e):
         if this.s2buff.get():
-            this.afflics.paralysis('s2',100,0.803)
+            this.afflics.paralysis('fs',100,0.803)
 
     def s2_proc(this, e):
         this.s2timer.on()
