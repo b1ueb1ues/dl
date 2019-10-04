@@ -81,6 +81,7 @@ def run_adv_test():
     ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
     afflict = min(abs(int(params['afflict'])), 100) if 'afflict' in params else None
+    teamdps = abs(int(params['teamdps'])) if 'teamdps' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
 
     log = -2
@@ -94,6 +95,13 @@ def run_adv_test():
             this.conf['slots.d'] = getattr(slot.d, dra)()
         if wep is not None:
             this.conf['slots.w'] = getattr(slot.w, wep)()
+        if teamdps is not None:
+            adv.adv_test.team_dps = teamdps
+            # assume team dps * 1.25 = raw skill dmg
+            adv.adv_test.energy_efficiency = (teamdps * 1.25) * 0.5 * 2 / 5 / adv.adv_test.sim_duration
+        else:
+            adv.adv_test.team_dps = 6000
+            adv.adv_test.energy_efficiency = 7500 * 0.5 * 2 / 5 / adv.adv_test.sim_duration
     def acl_injection(this):
         if acl is not None:
             this.conf['acl'] = acl
@@ -111,11 +119,11 @@ def run_adv_test():
     if r is not None:
         if r['buff_sum'] > 0:
             result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
-        if r['buff_sum_no_cond'] > 0:
-            result['extra_no_cond']['team_buff'] = '+{}%'.format(round(r['buff_sum_no_cond'] * 100))
         if r['energy_sum'] > 0:
             result['extra']['team_energy'] = '{} stacks'.format(r['energy_sum'])
-        if r['energy_sum'] > 0:
+        if 'buff_sum_no_cond' in r and r['buff_sum_no_cond'] > 0:
+            result['extra_no_cond']['team_buff'] = '+{}%'.format(round(r['buff_sum_no_cond'] * 100))
+        if 'energe_sum_no_cond' in r and r['energe_sum_no_cond'] > 0:
             result['extra_no_cond']['team_energy'] = '{} stacks'.format(r['energy_sum'])
 
     return jsonify(result)

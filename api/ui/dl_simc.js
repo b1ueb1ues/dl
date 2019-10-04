@@ -140,7 +140,6 @@ function loadAdvSlots() {
                 } else {
                     $('#input-afflict').prop('disabled', true);
                     $('#input-afflict').val(slots.adv.afflict_res);
-
                 }
 
                 runAdvTest();
@@ -182,6 +181,9 @@ function runAdvTest() {
     }
     if (!isNaN(parseInt($('#input-afflict').val()))) {
         requestJson['afflict'] = $('#input-afflict').val();
+    }
+    if (!isNaN(parseInt($('#input-teamdps').val()))) {
+        requestJson['teamdps'] = $('#input-teamdps').val();
     }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
