@@ -3,6 +3,8 @@
 import os
 import sys
 
+os.system('git --git-dir=www/.git pull')
+
 # windows platform + git bash
 # python deploy.py -s [character] | sh
 # python deploy.py -c

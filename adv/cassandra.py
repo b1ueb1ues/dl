@@ -25,5 +25,5 @@ if __name__ == '__main__':
         `s2, seq=5
     """
 
-    adv_test.test(module(), conf, verbose=1)
+    adv_test.test(module(), conf, verbose=0)
 
