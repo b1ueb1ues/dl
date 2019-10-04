@@ -216,10 +216,20 @@ function runAdvTest() {
 function editAcl() {
     $('#input-acl').prop('disabled', !$(this).prop('checked'))
 }
-
+function debounce(func, interval) {
+    var lastCall = -1;
+    return function() {
+        clearTimeout(lastCall);
+        var args = arguments;
+        var self = this;
+        lastCall = setTimeout(function() {
+            func.apply(self, args);
+        }, interval);
+    };
+}
 window.onload = function () {
-    $('#input-adv').change(loadAdvSlots);
-    $('#run-test').click(runAdvTest);
+    $('#input-adv').change(debounce(loadAdvSlots, 200));
+    $('#run-test').click(debounce(runAdvTest, 200));
     $('#input-edit-acl').change(editAcl);
     loadAdvWPList()
 }
