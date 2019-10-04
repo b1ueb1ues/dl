@@ -16,7 +16,7 @@ class Dot(object):
         this.duration = duration
         this.true_dmg_event = Event('true_dmg')
         this.true_dmg_event.dname = name
-        this.true_dmg_event.dtype = 's'
+        this.true_dmg_event.dtype = name
         this.true_dmg_event.comment = ''
         this.tick_dmg = 0
         this.quickshot_event = Event('dmg_formula')
@@ -53,7 +53,7 @@ class Dot(object):
         this.tick_timer.on(this.iv)
         this.dotend_timer.on(this.duration)
         this.quickshot_event.dmg_coef = this.coef
-        this.quickshot_event.dname = 's_dot'
+        this.quickshot_event.dname = this.name
         this.quickshot_event()
         this.tick_dmg = this.quickshot_event.dmg
         log('dot',this.name,'start\t','%f/%d'%(this.iv,this.duration))
