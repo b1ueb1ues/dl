@@ -1,4 +1,7 @@
-import adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 from adv import *
 from slot.a import *
 from slot.d import *
@@ -8,10 +11,20 @@ def module():
 
 class Delphi(Adv):
     a1 = ('a',-0.6)
+    conf = {}
+    conf['slots.a'] = RR()+SDO()
+    conf['slot.d'] = Marishiten()
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3
+        `fs,seq=2 and cancel
+    """
+    conf['cond_afflict_res'] = 0
 
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.poison.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.poison.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.poison.resist=100
 
@@ -49,13 +62,4 @@ class Delphi(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = RR()+SDO()
-    conf['slot.d'] = Marishiten()
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        `fs,seq=2 and cancel
-    """
-
     adv_test.test(module(), conf, verbose=-2, mass=0)

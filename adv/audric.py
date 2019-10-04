@@ -1,4 +1,7 @@
-import adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 import adv
 from adv import *
 from core.log import *
@@ -10,13 +13,13 @@ def module():
 class Audric(adv.Adv):
     conf = {}
     conf['slot.a'] = TSO()+BN()
-
-if __name__ == '__main__':
-    conf = {}
     conf['acl'] = """
         `s1
         `s2, fsc
         `fs, seq=3
         """
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 
