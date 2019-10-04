@@ -25,6 +25,7 @@ class Elisanne(Adv):
                     `fs, seq=5
                     """
     def d_acl(this):
+        adv_test.team_dps = 10000
         if 'bow' in this.ex:
             this.conf['acl'] = """
                         `s1
@@ -45,5 +46,4 @@ if __name__ == '__main__':
     #     """
 
 
-    adv_test.team_dps = 10000
     adv_test.test(module(), conf, verbose=-2)

@@ -26,6 +26,7 @@ class G_Sarisse(adv.Adv):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
         this.conf['slot.a'] = FB()+SS()
+        this.conf['slot.d'] = Cerberus()
         if this.condition('rollfs'):
             this.conf['acl'] = """
                 `s3,s1.charged>=2803
