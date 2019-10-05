@@ -21,39 +21,55 @@ colorMap = {
     'team_buff': 'IndianRed'
 }
 colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
+// charList = ['&#9636', '&#9637', '&#9639', '&#9640']
+// charMap = {
+//     'attack': '&#9670;',
+//     'force_strike': '&#9671;',
+//     'team_buff': '&#9672;'
+// }
 function createDpsBar(arr, extra, total_dps = undefined) {
+    let copyTxt = '';
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
     const slots = ' ' + arr[6];
     const cond = (arr[7] != undefined && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
     const comment = (arr[8] != undefined) ? arr[8] : '';
-    let cond_comment_str = ''
-    if (!cond.startsWith('!')) {
-        cond_comment_str = '<br/>';
-        if (cond.length == 0 && comment.length == 0) {
-            cond_comment_str = ''
-        } else if (cond.length > 0 && comment.length == 0) {
-            cond_comment_str += cond
-        } else if (cond.length == 0 && comment.length > 0) {
-            cond_comment_str += comment
-        } else if (cond.length > 0 && comment.length > 0) {
-            cond_comment_str += cond + '; ' + comment
+    let cond_comment = [];
+    let cond_comment_str = '';
+    let cond_comment_cpy = '';
+    if (cond != undefined && !cond.startsWith('!')) {
+        if (cond != ''){
+            cond_comment.push(cond);
+        }
+        if (comment != ''){
+            cond_comment.push(comment)
+        }
+        if (cond_comment.length > 0){
+            cond_comment_cpy = cond_comment.join(' ') + '\n';
+            cond_comment_str = cond_comment.join(' ');
+            cond_comment_str = '<br/>' + cond_comment_str;
         }
     }
-    $('#test_results').append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'))
-    $('#test_results').append($('<div></div>').attr({ id: 'result-' + adv, class: 'result-bar' }))
-    let colorIdx = 0
+    $('#test-results').append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
+    copyTxt += cond_comment_cpy + '```DPS: ' + total + slots + '\n';
+    $('#test-results').append($('<div></div>').attr({ id: 'result-' + adv, class: 'result-bar' }));
+    let colorIdx = 0;
+    let damageTxtArr = [];
+    let damageTxtBar = [];
     for (let i = 9; i < arr.length; i++) {
         const dmg = arr[i].split(':')
         if (dmg.length == 2) {
             const dmg_val = parseInt(dmg[1]);
             if (dmg_val > 0) {
-                let color = undefined
+                let color = undefined;
+                // let char = undefined;
                 if (colorMap.hasOwnProperty(dmg[0])) {
                     color = colorMap[dmg[0]]
+                    // char = charMap[dmg[0]]
                 } else {
                     color = colorList[colorIdx % colorList.length]
+                    // char = charList[colorIdx % colorList.length]
                     colorIdx += 1
                 }
                 // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
@@ -62,6 +78,8 @@ function createDpsBar(arr, extra, total_dps = undefined) {
                 if (dmg[0] in extra) {
                     damageTxt += ' (' + extra[dmg[0]] + ')'
                 }
+                damageTxtArr.push(damageTxt);
+                // damageTxtBar.push(char.repeat(portion))
                 $('#result-' + adv).append($('<a>' + damageTxt + '</a>')
                     .css('width', portion + '%')
                     .css('background-color', color)
@@ -74,7 +92,10 @@ function createDpsBar(arr, extra, total_dps = undefined) {
             }
         }
     }
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+    copyTxt += damageTxtArr.join('|') + '\n';
+    copyTxt += damageTxtBar.join('') + '```';
+    return copyTxt;
 }
 function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
@@ -102,7 +123,7 @@ function loadAdvWPList() {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $('#test_results').html(errorThrown);
+            $('#test-results').html(errorThrown);
         }
     });
 }
@@ -147,7 +168,7 @@ function loadAdvSlots() {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             if (errorThrown == 'INTERNAL SERVER ERROR') {
-                $('#test_results').html('Something went wrong :(');
+                $('#test-results').html('Something went wrong :(');
             }
         }
     });
@@ -156,7 +177,8 @@ function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
     }
-    $('#test_results').empty();
+    $('#test-results').empty();
+    $('#copy-results').empty();
     $('div[role="tooltip"]').remove();
     let requestJson = {
         'adv': $('#input-adv').val(),
@@ -200,16 +222,18 @@ function runAdvTest() {
                 const res = JSON.parse(data);
                 const result = res.test_output.split('\n');
                 const cond_true = result[0].split(',');
-                $('#test_results').append($('<h4>' + cond_true[1] + '</h4>'));
-                createDpsBar(cond_true, res.extra)
+                let copyTxt = '**' + cond_true[1] + '** ';
+                $('#test-results').append($('<h4>' + cond_true[1] + '</h4>'));
+                copyTxt += createDpsBar(cond_true, res.extra)
                 if (result.length > 1 && result[1].includes(',')) {
                     cond_false = result[1].split(',')
-                    createDpsBar(cond_false, res.extra_no_cond, cond_true[0])
+                    copyTxt += createDpsBar(cond_false, res.extra_no_cond, cond_true[0])
                 }
+                $('#copy-results').append($('<pre>' + copyTxt + '</pre>').attr({ id: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $('#test_results').html(errorThrown);
+            $('#test-results').html(errorThrown);
         }
     });
 }
@@ -227,9 +251,22 @@ function debounce(func, interval) {
         }, interval);
     };
 }
+function toggleCopy() {
+    if ($('#copy-results').css('display') == 'none'){
+        $('#copy-results').css('display', 'block');
+        $('#test-results').css('display', 'none');
+        $('#show-copy').html('Visual');
+    }else{
+        $('#copy-results').css('display', 'none');
+        $('#test-results').css('display', 'block');
+        $('#show-copy').html('Markdown');
+    }
+}
+
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
     $('#run-test').click(debounce(runAdvTest, 200));
+    $('#show-copy').click(toggleCopy);
     $('#input-edit-acl').change(editAcl);
     loadAdvWPList()
 }

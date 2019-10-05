@@ -32,12 +32,12 @@ class Delphi(Adv):
             this.proc_chance = 180
         else:
             this.proc_chance = 120
-        
+
         if this.condition('s1 defdown for 10s'):
             this.s1defdown = 1
         else:
             this.s1defdown = 0
-        
+
         if this.condition('reflect 500 damage on every s2'):
             this.s2reflect = 500
         else:
@@ -55,7 +55,7 @@ class Delphi(Adv):
         if this.s1defdown :
             Debuff('s1defdown',0.15,10,1).on()
         this.s1fscharge = 1
-        this.dmg_make('o_s2reflect', this.s2reflect * 11, fixed=True)
+        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
 
     def s2_proc(this, e):
         this.afflics.poison('s2',120,3.00,24)

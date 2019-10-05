@@ -32,7 +32,7 @@ class Cassandra(Adv):
         Selfbuff('a3',0.10,-1).on()
 
     def s2_proc(this, e):
-        this.dmg_make('o_s2reflect', this.s2reflect * 11, fixed=True)
+        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
 
 
 if __name__ == '__main__':

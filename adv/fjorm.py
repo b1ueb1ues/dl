@@ -10,7 +10,7 @@ def module():
     return Fjorm
 
 class Fjorm(Adv):
-    comment = 'do not calc damage counter'
+    # comment = 'do not calc damage counter'
     a3 = ('prep', 100)
     conf = {}
     conf['slot.a'] = Dragon_and_Tamer()+LC()
@@ -28,7 +28,7 @@ class Fjorm(Adv):
             this.s2reflect = 0
 
     def s2_proc(this, e):
-        this.dmg_make('o_s2reflect', this.s2reflect * 11, fixed=True)
+        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
 
 if __name__ == '__main__':
     conf = {}
