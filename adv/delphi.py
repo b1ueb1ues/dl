@@ -38,6 +38,11 @@ class Delphi(Adv):
         else:
             this.s1defdown = 0
         
+        if this.condition('reflect 500 damage on every s2'):
+            this.s2reflect = 500
+        else:
+            this.s2reflect = 0
+
         this.skilltimer = Timer(this.skillautocharge,1,1).on()
         this.s1fscharge = 0
 
@@ -50,6 +55,7 @@ class Delphi(Adv):
         if this.s1defdown :
             Debuff('s1defdown',0.15,10,1).on()
         this.s1fscharge = 1
+        this.dmg_make('o_s2reflect', this.s2reflect * 11, fixed=True)
 
     def s2_proc(this, e):
         this.afflics.poison('s2',120,3.00,24)

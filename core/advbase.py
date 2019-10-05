@@ -1380,10 +1380,10 @@ class Adv(object):
         else:
             this.dmg_make(e.dname, e.dmg_coef)
 
-    def dmg_make(this, name, dmg_coef, dtype=None):
+    def dmg_make(this, name, dmg_coef, dtype=None, fixed=False):
         if dtype == None:
             dtype = name
-        count = this.dmg_formula(dtype, dmg_coef)
+        count = this.dmg_formula(dtype, dmg_coef) if not fixed else dmg_coef
         log('dmg', name, count)
         this.dmg_proc(name, count)
         return count
