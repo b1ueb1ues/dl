@@ -30,6 +30,16 @@ class Vayu(DragonBase):
     aura = [('att','passive',0.2),
             ('s','passive',0.9)]
 
+class Vayu_0ub(DragonBase):
+    ele = 'wind'
+    att = 57
+    aura = [('att','passive',0.1),
+            ('s','passive',0.7)]
+
+class Roc(DragonBase):
+    ele = 'wind'
+    att = 101
+    aura = ('att', 'passive', 0.45)
 
 class Freyja(DragonBase):
     ele = 'wind'

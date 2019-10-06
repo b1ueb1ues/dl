@@ -32,27 +32,29 @@ function createDpsBar(arr, extra, total_dps = undefined) {
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
-    const slots = ' ' + arr[6];
+    let slots = ' ' + arr[6];
     const cond = (arr[7] != undefined && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
     const comment = (arr[8] != undefined) ? arr[8] : '';
     let cond_comment = [];
     let cond_comment_str = '';
-    let cond_comment_cpy = '';
+    let cond_cpy_str = '';
     if (cond != undefined && !cond.startsWith('!')) {
         if (cond != ''){
             cond_comment.push(cond);
+            cond_cpy_str = ' ' + cond;
         }
         if (comment != ''){
             cond_comment.push(comment)
         }
         if (cond_comment.length > 0){
-            cond_comment_cpy = cond_comment.join(' ') + '\n';
-            cond_comment_str = cond_comment.join(' ');
-            cond_comment_str = '<br/>' + cond_comment_str;
+            // cond_comment_cpy = ' ' + cond_comment.join(' ');
+            cond_comment_str = '<br/>' + cond_comment.join(' ');
         }
+    } else {
+        slots = '';
     }
     $('#test-results').append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
-    copyTxt += cond_comment_cpy + '```DPS: ' + total + slots + '\n';
+    copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
     $('#test-results').append($('<div></div>').attr({ id: 'result-' + adv, class: 'result-bar' }));
     let colorIdx = 0;
     let damageTxtArr = [];
@@ -74,7 +76,7 @@ function createDpsBar(arr, extra, total_dps = undefined) {
                 }
                 // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
                 const portion = 100 * (parseInt(dmg[1]) / total_dps);
-                let damageTxt = dmg[0] + ': ' + dmg[1];
+                let damageTxt = dmg[0] + ':' + dmg[1];
                 if (dmg[0] in extra) {
                     damageTxt += ' (' + extra[dmg[0]] + ')'
                 }
@@ -93,8 +95,8 @@ function createDpsBar(arr, extra, total_dps = undefined) {
         }
     }
     $('[data-toggle="tooltip"]').tooltip();
-    copyTxt += damageTxtArr.join('|') + '\n';
-    copyTxt += damageTxtBar.join('') + '```';
+    copyTxt += damageTxtArr.join(' |') + '```';
+    // copyTxt += damageTxtBar.join('') + '```';
     return copyTxt;
 }
 function trimAcl(acl_str) {
@@ -190,9 +192,11 @@ function runAdvTest() {
         requestJson['wp2'] = $('#input-wp2').val();
     }
     let exStr = '';
+    let exArr = [];
     for (let ex of Object.keys(EX_MAP)) {
         if ($('#ex-' + ex).prop('checked')) {
-            exStr += EX_MAP[ex]
+            exStr += EX_MAP[ex];
+            exArr.push(ex);
         }
     }
     if (exStr != '') {
@@ -223,6 +227,11 @@ function runAdvTest() {
                 const result = res.test_output.split('\n');
                 const cond_true = result[0].split(',');
                 let copyTxt = '**' + cond_true[1] + '** ';
+                if (exArr.length > 0){
+                    copyTxt += '(co-ab: ' + exArr.join(' ') + ') '
+                } else {
+                    copyTxt += '(co-ab: none) '
+                }
                 $('#test-results').append($('<h4>' + cond_true[1] + '</h4>'));
                 copyTxt += createDpsBar(cond_true, res.extra)
                 if (result.length > 1 && result[1].includes(',')) {
@@ -251,22 +260,35 @@ function debounce(func, interval) {
         }, interval);
     };
 }
-function toggleCopy() {
-    if ($('#copy-results').css('display') == 'none'){
+function setDisplay(displayMode) {
+    if (displayMode == 'Visual'){
         $('#copy-results').css('display', 'block');
         $('#test-results').css('display', 'none');
-        $('#show-copy').html('Visual');
-    }else{
+        $('#display-mode').html(displayMode);
+        localStorage.setItem('displayMode', displayMode);
+    }else if(displayMode == 'Markdown'){
         $('#copy-results').css('display', 'none');
         $('#test-results').css('display', 'block');
-        $('#show-copy').html('Markdown');
+        $('#display-mode').html(displayMode);
+        localStorage.setItem('displayMode', displayMode);
+    }
+}
+function toggleDisplay() {
+    if (localStorage.getItem('displayMode') == 'Markdown'){
+        setDisplay('Visual');
+    }else{
+        setDisplay('Markdown');
     }
 }
 
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
     $('#run-test').click(debounce(runAdvTest, 200));
-    $('#show-copy').click(toggleCopy);
+    if (!localStorage.getItem('displayMode')) {
+        localStorage.setItem('displayMode', 'Visual');
+    }
+    setDisplay(localStorage.getItem('displayMode'));
+    $('#display-mode').click(toggleDisplay);
     $('#input-edit-acl').change(editAcl);
     loadAdvWPList()
 }

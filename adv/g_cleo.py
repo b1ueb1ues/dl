@@ -25,10 +25,7 @@ class G_Cleo(Adv):
         `s2
         `s1
         """
-
-    def d_slots(this):
-        this.slots.a = RR()+JotS()  # wand c2*1.08 = 217
-        this.slots.d = Shinobi()
+    conf['slots.a'] = RR()+JotS()
 
 
     def d_acl(this):
@@ -65,7 +62,7 @@ class G_Cleo(Adv):
 
 
     def prerun(this):
-        this.s1p = 0 
+        this.s1p = 0
         this.fsa_charge = 0
         #this.fso_dmg = this.conf.fs.dmg
         #this.fso_sp = this.conf.fs.sp
@@ -84,7 +81,7 @@ class G_Cleo(Adv):
         this.fs_alt = Fs_alt(this, this.fsaconf)
 
 
-        
+
 
     def s1_dmg(this, t):
         this.dmg_make('s1_hit_single',0.88)
