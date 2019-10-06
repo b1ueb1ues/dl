@@ -19,8 +19,18 @@
             height: 10em;
         }
 
-        #test-results {
-            margin: 0.5rem;
+        #test-results>.test-result-item:not(:first-child), #copy-results>.copy-txt:not(:first-child){
+            opacity: 0.50;
+            /*transition: opacity 0.01s linear 0s;*/
+        }
+        #test-results>.test-result-item:not(:first-child):hover, #copy-results>.copy-txt:not(:first-child):hover{
+            opacity: 1;
+        }
+
+        .test-result-item {
+            margin: 1em 1%;
+            width: 98%;
+            height: max-content;
         }
 
         #run-test, #display-mode {
@@ -29,12 +39,13 @@
 
         .result-bar {
             width: 100%;
+            height: 2.25rem;
             color: white;
         }
 
         .result-bar>a {
             float: left;
-            height: 2.25rem;
+            height: 100%;
             line-height: 2rem;
             text-indent: 0.25rem;
             overflow: hidden;
@@ -45,7 +56,7 @@
             margin: 1rem;
         }
 
-        #copy-results > pre {
+        .copy-txt {
             width: 100%;
             resize: none;
             overflow: auto;
@@ -129,6 +140,8 @@
                 <div class="col">
                     <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
                     <button type="button" id="display-mode" class="btn btn-secondary"></button>
+                    <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
+                    <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
                 </div>
             </div>
         </div>

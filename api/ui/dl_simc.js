@@ -27,7 +27,7 @@ colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
 //     'force_strike': '&#9671;',
 //     'team_buff': '&#9672;'
 // }
-function createDpsBar(arr, extra, total_dps = undefined) {
+function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     let copyTxt = '';
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
@@ -53,9 +53,9 @@ function createDpsBar(arr, extra, total_dps = undefined) {
     } else {
         slots = '';
     }
-    $('#test-results').append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
+    resDiv.append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
     copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
-    $('#test-results').append($('<div></div>').attr({ id: 'result-' + adv, class: 'result-bar' }));
+    resBar = $('<div></div>').attr({class: 'result-bar' });
     let colorIdx = 0;
     let damageTxtArr = [];
     let damageTxtBar = [];
@@ -82,21 +82,21 @@ function createDpsBar(arr, extra, total_dps = undefined) {
                 }
                 damageTxtArr.push(damageTxt);
                 // damageTxtBar.push(char.repeat(portion))
-                $('#result-' + adv).append($('<a>' + damageTxt + '</a>')
+                const damageSlice = $('<a>' + damageTxt + '</a>')
                     .css('width', portion + '%')
                     .css('background-color', color)
                     .attr({
                         'data-toggle': 'tooltip',
                         'data-placement': 'top',
                         'title': damageTxt
-                    })
-                )
+                    }).tooltip();
+                resBar.append(damageSlice)
             }
         }
     }
-    $('[data-toggle="tooltip"]').tooltip();
     copyTxt += damageTxtArr.join(' |') + '```';
     // copyTxt += damageTxtBar.join('') + '```';
+    resDiv.append(resBar);
     return copyTxt;
 }
 function trimAcl(acl_str) {
@@ -125,11 +125,12 @@ function loadAdvWPList() {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $('#test-results').html(errorThrown);
+            $('#test-results').html('Failed to load initial data');
         }
     });
 }
 function loadAdvSlots() {
+    clearResults();
     if ($('#input-adv').val() == '') {
         return false;
     }
@@ -169,9 +170,7 @@ function loadAdvSlots() {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            if (errorThrown == 'INTERNAL SERVER ERROR') {
-                $('#test-results').html('Something went wrong :(');
-            }
+            $('#test-results').html('Failed to load adventurer');
         }
     });
 }
@@ -179,8 +178,6 @@ function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
     }
-    $('#test-results').empty();
-    $('#copy-results').empty();
     $('div[role="tooltip"]').remove();
     let requestJson = {
         'adv': $('#input-adv').val(),
@@ -202,8 +199,9 @@ function runAdvTest() {
     if (exStr != '') {
         requestJson['ex'] = exStr;
     }
-    if (!isNaN(parseInt($('#input-t').val()))) {
-        requestJson['t'] = $('#input-t').val();
+    const t = $('#input-t').val();
+    if (!isNaN(parseInt(t))) {
+        requestJson['t'] = t;
     }
     if (!isNaN(parseInt($('#input-afflict').val()))) {
         requestJson['afflict'] = $('#input-afflict').val();
@@ -214,7 +212,7 @@ function runAdvTest() {
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
-
+    let newResultItem = $('<div></div>').attr({ class: 'test-result-item'});
     $.ajax({
         url: APP_URL + 'simc_adv_test',
         dataType: 'text',
@@ -226,23 +224,24 @@ function runAdvTest() {
                 const res = JSON.parse(data);
                 const result = res.test_output.split('\n');
                 const cond_true = result[0].split(',');
-                let copyTxt = '**' + cond_true[1] + '** ';
+                let copyTxt = '**' + cond_true[1] + ' ' + t + 's** ';
                 if (exArr.length > 0){
                     copyTxt += '(co-ab: ' + exArr.join(' ') + ') '
                 } else {
                     copyTxt += '(co-ab: none) '
                 }
-                $('#test-results').append($('<h4>' + cond_true[1] + '</h4>'));
-                copyTxt += createDpsBar(cond_true, res.extra)
+                newResultItem.append($('<h4>' + cond_true[1] + '</h4>'));
+                copyTxt += createDpsBar(newResultItem, cond_true, res.extra)
                 if (result.length > 1 && result[1].includes(',')) {
                     cond_false = result[1].split(',')
-                    copyTxt += createDpsBar(cond_false, res.extra_no_cond, cond_true[0])
+                    copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0])
                 }
-                $('#copy-results').append($('<pre>' + copyTxt + '</pre>').attr({ id: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
+                $('#test-results').prepend(newResultItem);
+                $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $('#test-results').html(errorThrown);
+            $('#test-results').html('Failed to run damage simulation');
         }
     });
 }
@@ -280,7 +279,10 @@ function toggleDisplay() {
         setDisplay('Markdown');
     }
 }
-
+function clearResults() {
+    $('#test-results').empty();
+    $('#copy-results').empty();
+}
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
     $('#run-test').click(debounce(runAdvTest, 200));
@@ -289,6 +291,8 @@ window.onload = function () {
     }
     setDisplay(localStorage.getItem('displayMode'));
     $('#display-mode').click(toggleDisplay);
+    $('#clear-results').click(() => {clearResults();});
+    $('#reset-test').click(() => {loadAdvSlots();});
     $('#input-edit-acl').change(editAcl);
     loadAdvWPList()
 }
