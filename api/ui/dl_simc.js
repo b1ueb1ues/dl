@@ -291,8 +291,8 @@ window.onload = function () {
     }
     setDisplay(localStorage.getItem('displayMode'));
     $('#display-mode').click(toggleDisplay);
-    $('#clear-results').click(() => {clearResults();});
-    $('#reset-test').click(() => {loadAdvSlots();});
+    $('#clear-results').click(clearResults);
+    $('#reset-test').click(debounce(loadAdvSlots, 200));
     $('#input-edit-acl').change(editAcl);
-    loadAdvWPList()
+    loadAdvWPList();
 }
