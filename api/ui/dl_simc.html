@@ -142,9 +142,40 @@
                     <button type="button" id="display-mode" class="btn btn-secondary"></button>
                     <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
                     <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#aboutBox">About</button>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="aboutBox" tabindex="-1" role="dialog" aria-labelledby="aboutTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">About/FAQ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5>What is this?</h5>
+                <p>This is a fork of the <a href="https://github.com/b1ueb1ues/dl"></a>Dragalia Lost damage simulator created by b1ueb1ues</a>
+                with a UI made to allow people without any python/CLI knowledge to use the simulator.
+                The source code of this fork can be found <a href="https://github.com/Mushymato/dl/tree/api">here</a></p>
+                <h5>What assumptions are made during damage simulation?</h5>
+                <p>Please consult <a href="https://github.com/b1ueb1ues/b1ueb1ues.github.io/blob/master/dl-sim/README.md">for assumed sim conditions</a>.
+                Note that the bleeders + Sinoa are simulated with expected value instead of average of 1000 trials</p>
+                <h5>How do I enter ACL?</h5>
+                <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
+                <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
+                <p>Ask me on discord I'm chu2.718281828459045235360287471#2482</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </form>
     <div id="test-results"></div>
     <div id="copy-results"></div>

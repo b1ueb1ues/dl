@@ -226,9 +226,9 @@ function runAdvTest() {
                 const cond_true = result[0].split(',');
                 let copyTxt = '**' + cond_true[1] + ' ' + t + 's** ';
                 if (exArr.length > 0){
-                    copyTxt += '(co-ab: ' + exArr.join(' ') + ') '
+                    copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
                 } else {
-                    copyTxt += '(co-ab: none) '
+                    copyTxt += '(co-ab: none)'
                 }
                 newResultItem.append($('<h4>' + cond_true[1] + '</h4>'));
                 copyTxt += createDpsBar(newResultItem, cond_true, res.extra)
