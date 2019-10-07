@@ -6,6 +6,14 @@ def module():
     return Naveed
 
 class Naveed(adv.Adv):
+
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
+        else:
+            this.conf.slot.a = TSO()+JotS()
+            
     def prerun(this):
         this.s1level = 0
         this.charge_p('prep','100%')

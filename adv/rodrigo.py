@@ -7,8 +7,13 @@ def module():
 
 class Rodrigo(adv.Adv):
     a1 = ('a',0.08,'hp70')
-    conf ={}
-    conf['slot.a'] = TSO()+BN()
+    
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+JotS()
+        else:
+            this.conf.slot.a = TSO()+BN()
 
 
 if __name__ == '__main__':

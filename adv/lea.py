@@ -7,9 +7,16 @@ def module():
     return Lea
 
 class Lea(Adv):
-    comment = 'c2+fs; no s2'
+    comment = 'c2+fs'
     a1 = ('fs', 0.50)
     a3 = ('sp', 0.12, 'fs')
+
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.d = Sakuya()
+        else:
+            this.conf.slot.d = Apollo()
     
     def prerun(this):
         if this.condition('0 resist'):
@@ -22,7 +29,6 @@ class Lea(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.d'] = Apollo()
     conf['slot.a'] = TSO()+EE()
     conf['acl'] = """
         `s1, fsc

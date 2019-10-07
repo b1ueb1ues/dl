@@ -2,17 +2,11 @@ import adv_test
 import adv
 from adv import *
 from core.log import *
-from slot.d import *
-from slot.a import *
 
 def module():
     return Serena
 
 class Serena(adv.Adv):
-    comment = 'Arctos'
-    conf = {}
-    conf['slot.d'] = Arctos()
-    conf['slot.a'] = TSO()+LC()
 
     def s1_before(this, e):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()

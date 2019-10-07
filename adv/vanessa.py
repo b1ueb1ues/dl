@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Vanessa
@@ -8,11 +9,13 @@ class Vanessa(adv.Adv):
     comment = ''
     a1 = ('fs',0.4)
     a3 = ('lo',0.3)
-    import slot.a
+    
     conf = {}
-    conf['slot.a'] = slot.a.KFM()+slot.a.CE()
-
-
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = KFM()+JotS()
+        else:
+            this.conf.slot.a = KFM()+CE()
 
 if __name__ == '__main__':
     conf = {}

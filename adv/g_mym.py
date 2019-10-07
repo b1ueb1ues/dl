@@ -9,12 +9,11 @@ class G_Mym(Adv):
     comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
-    conf['slot.a'] = RR()+CE()
-    #conf['slot.a'] = RR()+Worthy_Rivals()
-    #import slot
-    #conf['slots.d'] = slot.d.flame.Sakuya()
-
-
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+JotS()
+        else:
+            this.conf.slot.a = RR()+BN()
 
     def prerun(this):
         this.dp = 0

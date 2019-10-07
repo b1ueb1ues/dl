@@ -8,11 +8,13 @@ def module():
 class Erik(adv.Adv):
     comment =''
     a1 = ('fs',0.30)
-    import slot.a
+
     conf = {}
-    conf['slot.a'] = slot.a.KFM()+slot.a.CE()
-
-
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = KFM()+JotS()
+        else:
+            this.conf.slot.a = KFM()+CE()
 
 if __name__ == '__main__':
     conf = {}

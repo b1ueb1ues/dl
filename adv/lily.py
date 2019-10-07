@@ -7,7 +7,7 @@ def module():
 
 class Lily(adv.Adv):
     conf = {}
-    conf['slot.a'] = RR()+CE()
+    conf['slot.a'] = RR()+BN()
     a1 = ('a',0.15,'hp100')
     a3 = ('prep','100%')
 

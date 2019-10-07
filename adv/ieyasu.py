@@ -10,10 +10,13 @@ class Ieyasu(Adv):
     #comment = 'RR+Jewels'
     a1 = ('cc',0.1,'hp70')
     a2 = ('cd',0.2)
+
     conf = {}
-    #conf['slots.a'] = slot.a.LC()+slot.a.RR()
-    conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
-    conf['slots.d'] = slot.d.Shinobi()
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+BN()
+        else:
+            this.conf.slot.a = RR()+JotS()
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:

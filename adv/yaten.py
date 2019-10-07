@@ -7,6 +7,14 @@ def module():
     return Yaten
 
 class Yaten(adv.Adv):
+
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
+        else:
+            this.conf.slot.a = HoH()+JotS()
+            
     def init(this):
         if this.condition('energy'):
             this.prerun = this.c_prerun

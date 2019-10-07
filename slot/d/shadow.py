@@ -18,4 +18,7 @@ class Shinobi(DragonBase):
             ('s','passive',0.9)]
 
 
-
+class Juggernaut(DragonBase):
+    ele = 'shadow'
+    att = 102
+    aura = ('att','passive',0.45)
