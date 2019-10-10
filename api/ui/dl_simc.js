@@ -20,6 +20,9 @@ PREFIX_MAPS = {
     },
 }
 Chart.defaults.global.legend.display = false;
+function name_fmt(name){
+    return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+}
 function substitute_prefix(name, t){
     if (PREFIX_MAPS.hasOwnProperty(t)){
         prefix_map = PREFIX_MAPS[t];
@@ -31,7 +34,7 @@ function substitute_prefix(name, t){
             }
         }
     }
-    return name.replace('_', ' ').replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+    return name_fmt(name);
 }
 let dps_chart = null;
 function populateSelect(id, data) {
@@ -87,7 +90,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     } else {
         slots = '';
     }
-    resDiv.append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
+    resDiv.append($('<h6>DPS:' + total + name_fmt(slots) + cond_comment_str + '</h6>'));
     copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
     let resBar = $('<div></div>').attr({class: 'result-bar' });
     let colorIdx = 0;
@@ -110,13 +113,13 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
                 }
                 // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
                 const portion = 100 * (parseInt(dmg[1]) / total_dps);
-                let damageTxt = dmg[0] + ':' + dmg[1];
+                let damageTxt = dmg[0] + ': ' + dmg[1];
                 if (dmg[0] in extra) {
                     damageTxt += ' (' + extra[dmg[0]] + ')'
                 }
                 damageTxtArr.push(damageTxt);
                 // damageTxtBar.push(char.repeat(portion))
-                const damageSlice = $('<a>' + damageTxt + '</a>')
+                const damageSlice = $('<a>' + name_fmt(damageTxt) + '</a>')
                     .css('width', portion + '%')
                     .css('background-color', color)
                     .attr({
@@ -128,7 +131,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
             }
         }
     }
-    copyTxt += damageTxtArr.join(' |') + '```';
+    copyTxt += damageTxtArr.join('|') + '```';
     // copyTxt += damageTxtBar.join('') + '```';
     resDiv.append(resBar);
     return copyTxt;
