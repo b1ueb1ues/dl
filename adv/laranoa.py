@@ -15,27 +15,18 @@ class Laranoa(Adv):
     a3 = ('s',0.3)
     conf = {}
     conf['slot.d'] = DJ()
+    conf['acl'] = """
+        `s3,s1.charged>=s1.sp
+        `s1
+        `s2,fsc
+        `fs, seq=4
+        """
     
     def init(this):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
         if this.condition('never lose comboes'):
             this.dmg_proc = this.c_dmg_proc
-
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s3,s1.charged>=s1.sp
-                `s1
-                `s2,fsc
-                `fs, seq=4
-                """
-        else:
-            this.conf['acl'] = """
-                `s3,s1.charged>=s1.sp
-                `s1
-                `s2
-                """
-
 
     def prerun(this):
         this.hits = 0

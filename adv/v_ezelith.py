@@ -14,9 +14,10 @@ class V_Ezelith(Adv):
     a3 = ('bk',0.2)
     conf = {}
     conf['acl'] = """
-        `s3,s1.charged>=s1.sp
+        `s3,s1.charged>=2803
         `s1
         `s2
+        `fs, seq=4
         """
     conf['slot.a'] = RR()+EE()
     conf['cond_afflict_res'] = 0
@@ -27,13 +28,6 @@ class V_Ezelith(Adv):
                 self={'hit':1},
                 team={}
                 )
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s3,s1.charged>=2803
-                `s1
-                `s2
-                `fs, seq=4
-                """
 
     def prerun(this):
         this.hits = 0

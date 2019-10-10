@@ -13,23 +13,15 @@ class Waike(adv.Adv):
     comment = 'no bog'
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
+        `s1, fsc
+        `s2, fsc
+        `s3, fsc
+        `fs, seq=4
         """
 
     def d_slots(this):
         #this.conf.slot.d = DJ()
         return
-
-    def prerun(this):
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
 
 if __name__ == '__main__':
     conf = {}

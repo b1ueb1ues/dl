@@ -10,8 +10,10 @@ def module():
 class Nefaria(Adv):
     conf = {}
     conf['acl'] = """
-        `s1, seq=5
-        `s3, seq=5
+        `s1, fsc
+        `s2, fsc
+        `s3, fsc
+        `fs, seq=4
         """
     conf['cond_afflict_res'] = 80
 
@@ -27,14 +29,6 @@ class Nefaria(Adv):
             this.fullhp = 1
         else:
             this.fullhp = 0
-
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
 
     def getbane(this):
         return this.afflics.blind.get()*0.3

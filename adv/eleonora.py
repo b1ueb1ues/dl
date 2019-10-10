@@ -12,9 +12,10 @@ class Eleonora(adv.Adv):
     a3 = ('prep','50%')
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5 
+        `s1, fsc
+        `s2, fsc
+        `s3, fsc
+        `fs, seq=4
         """
     conf['slot.d'] = Pazuzu()
     conf['cond_afflict_res'] = 0
@@ -28,14 +29,6 @@ class Eleonora(adv.Adv):
             this.fullhp = 1
         else:
             this.fullhp = 0
-
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
 
     def s1_proc(this, e):
         this.afflics.poison('s1',110+50*this.fullhp,0.53)

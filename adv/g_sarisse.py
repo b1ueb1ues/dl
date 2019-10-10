@@ -16,7 +16,12 @@ class G_Sarisse(adv.Adv):
     conf['slot.d'] = slot.d.Sakuya()
     #conf['mod'] = {'ex':('sp','passive',-0.15)}
     conf['slot.a'] = FB()+FoG()
-
+    conf['acl'] = """
+        `s3,s1.charged>=2803
+        `s1
+        `s2
+        `fs, seq=4
+        """
     def prerun(this):
         this.hits = 0
         this.bc = adv.Selfbuff()
@@ -26,19 +31,6 @@ class G_Sarisse(adv.Adv):
     def init(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s3,s1.charged>=2803
-                `s1
-                `s2
-                `fs, seq=4
-                """
-        else:
-            this.conf['acl'] = """
-                `s3,s1.charged>=2803
-                `s1
-                `s2
-                """
         return 'never lose combos'
 
     def c_dmg_proc(this, name, amount):
