@@ -23,19 +23,25 @@ class axe5b2(WeaponBase):
         "recovery" : 2.25     ,
     }
 
-class axev5flame(WeaponBase):
-    ele = ['flame']
+class axeHMSBane(WeaponBaseHMS):
     wt = 'axe'
     att = 380
-    a = [('k',0.2), ('prep','50%')]
 
-class axeHZDBane(WeaponBase):
-    ele = ['light']
+class axeHBHBane(WeaponBaseHBH):
     wt = 'axe'
     att = 357
-    a = [('k',0.3)]
 
+class axeHMCBane(WeaponBaseHMC):
+    wt = 'axe'
+    att = 357
 
+class axeHZDBane(WeaponBaseHZD):
+    wt = 'axe'
+    att = 357
+
+class axeHJPBane(WeaponBaseHJP):
+    wt = 'axe'
+    att = 380
 
 flame  = axe5b1
 light  = axe5b1

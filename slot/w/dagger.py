@@ -23,11 +23,25 @@ class dagger5b2(WeaponBase):
         "recovery" : 1.05-0.15  ,
         }
 
-class daggerHZDBane(WeaponBase):
-    ele = ['light']
+class daggerHMSBane(WeaponBaseHMS):
+    wt = 'dagger'
+    att = 354
+
+class daggerHBHBane(WeaponBaseHBH):
+    wt = 'dagger'
+    att = 344
+
+class daggerHMCBane(WeaponBaseHMC):
+    wt = 'dagger'
+    att = 354
+
+class daggerHZDBane(WeaponBaseHZD):
     wt = 'dagger'
     att = 327
-    a = [('k',0.3)]
+
+class daggerHJPBane(WeaponBaseHJP):
+    wt = 'dagger'
+    att = 334
 
 
 flame  = dagger5b1

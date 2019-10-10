@@ -20,12 +20,25 @@ class lance5b2(WeaponBase):
     s3 = {
         }
 
-class lanceHZDBane(WeaponBase):
-    ele = ['light']
+class lanceHMSBane(WeaponBaseHMS):
     wt = 'lance'
     att = 358
-    a = [('k',0.3)]
 
+class lanceHBHBane(WeaponBaseHBH):
+    wt = 'lance'
+    att = 347
+
+class lanceHMCBane(WeaponBaseHMC):
+    wt = 'lance'
+    att = 347
+
+class lanceHZDBane(WeaponBaseHZD):
+    wt = 'lance'
+    att = 358
+
+class lanceHJPBane(WeaponBaseHJP):
+    wt = 'lance'
+    att = 340
 
 flame  = lance5b1
 light  = lance5b1

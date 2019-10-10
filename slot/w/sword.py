@@ -24,17 +24,25 @@ class sword5b2(WeaponBase):
         "recovery" : 0.9      ,
         }
 
-class swordv5wind(WeaponBase):
-    ele = ['wind']
-    wt = 'sword'
-    att = 333
-    a = [('k',0.3), ('prep','50%')]
-
-class swordHZDBane(WeaponBase):
-    ele = ['light']
+class swordHMSBane(WeaponBaseHMS):
     wt = 'sword'
     att = 362
-    a = [('k',0.3)]
+
+class swordHBHBane(WeaponBaseHBH):
+    wt = 'sword'
+    att = 362
+
+class swordHMCBane(WeaponBaseHMC):
+    wt = 'sword'
+    att = 333
+
+class swordHZDBane(WeaponBaseHZD):
+    wt = 'sword'
+    att = 362
+
+class swordHJPBane(WeaponBaseHJP):
+    wt = 'sword'
+    att = 351
 
 
 flame  = sword5b1

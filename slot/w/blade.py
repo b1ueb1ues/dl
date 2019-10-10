@@ -40,17 +40,25 @@ class blade4b2(WeaponBase):
         "recovery" : 1.95   ,
     }
 
-class bladev5flame(WeaponBase):
-    ele = ['flame']
+class bladeHMSBane(WeaponBaseHMS):
     wt = 'blade'
     att = 353
-    a = [('k',0.2), ('prep','50%')]
 
-class bladeHZDBane(WeaponBase):
-    ele = ['light']
+class bladeHBHBane(WeaponBaseHBH):
+    wt = 'blade'
+    att = 361
+
+class bladeHMCBane(WeaponBaseHMC):
+    wt = 'blade'
+    att = 372
+
+class bladeHZDBane(WeaponBaseHZD):
     wt = 'blade'
     att = 383
-    a = [('k',0.3)]
+
+class bladeHJPBane(WeaponBaseHJP):
+    wt = 'blade'
+    att = 383
 
 
 flame  = blade5b1

@@ -5,15 +5,47 @@ EX_MAP = {
     'bow': 'b',
     'dagger': 'd'
 }
+BASE_SIM_T = 180
 BASE_TEAM_DPS = 6000
-function populateSelect(id, data) {
-    const t = id.split('-')[1]
-    $(id).empty();
-    for (let d of data) {
-        $(id).append($('<option>' + d + '</option>')
-            .attr({ id: t + '-' + d, value: d })
-        )
+PREFIX_MAPS = {
+    'adv':{
+        'g_': 'gala_',
+        'b_zardin': 'beautician_zardin',
+        'd_': 'dragonyule_',
+        'h_': 'halloween_',
+        's_maribelle': 'school_maribelle',
+        's_': 'summer_',
+        'v_': 'valentine_',
+        'w_': 'wedding_'
+    },
+}
+function substitute_prefix(name, t){
+    if (PREFIX_MAPS.hasOwnProperty(t)){
+        prefix_map = PREFIX_MAPS[t];
+        for (let pre in prefix_map){
+            if (name.startsWith(pre)){
+                name = name.replace(pre, prefix_map[pre]);
+                break;
+            }
+        }
     }
+    return name.replace('_', ' ');;
+}
+
+function populateSelect(id, data) {
+    const t = id.split('-')[1];
+    let options = [];
+    for (let d of data) {
+        options.push($('<option>' + substitute_prefix(d, t) + '</option>')
+            .attr({ id: t + '-' + d, value: d }))
+    }
+    options.sort((a, b) => {
+        if (a[0].innerText < b[0].innerText) return -1;
+        if (a[0].innerText > b[0].innerText) return 1;
+        return 0;
+    })
+    $(id).empty();
+    $(id).append(options);
 }
 colorMap = {
     'attack': 'FireBrick',
@@ -110,8 +142,8 @@ function loadAdvWPList() {
     $.ajax({
         url: APP_URL + 'simc_adv_wp_list',
         dataType: 'text',
-        type: 'get',
-        contentType: 'application/x-www-form-urlencoded',
+        type: 'post',
+        contentType: 'application/json',
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 const advwp = JSON.parse(data);
@@ -138,9 +170,9 @@ function loadAdvSlots() {
     $.ajax({
         url: APP_URL + 'simc_adv_slotlist',
         dataType: 'text',
-        type: 'get',
-        contentType: 'application/x-www-form-urlencoded',
-        data: 'adv=' + $('#input-adv').val(),
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify({'adv': $('#input-adv').val()}),
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 const slots = JSON.parse(data);
@@ -178,6 +210,7 @@ function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
     }
+    $('#test-error').empty();
     $('div[role="tooltip"]').remove();
     let requestJson = {
         'adv': $('#input-adv').val(),
@@ -212,7 +245,6 @@ function runAdvTest() {
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
-    let newResultItem = $('<div></div>').attr({ class: 'test-result-item'});
     $.ajax({
         url: APP_URL + 'simc_adv_test',
         dataType: 'text',
@@ -222,26 +254,31 @@ function runAdvTest() {
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 const res = JSON.parse(data);
-                const result = res.test_output.split('\n');
-                const cond_true = result[0].split(',');
-                let copyTxt = '**' + cond_true[1] + ' ' + t + 's** ';
-                if (exArr.length > 0){
-                    copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
+                if (res.hasOwnProperty('error')){
+                    $('#test-error').html('Error: ' + res.error);
                 } else {
-                    copyTxt += '(co-ab: none)'
+                    const result = res.test_output.split('\n');
+                    const cond_true = result[0].split(',');
+                    let copyTxt = '**' + cond_true[1] + ' ' + t + 's** ';
+                    if (exArr.length > 0){
+                        copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
+                    } else {
+                        copyTxt += '(co-ab: none)'
+                    }
+                    let newResultItem = $('<div></div>').attr({ class: 'test-result-item'});
+                    newResultItem.append($('<h4>' + cond_true[1] + '</h4>'));
+                    copyTxt += createDpsBar(newResultItem, cond_true, res.extra)
+                    if (result.length > 1 && result[1].includes(',')) {
+                        cond_false = result[1].split(',')
+                        copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0])
+                    }
+                    $('#test-results').prepend(newResultItem);
+                    $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
                 }
-                newResultItem.append($('<h4>' + cond_true[1] + '</h4>'));
-                copyTxt += createDpsBar(newResultItem, cond_true, res.extra)
-                if (result.length > 1 && result[1].includes(',')) {
-                    cond_false = result[1].split(',')
-                    copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0])
-                }
-                $('#test-results').prepend(newResultItem);
-                $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $('#test-results').html('Failed to run damage simulation');
+            $('#test-error').html('Failed to run damage simulation');
         }
     });
 }
@@ -282,17 +319,21 @@ function toggleDisplay() {
 function clearResults() {
     $('#test-results').empty();
     $('#copy-results').empty();
+    $('#test-error').empty();
+    $('#input-t').prop('value', BASE_SIM_T);
+    $('#input-teamdps').prop('value', BASE_TEAM_DPS);
 }
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
     $('#run-test').click(debounce(runAdvTest, 200));
     if (!localStorage.getItem('displayMode')) {
-        localStorage.setItem('displayMode', 'Visual');
+        localStorage.setItem('displayMode', 'Markdown');
     }
     setDisplay(localStorage.getItem('displayMode'));
     $('#display-mode').click(toggleDisplay);
     $('#clear-results').click(clearResults);
     $('#reset-test').click(debounce(loadAdvSlots, 200));
     $('#input-edit-acl').change(editAcl);
+    clearResults();
     loadAdvWPList();
 }

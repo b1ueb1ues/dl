@@ -20,6 +20,10 @@ class staff5b2(WeaponBase):
         "recovery" : 1.9      ,
         }
 
+class staffHJPBane(WeaponBaseHJP):
+    wt = 'staff'
+    att = 317
+
 flame  = staff5b1
 water  = staff5b1
 wind   = staff5b1

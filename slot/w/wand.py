@@ -23,13 +23,6 @@ class wand4b1(WeaponBase):
         "recovery" : 1.9      ,
         }
 
-class wand5b10(WeaponBase):
-    ele = ['flame','wind','shadow']
-    wt = 'wand'
-    att = 454
-    s3 = {
-        }
-
 class wand5b1(WeaponBase):
     ele = ['flame','wind','shadow']
     wt = 'wand'
@@ -48,11 +41,25 @@ class wand5b2(WeaponBase):
         "recovery" : 1.9      ,
         }
 
-class wandHZDBane(WeaponBase):
-    ele = ['light']
+class wandHMSBane(WeaponBaseHMS):
     wt = 'wand'
     att = 351
-    a = [('k',0.3)]
+
+class wandHBHBane(WeaponBaseHBH):
+    wt = 'wand'
+    att = 343
+
+class wandHMCBane(WeaponBaseHMC):
+    wt = 'wand'
+    att = 372
+
+class wandHZDBane(WeaponBaseHZD):
+    wt = 'wand'
+    att = 351
+
+class wandHJPBane(WeaponBaseHJP):
+    wt = 'wand'
+    att = 351
 
 
 flame  = wand5b1

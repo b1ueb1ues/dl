@@ -9,7 +9,6 @@ class Slot(object):
     wt = 'none'
     stype = 'slot'
     onele = 0
-    onwt = 0
 
     a = None
     mod = None
@@ -25,9 +24,8 @@ class Slot(object):
     def setup(this, c):
         if c.ele == this.ele :
             this.onele = 1
-        if c.wt == this.wt :
-            this.onwt = 1
-
+        if this.wt != 'none' and c.wt != this.wt:
+            raise ValueError('Wrong weapon type, expected {} but got {}'.format(this.wt, c.wt))
 
     def oninit(this, adv):
         adv.conf(this.conf)
@@ -53,7 +51,7 @@ class CharacterBase(Slot):
     stars = 5
     ex = []
     def setup(this):
-        return 
+        return
 
     def oninit(this, adv):
         Slot.oninit(this, adv)
@@ -87,20 +85,36 @@ class WeaponBase(Slot):
             this.conf.s3 = Conf(this.s3)
         elif 'all' in this.ele :
             this.conf.s3 = Conf(this.s3)
-        
-        if not this.onwt :
-            print('Weapon can\'t equip')
-            errrrrrrrrrrrrr()
-        if not this.onele and 'all' not in this.ele :
-            print('!!!!!!!!!!\nwarning: weapon not onele')
-            print(this.ele, c.ele)
-            print('!!!!!!!!!!!\n')
 
         if this.wt == 'axe':
             this.mod.append(('crit','chance',0.04))
         else :
             this.mod.append(('crit','chance',0.02))
 
+class WeaponBaseHMS(WeaponBase):
+    ele = ['flame']
+    # a = [('k',0.2,'HMS Bane'), ('prep','50%')]
+    a = [('k',0.2), ('prep','50%')]
+
+class WeaponBaseHBH(WeaponBase):
+    ele = ['water']
+    # a = [('k',0.2,'HBH Bane')]
+    a = [('k',0.2)]
+
+class WeaponBaseHMC(WeaponBase):
+    ele = ['wind']
+    # a = [('k',0.3,'HMC Bane'), ('prep','50%')]
+    a = [('k',0.3), ('prep','50%')]
+
+class WeaponBaseHZD(WeaponBase):
+    ele = ['light']
+    # a = [('k',0.3,'HZD Bane')]
+    a = [('k',0.3)]
+
+class WeaponBaseHJP(WeaponBase):
+    ele = ['shadow']
+    # a = [('k',0.3,'HJP Bane')]
+    a = [('k',0.3)]
 
 
 class DragonBase(Slot):
@@ -128,6 +142,8 @@ class AmuletBase(Slot):
     a2 = None
 
     def __add__(this, another):
+        if type(this) is type(another):
+            raise ValueError('Cannot equip two of the same wyrmprint');
         this.a2 = another
         this.a2.stype = 'a2'
         return this
@@ -137,13 +153,13 @@ class AmuletBase(Slot):
         if this.a2:
             this.a2.a2 = None
             this.a2.oninit(adv)
-    
-    
+
+
 
 class Slots(object):
-    #w = None 
-    #d = None 
-    #a = None 
+    #w = None
+    #d = None
+    #a = None
     #a2 = None
     #w = WeaponBase()
     #d = DragonBase()

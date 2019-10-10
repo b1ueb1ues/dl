@@ -35,11 +35,25 @@ class bow5b3(WeaponBase):
         "recovery" : 2.75     ,
         }
 
-class bowHZDBane(WeaponBase):
-    ele = ['light']
+class bowHMSBane(WeaponBaseHMS):
     wt = 'bow'
     att = 327
-    a = [('k',0.3)]
+
+class bowHBHBane(WeaponBaseHBH):
+    wt = 'bow'
+    att = 337
+
+class bowHMCBane(WeaponBaseHMC):
+    wt = 'bow'
+    att = 337
+
+class bowHZDBane(WeaponBaseHZD):
+    wt = 'bow'
+    att = 327
+
+class bowHJPBane(WeaponBaseHJP):
+    wt = 'bow'
+    att = 337
 
 flame  = bow5b1
 water  = bow5b1

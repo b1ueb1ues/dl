@@ -72,6 +72,8 @@ def list_members(module, predicate, element=None):
 # API
 @app.route('/simc_adv_test', methods=['POST'])
 def run_adv_test():
+    if not request.method == 'POST':
+        return 'Wrong request method.'
     params = request.get_json(silent=True)
     adv_name = params['adv'].lower() if 'adv' in params else 'euden'
     wp1 = params['wp1'] if 'wp1' in params else None
@@ -113,9 +115,13 @@ def run_adv_test():
     conf = {}
     if afflict is not None:
         conf['cond_afflict_res'] = afflict
+    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}}
     with redirect_stdout(f):
-        r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
-    result = {'test_output': f.getvalue(), 'extra': {}, 'extra_no_cond': {}}
+        try:
+            r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
+        except Exception as e:
+            result['error'] = str(e)
+    result['test_output'] = f.getvalue()
     if r is not None:
         if r['buff_sum'] > 0:
             result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
@@ -129,11 +135,17 @@ def run_adv_test():
     return jsonify(result)
 
 
-@app.route('/simc_adv_slotlist', methods=['GET'])
+@app.route('/simc_adv_slotlist', methods=['GET', 'POST'])
 def get_adv_slotlist():
     result = {}
     result['adv'] = {}
-    result['adv']['name'] = request.args.get('adv', default=None)
+    if request.method == 'GET':
+        result['adv']['name'] = request.args.get('adv', default=None)
+    elif request.method == 'POST':
+        params = request.get_json(silent=True)
+        result['adv']['name'] = params['adv'].lower() if 'adv' in params else None
+    else:
+        return 'Wrong request method.'
     adv_ele = None
     dragon_module = slot.d
     weap_module = slot.w
@@ -161,8 +173,10 @@ def get_adv_slotlist():
     return jsonify(result)
 
 
-@app.route('/simc_adv_wp_list', methods=['GET'])
+@app.route('/simc_adv_wp_list', methods=['GET', 'POST'])
 def get_adv_wp_list():
+    if not (request.method == 'GET' or request.method == 'POST'):
+        return 'Wrong request method.'
     result = {}
     result['adv'] = []
     result['amulets'] = list_members(slot.a, is_amulet)

@@ -6,12 +6,18 @@ g_line = ""
 
 def acl_func_str(acl):
     s = acl_str(acl)
-    exec(s,globals())
+    try:
+        exec(s,globals())
+    except SyntaxError as e:
+        raise ValueError('Bad ACL syntax');
     return do_act_list, s
 
 def acl_func(acl):
     s = acl_str(acl)
-    exec(s,globals())
+    try:
+        exec(s,globals())
+    except SyntaxError as e:
+        raise ValueError('Bad ACL syntax');
     return do_act_list
 
 def acl_str(acl):
@@ -94,5 +100,3 @@ if __name__ == "__main__":
 
     acl_func_str(acl)[0](this, e)
     print(g_line)
-    
-

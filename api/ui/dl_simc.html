@@ -65,6 +65,12 @@
         select {
             text-transform: capitalize !important;
         }
+
+        #test-error {
+            color: red;
+            font-weight: 600;
+            margin: 1rem;
+        }
     </style>
 </head>
 
@@ -77,10 +83,10 @@
                     <label for="input-adv">Adventurer</label><select id="input-adv" class="form-control"></select>
                 </div>
                 <div class="col-md-3">
-                    <label for="input-t">Simulation Time (s)</label><input id="input-t" class="form-control" type="text" value="180" />
+                    <label for="input-t">Simulation Time (s)</label><input id="input-t" class="form-control" type="text"/>
                 </div>
                 <div class="col-md-3">
-                    <label for="input-teamdps">Team DPS</label><input id="input-teamdps" class="form-control" type="text" value="6000" />
+                    <label for="input-teamdps">Team DPS</label><input id="input-teamdps" class="form-control" type="text"/>
                 </div>
                 <div class="col-md-3">
                     <label for="input-afflict">Affliction Resist</label><input id="input-afflict" class="form-control" type="text" />
@@ -165,6 +171,8 @@
                 Note that the bleeders + Sinoa are simulated with expected value instead of average of 1000 trials</p>
                 <h5>How do I enter ACL?</h5>
                 <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
+                <h5>What is the Markdown view for?</h5>
+                <p>It shows a plain text result meant to be copied to discord.</p>
                 <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
                 <p>Ask me on discord I'm chu2.718281828459045235360287471#2482</p>
               </div>
@@ -177,6 +185,7 @@
         </div>
 
     </form>
+    <div id="test-error"></div>
     <div id="test-results"></div>
     <div id="copy-results"></div>
 </body>
