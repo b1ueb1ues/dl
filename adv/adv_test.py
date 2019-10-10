@@ -202,7 +202,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
             try:
                 row['x'] = float(row['x'])
                 row['y'] = float(row['y'])
-                if row['Value'] > 0:
+                if row['y'] > 0:
                     r['log_' + filt].append(row)
             except ValueError:
                 pass

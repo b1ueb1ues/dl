@@ -69,18 +69,18 @@ def list_members(module, predicate, element=None):
             member_list.append(c.__qualname__)
     return member_list
 
-def set_teamdps_res(result, r):
+def set_teamdps_res(result, r, suffix=''):
     if r['buff_sum'] > 0:
-        result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
+        result['extra' + suffix]['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
     if r['energy_sum'] > 0:
-        result['extra']['team_energy'] = '{} stacks'.format(r['energy_sum'])
+        result['extra' + suffix]['team_energy'] = '{} stacks'.format(r['energy_sum'])
     return result
 
-def set_log_res(result, r):
+def set_log_res(result, r,  suffix=''):
     if 'log_dmg' in r:
-        result['log']['log_dmg'] = r['log_dmg']
+        result['log' + suffix]['dmg'] = r['log_dmg']
     if 'log_buff' in r:
-        result['log']['log_buff'] = r['log_buff']
+        result['log' + suffix]['buff'] = r['log_buff']
     return result
 
 # API
@@ -142,8 +142,7 @@ def run_adv_test():
         result = set_teamdps_res(result, r)
         result = set_log_res(result, r)
         if 'no_cond_r' in r:
-            result = set_teamdps_res(result, r['no_cond_r'])
-            result = set_log_res(result, r['no_cond_r'])
+            result = set_teamdps_res(result, r['no_cond_r'], '_no_cond')
 
     return jsonify(result)
 

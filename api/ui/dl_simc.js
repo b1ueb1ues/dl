@@ -19,6 +19,7 @@ PREFIX_MAPS = {
         'w_': 'wedding_'
     },
 }
+Chart.defaults.global.legend.display = false;
 function substitute_prefix(name, t){
     if (PREFIX_MAPS.hasOwnProperty(t)){
         prefix_map = PREFIX_MAPS[t];
@@ -87,7 +88,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     }
     resDiv.append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
     copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
-    resBar = $('<div></div>').attr({class: 'result-bar' });
+    let resBar = $('<div></div>').attr({class: 'result-bar' });
     let colorIdx = 0;
     let damageTxtArr = [];
     let damageTxtBar = [];
@@ -131,6 +132,29 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     resDiv.append(resBar);
     return copyTxt;
 }
+function createChart(data){
+    let ctx = document.getElementById('damage-log').getContext('2d');
+    let chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'scatter',
+
+        // The data for our dataset
+        data: {
+            datasets: [{
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: data,
+                fill: false,
+                showLine: true
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+
+}
+
 function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
 }
@@ -267,11 +291,12 @@ function runAdvTest() {
                     }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item'});
                     newResultItem.append($('<h4>' + cond_true[1] + '</h4>'));
-                    copyTxt += createDpsBar(newResultItem, cond_true, res.extra)
+                    copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
                         cond_false = result[1].split(',')
                         copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0])
                     }
+                    // createChart(res.log.dmg);
                     $('#test-results').prepend(newResultItem);
                     $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
                 }
