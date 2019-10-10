@@ -7,6 +7,9 @@ if __package__ is None or __package__ == '':
 from core.log import *
 import time
 import sys
+import io
+from contextlib import redirect_stdout
+
 import conf as globalconf
 #import random
 from core import condition as m_condition
@@ -186,6 +189,12 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     bps = r['buff_sum'] #* team_dps
     team_energy = r['energy_sum'] #* energy_efficiency
 
+    for filt in ('dmg', 'buff'):
+        f = io.StringIO()
+        with redirect_stdout(f):
+            logcat([filt])
+        r['log_' + filt] = f.getvalue()
+        f.close()
 
     recount = "%d"%(dps)
     if bps:
@@ -267,8 +276,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     if condition != '':
         r2 = test(classname, conf, verbose, mass, duration, 1)
         g_condition = ''
-        r['buff_sum_no_cond'] = r2['buff_sum']
-        r['energe_sum_no_cond'] = r2['energy_sum']
+        r['no_cond'] = r2
     elif g_condition != '':
         return r
 

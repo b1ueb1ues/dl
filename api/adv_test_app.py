@@ -69,6 +69,20 @@ def list_members(module, predicate, element=None):
             member_list.append(c.__qualname__)
     return member_list
 
+def set_teamdps_res(result, r):
+    if r['buff_sum'] > 0:
+        result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
+    if r['energy_sum'] > 0:
+        result['extra']['team_energy'] = '{} stacks'.format(r['energy_sum'])
+    return result
+
+def set_log_res(result, r):
+    if 'log_dmg' in r:
+        result['log']['log_dmg'] = r['log_dmg']
+    if 'log_buff' in r:
+        result['log']['log_buff'] = r['log_buff']
+    return result
+
 # API
 @app.route('/simc_adv_test', methods=['POST'])
 def run_adv_test():
@@ -110,27 +124,26 @@ def run_adv_test():
     adv_module.slot_backdoor = slot_injection
     adv_module.acl_backdoor = acl_injection
 
-    f = io.StringIO()
-    r = None
     conf = {}
     if afflict is not None:
         conf['cond_afflict_res'] = afflict
-    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}}
-    with redirect_stdout(f):
-        try:
+    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}, 'log': {}}
+    f = io.StringIO()
+    r = None
+    try:
+        with redirect_stdout(f):
             r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
-        except Exception as e:
-            result['error'] = str(e)
+    except Exception as e:
+        result['error'] = str(e)
+        return jsonify(result)
     result['test_output'] = f.getvalue()
+    f.close()
     if r is not None:
-        if r['buff_sum'] > 0:
-            result['extra']['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
-        if r['energy_sum'] > 0:
-            result['extra']['team_energy'] = '{} stacks'.format(r['energy_sum'])
-        if 'buff_sum_no_cond' in r and r['buff_sum_no_cond'] > 0:
-            result['extra_no_cond']['team_buff'] = '+{}%'.format(round(r['buff_sum_no_cond'] * 100))
-        if 'energe_sum_no_cond' in r and r['energe_sum_no_cond'] > 0:
-            result['extra_no_cond']['team_energy'] = '{} stacks'.format(r['energy_sum'])
+        result = set_teamdps_res(result, r)
+        result = set_log_res(result, r)
+        if 'no_cond_r' in r:
+            result = set_teamdps_res(result, r['no_cond_r'])
+            result = set_log_res(result, r['no_cond_r'])
 
     return jsonify(result)
 
