@@ -194,14 +194,14 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         f = io.StringIO()
         with redirect_stdout(f):
             logcat([filt])
-        cdr = csv.DictReader(io.StringIO('Time,Name,Value,Note\n' + f.getvalue()))
+        cdr = csv.DictReader(io.StringIO('x,Name,y,Note\n' + f.getvalue()))
         f.close()
         r['log_' + filt] = []
         for od in cdr:
-            row = {k: v.split(':')[0].strip() for k, v in od.items() if k != 'Note'}
+            row = {k: v.split(':')[0].strip() for k, v in od.items() if k != 'Name' and k != 'Note'}
             try:
-                row['Time'] = float(row['Time'])
-                row['Value'] = float(row['Value'])
+                row['x'] = float(row['x'])
+                row['y'] = float(row['y'])
                 if row['Value'] > 0:
                     r['log_' + filt].append(row)
             except ValueError:

@@ -4,11 +4,13 @@
 <head>
     <title>Dragalia Lost SIMC - UI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" type="image/png" href="/ui/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/ui/favicon.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="/ui/dl_simc.js" type="text/javascript"></script>
     <style>
         #test-params {
@@ -19,11 +21,14 @@
             height: 10em;
         }
 
-        #test-results>.test-result-item:not(:first-child), #copy-results>.copy-txt:not(:first-child){
+        #test-results>.test-result-item:not(:first-child),
+        #copy-results>.copy-txt:not(:first-child) {
             opacity: 0.50;
             /*transition: opacity 0.01s linear 0s;*/
         }
-        #test-results>.test-result-item:not(:first-child):hover, #copy-results>.copy-txt:not(:first-child):hover{
+
+        #test-results>.test-result-item:not(:first-child):hover,
+        #copy-results>.copy-txt:not(:first-child):hover {
             opacity: 1;
         }
 
@@ -33,7 +38,8 @@
             height: max-content;
         }
 
-        #run-test, #display-mode {
+        #run-test,
+        #display-mode {
             margin: 0.5rem 0;
         }
 
@@ -83,10 +89,10 @@
                     <label for="input-adv">Adventurer</label><select id="input-adv" class="form-control"></select>
                 </div>
                 <div class="col-md-3">
-                    <label for="input-t">Simulation Time (s)</label><input id="input-t" class="form-control" type="text"/>
+                    <label for="input-t">Simulation Time (s)</label><input id="input-t" class="form-control" type="text" />
                 </div>
                 <div class="col-md-3">
-                    <label for="input-teamdps">Team DPS</label><input id="input-teamdps" class="form-control" type="text"/>
+                    <label for="input-teamdps">Team DPS</label><input id="input-teamdps" class="form-control" type="text" />
                 </div>
                 <div class="col-md-3">
                     <label for="input-afflict">Affliction Resist</label><input id="input-afflict" class="form-control" type="text" />
@@ -153,35 +159,35 @@
             </div>
         </div>
         <div class="modal fade" id="aboutBox" tabindex="-1" role="dialog" aria-labelledby="aboutTitle" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">About/FAQ</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <h5>What is this?</h5>
-                <p>This is a fork of the <a href="https://github.com/b1ueb1ues/dl"></a>Dragalia Lost damage simulator created by b1ueb1ues</a>
-                with a UI made to allow people without any python/CLI knowledge to use the simulator.
-                The source code of this fork can be found <a href="https://github.com/Mushymato/dl/tree/api">here</a></p>
-                <h5>What assumptions are made during damage simulation?</h5>
-                <p>Please consult <a href="https://github.com/b1ueb1ues/b1ueb1ues.github.io/blob/master/dl-sim/README.md">for assumed sim conditions</a>.
-                Note that the bleeders + Sinoa are simulated with expected value instead of average of 1000 trials</p>
-                <h5>How do I enter ACL?</h5>
-                <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
-                <h5>What is the Markdown view for?</h5>
-                <p>It shows a plain text result meant to be copied to discord.</p>
-                <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
-                <p>Ask me on discord I'm chu2.718281828459045235360287471#2482</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">About/FAQ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>What is this?</h5>
+                        <p>This is a fork of the <a href="https://github.com/b1ueb1ues/dl"></a>Dragalia Lost damage simulator created by b1ueb1ues</a>
+                            with a UI made to allow people without any python/CLI knowledge to use the simulator.
+                            The source code of this fork can be found <a href="https://github.com/Mushymato/dl/tree/api">here</a></p>
+                        <h5>What assumptions are made during damage simulation?</h5>
+                        <p>Please consult <a href="https://github.com/b1ueb1ues/b1ueb1ues.github.io/blob/master/dl-sim/README.md">for assumed sim conditions</a>.
+                            Note that the bleeders + Sinoa are simulated with expected value instead of average of 1000 trials</p>
+                        <h5>How do I enter ACL?</h5>
+                        <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
+                        <h5>What is the Markdown view for?</h5>
+                        <p>It shows a plain text result meant to be copied to discord.</p>
+                        <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
+                        <p>Ask me on discord I'm chu2.718281828459045235360287471#2482</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
     </form>
