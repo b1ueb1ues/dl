@@ -23,6 +23,7 @@ Chart.defaults.global.legend.display = false;
 function substitute_prefix(name, t){
     if (PREFIX_MAPS.hasOwnProperty(t)){
         prefix_map = PREFIX_MAPS[t];
+        name = name.toLowerCase();
         for (let pre in prefix_map){
             if (name.startsWith(pre)){
                 name = name.replace(pre, prefix_map[pre]);
@@ -30,9 +31,9 @@ function substitute_prefix(name, t){
             }
         }
     }
-    return name.replace('_', ' ');;
+    return name.replace('_', ' ').replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 }
-
+let dps_chart = null;
 function populateSelect(id, data) {
     const t = id.split('-')[1];
     let options = [];
@@ -132,25 +133,59 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     resDiv.append(resBar);
     return copyTxt;
 }
-function createChart(data){
+function sumDps(data){
+    let summed = [];
+    let display = [];
+    for (let p of data){
+        let y = 0;
+        if (summed.length > 1){
+            y = p.y + summed[summed.length-1].y;
+        }else{
+            y = p.y;
+        }
+        summed.push({x: p.x, y: y})
+        if (p.x > 1 && (display.length == 0 || display[display.length - 1].x + 1 < p.x)){
+            display.push({x: p.x, y: y/p.x})
+        }
+    }
+    return display;
+}
+function createChart(data, name){
+    if (dps_chart != null){
+        dps_chart.destroy();
+    }
     let ctx = document.getElementById('damage-log').getContext('2d');
-    let chart = new Chart(ctx, {
+    dps_chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'scatter',
 
         // The data for our dataset
         data: {
             datasets: [{
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: data,
+                backgroundColor: 'rgb(66,139,202)',
+                borderColor: 'rgb(66,139,202)',
+                data: sumDps(data),
                 fill: false,
                 showLine: true
             }]
         },
 
         // Configuration options go here
-        options: {}
+        options: {
+            title:{
+                display: true,
+                fontSize: 20,
+                text: substitute_prefix(name, "adv")
+            },
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						stepSize: 1,
+					},
+				}]
+			}
+        }
     });
 
 }
@@ -283,20 +318,21 @@ function runAdvTest() {
                 } else {
                     const result = res.test_output.split('\n');
                     const cond_true = result[0].split(',');
-                    let copyTxt = '**' + cond_true[1] + ' ' + t + 's** ';
+                    const name = substitute_prefix(cond_true[1], 'adv');
+                    let copyTxt = '**' + name + ' ' + t + 's** ';
                     if (exArr.length > 0){
                         copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
                     } else {
                         copyTxt += '(co-ab: none)'
                     }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item'});
-                    newResultItem.append($('<h4>' + cond_true[1] + '</h4>'));
+                    newResultItem.append($('<h4>' + name + '</h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
-                        cond_false = result[1].split(',')
-                        copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0])
+                        cond_false = result[1].split(',');
+                        copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0]);
                     }
-                    // createChart(res.log.dmg);
+                    // createChart(res.log.dmg, name);
                     $('#test-results').prepend(newResultItem);
                     $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
                 }
@@ -347,6 +383,9 @@ function clearResults() {
     $('#test-error').empty();
     $('#input-t').prop('value', BASE_SIM_T);
     $('#input-teamdps').prop('value', BASE_TEAM_DPS);
+    if (dps_chart != null){
+        dps_chart.destroy();
+    }
 }
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
