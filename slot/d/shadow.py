@@ -32,7 +32,10 @@ class Chthonius(DragonBase):
     aura = ('att','passive',0.55)
 
     def oninit(this, adv):
-        if adv.condition('transform 2x'):
-            adv.Buff('dragon_might', 15, -1).on()
+        DragonBase.oninit(this, adv)
+        this.adv = adv
+        if adv.condition('shapeshift at start and halfway'):
+            adv.Buff('dragon_might', 0.15, -1).on()
         else:
-            adv.Buff('dragon_might', 5, -1).on()
+            adv.Buff('dragon_might', 0.05, -1).on()
+        # adv.Buff('dragon_might', 0.05, -1).on()
