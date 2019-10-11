@@ -25,3 +25,14 @@ class Nyarlathotep(DragonBase):
     ele = 'shadow'
     att = 128
     aura = ('att','passive',0.50,'hp30')
+
+class Chthonius(DragonBase):
+    ele = 'shadow'
+    att = 128
+    aura = ('att','passive',0.55)
+
+    def oninit(this, adv):
+        if adv.condition('transform 2x'):
+            adv.Buff('dragon_might', 15, -1).on()
+        else:
+            adv.Buff('dragon_might', 5, -1).on()
