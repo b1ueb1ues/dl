@@ -32,3 +32,8 @@ class Simurgh(DragonBase):
     ele = 'water'
     att = 113
     aura = ('att','killer',0.6,'overdrive')
+
+class Halloween_Maritimus(DragonBase):
+    ele = 'water'
+    att = 119
+    aura = [('sp','passive',0.35)]

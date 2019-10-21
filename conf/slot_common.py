@@ -33,17 +33,17 @@ def set(slots):
             slots.a = TB()+The_Prince_of_Dragonyule()
         else:
             slots.a = TB()+LC()
-    if wt == 'axe': 
+    if wt == 'axe':
         #slots.a = RR()+KFM()
         slots.a = KFM()+Flower_in_the_Fray()
-    if wt == 'lance': 
+    if wt == 'lance':
         slots.a = RR()+CE()
         #slots.a = LC()+Dragon_and_Tamer()
-    if wt == 'wand': 
-        slots.a = RR()+FoG()
+    if wt == 'wand':
+        slots.a = Candy_Couriers()+FoG()
     if wt == 'bow':
         slots.a = RR()+FoG()
-    
+
 
     slots.c.ex = {wt:('ex',wt)}
     #slots.c.ex = [('ex', 'blade'), ('ex', 'wand')]

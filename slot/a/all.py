@@ -386,6 +386,14 @@ class Honest_Repose(Amulet):
 class High_Dragon_WP(Amulet):
     att = 39
 
+class Candy_Couriers(Amulet):
+    att = 65
+    a = [('bk',0.20)]
+    def on(this, c):
+        if c.wt == 'wand':
+            this.a = [('bk',0.25), ('s',0.40)]
+
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
