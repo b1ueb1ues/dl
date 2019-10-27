@@ -266,7 +266,7 @@ if __name__ == '__main__':
                 #     continue
                 clean_name = 'HDT_' + re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
-                f.write('    ele = \'{}\'\n'.format(wep['ElementalType'].lower()))
+                f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
                 f.write('    att = {}\n'.format(wep['MaxAtk']))
                 f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
