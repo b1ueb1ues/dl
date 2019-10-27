@@ -3,7 +3,7 @@ from slot.a import *
 
 class Plunder_Pals(Amulet): #Plunder Pals or Hitting the Books
     att = 54
-    a = [('s',0.25)]
+    a = [('s',0.30)]
 PP = Plunder_Pals
 
 
