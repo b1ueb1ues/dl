@@ -388,7 +388,7 @@ class High_Dragon_WP(Amulet):
 
 class Candy_Couriers(Amulet):
     att = 65
-    a = [('bk',0.20)]
+    a = [('bk',0.25)]
     def on(this, c):
         if c.wt == 'wand':
             this.a = [('bk',0.25), ('s',0.40)]

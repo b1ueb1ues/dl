@@ -333,7 +333,8 @@ function runAdvTest() {
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
                         cond_false = result[1].split(',');
-                        copyTxt += createDpsBar(newResultItem, cond_false, res.extra_no_cond, cond_true[0]);
+                        extra = res.extra_no_cond.length > 0 ? res.extra_no_cond : res.extra
+                        copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);
                     $('#test-results').prepend(newResultItem);
