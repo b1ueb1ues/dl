@@ -1,88 +1,64 @@
 from slot import *
 
-class Valkyries_Blaze(WeaponBase):
-    ele = 'flame'
+
+class bow5b1(WeaponBase):
+    ele = ['flame','water','wind']
     wt = 'bow'
-    att = 734
-    s3 = {} # Valkyrie's Raid
-    a = [('k', 0.3)]
-    ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
+    att = 518
+    s3 = {
+        "buff"     : ['self',0.25, 10, 'crit','chance'] ,
+        "sp"       : 7316          ,
+        "startup"  : 0.10+0.15     ,
+        "recovery" : 1.05-0.15     ,
+        }
 
-class Valkyries_Fire(WeaponBase):
-    ele = 'flame'
+class bow5b2(WeaponBase):
+    ele = ['light']
     wt = 'bow'
-    att = 1468
-    s3 = {} # Valkyrie's Heroic Raid
-    a = []
-    ability_desc = {}
+    att = 534
+    s3 = {
+        "dmg"      : 9.49     ,
+        "sp"       : 8075     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.25     ,
+        }
 
-class Blue_Mercurius(WeaponBase):
-    ele = 'water'
+
+class bow5b3(WeaponBase):
+    ele = ['shadow']
+    att = 534
     wt = 'bow'
-    att = 713
-    s3 = {} # Mercurius's Knowledge
-    a = [('k', 0.3)]
-    ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
+    s3 = {
+        "dmg"      : 3*3.16   ,
+        "sp"       : 7501     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.75     ,
+        }
 
-class Azure_Mercurius(WeaponBase):
-    ele = 'water'
+class bowHMSBane(WeaponBaseHMS):
     wt = 'bow'
-    att = 1426
-    s3 = {} # Mercurius's Transcendant Knowledge
-    a = []
-    ability_desc = {}
+    att = 327
 
-class Jormungands_Squall(WeaponBase):
-    ele = 'wind'
+class bowHBHBane(WeaponBaseHBH):
     wt = 'bow'
-    att = 713
-    s3 = {} # Jormungand's World
-    a = [('k', 0.3)]
-    ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
+    att = 337
 
-class Jormungands_Fury(WeaponBase):
-    ele = 'wind'
+class bowHMCBane(WeaponBaseHMC):
     wt = 'bow'
-    att = 1426
-    s3 = {} # Jormungand's Boundless World
-    a = []
-    ability_desc = {}
+    att = 337
 
-class Jupiters_Light(WeaponBase):
-    ele = 'light'
+class bowHZDBane(WeaponBaseHZD):
     wt = 'bow'
-    att = 677
-    s3 = {} # Jupiter's Protection
-    a = [('k', 0.3)]
-    ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
+    att = 327
 
-class Jupiters_Sky(WeaponBase):
-    ele = 'light'
+class bowHJPBane(WeaponBaseHJP):
     wt = 'bow'
-    att = 1354
-    s3 = {} # Jupiter's Celestial Protection
-    a = []
-    ability_desc = {}
+    att = 337
 
-class Dark_Prophecy(WeaponBase):
-    ele = 'shadow'
-    wt = 'bow'
-    att = 713
-    s3 = {} # Prophecy's Guidance
-    a = [('k', 0.3)]
-    ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
+flame  = bow5b1
+water  = bow5b1
+wind   = bow5b1
 
-class Hellish_Prophecy(WeaponBase):
-    ele = 'shadow'
-    wt = 'bow'
-    att = 1426
-    s3 = {} # Prophecy's Immaculate Guidance
-    a = []
-    ability_desc = {}
+light  = bow5b2
 
-
-flame = Valkyries_Fire
-water = Azure_Mercurius
-wind = Jormungands_Fury
-light = Jupiters_Sky
-shadow = Hellish_Prophecy
+shadow = bow5b3

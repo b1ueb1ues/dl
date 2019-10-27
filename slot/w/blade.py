@@ -1,88 +1,70 @@
+import slot
 from slot import *
 
-class Conflagration(WeaponBase):
-    ele = 'flame'
+
+class blade5b1(WeaponBase):
+    ele = ['flame','wind']
     wt = 'blade'
-    att = 811
-    s3 = {} # Conflagration Blade
-    a = [('k', 0.3)]
-    ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
+    att = 572
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 8030     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    }
 
-class Blinding_Conflagration(WeaponBase):
-    ele = 'flame'
+class blade5b2(WeaponBase):
+    ele = ['water','light']
     wt = 'blade'
-    att = 1621
-    s3 = {} # Blinding Blade
-    a = []
-    ability_desc = {}
+    att = 544
 
-class Torrent(WeaponBase):
-    ele = 'water'
+class blade5b3(WeaponBase):
+    ele = ['shadow']
+    att = 590
     wt = 'blade'
-    att = 763
-    s3 = {} # Torrent Blade
-    a = [('k', 0.3)]
-    ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 7695   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.65   ,
+    }
 
-class Ruinous_Torrent(WeaponBase):
-    ele = 'water'
+class blade4b2(WeaponBase):
+    ele = ['light', 'water']
+    att = 382
     wt = 'blade'
-    att = 1527
-    s3 = {} # Surging Blade
-    a = []
-    ability_desc = {}
+    s3 = {
+        "dmg"      : 9.66   ,
+        "sp"       : 8178   ,
+        "startup"  : 0.1    ,
+        "recovery" : 1.95   ,
+    }
 
-class Horizon(WeaponBase):
-    ele = 'wind'
+class bladeHMSBane(WeaponBaseHMS):
     wt = 'blade'
-    att = 787
-    s3 = {} # Horizon Blade
-    a = [('k', 0.3)]
-    ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
+    att = 353
 
-class Endless_Horizon(WeaponBase):
-    ele = 'wind'
+class bladeHBHBane(WeaponBaseHBH):
     wt = 'blade'
-    att = 1574
-    s3 = {} # Endless Blade
-    a = []
-    ability_desc = {}
+    att = 361
 
-class Flash(WeaponBase):
-    ele = 'light'
+class bladeHMCBane(WeaponBaseHMC):
     wt = 'blade'
-    att = 748
-    s3 = {} # Flashing Blade
-    a = [('k', 0.3)]
-    ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
+    att = 372
 
-class Brilliant_Flash(WeaponBase):
-    ele = 'light'
+class bladeHZDBane(WeaponBaseHZD):
     wt = 'blade'
-    att = 1495
-    s3 = {} # Brilliant Blade
-    a = []
-    ability_desc = {}
+    att = 383
 
-class Abyss(WeaponBase):
-    ele = 'shadow'
+class bladeHJPBane(WeaponBaseHJP):
     wt = 'blade'
-    att = 811
-    s3 = {} # Enigmatic Blade
-    a = [('k', 0.3)]
-    ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
-
-class True_Abyss(WeaponBase):
-    ele = 'shadow'
-    wt = 'blade'
-    att = 1621
-    s3 = {} # Hellish Blade
-    a = []
-    ability_desc = {}
+    att = 383
 
 
-flame = Blinding_Conflagration
-water = Ruinous_Torrent
-wind = Endless_Horizon
-light = Brilliant_Flash
-shadow = True_Abyss
+flame  = blade5b1
+wind   = blade5b1
+
+water  = blade5b2
+light  = blade5b2
+
+shadow = blade5b3

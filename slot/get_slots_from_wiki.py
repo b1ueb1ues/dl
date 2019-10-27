@@ -72,12 +72,19 @@ def parse_abilities(ability_data):
         'Flurry Strength': ('a', 'hit15'),
     }
     SPECIAL = {
-        'Strength &amp; Critical Damage I': [('a', 30), ('cd', 50)],
-        'Strength &amp; Critical Damage II': [('a', 45), ('cd', 55)],
-        'Dragonyule Blessing I': [('a', 30), ('cc', 15)],
-        'Dragonyule Blessing II': [('a', 45), ('cc', 20)],
-        'Strength &amp; Shadow Res II': [('a', 50)],
-        'Strength &amp; Wind Res II': [('a', 50)],
+        'Strength &amp; Critical Damage I': [('att', 'passive', 30), ('crit','damage', 50)],
+        'Strength &amp; Critical Damage II': [('att', 'passive', 45), ('crit','damage', 55)],
+        'Dragonyule Blessing I': [('att', 'passive', 30), ('crit','chance', 15)],
+        'Dragonyule Blessing II': [('att', 'passive', 45), ('crit','chance', 20)],
+        'Strength &amp; Shadow Res II': [('att', 'passive', 50)],
+        'Strength &amp; Wind Res II': [('att', 'passive', 50)],
+    }
+    A_TO_AURA = {
+        's': ('s','passive'),
+        'a': ('att', 'passive'),
+        'cc': ('crit','chance'),
+        'cd': ('crit','damage'),
+        'sp': ('sp','passive')
     }
     ABILITY_PATTERN = re.compile(r'(\(([A-Za-z]*)\))?((Full) HP = |HP (\d+)\% = )?\s*(' + '|'.join(ABILITIES_NO_COND.keys())+ r')?(' + '|'.join(ABILITIES_COND.keys())+ r')?\s*\+(\d+)\%')
     parsed = {}
@@ -110,6 +117,8 @@ def parse_abilities(ability_data):
                         ability_tuple = (ab_type, ab_val, ab_cond)
                     else:
                         ability_tuple = (ab_type, ab_val)
+                if ab_type in A_TO_AURA.keys():
+                    ability_tuple = (*A_TO_AURA[ab_type], *(ability_tuple[1:]))
                 if condition in ELEMENT_TYPE:
                     condition = 'c.ele == \'{}\''.format(condition.lower())
                 if condition in WEAPON_TYPE:
@@ -141,7 +150,10 @@ def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
                     if ab['Condition'] is not None:
                         cond_ab_values.append(ab)
                     else:
-                        ab_values.append(ab['Params'])
+                        if isinstance(ab['Params'], list):
+                            ab_values.extend(ab['Params'])
+                        else:
+                            ab_values.append(ab['Params'])
                 ability_comment[ab['Name']] = ab['Details']
                 break
     ab_len = len(ab_values)

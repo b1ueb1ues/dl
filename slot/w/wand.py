@@ -1,88 +1,71 @@
+import slot
 from slot import *
 
-class Muspelheim(WeaponBase):
-    ele = 'flame'
+class wand5b2p2(WeaponBase):
+    ele = ['all']
     wt = 'wand'
-    att = 727
-    s3 = {} # Crimson Flames
-    a = [('k', 0.3)]
-    ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
+    att = 470
+    s3 = {
+        "dmg"      : 4*2.44   ,
+        "sp"       : 8757     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
 
-class Infernoblaze(WeaponBase):
-    ele = 'flame'
+class wand4b1(WeaponBase):
+    ele = ['flame','wind','shadow']
     wt = 'wand'
-    att = 1453
-    s3 = {} # Adoring Flames
-    a = []
-    ability_desc = {}
+    att = 372
+    s3 = {
+        "dmg"      : 9.84     ,
+        "sp"       : 8453     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
 
-class Hydroballista(WeaponBase):
-    ele = 'water'
+class wand5b1(WeaponBase):
+    ele = ['flame','wind','shadow']
     wt = 'wand'
-    att = 727
-    s3 = {} # Flowing Waves
-    a = [('k', 0.3)]
-    ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
+    att = 528
+    s3 = {
+        }
 
-class Aquatic_Spiral(WeaponBase):
-    ele = 'water'
+class wand5b2(WeaponBase):
+    ele = ['water','light']
     wt = 'wand'
-    att = 1453
-    s3 = {} # Cascading Waves
-    a = []
-    ability_desc = {}
+    att = 573
+    s3 = {
+        "dmg"      : 4*2.71   ,
+        "sp"       : 8757     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
 
-class Tornado_Tail(WeaponBase):
-    ele = 'wind'
+class wandHMSBane(WeaponBaseHMS):
     wt = 'wand'
-    att = 788
-    s3 = {} # Primal Cyclone
-    a = [('k', 0.3)]
-    ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
+    att = 351
 
-class Grand_Tempest(WeaponBase):
-    ele = 'wind'
+class wandHBHBane(WeaponBaseHBH):
     wt = 'wand'
-    att = 1575
-    s3 = {} # Raging Cyclone
-    a = []
-    ability_desc = {}
+    att = 343
 
-class Crossed_Lightning(WeaponBase):
-    ele = 'light'
+class wandHMCBane(WeaponBaseHMC):
     wt = 'wand'
-    att = 765
-    s3 = {} # Mirthful Lightning
-    a = [('k', 0.3)]
-    ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
+    att = 372
 
-class Primeval_Thunder(WeaponBase):
-    ele = 'light'
+class wandHZDBane(WeaponBaseHZD):
     wt = 'wand'
-    att = 1530
-    s3 = {} # Ecstatic Lightning
-    a = []
-    ability_desc = {}
+    att = 351
 
-class Venomous_Curse(WeaponBase):
-    ele = 'shadow'
+class wandHJPBane(WeaponBaseHJP):
     wt = 'wand'
-    att = 742
-    s3 = {} # Enveloping Darkness
-    a = [('k', 0.3)]
-    ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
-
-class Darkbinder(WeaponBase):
-    ele = 'shadow'
-    wt = 'wand'
-    att = 1484
-    s3 = {} # Binding Darkness
-    a = []
-    ability_desc = {}
+    att = 351
 
 
-flame = Infernoblaze
-water = Aquatic_Spiral
-wind = Grand_Tempest
-light = Primeval_Thunder
-shadow = Darkbinder
+flame  = wand5b1
+wind   = wand5b1
+shadow = wand5b1
+
+water  = wand5b2
+light  = wand5b2
+
