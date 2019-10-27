@@ -4,6 +4,7 @@ import requests
 from urllib.parse import quote
 from shutil import copyfile, rmtree
 import re
+from math import ceil
 
 NEW_SLOT_DIR = './new_slots'
 AMULET_DIR = NEW_SLOT_DIR + '/a'
@@ -12,6 +13,12 @@ WEAPON_DIR = NEW_SLOT_DIR + '/w'
 
 ELEMENT_TYPE = ['Flame', 'Water', 'Wind', 'Light', 'Shadow']
 WEAPON_TYPE = ['Sword', 'Blade', 'Dagger', 'Axe', 'Lance', 'Bow', 'Wand', 'Staff']
+
+DRAGON_LEVEL_RANGE = {
+    '3': (20, 60),
+    '4': (30, 80),
+    '5': (40, 100)
+}
 
 # Queries
 MAX = 500
@@ -59,7 +66,9 @@ def parse_abilities(ability_data):
         'Flurry Strength': ('a', 'hit15'),
     }
     SPECIAL = {
+        'Strength &amp; Critical Damage I': [('a', 30), ('cd', 50)],
         'Strength &amp; Critical Damage II': [('a', 45), ('cd', 55)],
+        'Dragonyule Blessing I': [('a', 30), ('cc', 15)],
         'Dragonyule Blessing II': [('a', 45), ('cc', 20)],
         'Strength &amp; Shadow Res II': [('a', 50)],
         'Strength &amp; Wind Res II': [('a', 50)],
@@ -109,6 +118,12 @@ def parse_abilities(ability_data):
         }
     return parsed
 
+def calculate_dra_atk(dra):
+    rarity, min_atk, max_atk = dra['Rarity'], int(dra['MinAtk']), int(dra['MaxAtk'])
+    min_lvl, max_lvl = DRAGON_LEVEL_RANGE[rarity]
+    steps = (max_atk - min_atk) / max_lvl
+    return ceil(min_atk + min_lvl * steps), ceil(min_atk + max_lvl * steps)
+
 def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
     ab_values = []
     cond_ab_values = []
@@ -124,6 +139,7 @@ def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
                     else:
                         ab_values.append(ab['Params'])
                 ability_comment[ab['Name']] = ab['Details']
+                break
     ab_len = len(ab_values)
     if mode == 'wp':
         ability_arr_str = str(ab_values)
@@ -193,24 +209,27 @@ if __name__ == '__main__':
     tables = 'Dragons'
     fields = 'BaseId,Id,Name,FullName,NameJP,Title,TitleJP,Obtain,Rarity,ElementalType,ElementalTypeId,VariationId,IsPlayable,MinHp,MaxHp,MinAtk,MaxAtk,Skill1,SkillName,SkillDescription,Abilities11,Abilities12,Abilities21,Abilities22,ProfileText,FavoriteType,JapaneseCV,EnglishCV,SellCoin,SellDewPoint,MoveSpeed,DashSpeedRatio,TurnSpeed,IsTurnToDamageDir,MoveType,IsLongRange,ReleaseDate,Availability'
     for ele in ELEMENT_TYPE:
-        where = 'ElementalType = "{}"'.format(ele)
+        where = 'Rarity > 3 AND ElementalType = "{}"'.format(ele)
         dragon_data = get_data(tables=tables, fields=fields, where=where)
         with open(DRAGON_DIR + '/' + ele.lower() + '.py', 'w') as f:
             f.write('from slot import *\n\n')
             for item in dragon_data:
                 dra = item['title']
-                for ab_idx in (1, 2):
-                    ab, ab_len = get_ability(dra, ability_data, 'dra', 2, ab_idx)
+                if dra['MaxAtk'] == '':
+                    continue
+                dra_atk = calculate_dra_atk(dra)
+                # ub_range = (2, 1) if dra['Rarity'] == '5' else [2]
+                ub_range = [2]
+                for ub_idx in ub_range:
+                    ab, ab_len = get_ability(dra, ability_data, 'dra', 2, ub_idx)
                     if ab_len == 0:
                         continue
-                    if dra['MaxAtk'] == '':
-                        continue
                     clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', dra['FullName']).replace(' ', '_')
-                    if ab_idx < 2:
+                    if ub_idx < 2:
                         clean_name += '_0ub'
                     f.write('class {}(DragonBase):\n'.format(clean_name))
                     f.write('    ele = \'{}\'\n'.format(ele.lower()))
-                    f.write('    att = {}\n'.format(dra['MaxAtk']))
+                    f.write('    att = {}\n'.format(dra_atk[ub_idx-1]))
                     f.write('    aura = ' + ab + '\n')
                     f.write('\n')
 
