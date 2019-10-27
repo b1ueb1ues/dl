@@ -1,88 +1,82 @@
 from slot import *
 
-class Crimsonflame_Lance(WeaponBase):
+class HDT_Crimson_Fang(WeaponBase):
     ele = 'flame'
-    wt = 'lance'
-    att = 780
-    s3 = {} # Crimson Beacon
+    wt = 'dagger'
+    att = 728
+    s3 = {} # Savage Crimson
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
-class Pureflame_Lance(WeaponBase):
+class HDT_Flamerulers_Maw(WeaponBase):
     ele = 'flame'
-    wt = 'lance'
-    att = 1560
-    s3 = {} # Crimson Wildfire
+    wt = 'dagger'
+    att = 1455
+    s3 = {} # Savage Flameruler
     a = []
     ability_desc = {}
 
-class Limpid_Lance(WeaponBase):
+class HDT_Tidal_Fang(WeaponBase):
     ele = 'water'
-    wt = 'lance'
-    att = 780
-    s3 = {} # Limpid Petals
+    wt = 'dagger'
+    att = 728
+    s3 = {} # Vicious Tides
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
-class Limpid_Rush(WeaponBase):
+class HDT_Tiderulers_Maw(WeaponBase):
     ele = 'water'
-    wt = 'lance'
-    att = 1560
-    s3 = {} # Limpid Shore
+    wt = 'dagger'
+    att = 1455
+    s3 = {} # Vicious Tideruler
     a = []
     ability_desc = {}
 
-class Promising_Breeze(WeaponBase):
+class HDT_Galestorm_Fang(WeaponBase):
     ele = 'wind'
-    wt = 'lance'
-    att = 757
-    s3 = {} # Sworn Gale
+    wt = 'dagger'
+    att = 691
+    s3 = {} # Merciless Galestorm
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
-class Guiding_Gale(WeaponBase):
+class HDT_Windrulers_Maw(WeaponBase):
     ele = 'wind'
-    wt = 'lance'
-    att = 1515
-    s3 = {} # Glorious Gale
+    wt = 'dagger'
+    att = 1383
+    s3 = {} # Merciless Windruler
     a = []
     ability_desc = {}
 
-class Lightflash(WeaponBase):
+class HDT_Lightning_Fang(WeaponBase):
     ele = 'light'
-    wt = 'lance'
-    att = 780
-    s3 = {} # Flashing Thunder
+    wt = 'dagger'
+    att = 706
+    s3 = {} # Ferocious Lightning
     a = [('k', 0.3)]
     ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
 
-class Brilliant_Lightflash(WeaponBase):
+class HDT_Fulminators_Maw(WeaponBase):
     ele = 'light'
-    wt = 'lance'
-    att = 1560
-    s3 = {} # Brilliant Thunder
+    wt = 'dagger'
+    att = 1412
+    s3 = {} # Ferocious Fulminator
     a = []
     ability_desc = {}
 
-class Scourge_Lance(WeaponBase):
+class HDT_Darkened_Fang(WeaponBase):
     ele = 'shadow'
-    wt = 'lance'
-    att = 719
-    s3 = {} # Hazy Hex
+    wt = 'dagger'
+    att = 706
+    s3 = {} # Bloodstarved Darkness
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
-class Ebon_Scourge_Lance(WeaponBase):
+class HDT_Shaderulers_Maw(WeaponBase):
     ele = 'shadow'
-    wt = 'lance'
-    att = 1439
-    s3 = {} # Shadowy Hex
+    wt = 'dagger'
+    att = 1412
+    s3 = {} # Bloodstarved Shadowruler
     a = []
     ability_desc = {}
 
-
-flame = Pureflame_Lance
-water = Limpid_Rush
-wind = Guiding_Gale
-light = Brilliant_Lightflash
-shadow = Ebon_Scourge_Lance

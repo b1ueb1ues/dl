@@ -1,88 +1,82 @@
 from slot import *
 
-class Brightblaze(WeaponBase):
+class HDT_Valkyries_Blaze(WeaponBase):
     ele = 'flame'
-    wt = 'staff'
-    att = 684
-    s3 = {} # Bright Flames
+    wt = 'bow'
+    att = 734
+    s3 = {} # Valkyrie's Raid
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
-class Blazegambol(WeaponBase):
+class HDT_Valkyries_Fire(WeaponBase):
     ele = 'flame'
-    wt = 'staff'
-    att = 1368
-    s3 = {} # Gambolling Flames
+    wt = 'bow'
+    att = 1468
+    s3 = {} # Valkyrie's Heroic Raid
     a = []
     ability_desc = {}
 
-class Unceasing_Tide(WeaponBase):
+class HDT_Blue_Mercurius(WeaponBase):
     ele = 'water'
-    wt = 'staff'
-    att = 670
-    s3 = {} # Unceasing Stream
+    wt = 'bow'
+    att = 713
+    s3 = {} # Mercurius's Knowledge
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
-class Oceans_Embrace(WeaponBase):
+class HDT_Azure_Mercurius(WeaponBase):
     ele = 'water'
-    wt = 'staff'
-    att = 1340
-    s3 = {} # Embracing Stream
+    wt = 'bow'
+    att = 1426
+    s3 = {} # Mercurius's Transcendant Knowledge
     a = []
     ability_desc = {}
 
-class Zephyrage(WeaponBase):
+class HDT_Jormungands_Squall(WeaponBase):
     ele = 'wind'
-    wt = 'staff'
-    att = 670
-    s3 = {} # Bowing Gust
+    wt = 'bow'
+    att = 713
+    s3 = {} # Jormungand's World
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
-class Stormruler(WeaponBase):
+class HDT_Jormungands_Fury(WeaponBase):
     ele = 'wind'
-    wt = 'staff'
-    att = 1340
-    s3 = {} # Guiding Gust
+    wt = 'bow'
+    att = 1426
+    s3 = {} # Jormungand's Boundless World
     a = []
     ability_desc = {}
 
-class Shadowblot(WeaponBase):
+class HDT_Jupiters_Light(WeaponBase):
     ele = 'light'
-    wt = 'staff'
-    att = 670
-    s3 = {} # Illuminating Sneer
+    wt = 'bow'
+    att = 677
+    s3 = {} # Jupiter's Protection
     a = [('k', 0.3)]
     ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
 
-class Heavensneer(WeaponBase):
+class HDT_Jupiters_Sky(WeaponBase):
     ele = 'light'
-    wt = 'staff'
-    att = 1340
-    s3 = {} # Trickster's Sneer
+    wt = 'bow'
+    att = 1354
+    s3 = {} # Jupiter's Celestial Protection
     a = []
     ability_desc = {}
 
-class Creeping_Death(WeaponBase):
+class HDT_Dark_Prophecy(WeaponBase):
     ele = 'shadow'
-    wt = 'staff'
-    att = 670
-    s3 = {} # Night Devourer
+    wt = 'bow'
+    att = 713
+    s3 = {} # Prophecy's Guidance
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
-class Dark_Hunger(WeaponBase):
+class HDT_Hellish_Prophecy(WeaponBase):
     ele = 'shadow'
-    wt = 'staff'
-    att = 1340
-    s3 = {} # Despair Devourer
+    wt = 'bow'
+    att = 1426
+    s3 = {} # Prophecy's Immaculate Guidance
     a = []
     ability_desc = {}
 
-
-flame = Blazegambol
-water = Oceans_Embrace
-wind = Stormruler
-light = Heavensneer
-shadow = Dark_Hunger

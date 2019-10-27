@@ -1,88 +1,82 @@
 from slot import *
 
-class Crimson_Fang(WeaponBase):
+class HDT_Conflagration(WeaponBase):
     ele = 'flame'
-    wt = 'dagger'
-    att = 728
-    s3 = {} # Savage Crimson
+    wt = 'blade'
+    att = 811
+    s3 = {} # Conflagration Blade
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
-class Flamerulers_Maw(WeaponBase):
+class HDT_Blinding_Conflagration(WeaponBase):
     ele = 'flame'
-    wt = 'dagger'
-    att = 1455
-    s3 = {} # Savage Flameruler
+    wt = 'blade'
+    att = 1621
+    s3 = {} # Blinding Blade
     a = []
     ability_desc = {}
 
-class Tidal_Fang(WeaponBase):
+class HDT_Torrent(WeaponBase):
     ele = 'water'
-    wt = 'dagger'
-    att = 728
-    s3 = {} # Vicious Tides
+    wt = 'blade'
+    att = 763
+    s3 = {} # Torrent Blade
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
-class Tiderulers_Maw(WeaponBase):
+class HDT_Ruinous_Torrent(WeaponBase):
     ele = 'water'
-    wt = 'dagger'
-    att = 1455
-    s3 = {} # Vicious Tideruler
+    wt = 'blade'
+    att = 1527
+    s3 = {} # Surging Blade
     a = []
     ability_desc = {}
 
-class Galestorm_Fang(WeaponBase):
+class HDT_Horizon(WeaponBase):
     ele = 'wind'
-    wt = 'dagger'
-    att = 691
-    s3 = {} # Merciless Galestorm
+    wt = 'blade'
+    att = 787
+    s3 = {} # Horizon Blade
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
-class Windrulers_Maw(WeaponBase):
+class HDT_Endless_Horizon(WeaponBase):
     ele = 'wind'
-    wt = 'dagger'
-    att = 1383
-    s3 = {} # Merciless Windruler
+    wt = 'blade'
+    att = 1574
+    s3 = {} # Endless Blade
     a = []
     ability_desc = {}
 
-class Lightning_Fang(WeaponBase):
+class HDT_Flash(WeaponBase):
     ele = 'light'
-    wt = 'dagger'
-    att = 706
-    s3 = {} # Ferocious Lightning
+    wt = 'blade'
+    att = 748
+    s3 = {} # Flashing Blade
     a = [('k', 0.3)]
     ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
 
-class Fulminators_Maw(WeaponBase):
+class HDT_Brilliant_Flash(WeaponBase):
     ele = 'light'
-    wt = 'dagger'
-    att = 1412
-    s3 = {} # Ferocious Fulminator
+    wt = 'blade'
+    att = 1495
+    s3 = {} # Brilliant Blade
     a = []
     ability_desc = {}
 
-class Darkened_Fang(WeaponBase):
+class HDT_Abyss(WeaponBase):
     ele = 'shadow'
-    wt = 'dagger'
-    att = 706
-    s3 = {} # Bloodstarved Darkness
+    wt = 'blade'
+    att = 811
+    s3 = {} # Enigmatic Blade
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
-class Shaderulers_Maw(WeaponBase):
+class HDT_True_Abyss(WeaponBase):
     ele = 'shadow'
-    wt = 'dagger'
-    att = 1412
-    s3 = {} # Bloodstarved Shadowruler
+    wt = 'blade'
+    att = 1621
+    s3 = {} # Hellish Blade
     a = []
     ability_desc = {}
 
-
-flame = Flamerulers_Maw
-water = Tiderulers_Maw
-wind = Windrulers_Maw
-light = Fulminators_Maw
-shadow = Shaderulers_Maw

@@ -1,88 +1,82 @@
 from slot import *
 
-class Crimson_Heat(WeaponBase):
+class HDT_Brightblaze(WeaponBase):
     ele = 'flame'
-    wt = 'axe'
-    att = 780
-    s3 = {} # Crimson Passion
+    wt = 'staff'
+    att = 684
+    s3 = {} # Bright Flames
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
-class Royal_Crimson_Heat(WeaponBase):
+class HDT_Blazegambol(WeaponBase):
     ele = 'flame'
-    wt = 'axe'
-    att = 1559
-    s3 = {} # Royal Crimson Passion
+    wt = 'staff'
+    att = 1368
+    s3 = {} # Gambolling Flames
     a = []
     ability_desc = {}
 
-class Mercys_Tide(WeaponBase):
+class HDT_Unceasing_Tide(WeaponBase):
     ele = 'water'
-    wt = 'axe'
-    att = 756
-    s3 = {} # Mercy's Embrace
+    wt = 'staff'
+    att = 670
+    s3 = {} # Unceasing Stream
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
-class Mercys_Azure_Tide(WeaponBase):
+class HDT_Oceans_Embrace(WeaponBase):
     ele = 'water'
-    wt = 'axe'
-    att = 1512
-    s3 = {} # Mercy's Azure Embrace
+    wt = 'staff'
+    att = 1340
+    s3 = {} # Embracing Stream
     a = []
     ability_desc = {}
 
-class Storms_Guide(WeaponBase):
+class HDT_Zephyrage(WeaponBase):
     ele = 'wind'
-    wt = 'axe'
-    att = 756
-    s3 = {} # Storm's Wisdom
+    wt = 'staff'
+    att = 670
+    s3 = {} # Bowing Gust
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
-class Glorystorms_Guide(WeaponBase):
+class HDT_Stormruler(WeaponBase):
     ele = 'wind'
-    wt = 'axe'
-    att = 1512
-    s3 = {} # Glorystorm's Wisdom
+    wt = 'staff'
+    att = 1340
+    s3 = {} # Guiding Gust
     a = []
     ability_desc = {}
 
-class Thundercrash(WeaponBase):
+class HDT_Shadowblot(WeaponBase):
     ele = 'light'
-    wt = 'axe'
-    att = 803
-    s3 = {} # Thunder's Delight
+    wt = 'staff'
+    att = 670
+    s3 = {} # Illuminating Sneer
     a = [('k', 0.3)]
     ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
 
-class Mighty_Thundercrash(WeaponBase):
+class HDT_Heavensneer(WeaponBase):
     ele = 'light'
-    wt = 'axe'
-    att = 1606
-    s3 = {} # Mighty Thunder's Delight
+    wt = 'staff'
+    att = 1340
+    s3 = {} # Trickster's Sneer
     a = []
     ability_desc = {}
 
-class Darkbite_Axe(WeaponBase):
+class HDT_Creeping_Death(WeaponBase):
     ele = 'shadow'
-    wt = 'axe'
-    att = 803
-    s3 = {} # Darkbite's Curse
+    wt = 'staff'
+    att = 670
+    s3 = {} # Night Devourer
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
-class Shadowy_Darkbite_Axe(WeaponBase):
+class HDT_Dark_Hunger(WeaponBase):
     ele = 'shadow'
-    wt = 'axe'
-    att = 1606
-    s3 = {} # Shadowy Darkbite's Curse
+    wt = 'staff'
+    att = 1340
+    s3 = {} # Despair Devourer
     a = []
     ability_desc = {}
 
-
-flame = Royal_Crimson_Heat
-water = Mercys_Azure_Tide
-wind = Glorystorms_Guide
-light = Mighty_Thundercrash
-shadow = Shadowy_Darkbite_Axe

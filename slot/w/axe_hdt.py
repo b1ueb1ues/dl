@@ -1,88 +1,82 @@
 from slot import *
 
-class Muspelheim(WeaponBase):
+class HDT_Crimson_Heat(WeaponBase):
     ele = 'flame'
-    wt = 'wand'
-    att = 727
-    s3 = {} # Crimson Flames
+    wt = 'axe'
+    att = 780
+    s3 = {} # Crimson Passion
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
-class Infernoblaze(WeaponBase):
+class HDT_Royal_Crimson_Heat(WeaponBase):
     ele = 'flame'
-    wt = 'wand'
-    att = 1453
-    s3 = {} # Adoring Flames
+    wt = 'axe'
+    att = 1559
+    s3 = {} # Royal Crimson Passion
     a = []
     ability_desc = {}
 
-class Hydroballista(WeaponBase):
+class HDT_Mercys_Tide(WeaponBase):
     ele = 'water'
-    wt = 'wand'
-    att = 727
-    s3 = {} # Flowing Waves
+    wt = 'axe'
+    att = 756
+    s3 = {} # Mercy's Embrace
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
-class Aquatic_Spiral(WeaponBase):
+class HDT_Mercys_Azure_Tide(WeaponBase):
     ele = 'water'
-    wt = 'wand'
-    att = 1453
-    s3 = {} # Cascading Waves
+    wt = 'axe'
+    att = 1512
+    s3 = {} # Mercy's Azure Embrace
     a = []
     ability_desc = {}
 
-class Tornado_Tail(WeaponBase):
+class HDT_Storms_Guide(WeaponBase):
     ele = 'wind'
-    wt = 'wand'
-    att = 788
-    s3 = {} # Primal Cyclone
+    wt = 'axe'
+    att = 756
+    s3 = {} # Storm's Wisdom
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
-class Grand_Tempest(WeaponBase):
+class HDT_Glorystorms_Guide(WeaponBase):
     ele = 'wind'
-    wt = 'wand'
-    att = 1575
-    s3 = {} # Raging Cyclone
+    wt = 'axe'
+    att = 1512
+    s3 = {} # Glorystorm's Wisdom
     a = []
     ability_desc = {}
 
-class Crossed_Lightning(WeaponBase):
+class HDT_Thundercrash(WeaponBase):
     ele = 'light'
-    wt = 'wand'
-    att = 765
-    s3 = {} # Mirthful Lightning
+    wt = 'axe'
+    att = 803
+    s3 = {} # Thunder's Delight
     a = [('k', 0.3)]
     ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
 
-class Primeval_Thunder(WeaponBase):
+class HDT_Mighty_Thundercrash(WeaponBase):
     ele = 'light'
-    wt = 'wand'
-    att = 1530
-    s3 = {} # Ecstatic Lightning
+    wt = 'axe'
+    att = 1606
+    s3 = {} # Mighty Thunder's Delight
     a = []
     ability_desc = {}
 
-class Venomous_Curse(WeaponBase):
+class HDT_Darkbite_Axe(WeaponBase):
     ele = 'shadow'
-    wt = 'wand'
-    att = 742
-    s3 = {} # Enveloping Darkness
+    wt = 'axe'
+    att = 803
+    s3 = {} # Darkbite's Curse
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
-class Darkbinder(WeaponBase):
+class HDT_Shadowy_Darkbite_Axe(WeaponBase):
     ele = 'shadow'
-    wt = 'wand'
-    att = 1484
-    s3 = {} # Binding Darkness
+    wt = 'axe'
+    att = 1606
+    s3 = {} # Shadowy Darkbite's Curse
     a = []
     ability_desc = {}
 
-
-flame = Infernoblaze
-water = Aquatic_Spiral
-wind = Grand_Tempest
-light = Primeval_Thunder
-shadow = Darkbinder

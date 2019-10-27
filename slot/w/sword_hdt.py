@@ -1,88 +1,82 @@
 from slot import *
 
-class Conflagration(WeaponBase):
+class HDT_Crimson(WeaponBase):
     ele = 'flame'
-    wt = 'blade'
-    att = 811
-    s3 = {} # Conflagration Blade
+    wt = 'sword'
+    att = 765
+    s3 = {} # Crimson Storm
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
-class Blinding_Conflagration(WeaponBase):
+class HDT_Absolute_Crimson(WeaponBase):
     ele = 'flame'
-    wt = 'blade'
-    att = 1621
-    s3 = {} # Blinding Blade
+    wt = 'sword'
+    att = 1530
+    s3 = {} # Infinite Crimson
     a = []
     ability_desc = {}
 
-class Torrent(WeaponBase):
+class HDT_Aqua(WeaponBase):
     ele = 'water'
-    wt = 'blade'
-    att = 763
-    s3 = {} # Torrent Blade
+    wt = 'sword'
+    att = 765
+    s3 = {} # Aqua Storm
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
-class Ruinous_Torrent(WeaponBase):
+class HDT_Absolute_Aqua(WeaponBase):
     ele = 'water'
-    wt = 'blade'
-    att = 1527
-    s3 = {} # Surging Blade
+    wt = 'sword'
+    att = 1530
+    s3 = {} # Infinite Aqua
     a = []
     ability_desc = {}
 
-class Horizon(WeaponBase):
+class HDT_Tempest(WeaponBase):
     ele = 'wind'
-    wt = 'blade'
-    att = 787
-    s3 = {} # Horizon Blade
+    wt = 'sword'
+    att = 705
+    s3 = {} # Tempest Storm
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
-class Endless_Horizon(WeaponBase):
+class HDT_Absolute_Tempest(WeaponBase):
     ele = 'wind'
-    wt = 'blade'
-    att = 1574
-    s3 = {} # Endless Blade
+    wt = 'sword'
+    att = 1411
+    s3 = {} # Infinite Tempest
     a = []
     ability_desc = {}
 
-class Flash(WeaponBase):
+class HDT_Lightning(WeaponBase):
     ele = 'light'
-    wt = 'blade'
-    att = 748
-    s3 = {} # Flashing Blade
+    wt = 'sword'
+    att = 743
+    s3 = {} # Lightning Storm
     a = [('k', 0.3)]
     ability_desc = {"(Light) High Zodiark's Bane +30% (Alt)": "If the user is attuned to [[Elements|Light]]:  increases damage to High Zodiark by '''30%'''."}
 
-class Brilliant_Flash(WeaponBase):
+class HDT_Absolute_Lightning(WeaponBase):
     ele = 'light'
-    wt = 'blade'
-    att = 1495
-    s3 = {} # Brilliant Blade
+    wt = 'sword'
+    att = 1485
+    s3 = {} # Infinite Lightning
     a = []
     ability_desc = {}
 
-class Abyss(WeaponBase):
+class HDT_Hex(WeaponBase):
     ele = 'shadow'
-    wt = 'blade'
-    att = 811
-    s3 = {} # Enigmatic Blade
+    wt = 'sword'
+    att = 743
+    s3 = {} # Hexing Storm
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
-class True_Abyss(WeaponBase):
+class HDT_Absolute_Hex(WeaponBase):
     ele = 'shadow'
-    wt = 'blade'
-    att = 1621
-    s3 = {} # Hellish Blade
+    wt = 'sword'
+    att = 1485
+    s3 = {} # Infinite Hexes
     a = []
     ability_desc = {}
 
-
-flame = Blinding_Conflagration
-water = Ruinous_Torrent
-wind = Endless_Horizon
-light = Brilliant_Flash
-shadow = True_Abyss

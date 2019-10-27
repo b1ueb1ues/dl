@@ -256,7 +256,7 @@ if __name__ == '__main__':
     for wt in WEAPON_TYPE:
         where = 'ElementalType IS NOT NULL AND Availability="High Dragon" AND Type = "{}"'.format(wt)
         weapon_data = get_data(tables=tables, fields=fields, where=where)
-        with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w') as f:
+        with open(WEAPON_DIR + '/' + wt.lower() + '_hdt.py', 'w') as f:
             weap_pref = {e: None for e in ELEMENT_TYPE}
             f.write('from slot import *\n\n')
             for item in weapon_data:
@@ -264,7 +264,7 @@ if __name__ == '__main__':
                 ab, ab_len = get_ability(wep, ability_data, 'wep', 2, 1)
                 # if ab_len == 0:
                 #     continue
-                clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
+                clean_name = 'HDT_' + re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
                 f.write('    ele = \'{}\'\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
@@ -274,5 +274,5 @@ if __name__ == '__main__':
                 f.write('\n')
                 if not weap_pref[wep['ElementalType']] or (weap_pref[wep['ElementalType']] and int(wep['MaxAtk']) > weap_pref[wep['ElementalType']][1]):
                     weap_pref[wep['ElementalType']] = clean_name, int(wep['MaxAtk'])
-            for ele, w in weap_pref.items():
-                f.write('\n{} = {}'.format(ele.lower(), w[0]))
+            # for ele, w in weap_pref.items():
+            #     f.write('\n{} = {}'.format(ele.lower(), w[0]))
