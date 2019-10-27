@@ -51,44 +51,56 @@ def parse_abilities(ability_data):
         'Burning Punisher': 'k_burn',
         'Strength Doublebuff': 'bc',
         'Last Offense': 'lo',
+        'HP &amp; Strength': 'a'
     }
     ABILITIES_COND = {
         'Striking Haste': ('sp', 'fs'),
         'Flurry Devastation': ('cc', 'hit15'),
         'Flurry Strength': ('a', 'hit15'),
     }
+    SPECIAL = {
+        'Strength &amp; Critical Damage II': [('a', 45), ('cd', 55)],
+        'Dragonyule Blessing II': [('a', 45), ('cc', 20)],
+        'Strength &amp; Shadow Res II': [('a', 50)],
+        'Strength &amp; Wind Res II': [('a', 50)],
+    }
     ABILITY_PATTERN = re.compile(r'(\(([A-Za-z]*)\))?((Full) HP = |HP (\d+)\% = )?\s*(' + '|'.join(ABILITIES_NO_COND.keys())+ r')?(' + '|'.join(ABILITIES_COND.keys())+ r')?\s*\+(\d+)\%')
     parsed = {}
     for k, v in ability_data.items():
         ability_tuple = None
         condition = None
-        res = ABILITY_PATTERN.match(v['Name'])
-        if res:
-            _, condition, _, cond_full, cond_val, no_cond, cond, value = res.groups()
-            ab_cond = None
-            if no_cond is not None:
-                ab_type = ABILITIES_NO_COND[no_cond]
-            elif cond is not None:
-                ab_type, ab_cond = ABILITIES_COND[cond]
-            else:
-                continue
-            if ab_type == 'prep':
-                ab_val = int(value)
-            else:
-                ab_val = int(value) / 100
-            if cond_full is not None:
-                ability_tuple = (ab_type, ab_val, 'hp100')
-            elif cond_val is not None:
-                ability_tuple = (ab_type, ab_val, 'hp' + cond_val)
-            else:
-                if ab_cond is not None:
-                    ability_tuple = (ab_type, ab_val, ab_cond)
+        for s, tpl in SPECIAL.items():
+            if s in v['Name']:
+                ability_tuple = tpl
+                break
+        if ability_tuple is None:
+            res = ABILITY_PATTERN.match(v['Name'])
+            if res:
+                _, condition, _, cond_full, cond_val, no_cond, cond, value = res.groups()
+                ab_cond = None
+                if no_cond is not None:
+                    ab_type = ABILITIES_NO_COND[no_cond]
+                elif cond is not None:
+                    ab_type, ab_cond = ABILITIES_COND[cond]
                 else:
-                    ability_tuple = (ab_type, ab_val)
-            if condition in ELEMENT_TYPE:
-                condition = 'c.ele == \'{}\''.format(condition.lower())
-            if condition in WEAPON_TYPE:
-                condition = 'c.wt == \'{}\''.format(condition.lower())
+                    continue
+                if ab_type == 'prep':
+                    ab_val = int(value)
+                else:
+                    ab_val = int(value) / 100
+                if cond_full is not None:
+                    ability_tuple = (ab_type, ab_val, 'hp100')
+                elif cond_val is not None:
+                    ability_tuple = (ab_type, ab_val, 'hp' + cond_val)
+                else:
+                    if ab_cond is not None:
+                        ability_tuple = (ab_type, ab_val, ab_cond)
+                    else:
+                        ability_tuple = (ab_type, ab_val)
+                if condition in ELEMENT_TYPE:
+                    condition = 'c.ele == \'{}\''.format(condition.lower())
+                if condition in WEAPON_TYPE:
+                    condition = 'c.wt == \'{}\''.format(condition.lower())
         parsed[k] = {
             'Name': v['Name'],
             'Details': v['Details'],
@@ -100,7 +112,7 @@ def parse_abilities(ability_data):
 def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
     ab_values = []
     cond_ab_values = []
-    ability_comment = []
+    ability_comment = {}
     for i in range(i_range, 0, -1):
         for j in range(j_range, 0, -1):
             key = 'Abilities{}{}'.format(i, j)
@@ -111,9 +123,7 @@ def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
                         cond_ab_values.append(ab)
                     else:
                         ab_values.append(ab['Params'])
-                ability_comment.append(ab['Name'])
-                # ability_comment.append(ab['Details'])
-                break
+                ability_comment[ab['Name']] = ab['Details']
     ab_len = len(ab_values)
     if mode == 'wp':
         ability_arr_str = str(ab_values)
@@ -128,10 +138,10 @@ def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
     else:
         combined_ab = ab_values + [x['Params'] for x in cond_ab_values]
         ability_arr_str = str(combined_ab)
-        ab_len = len(ab_values)
+        ab_len = len(combined_ab)
         ability_cond_str = ''
 
-    ability_comment_str = '\n    # ' + '\n    # '.join(ability_comment)
+    ability_comment_str = '\n    ability_desc = ' + str(ability_comment)
     return ability_arr_str + ability_cond_str + ability_comment_str, ab_len
 
 def abbreviateClassName(name):
@@ -189,17 +199,20 @@ if __name__ == '__main__':
             f.write('from slot import *\n\n')
             for item in dragon_data:
                 dra = item['title']
-                ab, ab_len = get_ability(dra, ability_data, 'dra', 2, 2)
-                if ab_len == 0:
-                    continue
-                if dra['MaxAtk'] == '':
-                    continue
-                clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', dra['FullName']).replace(' ', '_')
-                f.write('class {}(DragonBase):\n'.format(clean_name))
-                f.write('    ele = \'{}\'\n'.format(ele.lower()))
-                f.write('    att = {}\n'.format(dra['MaxAtk']))
-                f.write('    aura = ' + ab + '\n')
-                f.write('\n')
+                for ab_idx in (1, 2):
+                    ab, ab_len = get_ability(dra, ability_data, 'dra', 2, ab_idx)
+                    if ab_len == 0:
+                        continue
+                    if dra['MaxAtk'] == '':
+                        continue
+                    clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', dra['FullName']).replace(' ', '_')
+                    if ab_idx < 2:
+                        clean_name += '_0ub'
+                    f.write('class {}(DragonBase):\n'.format(clean_name))
+                    f.write('    ele = \'{}\'\n'.format(ele.lower()))
+                    f.write('    att = {}\n'.format(dra['MaxAtk']))
+                    f.write('    aura = ' + ab + '\n')
+                    f.write('\n')
 
     # Weapons
     os.mkdir(WEAPON_DIR)
