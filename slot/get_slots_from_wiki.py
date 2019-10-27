@@ -58,7 +58,13 @@ def parse_abilities(ability_data):
         'Burning Punisher': 'k_burn',
         'Strength Doublebuff': 'bc',
         'Last Offense': 'lo',
-        'HP &amp; Strength': 'a'
+        'HP &amp; Strength': 'a',
+
+        "High Midgardsormr's Bane": 'k',
+        "High Brunhilda's Bane": 'k',
+        "High Mercury's Bane": 'k',
+        "High Zodiark's Bane": 'k',
+        "High Jupiter's Bane": 'k',
     }
     ABILITIES_COND = {
         'Striking Haste': ('sp', 'fs'),
@@ -83,7 +89,7 @@ def parse_abilities(ability_data):
                 ability_tuple = tpl
                 break
         if ability_tuple is None:
-            res = ABILITY_PATTERN.match(v['Name'])
+            res = ABILITY_PATTERN.search(v['Name'])
             if res:
                 _, condition, _, cond_full, cond_val, no_cond, cond, value = res.groups()
                 ab_cond = None
@@ -91,8 +97,6 @@ def parse_abilities(ability_data):
                     ab_type = ABILITIES_NO_COND[no_cond]
                 elif cond is not None:
                     ab_type, ab_cond = ABILITIES_COND[cond]
-                else:
-                    continue
                 if ab_type == 'prep':
                     ab_val = int(value)
                 else:
@@ -241,10 +245,11 @@ if __name__ == '__main__':
         where = 'ElementalType IS NOT NULL AND Availability="High Dragon" AND Type = "{}"'.format(wt)
         weapon_data = get_data(tables=tables, fields=fields, where=where)
         with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w') as f:
+            weap_pref = {e: None for e in ELEMENT_TYPE}
             f.write('from slot import *\n\n')
             for item in weapon_data:
                 wep = item['title']
-                ab, ab_len = get_ability(wep, raw_ability_data, 'wep', 2, 1)
+                ab, ab_len = get_ability(wep, ability_data, 'wep', 2, 1)
                 # if ab_len == 0:
                 #     continue
                 clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
@@ -255,3 +260,7 @@ if __name__ == '__main__':
                 f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
                 f.write('    a = ' + ab + '\n')
                 f.write('\n')
+                if not weap_pref[wep['ElementalType']] or (weap_pref[wep['ElementalType']] and int(wep['MaxAtk']) > weap_pref[wep['ElementalType']][1]):
+                    weap_pref[wep['ElementalType']] = clean_name, int(wep['MaxAtk'])
+            for ele, w in weap_pref.items():
+                f.write('\n{} = {}'.format(ele.lower(), w[0]))
