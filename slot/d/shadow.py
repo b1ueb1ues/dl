@@ -29,15 +29,15 @@ class Nyarlathotep(DragonBase):
     def oninit(this, adv):
         DragonBase.oninit(this, adv)
         this.adv = adv
-        this.bloody_tongue()
+        this.bloody_tongue(0)
         if adv.condition('low HP 3 times'):
             from adv.adv_test import sim_duration
             timing = sim_duration/3
             adv.Timer(this.bloody_tongue).on(timing)
             adv.Timer(this.bloody_tongue).on(timing*2)
 
-    def bloody_tongue(this):
-        this.adv.buff('bloody_tongue',0.30, 20)
+    def bloody_tongue(this, t):
+        this.adv.Buff('bloody_tongue',0.30, 20)
 
 class Chthonius(DragonBase):
     ele = 'shadow'
@@ -50,8 +50,8 @@ class Chthonius(DragonBase):
         from adv.adv_test import sim_duration
         timing = sim_duration/2
         if adv.condition('shapeshift at start and halfway'):
-            this.dragon_might()
+            this.dragon_might(0)
         adv.Timer(this.dragon_might).on(timing)
-    
-    def dragon_might(this):
-        this.adv.buff('dragon_might',0.10, -1)
+
+    def dragon_might(this, t):
+        this.adv.Buff('dragon_might',0.10, -1)
