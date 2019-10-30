@@ -192,10 +192,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
 
     f = io.StringIO()
     with redirect_stdout(f):
-        if adv.conf['x_type'] == 'melee':
-            logcat(['dmg','cancel','fs','cast','buff'])
-        if adv.conf['x_type'] == 'ranged':
-            logcat(['x','dmg','cancel','fs','cast','buff'])
+        logcat(['dmg','cancel','fs','cast','buff'])
     r['logs'] = f.getvalue()
 
     recount = "%d"%(dps)
