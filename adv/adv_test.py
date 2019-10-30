@@ -190,25 +190,13 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     bps = r['buff_sum'] #* team_dps
     team_energy = r['energy_sum'] #* energy_efficiency
 
-    for filt in ('dmg', 'buff'):
-        f = io.StringIO()
-        with redirect_stdout(f):
-            logcat([filt])
-        cdr = csv.DictReader(io.StringIO('x,Name,y,Note\n' + f.getvalue()))
-        f.close()
-        r['log_' + filt] = []
-        for od in cdr:
-            row = {k: v.split(':')[0].strip() for k, v in od.items() if k != 'Name' and k != 'Note'}
-            try:
-                row['x'] = float(row['x'])
-                row['y'] = float(row['y'])
-                if row['y'] > 0:
-                    r['log_' + filt].append(row)
-            except ValueError:
-                pass
-        # for row in r['log_' + filt]:
-        #     print(row)
-        # print('\n')
+    f = io.StringIO()
+    with redirect_stdout(f):
+        if adv.conf['x_type'] == 'melee':
+            logcat(['dmg','cancel','fs','cast','buff'])
+        if adv.conf['x_type'] == 'ranged':
+            logcat(['x','dmg','cancel','fs','cast','buff'])
+    r['logs'] = f.getvalue()
 
     recount = "%d"%(dps)
     if bps:

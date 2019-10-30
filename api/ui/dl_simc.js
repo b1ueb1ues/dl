@@ -8,7 +8,7 @@ EX_MAP = {
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 6000
 PREFIX_MAPS = {
-    'adv':{
+    'adv': {
         'g_': 'gala_',
         'b_zardin': 'beautician_zardin',
         'd_': 'dragonyule_',
@@ -20,15 +20,15 @@ PREFIX_MAPS = {
     },
 }
 Chart.defaults.global.legend.display = false;
-function name_fmt(name){
-    return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+function name_fmt(name) {
+    return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
-function substitute_prefix(name, t){
-    if (PREFIX_MAPS.hasOwnProperty(t)){
+function substitute_prefix(name, t) {
+    if (PREFIX_MAPS.hasOwnProperty(t)) {
         prefix_map = PREFIX_MAPS[t];
         name = name.toLowerCase();
-        for (let pre in prefix_map){
-            if (name.startsWith(pre)){
+        for (let pre in prefix_map) {
+            if (name.startsWith(pre)) {
                 name = name.replace(pre, prefix_map[pre]);
                 break;
             }
@@ -76,14 +76,14 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     let cond_comment_str = '';
     let cond_cpy_str = '';
     if (cond != undefined && !cond.startsWith('!')) {
-        if (cond != ''){
+        if (cond != '') {
             cond_comment.push(cond);
             cond_cpy_str = ' ' + cond;
         }
-        if (comment != ''){
+        if (comment != '') {
             cond_comment.push(comment)
         }
-        if (cond_comment.length > 0){
+        if (cond_comment.length > 0) {
             // cond_comment_cpy = ' ' + cond_comment.join(' ');
             cond_comment_str = '<br/>' + cond_comment.join(' ');
         }
@@ -92,7 +92,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     }
     resDiv.append($('<h6>DPS:' + total + name_fmt(slots) + cond_comment_str + '</h6>'));
     copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
-    let resBar = $('<div></div>').attr({class: 'result-bar' });
+    let resBar = $('<div></div>').attr({ class: 'result-bar' });
     let colorIdx = 0;
     let damageTxtArr = [];
     let damageTxtBar = [];
@@ -136,25 +136,25 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     resDiv.append(resBar);
     return copyTxt;
 }
-function sumDps(data){
+function sumDps(data) {
     let summed = [];
     let display = [];
-    for (let p of data){
+    for (let p of data) {
         let y = 0;
-        if (summed.length > 1){
-            y = p.y + summed[summed.length-1].y;
-        }else{
+        if (summed.length > 1) {
+            y = p.y + summed[summed.length - 1].y;
+        } else {
             y = p.y;
         }
-        summed.push({x: p.x, y: y})
-        if (p.x > 1 && (display.length == 0 || display[display.length - 1].x + 1 < p.x)){
-            display.push({x: p.x, y: y/p.x})
+        summed.push({ x: p.x, y: y })
+        if (p.x > 1 && (display.length == 0 || display[display.length - 1].x + 1 < p.x)) {
+            display.push({ x: p.x, y: y / p.x })
         }
     }
     return display;
 }
-function createChart(data, name){
-    if (dps_chart != null){
+function createChart(data, name) {
+    if (dps_chart != null) {
         dps_chart.destroy();
     }
     let ctx = document.getElementById('damage-log').getContext('2d');
@@ -175,19 +175,19 @@ function createChart(data, name){
 
         // Configuration options go here
         options: {
-            title:{
+            title: {
                 display: true,
                 fontSize: 20,
                 text: substitute_prefix(name, "adv")
             },
-			scales: {
-				xAxes: [{
-					ticks: {
-						beginAtZero: true,
-						stepSize: 1,
-					},
-				}]
-			}
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                    },
+                }]
+            }
         }
     });
 
@@ -234,7 +234,7 @@ function loadAdvSlots() {
         dataType: 'text',
         type: 'post',
         contentType: 'application/json',
-        data: JSON.stringify({'adv': $('#input-adv').val()}),
+        data: JSON.stringify({ 'adv': $('#input-adv').val() }),
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 const slots = JSON.parse(data);
@@ -316,19 +316,19 @@ function runAdvTest() {
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 const res = JSON.parse(data);
-                if (res.hasOwnProperty('error')){
+                if (res.hasOwnProperty('error')) {
                     $('#test-error').html('Error: ' + res.error);
                 } else {
                     const result = res.test_output.split('\n');
                     const cond_true = result[0].split(',');
                     const name = substitute_prefix(cond_true[1], 'adv');
                     let copyTxt = '**' + name + ' ' + t + 's** ';
-                    if (exArr.length > 0){
+                    if (exArr.length > 0) {
                         copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
                     } else {
                         copyTxt += '(co-ab: none)'
                     }
-                    let newResultItem = $('<div></div>').attr({ class: 'test-result-item'});
+                    let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($('<h4>' + name + '</h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
@@ -337,8 +337,9 @@ function runAdvTest() {
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);
+                    $('#damage-log').innerText(res.logs);
                     $('#test-results').prepend(newResultItem);
-                    $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1}));
+                    $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1 }));
                 }
             }
         },
@@ -352,22 +353,22 @@ function editAcl() {
 }
 function debounce(func, interval) {
     var lastCall = -1;
-    return function() {
+    return function () {
         clearTimeout(lastCall);
         var args = arguments;
         var self = this;
-        lastCall = setTimeout(function() {
+        lastCall = setTimeout(function () {
             func.apply(self, args);
         }, interval);
     };
 }
 function setDisplay(displayMode) {
-    if (displayMode == 'Visual'){
+    if (displayMode == 'Visual') {
         $('#copy-results').css('display', 'block');
         $('#test-results').css('display', 'none');
         $('#display-mode').html(displayMode);
         localStorage.setItem('displayMode', displayMode);
-    }else if(displayMode == 'Markdown'){
+    } else if (displayMode == 'Markdown') {
         $('#copy-results').css('display', 'none');
         $('#test-results').css('display', 'block');
         $('#display-mode').html(displayMode);
@@ -375,9 +376,9 @@ function setDisplay(displayMode) {
     }
 }
 function toggleDisplay() {
-    if (localStorage.getItem('displayMode') == 'Markdown'){
+    if (localStorage.getItem('displayMode') == 'Markdown') {
         setDisplay('Visual');
-    }else{
+    } else {
         setDisplay('Markdown');
     }
 }
@@ -387,7 +388,7 @@ function clearResults() {
     $('#test-error').empty();
     $('#input-t').prop('value', BASE_SIM_T);
     $('#input-teamdps').prop('value', BASE_TEAM_DPS);
-    if (dps_chart != null){
+    if (dps_chart != null) {
         dps_chart.destroy();
     }
 }

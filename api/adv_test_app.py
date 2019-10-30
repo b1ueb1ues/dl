@@ -76,11 +76,8 @@ def set_teamdps_res(result, r, suffix=''):
         result['extra' + suffix]['team_energy'] = '{} stacks'.format(r['energy_sum'])
     return result
 
-def set_log_res(result, r,  suffix=''):
-    if 'log_dmg' in r:
-        result['log' + suffix]['dmg'] = r['log_dmg']
-    if 'log_buff' in r:
-        result['log' + suffix]['buff'] = r['log_buff']
+def set_log_res(result, r, suffix=''):
+    result['logs' + suffix] = r['logs']
     return result
 
 # API
@@ -127,7 +124,7 @@ def run_adv_test():
     conf = {}
     if afflict is not None:
         conf['cond_afflict_res'] = afflict
-    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}, 'log': {}}
+    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}, 'logs': ''}
     f = io.StringIO()
     r = None
     try:
@@ -141,8 +138,9 @@ def run_adv_test():
     if r is not None:
         result = set_teamdps_res(result, r)
         result = set_log_res(result, r)
-        if 'no_cond_r' in r:
-            result = set_teamdps_res(result, r['no_cond_r'], '_no_cond')
+        if 'no_cond' in r:
+            result = set_teamdps_res(result, r['no_cond'], '_no_cond')
+            # result = set_log_res(result, r['no_cond'], '_no_cond')
 
     return jsonify(result)
 
