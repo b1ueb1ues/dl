@@ -9,6 +9,7 @@ class Flash_of_Genius(Amulet):
     att = 57
 
 class Cassandra(Adv):
+    comment = 'no counter damage'
     a1 = ('prep','100%')
 
     def prerun(this):

@@ -82,6 +82,7 @@ class Delphi(Adv):
 
 if __name__ == '__main__':
     conf = {}
+
     conf['slots.a'] = Twinfold_Bonds()+SS()
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
