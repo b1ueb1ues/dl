@@ -39,27 +39,6 @@ class lanceHZDBane(WeaponBaseHZD):
 class lanceHJPBane(WeaponBaseHJP):
     wt = 'lance'
     att = 340
-class lanced1flame(WeaponBase):
-    ele = ['flame']
-    wt = 'lance'
-    att = 780
-    s3 = {
-        "dmg"      : 2*4.61   ,
-        "sp"       : 7299     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class lanced1shadow(WeaponBase):
-    ele = ['shadow']
-    wt = 'lance'
-    att = 719
-    s3 = {
-        "dmg"      : 2*4.61   ,
-        "sp"       : 7299     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
 
 flame  = lance5b1
 light  = lance5b1
@@ -73,7 +52,12 @@ class HDT_Crimsonflame_Lance(WeaponBase):
     ele = ['flame']
     wt = 'lance'
     att = 780
-    s3 = {} # Crimson Beacon
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+    } # Crimson Beacon
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
@@ -81,7 +65,12 @@ class HDT_Pureflame_Lance(WeaponBase):
     ele = ['flame']
     wt = 'lance'
     att = 1560
-    s3 = {} # Crimson Wildfire
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+    } # Crimson Wildfire
     a = []
     ability_desc = {}
 
@@ -137,7 +126,12 @@ class HDT_Scourge_Lance(WeaponBase):
     ele = ['shadow']
     wt = 'lance'
     att = 719
-    s3 = {} # Hazy Hex
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        } # Hazy Hex
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
@@ -145,7 +139,12 @@ class HDT_Ebon_Scourge_Lance(WeaponBase):
     ele = ['shadow']
     wt = 'lance'
     att = 1439
-    s3 = {} # Shadowy Hex
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+    } # Shadowy Hex
     a = []
     ability_desc = {}
 

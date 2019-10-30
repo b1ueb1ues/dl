@@ -97,7 +97,7 @@ def run_adv_test():
     ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
     afflict = min(abs(int(params['afflict'])), 100) if 'afflict' in params else None
-    teamdps = abs(int(params['teamdps'])) if 'teamdps' in params else None
+    teamdps = abs(float(params['teamdps'])) if 'teamdps' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
 
     log = -2

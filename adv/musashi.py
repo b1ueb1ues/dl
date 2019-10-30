@@ -13,20 +13,18 @@ class Musashi(adv.Adv):
     a3 = ('od',0.08)
     conf = {}
     conf['acl'] = """
-        `s2, seq=5 
+        `s2, seq=5
         `s1
         `s3, s
         """
     conf['slot.d'] = Pazuzu()
     conf['cond_afflict_res'] = 0
-
-    conf = {}
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.d = Vayu()
         else:
             this.conf.slot.d = Pazuzu()
-    
+
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
             this.afflics.poison.resist=this.conf['cond_afflict_res']

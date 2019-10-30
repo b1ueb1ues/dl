@@ -5,6 +5,7 @@ else:
 from adv import *
 from slot.a import *
 from slot.d import *
+import slot.w
 
 def module():
     return W_Elisanne
@@ -12,7 +13,7 @@ def module():
 
 class W_Elisanne(Adv):
     comment = 'c2+fs; 2in1'
-    
+
     conf = {}
     conf['acl'] = """
         `s1,fsc and s2.charged<s2.sp-749
@@ -41,7 +42,8 @@ class W_Elisanne(Adv):
 
 
     def s3_proc(this, e):
-        Event('defchain')()
+        if isinstance(this.slots.w, slot.w.sword.sword5b2):
+            Event('defchain')()
 
 
 if __name__ == '__main__':
