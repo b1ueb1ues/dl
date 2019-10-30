@@ -13,6 +13,13 @@ def module():
 class Xander(adv.Adv):
     comment = 'c2+fs'
 
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
+        else:
+            this.conf.slot.a = TSO()+JotS()
+
     a3 = ('fs',0.50)
 
     conf = {}

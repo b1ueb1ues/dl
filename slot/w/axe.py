@@ -42,6 +42,38 @@ class axeHZDBane(WeaponBaseHZD):
 class axeHJPBane(WeaponBaseHJP):
     wt = 'axe'
     att = 380
+class axe5d1flame(WeaponBase):
+    ele = ['flame']
+    att = 780
+    wt = 'axe'
+    s3 = {
+        "dmg"      : 4.18*3   ,
+        "sp"       : 8895     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.25     ,
+    }
+
+class axe5d1wind(WeaponBase):
+    ele = ['wind']
+    att = 756
+    wt = 'axe'
+    s3 = {
+        "dmg"      : 4.18*3   ,
+        "sp"       : 8895     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.25     ,
+    }
+
+class axe5d1shadow(WeaponBase):
+    ele = ['shadow']
+    att = 803
+    wt = 'axe'
+    s3 = {
+        "dmg"      : 4.18*3   ,
+        "sp"       : 8895     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.25     ,
+    }
 
 flame  = axe5b1
 light  = axe5b1

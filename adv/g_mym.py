@@ -12,7 +12,7 @@ class G_Mym(Adv):
     comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
-    conf['slot.a'] = RR()+CE()
+    conf['slot.a'] = RR()+BN()
     conf['acl'] = """
         `s1
         `s2, fsc
@@ -20,6 +20,9 @@ class G_Mym(Adv):
         `fs, seq=5
         """
 
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+JotS()
 
     def prerun(this):
         this.dp = 0

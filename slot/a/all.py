@@ -394,6 +394,15 @@ class Candy_Couriers(Amulet):
             this.a = [('bk',0.25), ('s',0.40)]
 
 
+class Candy_Couriers(Amulet):
+    att = 65
+    a = [('bk',0.25)]
+    def on(this, c):
+        if c.wt == 'wand':
+            this.a = [('bk',0.25)]
+            this.a += [('s',0.40)]
+CC = Candy_Couriers
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

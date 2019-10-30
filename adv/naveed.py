@@ -17,17 +17,12 @@ class Naveed(adv.Adv):
         `s3, sp
         `fs, seq=3 and cancel
         """
-
     def d_slots(this):
-        if adv_test.sim_duration == 60:
-            this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
-        elif adv_test.sim_duration == 90:
-            this.conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
-        elif adv_test.sim_duration == 180:
-            this.conf['slot.a'] = The_Shining_Overlord()+Jewels_of_the_Sun()
-            this.conf['s2stop'] = 1
-
-
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
+        else:
+            this.conf.slot.a = TSO()+JotS()
+            
     def prerun(this):
         this.s1level = 0
         this.charge_p('prep','100%')

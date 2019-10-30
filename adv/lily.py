@@ -9,8 +9,11 @@ def module():
     return Lily
 
 class Lily(adv.Adv):
+    a1 = ('a',0.15,'hp100')
+    a3 = ('prep','100%')
+
     conf = {}
-    conf['slot.a'] = RR()+CE()
+    conf['slot.a'] = CC()+BN()
     conf['acl'] = """
         #prep=0
         #if pin=='prep': prep=1

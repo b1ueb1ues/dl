@@ -9,16 +9,19 @@ def module():
     return H_Elisanne
 
 class H_Elisanne(Adv):
-#    comment = 'RR+CE'
     a1 = ('s',0.3)
     conf = {}
-    conf['slots.a'] = RR()+CE()
+    conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
         `s1
-        `s2
+        `s2, seq=5
         `s3
         `fs, seq=5
         """
+
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = HoH()+JotS()
 
     def prerun(this):
         this.stance = 0

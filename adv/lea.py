@@ -13,9 +13,8 @@ class Lea(Adv):
     comment = 'c2+fs'
     a1 = ('fs', 0.50)
     a3 = ('sp', 0.12, 'fs')
-
+        
     conf = {}
-    conf['slot.d'] = Apollo()
     conf['slot.a'] = TSO()+EE()
     conf['acl'] = """
         `s1, fsc
@@ -24,6 +23,10 @@ class Lea(Adv):
         `fs, seq=2
         """
     conf['cond_afflict_res'] = 0
+
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.d = Sakuya()
 
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):

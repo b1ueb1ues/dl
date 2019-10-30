@@ -20,6 +20,9 @@ class G_Ranzal(Adv):
         `fs, seq=3
     """
     conf['slots.a'] = JotS() + TSO()
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
 
     a3 = ('s',0.3)
 

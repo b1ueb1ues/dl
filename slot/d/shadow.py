@@ -14,7 +14,7 @@ class Shinobi(DragonBase):
 class Juggernaut(DragonBase):
     ele = 'shadow'
     att = 102
-    aura = ('att', 'passive', 0.4)
+    aura = ('att', 'passive', 0.45)
 
 class Shinobi_0ub(DragonBase):
     ele = 'shadow'

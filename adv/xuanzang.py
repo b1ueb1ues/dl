@@ -19,6 +19,13 @@ class Xuanzang(Adv):
     `fs, seq=5
     """
 
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+JotS()
+        else:
+            this.conf.slot.a = RR()+BN()
+
     def s1_proc(this, e):
         if this.mod('def')!= 1:
             this.dmg_make('o_s1_boost',2.51*3*0.2*0.91)

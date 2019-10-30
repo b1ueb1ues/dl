@@ -4,7 +4,7 @@ else:
     import adv.adv_test
 from adv import *
 from module.bleed import Bleed
-import slot
+from slot.a import *
 
 def module():
     return Ieyasu
@@ -13,15 +13,18 @@ class Ieyasu(Adv):
     #comment = 'RR+Jewels'
     a1 = ('cc',0.1,'hp70')
     a2 = ('cd',0.2)
+
     conf = {}
     #conf['slots.a'] = slot.a.LC()+slot.a.RR()
-    conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
-    conf['slots.d'] = slot.d.Shinobi()
+    conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
         `s1
         `s2, seq=5 and this.bleed._static['stacks'] > 0
         `s3
         """
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+BN()
 
     def s2ifbleed(this):
         if this.s2buff.get()!=0:

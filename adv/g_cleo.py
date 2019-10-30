@@ -25,8 +25,7 @@ class G_Cleo(Adv):
         `s2
         `s1
         """
-    conf['slots.a'] = RR()+JotS()
-
+    conf['slots.a'] = CC()+JotS() # wand c2*1.08 = 217
 
     def d_acl(this):
         if 'blade' in this.ex:

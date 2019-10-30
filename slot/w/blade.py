@@ -60,6 +60,16 @@ class bladeHJPBane(WeaponBaseHJP):
     wt = 'blade'
     att = 383
 
+class blade5d1shadow(WeaponBase):
+    ele = ['shadow']
+    att = 811
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 6925   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.65   ,
+    }
 
 flame  = blade5b1
 wind   = blade5b1

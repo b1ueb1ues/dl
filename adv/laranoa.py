@@ -14,6 +14,7 @@ class Laranoa(Adv):
 
     a3 = ('s',0.3)
     conf = {}
+    conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
     conf['slot.d'] = DJ()
     conf['acl'] = """
         `s3,s1.charged>=s1.sp

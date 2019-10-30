@@ -12,6 +12,7 @@ def module():
 
 class W_Elisanne(Adv):
     comment = 'c2+fs; 2in1'
+    
     conf = {}
     conf['acl'] = """
         `s1,fsc and s2.charged<s2.sp-749
@@ -20,6 +21,9 @@ class W_Elisanne(Adv):
         `fs,seq=2 and cancel
     """
     conf['slot.a'] = VC() + JotS()
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+FRH()
 
     a1 = ('sp',0.08)
     a3 = ('bc',0.13)

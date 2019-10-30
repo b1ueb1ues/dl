@@ -4,6 +4,8 @@ import os
 import sys
 
 os.system('git --git-dir=www/.git pull')
+print('press anykey')
+input()
 
 # windows platform + git bash
 # python deploy.py -s [character] | sh

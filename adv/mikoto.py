@@ -12,6 +12,7 @@ def module():
 class Mikoto(Adv):
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
+    
     conf = {}
     conf['acl'] = """
         `s1, x=5
@@ -22,20 +23,8 @@ class Mikoto(Adv):
     def d_slots(this):
         if 'wand' in this.ex:
             this.conf['slots.d'] = slot.d.Sakuya()
-            this.conf['slots.a'] = RR()+BN()
         else:
-            this.conf['slots.d'] = slot.d.Sakuya()
-            this.conf['slots.a'] = RR()+BN()
-            #this.conf['slots.d'] = slot.d.Arctos()
-            #this.conf['slots.a'] = RR()+LC()
-        return
-    
-    def d_acl(this):
-        this.conf.acl = """
-            `s1, x=5
-            `s2, x=5
-            `s3, x=5
-        """
+            this.conf['slots.d'] = slot.d.Arctos()
 
 
     def prerun(this):

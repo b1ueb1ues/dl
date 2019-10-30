@@ -22,6 +22,11 @@ class S_Luca(Adv):
         `s3,seq=4
         `fs, x=5
         """
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = KFM()+HoH()
+        else:
+            this.conf.slot.a = KFM()+FitF()
 
     def init(this):
         random.seed()

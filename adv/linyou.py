@@ -21,9 +21,12 @@ class Linyou(Adv):
         `s3, seq=5
         """
 
-    def init(this):
-        this.conf['slots.a'] = CE()+KFM()
-#        this.conf['slots.d'] = slot.d.wind.Longlong()
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = KFM()+JotS()
+        else:
+            this.conf.slot.a = KFM()+CE()
 
     def prerun(this):
         this.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')

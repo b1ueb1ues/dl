@@ -44,6 +44,60 @@ class swordHJPBane(WeaponBaseHJP):
     wt = 'sword'
     att = 351
 
+class sword5d1flame(WeaponBase):
+    ele = ['flame']
+    wt = 'sword'
+    att = 765
+    s3 = {
+        "dmg"      : 5*1.65   ,
+        "sp"       : 6847     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.1      ,
+        }
+
+class sword5d1water(WeaponBase):
+    ele = ['water']
+    wt = 'sword'
+    att = 765
+    s3 = {
+        "dmg"      : 3*2.48   ,
+        "sp"       : 6418     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class sword5d1wind(WeaponBase):
+    ele = ['wind']
+    wt = 'sword'
+    att = 705
+    s3 = {
+        "dmg"      : 3*2.48   ,
+        "sp"       : 6418     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class sword5d1light(WeaponBase):
+    ele = ['light']
+    wt = 'sword'
+    att = 743
+    s3 = {
+        "dmg"      : 3*2.48   ,
+        "sp"       : 6418     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class sword5d1shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'sword'
+    att = 743
+    s3 = {
+        "dmg"      : 5*1.65   ,
+        "sp"       : 6163     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.1      ,
+        }
 
 flame  = sword5b1
 water  = sword5b1

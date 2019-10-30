@@ -13,6 +13,7 @@ def module():
 class Alfonse(adv.Adv):
     a1 = ('lo',0.50*10.0/15.0)
     a3 = ('sp',0.08)
+
     conf = {}
     conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
@@ -21,6 +22,9 @@ class Alfonse(adv.Adv):
         `s3,fsc 
         `fs, seq=3
         """
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+JotS()
 
     def s1_before(this, e):
         adv.Selfbuff('s1buff',0.15,10).on()

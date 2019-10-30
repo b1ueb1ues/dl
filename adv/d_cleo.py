@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 import adv
 from adv import *
+from slot.d import *
 from module import energy
 
 def module():
@@ -18,6 +19,9 @@ class D_Cleo(adv.Adv):
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
+
+    conf = {}
+    conf['slot.d'] = DJ()
 
     def init(this):
         if this.condition('energy'):

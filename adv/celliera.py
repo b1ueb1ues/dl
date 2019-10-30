@@ -12,6 +12,7 @@ def module():
 
 class Celliera(adv.Adv):
     a3 = ('a',0.08,'hp70')
+
     conf = {}
     conf['slots.a'] = RR()+JotS()
     #conf['slots.d'] = DJ()
@@ -26,6 +27,9 @@ class Celliera(adv.Adv):
         `s3
         """ 
     conf['acl'] = acl21
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+BN()
 
     def prerun(this):
         this.s2buff = adv.Selfbuff("s2_shapshifts1",1, 10,'ss','ss')

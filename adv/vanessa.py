@@ -20,8 +20,9 @@ class Vanessa(adv.Adv):
         `s3, seq=4
         `fs,seq=5
         """
-
-
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = KFM()+JotS()
 
 if __name__ == '__main__':
     conf = {}

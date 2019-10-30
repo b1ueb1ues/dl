@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 import adv
 from adv import *
+from slot.a import *
 from module import energy
 import slot.a
 import slot.w
@@ -16,20 +17,14 @@ class B_Zardin(adv.Adv):
 
     conf = {}
     comment = 'no s2'
-    conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
+    conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
         `s1
         """
-    # conf['slots.w'] = slot.w.blade4b2()
     def d_slots(this):
-        if this.slots.w == slot.w.blade4b2():
-            this.comment = 'with s2 & 4t3'
-            this.conf['acl'] = """
-                `s3, this.energy() = 5
-                `s1
-                `s2, seq=5 and this.energy() < 4
-                """
-
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+BN()
+     
     def init(this):
         if this.condition('energy'):
             this.prerun = this.c_prerun
