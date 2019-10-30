@@ -15,7 +15,6 @@ class Fjorm(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.a'] = Dragon_and_Tamer()+LC()
     #conf['slot.d'] = DJ()
     conf['acl'] = """
         `s1
