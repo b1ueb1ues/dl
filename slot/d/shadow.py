@@ -1,4 +1,5 @@
 from slot import *
+from math import ceil
 
 class Marishiten(DragonBase):
     ele = 'shadow'
@@ -30,14 +31,15 @@ class Nyarlathotep(DragonBase):
         DragonBase.oninit(this, adv)
         this.adv = adv
         this.bloody_tongue(0)
-        if adv.condition('low HP 3 times'):
+        buff_rate = 15
+        if adv.condition('low HP every {}s'.format(buff_rate)):
             from adv.adv_test import sim_duration
-            timing = sim_duration/3
-            adv.Timer(this.bloody_tongue).on(timing)
-            adv.Timer(this.bloody_tongue).on(timing*2)
+            buff_times = ceil(sim_duration/buff_rate)
+            for i in range(1, buff_times):
+                adv.Timer(this.bloody_tongue).on(buff_rate*i)
 
     def bloody_tongue(this, t):
-        this.adv.Buff('bloody_tongue',0.30, 20)
+        this.adv.Buff('bloody_tongue',0.30, 20).on()
 
 class Chthonius(DragonBase):
     ele = 'shadow'
@@ -51,7 +53,7 @@ class Chthonius(DragonBase):
         timing = sim_duration/2
         if adv.condition('shapeshift at start and halfway'):
             this.dragon_might(0)
-        adv.Timer(this.dragon_might).on(timing)
+        adv.Timer(this.dragon_might).on(timing).on()
 
     def dragon_might(this, t):
         this.adv.Buff('dragon_might',0.10, -1)
