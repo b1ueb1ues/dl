@@ -9,12 +9,6 @@ def module():
 
 class Victor(Adv):
     a1 = ('a',0.13,'hp70')
-    conf = {}
-    #conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
-
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = HoH()+JotS()
 
     def prerun(this):
         random.seed()

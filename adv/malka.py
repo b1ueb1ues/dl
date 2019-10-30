@@ -1,11 +1,19 @@
 import adv_test
 from adv import *
+from slot.a import *
 
 def module():
     return Malka
 
 class Malka(Adv):
     comment = ''
+
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+JotS()
+        else:
+            this.conf.slot.a = RR()+BN()
 
 
 if __name__ == '__main__':

@@ -9,18 +9,13 @@ def module():
 class Mikoto(Adv):
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
+    
     conf = {}
-
     def d_slots(this):
         if 'wand' in this.ex:
             this.conf['slots.d'] = slot.d.Sakuya()
-            this.conf['slots.a'] = RR()+BN()
         else:
-            this.conf['slots.d'] = slot.d.Sakuya()
-            this.conf['slots.a'] = RR()+BN()
-            #this.conf['slots.d'] = slot.d.Arctos()
-            #this.conf['slots.a'] = RR()+LC()
-        return
+            this.conf['slots.d'] = slot.d.Arctos()
     
     def d_acl(this):
         this.conf.acl = """

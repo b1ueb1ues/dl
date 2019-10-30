@@ -8,10 +8,15 @@ def module():
 
 class Berserker(Adv):
     a3 = ('lo',0.3)
-    conf = {}
-    conf['slot.a'] = RR()+SS()
-    conf['slot.d'] = Marishiten()
 
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+JotS()
+            this.conf.slot.d = Shinobi()
+        else:
+            this.conf.slot.a = RR()+SS()
+            this.conf.slot.d = Marishiten()
 
 if __name__ == '__main__':
     conf = {}

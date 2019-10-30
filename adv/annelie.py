@@ -9,9 +9,14 @@ def module():
 
 class Annelie(Adv):
     comment = '1121'
-    conf = {}
-    conf['slots.a'] = RR()+CE()
     a1 = ('s',0.35,'hp70')
+
+    conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = RR()+JotS()
+        else:
+            this.conf.slot.a = RR()+BN()
 
     def init(this):
         if this.condition('energy'):

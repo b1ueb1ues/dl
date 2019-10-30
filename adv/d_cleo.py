@@ -1,6 +1,7 @@
 import adv_test
 import adv
 from adv import *
+from slot.d import *
 from module import energy
 
 def module():
@@ -8,6 +9,9 @@ def module():
 
 class D_Cleo(adv.Adv):
     a1 = ('a',0.13,'hp70')
+
+    conf = {}
+    conf['slot.d'] = DJ()
 
     def init(this):
         if this.condition('energy'):

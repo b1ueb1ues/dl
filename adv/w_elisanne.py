@@ -9,8 +9,13 @@ def module():
 
 class W_Elisanne(Adv):
     comment = 'c2+fs; 2in1'
+    
     conf = {}
-    conf['slot.a'] = VC() + JotS()
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+FRH()
+        else:
+            this.conf.slot.a = VC()+JotS()
 
     a1 = ('sp',0.08)
     a3 = ('bc',0.13)

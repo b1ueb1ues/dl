@@ -1,6 +1,5 @@
 import adv_test
 import adv
-from slot.d import *
 from slot.a import *
 
 def module():
@@ -8,11 +7,7 @@ def module():
 
 class Rex(adv.Adv):
     conf = {}
-    conf['slot.a'] = KFM()+CE()
-
-    def d_slots(this):
-        #this.conf.slot.d = DJ()
-        return
+    conf['slots.a'] = KFM()+JotS()
 
 if __name__ == '__main__':
     conf = {}

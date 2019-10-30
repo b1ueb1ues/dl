@@ -13,6 +13,11 @@ class S_Luca(Adv):
     a1 = ('a',0.1,'hp70')
 
     conf = {}
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = KFM()+HoH()
+        else:
+            this.conf.slot.a = KFM()+FitF()
 
     def init(this):
         random.seed()

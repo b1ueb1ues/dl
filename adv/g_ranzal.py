@@ -11,7 +11,11 @@ class G_Ranzal(Adv):
     comment = 'only s1'
 
     conf = {}
-    conf['slots.a'] = JotS() + TSO()
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
+        else:
+            this.conf.slot.a = TSO()+JotS()
 
     a3 = ('s',0.3)
 

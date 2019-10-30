@@ -7,17 +7,14 @@ def module():
     return Zardin
 
 class Zardin(adv.Adv):
-#    comment = 'Stellar_Show+RR'
     a1 = ('a',0.10,'hp100')
+    
     conf = {}
-    #conf['slot.d'] = DJ
-
-    a = 2
-    if a==1:
-        conf["slots.a"] = RR() + Stellar_Show()
-    if a==2:
-        conf["slots.a"] = TSO() + LC()
-
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+BN()
+        else:
+            this.conf.slot.a = TSO()+JotS()
 
 if __name__ == '__main__':
     conf = {}
