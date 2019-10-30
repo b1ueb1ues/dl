@@ -74,7 +74,12 @@ class HDT_Muspelheim(WeaponBase):
     ele = ['flame']
     wt = 'wand'
     att = 727
-    s3 = {} # Crimson Flames
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.8      ,
+        "recovery" : 1.0      ,
+        } # Crimson Flames
     a = [('k', 0.3)]
     ability_desc = {"(Flame) High Midgardsormr's Bane +30%": "If the user is attuned to [[Elements|Flame]]:  increases damage to High Midgardsormr by '''30%'''."}
 
@@ -82,7 +87,12 @@ class HDT_Infernoblaze(WeaponBase):
     ele = ['flame']
     wt = 'wand'
     att = 1453
-    s3 = {} # Adoring Flames
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.8      ,
+        "recovery" : 1.0      ,
+        } # Adoring Flames
     a = []
     ability_desc = {}
 
@@ -90,7 +100,12 @@ class HDT_Hydroballista(WeaponBase):
     ele = ['water']
     wt = 'wand'
     att = 727
-    s3 = {} # Flowing Waves
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.8      ,
+        "recovery" : 1.0      ,
+        } # Flowing Waves
     a = [('k', 0.3)]
     ability_desc = {"(Water) High Brunhilda's Bane +30%": "If the user is attuned to [[Elements|Water]]:  increases damage to High Brunhilda by '''30%'''."}
 
@@ -98,7 +113,12 @@ class HDT_Aquatic_Spiral(WeaponBase):
     ele = ['water']
     wt = 'wand'
     att = 1453
-    s3 = {} # Cascading Waves
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.8      ,
+        "recovery" : 1.0      ,
+        } # Cascading Waves
     a = []
     ability_desc = {}
 
@@ -106,7 +126,12 @@ class HDT_Tornado_Tail(WeaponBase):
     ele = ['wind']
     wt = 'wand'
     att = 788
-    s3 = {} # Primal Cyclone
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.8      ,
+        "recovery" : 1.0      ,
+        } # Primal Cyclone
     a = [('k', 0.3)]
     ability_desc = {"(Wind) High Mercury's Bane +30% (Alt)": "If the user is attuned to [[Elements|Wind]]:  increases damage to High Mercury by '''30%'''."}
 
@@ -114,7 +139,12 @@ class HDT_Grand_Tempest(WeaponBase):
     ele = ['wind']
     wt = 'wand'
     att = 1575
-    s3 = {} # Raging Cyclone
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.8      ,
+        "recovery" : 1.0      ,
+        } # Raging Cyclone
     a = []
     ability_desc = {}
 
