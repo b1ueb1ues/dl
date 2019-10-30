@@ -38,6 +38,8 @@ class Ability(object):
                 this.mod = [('sp','passive',0.15)]
             elif value == 'wand':
                 this.mod = [('s','ex',0.15)]
+            elif value == 'hmym':
+                this.mod = [('crit','damage',0.3)]
 
 
     def ex_dmg_make(this, name, dmg_coef, dtype=None):

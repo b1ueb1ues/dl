@@ -1,7 +1,7 @@
 import adv_test
 from adv import *
 from module.bleed import Bleed
-import slot
+from slot.a import *
 
 def module():
     return Ieyasu
