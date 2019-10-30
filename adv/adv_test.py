@@ -192,7 +192,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
 
     f = io.StringIO()
     with redirect_stdout(f):
-        logcat(['dmg','cancel','fs','cast','buff'])
+        logcat()
     r['logs'] = f.getvalue()
 
     recount = "%d"%(dps)
