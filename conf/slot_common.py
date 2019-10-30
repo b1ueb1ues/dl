@@ -25,7 +25,7 @@ def set(slots):
     slots.a = RR()+CE()
 
     if wt == 'sword':
-        slots.a = RR()+FP()
+        slots.a = TSO()+BN()
     if wt == 'blade':
         slots.a = RR()+BN()
     if wt == 'dagger':
@@ -33,14 +33,13 @@ def set(slots):
             slots.a = TB()+The_Prince_of_Dragonyule()
         else:
             slots.a = TB()+LC()
-    if wt == 'axe': 
-        #slots.a = RR()+KFM()
-        slots.a = KFM()+Flower_in_the_Fray()
+    if wt == 'axe':
+        slots.a = KFM()+CE()
     if wt == 'lance': 
-        slots.a = RR()+CE()
+        slots.a = RR()+BN()
         #slots.a = LC()+Dragon_and_Tamer()
     if wt == 'wand': 
-        slots.a = RR()+FoG()
+        slots.a = CC()+FoG()
     if wt == 'bow':
         slots.a = RR()+FoG()
     

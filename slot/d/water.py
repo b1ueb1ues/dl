@@ -17,3 +17,7 @@ class Leviathan(DragonBase):
     ele = 'water'
     att = 125
 
+class H_Maritimus(DragonBase):
+    ele = 'water'
+    att = 120
+    aura = [('sp','passive',0.35)]

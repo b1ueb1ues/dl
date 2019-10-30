@@ -14,19 +14,22 @@ class Elisanne(Adv):
     #conf['slots.a'] = CE() + Bellathorna()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
     #conf['slots.a'] = HG() + Indelible_Summer()
-    conf['slots.a'] = BB() + JotS()
-    conf['slots.d'] = DJ()
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf['acl'] = """
-                        `s1
-                        """
-        else:
-            this.conf['acl'] = """
-                        `s1
-                        `s2, fsc
-                        `fs, seq=5
-                        """
+    #conf['slots.a'] = BB() + JotS()
+    conf['slots.a'] = BB() + HG()
+    
+    #conf['slots.d'] = DJ()
+    conf['slots.d'] = H_Maritimus()
+    #def d_slots(this):
+    #    if 'bow' in this.ex:
+    #        this.conf['acl'] = """
+    #                    `s1
+    #                    """
+    #    else:
+    #        this.conf['acl'] = """
+    #                    `s1
+    #                    `s2, fsc
+    #                    `fs, seq=5
+    #                    """
 
 
 if __name__ == '__main__':
@@ -36,10 +39,10 @@ if __name__ == '__main__':
     #    `s2, seq=5 and cancel
     #    `s3, seq=5 and cancel
     #    """
-    # conf['acl'] = """
-    #     `s1
-    #     `fs, seq=5
-    #     """
+    conf['acl'] = """
+         `s1
+         `fs, seq=5
+         """
 
 
     adv_test.team_dps = 10000

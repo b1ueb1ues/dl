@@ -20,6 +20,27 @@ class lance5b2(WeaponBase):
     s3 = {
         }
 
+class lanced1flame(WeaponBase):
+    ele = ['flame']
+    wt = 'lance'
+    att = 780
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class lanced1shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'lance'
+    att = 719
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
 
 flame  = lance5b1
 light  = lance5b1

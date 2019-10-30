@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.a import *
 
 def module():
     return Linus
@@ -10,6 +11,7 @@ class Linus(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1 
         `s2 
