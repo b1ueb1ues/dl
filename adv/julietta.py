@@ -15,7 +15,7 @@ if __name__ == '__main__':
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
-        `s3,seq=4
+        `s3,seq=5
         """
     adv_test.test(module(), conf, verbose=0)
 

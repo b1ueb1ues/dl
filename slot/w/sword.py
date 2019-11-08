@@ -85,9 +85,8 @@ class sword5d1shadow(WeaponBase):
         "recovery" : 3.1      ,
         }
 
-flame  = sword5b1
-water  = sword5b1
-light  = sword5b1
-
-wind   = sword5b2
-shadow = sword5b2
+flame  = sword5d1flame
+water  = sword5d1water
+wind   = sword5d1wind
+light  = sword5d1light
+shadow = sword5d1shadow

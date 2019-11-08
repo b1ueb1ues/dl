@@ -23,7 +23,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1
         `s2, seq=2
-        `s3
+        `s3, seq=5
         """
     conf['slot.d'] = Shinobi()
     adv_test.test(module(), conf, verbose=-2)

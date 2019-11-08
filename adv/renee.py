@@ -37,9 +37,9 @@ class Renee(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
+        `s1
+        `s2
+        `s3, seq=5
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2)

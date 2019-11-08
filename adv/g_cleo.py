@@ -32,7 +32,7 @@ class G_Cleo(Adv):
                 """
             if 'bow' in this.ex:
                 this.conf['rotation_init'] = """
-                    s2s1
+                    s3s2s1
                 """
                 this.conf['rotation'] = """
                     c5c4fss1
@@ -40,7 +40,7 @@ class G_Cleo(Adv):
                 """
             else:
                 this.conf['rotation_init'] = """
-                    s2s1
+                    s3s2s1
                     c5c4fss1
                 """
                 this.conf['rotation'] = """

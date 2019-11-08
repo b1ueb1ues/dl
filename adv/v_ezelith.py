@@ -20,9 +20,9 @@ class V_Ezelith(Adv):
                 )
         if this.condition('c4+fs'):
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1
                 `s2
+                `s3
                 `fs, seq=4
                 """
 
@@ -72,9 +72,9 @@ class V_Ezelith(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s3,s1.charged>=s1.sp
         `s1
         `s2
+        `s3
         """
     adv_test.test(module(), conf, verbose=0)
 

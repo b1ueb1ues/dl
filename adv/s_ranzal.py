@@ -63,5 +63,6 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1, x=5
         `s2, x=5
+        `s3, x=5
         """
     adv_test.test(module(), conf, verbose=-2)
