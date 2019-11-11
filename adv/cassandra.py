@@ -15,7 +15,8 @@ class Cassandra(Adv):
     # comment = 'no counter damage'
     a1 = ('prep','100%')
     conf = {}
-    conf['slots.a'] = CC()+Flash_of_Genius()
+    # conf['slots.a'] = CC()+Flash_of_Genius()
+    conf['slots.a'] = CC()+United_by_One_Vision()
     conf['acl'] = """
         `s1
         `s2, seq=5
@@ -26,7 +27,7 @@ class Cassandra(Adv):
         this.comment = 's2 drops combo'
         this.hits = 0
         this.flurry_str = Selfbuff('flurry_str',0.2,-1,'att','passive')
-        
+
         timing = adv_test.sim_duration/3
         this.ro(0)
         Timer(this.ro).on(timing)
@@ -56,15 +57,15 @@ class Cassandra(Adv):
         elif name == 's3':
             this.hits += 1
 
-        if this.hits >= 15:
-            this.flurry_str.on()
+        # if this.hits >= 15:
+        #     this.flurry_str.on()
 
     def ro(this, t):
         Selfbuff('a3',0.10,-1).on()
 
     def s2_proc(this, e):
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
-        this.flurry_str.off()
+        # this.flurry_str.off()
 
 
 if __name__ == '__main__':

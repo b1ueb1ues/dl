@@ -9,7 +9,7 @@ from slot.d import *
 def module():
     return Delphi
 
-class Twinfold_Bonds(Amulet):  
+class Twinfold_Bonds(Amulet):
     att = 65
     a = [('s',0.40)]
 
@@ -36,7 +36,7 @@ class Delphi(Adv):
         this.hits = 0
         this.flurry_str = Selfbuff('flurry_str',0.15,-1,'att','passive')
         this.proc_chance = 120
-        
+
         if this.condition('s1 defdown for 10s'):
             this.s1defdown = 1
         else:
@@ -76,7 +76,7 @@ class Delphi(Adv):
             this.hits += 5
 
         if this.hits >= 15:
-            this.flurry_str.on()
+            # this.flurry_str.on()
             this.proc_chance = 180
 
     def s1_proc(this, e):
@@ -87,9 +87,9 @@ class Delphi(Adv):
 
     def s2_before(this, e):
         this.hits = 0
-        this.flurry_str.off()
+        # this.flurry_str.off()
         this.proc_chance = 120
-    
+
     def s2_proc(this, e):
         this.afflics.poison('s2',this.proc_chance,3.00,24)
 
