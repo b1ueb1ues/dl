@@ -337,7 +337,7 @@ function runAdvTest() {
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);
-                    $('#damage-log').innerText(res.logs);
+                    $('#damage-log').text(res.logs);
                     $('#test-results').prepend(newResultItem);
                     $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1 }));
                 }

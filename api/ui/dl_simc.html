@@ -148,7 +148,7 @@
                 <div class="col">
                     <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
                     <button type="button" id="display-mode" class="btn btn-secondary"></button>
-                    <!--<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#damageLogBox">Log</button>-->
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#damageLogBox">Log</button>
                     <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
                     <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#aboutBox">About</button>
@@ -176,8 +176,6 @@
                             <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
                             <h5>What is the Markdown view for?</h5>
                             <p>It shows a plain text result meant to be copied to discord.</p>
-                            <h5>How come the weapon skill on HDT weapons are not used?</h5>
-                            <p>Skill modifiers do not exist for them yet.</p>
                             <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
                             <p>Ask me on discord I'm chu2.718281828459045235360287471#2482</p>
                     </div>
@@ -186,20 +184,20 @@
         </div>
 
         <div class="modal fade" id="damageLogBox" tabindex="-1" role="dialog" aria-labelledby="damageLogTitle" aria-hidden="true">-->
-            <!--    <div class="modal-dialog modal-xl" role="document">-->
-            <!--        <div class="modal-content">-->
-            <!--            <div class="modal-header">-->
-            <!--                <h5 class="modal-title" id="damageLogTitle">Damage Log Chart</h5>-->
-            <!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-            <!--                    <span aria-hidden="true">&times;</span>-->
-            <!--                </button>-->
-            <!--            </div>-->
-            <!--            <div class="modal-body">-->
-            <!--                <pre id="damage-log"></pre>-->
-            <!--            </div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--</div>
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="damageLogTitle">Damage Log Chart</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <pre id="damage-log"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </form>
     <div id="test-error"></div>
