@@ -60,16 +60,22 @@ def parse_abilities(ability_data):
         'Last Offense': 'lo',
         'HP &amp; Strength': 'a',
 
-        "High Midgardsormr's Bane": 'k',
-        "High Brunhilda's Bane": 'k',
-        "High Mercury's Bane": 'k',
-        "High Zodiark's Bane": 'k',
-        "High Jupiter's Bane": 'k',
+        # "High Midgardsormr's Bane": 'k',
+        # "High Brunhilda's Bane": 'k',
+        # "High Mercury's Bane": 'k',
+        # "High Zodiark's Bane": 'k',
+        # "High Jupiter's Bane": 'k',
     }
     ABILITIES_COND = {
         'Striking Haste': ('sp', 'fs'),
         'Flurry Devastation': ('cc', 'hit15'),
         'Flurry Strength': ('a', 'hit15'),
+
+        "High Midgardsormr's Bane": ('k', 'vs HMS'),
+        "High Brunhilda's Bane": ('k', 'vs HBH'),
+        "High Mercury's Bane": ('k', 'vs HMC'),
+        "High Zodiark's Bane": ('k', 'vs HZD'),
+        "High Jupiter's Bane": ('k', 'vs HJP'),
     }
     SPECIAL = {
         'Strength &amp; Critical Damage I': [('att', 'passive', 30), ('crit','damage', 50)],
@@ -137,7 +143,7 @@ def calculate_dra_atk(dra):
     steps = (max_atk - min_atk) / max_lvl
     return ceil(min_atk + min_lvl * steps), ceil(min_atk + max_lvl * steps)
 
-def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
+def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3, show_desc=True):
     ab_values = []
     cond_ab_values = []
     ability_comment = {}
@@ -173,8 +179,11 @@ def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3):
         ab_len = len(combined_ab)
         ability_cond_str = ''
 
-    ability_comment_str = '\n    ability_desc = ' + str(ability_comment)
-    return ability_arr_str + ability_cond_str + ability_comment_str, ab_len
+    if show_desc == True:
+        ability_comment_str = '\n    ability_desc = ' + str(ability_comment)
+        return ability_arr_str + ability_cond_str + ability_comment_str, ab_len
+    else:
+        return ability_arr_str + ability_cond_str, ab_len
 
 def abbreviateClassName(name):
     abbr = name[0]
@@ -261,10 +270,14 @@ if __name__ == '__main__':
             f.write('from slot import *\n\n')
             for item in weapon_data:
                 wep = item['title']
-                ab, ab_len = get_ability(wep, ability_data, 'wep', 2, 1)
+                ab, ab_len = get_ability(wep, ability_data, mode='wep', i_range=2, j_range=1, show_desc=False)
                 # if ab_len == 0:
                 #     continue
-                clean_name = 'HDT_' + re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
+                if int(wep['MaxAtk']) > 1000:
+                    prefix = 'HDT2_'
+                else:
+                    prefix = 'HDT1_'
+                clean_name = prefix + re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
                 f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
@@ -274,5 +287,5 @@ if __name__ == '__main__':
                 f.write('\n')
                 if not weap_pref[wep['ElementalType']] or (weap_pref[wep['ElementalType']] and int(wep['MaxAtk']) > weap_pref[wep['ElementalType']][1]):
                     weap_pref[wep['ElementalType']] = clean_name, int(wep['MaxAtk'])
-            # for ele, w in weap_pref.items():
-            #     f.write('\n{} = {}'.format(ele.lower(), w[0]))
+            for ele, w in weap_pref.items():
+                f.write('\n{} = {}'.format(ele.lower(), w[0]))

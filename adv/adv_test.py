@@ -152,6 +152,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
 
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
     amulets += '['+adv.slots.d.__class__.__name__+']'
+    amulets += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
     #comment = amulets + comment
 
     if not no_cond:
