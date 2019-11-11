@@ -20,6 +20,7 @@ class B_Zardin(adv.Adv):
     conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
         `s1
+        `s3, seq=5
         """
     def d_slots(this):
         if 'bow' in this.ex:

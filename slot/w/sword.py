@@ -184,7 +184,17 @@ class HDT_Absolute_Hex(WeaponBase):
         "sp"       : 6163     ,
         "startup"  : 0.1      ,
         "recovery" : 3.1      ,
+<<<<<<< HEAD
         } # Infinite Hexes
     a = []
     ability_desc = {}
 
+=======
+        }
+
+flame  = sword5d1flame
+water  = sword5d1water
+wind   = sword5d1wind
+light  = sword5d1light
+shadow = sword5d1shadow
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46

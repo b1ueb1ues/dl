@@ -13,11 +13,11 @@ class Erik(adv.Adv):
     a1 = ('fs',0.30)
     conf = {}
     conf['acl'] = """
-    `s1
-    `s2,fsc
-    `s3,fsc
-    `fs,seq=5
-    """
+        `s1
+        `s2, fsc
+        `s3, fsc
+        `fs,seq=5
+        """
     conf['slot.a'] = KFM()+CE()
     def d_slots(this):
         if 'bow' in this.ex:

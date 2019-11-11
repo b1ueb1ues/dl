@@ -16,6 +16,7 @@ class Berserker(Adv):
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1
+        `s3, fsc
         `fs, seq=2 and cancel
         """
 

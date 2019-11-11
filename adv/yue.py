@@ -10,9 +10,8 @@ def module():
     return Yue
 
 class Yue(adv.Adv):
-    comment = 'Arctos'
+    #comment = 'Arctos'
     conf = {}
-    conf['slot.d'] = Arctos()
     conf['acl'] = """
         `s1
         `s2,seq=4

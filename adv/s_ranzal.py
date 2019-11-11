@@ -16,6 +16,7 @@ class S_Ranzal(Adv):
     conf['acl'] = """
         `s1, x=5
         `s2, x=5
+        `s3, x=5
         """
 
     a1 = ('lo',0.4)

@@ -8,7 +8,7 @@ from adv import *
 def module():
     return Sinoa
 
-class Sinoa(adv.Adv):
+class Sinoa(sinoa.Sinoa):
     def s1_proc(this, e):
         adv.Teambuff('s1_att',0.25/4,15,'att').on()
         adv.Teambuff('s1_crit',0.25/4,10,'crit').on()

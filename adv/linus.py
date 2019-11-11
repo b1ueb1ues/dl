@@ -16,6 +16,7 @@ class Linus(adv.Adv):
         `s1 
         `s2
         `s3,seq=4
+        `fs,seq=5
         """
 
 if __name__ == '__main__':

@@ -18,6 +18,7 @@ class H_Mym(Adv):
     conf['acl'] = """
         `s1
         `s2, seq=5
+        `s3, fsc
         `fs, seq=5
     """
 

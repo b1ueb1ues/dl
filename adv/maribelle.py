@@ -12,9 +12,9 @@ class Maribelle(adv.Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
+        `s1
         `s2, seq=5 and cancel
-        `s1, pin == 'prep'
+        `s3
         """
 
 if __name__ == '__main__':

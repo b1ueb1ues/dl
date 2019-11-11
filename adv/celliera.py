@@ -18,11 +18,11 @@ class Celliera(adv.Adv):
     #conf['slots.d'] = DJ()
     acl12 = """
         `s1
-        `s2
+        `s2, seq=5
         `s3
         """
     acl21 = """
-        `s2
+        `s2, seq=5
         `s1
         `s3
         """ 

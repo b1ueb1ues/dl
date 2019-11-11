@@ -13,8 +13,8 @@ class Rex(adv.Adv):
     conf['slot.a'] = KFM()+CE()
     conf['acl'] = """
         `s1 
-        `s2 
-        `s3
+        `s2,seq=4
+        `s3,seq=4
         `fs,seq=5
         """
 

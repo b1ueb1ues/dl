@@ -12,7 +12,7 @@ class H_Edward(adv.Adv):
     conf['acl'] = """
         `s1
         `s2, seq=5 
-        `s3
+        `s3, seq=5
         """
     a1 = ('a',0.1,'hp100')
 

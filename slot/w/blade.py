@@ -60,6 +60,50 @@ class bladeHJPBane(WeaponBaseHJP):
     wt = 'blade'
     att = 383
 
+class blade5d1flame(WeaponBase):
+    ele = ['flame']
+    att = 811
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 7227     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    }
+
+class blade5d1water(WeaponBase):
+    ele = ['water']
+    att = 763
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 7227     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    }
+
+class blade5d1wind(WeaponBase):
+    ele = ['wind']
+    att = 787
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 9.57   ,
+        "sp"       : 7582   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.35   ,
+    }
+
+class blade5d1light(WeaponBase):
+    ele = ['light']
+    att = 748
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 6925   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.68   ,
+    }
+
 class blade5d1shadow(WeaponBase):
     ele = ['shadow']
     att = 811
@@ -68,9 +112,10 @@ class blade5d1shadow(WeaponBase):
         "dmg"      : 2.13*5 ,
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
-        "recovery" : 2.65   ,
+        "recovery" : 2.68   ,
     }
 
+<<<<<<< HEAD
 flame  = blade5b1
 wind   = blade5b1
 
@@ -160,3 +205,10 @@ class HDT_True_Abyss(WeaponBase):
     a = []
     ability_desc = {}
 
+=======
+flame  = blade5d1flame
+water  = blade5d1water
+wind   = blade5d1wind
+light  = blade5d1light
+shadow = blade5d1shadow
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46

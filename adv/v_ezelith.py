@@ -17,6 +17,7 @@ class V_Ezelith(Adv):
         `s3,s1.charged>=2803
         `s1
         `s2
+        `s3
         `fs, seq=4
         """
     conf['slot.a'] = RR()+EE()

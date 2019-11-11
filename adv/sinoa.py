@@ -17,6 +17,7 @@ class Sinoa(adv.Adv):
     conf['acl'] = '''
         `s1
         `s2
+        `s3, seq=5
         `fs, seq=5
         '''
 

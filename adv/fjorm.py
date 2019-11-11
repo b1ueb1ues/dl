@@ -13,10 +13,12 @@ class Fjorm(Adv):
     # comment = 'do not calc damage counter'
     a3 = ('prep', 100)
     conf = {}
-    conf['slot.a'] = Dragon_and_Tamer()+LC()
+    #conf['slot.a'] = Dragon_and_Tamer()+LC()
+    #conf['slot.d'] = DJ()
     conf['acl'] = """
         `s1
         `s2
+        `s3, seq=5
         `fs, seq=5
         """
 

@@ -12,7 +12,7 @@ class Aeleen(Adv):
 
     conf['acl'] = """
         `s1
-        `s3
+        `s3, fsc
         `fs, seq=5
         """
     a1 = ('bt',0.25)

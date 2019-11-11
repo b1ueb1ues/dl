@@ -10,9 +10,9 @@ def module():
 class Irfan(Adv):
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
+        `s1
+        `s2, seq=5
+        `s3, seq=5
         `fs, seq=5
         """
 

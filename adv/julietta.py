@@ -14,7 +14,7 @@ class Julietta(adv.Adv):
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
-        `s3,seq=4
+        `s3,seq=5
         """
 
 

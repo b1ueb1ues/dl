@@ -23,6 +23,7 @@ class dagger5b2(WeaponBase):
         "recovery" : 1.05-0.15  ,
         }
 
+<<<<<<< HEAD
 class daggerHMSBane(WeaponBaseHMS):
     wt = 'dagger'
     att = 354
@@ -42,12 +43,64 @@ class daggerHZDBane(WeaponBaseHZD):
 class daggerHJPBane(WeaponBaseHJP):
     wt = 'dagger'
     att = 334
+=======
+class dagger5d1flame(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 728
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        }
 
+class dagger5d1water(WeaponBase):
+    ele = ['water']
+    wt = 'dagger'
+    att = 728
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        }
 
-flame  = dagger5b1
-wind   = dagger5b1
-shadow = dagger5b1
+class dagger5d1wind(WeaponBase):
+    ele = ['wind']
+    wt = 'dagger'
+    att = 691
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        }
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46
 
+class dagger5d1light(WeaponBase):
+    ele = ['light']
+    wt = 'dagger'
+    att = 706
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        }
+
+class dagger5d1shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 706
+    s3 = {
+        "dmg"      : 1.73*5   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.3      ,
+        }
+
+<<<<<<< HEAD
 water  = dagger5b2
 light  = dagger5b2
 
@@ -131,3 +184,10 @@ class HDT_Shaderulers_Maw(WeaponBase):
     s3 = {} # Bloodstarved Shadowruler
     a = []
     ability_desc = {}
+=======
+flame  = dagger5d1flame
+water  = dagger5d1water
+wind   = dagger5d1wind
+light  = dagger5d1light
+shadow = dagger5d1shadow
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46

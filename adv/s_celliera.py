@@ -20,6 +20,7 @@ class S_Celliera(Adv):
     conf['acl'] = """
         `s2
         `s1
+        `s3, fsc
         `fs, seq=2
         """
 
@@ -31,6 +32,7 @@ class S_Celliera(Adv):
             this.conf['acl'] = """
                     `s2
                     `s1
+                    `s3, fsc
                     `fs, seq=3
                     """
 

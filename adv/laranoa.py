@@ -17,9 +17,9 @@ class Laranoa(Adv):
     conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
     conf['slot.d'] = DJ()
     conf['acl'] = """
-        `s3,s1.charged>=s1.sp
         `s1
         `s2,fsc
+        `s3,fsc
         `fs, seq=4
         """
     

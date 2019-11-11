@@ -20,6 +20,7 @@ class lance5b2(WeaponBase):
     s3 = {
         }
 
+<<<<<<< HEAD
 class lanceHMSBane(WeaponBaseHMS):
     wt = 'lance'
     att = 358
@@ -49,6 +50,9 @@ wind   = lance5b2
 
 
 class HDT_Crimsonflame_Lance(WeaponBase):
+=======
+class lance5d1flame(WeaponBase):
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46
     ele = ['flame']
     wt = 'lance'
     att = 780
@@ -74,6 +78,7 @@ class HDT_Pureflame_Lance(WeaponBase):
     a = []
     ability_desc = {}
 
+<<<<<<< HEAD
 class HDT_Limpid_Lance(WeaponBase):
     ele = ['water']
     wt = 'lance'
@@ -123,6 +128,42 @@ class HDT_Brilliant_Lightflash(WeaponBase):
     ability_desc = {}
 
 class HDT_Scourge_Lance(WeaponBase):
+=======
+class lance5d1water(WeaponBase):
+    ele = ['water']
+    wt = 'lance'
+    att = 780
+    s3 = {
+        "dmg"      : 2*4.14   ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.33     ,
+        }
+
+class lance5d1wind(WeaponBase):
+    ele = ['wind']
+    wt = 'lance'
+    att = 757
+    s3 = {
+        "dmg"      : 10*0.92  ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.55     ,
+        }
+
+class lance5d1light(WeaponBase):
+    ele = ['light']
+    wt = 'lance'
+    att = 780
+    s3 = {
+        "dmg"      : 2*4.14   ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.33     ,
+        }
+
+class lance5d1shadow(WeaponBase):
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46
     ele = ['shadow']
     wt = 'lance'
     att = 719
@@ -135,6 +176,7 @@ class HDT_Scourge_Lance(WeaponBase):
     a = [('k', 0.3)]
     ability_desc = {"(Shadow) High Jupiter's Bane +30% (Alt)": "If the user is attuned to [[Elements|Shadow]]:  increases damage to High Jupiter by '''30%'''."}
 
+<<<<<<< HEAD
 class HDT_Ebon_Scourge_Lance(WeaponBase):
     ele = ['shadow']
     wt = 'lance'
@@ -149,3 +191,10 @@ class HDT_Ebon_Scourge_Lance(WeaponBase):
     ability_desc = {}
 
 
+=======
+flame  = lance5d1flame
+water  = lance5d1water
+wind   = lance5d1wind
+light  = lance5d1light
+shadow = lance5d1shadow
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46

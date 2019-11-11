@@ -10,7 +10,7 @@ def module():
     return Elisanne
 
 class Elisanne(Adv):
-#    comment = 'RR+Bellathorna'
+    comment = 'no s3'
     a1 = ('bt',0.25)
 
     conf = {}

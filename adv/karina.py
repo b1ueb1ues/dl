@@ -15,7 +15,7 @@ class Karina(adv.Adv):
     conf['acl'] = """
         `s1
         `s2, seq=4
-        `s3, seq=4
+        `s3, fsc
         `fs, seq=5
         """
 

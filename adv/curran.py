@@ -16,7 +16,7 @@ class Curran(adv.Adv):
     conf['acl'] = """
         `s1
         `s2, seq=2
-        `s3
+        `s3, seq=5
         """
     conf['slot.a'] = KFM()+CE()
     a1 = ('od',0.13)

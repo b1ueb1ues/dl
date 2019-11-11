@@ -19,13 +19,14 @@ class Kuhai(Adv):
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
     # c2+fs_alt fs can init quicker than c1+fs_alt 
     conf['acl'] = """
-        `s1
+        `s1, fsc
         `s2
+        `s3, fsc
         `fs, seq=2 and this.s2fsbuff.get()
         `fs, seq=3
         """
     conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
-    conf['slot.d'] = Zephyr()
+    conf['slot.d'] = Hastur()
 
     def init(this):
         if this.condition('huge hitbox eneny'):

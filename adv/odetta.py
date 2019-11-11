@@ -16,6 +16,7 @@ class Odetta(Adv):
     conf['acl'] = """
         `s2, fsc
         `s1, fsc
+        `s3, fsc
         `fs, seq=2
         """
 

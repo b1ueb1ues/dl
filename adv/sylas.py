@@ -17,9 +17,10 @@ class Sylas(adv.Adv):
     conf['acl'] = """
         `s1
         `s2
+        `s3, seq=5
         `fs, seq=5
         """
-    conf['slot.d'] = Pazuzu()
+    conf['slot.d'] = Vayu()
     conf['cond_afflict_res'] = 0
 
     def prerun(this):

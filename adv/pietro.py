@@ -13,13 +13,13 @@ class Pietro(adv.Adv):
 #    comment = 'unsuitable resist'
     conf = {}
     conf['acl'] = """
-        `s1 
+        `s1
         `s3,seq=4
         `fs,seq=5
         """
 
     def d_slots(this):
-        this.conf.slots.d = DJ()
+        this.conf.slots.d = Siren()
 
 
 if __name__ == '__main__':

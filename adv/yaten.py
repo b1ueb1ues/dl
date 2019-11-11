@@ -38,11 +38,13 @@ class Yaten(adv.Adv):
             this.conf['acl'] = """
                 `s1
                 `s2, fsc and this.energy() < 4
+                `s3, fsc
                 `fs, seq=3
                 """
         else:
             this.conf['acl'] = """
                 `s1
+                `s3, fsc
                 `fs, seq=3
                 """
 

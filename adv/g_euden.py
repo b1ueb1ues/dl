@@ -17,6 +17,7 @@ class G_Euden(Adv):
     conf['acl'] = """
         `s1,fsc
         `s2,fsc
+        `s3,fsc
         `fs,seq=2 and cancel
     """
     conf['cond_afflict_res'] = 0
@@ -52,4 +53,3 @@ class G_Euden(Adv):
 if __name__ == '__main__':
     conf = {}
     r = adv_test.test(module(), conf, verbose=0, mass=0)
-    print(r['buff_sum'])

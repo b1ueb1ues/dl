@@ -14,7 +14,8 @@ class Rodrigo(adv.Adv):
     conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1
-        `s2
+        `s2, fsc
+        `s3, fsc
         `fs, seq=3 and cancel
         """
     def d_slots(this):

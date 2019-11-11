@@ -14,7 +14,7 @@ class Cibella(Adv):
     conf = {}
     conf['acl'] = """
         `s2
-        `s3
+        `s3, seq=5
         `fs, seq=5
         """
     #conf['slots.a'] = RR() + Saintly_Delivery()

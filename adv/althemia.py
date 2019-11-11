@@ -11,10 +11,9 @@ class Althemia(adv.Adv):
     a1 = ('s',0.3,'hp100')
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel 
+        `s1
+        `s2
         `s3
-        `s2, s=1
         """
 
 if __name__ == '__main__':

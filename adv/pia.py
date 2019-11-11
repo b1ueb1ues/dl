@@ -11,9 +11,11 @@ def module():
 class Pia(Adv):
     conf = {}
     conf['acl'] = """
-            `s1, seq=5 and cancel 
-            `s3, seq=5 and cancel
-            """
+        `s1
+        `s2, fsc
+        `s3, seq=5
+        `fs, seq=5
+        """
 
     def init(this):
         if this.condition('energy'):
@@ -29,6 +31,6 @@ class Pia(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2)
+    adv_test.test(module(), conf, verbose=0)
 
 

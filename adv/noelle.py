@@ -20,7 +20,8 @@ class Noelle(Adv):
 
     conf['acl'] = """
         `s1
-        `s2, seq=5
+        `s2, fsc
+        `s3, fsc
         `fs, seq=5
         """
 

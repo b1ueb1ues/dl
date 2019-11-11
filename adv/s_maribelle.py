@@ -14,8 +14,9 @@ class S_Maribelle(adv.Adv):
     a3 = ('bk',0.3)
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
+        `s1
+        `s2
+        `s3, seq=5 and cancel
         """
 
 

@@ -13,9 +13,9 @@ class Veronica(adv.Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
+        `s1
         `s2, seq=5 and cancel
-        `s1, pin == 'prep'
+        `s3, seq=5 and cancel
         `fs, seq=5 and s1.charged >= 2500
         """
 

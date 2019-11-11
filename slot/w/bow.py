@@ -35,6 +35,7 @@ class bow5b3(WeaponBase):
         "recovery" : 2.75     ,
         }
 
+<<<<<<< HEAD
 class bowHMSBane(WeaponBaseHMS):
     wt = 'bow'
     att = 327
@@ -58,9 +59,64 @@ class bowHJPBane(WeaponBaseHJP):
 flame  = bow5b1
 water  = bow5b1
 wind   = bow5b1
+=======
+class bow5d1flame(WeaponBase):
+    ele = ['flame']
+    att = 734
+    wt = 'bow'
+    s3 = {
+        "dmg"      : 3*3.16   ,
+        "sp"       : 6750     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.73     ,
+        }
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46
 
-light  = bow5b2
+class bow5d1water(WeaponBase):
+    ele = ['water']
+    att = 713
+    wt = 'bow'
+    s3 = {
+        "dmg"      : 8.54     ,
+        "sp"       : 7267     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.75     ,
+        }
 
+class bow5d1wind(WeaponBase):
+    ele = ['wind']
+    att = 713
+    wt = 'bow'
+    s3 = {
+        "dmg"      : 3*3.16   ,
+        "sp"       : 6750     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.73     ,
+        }
+
+class bow5d1light(WeaponBase):
+    ele = ['light']
+    att = 677
+    wt = 'bow'
+    s3 = {
+        "dmg"      : 8.54     ,
+        "sp"       : 7267     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.75     ,
+        }
+    
+class bow5d1shadow(WeaponBase):
+    ele = ['shadow']
+    att = 713
+    wt = 'bow'
+    s3 = {
+        "dmg"      : 9.49     ,
+        "sp"       : 6750     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.52     ,
+        }
+
+<<<<<<< HEAD
 shadow = bow5b3
 
 
@@ -144,3 +200,10 @@ class HDT_Hellish_Prophecy(WeaponBase):
     a = []
     ability_desc = {}
 
+=======
+flame  = bow5d1flame
+water  = bow5d1water
+wind   = bow5d1wind
+light  = bow5d1light
+shadow = bow5d1shadow
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46

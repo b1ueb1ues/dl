@@ -22,6 +22,7 @@ class Yachiyo(Adv):
         `fs, this.fsa_charge and seq=5
         `s2
         `s1
+        `s3
         """
     conf['cond_afflict_res'] = 0
 

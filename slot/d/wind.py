@@ -1,4 +1,5 @@
 from slot import *
+from core.log import *
 
 class Zephyr(DragonBase):
     ele = 'wind'
@@ -46,4 +47,38 @@ class Freyja(DragonBase):
     att = 120
     aura = [('sp','passive',0.35)]
 
+class Hastur(DragonBase):
+    ele = 'wind'
+    att = 127
+    aura = ('att','passive',0.55)
+    
+    def oninit(this, adv):
+        DragonBase.oninit(this, adv)
+        this.adv = adv
+        adv.a1_iscding = 0
 
+        def a1_cooldown(this, t):
+            this.a1_iscding = 0
+            log('cd','a1','end')
+
+        def a1_act(this):
+            if not this.a1_iscding :
+                this.a1_iscding = 1
+                Timer(this.a1_cooldown).on(15)
+                log('cd','a1','start')
+                this.Selfbuff('a1',0.1,10).on()
+
+        charge_i = adv.charge
+        def charge(this, name, sp):
+            if this.s1.check():
+                return charge_i(name, sp)
+            charge_i(name, sp)
+            if this.s1.check():
+                this.a1_act()
+            
+        setattr(type(this.adv), 'a1_cooldown', a1_cooldown)
+        setattr(type(this.adv), 'a1_act', a1_act)
+        setattr(type(this.adv), 'charge', charge)
+
+
+        

@@ -20,6 +20,7 @@ class staff5b2(WeaponBase):
         "recovery" : 1.9      ,
         }
 
+<<<<<<< HEAD
 class staffHJPBane(WeaponBaseHJP):
     wt = 'staff'
     att = 317
@@ -27,10 +28,64 @@ class staffHJPBane(WeaponBaseHJP):
 flame  = staff5b1
 water  = staff5b1
 wind   = staff5b1
+=======
+class staff5d1flame(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 684
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+        }
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46
 
-light  = staff5b2
-shadow = staff5b2
+class staff5d1water(WeaponBase):
+    ele = ['water']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+        }
 
+class staff5d1wind(WeaponBase):
+    ele = ['wind']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+        }
+
+class staff5d1light(WeaponBase):
+    ele = ['light']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 7.55     ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.57     ,
+        }
+
+class staff5d1shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 7.55     ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.57     ,
+        }
+
+<<<<<<< HEAD
 
 class HDT_Brightblaze(WeaponBase):
     ele = ['flame']
@@ -112,3 +167,10 @@ class HDT_Dark_Hunger(WeaponBase):
     a = []
     ability_desc = {}
 
+=======
+flame  = staff5d1flame
+water  = staff5d1water
+wind   = staff5d1wind
+light  = staff5d1light
+shadow = staff5d1shadow
+>>>>>>> 01fc3bdb99a2329a6c009c19b0b265de12e7ca46

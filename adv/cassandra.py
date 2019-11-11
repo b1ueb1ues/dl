@@ -19,6 +19,7 @@ class Cassandra(Adv):
     conf['acl'] = """
         `s1
         `s2, seq=5
+        `s3
     """
 
     def prerun(this):
@@ -52,6 +53,8 @@ class Cassandra(Adv):
             this.hits += 2
         elif name == 's2':
             this.hits += 5
+        elif name == 's3':
+            this.hits += 1
 
         if this.hits >= 15:
             this.flurry_str.on()

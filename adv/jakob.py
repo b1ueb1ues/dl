@@ -13,6 +13,7 @@ class Jakob(adv.Adv):
     conf = {}
     conf['acl'] = """
         `s1
+        `s3,fsc
         `fs,seq=5
         """
     conf['slot.d'] = DJ()
