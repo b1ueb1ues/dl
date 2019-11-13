@@ -1,97 +1,128 @@
 from slot import *
 
-
-class bow5b1(WeaponBase):
-    ele = ['flame','water','wind']
-    wt = 'bow'
-    att = 518
-    s3 = {
-        "buff"     : ['self',0.25, 10, 'crit','chance'] ,
-        "sp"       : 7316          ,
-        "startup"  : 0.10+0.15     ,
-        "recovery" : 1.05-0.15     ,
-        }
-
-class bow5b2(WeaponBase):
-    ele = ['light']
-    wt = 'bow'
-    att = 534
-    s3 = {
-        "dmg"      : 9.49     ,
-        "sp"       : 8075     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.25     ,
-        }
-
-
-class bow5b3(WeaponBase):
-    ele = ['shadow']
-    att = 534
-    wt = 'bow'
-    s3 = {
-        "dmg"      : 3*3.16   ,
-        "sp"       : 7501     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.75     ,
-        }
-
-class bow5d1flame(WeaponBase):
+class HDT1_Valkyries_Blaze(WeaponBase):
     ele = ['flame']
+    wt = 'bow'
     att = 734
-    wt = 'bow'
     s3 = {
         "dmg"      : 3*3.16   ,
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 2.73     ,
-        }
+    } # Valkyrie's Raid
+    a = [('k', 0.3, 'vs HMS')]
 
-class bow5d1water(WeaponBase):
+class HDT2_Valkyries_Fire(WeaponBase):
+    ele = ['flame']
+    wt = 'bow'
+    att = 1468
+    s3 = {
+        "dmg"      : 3*3.16   ,
+        "sp"       : 6750     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.73     ,
+    } # Valkyrie's Heroic Raid
+    a = []
+
+class HDT1_Blue_Mercurius(WeaponBase):
     ele = ['water']
-    att = 713
     wt = 'bow'
+    att = 713
     s3 = {
         "dmg"      : 8.54     ,
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
         "recovery" : 2.75     ,
-        }
+    } # Mercurius's Knowledge
+    a = [('k', 0.3, 'vs HBH')]
 
-class bow5d1wind(WeaponBase):
-    ele = ['wind']
-    att = 713
+class HDT2_Azure_Mercurius(WeaponBase):
+    ele = ['water']
     wt = 'bow'
+    att = 1426
+    s3 = {
+        "dmg"      : 8.54     ,
+        "sp"       : 7267     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.75     ,
+    } # Mercurius's Transcendant Knowledge
+    a = []
+
+class HDT1_Jormungands_Squall(WeaponBase):
+    ele = ['wind']
+    wt = 'bow'
+    att = 713
     s3 = {
         "dmg"      : 3*3.16   ,
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 2.73     ,
-        }
+    } # Jormungand's World
+    a = [('k', 0.3, 'vs HMC')]
 
-class bow5d1light(WeaponBase):
-    ele = ['light']
-    att = 677
+class HDT2_Jormungands_Fury(WeaponBase):
+    ele = ['wind']
     wt = 'bow'
+    att = 1426
+    s3 = {
+        "dmg"      : 3*3.16   ,
+        "sp"       : 6750     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.73     ,
+    } # Jormungand's Boundless World
+    a = []
+
+class HDT1_Jupiters_Light(WeaponBase):
+    ele = ['light']
+    wt = 'bow'
+    att = 677
     s3 = {
         "dmg"      : 8.54     ,
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
         "recovery" : 2.75     ,
-        }
-    
-class bow5d1shadow(WeaponBase):
-    ele = ['shadow']
-    att = 713
+    } # Jupiter's Protection
+    a = [('k', 0.3, 'vs HZD')]
+
+class HDT2_Jupiters_Sky(WeaponBase):
+    ele = ['light']
     wt = 'bow'
+    att = 1354
+    s3 = {
+        "dmg"      : 8.54     ,
+        "sp"       : 7267     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.75     ,
+    } # Jupiter's Celestial Protection
+    a = []
+
+class HDT1_Dark_Prophecy(WeaponBase):
+    ele = ['shadow']
+    wt = 'bow'
+    att = 713
     s3 = {
         "dmg"      : 9.49     ,
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 1.52     ,
-        }
+    } # Prophecy's Guidance
+    a = [('k', 0.3, 'vs HJP')]
 
-flame  = bow5d1flame
-water  = bow5d1water
-wind   = bow5d1wind
-light  = bow5d1light
-shadow = bow5d1shadow
+class HDT2_Hellish_Prophecy(WeaponBase):
+    ele = ['shadow']
+    wt = 'bow'
+    att = 1426
+    s3 = {
+        "dmg"      : 9.49     ,
+        "sp"       : 6750     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.52     ,
+    } # Prophecy's Immaculate Guidance
+    a = []
+
+
+flame = HDT2_Valkyries_Fire
+water = HDT2_Azure_Mercurius
+wind = HDT2_Jormungands_Fury
+light = HDT2_Jupiters_Sky
+shadow = HDT2_Hellish_Prophecy

@@ -1,26 +1,6 @@
-import slot
 from slot import *
 
-
-class lance5b1(WeaponBase):
-    ele = ['flame','light','shadow']
-    wt = 'lance'
-    att = 567
-    s3 = {
-        "dmg"      : 2*4.61   ,
-        "sp"       : 8111     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class lance5b2(WeaponBase):
-    ele = ['water','wind']
-    wt = 'lance'
-    att = 523
-    s3 = {
-        }
-
-class lance5d1flame(WeaponBase):
+class HDT1_Crimsonflame_Lance(WeaponBase):
     ele = ['flame']
     wt = 'lance'
     att = 780
@@ -29,9 +9,22 @@ class lance5d1flame(WeaponBase):
         "sp"       : 7299     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
-        }
+    } # Crimson Beacon
+    a = [('k', 0.3, 'vs HMS')]
 
-class lance5d1water(WeaponBase):
+class HDT2_Pureflame_Lance(WeaponBase):
+    ele = ['flame']
+    wt = 'lance'
+    att = 1560
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+    } # Crimson Wildfire
+    a = []
+
+class HDT1_Limpid_Lance(WeaponBase):
     ele = ['water']
     wt = 'lance'
     att = 780
@@ -40,9 +33,22 @@ class lance5d1water(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.33     ,
-        }
+    } # Limpid Petals
+    a = [('k', 0.3, 'vs HBH')]
 
-class lance5d1wind(WeaponBase):
+class HDT2_Limpid_Rush(WeaponBase):
+    ele = ['water']
+    wt = 'lance'
+    att = 1560
+    s3 = {
+        "dmg"      : 10*0.92  ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.55     ,
+    } # Limpid Shore
+    a = []
+
+class HDT1_Promising_Breeze(WeaponBase):
     ele = ['wind']
     wt = 'lance'
     att = 757
@@ -51,9 +57,17 @@ class lance5d1wind(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.55     ,
-        }
+    } # Sworn Gale
+    a = [('k', 0.3, 'vs HMC')]
 
-class lance5d1light(WeaponBase):
+class HDT2_Guiding_Gale(WeaponBase):
+    ele = ['wind']
+    wt = 'lance'
+    att = 1515
+    s3 = {} # Glorious Gale
+    a = []
+
+class HDT1_Lightflash(WeaponBase):
     ele = ['light']
     wt = 'lance'
     att = 780
@@ -62,21 +76,43 @@ class lance5d1light(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.33     ,
-        }
+    } # Flashing Thunder
+    a = [('k', 0.3, 'vs HZD')]
 
-class lance5d1shadow(WeaponBase):
+class HDT2_Brilliant_Lightflash(WeaponBase):
+    ele = ['light']
+    wt = 'lance'
+    att = 1560
+    s3 = {
+        "dmg"      : 2*4.14   ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.33     ,
+    } # Brilliant Thunder
+    a = []
+
+class HDT1_Scourge_Lance(WeaponBase):
     ele = ['shadow']
     wt = 'lance'
     att = 719
+    s3 = {} # Hazy Hex
+    a = [('k', 0.3, 'vs HJP')]
+
+class HDT2_Ebon_Scourge_Lance(WeaponBase):
+    ele = ['shadow']
+    wt = 'lance'
+    att = 1439
     s3 = {
         "dmg"      : 2*4.61   ,
         "sp"       : 7299     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
-        }
+    } # Shadowy Hex
+    a = []
 
-flame  = lance5d1flame
-water  = lance5d1water
-wind   = lance5d1wind
-light  = lance5d1light
-shadow = lance5d1shadow
+
+flame = HDT2_Pureflame_Lance
+water = HDT2_Limpid_Rush
+wind = HDT2_Guiding_Gale
+light = HDT2_Brilliant_Lightflash
+shadow = HDT2_Ebon_Scourge_Lance

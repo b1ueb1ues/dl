@@ -1,29 +1,6 @@
-import slot
 from slot import *
 
-class dagger5b1(WeaponBase):
-    ele = ['flame','wind','shadow']
-    wt = 'dagger'
-    att = 545
-    s3 = {
-        "dmg"      : 6*1.64   ,
-        "sp"       : 7323     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.5      ,
-        }
-
-class dagger5b2(WeaponBase):
-    ele = ['water','light']
-    wt = 'dagger'
-    att = 529
-    s3 = {
-        "buff"     : ['self',0.4, 5],
-        "sp"       : 7103       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-        }
-
-class dagger5d1flame(WeaponBase):
+class HDT1_Crimson_Fang(WeaponBase):
     ele = ['flame']
     wt = 'dagger'
     att = 728
@@ -32,9 +9,22 @@ class dagger5d1flame(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
-        }
+    } # Savage Crimson
+    a = [('k', 0.3, 'vs HMS')]
 
-class dagger5d1water(WeaponBase):
+class HDT2_Flamerulers_Maw(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1455
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+    } # Savage Flameruler
+    a = []
+
+class HDT1_Tidal_Fang(WeaponBase):
     ele = ['water']
     wt = 'dagger'
     att = 728
@@ -43,9 +33,22 @@ class dagger5d1water(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
-        }
+    } # Vicious Tides
+    a = [('k', 0.3, 'vs HBH')]
 
-class dagger5d1wind(WeaponBase):
+class HDT2_Tiderulers_Maw(WeaponBase):
+    ele = ['water']
+    wt = 'dagger'
+    att = 1455
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+    } # Vicious Tideruler
+    a = []
+
+class HDT1_Galestorm_Fang(WeaponBase):
     ele = ['wind']
     wt = 'dagger'
     att = 691
@@ -54,9 +57,22 @@ class dagger5d1wind(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
-        }
+    } # Merciless Galestorm
+    a = [('k', 0.3, 'vs HMC')]
 
-class dagger5d1light(WeaponBase):
+class HDT2_Windrulers_Maw(WeaponBase):
+    ele = ['wind']
+    wt = 'dagger'
+    att = 1383
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+    } # Merciless Windruler
+    a = []
+
+class HDT1_Lightning_Fang(WeaponBase):
     ele = ['light']
     wt = 'dagger'
     att = 706
@@ -65,9 +81,22 @@ class dagger5d1light(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
-        }
+    } # Ferocious Lightning
+    a = [('k', 0.3, 'vs HZD')]
 
-class dagger5d1shadow(WeaponBase):
+class HDT2_Fulminators_Maw(WeaponBase):
+    ele = ['light']
+    wt = 'dagger'
+    att = 1412
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+    } # Ferocious Fulminator
+    a = []
+
+class HDT1_Darkened_Fang(WeaponBase):
     ele = ['shadow']
     wt = 'dagger'
     att = 706
@@ -76,10 +105,24 @@ class dagger5d1shadow(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 2.3      ,
-        }
+    } # Bloodstarved Darkness
+    a = [('k', 0.3, 'vs HJP')]
 
-flame  = dagger5d1flame
-water  = dagger5d1water
-wind   = dagger5d1wind
-light  = dagger5d1light
-shadow = dagger5d1shadow
+class HDT2_Shaderulers_Maw(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 1412
+    s3 = {
+        "dmg"      : 1.73*5   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.3      ,
+    } # Bloodstarved Shadowruler
+    a = []
+
+
+flame = HDT2_Flamerulers_Maw
+water = HDT2_Tiderulers_Maw
+wind = HDT2_Windrulers_Maw
+light = HDT2_Fulminators_Maw
+shadow = HDT2_Shaderulers_Maw
