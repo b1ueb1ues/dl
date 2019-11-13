@@ -15,10 +15,12 @@ class Fjorm(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    #conf['slot.a'] = Dragon_and_Tamer()+LC()
     #conf['slot.d'] = DJ()
     conf['acl'] = """
         `s1
         `s2
+        `s3, seq=5
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2)

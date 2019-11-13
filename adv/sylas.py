@@ -29,10 +29,11 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1
         `s2
+        `s3, seq=5
         `fs, seq=5
         """
     from slot.d import *
-    conf['slot.d'] = Pazuzu()
+    conf['slot.d'] = Vayu()
     #conf['slot.a'] = HoH()+SDO()
     adv_test.test(module(), conf, verbose=0)
 

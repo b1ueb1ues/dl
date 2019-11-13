@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     conf['acl'] = """
         `s1
-        `s3
+        `s3, fsc
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)

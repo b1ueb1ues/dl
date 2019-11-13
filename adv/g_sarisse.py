@@ -25,16 +25,16 @@ class G_Sarisse(adv.Adv):
             this.dmg_proc = this.c_dmg_proc
         if this.condition('c4+fs'):
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1
                 `s2
+                `s3, fsc
                 `fs, seq=4
                 """
         else:
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1
                 `s2
+                `s3
                 """
         return 'never lose combos'
 

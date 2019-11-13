@@ -11,8 +11,8 @@ class Luther(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
+        `s1
+        `s2, seq=5 and cancel
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """

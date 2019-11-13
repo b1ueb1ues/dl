@@ -43,6 +43,7 @@ if __name__ == '__main__':
         module().comment = 'no s2'
         conf['acl'] = """
             `s1
+            `s3, seq=5
             """
             #`s2, seq=5 and this.energy() < 4
     else :

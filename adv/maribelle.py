@@ -13,9 +13,9 @@ if __name__ == '__main__':
    # import slot
    # conf['slots.d'] = slot.d.wind.Longlong()
     conf['acl'] = """
-        `s1, seq=5 and cancel
+        `s1
         `s2, seq=5 and cancel
-        `s1, pin == 'prep'
+        `s3
         """
 
    # conf['acl'] = """

@@ -59,6 +59,7 @@ if __name__ == '__main__':
         `fs, this.fsa_charge and seq=5
         `s2
         `s1
+        `s3
         """
 
     #conf['slot.w'] = w530()

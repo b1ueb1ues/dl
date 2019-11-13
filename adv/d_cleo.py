@@ -11,7 +11,7 @@ class D_Cleo(adv.Adv):
     a1 = ('a',0.13,'hp70')
 
     conf = {}
-    conf['slot.d'] = DJ()
+    #conf['slot.d'] = DJ()
 
     def init(this):
         if this.condition('energy'):
@@ -74,9 +74,9 @@ if __name__ == '__main__':
     module().comment = ''
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
+        `s1
         `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
+        `s3, fsc
         `fs, seq=5
         """
 

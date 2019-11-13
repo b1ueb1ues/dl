@@ -37,7 +37,18 @@ class axe5d1flame(WeaponBase):
         "dmg"      : 4.18*3   ,
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.25     ,
+        "recovery" : 2.12     ,
+    }
+
+class axe5d1water(WeaponBase):
+    ele = ['water']
+    att = 756
+    wt = 'axe'
+    s3 = {
+        "dmg"      : 2.26*5   ,
+        "sp"       : 8260     ,
+        "startup"  : 0.1      ,
+        "recovery" : 4.08     ,
     }
 
 class axe5d1wind(WeaponBase):
@@ -48,7 +59,18 @@ class axe5d1wind(WeaponBase):
         "dmg"      : 4.18*3   ,
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.25     ,
+        "recovery" : 2.12     ,
+    }
+
+class axe5d1light(WeaponBase):
+    ele = ['light']
+    att = 803
+    wt = 'axe'
+    s3 = {
+        "dmg"      : 2.26*5   ,
+        "sp"       : 8260     ,
+        "startup"  : 0.1      ,
+        "recovery" : 4.08     ,
     }
 
 class axe5d1shadow(WeaponBase):
@@ -59,13 +81,12 @@ class axe5d1shadow(WeaponBase):
         "dmg"      : 4.18*3   ,
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.25     ,
+        "recovery" : 2.12     ,
     }
 
-flame  = axe5b1
-light  = axe5b1
-shadow = axe5b1
-
-water  = axe5b2
-wind   = axe5b2
+flame  = axe5d1flame
+water  = axe5d1water
+wind   = axe5d1wind
+light  = axe5d1light
+shadow = axe5d1shadow
 
