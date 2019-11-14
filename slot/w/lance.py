@@ -75,8 +75,63 @@ class lance5d1shadow(WeaponBase):
         "recovery" : 1.9      ,
         }
 
-flame  = lance5d1flame
-water  = lance5d1water
-wind   = lance5d1wind
-light  = lance5d1light
-shadow = lance5d1shadow
+class lance5d2flame(WeaponBase):
+    ele = ['flame']
+    wt = 'lance'
+    att = 1560
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class lance5d2water(WeaponBase):
+    ele = ['water']
+    wt = 'lance'
+    att = 1560
+    s3 = {
+        "dmg"      : 2*4.14   ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.33     ,
+        }
+
+class lance5d2wind(WeaponBase):
+    ele = ['wind']
+    wt = 'lance'
+    att = 1515
+    s3 = {
+        "dmg"      : 10*0.92  ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.55     ,
+        }
+
+class lance5d2light(WeaponBase):
+    ele = ['light']
+    wt = 'lance'
+    att = 1560
+    s3 = {
+        "dmg"      : 2*4.14   ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.33     ,
+        }
+
+class lance5d2shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'lance'
+    att = 1439
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+flame  = lance5d2flame
+water  = lance5d2water
+wind   = lance5d2wind
+light  = lance5d2light
+shadow = lance5d2shadow

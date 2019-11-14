@@ -12,7 +12,7 @@ class G_Sarisse(adv.Adv):
     conf = {}
     conf['slot.d'] = slot.d.Sakuya()
     #conf['mod'] = {'ex':('sp','passive',-0.15)}
-    conf['slot.a'] = FB()+FoG()
+    conf['slot.a'] = FB()+DD()
 
     def prerun(this):
         this.hits = 0

@@ -85,8 +85,63 @@ class sword5d1shadow(WeaponBase):
         "recovery" : 3.1      ,
         }
 
-flame  = sword5d1flame
-water  = sword5d1water
-wind   = sword5d1wind
-light  = sword5d1light
-shadow = sword5d1shadow
+class sword5d2flame(WeaponBase):
+    ele = ['flame']
+    wt = 'sword'
+    att = 1530
+    s3 = {
+        "dmg"      : 5*1.65   ,
+        "sp"       : 6847     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.1      ,
+        }
+
+class sword5d2water(WeaponBase):
+    ele = ['water']
+    wt = 'sword'
+    att = 1530
+    s3 = {
+        "dmg"      : 3*2.48   ,
+        "sp"       : 6418     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class sword5d2wind(WeaponBase):
+    ele = ['wind']
+    wt = 'sword'
+    att = 1411
+    s3 = {
+        "dmg"      : 3*2.48   ,
+        "sp"       : 6418     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class sword5d2light(WeaponBase):
+    ele = ['light']
+    wt = 'sword'
+    att = 1485
+    s3 = {
+        "dmg"      : 3*2.48   ,
+        "sp"       : 6418     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+        }
+
+class sword5d2shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'sword'
+    att = 1485
+    s3 = {
+        "dmg"      : 5*1.65   ,
+        "sp"       : 6163     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.1      ,
+        }
+
+flame  = sword5d2flame
+water  = sword5d2water
+wind   = sword5d2wind
+light  = sword5d2light
+shadow = sword5d2shadow

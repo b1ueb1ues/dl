@@ -13,7 +13,7 @@ class Noelle(Adv):
 
     conf = {}
     conf['slots.d'] = Zephyr()
-    conf['slots.a'] = HoH()+HG()
+    conf['slots.a'] = HoH()+FWHC()
 
 
     def init(this):

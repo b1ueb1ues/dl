@@ -41,7 +41,7 @@ def set(slots):
     if wt == 'wand': 
         slots.a = CC()+FoG()
     if wt == 'bow':
-        slots.a = RR()+FoG()
+        slots.a = FB()+DD()
     
 
     slots.c.ex = {wt:('ex',wt)}

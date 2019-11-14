@@ -101,8 +101,63 @@ class blade5d1shadow(WeaponBase):
         "recovery" : 2.68   ,
     }
 
-flame  = blade5d1flame
-water  = blade5d1water
-wind   = blade5d1wind
-light  = blade5d1light
-shadow = blade5d1shadow
+class blade5d2flame(WeaponBase):
+    ele = ['flame']
+    att = 1621
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 7227     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    }
+
+class blade5d2water(WeaponBase):
+    ele = ['water']
+    att = 1527
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 7227     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    }
+
+class blade5d2wind(WeaponBase):
+    ele = ['wind']
+    att = 1574
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 9.57   ,
+        "sp"       : 7582   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.35   ,
+    }
+
+class blade5d2light(WeaponBase):
+    ele = ['light']
+    att = 1495
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 6925   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.68   ,
+    }
+
+class blade5d2shadow(WeaponBase):
+    ele = ['shadow']
+    att = 1621
+    wt = 'blade'
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 6925   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.68   ,
+    }
+
+flame  = blade5d2flame
+water  = blade5d2water
+wind   = blade5d2wind
+light  = blade5d2light
+shadow = blade5d2shadow
