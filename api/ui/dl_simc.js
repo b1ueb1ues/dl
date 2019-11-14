@@ -339,7 +339,7 @@ function runAdvTest() {
                     // createChart(res.log.dmg, name);
                     $('#damage-log').text(res.logs);
                     $('#test-results').prepend(newResultItem);
-                    $('#copy-results').prepend($('<pre>' + copyTxt + '</pre>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1 }));
+                    $('#copy-results').prepend($('<textarea>' + copyTxt + '</textarea>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1 }));
                 }
             }
         },

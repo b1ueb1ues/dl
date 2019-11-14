@@ -418,6 +418,14 @@ class Dear_Diary(Amulet):
             this.a += [('cc',0.14)]
 DD = Dear_Diary
 
+class Dear_Diary_Full_RO(Amulet):
+    att = 65
+    a = [('ro_full',0.1)]
+    def on(this, c):
+        if c.wt ==  'bow':
+            this.a = [('ro_full',0.1)]
+            this.a += [('cc',0.14)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
