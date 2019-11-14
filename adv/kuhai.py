@@ -17,7 +17,7 @@ class Kuhai(Adv):
     a3 = ('cd',0.15, 'hp70')
     conf = {}
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
-    # c2+fs_alt fs can init quicker than c1+fs_alt 
+    # c2+fs_alt fs can init quicker than c1+fs_alt
     conf['acl'] = """
         `s1, fsc
         `s2
@@ -26,7 +26,7 @@ class Kuhai(Adv):
         `fs, seq=3
         """
     conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
-    conf['slot.d'] = Hastur()
+    # conf['slot.d'] = Hastur()
 
     def init(this):
         if this.condition('huge hitbox eneny'):
@@ -38,7 +38,7 @@ class Kuhai(Adv):
 
     def pre2(this):
         pass
-    
+
     def c_prerun(this):
         this.o_prerun()
         this.fshit = 3
@@ -59,7 +59,7 @@ class Kuhai(Adv):
 
     def backc1(this):
         pass
-    
+
     def c_missc1(this):
         this.x1dmgb = this.conf['x1.dmg']
         this.x1spb = this.conf['x1.sp']
@@ -94,7 +94,7 @@ class Kuhai(Adv):
         this.backc1()
 
     def s2_proc(this, e):
-        this.s2fsbuff.on() 
+        this.s2fsbuff.on()
         fs_alt(this)
         this.missc1()
         this.alttimer.on(10)

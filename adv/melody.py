@@ -13,11 +13,11 @@ class Melody(adv.Adv):
     conf = {}
     a1 = ('cc',0.08,'hp100')
     conf['acl'] = """
-        `s1 
+        `s1
         `s3
     """
     conf['slots.a'] = slot.a.HG()+slot.a.RR()
-    conf['slots.d'] = slot.d.Hastur()
+    # conf['slots.d'] = slot.d.Hastur()
 
 
 if __name__ == '__main__':
