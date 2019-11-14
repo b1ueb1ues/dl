@@ -101,13 +101,6 @@ def main(argv):
             combine()
         return
 
-    if name == 'changed':
-        chara_changed()
-        sp_changed()
-        if '-s' not in opt:
-            combine()
-        return
-
     if name:
         if '-sp' in opt :
             sp_character(name)
@@ -169,8 +162,6 @@ def combine():
     time_combine('chara_slow.txt')
     sp_combine('chara_sp_slow.txt')
 
-    time_combine('chara_changed.txt')
-    sp_combine('chara_sp_changed.txt')
 
 def time_combine(fname):
     global chart_title
@@ -215,31 +206,38 @@ def sp_combine(fname):
                 f = fs[fname]
                 f.write(i)
 
-def sim_chara_list(filename):
-    with open(filename) as f:
-        for i in f:
-            name = i.strip()
-            if name == '':
-                continue
-            sp_character(name)
 
 def sp_quick():
-    sim_chara_list('chara_sp_quick.txt')
+    f = open('chara_sp_quick.txt')
+    for i in f:
+        name = i.strip()
+        if name == '':
+            continue
+        sp_character(name)
 
 def sp_slow():
-    sim_chara_list('chara_sp_slow.txt')
-
-def sp_changed():
-    sim_chara_list('chara_sp_changed.txt')
+    f = open('chara_sp_slow.txt')
+    for i in f:
+        name = i.strip()
+        if name == '':
+            continue
+        sp_character(name)
 
 def chara_quick():
-    sim_chara_list('chara_quick.txt')
+    f = open('chara_quick.txt')
+    for i in f:
+        name = i.strip()
+        if name == '':
+            continue
+        one_character(name)
 
 def chara_slow():
-    sim_chara_list('chara_slow.txt')
-
-def chara_changed():
-    sim_chara_list('chara_changed.txt')
+    f = open('chara_slow.txt')
+    for i in f:
+        name = i.strip()
+        if name == '':
+            continue
+        one_character(name)
 
 
 def one_character(name):
