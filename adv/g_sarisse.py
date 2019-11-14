@@ -15,13 +15,13 @@ class G_Sarisse(adv.Adv):
     conf = {}
     conf['slot.d'] = slot.d.Sakuya()
     #conf['mod'] = {'ex':('sp','passive',-0.15)}
-    conf['slot.a'] = FB()+FoG()
     conf['acl'] = """
         `s1
         `s2
         `s3, fsc
         `fs, seq=4
         """
+
     def prerun(this):
         this.hits = 0
         this.bc = adv.Selfbuff()

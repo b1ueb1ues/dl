@@ -403,6 +403,21 @@ class Candy_Couriers(Amulet):
             this.a += [('s',0.40)]
 CC = Candy_Couriers
 
+class From_Whence_He_Came(Amulet):
+    att = 50
+    a = [('bt',0.2),
+         ('prep',0.25)]
+FWHC = From_Whence_He_Came
+
+class Dear_Diary(Amulet):
+    att = 65
+    a = [('ro',0.1)]
+    def on(this, c):
+        if c.wt ==  'bow':
+            this.a = [('ro',0.1)]
+            this.a += [('cc',0.14)]
+DD = Dear_Diary
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

@@ -20,7 +20,6 @@ class V_Ezelith(Adv):
         `s3
         `fs, seq=4
         """
-    conf['slot.a'] = RR()+EE()
     conf['cond_afflict_res'] = 0
 
     def c_prerun(this):

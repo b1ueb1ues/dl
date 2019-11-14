@@ -22,20 +22,22 @@ class Cassandra(Adv):
         `s2, seq=5
         `s3
     """
+    a3 = ('ro',0.1)
 
     def prerun(this):
         this.comment = 's2 drops combo'
         this.hits = 0
         this.flurry_str = Selfbuff('flurry_str',0.2,-1,'att','passive')
 
-        timing = adv_test.sim_duration/3
-        this.ro(0)
-        Timer(this.ro).on(timing)
-        Timer(this.ro).on(timing*2)
         if this.condition('reflect 500 damage on every s2'):
             this.s2reflect = 500
         else:
             this.s2reflect = 0
+        
+        #timing = adv_test.sim_duration/3
+        #this.ro(0)
+        #Timer(this.ro).on(timing)
+        #Timer(this.ro).on(timing*2)
 
     def dmg_proc(this, name, amount):
         if name == 'x1':
@@ -60,8 +62,8 @@ class Cassandra(Adv):
         # if this.hits >= 15:
         #     this.flurry_str.on()
 
-    def ro(this, t):
-        Selfbuff('a3',0.10,-1).on()
+    #def ro(this, t):
+        #Selfbuff('a3',0.10,-1).on()
 
     def s2_proc(this, e):
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
