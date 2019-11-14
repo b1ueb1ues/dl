@@ -64,7 +64,12 @@ class HDT2_Guiding_Gale(WeaponBase):
     ele = ['wind']
     wt = 'lance'
     att = 1515
-    s3 = {} # Glorious Gale
+    s3 = {
+        "dmg"      : 10*0.92  ,
+        "sp"       : 6762     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.55     ,
+    } # Glorious Gale
     a = []
 
 class HDT1_Lightflash(WeaponBase):
@@ -95,7 +100,12 @@ class HDT1_Scourge_Lance(WeaponBase):
     ele = ['shadow']
     wt = 'lance'
     att = 719
-    s3 = {} # Hazy Hex
+    s3 = {
+        "dmg"      : 2*4.61   ,
+        "sp"       : 7299     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9      ,
+    } # Hazy Hex
     a = [('k', 0.3, 'vs HJP')]
 
 class HDT2_Ebon_Scourge_Lance(WeaponBase):
