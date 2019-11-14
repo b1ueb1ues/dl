@@ -35,7 +35,7 @@ class Lathna(Adv):
         if this.s1.check():
             this.conf.s1.dmg += 1.58*4
             if this.enable_s1_boost:
-                coef = (3.555-1.58)*7*this.afflics.poison.get()
+                coef = (3.555-1.58)*7
                 this.dmg_make("o_s1_boost", coef)
             this.conf.s1.recovery = 4.07
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
