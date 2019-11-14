@@ -100,7 +100,12 @@ class HDT1_Hex(WeaponBase):
     ele = ['shadow']
     wt = 'sword'
     att = 743
-    s3 = {} # Hexing Storm
+    s3 = {
+        "dmg"      : 5*1.65   ,
+        "sp"       : 6163     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.1      ,
+    } # Hexing Storm
     a = [('k', 0.3, 'vs HJP')]
 
 class HDT2_Absolute_Hex(WeaponBase):
