@@ -32,7 +32,7 @@ class HDT1_Blue_Mercurius(WeaponBase):
         "dmg"      : 8.54     ,
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.75     ,
+        "recovery" : 2.38     ,
     } # Mercurius's Knowledge
     a = [('k', 0.3, 'vs HBH')]
 
@@ -44,7 +44,7 @@ class HDT2_Azure_Mercurius(WeaponBase):
         "dmg"      : 8.54     ,
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.75     ,
+        "recovery" : 2.38     ,
     } # Mercurius's Transcendant Knowledge
     a = []
 
@@ -80,7 +80,7 @@ class HDT1_Jupiters_Light(WeaponBase):
         "dmg"      : 8.54     ,
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.75     ,
+        "recovery" : 2.38     ,
     } # Jupiter's Protection
     a = [('k', 0.3, 'vs HZD')]
 
@@ -92,7 +92,7 @@ class HDT2_Jupiters_Sky(WeaponBase):
         "dmg"      : 8.54     ,
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
-        "recovery" : 2.75     ,
+        "recovery" : 2.38     ,
     } # Jupiter's Celestial Protection
     a = []
 
