@@ -41,10 +41,10 @@ class HDT2_Limpid_Rush(WeaponBase):
     wt = 'lance'
     att = 1560
     s3 = {
-        "dmg"      : 10*0.92  ,
+        "dmg"      : 2*4.14   ,
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
-        "recovery" : 3.55     ,
+        "recovery" : 3.33     ,
     } # Limpid Shore
     a = []
 
@@ -56,7 +56,7 @@ class HDT1_Promising_Breeze(WeaponBase):
         "dmg"      : 10*0.92  ,
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
-        "recovery" : 3.55     ,
+        "recovery" : 3.65     ,
     } # Sworn Gale
     a = [('k', 0.3, 'vs HMC')]
 
@@ -68,7 +68,7 @@ class HDT2_Guiding_Gale(WeaponBase):
         "dmg"      : 10*0.92  ,
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
-        "recovery" : 3.55     ,
+        "recovery" : 3.65     ,
     } # Glorious Gale
     a = []
 
