@@ -8,7 +8,7 @@ class HDT1_Muspelheim(WeaponBase):
         "dmg"      : 4*2.71   ,
         "sp"       : 8757     ,
         "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
+        "recovery" : 1.8      ,
     } # Crimson Flames
     a = [('k', 0.3, 'vs HMS')]
 
@@ -20,7 +20,7 @@ class HDT2_Infernoblaze(WeaponBase):
         "dmg"      : 4*2.71   ,
         "sp"       : 8757     ,
         "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
+        "recovery" : 1.8      ,
     } # Adoring Flames
     a = []
 
@@ -80,7 +80,7 @@ class HDT1_Crossed_Lightning(WeaponBase):
         "dmg"      : 4*2.71   ,
         "sp"       : 7881     ,
         "startup"  : 0.1      ,
-        "recovery" : 1.78     ,
+        "recovery" : 1.9     ,
     } # Mirthful Lightning
     a = [('k', 0.3, 'vs HZD')]
 
@@ -92,7 +92,7 @@ class HDT2_Primeval_Thunder(WeaponBase):
         "dmg"      : 4*2.71   ,
         "sp"       : 7881     ,
         "startup"  : 0.1      ,
-        "recovery" : 1.78     ,
+        "recovery" : 1.9     ,
     } # Ecstatic Lightning
     a = []
 
