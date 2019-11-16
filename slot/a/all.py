@@ -411,20 +411,18 @@ FWHC = From_Whence_He_Came
 
 class Dear_Diary(Amulet):
     att = 65
-    a = [('ro',0.1)]
+    a = [('ro', (0.1, 60))]
     def on(this, c):
-        if c.wt ==  'bow':
-            this.a = [('ro',0.1)]
-            this.a += [('cc',0.14)]
+        if c.wt == 'bow':
+            this.a = [('ro', (0.1, 60)), ('cc',0.14)]
 DD = Dear_Diary
 
-class Dear_Diary_Full_RO(Amulet):
+class Dear_Diary_Fast_RO(Amulet):
     att = 65
-    a = [('ro_full',0.1)]
+    a = [('ro', (0.1, 30))]
     def on(this, c):
-        if c.wt ==  'bow':
-            this.a = [('ro_full',0.1)]
-            this.a += [('cc',0.14)]
+        if c.wt == 'bow':
+            this.a = [('ro', (0.1, 30)), ('cc',0.14)]
 
 amulets = []
 for k in list(globals()):

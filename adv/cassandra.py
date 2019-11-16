@@ -22,7 +22,7 @@ class Cassandra(Adv):
         `s2, seq=5
         `s3
     """
-    a3 = ('ro',0.1)
+    a3 = ('ro', (0.1, 60))
 
     def prerun(this):
         this.comment = 's2 drops combo'
@@ -33,7 +33,7 @@ class Cassandra(Adv):
             this.s2reflect = 500
         else:
             this.s2reflect = 0
-        
+
         #timing = adv_test.sim_duration/3
         #this.ro(0)
         #Timer(this.ro).on(timing)

@@ -101,13 +101,10 @@ class Ability(object):
         elif name == 'dc':
             adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
         elif name == 'ro':
-            if adv.condition('resilient offense'):
-                adv.Buff('resilient_offense',value*1.5,-1).on()
-        elif name == 'ro_full':
-            if adv.condition('RO proc at 0s 30s 60s'):
+            buff_value, timing = value
+            if adv.condition('RO proc at 0s {}s {}s'.format(timing, timing*2)):
                 def ro_buff(t):
-                    adv.Buff('resilient_offense',value, -1).on()
-                timing = 30
+                    adv.Buff('resilient_offense',buff_value, -1).on()
                 ro_buff(0)
                 adv.Timer(ro_buff).on(timing)
                 adv.Timer(ro_buff).on(timing*2)
