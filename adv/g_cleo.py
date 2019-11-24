@@ -22,8 +22,10 @@ class G_Cleo(Adv):
 
     conf = {}
     conf['acl'] = """
-        `s2
+        `fs, this.fsa_charge
+        `s2, seq=5
         `s1
+        `s3, seq=5
         """
     conf['slots.a'] = CC()+JotS() # wand c2*1.08 = 217
 

@@ -18,14 +18,14 @@ class Chelsea(Adv):
     def prerun(this):
         this.hp = 100
         this.obsession = 0
-        
+
         this.a1atk = Selfbuff('a1atk',0.20,-1,'att','passive')
         this.a1spd = Spdbuff('a1spd',0.10,-1)
         this.a3 = Selfbuff('a3_str_passive',0.3,60,'att','passive')
 
     def dmg_before(this, name):
         hpold = this.hp
-        
+
         if name != 's1' and this.a3.get():
             this.hp -= 3 * this.obsession
 
@@ -43,7 +43,7 @@ class Chelsea(Adv):
 
     def dmg_proc(this, name, amount):
         hpold = this.hp
-        
+
         if name == 's1' and this.a3.get():
             this.hp += 7
 
@@ -61,7 +61,7 @@ class Chelsea(Adv):
 
     def s1_proc(this, e):
         hpold = this.hp
-        
+
         if this.a3.get():
             this.hp -= 3 * this.obsession
 
@@ -76,7 +76,7 @@ class Chelsea(Adv):
         else:
             this.a1atk.off()
             this.a1spd.off()
-        
+
         this.dmg_make('s1',1.36)
         this.dmg_make('s1',1.36)
         this.dmg_make('s1',1.36)

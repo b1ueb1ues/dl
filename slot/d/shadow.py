@@ -57,3 +57,8 @@ class Chthonius(DragonBase):
 
     def dragon_might(this, t):
         this.adv.Buff('dragon_might',0.10, -1)
+
+class Unreleased_Shadow35Haste(DragonBase):
+    ele = 'shadow'
+    att = 120
+    aura = [('sp','passive',0.35)]

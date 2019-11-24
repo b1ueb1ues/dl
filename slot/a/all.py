@@ -424,6 +424,11 @@ class Dear_Diary_Fast_RO(Amulet):
         if c.wt == 'bow':
             this.a = [('ro', (0.1, 30)), ('cc',0.14)]
 
+class Odd_Sparrows(Amulet):
+    att = 51
+    a = [('bc',0.8)]
+OS = Odd_Sparrows
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

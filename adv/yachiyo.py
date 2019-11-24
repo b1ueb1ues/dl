@@ -38,7 +38,7 @@ class Yachiyo(Adv):
 
     def getbane(this):
         return this.afflics.paralysis.get()*0.2
-        
+
 
     def s1_proc(this, e):
         this.dmg_make('s1',4.32)
