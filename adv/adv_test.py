@@ -25,11 +25,11 @@ else:
     sim_duration = 180
 sim_times = 1000
 
-team_dps = 16000 
+team_dps = 6000 
 #team_dps = 5000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
-energy_efficiency = 12000 * 0.5 * 2 / 5 / sim_duration 
+energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
 katana = 0
 
 ex_str = '_'
