@@ -5,11 +5,10 @@ linyou.py.z.py
 louise.py.doublebuff.py 
 veronica.py.1hp.py      
 marth.py.cheese.py      
-elisanne.py.goodteam.py 
-melody.py.goodteam.py   
+elisanne.py.dj.py
+g_elisanne.py.dj.py
 g_mym.py.sp.py          
 g_sarisse.py.rollfs.py  
 laranoa.py.rollfs.py    
 louise.py.rollfs.py     
-noelle.py.goodteam.py
 audric.py.sp.py
