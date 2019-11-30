@@ -4,18 +4,16 @@ from slot.d import *
 from slot.a import *
 from module import energy
 
-adv_test.team_dps = 10000
-
 def module():
     return Noelle
 
 class Noelle(Adv):
-    comment = '10000 team dps'
+    comment = 'Zephyr'
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slot.d'] = Freyja()
-    conf['slot.a'] = BB()+HG()
+    conf['slot.d'] = Zephyr()
+    conf['slot.a'] = HoH()+FWHC()
 
 
     def init(this):
@@ -62,7 +60,9 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
-        `s2, seq=5
+        `s2, fsc
+        `s3, fsc
+        `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2)
 

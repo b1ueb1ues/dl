@@ -50,7 +50,7 @@ if __name__ == '__main__':
             `s3, seq=5 and cancel
             """
 
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 
 
 
