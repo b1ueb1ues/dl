@@ -25,22 +25,21 @@ class G_Sarisse(adv.Adv):
     def init(this):
         if this.condition('never lose combos'):
             this.dmg_proc = this.c_dmg_proc
-        this.conf['slot.a'] = FB()+SS()
-        this.conf['slot.d'] = Cerberus()
+        this.conf['slot.a'] = FB()+DD()
         if this.condition('rollfs'):
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1,fsc
                 `s2,fsc
+                `s3,fsc
                 `dodge, fsc
                 `fs
                 """
         else:
 #            this.conf['slot.a'] = RR()+FoG()
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1
                 `s2
+                `s3
                 """
         return 'never lose combos'
 

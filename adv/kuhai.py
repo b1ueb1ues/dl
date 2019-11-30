@@ -26,7 +26,7 @@ class Kuhai(Adv):
         `fs, seq=3
         """
     conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
-    # conf['slot.d'] = Hastur()
+    conf['slot.d'] = Zephyr()
 
     def init(this):
         if this.condition('huge hitbox eneny'):
