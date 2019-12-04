@@ -40,7 +40,7 @@ class W_Elisanne(Adv):
 
     def s2_proc(this, e):
         if this.s2defdown :
-            Debuff('s2defdown',0.15,10,1).on()
+            this.s2debuff.on()
 
 
 if __name__ == '__main__':
