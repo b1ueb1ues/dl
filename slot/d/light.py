@@ -25,7 +25,7 @@ class Unreleased_LightSkillDamage(DragonBase):
     aura = [('att','passive',0.2),
             ('s','passive',0.9)]
 
-class Unreleased_LightParaPunish(DragonBase):
+class Corsaint_Phoenix(DragonBase):
     ele = 'light'
     att = 124
     aura = ('att','passive',0.5)
