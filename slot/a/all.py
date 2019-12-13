@@ -429,6 +429,30 @@ class Odd_Sparrows(Amulet):
     a = [('bc',0.8)]
 OS = Odd_Sparrows
 
+class Mega_Friends(Amulet):
+    att = 55
+    a = [('s',0.3),('fs',0.40)]
+MF = Mega_Friends
+
+class Wily_Warriors_Flash_and_Heat(Amulet):
+    att = 53
+    a = [('sp',0.08),('sp',0.12,'fs')]
+WWFH = Wily_Warriors_Flash_and_Heat
+
+class Howling_to_the_Heavens(Amulet):
+    att = 65
+    a = [('cd',0.20)]
+    def on(this, c):
+        if c.ele == 'shadow':
+            this.a = [('cd',0.20)]
+            this.a += [('cc',0.12,'hit15')]
+HttH = Howling_to_the_Heavens
+
+class Spirit_of_the_Season(Amulet):
+    att = 65
+    a = [('a',0.15,'hp100'),('k_paralysis',0.2)]
+SotS = Spirit_of_the_Season
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

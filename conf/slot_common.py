@@ -31,6 +31,8 @@ def set(slots):
     if wt == 'dagger':
         if ele == 'water':
             slots.a = TB()+The_Prince_of_Dragonyule()
+        elif ele == 'shadow':
+            slots.a = TB()+HttH()
         else:
             slots.a = TB()+LC()
     if wt == 'axe':

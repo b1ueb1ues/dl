@@ -14,7 +14,7 @@ class H_Odetta(Adv):
     comment = 'c2+fs'
 
     conf = {}
-    conf['slot.a'] = VC() + SS()
+    conf['slot.a'] = MF() + FRH()
     conf['slot.d'] = DJ()
     conf['acl'] = """
         `s2, fsc

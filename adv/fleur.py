@@ -3,6 +3,8 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 from adv import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Fleur
@@ -14,6 +16,8 @@ class Fleur(Adv):
     a3 = ('k_paralysis',0.2)
     
 
+    conf['slot.a'] = TB()+SotS()
+    conf['slot.d'] = Corsaint_Phoenix()
     conf['acl'] = """
         `s2, s=1
         `s1

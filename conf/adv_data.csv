@@ -132,3 +132,6 @@ lathna,5,shadow,lance,511,,158,3,2854,1328,1,5499,,474,1328,,
 chelsea,5,flame,bow,495,,,,2910,0,0,7000,,0,0,,
 yuya,4,flame,dagger,482,,186,4,4192,0,0,10894,,744,0,,
 g_elisanne,5,water,axe,516,,0,0,4377,363,3,38400,,0,1089,,
+megaman,5,flame,wand,472,,0,0,0,0,0,0,,0,0,,
+durant,4,shadow,blade,505,,0,0,2987,0,0,4139,,0,0,self;0.4;20,self;0.3;20;crit;rate
+d_malora,5,light,axe,515,,467,1,3849,432,3,6296,,467,1296,,

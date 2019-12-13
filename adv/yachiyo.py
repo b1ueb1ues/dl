@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 from slot.w import *
 
 class w530(WeaponBase):
@@ -17,7 +18,8 @@ def module():
 
 class Yachiyo(Adv):
     conf = {}
-    conf['slots.a'] = RR()+Stellar_Show()
+    conf['slots.a'] = MF()+SotS()
+    conf['slots.d'] = Corsaint_Phoenix()
     conf['acl'] = """
         `fs, this.fsa_charge and seq=5
         `s2

@@ -6,6 +6,7 @@ import adv
 from adv import *
 import slot
 from slot.a import *
+from slot.d import *
 
 def module():
     return S_Cleo
@@ -13,6 +14,7 @@ def module():
 class S_Cleo(Adv):
     a3 = ('k_paralysis',0.3)
     conf = {}
+    conf['slot.d'] = Corsaint_Phoenix()
     comment = 'nofs'
     conf['cond_afflict_res'] = 0
     conf['acl'] = """
