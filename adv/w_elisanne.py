@@ -41,4 +41,4 @@ if __name__ == '__main__':
     """
 
     adv_test.test(module(), conf, verbose=-2, mass=0)
-    adv_test.sum_ac()
+    # adv_test.sum_ac()

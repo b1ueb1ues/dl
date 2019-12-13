@@ -119,3 +119,5 @@ lathna.py
 chelsea.py
 yuya.py
 g_elisanne.py
+durant.py
+d_malora.py
