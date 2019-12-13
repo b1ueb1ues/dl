@@ -1,5 +1,7 @@
 import adv_test
 from adv import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Fleur
@@ -53,6 +55,8 @@ class Fleur(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.a'] = TB()+SotS()
+    conf['slot.d'] = C_Phoenix()
     conf['acl'] = """
         `s2, s=1
         `s1
