@@ -1,11 +1,18 @@
 import adv_test
 import adv
+from adv import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Luca
 
 class Luca(adv.Adv):
     a1 = ('a',0.13,'hp100')
+
+    conf = {}
+    conf['slot.a'] = SotS()+Dear_Diary()
+    conf['slot.d'] = C_Phoenix()
 
     def prerun(this):
         if this.condition('0 resist'):
