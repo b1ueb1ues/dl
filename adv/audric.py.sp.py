@@ -18,7 +18,7 @@ class Audric(adv.Adv):
 
     def prerun(this):
 
-        this.dragonboost = 1.4 # max 龙哭
+        this.dragonboost = 1.4 # max dragolith
 
         this.dp = 0
         timing = adv_test.sim_duration/10
