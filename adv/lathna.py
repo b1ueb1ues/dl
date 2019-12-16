@@ -18,7 +18,6 @@ class Lathna(Adv):
         else:
             this.poisoned=False
 
-
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
         this.conf.s1.dmg = this.s1tmp.dmg
