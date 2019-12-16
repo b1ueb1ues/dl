@@ -11,7 +11,7 @@ class H_Odetta(Adv):
     comment = 'c2+fs'
 
     conf = {}
-    conf['slot.a'] = VC() + SS()
+    conf['slot.a'] = MF() + FRH()
     conf['slot.d'] = DJ()
     #conf['slot.w'] = swordd1water()
 
@@ -59,6 +59,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s2, fsc
         `s1, fsc
+        `s3, fsc
         `fs, seq=2
         """
     adv_test.test(module(), conf, verbose=-2)

@@ -100,6 +100,14 @@ class Ability(object):
             adv.Buff('slayerstrength',value*5,-1).on()
         elif name == 'dc':
             adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
+        elif name == 'ro':
+            if adv.condition('RO proc at 0s 60s 120s'):
+                def ro_buff(t):
+                    adv.Buff('resilient_offense',value, -1).on()
+                timing = 60
+                ro_buff(0)
+                adv.Timer(ro_buff).on(timing)
+                adv.Timer(ro_buff).on(timing*2)
         elif name == 'prep':
             if type(value) == int:
                 adv.charge_p('amulet prep',"%d%%"%value)

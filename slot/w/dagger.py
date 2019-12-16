@@ -23,11 +23,118 @@ class dagger5b2(WeaponBase):
         "recovery" : 1.05-0.15  ,
         }
 
+class dagger5d1flame(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 728
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        }
 
+class dagger5d1water(WeaponBase):
+    ele = ['water']
+    wt = 'dagger'
+    att = 728
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        }
 
-flame  = dagger5b1
-wind   = dagger5b1
-shadow = dagger5b1
+class dagger5d1wind(WeaponBase):
+    ele = ['wind']
+    wt = 'dagger'
+    att = 691
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        }
 
-water  = dagger5b2
-light  = dagger5b2
+class dagger5d1light(WeaponBase):
+    ele = ['light']
+    wt = 'dagger'
+    att = 706
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        }
+
+class dagger5d1shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 706
+    s3 = {
+        "dmg"      : 1.73*5   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.3      ,
+        }
+
+class dagger5d2flame(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1455
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        }
+
+class dagger5d2water(WeaponBase):
+    ele = ['water']
+    wt = 'dagger'
+    att = 1455
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        }
+
+class dagger5d2wind(WeaponBase):
+    ele = ['wind']
+    wt = 'dagger'
+    att = 1383
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        }
+
+class dagger5d2light(WeaponBase):
+    ele = ['light']
+    wt = 'dagger'
+    att = 1412
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        }
+
+class dagger5d2shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 1412
+    s3 = {
+        "dmg"      : 1.73*5   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.3      ,
+        }
+
+flame  = dagger5d2flame
+water  = dagger5d2water
+wind   = dagger5d2wind
+light  = dagger5d2light
+shadow = dagger5d2shadow

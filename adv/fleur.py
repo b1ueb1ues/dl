@@ -1,11 +1,13 @@
 import adv_test
 from adv import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Fleur
 
 class Fleur(Adv):
-    comment = 'c4fs; S1 then S1 S2 S3 S1'
+    comment = 'c4fs'
     conf = {}
     a1 = ('sp',0.08,'hp70')
     a3 = ('k_paralysis',0.2)
@@ -53,10 +55,12 @@ class Fleur(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.a'] = TB()+SotS()
+    conf['slot.d'] = C_Phoenix()
     conf['acl'] = """
         `s2, s=1
-        `s3, s=2
-        `s1 
+        `s1
+        `s3
         `fs, seq=4
     """
     adv_test.test(module(), conf, verbose=0)

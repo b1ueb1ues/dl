@@ -1,12 +1,15 @@
 import adv_test
 from adv import *
 from slot.a import *
+
 from slot.d import *
+
 
 def module():
     return Lathna
 
 class Lathna(Adv):
+
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
 
@@ -15,6 +18,7 @@ class Lathna(Adv):
         else:
             this.poisoned=False
 
+
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
         this.conf.s1.dmg = this.s1tmp.dmg
@@ -22,6 +26,7 @@ class Lathna(Adv):
     def s1a(this):
         if this.s1.check():
             this.conf.s1.dmg += 1.58*4
+
             if this.poisoned:
                 coef = 1.975*4
                 this.dmg_make("o_s1_boost", coef)
@@ -48,3 +53,4 @@ if __name__ == '__main__':
         """
 
     adv_test.test(module(), conf, verbose=0, mass=0)
+

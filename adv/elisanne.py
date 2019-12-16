@@ -7,28 +7,19 @@ def module():
     return Elisanne
 
 class Elisanne(Adv):
-#    comment = 'RR+Bellathorna'
+    comment = 'no s2 or s3'
     a1 = ('bt',0.25)
 
     conf = {}
     #conf['slots.a'] = RR() + HG()
     #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
     #conf['slots.a'] = HG() + Indelible_Summer()
-    conf['slots.a'] = BB() + JotS()
-    conf['slots.d'] = DJ()
+    conf['slots.a'] = BB() + FWHC()
+    conf['slots.d'] = H_Maritimus()
     #conf['mod'] = {'ex':('sp','passive',0.15)}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf['acl'] = """
-                        `s1
-                        `s2, seq=5
-                        """
-        else:
-            this.conf['acl'] = """
-                        `s1
-                        `s2, fsc
-                        `fs, seq=5
-                        """
+    conf['acl'] = """
+        `s1
+    """
 
 
 if __name__ == '__main__':

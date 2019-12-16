@@ -48,10 +48,119 @@ class wand5b2(WeaponBase):
         "recovery" : 1.9      ,
         }
 
-flame  = wand5b1
-wind   = wand5b1
-shadow = wand5b1
+class wand5d1flame(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 727
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+        }
 
-water  = wand5b2
-light  = wand5b2
+class wand5d1water(WeaponBase):
+    ele = ['water']
+    wt = 'wand'
+    att = 727
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+        }
+
+class wand5d1wind(WeaponBase):
+    ele = ['wind']
+    wt = 'wand'
+    att = 788
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+        }
+
+class wand5d1light(WeaponBase):
+    ele = ['light']
+    wt = 'wand'
+    att = 765
+    s3 = {
+        "dmg"      : 4*2.71   ,
+        "sp"       : 7881     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.78     ,
+        }
+
+class wand5d1shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'wand'
+    att = 742
+    s3 = {
+        "dmg"      : 9.74     ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.75     ,
+        }
+
+class wand5d2flame(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1453
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+        }
+
+class wand5d2water(WeaponBase):
+    ele = ['water']
+    wt = 'wand'
+    att = 1453
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+        }
+
+class wand5d2wind(WeaponBase):
+    ele = ['wind']
+    wt = 'wand'
+    att = 1575
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+        }
+
+class wand5d2light(WeaponBase):
+    ele = ['light']
+    wt = 'wand'
+    att = 1530
+    s3 = {
+        "dmg"      : 4*2.71   ,
+        "sp"       : 7881     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.78     ,
+        }
+
+class wand5d2shadow(WeaponBase):
+    ele = ['shadow']
+    wt = 'wand'
+    att = 1484
+    s3 = {
+        "dmg"      : 9.74     ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.75     ,
+        }
+
+flame  = wand5d2flame
+water  = wand5d2water
+wind   = wand5d2wind
+light  = wand5d2light
+shadow = wand5d2shadow
 

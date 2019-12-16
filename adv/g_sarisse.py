@@ -12,7 +12,7 @@ class G_Sarisse(adv.Adv):
     conf = {}
     conf['slot.d'] = slot.d.Sakuya()
     #conf['mod'] = {'ex':('sp','passive',-0.15)}
-    conf['slot.a'] = FB()+FoG()
+    conf['slot.a'] = FB()+DD()
 
     def prerun(this):
         this.hits = 0
@@ -25,16 +25,16 @@ class G_Sarisse(adv.Adv):
             this.dmg_proc = this.c_dmg_proc
         if this.condition('c4+fs'):
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1
                 `s2
+                `s3, fsc
                 `fs, seq=4
                 """
         else:
             this.conf['acl'] = """
-                `s3,s1.charged>=2803
                 `s1
                 `s2
+                `s3
                 """
         return 'never lose combos'
 

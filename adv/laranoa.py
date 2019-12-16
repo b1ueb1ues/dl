@@ -11,7 +11,7 @@ class Laranoa(Adv):
 
     a3 = ('s',0.3)
     conf = {}
-    conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
+    #conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
     conf['slot.d'] = DJ()
     
     def init(this):
@@ -22,16 +22,16 @@ class Laranoa(Adv):
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
-                `s3,s1.charged>=s1.sp
                 `s1
                 `s2,fsc
+                `s3,fsc
                 `fs, seq=4
                 """
         else:
             this.conf['acl'] = """
-                `s3,s1.charged>=s1.sp
                 `s1
                 `s2
+                `s3
                 """
 
 

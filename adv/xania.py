@@ -17,9 +17,9 @@ class Xania(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s1
+        `s2
+        `s3
         """
     adv_test.test(module(), conf, verbose=0)
 

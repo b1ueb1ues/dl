@@ -12,8 +12,8 @@ class Noelle(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slots.d'] = Zephyr()
-    conf['slots.a'] = HoH()+HG()
+    conf['slots.d'] = Freyja()
+    conf['slots.a'] = HG()+FWHC()
 
 
     def init(this):
@@ -60,7 +60,8 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
-        `s2, seq=5
+        `s2, fsc
+        `s3, fsc
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=-2)

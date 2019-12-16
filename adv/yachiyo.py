@@ -54,11 +54,14 @@ if __name__ == '__main__':
     conf = {}
     #module().comment = 'RR+SS'
     from slot.a import *
-    conf['slots.a'] = RR()+Stellar_Show()
+    from slot.d import *
+    conf['slots.a'] = MF()+SotS()
+    conf['slots.d'] = C_Phoenix()
     conf['acl'] = """
         `fs, this.fsa_charge and seq=5
         `s2
         `s1
+        `s3
         """
 
     #conf['slot.w'] = w530()

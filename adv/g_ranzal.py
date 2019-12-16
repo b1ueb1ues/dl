@@ -8,7 +8,7 @@ def module():
 
 
 class G_Ranzal(Adv):
-    comment = 'only s1'
+    comment = 'no s2'
 
     conf = {}
     def d_slots(this):
@@ -124,6 +124,7 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1, fsc
+        `s3, fsc
         `fs, seq=2 and this.gauges['x'] <= 500
         `fs, seq=3
     """

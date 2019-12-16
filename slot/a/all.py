@@ -381,6 +381,45 @@ class Candy_Couriers(Amulet):
             this.a += [('s',0.40)]
 CC = Candy_Couriers
 
+class From_Whence_He_Came(Amulet):
+    att = 50
+    a = [('bt',0.2),
+         ('prep',0.25)]
+FWHC = From_Whence_He_Came
+
+class Dear_Diary(Amulet):
+    att = 65
+    a = [('ro',0.1)]
+    def on(this, c):
+        if c.wt ==  'bow':
+            this.a = [('ro',0.1)]
+            this.a += [('cc',0.14)]
+DD = Dear_Diary
+
+class Mega_Friends(Amulet):
+    att = 55
+    a = [('s',0.3),('fs',0.40)]
+MF = Mega_Friends
+
+class Wily_Warriors_Flash_and_Heat(Amulet):
+    att = 53
+    a = [('sp',0.08),('sp',0.12,'fs')]
+WWFH = Wily_Warriors_Flash_and_Heat
+
+class Howling_to_the_Heavens(Amulet):
+    att = 65
+    a = [('cd',0.20)]
+    def on(this, c):
+        if c.ele == 'shadow':
+            this.a = [('cd',0.20)]
+            this.a += [('cc',0.12,'hit15')]
+HttH = Howling_to_the_Heavens
+
+class Spirit_of_the_Season(Amulet):
+    att = 65
+    a = [('a',0.15,'hp100'),('k_paralysis',0.2)]
+SotS = Spirit_of_the_Season
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

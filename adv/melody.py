@@ -1,18 +1,16 @@
 import adv_test
 import adv
+import slot
 
 def module():
     return Melody
 
 class Melody(adv.Adv):
     comment = 'no s2'
-    conf = {}
     a1 = ('cc',0.08,'hp100')
-    import slot
-    if 1:
-        conf['slots.a'] = slot.a.HG()+slot.a.RR()
-    else:
-        conf['slots.a'] = slot.a.HG()+slot.a.LC()
+
+    conf = {}
+    conf['slots.a'] = slot.a.HG()+slot.a.FWHC()
     conf['slots.d'] = slot.d.Zephyr()
 
 
