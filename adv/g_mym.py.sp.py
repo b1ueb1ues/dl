@@ -11,7 +11,7 @@ class G_Mym(Adv):
 
     def prerun(this):
 
-        this.dragonboost = 1.4 # max 龙哭
+        this.dragonboost = 1.4 # max dracolith
 
         this.dp = 0
         this.truemumu = 0
