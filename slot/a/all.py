@@ -453,6 +453,10 @@ class Spirit_of_the_Season(Amulet):
     a = [('a',0.15,'hp100'),('k_paralysis',0.2)]
 SotS = Spirit_of_the_Season
 
+class Spirit_of_the_Season_No_HP100(Amulet):
+    att = 65
+    a = [('k_paralysis',0.2)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
