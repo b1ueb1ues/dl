@@ -19,7 +19,7 @@ class G_Cleo(Adv):
     
 
     def d_slots(this):
-        this.slots.a = RR()+FoG()  # wand c2*1.08 = 217
+        this.slots.a = CC()+FoG()  # wand c2*1.08 = 217
         this.slots.d = Shinobi()
 
 
@@ -32,21 +32,27 @@ class G_Cleo(Adv):
                 """
             if 'bow' in this.ex:
                 this.conf['rotation_init'] = """
-                    s2s1
+                    s3s2s1
                 """
                 this.conf['rotation'] = """
                     c5c4fss1
-                    c5c4s2fss1
+                    c5c5s2fss1
                 """
             else:
                 this.conf['rotation_init'] = """
-                    s2s1
-                    c5c5fss1
+                    s3s2s1
                 """
                 this.conf['rotation'] = """
                     c5c5fss1
-                    c5s2c5fss1
+                    c5c5s2fss1
                 """
+              #  this.conf['rotation_init'] = """
+              #      s2s1
+              #  """
+              #  this.conf['rotation'] = """
+              #      c5c4fss1
+              #      c5c5s2fss1
+              #  """
 
 
     def prerun(this):
