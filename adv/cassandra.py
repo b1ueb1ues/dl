@@ -11,6 +11,7 @@ def module():
 class Cassandra(Adv):
     # comment = 'no counter damage'
     a1 = ('prep','100%')
+    a1_c = 0.05
     conf = {}
     conf['slots.a'] = CC()+United_by_One_Vision()
     conf['acl'] = """
@@ -66,6 +67,19 @@ class Cassandra(Adv):
     def s2_proc(this, e):
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
         this.dmg_make('o_s2_crisis',this.s2boost*10.82)
+
+    def skill_charge(self, proc, c):
+        for s in ('s1', 's2', 's3'):
+            if s != proc:
+                skill = getattr(self, s)
+                skill.charge(skill.sp*c)
+                log('sp','{}_charge_{}'.format(proc, s), 0, '{}/{}'.format(int(skill.charged), int(skill.sp)))
+    def s1_before(this, e):
+        this.skill_charge('s1', this.a1_c)
+    def s2_before(this, e):
+        this.skill_charge('s2', this.a1_c)
+    def s3_before(this, e):
+        this.skill_charge('s3', this.a1_c)
 
 
 if __name__ == '__main__':
