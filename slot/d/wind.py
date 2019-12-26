@@ -31,12 +31,6 @@ class Vayu(DragonBase):
     aura = [('att','passive',0.2),
             ('s','passive',0.9)]
 
-class Vayu_0ub(DragonBase):
-    ele = 'wind'
-    att = 57
-    aura = [('att','passive',0.1),
-            ('s','passive',0.7)]
-
 class Roc(DragonBase):
     ele = 'wind'
     att = 101
@@ -51,7 +45,7 @@ class Freyja(DragonBase):
 #    ele = 'wind'
 #    att = 127
 #    aura = ('att','passive',0.55)
-#    
+#
 #    def oninit(this, adv):
 #        DragonBase.oninit(this, adv)
 #        this.adv = adv
@@ -75,10 +69,10 @@ class Freyja(DragonBase):
 #            charge_i(name, sp)
 #            if this.s1.check():
 #                this.hastur_act()
-#            
+#
 #        setattr(type(this.adv), 'hastur_cooldown', hastur_cooldown)
 #        setattr(type(this.adv), 'hastur_act', hastur_act)
 #        setattr(type(this.adv), 'charge', charge)
 
 
-        
+

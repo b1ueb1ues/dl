@@ -30,12 +30,6 @@ class Apollo(DragonBase):
     def getbane(this):
         return this.adv.afflics.burn.get()*0.2
 
-class Sakuya_0ub(DragonBase):
-    ele = 'flame'
-    att = 55
-    aura = [('att','passive',0.1),
-            ('s','passive',0.7)]
-
 class Ifrit(DragonBase):
     ele = 'flame'
     att = 101
