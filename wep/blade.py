@@ -39,3 +39,10 @@ conf.fs.recovery  = 41     / 60.0
 
 conf.dodge.recovery = 43     / 60.0
 
+lv2 = {
+    'x1.dmg': 106.7 / 100,
+    'x2.dmg': 106.7 / 100,
+    'x3.dmg': 69.3*2/ 100,
+    'x4.dmg': 141.9 / 100,
+    'x5.dmg': 213.4 / 100
+}

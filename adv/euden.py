@@ -8,9 +8,11 @@ def module():
 
 class Euden(adv.Adv):
     conf ={}
-    conf['slot.a'] = TSO()+BN()
+    conf['slot.a'] = TSO()+EE()
     pass
 
+    def s1_proc(this, e):
+        this.afflics.burn('s1',110,0.883)
 
 if __name__ == '__main__':
     conf = {}
@@ -20,5 +22,5 @@ if __name__ == '__main__':
         `s3, fsc
         `fs, seq=3 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

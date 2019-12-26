@@ -7,18 +7,16 @@ def module():
     return Karl
 
 class Karl(adv.Adv):
-    a3 = ('a',0.08,'hp70')
-    conf = {}
-    conf['slot.a'] = TSO()+BN()
-
+    a1 = ('a',0.08,'hit15')
+    a3 = ('a',0.15,'hp70')
 
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1
+        `s1, fsc
         `s2
-        `s3,fsc
+        `s3, fsc
         `fs, seq=3
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

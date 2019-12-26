@@ -11,10 +11,22 @@ class Alain(Adv):
     #conf = {
     #        'slots.a': RR()+Saintly_Delivery()
     #    }
+    
+    def prerun(this):
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+        else:
+            this.afflics.burn.resist=100
 
+    def s1_proc(this, e):
+        this.afflics.burn('s1',100,0.803)
+    
+    def s2_proc(this, e):
+        this.afflics.burn('s2',90,0.6)
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.a'] = RR()+EE()
     conf['acl'] = """
         `s1
         `s2
