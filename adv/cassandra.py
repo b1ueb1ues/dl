@@ -8,36 +8,37 @@ from slot.a import *
 def module():
     return Cassandra
 
-class Flash_of_Genius(Amulet):
-    att = 57
-
 class Cassandra(Adv):
     # comment = 'no counter damage'
     a1 = ('prep','100%')
     conf = {}
-    # conf['slots.a'] = CC()+Flash_of_Genius()
     conf['slots.a'] = CC()+United_by_One_Vision()
     conf['acl'] = """
         `s1
         `s2, seq=5
         `s3
     """
-    a3 = ('ro', (0.1, 60))
+    a3 = ('ro', (0.15, 60))
+
+    def init(this):
+        if this.condition('0 resist'):
+            this.afflics.poison.resist=0
+        else:
+            this.afflics.poison.resist=100
+
+        if this.condition('hp80'):
+            this.s2boost = 1.2*0.2*0.2
+        else:
+            this.s2boost = 1.2*0.3*0.3
 
     def prerun(this):
         this.comment = 's2 drops combo'
         this.hits = 0
-        this.flurry_str = Selfbuff('flurry_str',0.2,-1,'att','passive')
 
         if this.condition('reflect 500 damage on every s2'):
             this.s2reflect = 500
         else:
             this.s2reflect = 0
-
-        #timing = adv_test.sim_duration/3
-        #this.ro(0)
-        #Timer(this.ro).on(timing)
-        #Timer(this.ro).on(timing*2)
 
     def dmg_proc(this, name, amount):
         if name == 'x1':
@@ -59,17 +60,15 @@ class Cassandra(Adv):
         elif name == 's3':
             this.hits += 1
 
-        # if this.hits >= 15:
-        #     this.flurry_str.on()
-
-    #def ro(this, t):
-        #Selfbuff('a3',0.10,-1).on()
+    def s1_proc(this, e):
+        this.afflics.poison('s1',120,0.582)
 
     def s2_proc(this, e):
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
-        # this.flurry_str.off()
+        this.dmg_make('o_s2_crisis',this.s2boost*10.82)
 
 
 if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

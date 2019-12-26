@@ -24,18 +24,19 @@ class Joe(adv.Adv):
             this.afflics.burn.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.burn.resist=100
-        if this.condition('fullhp=burn'):
+
+        if this.condition('hp100'):
             this.fullhp = 1
         else:
             this.fullhp = 0
 
+    def s1_proc(this, e):
+        this.afflics.burn('s1',100+70*this.fullhp,0.803)
+        
     def s2_proc(this, e):
-        this.afflics.burn('s2',90+40*this.fullhp,0.6)
-
-
-
+        this.afflics.burn('s2',90+70*this.fullhp,0.6)
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

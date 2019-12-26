@@ -69,6 +69,8 @@ def get(mname):
     conf.c.wt = csvconf['weapon']
     conf.c.stars = csvconf['stars']
 
+    conf.c.lv2_autos = bool(csvconf['lv2_autos'] == 'TRUE')
+
     return conf
     
 

@@ -10,7 +10,7 @@ def module():
     return Euden
 
 class Euden(adv.Adv):
-    conf = {}
+    conf ={}
     conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1, fsc
@@ -18,8 +18,17 @@ class Euden(adv.Adv):
         `s3, fsc
         `fs, seq=3 and cancel
         """
+    conf['cond_afflict_res'] = 0
+    def prerun(this):
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.burn.resist=this.conf['cond_afflict_res']
+        else:
+            this.afflics.burn.resist=100
+
+    def s1_proc(this, e):
+        this.afflics.burn('s1',110,0.883)
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

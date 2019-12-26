@@ -10,6 +10,8 @@ def module():
     return Naveed
 
 class Naveed(adv.Adv):
+    a1 = ('a',0.08,'hit15')
+
     conf = {}
     conf['acl'] = """
         `s2, sp 
@@ -17,20 +19,17 @@ class Naveed(adv.Adv):
         `s3, sp
         `fs, seq=3 and cancel
         """
+    conf['slot.a'] = TSO()+JotS()
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = TSO()+BN()
-        else:
-            this.conf.slot.a = TSO()+JotS()
             
     def prerun(this):
         this.s1level = 0
         this.charge_p('prep','100%')
-        pass
 
     def s1_proc(this, e):
-        this.dmg_make("s1_missile",3*this.s1level*0.28)
-
+        this.dmg_make("s1_missile",3*this.s1level*0.7,'s')
 
     def s2_proc(this, e):
         this.s1level += 1
@@ -39,10 +38,6 @@ class Naveed(adv.Adv):
                 this.s2.sp = 0
             this.s1level = 5
         adv.Event('defchain')()
-
-        
-        
-
 
 if __name__ == '__main__':
     conf = {}
