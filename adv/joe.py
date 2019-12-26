@@ -8,38 +8,32 @@ def module():
 class Joe(adv.Adv):
     conf = {}
     #conf['slots.a'] = RR()+EE()
-    
 
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.burn.resist=0
         else:
             this.afflics.burn.resist=100
-        if this.condition('fullhp=burn'):
+
+        if this.condition('hp100'):
             this.fullhp = 1
         else:
             this.fullhp = 0
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
-                `s1, fsc
+                `s1
                 `s2, fsc
                 `s3, fsc
                 `fs, seq=4
                 """
-
+    def s1_proc(this, e):
+        this.afflics.burn('s1',100+70*this.fullhp,0.803)
+        
     def s2_proc(this, e):
-        this.afflics.burn('s2',90+40*this.fullhp,0.6)
-
-
-
+        this.afflics.burn('s2',90+70*this.fullhp,0.6)
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 

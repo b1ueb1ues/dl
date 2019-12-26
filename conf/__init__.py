@@ -41,7 +41,9 @@ def get(name):
     import wep
     wt = conf.c.wt
     weapon = getattr(wep, wt)
-    wepconf = weapon.conf
+    wepconf = Conf(weapon.conf)
+    if conf.c.lv2_autos:
+        wepconf += Conf(weapon.lv2)
 
     conf += Conf(wepconf)
     
