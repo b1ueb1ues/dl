@@ -65,6 +65,7 @@ colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
 //     'team_buff': '&#9672;'
 // }
 function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
+    console.log(extra);
     let copyTxt = '';
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
@@ -333,7 +334,7 @@ function runAdvTest() {
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
                         cond_false = result[1].split(',');
-                        extra = res.extra_no_cond.length > 0 ? res.extra_no_cond : res.extra
+                        extra = Object.keys(res.extra_no_cond).length > 0 ? res.extra_no_cond : res.extra
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);

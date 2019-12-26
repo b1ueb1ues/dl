@@ -38,7 +38,7 @@ class Dot(object):
         t.timing += this.iv
         this.true_dmg_event.count = this.tick_dmg
         this.true_dmg_event.on()
-        
+
     def __call__(this):
         return this.on()
 
@@ -66,7 +66,7 @@ class Dot(object):
 
 
 
-    
+
 class Afflic(object):
     class Node(object):
         resist_after = 0
@@ -107,7 +107,7 @@ class Afflic(object):
         #this.history = 0
         this.history = []
         #this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
-        this.maxdepth = 22
+        this.maxdepth = 20
         this.duration = 12
         this.stack = {}
         this.stack_x_chance = 0.0
@@ -337,7 +337,7 @@ class Afflics(object):
         this.stun.tolerance      = 20
         this.sleep.tolerance     = 20
 
-    
+
     def add(this, name, atype, rate, duration, coef=0, iv=0):
         if atype == 'burning':
             atype = 'burn'
