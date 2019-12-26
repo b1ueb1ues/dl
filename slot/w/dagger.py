@@ -120,6 +120,19 @@ class HDT2_Shaderulers_Maw(WeaponBase):
     } # Bloodstarved Shadowruler
     a = []
 
+class Void_Chimeratech_Elite(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 981
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Hrotti(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1513
+    s3 = {} # Megingjörð
+    a = []
 
 flame = HDT2_Flamerulers_Maw
 water = HDT2_Tiderulers_Maw

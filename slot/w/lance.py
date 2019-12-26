@@ -120,6 +120,19 @@ class HDT2_Ebon_Scourge_Lance(WeaponBase):
     } # Shadowy Hex
     a = []
 
+class Void_Chimeratech_Lancemaster(WeaponBase):
+    ele = ['flame']
+    wt = 'lance'
+    att = 962
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Gungnir(WeaponBase):
+    ele = ['flame']
+    wt = 'lance'
+    att = 1575
+    s3 = {} # Megingjörð
+    a = []
 
 flame = HDT2_Pureflame_Lance
 water = HDT2_Limpid_Rush

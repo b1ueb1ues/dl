@@ -121,6 +121,20 @@ class HDT2_Shadowy_Darkbite_Axe(WeaponBase):
     } # Shadowy Darkbite's Curse
     a = []
 
+class Void_Chimeratech_Warlord(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 1051
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Mjolnir(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 1621
+    s3 = {} # Megingjörð
+    a = []
+
 flame  = HDT2_Royal_Crimson_Heat
 water  = HDT2_Mercys_Azure_Tide
 wind   = HDT2_Glorystorms_Guide
