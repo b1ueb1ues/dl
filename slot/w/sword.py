@@ -120,7 +120,7 @@ class HDT2_Absolute_Hex(WeaponBase):
     } # Infinite Hexes
     a = []
 
-class Void_Chimeratech_Commander(WeaponBase):
+class Chimeratech_Commander(WeaponBase):
     ele = ['flame']
     wt = 'sword'
     att = 972

@@ -120,7 +120,7 @@ class HDT2_Shaderulers_Maw(WeaponBase):
     } # Bloodstarved Shadowruler
     a = []
 
-class Void_Chimeratech_Elite(WeaponBase):
+class Chimeratech_Elite(WeaponBase):
     ele = ['flame']
     wt = 'dagger'
     att = 981

@@ -120,7 +120,7 @@ class HDT2_True_Abyss(WeaponBase):
     } # Hellish Blade
     a = []
 
-class Void_Chimeratech_Lord(WeaponBase):
+class Chimeratech_Lord(WeaponBase):
     ele = ['flame']
     wt = 'blade'
     att = 1061
