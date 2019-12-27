@@ -978,6 +978,8 @@ class Adv(object):
         this._log = []
         loginit(this._log)
 
+        this.s3_buff_on = False
+
         if not this.conf:
             this.conf = Conf()
         this.pre_conf()
@@ -1468,14 +1470,17 @@ class Adv(object):
             buffarg = this.conf[e.name+'.buff']
             wide = buffarg[0]
             buffarg = buffarg[1:]
+            buff = None
             if wide == 'team':
-                Teambuff(e.name, *buffarg).on()
+                buff = Teambuff(e.name, *buffarg).on()
             elif wide == 'self':
-                Selfbuff(e.name, *buffarg).on()
+                buff = Selfbuff(e.name, *buffarg).on()
             elif wide == 'debuff':
-                Debuff(e.name, *buffarg).on()
+                buff = Debuff(e.name, *buffarg).on()
             else:
-                Buff(e.name, *buffarg).on()
+                buff = Buff(e.name, *buffarg).on()
+            if e.name == 's3' and buff.toggle:
+                this.s3_buff_on = buff.get()
 
 
         func = e.name + '_proc'

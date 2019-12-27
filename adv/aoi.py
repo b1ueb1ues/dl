@@ -8,6 +8,12 @@ def module():
 class Aoi(adv.Adv):
     a1 = ('od',0.15)
 
+    def prerun(this):
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+        else:
+            this.afflics.burn.resist=100
+
     def s1_proc(this, e):
         this.afflics.burn('s1',100,0.803)
     
