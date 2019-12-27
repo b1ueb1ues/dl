@@ -6,7 +6,7 @@ EX_MAP = {
     'dagger': 'd'
 }
 BASE_SIM_T = 180
-BASE_TEAM_DPS = 12000
+BASE_TEAM_DPS = 16000
 PREFIX_MAPS = {
     'adv': {
         'g_': 'gala_',
