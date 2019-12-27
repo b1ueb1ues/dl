@@ -139,6 +139,15 @@ class Agito_Gungnir(WeaponBase):
     } # Megingjörð
     a = []
 
+class Agito0UB_Gungnir(Agito_Gungnir):
+    att = 1021
+    s3 = {
+        "buff"     : ('self',0.10,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+
 flame = HDT2_Pureflame_Lance
 water = HDT2_Limpid_Rush
 wind = HDT2_Guiding_Gale

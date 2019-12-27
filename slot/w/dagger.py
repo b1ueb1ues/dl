@@ -139,6 +139,15 @@ class Agito_Hrotti(WeaponBase):
     } # Megingjörð
     a = []
 
+class Agito0UB_Hrotti(Agito_Hrotti):
+    att = 981
+    s3 = {
+        "buff"     : ('self',0.10,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+
 flame = HDT2_Flamerulers_Maw
 water = HDT2_Tiderulers_Maw
 wind = HDT2_Windrulers_Maw
