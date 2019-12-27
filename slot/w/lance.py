@@ -120,7 +120,7 @@ class HDT2_Ebon_Scourge_Lance(WeaponBase):
     } # Shadowy Hex
     a = []
 
-class Void_Chimeratech_Lancemaster(WeaponBase):
+class Chimeratech_Lancemaster(WeaponBase):
     ele = ['flame']
     wt = 'lance'
     att = 962

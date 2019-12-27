@@ -120,7 +120,7 @@ class HDT2_Dark_Hunger(WeaponBase):
     } # Despair Devourer
     a = []
 
-class Void_Chimeratech_Cardinal(WeaponBase):
+class Chimeratech_Cardinal(WeaponBase):
     ele = ['flame']
     wt = 'staff'
     att = 877
