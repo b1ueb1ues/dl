@@ -20,10 +20,8 @@ class Luca(adv.Adv):
         `fs, seq=4
         """
     conf['cond_afflict_res'] = 0
-
-    conf = {}
     conf['slot.a'] = SotS()+Dear_Diary()
-    conf['slot.d'] = C_Phoenix()
+    conf['slot.d'] = Corsaint_Phoenix()
 
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
