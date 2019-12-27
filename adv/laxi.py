@@ -68,7 +68,6 @@ class Laxi(Adv):
         `s1
         `s3, seq=5
         """
-
 if __name__ == '__main__':
     adv_test.test(module(), conf, verbose=0)
 
