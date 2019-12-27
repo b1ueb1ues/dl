@@ -139,6 +139,15 @@ class Agito_Nothung(WeaponBase):
     } # Megingjörð
     a = []
 
+class Agito0UB_Nothung(Agito_Nothung):
+    att = 1001
+    s3 = {
+        "buff"     : ('self',0.10,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+
 flame = HDT2_Absolute_Crimson
 water = HDT2_Absolute_Aqua
 wind = HDT2_Absolute_Tempest

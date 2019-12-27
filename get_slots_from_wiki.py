@@ -21,6 +21,11 @@ DRAGON_LEVEL_RANGE = {
     '5': (40, 100)
 }
 
+WEAPON_LEVEL_RANGE = {
+    '5': (80, 100),
+    '6': (100, 200),
+}
+
 # Queries
 MAX = 500
 BASE_URL = 'https://dragalialost.gamepedia.com/api.php?action=cargoquery&format=json&limit={}'.format(MAX)
@@ -142,11 +147,11 @@ def parse_abilities(ability_data):
         }
     return parsed
 
-def calculate_dra_atk(dra):
-    rarity, min_atk, max_atk = dra['Rarity'], int(dra['MinAtk']), int(dra['MaxAtk'])
-    min_lvl, max_lvl = DRAGON_LEVEL_RANGE[rarity]
-    steps = (max_atk - min_atk) / max_lvl
-    return ceil(min_atk + min_lvl * steps), ceil(min_atk + max_lvl * steps)
+def calculate_atk(item, rarity_dict):
+    rarity, min_atk, max_atk = item['Rarity'], int(item['MinAtk']), int(item['MaxAtk'])
+    min_lvl, max_lvl = rarity_dict[rarity]
+    steps = (max_atk - min_atk) / (max_lvl - 1)
+    return ceil(min_atk + (min_lvl - 1) * steps), ceil(min_atk + (max_lvl - 1) * steps)
 
 def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3, show_desc=True):
     ab_values = []
@@ -190,7 +195,7 @@ def get_ability(thingy, abilities, mode='wp', i_range=3, j_range=3, show_desc=Tr
     else:
         return ability_arr_str + ability_cond_str, ab_len
 
-def abbreviateClassName(name):
+def abbreviate_class_name(name):
     abbr = name[0]
     prev_char = ''
     for c in name:
@@ -198,6 +203,9 @@ def abbreviateClassName(name):
             abbr += c
         prev_char = c
     return abbr
+
+def get_clean_name(name):
+    return re.sub(r'[^0-9a-zA-Z ]', '', unidecode(name)).replace(' ', '_')
 
 if __name__ == '__main__':
     if os.path.exists(NEW_SLOT_DIR):
@@ -226,8 +234,8 @@ if __name__ == '__main__':
             ab, ab_len = get_ability(wp, ability_data, 'wp', 3, 3)
             if ab_len == 0:
                 continue
-            clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', wp['Name']).replace(' ', '_')
-            abbr_name = abbreviateClassName(clean_name)
+            clean_name = get_clean_name(wp['Name'])
+            abbr_name = abbreviate_class_name(clean_name)
             f.write('class {}(Amulet):\n'.format(clean_name))
             f.write('    att = {}\n'.format(wp['MaxAtk']))
             f.write('    a = ' + ab + '\n')
@@ -247,14 +255,14 @@ if __name__ == '__main__':
                 dra = item['title']
                 if dra['MaxAtk'] == '':
                     continue
-                dra_atk = calculate_dra_atk(dra)
+                dra_atk = calculate_atk(dra, DRAGON_LEVEL_RANGE)
                 # ub_range = (2, 1) if dra['Rarity'] == '5' else [2]
                 ub_range = [2]
                 for ub_idx in ub_range:
                     ab, ab_len = get_ability(dra, ability_data, 'dra', 2, ub_idx)
                     if ab_len == 0:
                         continue
-                    clean_name = re.sub(r'[^a-zA-Z0-9 ]', '', dra['FullName']).replace(' ', '_')
+                    clean_name = get_clean_name(dra['FullName'])
                     if ub_idx < 2:
                         clean_name += '_0ub'
                     f.write('class {}(DragonBase):\n'.format(clean_name))
@@ -268,7 +276,7 @@ if __name__ == '__main__':
     tables = 'Weapons'
     fields = 'Id,BaseId,FormId,WeaponName,WeaponNameJP,Type,TypeId,Rarity,ElementalType,ElementalTypeId,MinHp,MaxHp,MinAtk,MaxAtk,VariationId,Skill,SkillName,SkillDesc,Abilities11,Abilities21,IsPlayable,FlavorText,SellCoin,SellDewPoint,ReleaseDate,CraftNodeId,ParentCraftNodeId,CraftGroupId,FortCraftLevel,AssembleCoin,DisassembleCoin,DisassembleCost,MainWeaponId,MainWeaponQuantity,CraftMaterialType1,CraftMaterial1,CraftMaterialQuantity1,CraftMaterialType2,CraftMaterial2,CraftMaterialQuantity2,CraftMaterialType3,CraftMaterial3,CraftMaterialQuantity3,CraftMaterialType4,CraftMaterial4,CraftMaterialQuantity4,CraftMaterialType5,CraftMaterial5,CraftMaterialQuantity5,Obtain,Availability,AvailabilityId'
     for wt in WEAPON_TYPE:
-        where = 'ElementalType IS NOT NULL AND (Availability="Agito" OR Abilities11="634") AND Type = "{}"'.format(wt)
+        where = 'ElementalType IS NOT NULL AND (Availability="High Dragon" OR Availability="Agito" OR Abilities11="634") AND Type = "{}"'.format(wt)
         order_by = 'AvailabilityId DESC'
         weapon_data = get_data(tables=tables, fields=fields, where=where, order_by=order_by)
         with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w') as f:
@@ -281,23 +289,30 @@ if __name__ == '__main__':
                 #     continue
                 prefix = ''
                 set_pref = False
+                wep_atk = calculate_atk(wep, WEAPON_LEVEL_RANGE)
                 if wep['Availability'] == 'High Dragon':
                     if wep['ParentCraftNodeId'] == '101':
-                        prefix = 'HDT2_'
+                        prefix = 'HDT2'
                         set_pref = True
                     else:
-                        prefix = 'HDT1_'
+                        prefix = 'HDT1'
                 else:
-                    prefix = wep['Availability']+'_'
-                clean_name = prefix + unidecode(wep['WeaponName']).replace(' ', '_')
+                    prefix = wep['Availability']
+                clean_name = prefix + get_clean_name(wep['WeaponName'])
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
                 f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
-                f.write('    att = {}\n'.format(wep['MaxAtk']))
+                f.write('    att = {}\n'.format(wep_atk[1]))
                 f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
                 f.write('    a = ' + ab + '\n')
                 f.write('\n')
-                if not weap_pref[wep['ElementalType']] or (weap_pref[wep['ElementalType']] and int(wep['MaxAtk']) > weap_pref[wep['ElementalType']][1]):
-                    weap_pref[wep['ElementalType']] = clean_name, int(wep['MaxAtk'])
+
+                clean_name_0ub = prefix +'0UB_' + get_clean_name(wep['WeaponName'])
+                f.write('class {}({}):\n'.format(clean_name_0ub, clean_name))
+                f.write('    att = {}\n'.format(wep_atk[0]))
+                f.write('\n')
+
+                if set_pref:
+                    weap_pref[wep['ElementalType']] = clean_name
             for ele, w in weap_pref.items():
-                f.write('\n{} = {}'.format(ele.lower(), w[0]))
+                f.write('\n{} = {}'.format(ele.lower(), w))
