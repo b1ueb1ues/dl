@@ -1,20 +1,6 @@
 from slot import *
 import slot
 
-class Void_Chimeratech_Warlord(WeaponBase):
-    ele = ['flame']
-    wt = 'axe'
-    att = 1051
-    s3 = {} # 
-    a = [('uo', (0.04, 30, 5))]
-
-class Agito_Mjolnir(WeaponBase):
-    ele = ['flame']
-    wt = 'axe'
-    att = 1621
-    s3 = {} # Megingjörð
-    a = []
-
 class HDT1_Crimson_Heat(WeaponBase):
     ele = ['flame']
     wt = 'axe'
@@ -133,6 +119,20 @@ class HDT2_Shadowy_Darkbite_Axe(WeaponBase):
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
     } # Shadowy Darkbite's Curse
+    a = []
+
+class Void_Chimeratech_Warlord(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 1051
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Mjolnir(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 1621
+    s3 = {} # Megingjörð
     a = []
 
 flame  = HDT2_Royal_Crimson_Heat

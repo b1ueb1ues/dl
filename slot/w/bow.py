@@ -120,6 +120,19 @@ class HDT2_Hellish_Prophecy(WeaponBase):
     } # Prophecy's Immaculate Guidance
     a = []
 
+class Void_Chimeratech_Sniper(WeaponBase):
+    ele = ['flame']
+    wt = 'bow'
+    att = 961
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Ydalir(WeaponBase):
+    ele = ['flame']
+    wt = 'bow'
+    att = 1482
+    s3 = {} # Megingjörð
+    a = []
 
 flame = HDT2_Valkyries_Fire
 water = HDT2_Azure_Mercurius

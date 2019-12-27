@@ -120,6 +120,20 @@ class HDT2_True_Abyss(WeaponBase):
     } # Hellish Blade
     a = []
 
+class Void_Chimeratech_Lord(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 1061
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Tyrfing(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 1636
+    s3 = {} # Megingjörð
+    a = []
+
 flame = HDT2_Blinding_Conflagration
 water = HDT2_Ruinous_Torrent
 wind = HDT2_Endless_Horizon

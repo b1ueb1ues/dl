@@ -120,6 +120,19 @@ class HDT2_Absolute_Hex(WeaponBase):
     } # Infinite Hexes
     a = []
 
+class Void_Chimeratech_Commander(WeaponBase):
+    ele = ['flame']
+    wt = 'sword'
+    att = 972
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Nothung(WeaponBase):
+    ele = ['flame']
+    wt = 'sword'
+    att = 1544
+    s3 = {} # Megingjörð
+    a = []
 
 flame = HDT2_Absolute_Crimson
 water = HDT2_Absolute_Aqua

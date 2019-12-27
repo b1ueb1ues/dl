@@ -120,6 +120,19 @@ class HDT2_Darkbinder(WeaponBase):
     } # Binding Darkness
     a = []
 
+class Void_Chimeratech_Archmage(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1001
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Brisingr(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1590
+    s3 = {} # Megingjörð
+    a = []
 
 flame = HDT2_Infernoblaze
 water = HDT2_Aquatic_Spiral

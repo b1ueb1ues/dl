@@ -120,6 +120,19 @@ class HDT2_Dark_Hunger(WeaponBase):
     } # Despair Devourer
     a = []
 
+class Void_Chimeratech_Cardinal(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 877
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Gjallarhorn(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 1467
+    s3 = {} # Megingjörð
+    a = []
 
 flame = HDT2_Blazegambol
 water = HDT2_Oceans_Embrace
