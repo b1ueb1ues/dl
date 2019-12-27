@@ -24,7 +24,8 @@ class Laxi(Adv):
         this.heal.conf.recovery = 5.0
 
         this.heal_initial = Timer(this.heal_proc,0).on()
-        this.s2buff = Selfbuff("s2",0.15,-1,toggle=True)
+        
+        this.s2buff = Selfbuff("s2",0.15,-1)
         this.s2tick = Timer(this.s2_tick,2.9,1)
 
         this.a3buff = Selfbuff("a3",0.2,-1,"att","passive")
@@ -34,13 +35,12 @@ class Laxi(Adv):
             this.dmg_make("o_s1_boost",0.87*4)
 
     def s2_proc(this, e):
-        this.s2buff.on()
-        # if not this.s2buff.get():
-        #     this.s2buff.on()
-        #     this.s2tick.on()
-        # else:
-        #     this.s2buff.off()
-        #     this.s2tick.off()
+        if not this.s2buff.get():
+            this.s2buff.on()
+            this.s2tick.on()
+        else:
+            this.s2buff.off()
+            this.s2tick.off()
 
     def s2_tick(this, t):
         if this.hp >= 4.0:
@@ -64,7 +64,9 @@ class Laxi(Adv):
         this.heal()
 
     conf['acl'] = """
-        `s2
+        `s2, not this.s2buff.get()
+        `s1
+        `s3, seq=5
         """
 
 if __name__ == '__main__':
