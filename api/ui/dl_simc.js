@@ -65,7 +65,6 @@ colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
 //     'team_buff': '&#9672;'
 // }
 function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
-    console.log(extra);
     let copyTxt = '';
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
@@ -393,6 +392,24 @@ function clearResults() {
         dps_chart.destroy();
     }
 }
+function weaponSelectChange(){
+    const weapon = $('#input-wep').val();
+    if (weapon.startsWith('Agito')){
+        $('#input-edit-acl').prop('checked', true);
+        $('#input-acl').prop('disabled', false);
+        const acl = $('#input-acl').val().split('\n');
+        let new_acl = ''
+        for (const line of acl){
+            if (line.startsWith('`s3')){
+                new_acl += '`s3, not this.s3_buff_on and cancel'
+            }else{
+                new_acl += line
+            }
+            new_acl += '\n'
+        }
+        $('#input-acl').val(new_acl);
+    }
+}
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
     $('#run-test').click(debounce(runAdvTest, 200));
@@ -404,6 +421,7 @@ window.onload = function () {
     $('#clear-results').click(clearResults);
     $('#reset-test').click(debounce(loadAdvSlots, 200));
     $('#input-edit-acl').change(editAcl);
+    $('#input-wep').change(weaponSelectChange);
     clearResults();
     loadAdvWPList();
 }
