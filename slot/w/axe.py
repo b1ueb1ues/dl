@@ -132,7 +132,12 @@ class Agito_Mjolnir(WeaponBase):
     ele = ['flame']
     wt = 'axe'
     att = 1621
-    s3 = {} # Megingjörð
+    s3 = {
+        "buff"     : ('self',0.20,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
     a = []
 
 flame  = HDT2_Royal_Crimson_Heat

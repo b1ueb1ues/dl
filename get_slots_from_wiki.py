@@ -5,6 +5,7 @@ from urllib.parse import quote
 from shutil import copyfile, rmtree
 import re
 from math import ceil
+from unidecode import unidecode
 
 NEW_SLOT_DIR = './new_slots'
 AMULET_DIR = NEW_SLOT_DIR + '/a'
@@ -56,9 +57,12 @@ def parse_abilities(ability_data):
         'Overdrive Punisher': 'od',
         'Buff Time': 'bt',
         'Burning Punisher': 'k_burn',
+        'Paralyzed Punisher': 'k_paralysis',
         'Strength Doublebuff': 'bc',
         'Last Offense': 'lo',
         'HP &amp; Strength': 'a',
+        'Unyielding Offense': 'uo',
+        'Resilient Offense': 'ro',
 
         # "High Midgardsormr's Bane": 'k',
         # "High Brunhilda's Bane": 'k',
@@ -106,6 +110,7 @@ def parse_abilities(ability_data):
             if res:
                 _, condition, _, cond_full, cond_val, no_cond, cond, value = res.groups()
                 ab_cond = None
+                ab_type = None
                 if no_cond is not None:
                     ab_type = ABILITIES_NO_COND[no_cond]
                 elif cond is not None:
@@ -263,9 +268,10 @@ if __name__ == '__main__':
     tables = 'Weapons'
     fields = 'Id,BaseId,FormId,WeaponName,WeaponNameJP,Type,TypeId,Rarity,ElementalType,ElementalTypeId,MinHp,MaxHp,MinAtk,MaxAtk,VariationId,Skill,SkillName,SkillDesc,Abilities11,Abilities21,IsPlayable,FlavorText,SellCoin,SellDewPoint,ReleaseDate,CraftNodeId,ParentCraftNodeId,CraftGroupId,FortCraftLevel,AssembleCoin,DisassembleCoin,DisassembleCost,MainWeaponId,MainWeaponQuantity,CraftMaterialType1,CraftMaterial1,CraftMaterialQuantity1,CraftMaterialType2,CraftMaterial2,CraftMaterialQuantity2,CraftMaterialType3,CraftMaterial3,CraftMaterialQuantity3,CraftMaterialType4,CraftMaterial4,CraftMaterialQuantity4,CraftMaterialType5,CraftMaterial5,CraftMaterialQuantity5,Obtain,Availability,AvailabilityId'
     for wt in WEAPON_TYPE:
-        where = 'ElementalType IS NOT NULL AND Availability="High Dragon" AND Type = "{}"'.format(wt)
-        weapon_data = get_data(tables=tables, fields=fields, where=where)
-        with open(WEAPON_DIR + '/' + wt.lower() + '_hdt.py', 'w') as f:
+        where = 'ElementalType IS NOT NULL AND (Availability="Agito" OR Abilities11="634") AND Type = "{}"'.format(wt)
+        order_by = 'AvailabilityId DESC'
+        weapon_data = get_data(tables=tables, fields=fields, where=where, order_by=order_by)
+        with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w') as f:
             weap_pref = {e: None for e in ELEMENT_TYPE}
             f.write('from slot import *\n\n')
             for item in weapon_data:
@@ -273,11 +279,17 @@ if __name__ == '__main__':
                 ab, ab_len = get_ability(wep, ability_data, mode='wep', i_range=2, j_range=1, show_desc=False)
                 # if ab_len == 0:
                 #     continue
-                if int(wep['MaxAtk']) > 1000:
-                    prefix = 'HDT2_'
+                prefix = ''
+                set_pref = False
+                if wep['Availability'] == 'High Dragon':
+                    if wep['ParentCraftNodeId'] == '101':
+                        prefix = 'HDT2_'
+                        set_pref = True
+                    else:
+                        prefix = 'HDT1_'
                 else:
-                    prefix = 'HDT1_'
-                clean_name = prefix + re.sub(r'[^a-zA-Z0-9 ]', '', wep['WeaponName']).replace(' ', '_')
+                    prefix = wep['Availability']+'_'
+                clean_name = prefix + unidecode(wep['WeaponName']).replace(' ', '_')
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
                 f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))

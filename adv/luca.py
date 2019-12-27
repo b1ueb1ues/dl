@@ -3,6 +3,9 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from adv import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Luca
@@ -17,6 +20,10 @@ class Luca(adv.Adv):
         `fs, seq=4
         """
     conf['cond_afflict_res'] = 0
+
+    conf = {}
+    conf['slot.a'] = SotS()+Dear_Diary()
+    conf['slot.d'] = C_Phoenix()
 
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):

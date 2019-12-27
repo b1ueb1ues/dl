@@ -94,7 +94,7 @@ class Buff(object):
         'all_buffs': [],
         'time_func':0,
         })
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, toggle=False):
         this.name = name   
         this.__value = value
         this.duration = duration
@@ -107,6 +107,7 @@ class Buff(object):
                 this.mod_order = 'buff'
         else:
             this.mod_order = morder or '<null>' or 'passive' or 'ex' or 'buff' or 'punisher' #...
+        this.toggle = toggle
 
         if this.mod_order != 'buff':
             this.bufftime = this.nobufftime
@@ -188,6 +189,10 @@ class Buff(object):
 
 
     def on(this, duration=None):
+        if this.toggle:
+            for i in this._static.all_buffs:
+                if i.name == this.name:
+                    this = i
         if duration == None:
             d = this.duration * this.bufftime()
         else:
@@ -201,9 +206,12 @@ class Buff(object):
                 this.buff_end_timer.on(d)
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff start <%ds>'%d)
         else:
+            if this.toggle:
+                this.off()
+                return this
             if d >= 0:
                 this.buff_end_timer.on(d)
-            log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff refresh <%ds>'%d)
+                log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff refresh <%ds>'%d)
 
         value, stack = this.valuestack()
         if stack > 1:
@@ -224,8 +232,8 @@ class Buff(object):
 
 
 class Selfbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
-        Buff.__init__(this, name,value,duration,mtype,morder)
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):  
+        Buff.__init__(this, name,value,duration,mtype,morder,toggle)
         this.bufftype = 'self'
         this.bufftime = this._bufftime
     
@@ -240,8 +248,8 @@ class Selfbuff(Buff):
         return bc
 
 class Teambuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):  
-        Buff.__init__(this, name,value,duration,mtype,morder)
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):  
+        Buff.__init__(this, name,value,duration,mtype,morder,toggle)
         this.bufftype = 'team'
         this.bufftime = this._bufftime
 
@@ -277,10 +285,10 @@ class Teambuff(Buff):
 
 
 class Spdbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='self'):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,wide='self',toggle=False):  
         mtype = 'spd'
         morder = 'passive'
-        Buff.__init__(this, name,value,duration,mtype,morder)
+        Buff.__init__(this, name,value,duration,mtype,morder,toggle)
         this.bufftype = wide
         this.bufftime = this._bufftime
         Event('speed')()
@@ -321,7 +329,7 @@ class Spdbuff(Buff):
 
 
 class Debuff(Teambuff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None,toggle=False):  
         value = 0-value
         chance = float(chance)
         if chance!= 1:
@@ -329,7 +337,7 @@ class Debuff(Teambuff):
             bd = (bd-1)*chance+1
             value = 1-1.0/bd
             value = 0-value
-        Teambuff.__init__(this, name,value,duration,mtype,morder)
+        Teambuff.__init__(this, name,value,duration,mtype,morder,toggle)
         this.bufftype = 'debuff'
         this.bufftime = this.nobufftime
 

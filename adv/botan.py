@@ -12,10 +12,10 @@ def module():
 
 class Botan(Adv):
 #    comment = "RR+Jewels"
-    a3 = ('prep','50%')
+    a3 = ('prep','100%')
     a3_c = 0.05
     conf = {}
-    conf['slots.a'] = RR() + Jewels_of_the_Sun()
+    conf['slots.a'] = RR() + BN()
     conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s2, pin='prep'

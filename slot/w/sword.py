@@ -131,7 +131,12 @@ class Agito_Nothung(WeaponBase):
     ele = ['flame']
     wt = 'sword'
     att = 1544
-    s3 = {} # Megingjörð
+    s3 = {
+        "buff"     : ('self',0.20,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
     a = []
 
 flame = HDT2_Absolute_Crimson

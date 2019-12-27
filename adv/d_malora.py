@@ -19,10 +19,14 @@ class D_Malora(Adv):
         """
 
     def prerun(this):
-        this.s1debuff = Debuff('s1',0.15,15)
+        if this.condition('buff all team'):
+            this.s1debuff = Debuff('s1',0.15,15)
+        else:
+            this.s1debuff = False
 
     def s1_proc(this, e):
-        this.s1debuff.on()
+        if this.s1debuff:
+            this.s1debuff.on()
         this.dmg_make('s1',4.67,'s')
 
     def s2_proc(this, e):

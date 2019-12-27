@@ -115,3 +115,12 @@ audric.py
 cassandra.py
 h_mym.py
 h_odetta.py
+lathna.py
+chelsea.py
+yuya.py
+g_elisanne.py
+durant.py
+d_malora.py
+d_xainfried.py
+laxi.py
+botan.py
