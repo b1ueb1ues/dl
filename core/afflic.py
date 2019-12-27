@@ -65,8 +65,6 @@ class Dot(object):
         log('dot',this.name,'end by other reason')
 
 
-
-
 class Afflic(object):
     class Node(object):
         resist_after = 0
@@ -74,6 +72,9 @@ class Afflic(object):
         proc = 0
         lnode = 0
         rnode = 0
+
+        SIGNIFICANCE = 5
+
         def __init__(this, chance, resist_after, proc):
             this.chance = chance
             this.resist_after = resist_after
@@ -81,23 +82,27 @@ class Afflic(object):
 
         def add(this, rate, tolerance):
             if this.resist_after >= 1:
-                this.lnode = Afflic.Node(this.chance, 1, 0)
+                this.lnode = 0 #Afflic.Node(this.chance, 1, 0)
                 this.rnode = 0 #Afflic.Node(0, 1, 0)
                 return
             if rate <= this.resist_after:
-                this.lnode = Afflic.Node(this.chance, this.resist_after, 0)
+                this.lnode = 0 #Afflic.Node(this.chance, this.resist_after, 0)
                 this.rnode = 0 #Afflic.Node(0, this.resist_after, 0)
                 return
 
             chance = rate-this.resist_after
-            if chance > 1:
-                chance = 1
             if chance == 1:
                 this.lnode = 0 #Afflic.Node(this.chance * (1-chance), this.resist_after, 0)
-                this.rnode = Afflic.Node(this.chance , this.resist_after+tolerance, 1)
+                this.rnode = Afflic.Node(this.chance, this.resist_after + tolerance, 1)
                 return
-            this.lnode = Afflic.Node(this.chance * (1-chance), this.resist_after, 0)
-            this.rnode = Afflic.Node(this.chance * chance, this.resist_after+tolerance, 1)
+
+            next_chance = this.chance * chance
+            if this.SIGNIFICANCE and round(next_chance, this.SIGNIFICANCE) == 0:
+                this.lnode = 0 #Afflic.Node(this.chance - next_chance, this.resist_after, 0)
+                this.rnode = 0 #Afflic.Node(next_chance, this.resist_after + tolerance, 1)
+                return
+            this.lnode = Afflic.Node(this.chance - next_chance, this.resist_after, 0)
+            this.rnode = Afflic.Node(next_chance, this.resist_after + tolerance, 1)
 
     def __init__(this, name=None):
         this.name = name
@@ -107,7 +112,7 @@ class Afflic(object):
         #this.history = 0
         this.history = []
         #this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
-        this.maxdepth = 20
+        this.maxdepth = 22
         this.duration = 12
         this.stack = {}
         this.stack_x_chance = 0.0
@@ -139,9 +144,9 @@ class Afflic(object):
         if serial == 1:
             root = Afflic.Node(1, this.resist, 0)
             root.add(rate, this.get_tolerance())
-            if root.lnode :
+            if root.lnode:
                 this.tree[serial-1].append(root.lnode)
-            if root.rnode :
+            if root.rnode:
                 this.tree[serial-1].append(root.rnode)
                 rsum += root.rnode.chance
         else:
