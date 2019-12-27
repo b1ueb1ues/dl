@@ -61,9 +61,10 @@ class Laxi(Adv):
         this.heal()
 
     conf['acl'] = """
-        `s2
+        `s2, not this.s2buff.get()
+        `s1
+        `s3, seq=5
         """
-
 if __name__ == '__main__':
     adv_test.test(module(), conf, verbose=0)
 
