@@ -1,7 +1,7 @@
 def c(ele,wt):
     r = 0
     if ele == 'flame':
-        r += (0.18+0.07+0.04)
+        r += (0.18+0.07+0.04+0.16)
     elif ele == 'water':
         r += (0.18+0.07+0.07+0.04)
     elif ele == 'wind':
@@ -12,7 +12,7 @@ def c(ele,wt):
         r += (0.18+0.07+0.04)
 
     if wt :
-        r += 0.28
+        r += 0.30
 
     if wt == 'dagger':
         r += 0.05
@@ -22,5 +22,5 @@ def c(ele,wt):
     return 1+r
 
 def d(ele):
-    return 1
+    return 1.115
 

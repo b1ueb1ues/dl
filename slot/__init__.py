@@ -79,7 +79,7 @@ class WeaponBase(Slot):
                 if c.ele == i :
                     this.onele = 1
                     break
-
+        
         if this.onele :
             this.att *= 1.5
             this.conf.s3 = Conf(this.s3)
@@ -90,32 +90,6 @@ class WeaponBase(Slot):
             this.mod.append(('crit','chance',0.04))
         else :
             this.mod.append(('crit','chance',0.02))
-
-class WeaponBaseHMS(WeaponBase):
-    ele = ['flame']
-    # a = [('k',0.2,'HMS Bane'), ('prep','50%')]
-    a = [('k',0.2), ('prep','50%')]
-
-class WeaponBaseHBH(WeaponBase):
-    ele = ['water']
-    # a = [('k',0.2,'HBH Bane')]
-    a = [('k',0.2)]
-
-class WeaponBaseHMC(WeaponBase):
-    ele = ['wind']
-    # a = [('k',0.3,'HMC Bane'), ('prep','50%')]
-    a = [('k',0.3), ('prep','50%')]
-
-class WeaponBaseHZD(WeaponBase):
-    ele = ['light']
-    # a = [('k',0.3,'HZD Bane')]
-    a = [('k',0.3)]
-
-class WeaponBaseHJP(WeaponBase):
-    ele = ['shadow']
-    # a = [('k',0.3,'HJP Bane')]
-    a = [('k',0.3)]
-
 
 class DragonBase(Slot):
     stype = 'd'
@@ -219,7 +193,8 @@ class Slots(object):
         tmp.__setup()
         if not forte:
             return tmp.c.att + tmp.d.att + tmp.w.att + tmp.a.att
-        return tmp.c.att*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + tmp.a.att
+        # return tmp.c.att*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + tmp.a.att
+        return (tmp.c.att+100)*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + (tmp.a.att+200)
 
     def _att(this, forte=None):
         a = this.att(forte)
