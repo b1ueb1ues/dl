@@ -77,7 +77,7 @@ class Ability(object):
         this.adv_dmg_make = adv.dmg_make
         adv.dmg_make = this.ex_dmg_make
         adv.Listener('true_dmg', this.ex_true_dmg)
-        
+
 
     def oninit(this, adv, afrom=None):
         this.adv = adv
@@ -101,13 +101,27 @@ class Ability(object):
         elif name == 'dc':
             adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
         elif name == 'ro':
-            if adv.condition('RO proc at 0s 60s 120s'):
+            if isinstance(value, tuple) and len(value) == 2:
+                buff_value, timing = value
+            else:
+                buff_value, timing = value, 30
+            if adv.condition('RO proc at 0s {}s {}s'.format(timing, timing*2)):
                 def ro_buff(t):
-                    adv.Buff('resilient_offense',value, -1).on()
-                timing = 60
+                    adv.Buff('resilient_offense',buff_value, -1).on()
                 ro_buff(0)
                 adv.Timer(ro_buff).on(timing)
                 adv.Timer(ro_buff).on(timing*2)
+        elif name == 'uo':
+            if isinstance(value, tuple) and len(value) == 2:
+                buff_value, timing = value
+            else:
+                buff_value, timing = value, 20
+            if adv.condition('UO proc every {}s'.format(timing)):
+                def uo_buff(t):
+                    adv.Buff('unyielding_offense',buff_value, -1).on()
+                uo_buff(0)
+                for i in range(1, 5):
+                    adv.Timer(uo_buff).on(timing*i)
         elif name == 'prep':
             if type(value) == int:
                 adv.charge_p('amulet prep',"%d%%"%value)
