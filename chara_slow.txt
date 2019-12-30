@@ -6,6 +6,5 @@ ieyasu.py
 sinoa.py
 ezelith.py
 sazanka.py
-botan.py
 natalie.py
 patia.py

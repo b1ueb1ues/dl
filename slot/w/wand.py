@@ -1,65 +1,30 @@
-import slot
 from slot import *
 
-class wand5b2p2(WeaponBase):
-    ele = ['all']
-    wt = 'wand'
-    att = 470
-    s3 = {
-        "dmg"      : 4*2.44   ,
-        "sp"       : 8757     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class wand4b1(WeaponBase):
-    ele = ['flame','wind','shadow']
-    wt = 'wand'
-    att = 372
-    s3 = {
-        "dmg"      : 9.84     ,
-        "sp"       : 8453     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class wand5b10(WeaponBase):
-    ele = ['flame','wind','shadow']
-    wt = 'wand'
-    att = 454
-    s3 = {
-        }
-
-class wand5b1(WeaponBase):
-    ele = ['flame','wind','shadow']
-    wt = 'wand'
-    att = 528
-    s3 = {
-        }
-
-class wand5b2(WeaponBase):
-    ele = ['water','light']
-    wt = 'wand'
-    att = 573
-    s3 = {
-        "dmg"      : 4*2.71   ,
-        "sp"       : 8757     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class wand5d1flame(WeaponBase):
+class HDT1_Muspelheim(WeaponBase):
     ele = ['flame']
     wt = 'wand'
     att = 727
     s3 = {
-        "dmg"      : 4*2.43   ,
-        "sp"       : 7635     ,
+        "dmg"      : 4*2.71   ,
+        "sp"       : 8757     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
-        }
+    } # Crimson Flames
+    a = [('k', 0.3, 'vs HMS')]
 
-class wand5d1water(WeaponBase):
+class HDT2_Infernoblaze(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1453
+    s3 = {
+        "dmg"      : 4*2.71   ,
+        "sp"       : 8757     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+    } # Adoring Flames
+    a = []
+
+class HDT1_Hydroballista(WeaponBase):
     ele = ['water']
     wt = 'wand'
     att = 727
@@ -68,9 +33,22 @@ class wand5d1water(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
-        }
+    } # Flowing Waves
+    a = [('k', 0.3, 'vs HBH')]
 
-class wand5d1wind(WeaponBase):
+class HDT2_Aquatic_Spiral(WeaponBase):
+    ele = ['water']
+    wt = 'wand'
+    att = 1453
+    s3 = {
+        "dmg"      : 4*2.43   ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.8      ,
+    } # Cascading Waves
+    a = []
+
+class HDT1_Tornado_Tail(WeaponBase):
     ele = ['wind']
     wt = 'wand'
     att = 788
@@ -79,53 +57,10 @@ class wand5d1wind(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
-        }
+    } # Primal Cyclone
+    a = [('k', 0.3, 'vs HMC')]
 
-class wand5d1light(WeaponBase):
-    ele = ['light']
-    wt = 'wand'
-    att = 765
-    s3 = {
-        "dmg"      : 4*2.71   ,
-        "sp"       : 7881     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.78     ,
-        }
-
-class wand5d1shadow(WeaponBase):
-    ele = ['shadow']
-    wt = 'wand'
-    att = 742
-    s3 = {
-        "dmg"      : 9.74     ,
-        "sp"       : 7635     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.75     ,
-        }
-
-class wand5d2flame(WeaponBase):
-    ele = ['flame']
-    wt = 'wand'
-    att = 1453
-    s3 = {
-        "dmg"      : 4*2.43   ,
-        "sp"       : 7635     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.8      ,
-        }
-
-class wand5d2water(WeaponBase):
-    ele = ['water']
-    wt = 'wand'
-    att = 1453
-    s3 = {
-        "dmg"      : 4*2.43   ,
-        "sp"       : 7635     ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.8      ,
-        }
-
-class wand5d2wind(WeaponBase):
+class HDT2_Grand_Tempest(WeaponBase):
     ele = ['wind']
     wt = 'wand'
     att = 1575
@@ -134,9 +69,22 @@ class wand5d2wind(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
-        }
+    } # Raging Cyclone
+    a = []
 
-class wand5d2light(WeaponBase):
+class HDT1_Crossed_Lightning(WeaponBase):
+    ele = ['light']
+    wt = 'wand'
+    att = 765
+    s3 = {
+        "dmg"      : 4*2.71   ,
+        "sp"       : 7881     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.9     ,
+    } # Mirthful Lightning
+    a = [('k', 0.3, 'vs HZD')]
+
+class HDT2_Primeval_Thunder(WeaponBase):
     ele = ['light']
     wt = 'wand'
     att = 1530
@@ -144,10 +92,23 @@ class wand5d2light(WeaponBase):
         "dmg"      : 4*2.71   ,
         "sp"       : 7881     ,
         "startup"  : 0.1      ,
-        "recovery" : 1.78     ,
-        }
+        "recovery" : 1.9     ,
+    } # Ecstatic Lightning
+    a = []
 
-class wand5d2shadow(WeaponBase):
+class HDT1_Venomous_Curse(WeaponBase):
+    ele = ['shadow']
+    wt = 'wand'
+    att = 742
+    s3 = {
+        "dmg"      : 9.74     ,
+        "sp"       : 7635     ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.75     ,
+    } # Enveloping Darkness
+    a = [('k', 0.3, 'vs HJP')]
+
+class HDT2_Darkbinder(WeaponBase):
     ele = ['shadow']
     wt = 'wand'
     att = 1484
@@ -156,11 +117,39 @@ class wand5d2shadow(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.75     ,
-        }
+    } # Binding Darkness
+    a = []
 
-flame  = wand5d2flame
-water  = wand5d2water
-wind   = wand5d2wind
-light  = wand5d2light
-shadow = wand5d2shadow
+class Chimeratech_Archmage(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1001
+    s3 = {} #
+    a = [('uo', 0.04)]
 
+class Agito_Brisingr(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1590
+    s3 = {
+        "buff"     : ('self',0.20,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+    a = []
+
+class Agito0UB_Brisingr(Agito_Brisingr):
+    att = 1031
+    s3 = {
+        "buff"     : ('self',0.10,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+
+flame = HDT2_Infernoblaze
+water = HDT2_Aquatic_Spiral
+wind = HDT2_Grand_Tempest
+light = HDT2_Primeval_Thunder
+shadow = HDT2_Darkbinder

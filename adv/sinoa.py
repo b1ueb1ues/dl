@@ -15,15 +15,18 @@ class Sinoa(adv.Adv):
    # conf['slots.a'] = slot.a.Bellathorna()+slot.a.RR()
 
 
-    def s1_proc(this, e):
-        r = random.random()
-        if r<0.25  :
-            adv.Teambuff('s1_att',0.25,15,'att').on()
-        elif r<0.5 :
-            adv.Teambuff('s1_crit',0.25,10,'crit').on()
-        else:
-            log('failed','s1')
+    # def s1_proc(this, e):
+    #     r = random.random()
+    #     if r<0.25  :
+    #         adv.Teambuff('s1_att',0.25,15,'att').on()
+    #     elif r<0.5 :
+    #         adv.Teambuff('s1_crit',0.25,10,'crit').on()
+    #     else:
+    #         log('failed','s1')
 
+    def s1_proc(this, e):
+        adv.Teambuff('s1_att',0.25/4,15,'att').on()
+        adv.Teambuff('s1_crit',0.25/4,10,'crit').on()
 
 if __name__ == '__main__':
     conf = {}

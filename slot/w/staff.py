@@ -1,26 +1,6 @@
-import slot
 from slot import *
 
-
-class staff5b1(WeaponBase):
-    ele = ['flame','water','wind']
-    wt = 'staff'
-    att = 528
-    s3 = {
-        }
-
-class staff5b2(WeaponBase):
-    ele = ['light','shadow']
-    wt = 'staff'
-    att = 513
-    s3 = {
-        "dmg"      : 7.55     ,
-        "sp"       : 15205    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class staff5d1flame(WeaponBase):
+class HDT1_Brightblaze(WeaponBase):
     ele = ['flame']
     wt = 'staff'
     att = 684
@@ -29,53 +9,10 @@ class staff5d1flame(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+    } # Bright Flames
+    a = [('k', 0.3, 'vs HMS')]
 
-class staff5d1water(WeaponBase):
-    ele = ['water']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 1.43*4   ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.77     ,
-        }
-
-class staff5d1wind(WeaponBase):
-    ele = ['wind']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 1.43*4   ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.77     ,
-        }
-
-class staff5d1light(WeaponBase):
-    ele = ['light']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 7.55     ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.57     ,
-        }
-
-class staff5d1shadow(WeaponBase):
-    ele = ['shadow']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 7.55     ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.57     ,
-        }
-
-class staff5d2flame(WeaponBase):
+class HDT2_Blazegambol(WeaponBase):
     ele = ['flame']
     wt = 'staff'
     att = 1368
@@ -84,9 +21,22 @@ class staff5d2flame(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+    } # Gambolling Flames
+    a = []
 
-class staff5d2water(WeaponBase):
+class HDT1_Unceasing_Tide(WeaponBase):
+    ele = ['water']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+    } # Unceasing Stream
+    a = [('k', 0.3, 'vs HBH')]
+
+class HDT2_Oceans_Embrace(WeaponBase):
     ele = ['water']
     wt = 'staff'
     att = 1340
@@ -95,9 +45,22 @@ class staff5d2water(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+    } # Embracing Stream
+    a = []
 
-class staff5d2wind(WeaponBase):
+class HDT1_Zephyrage(WeaponBase):
+    ele = ['wind']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+    } # Bowing Gust
+    a = [('k', 0.3, 'vs HMC')]
+
+class HDT2_Stormruler(WeaponBase):
     ele = ['wind']
     wt = 'staff'
     att = 1340
@@ -106,9 +69,22 @@ class staff5d2wind(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+    } # Guiding Gust
+    a = []
 
-class staff5d2light(WeaponBase):
+class HDT1_Shadowblot(WeaponBase):
+    ele = ['light']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 7.55     ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.57     ,
+    } # Illuminating Sneer
+    a = [('k', 0.3, 'vs HZD')]
+
+class HDT2_Heavensneer(WeaponBase):
     ele = ['light']
     wt = 'staff'
     att = 1340
@@ -117,9 +93,22 @@ class staff5d2light(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.57     ,
-        }
+    } # Trickster's Sneer
+    a = []
 
-class staff5d2shadow(WeaponBase):
+class HDT1_Creeping_Death(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 7.55     ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.57     ,
+    } # Night Devourer
+    a = [('k', 0.3, 'vs HJP')]
+
+class HDT2_Dark_Hunger(WeaponBase):
     ele = ['shadow']
     wt = 'staff'
     att = 1340
@@ -128,10 +117,39 @@ class staff5d2shadow(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.57     ,
-        }
+    } # Despair Devourer
+    a = []
 
-flame  = staff5d2flame
-water  = staff5d2water
-wind   = staff5d2wind
-light  = staff5d2light
-shadow = staff5d2shadow
+class Chimeratech_Cardinal(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 877
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Gjallarhorn(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 1467
+    s3 = {
+        "buff"     : ('self',0.20,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+    a = []
+
+class Agito0UB_Gjallarhorn(Agito_Gjallarhorn):
+    att = 951
+    s3 = {
+        "buff"     : ('self',0.10,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+
+flame = HDT2_Blazegambol
+water = HDT2_Oceans_Embrace
+wind = HDT2_Stormruler
+light = HDT2_Heavensneer
+shadow = HDT2_Dark_Hunger

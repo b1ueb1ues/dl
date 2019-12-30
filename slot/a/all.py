@@ -3,7 +3,7 @@ from slot.a import *
 
 class Plunder_Pals(Amulet): #Plunder Pals or Hitting the Books
     att = 54
-    a = [('s',0.25)]
+    a = [('s',0.30)]
 PP = Plunder_Pals
 
 
@@ -17,7 +17,7 @@ RR = Resounding_Rendition
 class Crystalian_Envoy(Amulet):
     att = 57
     a = [('a',0.13,'hp70')]
-CE = Crystalian_Envoy	
+CE = Crystalian_Envoy
 
 
 class Bonds_Between_Worlds(Amulet):
@@ -96,6 +96,12 @@ class Jewels_of_the_Sun(Amulet):
     a = [('sp',0.08),
          ('a',0.10,'hp70')]
 JotS = Jewels_of_the_Sun
+
+
+class United_by_One_Vision(Amulet):
+    att = 54
+    a = [('sp',0.08),
+         ('a',0.13,'hp70')]
 
 
 class Heralds_of_Hinomoto(Amulet):
@@ -186,7 +192,7 @@ class Luck_of_the_Draw(Amulet):
             this.a += [('bt',0.25)]
 
 
-class Lunar_Festivities(Amulet): 
+class Lunar_Festivities(Amulet):
     att = 51
     a = [('fs',0.40),
          ('sp',0.10,'fs')]
@@ -225,7 +231,7 @@ class Forest_Bonds(Amulet):
 FB = Forest_Bonds
 
 
-class Dragon_and_Tamer(Amulet):  
+class Dragon_and_Tamer(Amulet):
     att = 57
     def on(this, c):
         if c.wt == 'lance':
@@ -233,7 +239,7 @@ class Dragon_and_Tamer(Amulet):
 DnT = Dragon_and_Tamer
 
 
-class Twinfold_Bonds(Amulet):  
+class Twinfold_Bonds(Amulet):
     att = 65
     a = [('a',0.15,'hit15')]
     def on(this, c):
@@ -243,7 +249,7 @@ class Twinfold_Bonds(Amulet):
 TB = Twinfold_Bonds
 
 
-class Summer_Paladyns(Amulet):  
+class Summer_Paladyns(Amulet):
     att = 64
     def on(this, c):
         if c.wt == 'axe':
@@ -333,7 +339,7 @@ class Sisters_Day_Out(Amulet):
     def fs_proc(this, e):
         this.o_fs_proc(e)
         if this.charges > 0:
-            this.adv.charge_p('sisters_day_out','25%')
+            this.adv.charge_p('fs_charge','25%')
             this.charges -= 1
 
     def oninit(this, adv):
@@ -355,13 +361,13 @@ class Beautiful_Nothingness(Amulet):
     a = [('a',0.10,'hp70'),('cc',0.05)]
 BN = Beautiful_Nothingness
 
-class Resurgent_Despair(Amulet):
+class Castle_Cheer_Corps(Amulet):
     att = 64
     a = [('sp',0.06)]
     def fs_proc(this, e):
         this.o_fs_proc(e)
         if this.charges > 0:
-            this.adv.charge_p('Resurgent_Despair','25%')
+            this.adv.charge_p('fs_charge','25%')
             this.charges -= 1
 
     def oninit(this, adv):
@@ -370,7 +376,23 @@ class Resurgent_Despair(Amulet):
         this.adv = adv
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
-RD = Resurgent_Despair
+
+class Honest_Repose(Amulet):
+    att = 53
+    def on(this, c):
+        if c.ele == 'flame':
+            this.a = [('sp', 10)]
+
+class High_Dragon_WP(Amulet):
+    att = 39
+
+class Candy_Couriers(Amulet):
+    att = 65
+    a = [('bk',0.25)]
+    def on(this, c):
+        if c.wt == 'wand':
+            this.a = [('bk',0.25), ('s',0.40)]
+
 
 class Candy_Couriers(Amulet):
     att = 65
@@ -389,12 +411,30 @@ FWHC = From_Whence_He_Came
 
 class Dear_Diary(Amulet):
     att = 65
-    a = [('ro',0.1)]
+    a = [('ro', (0.1, 60))]
     def on(this, c):
-        if c.wt ==  'bow':
-            this.a = [('ro',0.1)]
-            this.a += [('cc',0.14)]
+        if c.wt == 'bow':
+            this.a = [('ro', (0.1, 60)), ('cc',0.14)]
 DD = Dear_Diary
+
+class Dear_Diary_Fast_RO(Amulet):
+    att = 65
+    a = [('ro', (0.1, 30))]
+    def on(this, c):
+        if c.wt == 'bow':
+            this.a = [('ro', (0.1, 30)), ('cc',0.14)]
+
+class Dear_Diary_Slow_RO(Amulet):
+    att = 65
+    a = [('ro', (0.1, 180))]
+    def on(this, c):
+        if c.wt == 'bow':
+            this.a = [('ro', (0.1, 180)), ('cc',0.14)]
+
+class Odd_Sparrows(Amulet):
+    att = 51
+    a = [('bc',0.8)]
+OS = Odd_Sparrows
 
 class Mega_Friends(Amulet):
     att = 55
@@ -419,6 +459,10 @@ class Spirit_of_the_Season(Amulet):
     att = 65
     a = [('a',0.15,'hp100'),('k_paralysis',0.2)]
 SotS = Spirit_of_the_Season
+
+class Spirit_of_the_Season_No_HP100(Amulet):
+    att = 65
+    a = [('k_paralysis',0.2)]
 
 amulets = []
 for k in list(globals()):

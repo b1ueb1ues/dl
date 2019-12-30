@@ -1,163 +1,155 @@
-import slot
 from slot import *
 
-
-class blade5b1(WeaponBase):
-    ele = ['flame','wind']
-    wt = 'blade'
-    att = 572
-    s3 = {
-        "dmg"      : 3.54*3   ,
-        "sp"       : 8030     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.65     ,
-    }
-
-class blade5b2(WeaponBase):
-    ele = ['water','light']
-    wt = 'blade'
-    att = 544
-
-class blade5b3(WeaponBase):
-    ele = ['shadow']
-    att = 590
-    wt = 'blade'
-    s3 = {
-        "dmg"      : 2.13*5 ,
-        "sp"       : 7695   ,
-        "startup"  : 0.1    ,
-        "recovery" : 2.65   ,
-    }
-
-class blade4b2(WeaponBase):
-    ele = ['light', 'water']
-    att = 382
-    wt = 'blade'
-    s3 = {
-        "dmg"      : 9.66   ,
-        "sp"       : 8178   ,
-        "startup"  : 0.1    ,
-        "recovery" : 1.95   ,
-    }
-
-class bladev5flame(WeaponBase):
+class HDT1_Conflagration(WeaponBase):
     ele = ['flame']
     wt = 'blade'
-    att = 353
-    a = [('k',0.2), ('prep','50%')]
-
-class blade5d1flame(WeaponBase):
-    ele = ['flame']
     att = 811
-    wt = 'blade'
     s3 = {
         "dmg"      : 3.54*3   ,
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
-    }
+    } # Conflagration Blade
+    a = [('k', 0.3, 'vs HMS')]
 
-class blade5d1water(WeaponBase):
+class HDT2_Blinding_Conflagration(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 1621
+    s3 = {
+        "dmg"      : 3.54*3   ,
+        "sp"       : 7227     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.65     ,
+    } # Blinding Blade
+    a = []
+
+class HDT1_Torrent(WeaponBase):
     ele = ['water']
+    wt = 'blade'
     att = 763
-    wt = 'blade'
     s3 = {
         "dmg"      : 3.54*3   ,
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
-    }
+    } # Torrent Blade
+    a = [('k', 0.3, 'vs HBH')]
 
-class blade5d1wind(WeaponBase):
-    ele = ['wind']
-    att = 787
-    wt = 'blade'
-    s3 = {
-        "dmg"      : 9.57   ,
-        "sp"       : 7582   ,
-        "startup"  : 0.1    ,
-        "recovery" : 2.35   ,
-    }
-
-class blade5d1light(WeaponBase):
-    ele = ['light']
-    att = 748
-    wt = 'blade'
-    s3 = {
-        "dmg"      : 2.13*5 ,
-        "sp"       : 6925   ,
-        "startup"  : 0.1    ,
-        "recovery" : 2.68   ,
-    }
-
-class blade5d1shadow(WeaponBase):
-    ele = ['shadow']
-    att = 811
-    wt = 'blade'
-    s3 = {
-        "dmg"      : 2.13*5 ,
-        "sp"       : 6925   ,
-        "startup"  : 0.1    ,
-        "recovery" : 2.68   ,
-    }
-
-class blade5d2flame(WeaponBase):
-    ele = ['flame']
-    att = 1621
-    wt = 'blade'
-    s3 = {
-        "dmg"      : 3.54*3   ,
-        "sp"       : 7227     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.65     ,
-    }
-
-class blade5d2water(WeaponBase):
+class HDT2_Ruinous_Torrent(WeaponBase):
     ele = ['water']
-    att = 1527
     wt = 'blade'
+    att = 1527
     s3 = {
         "dmg"      : 3.54*3   ,
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
-    }
+    } # Surging Blade
+    a = []
 
-class blade5d2wind(WeaponBase):
+class HDT1_Horizon(WeaponBase):
     ele = ['wind']
-    att = 1574
     wt = 'blade'
+    att = 787
     s3 = {
         "dmg"      : 9.57   ,
         "sp"       : 7582   ,
         "startup"  : 0.1    ,
         "recovery" : 2.35   ,
-    }
+    } # Horizon Blade
+    a = [('k', 0.3, 'vs HMC')]
 
-class blade5d2light(WeaponBase):
+class HDT2_Endless_Horizon(WeaponBase):
+    ele = ['wind']
+    wt = 'blade'
+    att = 1574
+    s3 = {
+        "dmg"      : 9.57   ,
+        "sp"       : 7582   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.35   ,
+    } # Endless Blade
+    a = []
+
+class HDT1_Flash(WeaponBase):
     ele = ['light']
+    wt = 'blade'
+    att = 748
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 6925   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.68   ,
+    } # Flashing Blade
+    a = [('k', 0.3, 'vs HZD')]
+
+class HDT2_Brilliant_Flash(WeaponBase):
+    ele = ['light']
+    wt = 'blade'
     att = 1495
-    wt = 'blade'
     s3 = {
         "dmg"      : 2.13*5 ,
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
-    }
+    } # Brilliant Blade
+    a = []
 
-class blade5d2shadow(WeaponBase):
+class HDT1_Abyss(WeaponBase):
     ele = ['shadow']
-    att = 1621
     wt = 'blade'
+    att = 811
     s3 = {
         "dmg"      : 2.13*5 ,
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
-    }
+    } # Enigmatic Blade
+    a = [('k', 0.3, 'vs HJP')]
 
-flame  = blade5d2flame
-water  = blade5d2water
-wind   = blade5d2wind
-light  = blade5d2light
-shadow = blade5d2shadow
+class HDT2_True_Abyss(WeaponBase):
+    ele = ['shadow']
+    wt = 'blade'
+    att = 1621
+    s3 = {
+        "dmg"      : 2.13*5 ,
+        "sp"       : 6925   ,
+        "startup"  : 0.1    ,
+        "recovery" : 2.68   ,
+    } # Hellish Blade
+    a = []
+
+class Chimeratech_Lord(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 1061
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito_Tyrfing(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 1636
+    s3 = {
+        "buff"     : ('self',0.20,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+    a = []
+
+class Agito0UB_Tyrfing(Agito_Tyrfing):
+    att = 1051
+    s3 = {
+        "buff"     : ('self',0.10,-1,'att','buff',True),
+        "sp"       : 3000       ,
+        "startup"  : 0.10+0.15  ,
+        "recovery" : 1.05-0.15  ,
+    } # Megingjörð
+
+flame = HDT2_Blinding_Conflagration
+water = HDT2_Ruinous_Torrent
+wind = HDT2_Endless_Horizon
+light = HDT2_Brilliant_Flash
+shadow = HDT2_True_Abyss

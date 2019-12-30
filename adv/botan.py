@@ -9,10 +9,17 @@ def module():
 
 class Botan(Adv):
 #    comment = "RR+Jewels"
-    a3 = ('prep','50%')
+    a3 = ('prep','100%')
+    a3_c = 0.05
     conf = {}
-    conf['slots.a'] = RR() + Jewels_of_the_Sun()
+    conf['slots.a'] = RR() + BN()
     conf['slots.d'] = Shinobi()
+    conf['acl'] = """
+        `s2, pin='prep'
+        `s2
+        `s1, seq=5 and cancel
+        `s3, seq=5 and cancel
+        """
 
     def init(this):
         if this.condition('buff all team'):
@@ -30,14 +37,21 @@ class Botan(Adv):
     def s2_proc(this, e):
         Selfbuff('s2',0.1,15,'crit','chance').on()
 
+    def skill_charge(self, proc, c):
+        for s in ('s1', 's2', 's3'):
+            if s != proc:
+                skill = getattr(self, s)
+                skill.charge(skill.sp*c)
+                log('sp','{}_charge_{}'.format(proc, s), 0, '{}/{}'.format(int(skill.charged), int(skill.sp)))
+    def s1_before(this, e):
+        this.skill_charge('s1', this.a3_c)
+    def s2_before(this, e):
+        this.skill_charge('s2', this.a3_c)
+    def s3_before(this, e):
+        this.skill_charge('s3', this.a3_c)
+
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, fsc
-        `s3
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2,mass=0)
 
 

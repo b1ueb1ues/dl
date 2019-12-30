@@ -1,4 +1,2 @@
-addis.py.hmcmeta.py
-natalie.py.hp1.py  
+natalie.py.hp1.py
 natalie.py.hp20.py
-
