@@ -81,7 +81,6 @@ class Cassandra(Adv):
     def s3_before(this, e):
         this.skill_charge('s3', this.a1_c)
 
-
 if __name__ == '__main__':
     conf = {}
     adv_test.test(module(), conf, verbose=0)

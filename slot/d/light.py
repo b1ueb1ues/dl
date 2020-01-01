@@ -38,6 +38,13 @@ class Corsaint_Phoenix(DragonBase):
 
     def getbane(this):
         return this.adv.afflics.paralysis.get()*0.2
+C_Phoenix = Corsaint_Phoenix
+
+class Daikokuten(DragonBase):
+    ele = 'light'
+    att = 124
+    aura = [('att','passive',0.55),
+            ('att','passive',0.25,'hit15')]
 
 class Shishimai(DragonBase):
     ele = 'light'

@@ -15,6 +15,7 @@ class W_Elisanne(Adv):
     comment = '2in1'
     
     conf = {}
+    conf = {}
     conf['acl'] = """
         `s1,fsc and s2.charged<s2.sp-749
         `s2

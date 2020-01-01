@@ -21,7 +21,6 @@ class Luca(adv.Adv):
         """
     conf['cond_afflict_res'] = 0
     conf['slot.a'] = SotS()+Dear_Diary()
-    conf['slot.d'] = Corsaint_Phoenix()
 
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):

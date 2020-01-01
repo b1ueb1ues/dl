@@ -17,7 +17,10 @@ def set(slots):
     elif ele == 'wind':
         slots.d = slot.d.wind.Vayu()
     elif ele == 'light':
-        slots.d = slot.d.light.Cupid()
+        if wt == 'dagger' or wt == 'bow' or wt == 'wand':
+            slots.d = slot.d.light.Daikokuten()
+        else:
+            slots.d = slot.d.light.Cupid()
     elif ele == 'shadow':
         slots.d = slot.d.shadow.Shinobi()
 

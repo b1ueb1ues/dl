@@ -17,7 +17,6 @@ class Fleur(Adv):
     
 
     conf['slot.a'] = TB()+SotS()
-    conf['slot.d'] = Corsaint_Phoenix()
     conf['acl'] = """
         `s2, s=1
         `s1

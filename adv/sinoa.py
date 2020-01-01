@@ -21,7 +21,6 @@ class Sinoa(adv.Adv):
         `fs, seq=5
         '''
 
-
     def s1_proc(this, e):
         r = random.random()
         if r<0.25  :
@@ -30,7 +29,6 @@ class Sinoa(adv.Adv):
             adv.Teambuff('s1_crit',0.25,10,'crit').on()
         else:
             log('failed','s1')
-
 
 if __name__ == '__main__':
     conf = {}
