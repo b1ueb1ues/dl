@@ -56,7 +56,7 @@ class Fleur(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = TB()+SotS()
-    conf['slot.d'] = C_Phoenix()
+    #conf['slot.d'] = C_Phoenix()
     conf['acl'] = """
         `s2, s=1
         `s1

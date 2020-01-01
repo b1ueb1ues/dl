@@ -6,7 +6,6 @@ def module():
     return Alain
 
 class Alain(Adv):
-    pass
     #comment = 'reach 100 resist with Saintly Delivery'
     #conf = {
     #        'slots.a': RR()+Saintly_Delivery()

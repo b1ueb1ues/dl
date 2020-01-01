@@ -17,6 +17,9 @@ class H_Mym(Adv):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
 
+    def init(this):
+        this.slots.c.ex = {'hmym':('ex', 'hmym')}
+
     def s1_proc(this, e):
         if this.s1defdown :
             Debuff('s1defdown',0.15,10,1).on()

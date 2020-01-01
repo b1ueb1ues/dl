@@ -9,7 +9,12 @@ def module():
 class Euden(adv.Adv):
     conf ={}
     conf['slot.a'] = TSO()+EE()
-    pass
+
+    def prerun(this):
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
+        else:
+            this.afflics.burn.resist=100
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)
