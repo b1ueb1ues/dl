@@ -13,12 +13,11 @@ class Chitose(Adv):
     a3 = ('a',-0.1)
 
     conf = {}
-    conf['slot.a'] = Heralds_of_Hinomoto()+A_Game_of_Cat_and_Boar()
+    conf['slot.a'] = Jewels_of_the_Sun()+A_Game_of_Cat_and_Boar()
     conf['slot.d'] = Daikokuten()
     conf['acl'] = """
         `s1
-        `s3, fsc
-        `fs, seq=5
+        `s3, seq=5
         """
 
     def init(this):

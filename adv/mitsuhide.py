@@ -22,7 +22,8 @@ class Mitsuhide(Adv):
         `s3, fsc and cancel
         `fs, seq=4
     """
-    
+    conf['cond_afflict_res'] = 0
+
     def init(this):
         this.s1_stance = 1
 
@@ -31,9 +32,9 @@ class Mitsuhide(Adv):
 
     def prerun(this):
         this.hits = 0
-        
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 
