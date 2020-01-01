@@ -12,7 +12,6 @@ class Luca(adv.Adv):
 
     conf = {}
     conf['slot.a'] = SotS()+Dear_Diary()
-    conf['slot.d'] = C_Phoenix()
 
     def prerun(this):
         if this.condition('0 resist'):

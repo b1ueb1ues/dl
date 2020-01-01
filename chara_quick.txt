@@ -125,3 +125,7 @@ yue.py
 yuya.py
 zace.py
 zardin.py
+chitose.py
+hanabusa.py
+mitsuhide.py
+nobunaga.py

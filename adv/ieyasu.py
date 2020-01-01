@@ -7,7 +7,6 @@ def module():
     return Ieyasu
 
 class Ieyasu(Adv):
-    #comment = 'RR+Jewels'
     a1 = ('cc',0.13,'hp70')
     a2 = ('cd',0.3)
 
@@ -31,7 +30,6 @@ class Ieyasu(Adv):
         this.bleed = Bleed("g_bleed",0).reset()
  #       this.crit_mod = this.rand_crit_mod
         this.s2charge = 0
-
         if this.condition('always poisoned'):
             this.poisoned=True
         else:

@@ -464,6 +464,12 @@ class Spirit_of_the_Season_No_HP100(Amulet):
     att = 65
     a = [('k_paralysis',0.2)]
 
+class The_Wyrmclan_Duo(Amulet):
+    att = 65
+    a = [('s',0.30),
+         ('cd',0.17,'hp70')]
+TWD = The_Wyrmclan_Duo
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
