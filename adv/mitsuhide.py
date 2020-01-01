@@ -69,9 +69,9 @@ if __name__ == '__main__':
     conf['slot.a'] = TB()+SotS()
     #conf['slot.d'] = C_Phoenix()
     conf['acl'] = """
-        `s1, fsc and cancel
-        `s2, fsc and cancel
-        `s3, fsc and cancel
+        `s1
+        `s2
+        `s3
         `fs, seq=4
     """
     adv_test.test(module(), conf, verbose=-2)
