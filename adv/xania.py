@@ -1,6 +1,7 @@
 import adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Xania
@@ -27,6 +28,7 @@ class Xania(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = CC()+EE()
+    conf['slot.d'] = Apollo()
     conf['acl'] = """
         `s1
         `s2

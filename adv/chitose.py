@@ -10,7 +10,7 @@ class Chitose(Adv):
     a3 = ('a',-0.1)
 
     conf = {}
-    conf['slot.a'] = HG()+FWHC()
+    conf['slot.a'] = Heralds_of_Hinomoto()+A_Game_of_Cat_and_Boar()
     conf['slot.d'] = Daikokuten()
 
     def init(this):

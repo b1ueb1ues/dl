@@ -470,6 +470,12 @@ class The_Wyrmclan_Duo(Amulet):
          ('cd',0.17,'hp70')]
 TWD = The_Wyrmclan_Duo
 
+class A_Game_of_Cat_and_Boar(Amulet):
+    att = 33
+    def on(self, c):
+        if c.ele == 'light':
+            self.a = [('bt', 0.25)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
