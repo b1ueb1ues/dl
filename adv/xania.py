@@ -4,18 +4,15 @@ else:
     import adv.adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Xania
 
 class Xania(adv.Adv):
     a1 = ('s',0.35)
-    #comment = 'reach 100 resist with Saintly Delivery'
-    #conf = {}
-    #import slot
-    #conf['slots.a'] = slot.a.Saintly_Delivery()+slot.a.RR()
-    conf = {}
     conf['slot.a'] = CC()+EE()
+    conf['slot.d'] = Apollo()
     conf['acl'] = """
         `s1
         `s2

@@ -475,6 +475,13 @@ class A_New_Years_Battle(Amulet):
     a = [('a',0.8,'hp70'),('cc',0.10, 'hit15')]
 ANYB = A_New_Years_Battle
 
+class A_Game_of_Cat_and_Boar(Amulet):
+    att = 33
+    def on(self, c):
+        if c.ele == 'light':
+            self.a = [('bt', 0.25)]
+AGoCaB = A_Game_of_Cat_and_Boar
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

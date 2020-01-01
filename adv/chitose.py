@@ -13,7 +13,7 @@ class Chitose(Adv):
     a3 = ('a',-0.1)
 
     conf = {}
-    conf['slot.a'] = HG()+FWHC()
+    conf['slot.a'] = Jewels_of_the_Sun()+A_Game_of_Cat_and_Boar()
     conf['slot.d'] = Daikokuten()
 
     def init(this):
@@ -30,8 +30,7 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s1
-        `s3, fsc
-        `fs, seq=5
+        `s3, seq=5
         """
     adv_test.test(module(), conf, verbose=-2)
 
