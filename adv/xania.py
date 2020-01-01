@@ -4,6 +4,7 @@ else:
     import adv.adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Xania
@@ -16,6 +17,7 @@ class Xania(adv.Adv):
     #conf['slots.a'] = slot.a.Saintly_Delivery()+slot.a.RR()
     conf = {}
     conf['slot.a'] = CC()+EE()
+    conf['slot.d'] = Apollo()
     conf['acl'] = """
         `s1
         `s2
@@ -27,10 +29,10 @@ class Xania(adv.Adv):
             this.afflics.burn.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.burn.resist=100
-    
+
     def s1_proc(this, e):
         this.afflics.burn('s1',100,0.803)
-    
+
     def s2_proc(this, e):
         this.afflics.burn('s2',90,0.6)
 

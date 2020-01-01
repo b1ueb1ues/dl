@@ -13,8 +13,13 @@ class Chitose(Adv):
     a3 = ('a',-0.1)
 
     conf = {}
-    conf['slot.a'] = HG()+FWHC()
+    conf['slot.a'] = Heralds_of_Hinomoto()+A_Game_of_Cat_and_Boar()
     conf['slot.d'] = Daikokuten()
+    conf['acl'] = """
+        `s1
+        `s3, fsc
+        `fs, seq=5
+        """
 
     def init(this):
         if this.condition('buff all team'):
@@ -28,10 +33,5 @@ class Chitose(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s3, fsc
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2)
 
