@@ -25,8 +25,6 @@ CORS(app)
 ADV_DIR = '/home/wildshinobu/dl/adv/'
 MEANS_ADV = {
     'addis': 'addis.py.means',
-    # 'botan': 'botan.py.means',
-    'ieyasu': 'ieyasu.py.means',
     'sazanka': 'sazanka.py.means',
     'sinoa': 'sinoa.py.means',
     'victor': 'victor.py.m',
