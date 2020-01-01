@@ -481,6 +481,7 @@ class A_Game_of_Cat_and_Boar(Amulet):
     def on(self, c):
         if c.ele == 'light':
             self.a = [('bt', 0.25)]
+AGoCaB = A_Game_of_Cat_and_Boar
 
 amulets = []
 for k in list(globals()):
