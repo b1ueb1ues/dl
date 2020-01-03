@@ -44,13 +44,11 @@ class Chthonius(DragonBase):
         DragonBase.oninit(this, adv)
         this.adv = adv
         from adv.adv_test import sim_duration
-        timing = sim_duration/2
-        if adv.condition('shapeshift at start and halfway'):
-            this.dragon_might(0)
-        adv.Timer(this.dragon_might).on(timing).on()
-
-    def dragon_might(this, t):
-        this.adv.Buff('dragon_might',0.10, -1)
+        timing = int(sim_duration/2)
+        def dragon_might(t):
+            this.adv.Buff('dragon_might',0.10, -1).on()
+        if adv.condition('shapeshift at {}s'.format(timing)):
+            adv.Timer(dragon_might).on(timing)
 
 class Unreleased_Shadow35Haste(DragonBase):
     ele = 'shadow'

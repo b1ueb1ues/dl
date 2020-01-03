@@ -4,12 +4,13 @@ else:
     import adv.adv_test
 import adv
 from slot.a import *
-
+from slot.d import *
 
 def module():
     return Euden
 
 class Euden(adv.Adv):
+    a1 = ('dc', 0.10)
     conf ={}
     conf['slot.a'] = TSO()+EE()
     conf['acl'] = """
@@ -22,15 +23,6 @@ class Euden(adv.Adv):
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
             this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
-
-    def s1_proc(this, e):
-        this.afflics.burn('s1',110,0.883)
-
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
         else:
             this.afflics.burn.resist=100
 
