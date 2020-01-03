@@ -13,3 +13,4 @@ audric.py.sp.py
 d_xainfried.py.freyja.py
 g_elisanne.py.dj.py
 heinwald.py
+euden.py.maxstacks.py

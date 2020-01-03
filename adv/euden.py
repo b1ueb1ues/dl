@@ -1,7 +1,7 @@
 import adv_test
 import adv
 from slot.a import *
-
+from slot.d import *
 
 def module():
     return Euden
@@ -9,6 +9,7 @@ def module():
 class Euden(adv.Adv):
     conf ={}
     conf['slot.a'] = TSO()+EE()
+    a1 = ('dc', 0.10)
 
     def prerun(this):
         if this.condition('0 resist'):
