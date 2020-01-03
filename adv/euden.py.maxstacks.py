@@ -15,6 +15,7 @@ def module():
     return Euden
 
 class Euden(euden.Euden):
+    comment = '70% dragon\'s claw buff'
     a1 = ('dc_max', (0.10, 0.15, 0.15))
     def d_slots(self):
         self.conf.slot.a = The_Shining_Overlord()+Elegant_Escort()
