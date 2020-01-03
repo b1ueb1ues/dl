@@ -1,7 +1,7 @@
 name,stars,element,weapon,str_adv,,s1_hitdmg,s1_hits,s1_sp,s2_hitdmg,s2hits,s2_sp,,s1_dmgpc,s2_dmgpc,s1_buff,s2_buff,,lv2_autos
 addis,4,wind,blade,509,,216,4,2537,0,0,4877,,864,0,,,,
 aeleen,4,wind,lance,470,,838,1,2579,0,0,8534,,838,0,,,,
-alain,3,flame,lance,525,,254,3,2581,343,2,5112,,762,686,,,,TRUE
+alain,3,flame,lance,525,,264,3,2581,343,2,5112,,762,686,,,,TRUE
 albert,5,light,sword,502,,825,1,2351,0,0,160000,,825,0,,,,
 alex,4,shadow,dagger,476,,166,4,2243,121,5,4925,,664,605,debuff;0.05;10;0.4,,,
 alfonse,5,light,sword,487,,335,2,3500,351,2,4983,,670,702,,,,
@@ -73,7 +73,7 @@ pietro,3,water,axe,443,,518,2,2868,0,0,5840,,1036,0,,,,
 raemond,3,light,sword,477,,305,2,2443,307,2,4817,,610,614,,,,
 ranzal,4,wind,axe,444,,285,4,2805,0,0,7288,,1140,0,,,,
 rawn,4,light,bow,454,,771,1,2558,734,1,5008,,771,734,,,,
-renelle,3,flame,dagger,542,,226,3,2318,288,2,4892,,678,576,,debuff;0.05;10;0.3,,TRUE
+renelle,3,flame,dagger,542,,237,3,2318,332,2,4892,,678,576,,debuff;0.05;10;0.3,,TRUE
 rex,3,water,axe,490,,1036,1,2942,933,1,5807,,1036,933,,,,
 rodrigo,3,shadow,sword,481,,682,1,2613,614,1,4886,,682,614,,,,
 ryozen,4,light,lance,444,,0,0,4367,151,5,4855,,0,755,,,,
@@ -91,7 +91,7 @@ vida,3,shadow,dagger,453,,339,2,2446,0,0,5315,,678,0,,,,
 waike,3,water,bow,446,,262,3,2395,667,1,4989,,786,667,,,,
 xainfried,5,water,lance,484,,230,4,2450,0,0,8534,,920,0,,team;0.2;15,,
 xander,5,water,sword,503,,825,1,2714,248,3,4817,,825,744,,,,
-xania,3,flame,wand,584,,895,1,2759,805,1,5570,,895,805,,,,TRUE
+xania,3,flame,wand,584,,895,1,2759,895,1,5570,,895,805,,,,TRUE
 xiaolei,3,light,wand,461,,895,1,2785,0,0,3909,,895,0,,,,
 yue,4,flame,axe,454,,509,2,3033,0,0,8000,,1018,0,,self;0.2;20;crit;rate,,
 zace,3,shadow,lance,486,,680,1,2352,229,3,5161,,680,687,,,,
