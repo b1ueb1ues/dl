@@ -21,7 +21,7 @@ class Alain(Adv):
         this.afflics.burn('s1',100,0.803)
     
     def s2_proc(this, e):
-        this.afflics.burn('s2',90,0.6)
+        this.afflics.burn('s1',100,0.803)
 
 if __name__ == '__main__':
     conf = {}
