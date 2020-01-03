@@ -7,6 +7,8 @@ def module():
     return D_Xainfried
 
 class D_Xainfried(Adv):
+    a1 = ('dc', 0.04)
+
     conf = {}
     conf['slots.d'] = Longlong()
     conf['slots.a'] = HoH()+FWHC()
