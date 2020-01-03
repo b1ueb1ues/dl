@@ -12,8 +12,15 @@ class Alex(adv.Adv):
 
     conf = {}
     conf['slot.d'] = Shinobi()
-    tmp = 0
 
+    def prerun(this):
+        if this.condition('0 resist'):
+            this.afflics.poison.resist=0
+        else:
+            this.afflics.poison.resist=100
+
+    def s1_proc(this, e):
+        this.afflics.poison('s1',100,0.396)
 
 if __name__ == '__main__':
     conf = {}
