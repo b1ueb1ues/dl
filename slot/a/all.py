@@ -478,7 +478,7 @@ TWD = The_Wyrmclan_Duo
 
 class A_New_Years_Battle(Amulet):
     att = 52
-    a = [('a',0.8,'hp70'),('cc',0.10, 'hit15')]
+    a = [('a',0.08,'hp70'),('cc',0.10, 'hit15')]
 ANYB = A_New_Years_Battle
 
 class A_Game_of_Cat_and_Boar(Amulet):
