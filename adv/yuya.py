@@ -1,10 +1,19 @@
-import adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 from adv import *
 
 def module():
     return Yuya
 
 class Yuya(Adv):
+    conf = {}
+    conf['acl'] = """
+        `s1
+        `s3
+        `fs, seq=4
+        """
 
     def prerun(this):
         this.a3_iscding = 0
@@ -42,15 +51,5 @@ class Yuya(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s3, seq=5
-        `fs, seq=5
-        """
-
-    #from module import ra
-    #ra.test(module(), conf)
-    #exit()
-
     adv_test.test(module(), conf, verbose=0, mass=0)
 
