@@ -11,9 +11,9 @@ class Sufang(Adv):
     a3 = ('s',0.20)
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
+        `s1, seq=5
+        `s2, seq=5
+        `s3
         `fs, seq=5
         """
 
