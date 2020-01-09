@@ -113,19 +113,23 @@
                     <label>Co-Abilities:&nbsp;</label>
                     <div class="form-check form-check-inline">
                         <input id="ex-blade" class="form-check-input" type="checkbox" />
-                        <label for="ex-blade" class="form-check-label">Blade</label>
+                        <label for="ex-blade" class="form-check-label" title="×10% Strength">Blade</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input id="ex-wand" class="form-check-input" type="checkbox" />
-                        <label for="ex-wand" class="form-check-label">Wand</label>
+                        <label for="ex-wand" class="form-check-label" title="×15% Skill Damage">Wand</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input id="ex-dagger" class="form-check-input" type="checkbox" />
-                        <label for="ex-dagger" class="form-check-label">Dagger</label>
+                        <label for="ex-dagger" class="form-check-label" title="+10% Crit Rate">Dagger</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input id="ex-bow" class="form-check-input" type="checkbox" />
-                        <label for="ex-bow" class="form-check-label">Bow</label>
+                        <label for="ex-bow" class="form-check-label" title="+15% Skill Haste">Bow</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input id="ex-hmym" class="form-check-input" type="checkbox" />
+                        <label for="ex-hmym" class="form-check-label" title="+30% Crit Damage">HMym</label>
                     </div>
                 </div>
             </div>
@@ -175,7 +179,9 @@
                             <h5>How do I enter ACL?</h5>
                             <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
                             <h5>How do I make Agito weapon users use s3 only when there's no buff?</h5>
-                            <p>Add a condition like <pre>`s3, not this.s3_buff_on</pre></p>
+                            <p>Add a condition like
+                                <pre>`s3, not this.s3_buff_on</pre>
+                            </p>
                             <h5>What is the Markdown view for?</h5>
                             <p>It shows a plain text result meant to be copied to discord.</p>
                             <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
