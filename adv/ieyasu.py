@@ -13,8 +13,6 @@ class Ieyasu(Adv):
     a1 = ('cc',0.13,'hp70')
     a2 = ('cd',0.3)
 
-    comment = 'no poison'
-
     conf = {}
     #conf['slots.a'] = slot.a.LC()+slot.a.RR()
     conf['slots.a'] = RR()+JotS()
@@ -23,6 +21,7 @@ class Ieyasu(Adv):
         `s2, seq=5 and this.bleed._static['stacks'] > 0
         `s3
         """
+    conf['cond_afflict_res'] = 0
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = RR()+BN()
@@ -40,11 +39,11 @@ class Ieyasu(Adv):
         this.bleed = Bleed("g_bleed",0).reset()
  #       this.crit_mod = this.rand_crit_mod
         this.s2charge = 0
-        this.poisoned = False
-        # if this.condition('always poisoned'):
-        #     this.poisoned=True
-        # else:
-        #     this.poisoned=False
+        if this.conf['cond_afflict_res'] < 100:
+            if this.condition('always poisoned'):
+                this.poisoned = True
+            else:
+                this.poisoned = False
 
     def s1_proc(this, e):
         if this.poisoned:

@@ -23,17 +23,11 @@ class Lathna(Adv):
     conf['cond_afflict_res'] = 0
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
-        if this.condition('{} resist with poisoner in team'.format(this.conf['cond_afflict_res'])):
-            this.enable_s1_boost = True
-            this.afflics.poison.resist = this.conf['cond_afflict_res']
-        else:
-            this.enable_s1_boost = False
-            this.afflics.poison.resist = 100
-
-        if this.condition('always poisoned'):
-            this.poisoned=True
-        else:
-            this.poisoned=False
+        if this.conf['cond_afflict_res'] < 100:
+            if this.condition('always poisoned'):
+                this.poisoned = True
+            else:
+                this.poisoned = False
 
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
