@@ -11,8 +11,8 @@ class Yuya(Adv):
     conf = {}
     conf['acl'] = """
         `s1
-        `s3, seq=5
-        `fs, seq=5
+        `s3
+        `fs, seq=4
         """
 
     def prerun(this):
