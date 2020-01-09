@@ -3,7 +3,8 @@ EX_MAP = {
     'blade': 'k',
     'wand': 'r',
     'bow': 'b',
-    'dagger': 'd'
+    'dagger': 'd',
+    'hmym': 'm'
 }
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 16000
