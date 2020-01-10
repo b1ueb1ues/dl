@@ -9,14 +9,24 @@ def module():
     return Lathna
 
 class Lathna(Adv):
+    comment = 'no poison'
+    conf = {}
+    conf['slot.a'] = RR()+BN()
+    conf['acl'] = """
+        # s1a = this.s1a
+        `s1a
+        `s2, seq = 5
+        `s3, seq = 5
+        """
 
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
 
-        if this.condition('always poisoned'):
-            this.poisoned=True
-        else:
-            this.poisoned=False
+        this.poisoned=False
+        # if this.condition('always poisoned'):
+        #     this.poisoned=True
+        # else:
+        #     this.poisoned=False
 
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
@@ -43,13 +53,5 @@ class Lathna(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.a'] = RR()+BN()
-    conf['acl'] = """
-        # s1a = this.s1a
-        `s1a
-        `s2, seq = 5
-        `s3, seq = 5
-        """
-
     adv_test.test(module(), conf, verbose=0, mass=0)
 
