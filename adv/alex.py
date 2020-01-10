@@ -21,6 +21,7 @@ class Alex(adv.Adv):
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
+    conf['cond_afflict_res'] = 0
     def d_acl(this):
         if adv_test.sim_duration == 120:
             this.conf['acl'] = """
@@ -32,7 +33,7 @@ class Alex(adv.Adv):
             """
 
     def prerun(this):
-        if this.condition('0 resist'):
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
             this.afflics.poison.resist=0
         else:
             this.afflics.poison.resist=100
