@@ -20,12 +20,12 @@ class Ieyasu(Adv):
     def s2ifbleed(this):
         if this.s2buff.get()!=0:
             if this.bleed._static['stacks'] > 0:
-                return 0.15
+                return 0.2
         return 0
 
     def prerun(this):
         random.seed()
-        this.s2buff = Selfbuff("s2",0.15,20,'crit')
+        this.s2buff = Selfbuff("s2",0.2,15,'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
  #       this.crit_mod = this.rand_crit_mod
