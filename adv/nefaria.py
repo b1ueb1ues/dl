@@ -49,7 +49,7 @@ class Nefaria(Adv):
     def fs_proc(this, e):
         if this.s2fscharge > 0:
             this.s2fscharge -= 1
-            this.dmg_make("o_s2_fs",0.48)
+            this.dmg_make("o_fs_boost",0.48)
             this.afflics.blind('s2_fs', 100+this.fullhp*60)
 
 

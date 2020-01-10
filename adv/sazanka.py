@@ -38,7 +38,7 @@ class Sazanka(Adv):
     def fs_proc(this, e):
         if this.s2fscharge > 0:
             this.s2fscharge -= 1
-            this.dmg_make("o_s2fs",0.38)
+            this.dmg_make("o_fs_boost",0.38)
             this.afflics.sleep('s2_fs', 100, 4.5)
 
 

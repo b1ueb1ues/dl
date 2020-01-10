@@ -33,7 +33,7 @@ class Ieyasu(Adv):
 
     def prerun(this):
         random.seed()
-        this.s2buff = Selfbuff("s2",0.20,20,'crit')
+        this.s2buff = Selfbuff("s2",0.20,15,'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2charge = 0
