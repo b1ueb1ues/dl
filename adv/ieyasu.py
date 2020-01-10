@@ -14,7 +14,6 @@ class Ieyasu(Adv):
     a2 = ('cd',0.3)
 
     conf = {}
-    #conf['slots.a'] = slot.a.LC()+slot.a.RR()
     conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
         `s1
@@ -34,10 +33,9 @@ class Ieyasu(Adv):
 
     def prerun(this):
         random.seed()
-        this.s2buff = Selfbuff("s2",0.20,20,'crit')
+        this.s2buff = Selfbuff("s2",0.20,15,'crit')
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
- #       this.crit_mod = this.rand_crit_mod
         this.s2charge = 0
         if this.conf['cond_afflict_res'] < 100:
             if this.condition('always poisoned'):

@@ -12,15 +12,16 @@ class Cassandra(Adv):
     # comment = 'no counter damage'
     a1 = ('prep','100%')
     a1_c = 0.05
+    a3 = ('ro',(0.15, 60))
+
     conf = {}
-    conf['slots.a'] = CC()+United_by_One_Vision()
+    conf['slots.a'] = CC()+Dear_Diary()
     conf['acl'] = """
         `s1
         `s2, seq=5
         `s3
     """
-    a3 = ('ro', (0.15, 60))
-
+    conf['cond_afflict_res'] = 0
     def init(this):
         if this.condition('0 resist'):
             this.afflics.poison.resist=0
@@ -40,26 +41,6 @@ class Cassandra(Adv):
             this.s2reflect = 500
         else:
             this.s2reflect = 0
-
-    def dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 2
-        elif name == 'x3':
-            this.hits += 3
-        elif name == 'x4':
-            this.hits += 2
-        elif name == 'x5':
-            this.hits += 5
-        elif name == 'fs':
-            this.hits += 2
-        elif name == 's1':
-            this.hits += 2
-        elif name == 's2':
-            this.hits += 5
-        elif name == 's3':
-            this.hits += 1
 
     def s1_proc(this, e):
         this.afflics.poison('s1',120,0.582)

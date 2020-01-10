@@ -27,7 +27,7 @@ class Vida(Adv):
     def fs_proc(this, e):
         if this.s2charge > 0:
             this.s2charge -= 1
-            this.dmg_make("o_s2fs",0.21*3)
+            this.dmg_make("o_fs_boost",0.21*3)
 
 
 

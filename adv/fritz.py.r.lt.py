@@ -20,7 +20,7 @@ class Fritz(adv.Adv):
     def fs_proc(this, e):
         if this.s2fscharge > 0:
             this.s2fscharge -= 1
-            this.dmg_make("o_s2fs",0.57*3+0.29)
+            this.dmg_make("o_fs_boost",0.57*3+0.29)
 
 
 
