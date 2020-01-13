@@ -41,6 +41,20 @@ class Freyja(DragonBase):
     att = 120
     aura = [('sp','passive',0.35)]
 
+class Garland(DragonBase):
+    ele = 'wind'
+    att = 126
+    aura = ('att', 'passive', 0.50)
+
+    def oninit(this, adv):
+        DragonBase.oninit(this, adv)
+        this.adv = adv
+        if adv.condition('no knockback'):
+            adv.Timer(this.dauntless_rampart).on(15)
+
+    def dauntless_rampart(this, t):
+        this.adv.Buff('dauntless_rampart',0.30, -1).on()
+
 #class Hastur(DragonBase):
 #    ele = 'wind'
 #    att = 127
