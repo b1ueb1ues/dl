@@ -30,7 +30,8 @@ class Xander(adv.Adv):
     #elif a == 4:
     #    conf['slots.a'] = The_Prince_of_Dragonyule()+slot.a.Stellar_Show()
 
-
+    def s1_proc(this, e):
+        this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.05*len(this.all_buffs))
 
 if __name__ == '__main__':
     conf = {}
