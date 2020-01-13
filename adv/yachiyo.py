@@ -36,15 +36,16 @@ class Yachiyo(Adv):
 
 
     def s2_proc(this, e):
-        this.fso_dmg = this.conf.fs.dmg
+        # this.fso_dmg = this.conf.fs.dmg
         this.fso_sp = this.conf.fs.sp
-        this.conf.fs.dmg = 7.82
+        # this.conf.fs.dmg = 7.82
         this.conf.fs.sp = 200
         this.fsa_charge = 1
 
     def fs_proc(this, e):
         if this.fsa_charge:
-            this.conf.fs.dmg = this.fso_dmg
+            # this.conf.fs.dmg = this.fso_dmg
+            this.dmg_make("o_fs_boost",6.90)
             this.conf.fs.sp = this.fso_sp
             this.fsa_charge = 0
 

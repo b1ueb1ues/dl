@@ -12,7 +12,7 @@ class Cassandra(Adv):
     comment = 'no counter damage'
     a1 = ('prep','100%')
     a1_c = 0.05
-    a3 = ('ro',0.15)
+    a3 = ('ro',(0.15, 60))
 
     def init(this):
         if this.condition('0 resist'):
@@ -28,35 +28,35 @@ class Cassandra(Adv):
     def prerun(this):
         this.comment = 's2 drops combo'
         this.hits = 0
-        this.flurry_str = Selfbuff('flurry_str',0.2,-1,'att','passive')
+        # this.flurry_str = Selfbuff('flurry_str',0.2,-1,'att','passive')
         
         #timing = adv_test.sim_duration/3
         #this.ro(0)
         #Timer(this.ro).on(timing)
         #Timer(this.ro).on(timing*2)
 
-    def dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 2
-        elif name == 'x3':
-            this.hits += 3
-        elif name == 'x4':
-            this.hits += 2
-        elif name == 'x5':
-            this.hits += 5
-        elif name == 'fs':
-            this.hits += 2
-        elif name == 's1':
-            this.hits += 2
-        elif name == 's2':
-            this.hits += 5
-        elif name == 's3':
-            this.hits += 1
+    # def dmg_proc(this, name, amount):
+    #     if name == 'x1':
+    #         this.hits += 1
+    #     elif name == 'x2':
+    #         this.hits += 2
+    #     elif name == 'x3':
+    #         this.hits += 3
+    #     elif name == 'x4':
+    #         this.hits += 2
+    #     elif name == 'x5':
+    #         this.hits += 5
+    #     elif name == 'fs':
+    #         this.hits += 2
+    #     elif name == 's1':
+    #         this.hits += 2
+    #     elif name == 's2':
+    #         this.hits += 5
+    #     elif name == 's3':
+    #         this.hits += 1
 
-        if this.hits >= 15:
-            this.flurry_str.on()
+    #     if this.hits >= 15:
+    #         this.flurry_str.on()
 
     #def ro(this, t):
         #Selfbuff('a3',0.10,-1).on()
@@ -65,7 +65,7 @@ class Cassandra(Adv):
         this.afflics.poison('s1',120,0.582)
 
     def s2_proc(this, e):
-        this.flurry_str.off()
+        # this.flurry_str.off()
         this.dmg_make('o_s2_crisis',this.s2boost*10.82)
 
     def skill_charge(self, proc, c):
@@ -83,7 +83,7 @@ class Cassandra(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = CC()+BN()
+    conf['slots.a'] = CC()+Dear_Diary()
     conf['acl'] = """
         `s1
         `s2, seq=5

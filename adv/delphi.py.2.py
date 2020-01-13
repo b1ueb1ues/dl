@@ -44,7 +44,7 @@ class Delphi(Adv):
     def fs_proc(this, e):
         if this.s1fscharge > 0:
             this.s1fscharge -= 1
-            this.dmg_make("o_s2fs",0.21*3)
+            this.dmg_make("o_fs_boost",0.21*3)
             this.afflics.poison('fs',this.proc_chance,3.00,24)
 
 if __name__ == '__main__':
