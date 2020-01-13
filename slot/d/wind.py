@@ -49,7 +49,7 @@ class Garland(DragonBase):
     def oninit(this, adv):
         DragonBase.oninit(this, adv)
         this.adv = adv
-        if adv.condition('no knockback'):
+        if adv.condition('maintain shield'):
             adv.Timer(this.dauntless_rampart).on(15)
 
     def dauntless_rampart(this, t):
