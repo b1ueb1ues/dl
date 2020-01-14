@@ -49,11 +49,11 @@ class Garland(DragonBase):
     def oninit(this, adv):
         DragonBase.oninit(this, adv)
         this.adv = adv
-        if adv.condition('no knockback'):
+        if adv.condition('maintain shield'):
             adv.Timer(this.dauntless_rampart).on(15)
 
     def dauntless_rampart(this, t):
-        this.adv.Buff('dauntless_rampart',0.30, -1).on()
+        this.adv.Buff('dauntless_rampart',0.30, -1,'att','passive').on()
 
 #class Hastur(DragonBase):
 #    ele = 'wind'
