@@ -53,7 +53,7 @@ class Garland(DragonBase):
             adv.Timer(this.dauntless_rampart).on(15)
 
     def dauntless_rampart(this, t):
-        this.adv.Buff('dauntless_rampart',0.30, -1,'att','passive').on()
+        this.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
 
 #class Hastur(DragonBase):
 #    ele = 'wind'

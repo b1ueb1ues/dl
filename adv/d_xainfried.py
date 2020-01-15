@@ -11,7 +11,7 @@ class D_Xainfried(Adv):
 
     conf = {}
     conf['slots.d'] = Longlong()
-    conf['slots.a'] = HoH()+FWHC()
+    conf['slots.a'] = CC()+ADD()
 
     def init(this):
         this.a1_iscding = 0
