@@ -1,6 +1,6 @@
 import adv_test
 import adv
-from slot.d import *
+from slot.a import *
 
 def module():
     return Alex
@@ -11,7 +11,7 @@ class Alex(adv.Adv):
     a3 = ('sp',0.05)
 
     conf = {}
-    conf['slot.d'] = Shinobi()
+    conf['slot.a'] = TB()+TP()
 
     def prerun(this):
         if this.condition('0 resist'):

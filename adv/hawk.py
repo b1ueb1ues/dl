@@ -1,5 +1,6 @@
 import adv_test
 from adv import *
+from slot.d import *
 
 def module():
     return Hawk
@@ -60,6 +61,7 @@ class Hawk(Adv):
 if __name__ == '__main__':
     #module().comment = 'boost dmg from stun 3 times'
     conf = {}
+    conf['slot.d'] = Garland()
     conf['acl'] = """
         `s1, seq=5
         `s3, seq=5

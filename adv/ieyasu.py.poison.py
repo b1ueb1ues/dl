@@ -1,5 +1,6 @@
 import adv_test
 import ieyasu
+from slot.a import *
 
 def module():
     return Ieyasu
@@ -13,6 +14,8 @@ class Ieyasu(ieyasu.Ieyasu):
         else:
             this.poisoned=False
 
+    def d_slots(this):
+        this.conf.slot.a = RR()+The_Plaguebringer_Always_Poisoned()
 
 if __name__ == '__main__':
     conf = {}

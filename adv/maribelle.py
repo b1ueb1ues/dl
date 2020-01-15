@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Maribelle
@@ -10,8 +11,7 @@ class Maribelle(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-   # import slot
-   # conf['slots.d'] = slot.d.wind.Longlong()
+    conf['slots.d'] = Garland()
     conf['acl'] = """
         `s1
         `s2, seq=5 and cancel

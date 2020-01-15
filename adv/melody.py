@@ -11,7 +11,7 @@ class Melody(adv.Adv):
     a1 = ('cc',0.08,'hp100')
 
     conf = {}
-    conf['slots.a'] = LC()+ADD()
+    conf['slots.a'] = RR()+ADD()
     conf['slots.d'] = Garland()
 
 
