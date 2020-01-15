@@ -13,7 +13,7 @@ class Kuhai(Adv):
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')
     conf = {}
-    conf['slot.d'] = Zephyr()
+    conf['slot.d'] = Garland()
 
     def init(this):
         if this.condition('huge hitbox eneny'):
