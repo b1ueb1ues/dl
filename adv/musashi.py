@@ -1,6 +1,7 @@
 import adv_test
 import adv
 from slot.d import *
+from slot.a import *
 
 def module():
     return Musashi
@@ -10,11 +11,16 @@ class Musashi(adv.Adv):
     a3 = ('od',0.08)
 
     conf = {}
+    conf['slot.d'] = Pazuzu()
+    conf['slot.a'] = RR()+The_Plaguebringer()
+    conf['acl'] = """
+        `s2, seq=5
+        `s1
+        `s3, s
+        """
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.d = Vayu()
-        else:
-            this.conf.slot.d = Pazuzu()
     
     def prerun(this):
         if this.condition('0 resist'):
@@ -28,10 +34,5 @@ class Musashi(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s2, seq=5 
-        `s1
-        `s3, s
-        """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

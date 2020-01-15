@@ -6,17 +6,11 @@ from slot.d import *
 def module():
     return Delphi
 
-class Twinfold_Bonds(Amulet):  
-    att = 65
-    a = [('s',0.40)]
-
 class Delphi(Adv):
     a1 = ('a',-0.6)
 
     def prerun(this):
-        this.comment = 's2 drops combo; only use poison FS with combo'
         this.hits = 0
-        this.flurry_str = Selfbuff('flurry_str',0.15,-1,'att','passive')
         this.proc_chance = 120
         
         if this.condition('0 resist'):
@@ -58,7 +52,6 @@ class Delphi(Adv):
             this.hits += 5
 
         if this.hits >= 15:
-            this.flurry_str.on()
             this.proc_chance = 180
 
     def s1_proc(this, e):
@@ -68,7 +61,6 @@ class Delphi(Adv):
 
     def s2_before(this, e):
         this.hits = 0
-        this.flurry_str.off()
         this.proc_chance = 120
     
     def s2_proc(this, e):
@@ -83,7 +75,7 @@ class Delphi(Adv):
 if __name__ == '__main__':
     conf = {}
 
-    conf['slots.a'] = MF()+TP()
+    conf['slots.a'] = Mega_Friends()+The_Plaguebringer()
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1

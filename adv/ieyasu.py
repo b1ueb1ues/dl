@@ -40,7 +40,7 @@ class Ieyasu(Adv):
         this.poisoned = False
 
     def s1_proc(this, e):
-        if this.poisoned:
+        if this.afflics.poison.get():
             coef = 0.31*8
             this.dmg_make("o_s1_boost", coef)
             Bleed("s1_bleed", 1.752).on()

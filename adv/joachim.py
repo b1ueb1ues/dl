@@ -22,11 +22,6 @@ class Joachim(Adv):
             this.afflics.poison.resist=100
 
     def s1_proc(this, e):
-        coef = 2.2
-        this.dmg_make('s1', coef)
-        coef = 2.2*0.8 * this.afflics.paralysis.get()
-        this.dmg_make('o_s1_boost', coef)
-
         if this.s1_stance == 1:
             this.afflics.poison('s1',110, 0.53)
             this.s1_stance = 2

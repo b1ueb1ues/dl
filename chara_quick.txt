@@ -129,3 +129,5 @@ chitose.py
 hanabusa.py
 mitsuhide.py
 nobunaga.py
+kirsty.py
+joachim.py
