@@ -9,7 +9,7 @@ def module():
 class D_Xainfried(Adv):
     conf = {}
     conf['slots.d'] = Freyja()
-    conf['slots.a'] = HG()+FWHC()
+    conf['slots.a'] = HoH()+A_Dogs_Day()
 
     def init(this):
         this.a1_iscding = 0
