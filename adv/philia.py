@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.d import *
 
 def module():
     return Philia
@@ -28,6 +29,7 @@ class Philia(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.d'] = Garland()
     conf['acl'] = """
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc

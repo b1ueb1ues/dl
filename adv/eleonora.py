@@ -8,7 +8,7 @@ def module():
 class Eleonora(adv.Adv):
     a3 = ('prep','50%')
     conf = {}
-    conf['slot.d'] = Pazuzu()
+    conf['slot.d'] = Garland()
 
     def prerun(this):
         if this.condition('0 resist'):

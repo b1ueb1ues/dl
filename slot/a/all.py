@@ -487,6 +487,10 @@ class The_Plaguebringer(Amulet):
     a = [('k_poison',0.25)]
 TP = The_Plaguebringer
 
+class The_Plaguebringer_Always_Poisoned(Amulet):
+    att = 50
+    a = [('k',0.25)]
+
 class A_Dogs_Day(Amulet):
     att = 62
     def on(this, c):

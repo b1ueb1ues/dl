@@ -83,7 +83,7 @@ class Cassandra(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = CC()+Dear_Diary()
+    conf['slots.a'] = CC()+TP()
     conf['acl'] = """
         `s1
         `s2, seq=5
