@@ -300,13 +300,17 @@ function runAdvTest() {
         requestJson['t'] = t;
     }
     if (!isNaN(parseInt($('#input-afflict').val()))) {
-        requestJson['afflict'] = $('#input-afflict').val();
+        requestJson['afflict_res'] = $('#input-afflict').val();
     }
     if (!isNaN(parseInt($('#input-teamdps').val()))) {
         requestJson['teamdps'] = $('#input-teamdps').val();
     }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
+    }
+    if ($('#input-sim-afflict').val() !== 'none') {
+        requestJson['sim_afflict_type'] = $('#input-sim-afflict-type').val();
+        requestJson['sim_afflict_time'] = $('#input-sim-afflict-time').val();
     }
     $.ajax({
         url: APP_URL + 'simc_adv_test',
@@ -393,22 +397,32 @@ function clearResults() {
         dps_chart.destroy();
     }
 }
-function weaponSelectChange(){
+function weaponSelectChange() {
     const weapon = $('#input-wep').val();
-    if (weapon.startsWith('Agito')){
+    if (weapon.startsWith('Agito')) {
         $('#input-edit-acl').prop('checked', true);
         $('#input-acl').prop('disabled', false);
         const acl = $('#input-acl').val().split('\n');
         let new_acl = ''
-        for (const line of acl){
-            if (line.startsWith('`s3')){
+        for (const line of acl) {
+            if (line.startsWith('`s3')) {
                 new_acl += '`s3, not this.s3_buff_on and cancel'
-            }else{
+            } else {
                 new_acl += line
             }
             new_acl += '\n'
         }
         $('#input-acl').val(new_acl);
+    }
+}
+function simAfflictSelectChange() {
+    const simAfflict = $('#input-sim-afflict-type').val();
+    if (simAfflict !== 'none') {
+        $('input-sim-afflict-time').prop('disabled', false);
+        $('input-sim-afflict-time').val(75);
+    } else {
+        $('input-sim-afflict-time').prop('disabled', true);
+        $('input-sim-afflict-time').val('');
     }
 }
 window.onload = function () {

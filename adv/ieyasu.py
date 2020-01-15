@@ -37,11 +37,11 @@ class Ieyasu(Adv):
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2charge = 0
-        if this.conf['cond_afflict_res'] < 100:
-            from adv.adv_test import sim_duration
-            if this.condition('always poisoned'):
-                this.afflics.poison.resist=0
-                this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
+        # if this.conf['cond_afflict_res'] < 100:
+        #     from adv.adv_test import sim_duration
+        #     if this.condition('always poisoned'):
+        #         this.afflics.poison.resist=0
+        #         this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
     def s1_proc(this, e):
         if this.afflics.poison.get():

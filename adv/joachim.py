@@ -22,15 +22,17 @@ class Joachim(Adv):
         `s1
         `s3
     """
+    conf['cond_afflict_res'] = 0
 
     def init(this):
         this.s1_stance = 1
 
     def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.poison.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.poison.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.poison.resist=100
+
 
     def s1_proc(this, e):
         if this.s1_stance == 1:

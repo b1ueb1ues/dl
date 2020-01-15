@@ -909,6 +909,17 @@ class Adv(object):
         this.fsf = this.a_fsf
         this.dodge = this.a_dodge
 
+    def sim_affliction(this):
+        if 'sim_afflict' in this.conf:
+            t = int(this.conf.sim_afflict.time)
+            if t > 0:
+                if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
+                    if this.conf.sim_afflict.type == 'poison':
+                        this.afflics.poison.on('simulated_poison', 1, 0, duration=t, iv=t)
+                    elif this.conf.sim_afflict.type == 'burn':
+                        this.afflics.burn.on('simulated_burn', 1, 0, duration=t, iv=t)
+                    elif this.conf.sim_afflict.type == 'paralysis':
+                        this.afflics.paralysis.on('simulated_paralysis', 1, 0, duration=t, iv=t)
 
     def sync_slot(this, conf_slots):
         #this.cmnslots(conf)
@@ -1245,6 +1256,7 @@ class Adv(object):
         this.slots.oninit(this)
 
         this.prerun()
+        this.sim_affliction()
 
         this.d_acl()
         this.acl_backdoor()
