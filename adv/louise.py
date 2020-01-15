@@ -3,6 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -12,7 +13,7 @@ class Louise(adv.Adv):
     a1 = ('od',0.13)
     comment = 'no fs'
     conf = {}
-    # conf['slot.d'] = Pazuzu()
+    conf['slot.a'] = DD()+TP()
     conf['acl'] = """
         `s1, seq=5
         `s2, seq=5

@@ -15,7 +15,7 @@ class Cassandra(Adv):
     a3 = ('ro',(0.15, 60))
 
     conf = {}
-    conf['slots.a'] = CC()+Dear_Diary()
+    conf['slots.a'] = CC()+TP()
     conf['acl'] = """
         `s1
         `s2, seq=5

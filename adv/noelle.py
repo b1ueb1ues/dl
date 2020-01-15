@@ -16,7 +16,7 @@ class Noelle(Adv):
 
     conf = {}
     conf['slots.d'] = Freyja()
-    conf['slots.a'] = HG()+FWHC()
+    conf['slots.a'] = A_Dogs_Day()+HoH()
 
     conf['acl'] = """
         `s1

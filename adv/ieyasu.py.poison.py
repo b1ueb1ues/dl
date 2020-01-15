@@ -1,5 +1,6 @@
 import adv_test
 import ieyasu
+from slot.a import *
 
 def module():
     return Ieyasu
@@ -8,11 +9,13 @@ class Ieyasu(ieyasu.Ieyasu):
     comment = ''
     def prerun(this):
         super().prerun()
+        from adv_test import sim_duration
         if this.condition('always poisoned'):
-            this.poisoned=True
-        else:
-            this.poisoned=False
+            this.afflics.poison.resist=0
+            this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
+    def d_slots(this):
+        this.slots.a = RR()+The_Plaguebringer()
 
 if __name__ == '__main__':
     conf = {}

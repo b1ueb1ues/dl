@@ -1,12 +1,16 @@
 import adv_test
-import lathna
+from adv import *
+import kirsty
 from slot.a import *
 
 def module():
-    return Lathna
+    return Kirsty
 
-class Lathna(lathna.Lathna):
+class Kirsty(kirsty.Kirsty):
     comment = ''
+    def d_slots(this):
+        this.slots.a = RR()+The_Plaguebringer()
+
     def prerun(this):
         super().prerun()
         from adv_test import sim_duration
@@ -14,10 +18,6 @@ class Lathna(lathna.Lathna):
             this.afflics.poison.resist=0
             this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
-    def d_slots(this):
-        this.slots.a = RR()+The_Plaguebringer()
-
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=0, mass=0)
-
+    adv_test.test(module(), conf, verbose=0)

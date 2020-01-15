@@ -4,7 +4,7 @@ else:
     import adv.adv_test
 from adv import *
 import adv
-from slot.d import *
+from slot.a import *
 
 def module():
     return Alex
@@ -22,6 +22,7 @@ class Alex(adv.Adv):
         `fs, seq=5
         """
     conf['cond_afflict_res'] = 0
+    conf['slot.a'] = TB()+TP()
     def d_acl(this):
         if adv_test.sim_duration == 120:
             this.conf['acl'] = """

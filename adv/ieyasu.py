@@ -38,13 +38,13 @@ class Ieyasu(Adv):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2charge = 0
         if this.conf['cond_afflict_res'] < 100:
+            from adv.adv_test import sim_duration
             if this.condition('always poisoned'):
-                this.poisoned = True
-            else:
-                this.poisoned = False
+                this.afflics.poison.resist=0
+                this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
     def s1_proc(this, e):
-        if this.poisoned:
+        if this.afflics.poison.get():
             coef = 0.31*8
             this.dmg_make("o_s1_boost", coef)
             Bleed("s1_bleed", 1.752).on()

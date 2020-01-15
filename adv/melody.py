@@ -3,7 +3,8 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
-import slot
+from slot.a import *
+from slot.d import *
 
 def module():
     return Melody
@@ -13,8 +14,17 @@ class Melody(adv.Adv):
     a1 = ('cc',0.08,'hp100')
 
     conf = {}
-    conf['slots.a'] = slot.a.HG()+slot.a.FWHC()
-    conf['slots.d'] = slot.d.Zephyr()
+    conf['slots.a'] = RR()+ADD()
+    conf['slots.d'] = Garland()
+
+    def d_acl(this):
+        if 'bow' in this.ex:
+            this.conf.acl = """
+                `s1
+                `s3, seq=5 or fsc
+                `fs, this.s1.charged>=s1.sp-236
+                """
+
 
 
 if __name__ == '__main__':

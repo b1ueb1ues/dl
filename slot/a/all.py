@@ -489,6 +489,18 @@ class A_Game_of_Cat_and_Boar(Amulet):
             self.a = [('bt', 0.25)]
 AGoCaB = A_Game_of_Cat_and_Boar
 
+class The_Plaguebringer(Amulet):
+    att = 50
+    a = [('k_poison',0.25)]
+TP = The_Plaguebringer
+
+class A_Dogs_Day(Amulet):
+    att = 62
+    def on(this, c):
+        if c.ele == 'wind':
+            this.a = [('bt',0.25), ('sp',0.1)]
+ADD = A_Dogs_Day
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

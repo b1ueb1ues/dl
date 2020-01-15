@@ -19,10 +19,7 @@ class Naveed(adv.Adv):
         `s3, fsc
         `fs, seq=3 and cancel
         """
-    conf['slot.a'] = TSO()+JotS()
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+BN()
+    conf['slot.a'] = TSO()+Flash_of_Genius()
             
     def prerun(this):
         this.s1level = 0

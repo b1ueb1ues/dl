@@ -3,18 +3,19 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.d import *
 
 def module():
     return Philia
 
 class Philia(adv.Adv):
-    conf = {}
     a1 = ('a',0.1,'hp100')
+    conf = {}
+    conf['slot.d'] = Garland()
     conf['acl'] = """
-        `s1, fsc
-        `s2, fsc
-        `s3, fsc
-        `fs, seq=4
+        `s1, seq=5 or fsc
+        `s2, seq=5 or fsc
+        `s3, seq=5 or fsc
         """
     conf['cond_afflict_res'] = 0
 

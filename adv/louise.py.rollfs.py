@@ -10,24 +10,19 @@ def module():
     return Louise
 
 class Louise(louise.Louise):
-
+    comment = 'rollfs'
+    
     def init(this):
         this.conf.mod = {'ex':('sp','passive',0.15)}
-        this.conf['slot.a'] = FB()+SS()
-        if this.condition('rollfs'):
-            this.conf['acl'] = """
-                `s1,fsc
-                `s2,fsc
-                `s3,fsc
-                `dodge, fsc
-                `fs
-                """
-        else:
-            this.conf['acl'] = """
-                `s1
-                `s2
-                `s3
-                """
+        this.conf['slot.a'] = DD()+The_Plaguebringer()
+        this.conf['slot.d'] = Vayu()
+        this.conf['acl'] = """
+            `s1,fsc
+            `s2,fsc
+            `s3,fsc
+            `dodge, fsc
+            `fs
+            """
 
 
 if __name__ == '__main__':

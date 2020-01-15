@@ -3,17 +3,17 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 from adv import *
+from slot.d import *
 
 def module():
     return Hawk
 
 class Hawk(Adv):
     conf = {}
+    conf['slot.d'] = Garland()
     conf['acl'] = """
-        `s1, fsc
-        `s2, fsc
-        `s3, fsc
-        `fs, seq=4
+        `s1, seq=5
+        `s3, seq=5
         """
     conf['cond_afflict_res'] = 80
 

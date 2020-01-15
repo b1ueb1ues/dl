@@ -17,7 +17,7 @@ class Eleonora(adv.Adv):
         `s3, fsc
         `fs, seq=4
         """
-    conf['slot.d'] = Pazuzu()
+    conf['slot.d'] = Garland()
     conf['cond_afflict_res'] = 0
 
     def prerun(this):

@@ -24,10 +24,10 @@ class Lathna(Adv):
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
         if this.conf['cond_afflict_res'] < 100:
+            from adv.adv_test import sim_duration
             if this.condition('always poisoned'):
-                this.poisoned = True
-            else:
-                this.poisoned = False
+                this.afflics.poison.resist=0
+                this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
@@ -37,7 +37,7 @@ class Lathna(Adv):
         if this.s1.check():
             this.conf.s1.dmg += 1.58*4
 
-            if this.poisoned:
+            if this.afflics.poison.get():
                 coef = 1.975*4
                 this.dmg_make("o_s1_boost", coef)
             this.conf.s1.recovery = 4.05
@@ -47,7 +47,7 @@ class Lathna(Adv):
             return 0 
     
     def s1_proc(this, e):
-        if this.poisoned:
+        if this.afflics.poison.get():
             coef = 1.975*3
             this.dmg_make("o_s1_boost", coef)
 

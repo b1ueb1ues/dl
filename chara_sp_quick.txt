@@ -1,6 +1,5 @@
 xander.py.best.py       
 xander.py.2fs.py            
-louise.py.doublebuff.py 
 veronica.py.1hp.py      
 marth.py.cheese.py      
 elisanne.py.dj.py    
@@ -16,3 +15,4 @@ heinwald.py
 euden.py.maxstacks.py
 lathna.py.poison.py
 ieyasu.py.poison.py
+kirsty.py.poison.py

@@ -13,7 +13,7 @@ class Lily(adv.Adv):
     a3 = ('prep','100%')
 
     conf = {}
-    conf['slot.a'] = CC()+BN()
+    conf['slot.a'] = CC()+Seaside_Princess()
     conf['acl'] = """
         #prep=0
         #if pin=='prep': prep=1
@@ -23,10 +23,6 @@ class Lily(adv.Adv):
         `s3, s
         `s2, pin='prep'
         """
-
-    a1 = ('a',0.15,'hp100')
-    a3 = ('prep','100%')
-
 
 if __name__ == '__main__':
     conf = {}
