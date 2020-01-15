@@ -10,6 +10,9 @@ class Karl(adv.Adv):
     a1 = ('a',0.08,'hit15')
     a3 = ('a',0.15,'hp70')
 
+    conf = {}
+    conf['slot.a'] = The_Shining_Overlord()+Flash_of_Genius()
+
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
