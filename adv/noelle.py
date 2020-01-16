@@ -1,4 +1,7 @@
-import adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 from adv import *
 from slot.d import *
 from slot.a import *
@@ -13,8 +16,15 @@ class Noelle(Adv):
 
     conf = {}
     conf['slots.d'] = Freyja()
-    conf['slots.a'] = A_Dogs_Day()+HoH()
+    conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
 
+    conf['acl'] = """
+        `# fs_sp = this.ceiling(this.float_problem(this.conf.fs.sp*this.float_problem(this.sp_mod('fs_missile'))))
+        `s1
+        `fs, this.fs_prep_c==3 and s1.charged>=s1.sp*1/2-fs_sp
+        `fs, this.fs_prep_c==1 and s1.charged>=s1.sp*3/4-fs_sp
+        `s2, seq=5 and cancel
+        """
 
     def init(this):
         energy.Energy(this,{},{})
@@ -24,10 +34,10 @@ class Noelle(Adv):
 
 
     def c_s1_proc(this, e):
-        Teambuff('s2',0.25,15).on()
+        Teambuff('s1',0.25,15).on()
 
     def s1_proc(this, e):
-        Selfbuff('s2',0.25,15).on()
+        Selfbuff('s1',0.25,15).on()
 
     def a1_cooldown(this, t):
         this.a1_iscding = 0
@@ -58,11 +68,5 @@ class Noelle(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, fsc
-        `s3, fsc
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2)
 
