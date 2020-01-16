@@ -133,7 +133,7 @@ def run_adv_test():
     except:
         pass
     try:
-        conf['sim_buffbot.debuff'] = min(max(int(params['sim_buff_def']), -100), 100)/100
+        conf['sim_buffbot.debuff'] = min(max(int(params['sim_buff_def']), -100), 50)/100
     except:
         pass
 
