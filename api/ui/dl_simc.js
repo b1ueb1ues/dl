@@ -20,7 +20,6 @@ PREFIX_MAPS = {
         'w_': 'wedding_'
     },
 }
-Chart.defaults.global.legend.display = false;
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
@@ -37,7 +36,6 @@ function substitute_prefix(name, t) {
     }
     return name_fmt(name);
 }
-let dps_chart = null;
 function populateSelect(id, data) {
     const t = id.split('-')[1];
     let options = [];
@@ -154,46 +152,6 @@ function sumDps(data) {
     }
     return display;
 }
-function createChart(data, name) {
-    if (dps_chart != null) {
-        dps_chart.destroy();
-    }
-    let ctx = document.getElementById('damage-log').getContext('2d');
-    dps_chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'scatter',
-
-        // The data for our dataset
-        data: {
-            datasets: [{
-                backgroundColor: 'rgb(66,139,202)',
-                borderColor: 'rgb(66,139,202)',
-                data: sumDps(data),
-                fill: false,
-                showLine: true
-            }]
-        },
-
-        // Configuration options go here
-        options: {
-            title: {
-                display: true,
-                fontSize: 20,
-                text: substitute_prefix(name, "adv")
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1,
-                    },
-                }]
-            }
-        }
-    });
-
-}
-
 function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
 }
@@ -308,9 +266,15 @@ function runAdvTest() {
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
-    if ($('#input-sim-afflict').val() !== 'none') {
+    if ($('#input-sim-afflict').val() !== 'none' && !isNaN(parseInt($('#input-sim-afflict-time').val()))) {
         requestJson['sim_afflict_type'] = $('#input-sim-afflict-type').val();
         requestJson['sim_afflict_time'] = $('#input-sim-afflict-time').val();
+    }
+    if (!isNaN(parseInt($('#input-sim-buff-str').val()))) {
+        requestJson['sim_buff_str'] = $('#input-sim-buff-str').val();
+    }
+    if (!isNaN(parseInt($('#input-sim-buff-def').val()))) {
+        requestJson['sim_buff_def'] = $('#input-sim-buff-def').val();
     }
     $.ajax({
         url: APP_URL + 'simc_adv_test',
@@ -391,11 +355,12 @@ function clearResults() {
     $('#test-results').empty();
     $('#copy-results').empty();
     $('#test-error').empty();
-    $('#input-t').prop('value', BASE_SIM_T);
-    $('#input-teamdps').prop('value', BASE_TEAM_DPS);
-    if (dps_chart != null) {
-        dps_chart.destroy();
-    }
+    $('#input-t').val(BASE_SIM_T);
+    $('#input-teamdps').prop(BASE_TEAM_DPS);
+    $('#input-sim-afflict-type')[0].selectedIndex = 0;
+    $('#input-sim-afflict-time').val('');
+    $('#input-sim-buff-str').val('');
+    $('#input-sim-buff-def').val('');
 }
 function weaponSelectChange() {
     const weapon = $('#input-wep').val();
@@ -418,11 +383,11 @@ function weaponSelectChange() {
 function simAfflictSelectChange() {
     const simAfflict = $('#input-sim-afflict-type').val();
     if (simAfflict !== 'none') {
-        $('input-sim-afflict-time').prop('disabled', false);
-        $('input-sim-afflict-time').val(75);
+        $('#input-sim-afflict-time').prop('disabled', false);
+        $('#input-sim-afflict-time').val(75);
     } else {
-        $('input-sim-afflict-time').prop('disabled', true);
-        $('input-sim-afflict-time').val('');
+        $('#input-sim-afflict-time').prop('disabled', true);
+        $('#input-sim-afflict-time').val('');
     }
 }
 window.onload = function () {
@@ -437,6 +402,7 @@ window.onload = function () {
     $('#reset-test').click(debounce(loadAdvSlots, 200));
     $('#input-edit-acl').change(editAcl);
     $('#input-wep').change(weaponSelectChange);
+    $('#input-sim-afflict-type').change(simAfflictSelectChange);
     clearResults();
     loadAdvWPList();
 }

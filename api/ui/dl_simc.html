@@ -143,6 +143,8 @@
                         <option value="Poison">Poison</option>
                     </select>
                     <label for="input-sim-afflict-time">Uptime (%)</label><input id="input-sim-afflict-time" class="form-control" type="text" disabled />
+                    <label for="input-sim-buff-str">Simulate +Str%</label><input id="input-sim-buff-str" class="form-control" type="text" />
+                    <label for="input-sim-buff-def">Simulate -Def%</label><input id="input-sim-buff-def" class="form-control" type="text" />
                 </div>
                 <div class="col-sm-9">
                     <label for="input-acl" class="form-check-label">ACL</label>
@@ -176,22 +178,24 @@
                     </div>
                     <div class="modal-body">
                         <h5>What is this?</h5>
-                        <p>This is a fork of the <a href="https://github.com/b1ueb1ues/dl">Dragalia Lost damage simulator created by b1ueb1ues</a>
-                            with a UI made to allow people without any python/CLI knowledge to use the simulator.
-                            The source code of this fork can be found <a href="https://github.com/Mushymato/dl/tree/api">here</a>.</p>
+                        <p>This is a fork of the <a href="https://github.com/b1ueb1ues/dl">Dragalia Lost damage simulator created by b1ueb1ues</a> with a UI made to allow people without any python/CLI knowledge to use the simulator. The source code of this fork can be found <a href="https://github.com/Mushymato/dl/tree/api">here</a>.</p>
                         <h5>What assumptions are made during damage simulation?</h5>
-                        <p>Please consult <a href="https://github.com/b1ueb1ues/b1ueb1ues.github.io/blob/master/dl-sim/README.md">the readme</a> for assumed sim conditions.
-                            Note that the bleeders + Sinoa are simulated with expected value instead of average of 1000 trials.
-                            <h5>How do I enter ACL?</h5>
-                            <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
-                            <h5>How do I make Agito weapon users use s3 only when there's no buff?</h5>
-                            <p>Add a condition like
-                                <pre>`s3, not this.s3_buff_on</pre>
-                            </p>
-                            <h5>What is the Markdown view for?</h5>
-                            <p>It shows a plain text result meant to be copied to discord.</p>
-                            <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
-                            <p>Ask me on discord I'm chu2.718281828459045235360287471#0110</p>
+                        <p>Please consult <a href="https://github.com/b1ueb1ues/b1ueb1ues.github.io/blob/master/dl-sim/README.md">the readme</a> for assumed sim conditions. Note that some characters are simulated with expected value instead of average of 1000 trials.</p>
+                        <h5>How do I enter ACL?</h5>
+                        <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
+                        <h5>How does simulated afflictions work?</h5>
+                        <p>The affliction is active for the first [uptime]% * [sim time] seconds. Default uptimes are burn 75% (Rena), paralysis 75% (Mitsuhide), poison 90% (Delphi).</p>
+                        <h5>How does simulated buff/debuff work?</h5>
+                        <p>1 stack of the entered buff/debuff is active for the entire duration of the simulation.</p>
+                        <h5>How do I make Agito weapon users use s3 only when there's no buff?</h5>
+                        <p>Add a condition like
+                            <pre>`s3, not this.s3_buff_on</pre>
+                        </p>
+                        <h5>What is the Markdown view for?</h5>
+                        <p>It shows a plain text result meant to be copied to discord.</p>
+                        <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
+                        <p>Ask me on discord I'm chu2.718281828459045235360287471#0110</p>
+
                     </div>
                 </div>
             </div>

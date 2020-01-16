@@ -91,11 +91,8 @@ def run_adv_test():
     wep = params['wep'] if 'wep' in params else None
     ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
-    afflict_res = min(abs(int(params['afflict_res'])), 100) if 'afflict_res' in params else None
     teamdps = abs(float(params['teamdps'])) if 'teamdps' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
-    sim_afflict_type = params['sim_afflict_type'] if 'sim_afflict_type' in params else None
-    sim_afflict_time = min(abs(int(params['sim_afflict_time'])), 100) if 'sim_afflict_time' in params else None
     log = -2
 
     adv.adv_test.set_ex(ex)
@@ -121,11 +118,25 @@ def run_adv_test():
     adv_module.acl_backdoor = acl_injection
 
     conf = {}
-    if afflict_res is not None:
-        conf['cond_afflict_res'] = afflict_res
-    if sim_afflict_type in ['burn', 'paralysis', 'poison'] and sim_afflict_time:
-        conf['sim_afflict.time'] = t * sim_afflict_time/100
-        conf['sim_afflict.type'] = sim_afflict_type
+    try:
+        conf['cond_afflict_res'] = min(abs(int(params['afflict_res'])), 100)
+    except:
+        pass
+    if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison']:
+        try:
+            conf['sim_afflict.time'] = t * min(abs(int(params['sim_afflict_time'])), 100)/100
+            conf['sim_afflict.type'] = params['sim_afflict_type']
+        except:
+            pass
+    try:
+        conf['sim_buffbot.buff'] = min(max(int(params['sim_buff_str']), -100), 100)
+    except:
+        pass
+    try:
+        conf['sim_buffbot.debuff'] = min(max(int(params['sim_buff_def']), -100), 100)
+    except:
+        pass
+
     result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}, 'logs': ''}
     f = io.StringIO()
     r = None
