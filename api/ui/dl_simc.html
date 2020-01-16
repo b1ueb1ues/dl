@@ -18,7 +18,7 @@
         }
 
         #input-acl {
-            height: 10em;
+            height: 15.5em;
         }
 
         #test-results>.test-result-item:not(:first-child),
@@ -73,6 +73,15 @@
             font-weight: 600;
             margin: 1rem;
         }
+
+        .coab-label {
+            margin-top: 0.5em;
+        }
+
+        #aboutBox {
+            padding: 0;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -110,7 +119,7 @@
             </div>
             <div class="form-row">
                 <div class="col">
-                    <label>Co-Abilities:&nbsp;</label>
+                    <label class="coab-label">Co-Abilities:&nbsp;</label>
                     <div class="form-check form-check-inline">
                         <input id="ex-blade" class="form-check-input" type="checkbox" />
                         <label for="ex-blade" class="form-check-label" title="×10% Strength">Blade</label>
@@ -147,7 +156,7 @@
                     <label for="input-sim-buff-def">Simulate -Def%</label><input id="input-sim-buff-def" class="form-control" type="text" />
                 </div>
                 <div class="col-sm-9">
-                    <label for="input-acl" class="form-check-label">ACL</label>
+                    <label for="input-acl">ACL</label>
                     &nbsp;
                     <div class="form-check form-check-inline">
                         <input id="input-edit-acl" class="form-check-input" type="checkbox" />
@@ -168,7 +177,7 @@
             </div>
         </div>
         <div class="modal fade" id="aboutBox" tabindex="-1" role="dialog" aria-labelledby="aboutTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="aboutTitle">About/FAQ</h5>

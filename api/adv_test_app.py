@@ -122,18 +122,18 @@ def run_adv_test():
         conf['cond_afflict_res'] = min(abs(int(params['afflict_res'])), 100)
     except:
         pass
-    if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison']:
-        try:
+    try:
+        if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison']:
             conf['sim_afflict.time'] = t * min(abs(int(params['sim_afflict_time'])), 100)/100
             conf['sim_afflict.type'] = params['sim_afflict_type']
-        except:
-            pass
-    try:
-        conf['sim_buffbot.buff'] = min(max(int(params['sim_buff_str']), -100), 100)
     except:
         pass
     try:
-        conf['sim_buffbot.debuff'] = min(max(int(params['sim_buff_def']), -100), 100)
+        conf['sim_buffbot.buff'] = min(max(int(params['sim_buff_str']), -100), 100)/100
+    except:
+        pass
+    try:
+        conf['sim_buffbot.debuff'] = min(max(int(params['sim_buff_def']), -100), 100)/100
     except:
         pass
 

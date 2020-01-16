@@ -8,7 +8,7 @@ from core.log import *
 from core.afflic import *
 import core.acl
 import conf as globalconf
-import core.condition 
+import core.condition
 import slot
 import core.floatsingle as floatsingle
 m_condition = core.condition
@@ -20,7 +20,7 @@ class Modifier(object):
         })
     mod_name = '<nop>'
     mod_type = '_nop' or 'att' or 'x' or 'fs' or 's' #....
-    mod_order = '_nop' or 'passive' or 'ex' or 'buff' # chance dmg for crit 
+    mod_order = '_nop' or 'passive' or 'ex' or 'buff' # chance dmg for crit
     mod_value = 0
     def __init__(this, name, mtype, order, value, condition=None):
         this.mod_name = name
@@ -95,7 +95,7 @@ class Buff(object):
         'time_func':0,
         })
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, toggle=False):
-        this.name = name   
+        this.name = name
         this.__value = value
         this.duration = duration
         this.mod_type = mtype or 'att' or 'x' or 'fs' or 's' #....
@@ -127,7 +127,7 @@ class Buff(object):
 
     def nobufftime(this):
         return 1
-    
+
     def bufftime(this):
         return this._static.time_func()
 
@@ -223,7 +223,7 @@ class Buff(object):
 
     def off(this):
         if this.__active == 0:
-            return 
+            return
         log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff end <turn off>')
         this.__active = 0
         this.modifier.off()
@@ -232,14 +232,14 @@ class Buff(object):
 
 
 class Selfbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
         Buff.__init__(this, name,value,duration,mtype,morder,toggle)
         this.bufftype = 'self'
         this.bufftime = this._bufftime
-    
+
     def _bufftime(this):
         return this._static.time_func()
-    
+
     def buffcount(this):
         bc = 0
         for i in this._static.all_buffs:
@@ -248,7 +248,7 @@ class Selfbuff(Buff):
         return bc
 
 class Teambuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
         Buff.__init__(this, name,value,duration,mtype,morder,toggle)
         this.bufftype = 'team'
         this.bufftime = this._bufftime
@@ -285,7 +285,7 @@ class Teambuff(Buff):
 
 
 class Spdbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,wide='self',toggle=False):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,wide='self',toggle=False):
         mtype = 'spd'
         morder = 'passive'
         Buff.__init__(this, name,value,duration,mtype,morder,toggle)
@@ -329,7 +329,7 @@ class Spdbuff(Buff):
 
 
 class Debuff(Teambuff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None,toggle=False):  
+    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None,toggle=False):
         value = 0-value
         chance = float(chance)
         if chance!= 1:
@@ -385,8 +385,8 @@ class Skill(object):
         pass
 
     def charge(this,sp):
-        this.charged += sp   
-        #if this.charged > this.sp:  # should be 
+        this.charged += sp
+        #if this.charged > this.sp:  # should be
             #this.charged = this.sp
 
     def cb_silence_end(this, e):
@@ -445,13 +445,13 @@ class Actionparts(object):
     def off(this):
         for i in this.timer :
             i.off()
-    
+
     def cb(this, t):
         this.host._act(t.idx)
 
 
 
-class Action(object):   
+class Action(object):
     _static = Static({
         'prev'     : 0 ,
         'doing'    : 0 ,
@@ -491,7 +491,7 @@ class Action(object):
         else:
             this.conf = Conf()
             this.conf.sync_action = this.sync_config
-            
+
         if act != None:
             this.act = act
 
@@ -519,7 +519,7 @@ class Action(object):
 
     def __call__(this):
         return this.tap()
-    
+
     def getdoing(this):
         return this._static.doing
     def _setdoing(this):
@@ -558,7 +558,7 @@ class Action(object):
             this.status = 0
             this._act(1)
             this.status = 1
-            this.recover_start = now() 
+            this.recover_start = now()
             this.recovery_timer.on(this.getrecovery())
 
 
@@ -760,7 +760,7 @@ class Adv(object):
         pass
     def acl_backdoor(this):
         pass
-    def prerun(this): 
+    def prerun(this):
         pass
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
 
@@ -861,7 +861,7 @@ class Adv(object):
         this.ex = this.slots.c.ex
 
         # init actions
-        # this.a_fs 
+        # this.a_fs
         fsconf = this.conf.fs
         xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf,fsconf]
 
@@ -926,7 +926,7 @@ class Adv(object):
                     buff.bufftype = 'debuff'
                     buff.on()
             if 'buff' in this.conf.sim_buffbot:
-                if this.condition('team str {:.0%}'.format(this.conf.sim_buffbot.buff)):
+                if this.condition('team str {:+.0%}'.format(this.conf.sim_buffbot.buff)):
                     this.Selfbuff('simulated',this.conf.sim_buffbot.buff,-1).on()
 
     def sync_slot(this, conf_slots):
@@ -1020,7 +1020,7 @@ class Adv(object):
 
         this.skill = Skill()
         this._acl = None
-        
+
         # set afflic
         this.afflics = Afflics()
 
@@ -1040,7 +1040,7 @@ class Adv(object):
             name = name[2:]
         #if name.find('o_') != -1:
         #    name = name.replace('o_','')
-            
+
         if name[0] == 's':
             return this.mod('s')
         elif name[0:2] == 'fs':
@@ -1089,7 +1089,7 @@ class Adv(object):
         cdmg = m['dmg'] + m['damage'] + 1.7
         average = chance * (cdmg-1) + 1
         return average
-    
+
     def rand_crit_mod(this):
         m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0}
         for i in this.all_modifiers:
@@ -1106,7 +1106,7 @@ class Adv(object):
         r = this.r()
         if r < chance:
             return cdmg
-        else: 
+        else:
             return 1
 
 
@@ -1162,7 +1162,7 @@ class Adv(object):
 
 
     def x(this):
-        prev = this.action.getprev() 
+        prev = this.action.getprev()
         x_next = 1
         if prev.name[0] == 'x':
             if prev.index != 5:
@@ -1170,12 +1170,12 @@ class Adv(object):
 
         a = getattr(this, 'x%d'%x_next)()
         return 1
-    
+
 
     def l_range_x(this, e):
         xseq = e.name
         dmg_coef = this.conf['%s.dmg'%xseq]
-        sp_gain = this.conf['%s.sp'%xseq] 
+        sp_gain = this.conf['%s.sp'%xseq]
         if xseq == 'x5':
             log('x', '%s'%xseq, 0,'-------------------------------------c5')
         else:
@@ -1193,11 +1193,11 @@ class Adv(object):
         this.dmg_make(t.dname, t.amount)
         this.charge(t.dname, t.samount)
 
-    
+
     def l_melee_x(this, e):
         xseq = e.name
         dmg_coef = this.conf['%s.dmg'%xseq]
-        sp = this.conf['%s.sp'%xseq] 
+        sp = this.conf['%s.sp'%xseq]
         if xseq == 'x5':
             log('x', '%s'%xseq, 0,'-------------------------------------c5')
         else:
@@ -1251,7 +1251,7 @@ class Adv(object):
             this.slots.c.a.append(this.a2)
         if this.a3 :
             this.slots.c.a.append(this.a3)
-        
+
 
         this.equip()
         this.setup()
@@ -1341,7 +1341,7 @@ class Adv(object):
         else:
             this.think_pin(sname+'-x')  # best choice
         this.think_pin(sname)
-        #if doing.name[0] == 's': 
+        #if doing.name[0] == 's':
         #   no_deed_to_do_anythin
 
 
@@ -1369,7 +1369,7 @@ class Adv(object):
             this.think_pin('prep')
             return
 
-    def charge(this, name, sp): 
+    def charge(this, name, sp):
         # sp should be integer
         sp = int(sp) * this.float_problem(this.sp_mod(name))
         sp = this.float_problem(sp)
@@ -1399,7 +1399,7 @@ class Adv(object):
         armor = 10.0 * this.def_mod()
         #return float(dmg_coef) * this.dmg_mod(name) * this.att_mod() / this.def_mod()
         #return float(dmg_coef) * this.dmg_mod(name) * this.def_mod()
-        return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor * 1.5   # true formula 
+        return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor * 1.5   # true formula
         #return att/armor * dmg_coef * this.dmg_mod(name)
 
     def l_true_dmg(this, e):
@@ -1425,7 +1425,7 @@ class Adv(object):
 
         count = this.dmg_formula(dtype, dmg_coef)
         this.dmg_before(name, count)
-        
+
         if name[0] == 'x':
             spgain = this.conf[name[:2]+'.sp']
             log('dmg', name, count, '%d/%d, %d/%d, %d/%d (+%d)'%(\
@@ -1630,7 +1630,7 @@ class Adv(object):
             p = 0
         this.rotation_stat = p
         return ret
-    
+
     def rotation_reset(this):
         if this.rotation_init :
             this.rotation_init = 0
