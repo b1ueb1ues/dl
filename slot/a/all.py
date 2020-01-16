@@ -343,15 +343,18 @@ class Sisters_Day_Out(Amulet):
     att = 64
     a = [('fs',0.40)]
     def fs_proc(this, e):
+        fs_hits = {'sword': 1, 'blade': 1, 'dagger': 3, 'axe': 1, 'lance': 5, 'wand': 2, 'bow': 8, 'staff': 4}
         this.o_fs_proc(e)
-        if this.charges > 0:
-            this.adv.charge_p('fs_charge','25%')
-            this.charges -= 1
+        if this.adv.fs_prep_c > 0:
+            diff = this.adv.fs_prep_c - max(this.adv.fs_prep_c-fs_hits[this.adv.slots.c.wt], 0)
+            for _ in range(diff):
+                this.adv.charge_p('fs_charge','25%')
+            this.adv.fs_prep_c = this.adv.fs_prep_c - diff
 
     def oninit(this, adv):
         Amulet.oninit(this, adv)
-        this.charges = 3
         this.adv = adv
+        this.adv.fs_prep_c = 3
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
 SDO = Sisters_Day_Out
@@ -371,17 +374,21 @@ class Castle_Cheer_Corps(Amulet):
     att = 64
     a = [('sp',0.06)]
     def fs_proc(this, e):
+        fs_hits = {'sword': 1, 'blade': 1, 'dagger': 3, 'axe': 1, 'lance': 5, 'wand': 2, 'bow': 8, 'staff': 4}
         this.o_fs_proc(e)
-        if this.charges > 0:
-            this.adv.charge_p('fs_charge','25%')
-            this.charges -= 1
+        if this.adv.fs_prep_c > 0:
+            diff = this.adv.fs_prep_c - max(this.adv.fs_prep_c-fs_hits[this.adv.slots.c.wt], 0)
+            for _ in range(diff):
+                this.adv.charge_p('fs_charge','25%')
+            this.adv.fs_prep_c = this.adv.fs_prep_c - diff
 
     def oninit(this, adv):
         Amulet.oninit(this, adv)
-        this.charges = 3
         this.adv = adv
+        this.adv.fs_prep_c = 3
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
+CCC = Castle_Cheer_Corps
 
 class Honest_Repose(Amulet):
     att = 53

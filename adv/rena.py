@@ -1,10 +1,8 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv_test
 from adv import *
 from slot.a import *
 from slot.d import *
+from slot.w import *
 
 
 def module():
@@ -13,18 +11,17 @@ def module():
 class Rena(Adv):
     conf = {}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+EE()
+    conf['slot.a'] = VC()+EE()
     conf['acl'] = """
+        `s3, cancel
         `s1
         `s2, s=1
-        `s3, fsc
         `fs, seq=5
         """
-    conf['cond_afflict_res'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
+        if this.condition('0 resist'):
+            this.afflics.burn.resist=0
         else:
             this.afflics.burn.resist=100
 
@@ -40,18 +37,36 @@ class Rena(Adv):
             '''
     
     def s1_proc(this, e):
-        this.afflics.burn('s1',120,0.97)
 
         if this.stance == 0:
             this.stance = 1
+            
+            this.dmg_make("o_s1_hit1", 0.72)
+            this.afflics.burn('s1',120,0.97)
+            this.dmg_make("o_s1_laterhits", 8.81)
+            
         elif this.stance == 1:
             this.stance = 2
+            
+            
+            
+            this.dmg_make("o_s1_hit1", 0.72)
+            this.afflics.burn('s1',120,0.97)
+            this.dmg_make("o_s1_laterhits", 8.81)
+            
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
+            
         elif this.stance == 2:
             this.stance = 0
+            
+            
+          
+            
+            this.dmg_make("o_s1_hit1", 0.72 + this.afflics.burn.get()*0.72*0.8)
+            this.afflics.burn('s1',120,0.97+this.afflics.burn.get()*0.97*0.8)
+            this.dmg_make("o_s1_laterhits", 8.81 + this.afflics.burn.get()*8.81*0.8)
+            
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-            coef = this.afflics.burn.get()*this.conf.s1.dmg*0.8
-            this.dmg_make("o_s1_boost", coef)
 
 
     def s2_proc(this, e):
@@ -87,5 +102,3 @@ class Rena(Adv):
 if __name__ == '__main__':
     conf = {}
     adv_test.test(module(), conf, verbose=0, mass=0)
-    #logcat(['cd'])
-
