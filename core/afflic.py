@@ -321,7 +321,7 @@ class Afflics(object):
 
         this.poison.resist    = 0
         this.burn.resist      = 0
-        this.paralysis.resist = 80
+        this.paralysis.resist = 0
         this.blind.resist     = 80
         this.bog.resist       = 80
         this.freeze.resist    = 80
