@@ -23,7 +23,8 @@ class Noelle(Adv):
         `s1
         `fs, this.fs_prep_c==3 and s1.charged>=s1.sp*1/2-fs_sp
         `fs, this.fs_prep_c==1 and s1.charged>=s1.sp*3/4-fs_sp
-        `s2, seq=5 and cancel
+        `s2, x=5
+        `s3, x=5
         """
 
     def init(this):
