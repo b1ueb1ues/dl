@@ -15,7 +15,7 @@ class The_Shining_Overlord(Amulet):
     a = [('s',0.40)]
 
 class Audric(adv.Adv):
-
+    comment = 'get 10% dragon charge from enemy every 18s;'
     def prerun(this):
 
         this.dragonboost = 1.4 # max dragolith
@@ -47,7 +47,7 @@ class Audric(adv.Adv):
         #this.energy.add_energy('1')
 
     def s1_proc(this, e):
-        this.recoverdp(5.75)
+        this.recoverdp(3.45)
 
     def cb_recoverdp(this,t):
         this.recoverdp(11.5)
