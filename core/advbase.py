@@ -915,6 +915,7 @@ class Adv(object):
             if t > 0:
                 if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
                     aff = vars(this.afflics)[this.conf.sim_afflict.type]
+                    aff.resist = -5
                     aff.on('simulated', 100, 0, duration=t, iv=t)
 
     def sim_buffbot(this):
