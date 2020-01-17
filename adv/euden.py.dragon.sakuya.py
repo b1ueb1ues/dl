@@ -38,21 +38,27 @@ def d_s_sakuya(this):
 dragon_confs = {
     'Cerberus': {
         'slot.d': Cerberus,
-        'autos': 35,
+        #'autos': 35,
+        'autos': 7,
         'skill': d_s_cerberus,
-        'recovery': 15.52
+        #'recovery': 15.52
+        'recovery': 1.08+2.2+4.4
     },
     'Apollo': {
         'slot.d': Apollo,
-        'autos': 32.80,
+        # 'autos': 32.80,
+        'autos': 6.56,
         'skill': d_s_apollo,
-        'recovery': 12.98
+        # 'recovery': 12.98
+        'recovery': 1.08+2.2+2
     },
     'Arctos': {
         'slot.d': Arctos,
-        'autos': 40.53,
+        #'autos': 40.53,
+        'autos': 12.81,
         'skill': d_s_arctos,
-        'recovery': 13.93
+        #'recovery': 13.93
+        'recovery': 1.08+3.2+3.25
     },
     'Sakuya': {
         'slot.d': Sakuya,
@@ -60,7 +66,7 @@ dragon_confs = {
         'autos': 8.13,
         'skill': d_s_sakuya,
         # 'recovery': 13.75
-        'recovery': 3+2.85
+        'recovery': 1.08+3+2.85
     }
 }
 
