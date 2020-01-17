@@ -63,6 +63,8 @@ dragon_confs = {
 }
 
 class Euden(adv.Adv):
+    comment = 'get 10% dragon charge from enemy every 18s;'
+    
     conf = {}
     conf['dragonform'] = 'Apollo'
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
