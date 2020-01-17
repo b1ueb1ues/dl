@@ -8,6 +8,11 @@ EX_MAP = {
 }
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 16000
+BASE_AFFLICT_UPTIME = {
+    'poison': 90,
+    'burn': 75,
+    'paralysis': 75
+}
 PREFIX_MAPS = {
     'adv': {
         'g_': 'gala_',
@@ -207,6 +212,10 @@ function loadAdvSlots() {
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv.wt).prop('checked', true);
                 $('#ex-' + slots.adv.wt).prop('disabled', true);
+                if($('#input-adv').val() === 'h_mym'){
+                    $('#ex-hmym').prop('checked', true);
+                    $('#ex-hmym').prop('disabled', true);
+                }
                 $('#input-acl').blur();
                 $('#input-edit-acl').prop('checked', false);
                 $('#input-acl').prop('disabled', true);
@@ -356,7 +365,7 @@ function clearResults() {
     $('#copy-results').empty();
     $('#test-error').empty();
     $('#input-t').val(BASE_SIM_T);
-    $('#input-teamdps').prop(BASE_TEAM_DPS);
+    $('#input-teamdps').val(BASE_TEAM_DPS);
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').val('');
     $('#input-sim-buff-str').val('');
@@ -384,7 +393,7 @@ function simAfflictSelectChange() {
     const simAfflict = $('#input-sim-afflict-type').val();
     if (simAfflict !== 'none') {
         $('#input-sim-afflict-time').prop('disabled', false);
-        $('#input-sim-afflict-time').val(75);
+        $('#input-sim-afflict-time').val(BASE_AFFLICT_UPTIME[simAfflict]);
     } else {
         $('#input-sim-afflict-time').prop('disabled', true);
         $('#input-sim-afflict-time').val('');
