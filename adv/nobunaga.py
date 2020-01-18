@@ -31,9 +31,9 @@ if __name__ == '__main__':
     #conf['slot.d'] = Cerberus()
     conf['acl'] = """
         `s1
-        `s2, fsc
-        `s3, fsc
-        `fs, seq=5
+        `s2, cancel
+        `fs, x=5 and this.ba=1
+        `s3, x=5 or fsc
         """
 
     adv_test.test(module(), conf, verbose=-2, mass=0)
