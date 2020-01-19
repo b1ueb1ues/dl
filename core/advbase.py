@@ -83,6 +83,11 @@ class Modifier(object):
                 break
         return this
 
+    def __enter__(this):
+        this.on()
+
+    def __exit__(this, exc_type, exc_val, exc_tb):
+        this.off()
 
     def __repr__(this):
         return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
