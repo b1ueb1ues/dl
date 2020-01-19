@@ -144,10 +144,7 @@ class Ability(object):
         elif name == 'resist':
             adv.conf.resist = (cond, value)
         elif name[:2] == 'k_':
-            this.m = adv.Modifier('afflic_killer','att','killer',0.0)
-            this.m.get = this.get_killer
-            this.kvalue = value
-            this.ktype = name[2:]
+            this.m = adv.Modifier('afflic_killer',name[2:] + '_killer','passive',value)
 
 #        elif name == 'ex' and value == 'wand':
 #            this.ex_wand(adv)

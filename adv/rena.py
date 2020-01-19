@@ -31,6 +31,7 @@ class Rena(Adv):
 
         this.a1_iscding = 0
         this.stance = 0
+        this.s1killer = Selfbuff("s1_killer",0.8,-1,"burn_killer","skill")
 
     def d_acl(this):
         if 'bow' in this.ex:
@@ -57,9 +58,11 @@ class Rena(Adv):
             
         elif this.stance == 2:
             this.stance = 0
-            this.dmg_make("o_s1_hit1", 0.72 + this.afflics.burn.get()*0.72*0.8)
-            this.afflics.burn('s1',120,0.97+this.afflics.burn.get()*0.97*0.8)
-            this.dmg_make("o_s1_laterhits", 8.81 + this.afflics.burn.get()*8.81*0.8)
+            this.s1killer.on()
+            this.dmg_make("o_s1_hit1", 0.72)
+            this.afflics.burn('s1',120,0.97)
+            this.dmg_make("o_s1_laterhits", 8.81)
+            this.s1killer.off()
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
 
 

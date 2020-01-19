@@ -1094,7 +1094,15 @@ class Adv(object):
     def att_mod(this):
         att = this.mod('att')
         cc = this.crit_mod()
-        return cc * att
+        k = this.killer_mod()
+        return cc * att * k
+
+    def killer_mod(this):
+        m = 1
+        for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+            rate = vars(this.afflics)[afflic].get()
+            m *= 1 + (this.mod(afflic + '_killer') - 1) * rate
+        return m
 
     def def_mod(this):
         m = this.mod('def')
