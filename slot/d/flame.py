@@ -39,3 +39,8 @@ class Prometheus(DragonBase):
     ele = 'flame'
     att = 121
     aura = [('att','passive',0.50)]
+
+class Unreleased_Flame35Haste(DragonBase):
+    ele = 'flame'
+    att = 120
+    aura = [('sp','passive',0.35)]

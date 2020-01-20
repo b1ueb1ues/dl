@@ -21,17 +21,8 @@ class Sylas(adv.Adv):
         `fs, seq=5
         """
     conf['slot.d'] = Vayu()
-    conf['cond_afflict_res'] = 0
-
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3, seq=5
-        `fs, seq=5
-        """
-    conf['slot.d'] = Vayu()
     conf['slot.a'] = RR()+The_Plaguebringer()
+    conf['cond_afflict_res'] = 0
 
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):

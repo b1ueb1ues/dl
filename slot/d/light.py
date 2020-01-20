@@ -51,6 +51,11 @@ class Shishimai(DragonBase):
     att = 75
     aura = [('crit','damage',0.7)]
 
+class Unreleased_Light35Haste(DragonBase):
+    ele = 'light'
+    att = 120
+    aura = [('sp','passive',0.35)]
+
 # class GalaShishimai_450CritDmg(DragonBase):
 #     ele = 'light'
 #     att = 124

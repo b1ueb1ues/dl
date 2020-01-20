@@ -368,6 +368,7 @@ function clearResults() {
     $('#input-teamdps').val(BASE_TEAM_DPS);
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').val('');
+    $('#input-sim-afflict-time').prop('disabled', true);
     $('#input-sim-buff-str').val('');
     $('#input-sim-buff-def').val('');
 }

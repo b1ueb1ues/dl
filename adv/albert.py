@@ -6,10 +6,7 @@ from adv import *
 import copy
 from module.fsalt import *
 from slot.a import *
-<<<<<<< HEAD
-=======
 from slot.d import *
->>>>>>> 0c2cc4717031cb1dcf2f940e0bf3ca47d364097f
 
 def module():
     return Albert
