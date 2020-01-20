@@ -83,6 +83,11 @@ class Modifier(object):
                 break
         return this
 
+    def __enter__(this):
+        this.on()
+
+    def __exit__(this, exc_type, exc_val, exc_tb):
+        this.off()
 
     def __repr__(this):
         return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
@@ -1114,7 +1119,15 @@ class Adv(object):
     def att_mod(this):
         att = this.mod('att')
         cc = this.crit_mod()
-        return cc * att
+        k = this.killer_mod()
+        return cc * att * k
+
+    def killer_mod(this):
+        m = 1
+        for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+            rate = vars(this.afflics)[afflic].get()
+            m *= 1 + (this.mod(afflic + '_killer') - 1) * rate
+        return m
 
     def def_mod(this):
         m = this.mod('def')

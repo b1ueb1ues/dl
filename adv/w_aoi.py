@@ -45,18 +45,9 @@ class W_Aoi(Adv):
             pass
 
 
-
-    def s2_before(this, e):
-        r = this.afflics.sleep.get()
-        coef = 1.40*5 * (1-r)
-        return coef
-
     def s2_proc(this, e):
-        r = this.afflics.sleep.get()
-        coef = 1.40*5 * r
-        this.dmg_make('s2',coef)
-        coef = (2.80-1.40)*5 * r
-        this.dmg_make('o_s2_boost',coef)
+        with Modifier("s1killer", "sleep_killer", "hit", 1):
+            this.dmg_make('s1',5*1.40)
 
 
 

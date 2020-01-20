@@ -19,7 +19,7 @@ class Rena(Adv):
         `s3, cancel
         `s1
         `s2, s=1
-        `fs, seq=5
+        `fs, seq=5 and (s1.charged=1500 or s1.charged=3200)
         """
     conf['cond_afflict_res'] = 0
 
@@ -32,14 +32,6 @@ class Rena(Adv):
         this.a1_iscding = 0
         this.stance = 0
 
-    def d_acl(this):
-        if 'bow' in this.ex:
-            this.conf['acl'] = '''
-                `s1
-                `s2, s=1
-                `s3
-            '''
-    
     def s1_proc(this, e):
 
         if this.stance == 0:
@@ -47,19 +39,20 @@ class Rena(Adv):
             this.dmg_make("o_s1_hit1", 0.72)
             this.afflics.burn('s1',120,0.97)
             this.dmg_make("o_s1_laterhits", 8.81)
-            
+
         elif this.stance == 1:
             this.stance = 2
             this.dmg_make("o_s1_hit1", 0.72)
             this.afflics.burn('s1',120,0.97)
             this.dmg_make("o_s1_laterhits", 8.81)
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-            
+
         elif this.stance == 2:
             this.stance = 0
-            this.dmg_make("o_s1_hit1", 0.72 + this.afflics.burn.get()*0.72*0.8)
-            this.afflics.burn('s1',120,0.97+this.afflics.burn.get()*0.97*0.8)
-            this.dmg_make("o_s1_laterhits", 8.81 + this.afflics.burn.get()*8.81*0.8)
+            with Modifier("s1killer", "burn_killer", "hit", 0.8):
+                this.dmg_make("o_s1_hit1", 0.72)
+                this.afflics.burn('s1',120,0.97)
+                this.dmg_make("o_s1_laterhits", 8.81)
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
 
 

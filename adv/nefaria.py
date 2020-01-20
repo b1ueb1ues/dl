@@ -8,6 +8,7 @@ def module():
     return Nefaria
 
 class Nefaria(Adv):
+    a3 = ('k_blind',0.3)
     conf = {}
     conf['acl'] = """
         `s1, fsc
@@ -22,29 +23,15 @@ class Nefaria(Adv):
             this.afflics.blind.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.blind.resist=100
-        this.m = Modifier('bkiller','att','killer',0.3)
-        this.m.get = this.getbane
         this.s2fscharge = 0
         if this.condition('fullhp=blind'):
             this.fullhp = 1
         else:
             this.fullhp = 0
 
-    def getbane(this):
-        return this.afflics.blind.get()*0.3
-
-
-    def s1_before(this, e):
-        r = this.afflics.blind.get()
-        coef = 8*1.06 * (1-r)
-        return coef
-
     def s1_proc(this, e):
-        r = this.afflics.blind.get()
-        coef = 8*1.06 * r
-        this.dmg_make('s1',coef)
-        coef = 8*(1.8444-1.06) * r
-        this.dmg_make('o_s1_boost',coef)
+        with Modifier("s1killer", "blind_killer", "hit", 0.74):
+            this.dmg_make('s1',8*1.06)
 
     def s2_proc(this, e):
         this.s2fscharge = 3

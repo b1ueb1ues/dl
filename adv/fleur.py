@@ -28,9 +28,6 @@ class Fleur(Adv):
     def init(this):
         this.s1_stance = 1
 
-    def getbane(this):
-        return this.afflics.paralysis.get()*0.2
-
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
             this.afflics.paralysis.resist=this.conf['cond_afflict_res']
@@ -40,25 +37,21 @@ class Fleur(Adv):
 
 
     def s1_proc(this, e):
-        coef = 3.33
-        this.dmg_make('s1', coef)
-        coef = 3.33*0.8 * this.afflics.paralysis.get()
-        this.dmg_make('o_s1_boost', coef)
+        with Modifier("s1killer", "paralysis_killer", "hit", 0.8):
+            coef = 3.33
+            this.dmg_make('s1', coef)
 
-        if this.s1_stance == 1:
-            this.afflics.paralysis('s1',110, 0.883)
-            this.s1_stance = 2
-        elif this.s1_stance == 2:
-            this.afflics.paralysis('s1',160, 0.883)
-            this.s1_stance = 3
-        elif this.s1_stance == 3:
-            this.afflics.paralysis('s1',160, 0.883)
-            this.s1_stance = 1
+            if this.s1_stance == 1:
+                this.afflics.paralysis('s1',110, 0.883)
+                this.s1_stance = 2
+            elif this.s1_stance == 2:
+                this.afflics.paralysis('s1',160, 0.883)
+                this.s1_stance = 3
+            elif this.s1_stance == 3:
+                this.afflics.paralysis('s1',160, 0.883)
+                this.s1_stance = 1
 
-        coef = 3.33
-        this.dmg_make('s1', coef)
-        coef = 3.33*0.8 * this.afflics.paralysis.get()
-        this.dmg_make('o_s1_boost', coef)
+            this.dmg_make('s1', coef)
 
 
     def s2_proc(this, e):
