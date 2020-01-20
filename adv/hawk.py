@@ -31,7 +31,7 @@ class Hawk(Adv):
             this.afflics.stun.resist=100
 
     def s1_proc(this, e):
-        with Modifier("s1killer", "blind_killer", "hit", 1.15):
+        with Modifier("s1killer", "stun_killer", "hit", 1.15):
             this.dmg_make('s1',8.48)
 
     def s2_proc(this, e):
