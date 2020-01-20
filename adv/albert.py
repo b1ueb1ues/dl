@@ -2,14 +2,14 @@ import adv_test
 from adv import *
 import copy
 from module.fsalt import *
-
+from slot.a import *
+from slot.d import *
 
 def module():
     return Albert
 
 
 class Albert(Adv):
-    comment = 'suitable skill prep; don\'t use s3 in s2'
     a1 = ('fs',0.5)
 
     def init(this):
@@ -39,14 +39,6 @@ class Albert(Adv):
 
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
-
-        if this.condition('4s1 in on s2'):
-            this.conf['acl'] = """
-                `s2, s1.charged>=s1.sp-300
-                `s1
-                `s3, not this.s2buff.get()
-                `fs, seq=2
-                """
 
     def altend(this,t):
         fs_back(this)
@@ -99,30 +91,13 @@ class Albert(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s2
-        `s1, this.s2.charged > 900
-        `s3
-        `fs, seq=2 and not this.s2buff.get()
+        `s2, s1.charged>=s1.sp-330
+        `fs, s=2 and not this.afflics.paralysis.get()
+        `s1, fsc
+        `s3, fsc
+        `fs, seq=2
         """
-
-    import sys
-    from slot.a import *
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
-    if sim_duration == 60:
-        #conf['slots.a'] = RR()+Worthy_Rivals()
-        #conf['slots.a'] = TSO()+BBW()
-        conf['slots.a'] = TSO()+Sisters_Day_Out()
-    elif sim_duration == 90:
-#        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
-         conf['slots.a'] = TSO()+The_Chocolatiers()
-    elif sim_duration == 120:
-#        conf['slots.a'] = Heralds_of_Hinomoto()+The_Chocolatiers()
-         conf['slots.a'] = TSO()+Sisters_Day_Out()
-    elif sim_duration == 180:
-        conf['slots.a'] = TSO()+Sisters_Day_Out()
-
+    conf['slot.a'] = TSO()+SDO()
+    conf['slot.d'] = C_Phoenix()
     adv_test.test(module(), conf,verbose=0, mass=0)
 
