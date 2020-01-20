@@ -37,14 +37,10 @@ class Ieyasu(Adv):
         this.s2buff.modifier.get = this.s2ifbleed
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2charge = 0
-        this.poisoned = False
 
     def s1_proc(this, e):
-        if this.afflics.poison.get():
-            coef = 0.31*8
-            this.dmg_make("o_s1_boost", coef)
-            Bleed("s1_bleed", 1.752).on()
-        else:
+        with Modifier("s1killer", "poison_killer", "hit", 0.2):
+            this.dmg_make("s1", 12.40)
             Bleed("s1_bleed", 1.46).on()
 
     def s2_proc(this, e):

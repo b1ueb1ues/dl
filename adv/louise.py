@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from core.advbase import Modifier
 from slot.a import *
 from slot.d import *
 
@@ -24,8 +25,8 @@ class Louise(adv.Adv):
 
 
     def s2_proc(this, e):
-        coef = (4.035-2.69)*3 * this.afflics.poison.get()
-        this.dmg_make("o_s2_boost", coef)
+        with Modifier("s2killer", "poison_killer", "hit", 0.5):
+            this.dmg_make("s2", 8.07)
 
 
 if __name__ == '__main__':

@@ -22,21 +22,22 @@ class Joachim(Adv):
             this.afflics.poison.resist=100
 
     def s1_proc(this, e):
-        if this.s1_stance == 1:
-            this.afflics.poison('s1',110, 0.53)
-            this.s1_stance = 2
-        elif this.s1_stance == 2:
-            this.afflics.poison('s1',160, 0.53)
-            this.s1_stance = 3
-        elif this.s1_stance == 3:
-            Teambuff("s1atk",0.15,10).on()
-            this.afflics.poison('s1',160, 0.53)
-            this.s1_stance = 1
+        with Modifier("s1killer", "poison_killer", "hit", 0.8):
+            coef = 2.2
+            this.dmg_make('s1', coef)
 
-        coef = 2.2
-        this.dmg_make('s1', coef)
-        coef = 2.2*0.8 * this.afflics.poison.get()
-        this.dmg_make('o_s1_boost', coef)
+            if this.s1_stance == 1:
+                this.afflics.poison('s1',110, 0.53)
+                this.s1_stance = 2
+            elif this.s1_stance == 2:
+                this.afflics.poison('s1',160, 0.53)
+                this.s1_stance = 3
+            elif this.s1_stance == 3:
+                Teambuff("s1atk",0.15,10).on()
+                this.afflics.poison('s1',160, 0.53)
+                this.s1_stance = 1
+
+            this.dmg_make('s1', coef)
 
 
     def s2_proc(this, e):
