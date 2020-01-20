@@ -17,3 +17,4 @@ audric.py.dragon.py
 g_mym.py.dragon.py
 euden.py.dragon.py
 euden.py.dragon.sakuya.py
+g_cleo.py.ehjp.py
