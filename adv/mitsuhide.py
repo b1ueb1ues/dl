@@ -42,7 +42,7 @@ class Mitsuhide(Adv):
             this.hits += 5
 
     def s1_proc(this, e):
-        this.afflics.paralysis('s1',120, 0.883)
+        this.afflics.paralysis('s1',120, 0.97)
         this.dmg_make('o_s1',0.61*11,'s')
 
     def s2_proc(this, e):
