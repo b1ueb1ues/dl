@@ -216,9 +216,10 @@ class Afflic_dot(Afflic):
             this.duration = duration
         if iv:
             this.iv = iv
+        dot = Dot('o_%s_%s' % (name, this.name), coef, this.duration, this.iv)
+        dot.on()
         r = Afflic.on(this)
-        coef_x_chance = r * this.coef
-        Dot('o_%s_%s'%(name, this.name) ,coef_x_chance, this.duration, this.iv).on()
+        dot.tick_dmg *= r
         return r
 
 class Afflic_cc(Afflic):
