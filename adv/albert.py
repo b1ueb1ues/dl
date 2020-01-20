@@ -6,39 +6,33 @@ from adv import *
 import copy
 from module.fsalt import *
 from slot.a import *
+<<<<<<< HEAD
+=======
+from slot.d import *
+>>>>>>> 0c2cc4717031cb1dcf2f940e0bf3ca47d364097f
 
 def module():
     return Albert
 
 
 class Albert(Adv):
-    comment = 'don\'t use s3 in s2; 4s1 in s2'
     a1 = ('fs',0.5)
     conf = {}
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp-300
-        `s1
-        `s3, not this.s2buff.get()
+        `s2, s1.charged>=s1.sp-330
+        `fs, s=2 and not this.afflics.paralysis.get()
+        `s1, fsc
+        `s3, fsc
         `fs, seq=2
         """
+    conf['slot.a'] = TSO()+SDO()
+    conf['slot.d'] = C_Phoenix()
     conf['cond_afflict_res'] = 0
-    conf['slots.a'] = TSO()+Sisters_Day_Out()
 
 
     def init(this):
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
-
-
-    def d_slots(this):
-        if adv_test.sim_duration <= 60:
-            this.conf['slots.a'] = TSO()+Sisters_Day_Out()
-        if adv_test.sim_duration == 90:
-            this.conf['slots.a'] = TSO()+The_Chocolatiers()
-        elif adv_test.sim_duration == 120:
-            this.conf['slots.a'] = TSO()+Sisters_Day_Out()
-        elif adv_test.sim_duration >= 180:
-            this.conf['slots.a'] = TSO()+Sisters_Day_Out()
 
     def prerun(this):
 
@@ -61,7 +55,6 @@ class Albert(Adv):
 
         this.fsalttimer = Timer(this.altend)
         fs_alt_init(this, this.fsaconf)
-
 
     def altend(this,t):
         fs_back(this)
