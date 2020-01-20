@@ -19,40 +19,40 @@ def module():
 class G_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
-
     conf = {}
     conf['acl'] = """
-        `fs, this.fsa_charge
-        `s2, seq=5
-        `s1
-        `s3, seq=5
+        `s2, pin='prep'
+        `fs, s1.charged>=s1.sp and this.fsa_charge
+        `s2, x=5 and cancel
+        `s1, fsc or s=2
+        `s3, x=5 or fsc
         """
     conf['slots.a'] = CC()+JotS() # wand c2*1.08 = 217
 
-    def d_acl(this):
-        if 'blade' in this.ex:
-            pass
-        if this.condition('always in a1'):
-            this.conf['acl'] = """
-                `rotation
-                """
-            if 'bow' in this.ex:
-                this.conf['rotation_init'] = """
-                    s3s2s1
-                """
-                this.conf['rotation'] = """
-                    c5c4fss1
-                    c5s2c4fss1
-                """
-            else:
-                this.conf['rotation_init'] = """
-                    s3s2s1
-                    c5c4fss1
-                """
-                this.conf['rotation'] = """
-                    c5c4fss1
-                    c5s2c5fss1
-                """
+    # def d_acl(this):
+    #     if 'blade' in this.ex:
+    #         pass
+    #     if this.condition('always in a1'):
+    #         this.conf['acl'] = """
+    #             `rotation
+    #             """
+    #         if 'bow' in this.ex:
+    #             this.conf['rotation_init'] = """
+    #                 s3s2s1
+    #             """
+    #             this.conf['rotation'] = """
+    #                 c5c4fss1
+    #                 c5s2c4fss1
+    #             """
+    #         else:
+    #             this.conf['rotation_init'] = """
+    #                 s3s2s1
+    #                 c5c4fss1
+    #             """
+    #             this.conf['rotation'] = """
+    #                 c5c4fss1
+    #                 c5s2c5fss1
+    #             """
               #  this.conf['rotation_init'] = """
               #      s2s1
               #  """
@@ -63,7 +63,8 @@ class G_Cleo(Adv):
 
 
     def prerun(this):
-        this.s1p = 0
+        this.a1_buffed = this.condition('always in a1')
+        this.s1p = 0 
         this.fsa_charge = 0
         #this.fso_dmg = this.conf.fs.dmg
         #this.fso_sp = this.conf.fs.sp
@@ -122,12 +123,11 @@ class G_Cleo(Adv):
             this.fsa_charge = 0
             this.fs_alt.off()
             # ground buff doesnt affect by buff time, so use -debuff to emulate that.
-            Debuff('a1_str',-0.25,10,1,'att','buff').on()
+            if this.a1_buffed:
+                Debuff('a1_str',-0.25,10,1,'att','buff').on()
 
 
 
 if __name__ == '__main__':
     conf = {}
-    #module().comment = 'RR+SS'
-    #conf['slots.a'] = RR()+FoG()
     adv_test.test(module(), conf, verbose=0)
