@@ -11,15 +11,11 @@ class Sazanka(Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['slot.a'] = KFM()+CE()
+    a3 = ('k_sleep', 0.20)
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0
-        this.m = Modifier('skiller','att','killer',0.2)
-        this.m.get = this.getbane
-
-    def getbane(this):
-        return this.afflics.blind.get()*0.2
 
     def init(this):
         if this.condition('80 resist'):

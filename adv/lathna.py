@@ -28,11 +28,8 @@ class Lathna(Adv):
 
     def s1a(this):
         if this.s1.check():
-            this.conf.s1.dmg += 1.58*4
-
-            if this.afflics.poison.get():
-                coef = 1.975*4
-                this.dmg_make("o_s1_boost", coef)
+            with Modifier("s1killer", "poison_killer", "hit", 1.25):
+                this.dmg_make("s1", 1.58*4)
             this.conf.s1.recovery = 4.05
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
             return this.s1()
@@ -40,9 +37,8 @@ class Lathna(Adv):
             return 0 
     
     def s1_proc(this, e):
-        if this.afflics.poison.get():
-            coef = 1.975*3
-            this.dmg_make("o_s1_boost", coef)
+        with Modifier("s1killer", "poison_killer", "hit", 1.25):
+            this.dmg_make("s1", 1.58*3)
 
 
 if __name__ == '__main__':

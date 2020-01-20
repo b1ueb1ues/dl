@@ -15,9 +15,6 @@ class Fleur(Adv):
     def init(this):
         this.s1_stance = 1
 
-    def getbane(this):
-        return this.afflics.paralysis.get()*0.2
-
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0

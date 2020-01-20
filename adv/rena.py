@@ -19,7 +19,7 @@ class Rena(Adv):
         `s3, cancel
         `s1
         `s2, s=1
-        `fs, seq=5
+        `fs, seq=5 and (s1.charged=1500 or s1.charged=3200)
         """
     conf['cond_afflict_res'] = 0
 
@@ -31,14 +31,6 @@ class Rena(Adv):
 
         this.a1_iscding = 0
         this.stance = 0
-
-    def d_acl(this):
-        if 'bow' in this.ex:
-            this.conf['acl'] = '''
-                `s1
-                `s2, s=1
-                `s3
-            '''
 
     def s1_proc(this, e):
 

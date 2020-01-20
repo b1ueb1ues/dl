@@ -13,20 +13,14 @@ def module():
     return Yachiyo
 
 class Yachiyo(Adv):
+    a3 = ('k_paralysis', 0.2)
 
     def prerun(this):
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
         else:
             this.afflics.paralysis.resist=100
-        this.fsa_charge = 0
-        this.m = Modifier('pkiller','att','killer',0.2)
-        this.m.get = this.getbane
-
-
-    def getbane(this):
-        return this.afflics.paralysis.get()*0.2
-        
+        this.fsa_charge = 0        
 
     def s1_proc(this, e):
         this.dmg_make('s1',4.32)

@@ -13,9 +13,6 @@ class Mitsuhide(Adv):
     def init(this):
         this.s1_stance = 1
 
-    def getbane(this):
-        return this.afflics.paralysis.get()*0.2
-
     def prerun(this):
         this.hits = 0
         
