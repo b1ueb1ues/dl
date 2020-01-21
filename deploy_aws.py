@@ -119,9 +119,6 @@ def main(argv):
         if '-s' not in opt:
             combine()
 
-    os.system('git --git-dir=www/.git commit -a -m "update"')
-    os.system('git --git-dir=www/.git push origin master')
-
 #} main()
 
 
@@ -165,6 +162,8 @@ def combine():
     time_combine('chara_slow.txt')
     sp_combine('chara_sp_slow.txt')
 
+    os.system('git --git-dir=www/.git commit -a -m "update"')
+    os.system('git --git-dir=www/.git push origin master')
 
 def time_combine(fname):
     global chart_title
