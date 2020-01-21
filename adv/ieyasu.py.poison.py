@@ -15,7 +15,7 @@ class Ieyasu(ieyasu.Ieyasu):
             this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
     def d_slots(this):
-        this.slots.a = RR()+The_Plaguebringer()
+        this.slots.a = HoH()+The_Plaguebringer()
 
 if __name__ == '__main__':
     conf = {}
