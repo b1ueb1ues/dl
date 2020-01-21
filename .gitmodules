@@ -1,3 +1,6 @@
 [submodule "www"]
 	path = www
 	url = https://github.com/b1ueb1ues/b1ueb1ues.github.io
+[submodule "mushymato.github.io"]
+	path = mushymato.github.io
+	url = https://github.com/Mushymato/mushymato.github.io.git
