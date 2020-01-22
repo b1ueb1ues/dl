@@ -13,9 +13,6 @@ class Mitsuhide(Adv):
     def init(this):
         this.s1_stance = 1
 
-    def getbane(this):
-        return this.afflics.paralysis.get()*0.2
-
     def prerun(this):
         this.hits = 0
         
@@ -45,7 +42,7 @@ class Mitsuhide(Adv):
             this.hits += 5
 
     def s1_proc(this, e):
-        this.afflics.paralysis('s1',110, 0.883)
+        this.afflics.paralysis('s1',120, 0.97)
         this.dmg_make('o_s1',0.61*11,'s')
 
     def s2_proc(this, e):

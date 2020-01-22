@@ -83,6 +83,11 @@ class Modifier(object):
                 break
         return this
 
+    def __enter__(this):
+        this.on()
+
+    def __exit__(this, exc_type, exc_val, exc_tb):
+        this.off()
 
     def __repr__(this):
         return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
@@ -1072,19 +1077,19 @@ class Adv(object):
         return average
     
     def rand_crit_mod(this):
-        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0}
+        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
         for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
                 else:
                     print('err in crit_mod')
-                    errrrrrrrrrrrrrrr()
-        chance = m['chance']+m['passive']
+                    errrrrrrrrrrrrr()
+        chance = m['chance']+m['passive']+m['rate']
         if chance > 1:
             chance = 1
         cdmg = m['dmg'] + m['damage'] + 1.7
-        r = this.r()
+        r = random.random()
         if r < chance:
             return cdmg
         else: 
@@ -1094,7 +1099,15 @@ class Adv(object):
     def att_mod(this):
         att = this.mod('att')
         cc = this.crit_mod()
-        return cc * att
+        k = this.killer_mod()
+        return cc * att * k
+
+    def killer_mod(this):
+        m = 1
+        for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+            rate = vars(this.afflics)[afflic].get()
+            m *= 1 + (this.mod(afflic + '_killer') - 1) * rate
+        return m
 
     def def_mod(this):
         m = this.mod('def')
@@ -1287,6 +1300,12 @@ class Adv(object):
         this.debug()
         end = Timeline.run(d)
         log('sim','end')
+        
+        for aff, up in this.afflics.get_uptimes().items():
+            if len(this.comment) > 0:
+                this.comment += '; '
+            this.comment += '{:.0%} {} uptime'.format(up, aff)
+
         return end
 
     def debug(this):

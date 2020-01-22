@@ -7,7 +7,7 @@ def module():
 
 class Lily(adv.Adv):
     conf = {}
-    conf['slot.a'] = CC()+BN()
+    conf['slot.a'] = CC()+Seaside_Princess()
     a1 = ('a',0.15,'hp100')
     a3 = ('prep','100%')
 

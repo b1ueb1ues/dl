@@ -1,9 +1,14 @@
 import adv_test
 from adv import *
+from slot.a import *
 from slot.d import *
 
 def module():
     return Ezelith
+
+class Elegant_Escort_Always_Burned(Amulet):
+    att = 54
+    a = [('k',0.3)]
 
 class Ezelith(Adv):
     comment = ''
@@ -45,10 +50,11 @@ class Ezelith(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Arctos()
+    conf['slot.a'] = Elegant_Escort_Always_Burned() + Twinfold_Bonds()
     conf['acl'] = """
-        `s1
-        `s2, seq=4
-        `s3, seq=5
+        `s1, seq=5 and cancel or fsc
+        `s2, seq=5 and cancel or fsc
+        `s3, seq=5 and cancel or fsc
         `fs, seq=5
         """
 

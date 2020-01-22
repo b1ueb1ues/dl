@@ -7,7 +7,7 @@ def module():
     return G_Mym
 
 class G_Mym(Adv):
-
+    comment = 'get 10% dragon charge from enemy every 18s;'
 
     def prerun(this):
 
@@ -89,7 +89,6 @@ if __name__ == '__main__':
 #        `fs, seq=5
 #        """
 
-    module().comment = 'c5 fs; get 10% dp from enemy every 18s;'
     conf['slot.a'] = RR()+CE()
 #    import slot
 #    conf['slots.d'] = slot.d.flame.Sakuya()

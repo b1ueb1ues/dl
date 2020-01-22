@@ -343,15 +343,18 @@ class Sisters_Day_Out(Amulet):
     att = 64
     a = [('fs',0.40)]
     def fs_proc(this, e):
+        fs_hits = {'sword': 1, 'blade': 1, 'dagger': 3, 'axe': 1, 'lance': 5, 'wand': 2, 'bow': 8, 'staff': 4}
         this.o_fs_proc(e)
-        if this.charges > 0:
-            this.adv.charge_p('fs_charge','25%')
-            this.charges -= 1
+        if this.adv.fs_prep_c > 0:
+            diff = this.adv.fs_prep_c - max(this.adv.fs_prep_c-fs_hits[this.adv.slots.c.wt], 0)
+            for _ in range(diff):
+                this.adv.charge_p('fs_charge','25%')
+            this.adv.fs_prep_c = this.adv.fs_prep_c - diff
 
     def oninit(this, adv):
         Amulet.oninit(this, adv)
-        this.charges = 3
         this.adv = adv
+        this.adv.fs_prep_c = 3
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
 SDO = Sisters_Day_Out
@@ -371,17 +374,21 @@ class Castle_Cheer_Corps(Amulet):
     att = 64
     a = [('sp',0.06)]
     def fs_proc(this, e):
+        fs_hits = {'sword': 1, 'blade': 1, 'dagger': 3, 'axe': 1, 'lance': 5, 'wand': 2, 'bow': 8, 'staff': 4}
         this.o_fs_proc(e)
-        if this.charges > 0:
-            this.adv.charge_p('fs_charge','25%')
-            this.charges -= 1
+        if this.adv.fs_prep_c > 0:
+            diff = this.adv.fs_prep_c - max(this.adv.fs_prep_c-fs_hits[this.adv.slots.c.wt], 0)
+            for _ in range(diff):
+                this.adv.charge_p('fs_charge','25%')
+            this.adv.fs_prep_c = this.adv.fs_prep_c - diff
 
     def oninit(this, adv):
         Amulet.oninit(this, adv)
-        this.charges = 3
         this.adv = adv
+        this.adv.fs_prep_c = 3
         this.o_fs_proc = adv.fs_proc
         adv.fs_proc = this.fs_proc
+CCC = Castle_Cheer_Corps
 
 class Honest_Repose(Amulet):
     att = 53
@@ -476,20 +483,23 @@ class The_Wyrmclan_Duo(Amulet):
          ('cd',0.17,'hp70')]
 TWD = The_Wyrmclan_Duo
 
+class A_New_Years_Battle(Amulet):
+    att = 52
+    a = [('a',0.08,'hp70'),('cc',0.10, 'hit15')]
+ANYB = A_New_Years_Battle
+
 class A_Game_of_Cat_and_Boar(Amulet):
     att = 33
+    a = []
     def on(self, c):
         if c.ele == 'light':
             self.a = [('bt', 0.25)]
+AGoCaB = A_Game_of_Cat_and_Boar
 
 class The_Plaguebringer(Amulet):
     att = 50
     a = [('k_poison',0.25)]
 TP = The_Plaguebringer
-
-class The_Plaguebringer_Always_Poisoned(Amulet):
-    att = 50
-    a = [('k',0.25)]
 
 class A_Dogs_Day(Amulet):
     att = 62

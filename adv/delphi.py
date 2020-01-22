@@ -10,7 +10,6 @@ class Delphi(Adv):
     a1 = ('a',-0.55)
 
     def prerun(this):
-        this.comment = 's2 drops combo; only use poison FS with combo'
         this.hits = 0
         this.proc_chance = 120
         
@@ -76,7 +75,7 @@ class Delphi(Adv):
 if __name__ == '__main__':
     conf = {}
 
-    conf['slots.a'] = MF()+TP()
+    conf['slots.a'] = Mega_Friends()+The_Plaguebringer()
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1

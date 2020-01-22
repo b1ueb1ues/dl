@@ -1,31 +1,23 @@
 import adv_test
 from adv import *
+import kirsty
 from slot.a import *
 
 def module():
     return Kirsty
 
-class Kirsty(Adv):
-    a3 = ('k',0.3)
-
-    comment = 'always poisoned'
+class Kirsty(kirsty.Kirsty):
+    comment = ''
+    def d_slots(this):
+        this.slots.a = RR()+The_Plaguebringer()
 
     def prerun(this):
-        if this.condition('maintain Dauntless Strength'):
-            Timer(this.dauntless_strength).on(15)
-            Timer(this.dauntless_strength).on(30)
-            Timer(this.dauntless_strength).on(45)
-
-    def dauntless_strength(this, t):
-        Selfbuff('a1',0.2,-1).on()
+        super().prerun()
+        from adv_test import sim_duration
+        if this.condition('always poisoned'):
+            this.afflics.poison.resist=0
+            this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.a'] = RR()+The_Plaguebringer_Always_Poisoned()
-    conf['acl'] = """
-        `s1
-        `s2, seq=5
-        `s3, seq=5
-        """
     adv_test.test(module(), conf, verbose=0)
-

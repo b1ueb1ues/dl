@@ -1,11 +1,17 @@
 import adv_test
 import adv
+from core.advbase import Modifier
+from slot.a import *
+from slot.d import *
 
 def module():
     return Louise
 
 class Louise(adv.Adv):
     a1 = ('od',0.13)
+
+    conf = {}
+    conf['slot.a'] = DD()+TP()
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -19,15 +25,12 @@ class Louise(adv.Adv):
 
 
     def s2_proc(this, e):
-        coef = (4.035-2.69)*3 * this.afflics.poison.get()
-        this.dmg_make("o_s2_boost", coef)
+        with Modifier("s2killer", "poison_killer", "hit", 0.5):
+            this.dmg_make("s2", 8.07)
 
 
 if __name__ == '__main__':
-    module().comment = 'no fs'
     conf = {}
-    from slot.a import *
-    conf['slot.a'] = DD()+TP()
 #    conf['slot.d'] = Pazuzu()
     conf['acl'] = """
         `s1, seq=5

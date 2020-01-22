@@ -1,6 +1,7 @@
 import adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Sylas
@@ -9,6 +10,16 @@ class Sylas(adv.Adv):
     a3 = ('a',0.13,'hp70')
 
     comment = 'not consider skill haste for team'
+
+    conf = {}
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3, seq=5
+        `fs, seq=5
+        """
+    conf['slot.d'] = Vayu()
+    conf['slot.a'] = RR()+The_Plaguebringer()
 
     def prerun(this):
         if this.condition('0 resist'):
@@ -26,14 +37,5 @@ class Sylas(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3, seq=5
-        `fs, seq=5
-        """
-    from slot.d import *
-    conf['slot.d'] = Vayu()
-    #conf['slot.a'] = HoH()+SDO()
     adv_test.test(module(), conf, verbose=0)
 

@@ -11,6 +11,7 @@ class Sazanka(Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['slot.a'] = KFM()+CE()
+    a3 = ('k_sleep', 0.20)
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
