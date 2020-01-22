@@ -76,7 +76,7 @@ class Afflic(object):
         this.rate = 1
         this.tolerance = 0.2
         this.duration = 12
-        this.override = 1
+        this.stacking = 1
         this.states = None
         this._get = 0.0
 
@@ -136,7 +136,7 @@ class Afflic(object):
         for start_state, start_state_p in this.states.items():
             timers = frozenset(list(start_state.timers) + [timer])
             res = start_state.resist
-            if res >= 1 or (not this.override and any([t.online for t in start_state.timers])):
+            if res >= 1 or (not this.stacking and any([t.online for t in start_state.timers])):
                 states[start_state] += start_state_p
             else:
                 rate_after_res = min(1, this.rate - res)
@@ -183,47 +183,15 @@ class Afflic_dot(Afflic):
 
 
 class Afflic_cc(Afflic):
-    _static = Static({
-        'active_name': 0,
-        'active_cc': 0,
-    })
-
     def __init__(this, name=None):
         Afflic.__init__(this, name)
-        this.override = 0
-        this.cc = Dot('', 0, 0, 0)
+        this.stacking = 0
 
     def on(this, name, rate, duration=None):
         this.rate = rate
         if duration:
             this.duration = duration
-
-        if this._static.active_cc and this._static.active_cc.get():
-            if this._static.active_name == this.name:
-                this.cc.on()
-                return 0
-            else:
-                r = Afflic.on(this)
-                if random.random() < r:
-                    this._static.active_cc.off()
-                    this.cc = Dot('o_%s_%s' % (name, this.name), 0, this.duration, this.duration + 0.001)
-                    this.cc.cb_end = this.cb_end
-                    this.cc.on()
-                    this._static.active_name = this.name
-                    this._static.active_cc = this.cc
-                    return 1
-                else:
-                    log('debug', 'cc', 'miss %f' % r, '%s_%s' % (name, this.name))
-                    return 0
-        else:
-            # clean now
-            log('debug', 'cc', 'clean')
-            this.cc = Dot('o_%s_%s' % (name, this.name), 0, this.duration, this.duration + 0.001)
-            this.cc.cb_end = this.cb_end
-            this.cc.on()
-            this._static.active_name = this.name
-            this._static.active_cc = this.cc
-            return Afflic.on(this)
+        return Afflic.on(this)
 
     def cb_end(this):
         pass
@@ -232,19 +200,12 @@ class Afflic_cc(Afflic):
 class Afflic_scc(Afflic):
     def __init__(this, name=None):
         Afflic.__init__(this, name)
-        this.cc = Dot('', 0, 0, 0)
+        this.stacking = 0
 
     def on(this, name, rate, duration=None):
         this.rate = rate
         if duration:
             this.duration = duration
-        if this.cc.get():
-            this.cc.cb_end = this.cb_end
-            this.cc.on()
-            return 0
-        this.cc = Dot('o_%s_%s' % (name, this.name), 0, this.duration, this.duration + 0.001)
-        this.cc.cb_end = this.cb_end
-        this.cc.on()
         return Afflic.on(this)
 
     def cb_end(this):
