@@ -1,5 +1,6 @@
 import adv_test
 from adv import *
+from slot.d import *
 
 def module():
     return Kirsty
@@ -20,6 +21,7 @@ class Kirsty(Adv):
 
 if __name__ == '__main__':
     conf = {}
+    conf['slot.d'] = Garland()
     conf['acl'] = """
         `s1
         `s2, seq=5

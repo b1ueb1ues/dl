@@ -26,7 +26,8 @@ class Louise(adv.Adv):
 if __name__ == '__main__':
     module().comment = 'no fs'
     conf = {}
-    from slot.d import *
+    from slot.a import *
+    conf['slot.a'] = DD()+TP()
 #    conf['slot.d'] = Pazuzu()
     conf['acl'] = """
         `s1, seq=5

@@ -16,7 +16,7 @@ class Ieyasu(Adv):
     conf['acl'] = """
         `s1
         `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
+        `s3, seq=4
         """
 
     def d_slots(this):

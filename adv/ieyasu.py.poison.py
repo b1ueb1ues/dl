@@ -15,8 +15,9 @@ class Ieyasu(ieyasu.Ieyasu):
             this.poisoned=False
 
     def d_slots(this):
-        this.conf.slot.a = RR()+The_Plaguebringer_Always_Poisoned()
+        this.conf.slot.a = HoH()+The_Plaguebringer_Always_Poisoned()
 
 if __name__ == '__main__':
     conf = {}
     adv_test.test(module(), conf, verbose=-2)
+    adv_test.sum_ac()

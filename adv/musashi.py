@@ -1,5 +1,6 @@
 import adv_test
 import adv
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -11,6 +12,7 @@ class Musashi(adv.Adv):
 
     conf = {}
     def d_slots(this):
+        this.conf.slot.a = RR()+TP()
         if 'bow' in this.ex:
             this.conf.slot.d = Vayu()
         else:

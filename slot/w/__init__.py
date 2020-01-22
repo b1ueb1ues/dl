@@ -8,3 +8,4 @@ from slot.w.lance import *
 from slot.w.bow import *
 from slot.w.wand import *
 from slot.w.staff import *
+from slot.w.megaman import *

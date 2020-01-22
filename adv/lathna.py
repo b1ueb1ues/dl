@@ -50,6 +50,10 @@ class Lathna(Adv):
             coef = 1.975*3
             this.dmg_make("o_s1_boost", coef)
 
+    def s2_proc(this, e):
+        if this.poisoned:
+            coef = 2.656
+            this.dmg_make("o_s2_boost", coef)
 
 if __name__ == '__main__':
     conf = {}

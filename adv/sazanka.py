@@ -19,7 +19,7 @@ class Sazanka(Adv):
         this.m.get = this.getbane
 
     def getbane(this):
-        return this.afflics.blind.get()*0.2
+        return this.afflics.sleep.get()*0.2
 
     def init(this):
         if this.condition('80 resist'):

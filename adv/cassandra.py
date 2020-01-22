@@ -63,22 +63,20 @@ class Cassandra(Adv):
 
     def s1_proc(this, e):
         this.afflics.poison('s1',120,0.582)
+        this.skill_charge('s1', this.a1_c)
 
     def s2_proc(this, e):
         # this.flurry_str.off()
         this.dmg_make('o_s2_crisis',this.s2boost*10.82)
+        this.skill_charge('s2', this.a1_c)
 
     def skill_charge(self, proc, c):
         for s in ('s1', 's2', 's3'):
-            if s != proc:
-                skill = getattr(self, s)
-                skill.charge(skill.sp*c)
-                log('sp','{}_charge_{}'.format(proc, s), 0, '{}/{}'.format(int(skill.charged), int(skill.sp)))
-    def s1_before(this, e):
-        this.skill_charge('s1', this.a1_c)
-    def s2_before(this, e):
-        this.skill_charge('s2', this.a1_c)
-    def s3_before(this, e):
+            skill = getattr(self, s)
+            skill.charge(skill.sp*c)
+            log('sp','{}_charge_{}'.format(proc, s), 0, '{}/{}'.format(int(skill.charged), int(skill.sp)))
+    
+    def s3_proc(this, e):
         this.skill_charge('s3', this.a1_c)
 
 if __name__ == '__main__':

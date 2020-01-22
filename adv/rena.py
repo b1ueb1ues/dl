@@ -26,7 +26,9 @@ class Rena(Adv):
             '''
     
     def s1_proc(this, e):
+        this.dmg_make("s1", 0.72)
         this.afflics.burn('s1',120,0.97)
+        this.dmg_make("s1", 0.72*3 + 6.65)
 
         if this.stance == 0:
             this.stance = 1
@@ -36,7 +38,7 @@ class Rena(Adv):
         elif this.stance == 2:
             this.stance = 0
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-            coef = this.afflics.burn.get()*this.conf.s1.dmg*0.8
+            coef = this.afflics.burn.get()*9.53*0.8
             this.dmg_make("o_s1_boost", coef)
 
 
@@ -78,7 +80,7 @@ if __name__ == '__main__':
     conf['acl'] = """
         `s1
         `s2, s=1
-        `s3, fsc
+        `s3, not this.s3_buff_on
         `fs, seq=5
         """
 
