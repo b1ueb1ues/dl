@@ -131,10 +131,10 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     else:
         adv = classname(conf=conf,cond=0)
     adv.ex = ex_set
-    comment = adv.comment
 
     real_duration = adv.run(sim_duration)
-
+    comment = adv.comment
+    
     global ex_team_init
     if not ex_team_init :
         ex_team_init = 1
