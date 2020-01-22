@@ -136,7 +136,7 @@ class Afflic(object):
         for start_state, start_state_p in this.states.items():
             timers = frozenset(list(start_state.timers) + [timer])
             res = start_state.resist
-            if res >= 1 or (not this.override and timers):
+            if res >= 1 or (not this.override and any([t.online for t in start_state.timers])):
                 states[start_state] += start_state_p
             else:
                 rate_after_res = min(1, this.rate - res)
