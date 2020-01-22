@@ -134,18 +134,19 @@ class Afflic(object):
         states = defaultdict(lambda: 0.0)
         total_p = 0.0
         for start_state, start_state_p in this.states.items():
-            timers = frozenset(list(start_state.timers) + [timer])
             res = start_state.resist
-            if res >= 1 or (not this.stacking and any([t.online for t in start_state.timers])):
+            if res >= this.rate or res >= 1 or (not this.stacking and start_state.timers):
                 states[start_state] += start_state_p
             else:
                 rate_after_res = min(1, this.rate - res)
-                state_on_succeed = this.State(timers, min(1.0, res + this.tolerance))
+                succeed_timers = frozenset(list(start_state.timers) + [timer])
+                state_on_succeed = this.State(succeed_timers, min(1.0, res + this.tolerance))
                 overall_succeed_p = start_state_p * rate_after_res
                 overall_fail_p = start_state_p * (1.0 - rate_after_res)
                 total_p += overall_succeed_p
                 states[state_on_succeed] += overall_succeed_p
-                states[start_state] += overall_fail_p
+                if overall_fail_p > 0:
+                    states[start_state] += overall_fail_p
         this.states = states
         this.update()
         return total_p

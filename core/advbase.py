@@ -1097,19 +1097,19 @@ class Adv(object):
         return average
 
     def rand_crit_mod(this):
-        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0}
+        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
         for i in this.all_modifiers:
             if 'crit' == i.mod_type:
                 if i.mod_order in m:
                     m[i.mod_order] += i.get()
                 else:
                     print('err in crit_mod')
-                    errrrrrrrrrrrrrrr()
-        chance = m['chance']+m['passive']
+                    errrrrrrrrrrrrr()
+        chance = m['chance']+m['passive']+m['rate']
         if chance > 1:
             chance = 1
         cdmg = m['dmg'] + m['damage'] + 1.7
-        r = this.r()
+        r = random.random()
         if r < chance:
             return cdmg
         else:
