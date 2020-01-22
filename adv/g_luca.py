@@ -7,7 +7,7 @@ def module():
     return G_Luca
 
 class G_Luca(Adv):
-    a3 = ('cc',0.13,'hp70')
+    a3 = ('cc',0.13,'hit15')
 
     conf = {}
     # conf['slot.a'] = RR()+JotS()
@@ -22,15 +22,13 @@ class G_Luca(Adv):
         random.seed()
         this.crit_mod = this.custom_crit_mod
 
-        this.s1_crit_mod = Modifier('mod_crit_s1', 'crit', 'chance', 0)
+        this.s1_crit_mod = Modifier('mod_s1_cc', 'crit', 'chance', 0)
         this.s1_crit_mod.get = this.s1_buff_count
         this.s1_crit_mod.off()
         
-        this.a1_crit_mod = Modifier('mod_crit_a1', 'crit', 'chance', 0)
+        this.a1_crit_mod = Modifier('mod_a1_cc', 'crit', 'chance', 0)
         this.a1_crit_mod.get = this.a1_buff_count
-        # bolb
         this.a1_crit_mod.off()
-        this.a1_crit_mod.on()
 
         this.a1_buffs = [
             Selfbuff('a1_sylvan',0.03,20,'crit','chance'),
@@ -39,7 +37,11 @@ class G_Luca(Adv):
         ]
         this.a1_iscding = False
 
+    def prerun(this):
+        this.a1_crit_mod.on()
+
     def buff_icon_count(this):
+        # not entirely accurate to game, but works fine in the scope of s2 + the 3 a1 buffs
         return len(set([b.name for b in this.all_buffs]))
 
     def s1_buff_count(this):
@@ -48,7 +50,6 @@ class G_Luca(Adv):
 
     def a1_buff_count(this):
         this.mod_value = min(0.04 * this.buff_icon_count(), 0.28)
-        print('a1_buff_count')
         return this.mod_value
 
     def a1_cooldown(this, t):

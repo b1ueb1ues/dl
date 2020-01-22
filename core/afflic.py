@@ -67,7 +67,95 @@ class Dot(object):
         log('dot', this.name, 'end by other reason')
 
 
-class Afflic(object):
+class AfflicUncapped(object):
+    def __init__(this, name=None):
+        this.name = name
+        this.resist = 0
+        this.rate = 1
+        this.tolerance = 0.2
+        this.duration = 12
+        this.states = None
+        this.stacks = []
+        this._get = 0.0
+
+        this.c_uptime = (0, 0)
+        this.last_afflict = 0
+        Timer(this.uptime, repeat=1).on(1)
+
+    def get_tolerance(this):
+        if this.tolerance > 1:
+            return float(this.tolerance) / 100.0
+        else:
+            return this.tolerance
+
+    def get_rate(this):
+        if this.rate > 2:
+            return float(this.rate) / 100.0
+        else:
+            return this.rate
+
+    def get_resist(this):
+        if this.resist > 1:
+            return float(this.resist) / 100.0
+        else:
+            return this.resist
+
+    def get(this):
+        return this._get
+
+    def update(this):
+        nostack_p = 1.0
+        for stack_p in this.stacks:
+            nostack_p *= 1.0 - stack_p
+        this._get = 1.0 - nostack_p
+
+    def stack_end_fun(this, p):
+        def end_callback(t):
+            this.stacks.remove(p)
+            this.update()
+        return end_callback
+
+    def __call__(this, *args, **argv):
+        return this.on(*args, **argv)
+
+    def on(this):
+        this.resist = this.get_resist()
+        this.rate = this.get_rate()
+        this.tolerance = this.get_tolerance()
+        if this.states is None:
+            this.states = defaultdict(lambda: 0.0)
+            this.states[this.resist] = 1.0
+        states = defaultdict(lambda: 0.0)
+        total_success_p = 0.0
+        for res, state_p in this.states.items():
+            if res >= this.rate or res >= 1:
+                states[res] += state_p
+            else:
+                rate_after_res = min(1.0, this.rate - res)
+                success_p = state_p * rate_after_res
+                fail_p = state_p * (1.0 - rate_after_res)
+                total_success_p += success_p
+                states[res + this.tolerance] += success_p
+                states[res] += fail_p
+        this.states = states
+        this.stacks.append(total_success_p)
+        Timer(this.stack_end_fun(total_success_p), this.duration).on()
+        this.update()
+        return total_success_p
+
+    def uptime(this, t):
+        next_r = this.get()
+        next_t = now()
+        if next_r == 0:
+            this.last_afflict = next_t
+        prev_r, prev_t = this.c_uptime
+        rate = prev_r + next_r*(next_t-prev_t)
+        this.c_uptime = (rate, next_t)
+        if next_t > 0 and rate > 0 and next_t % 60 == 0:
+            log('{}_uptime'.format(this.name), '{:.2f}/{:.2f}'.format(rate, next_t), '{:.2%}'.format(rate/next_t))
+
+
+class AfflicCapped(object):
     State = namedtuple("State", "timers resist")
 
     def __init__(this, name=None):
@@ -76,7 +164,7 @@ class Afflic(object):
         this.rate = 1
         this.tolerance = 0.2
         this.duration = 12
-        this.stacking = 1
+        this.stack_cap = 1
         this.states = None
         this._get = 0.0
 
@@ -135,7 +223,7 @@ class Afflic(object):
         total_p = 0.0
         for start_state, start_state_p in this.states.items():
             res = start_state.resist
-            if res >= this.rate or res >= 1 or (not this.stacking and start_state.timers):
+            if res >= this.rate or res >= 1 or len(start_state.timers) >= this.stack_cap:
                 states[start_state] += start_state_p
             else:
                 rate_after_res = min(1, this.rate - res)
@@ -162,9 +250,9 @@ class Afflic(object):
         if next_t > 0 and rate > 0 and next_t % 60 == 0:
             log('{}_uptime'.format(this.name), '{:.2f}/{:.2f}'.format(rate, next_t), '{:.2%}'.format(rate/next_t))
 
-class Afflic_dot(Afflic):
+class Afflic_dot(AfflicUncapped):
     def __init__(this, name=None):
-        Afflic.__init__(this, name)
+        super().__init__(name)
         this.coef = 0.97
         this.iv = 3.99
         this.duration = 12
@@ -178,36 +266,36 @@ class Afflic_dot(Afflic):
             this.iv = iv
         dot = Dot('o_%s_%s' % (name, this.name), coef, this.duration, this.iv)
         dot.on()
-        r = Afflic.on(this)
+        r = super().on()
         dot.tick_dmg *= r
         return r
 
 
-class Afflic_cc(Afflic):
+class Afflic_cc(AfflicCapped):
     def __init__(this, name=None):
-        Afflic.__init__(this, name)
-        this.stacking = 0
+        super().__init__(name)
+        this.stack_cap = 1
 
     def on(this, name, rate, duration=None):
         this.rate = rate
         if duration:
             this.duration = duration
-        return Afflic.on(this)
+        return super().on()
 
     def cb_end(this):
         pass
 
 
-class Afflic_scc(Afflic):
+class Afflic_scc(AfflicCapped):
     def __init__(this, name=None):
-        Afflic.__init__(this, name)
-        this.stacking = 0
+        super().__init__(name)
+        this.stack_cap = 1
 
     def on(this, name, rate, duration=None):
         this.rate = rate
         if duration:
             this.duration = duration
-        return Afflic.on(this)
+        return super().on()
 
     def cb_end(this):
         pass
