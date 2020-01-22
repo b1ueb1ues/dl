@@ -1300,6 +1300,12 @@ class Adv(object):
         this.debug()
         end = Timeline.run(d)
         log('sim','end')
+        
+        if len(this.comment) > 0:
+            this.comment += '; '
+        for aff, up in this.afflics.get_uptimes().items():
+            this.comment += '{:.0%} {} uptime'.format(up, aff)
+
         return end
 
     def debug(this):

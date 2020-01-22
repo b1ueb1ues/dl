@@ -113,6 +113,10 @@ class Afflic(object):
         this.stack_x_chance = 0.0
         this.tree = []
 
+        this.c_uptime = (0, 0)
+        this.last_afflict = 0 
+        Timer(this.uptime, repeat=1).on(1)
+
     def get_tolerance(this):
         if this.tolerance > 1:
             return float(this.tolerance)/100.0
@@ -201,6 +205,17 @@ class Afflic(object):
             this.stack[t] = t.p
             t.on(this.duration)
             return t.p
+
+    def uptime(this, t):
+        next_r = this.get()
+        next_t = now()
+        if next_r == 0:
+            this.last_afflict = next_t
+        prev_r, prev_t = this.c_uptime
+        rate = prev_r + next_r*(next_t-prev_t)
+        this.c_uptime = (rate, next_t)
+        if next_t > 0 and rate > 0 and next_t % 60 == 0:
+            log('{}_uptime'.format(this.name), '{:.2f}/{:.2f}'.format(rate, next_t), '{:.2%}'.format(rate/next_t))
 
 class Afflic_dot(Afflic):
     def __init__(this, name=None):
@@ -421,6 +436,18 @@ class Afflics(object):
         else:
             log('afflic','perfect_resist')
         return 0
+
+    def get_uptimes(this):
+        uptimes = {}
+        for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
+            aff = this.__dict__[atype]
+            rate, t = aff.c_uptime
+            # last = aff.last_afflict
+            if rate > 0:
+                # print('{}_uptime'.format(atype), '{:.2f}/{:.2f}'.format(rate, t), '{:.2%}'.format(rate/t))
+                # print('last_{}: {:.2f}s'.format(atype, last))
+                uptimes[atype] = rate/t
+        return uptimes
 
     def rinit(this):
         this.resist = {}
