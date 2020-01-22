@@ -13,7 +13,6 @@ python deploy.py renelle.py
 python deploy.py v_ezelith.py
 python deploy.py v_orion.py
 python deploy.py xania.py
-python deploy.py addis.py
 python deploy.py alex.py
 python deploy.py cassandra.py
 python deploy.py delphi.py
@@ -30,5 +29,4 @@ python deploy.py mitsuhide.py
 python deploy.py philia.py
 python deploy.py s_cleo.py
 python deploy.py yachiyo.py
-python deploy.py ezelith.py
 python deploy.py -c

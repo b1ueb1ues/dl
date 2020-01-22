@@ -1,3 +1,5 @@
+from collections import defaultdict, namedtuple
+
 from core.timeline import *
 from core.log import *
 import random
@@ -24,7 +26,7 @@ class Dot(object):
         this.dotend_timer = Timer(this.dot_end_proc)
 
     def dot_end_proc(this, t):
-        log('dot',this.name,'end\t')
+        log('dot', this.name, 'end\t')
         this.active = 0
         this.tick_timer.off()
         this.cb_end()
@@ -38,7 +40,7 @@ class Dot(object):
         t.timing += this.iv
         this.true_dmg_event.count = this.tick_dmg
         this.true_dmg_event.on()
-        
+
     def __call__(this):
         return this.on()
 
@@ -46,8 +48,8 @@ class Dot(object):
         return this.active
 
     def on(this):
-        if this.active :
-            log('dot',this.name,'failed\t')
+        if this.active:
+            log('dot', this.name, 'failed\t')
             return 0
         this.active = 1
         this.tick_timer.on(this.iv)
@@ -56,62 +58,27 @@ class Dot(object):
         this.quickshot_event.dname = this.name
         this.quickshot_event()
         this.tick_dmg = this.quickshot_event.dmg
-        log('dot',this.name,'start\t','%f/%d'%(this.iv,this.duration))
+        log('dot', this.name, 'start\t', '%f/%d' % (this.iv, this.duration))
         return 1
 
     def off(this):
         this.tick_timer.off()
         this.dotend_timer.off()
-        log('dot',this.name,'end by other reason')
+        log('dot', this.name, 'end by other reason')
 
 
-
-    
 class Afflic(object):
-    class Node(object):
-        resist_after = 0
-        chance = 0
-        proc = 0
-        lnode = 0
-        rnode = 0
-        def __init__(this, chance, resist_after, proc):
-            this.chance = chance
-            this.resist_after = resist_after
-            this.proc = proc
-
-        def add(this, rate, tolerance):
-            if this.resist_after >= 1:
-                this.lnode = Afflic.Node(this.chance, 1, 0)
-                this.rnode = 0 #Afflic.Node(0, 1, 0)
-                return
-            if rate <= this.resist_after:
-                this.lnode = Afflic.Node(this.chance, this.resist_after, 0)
-                this.rnode = 0 #Afflic.Node(0, this.resist_after, 0)
-                return
-
-            chance = rate-this.resist_after
-            if chance > 1:
-                chance = 1
-            if chance == 1:
-                this.lnode = 0 #Afflic.Node(this.chance * (1-chance), this.resist_after, 0)
-                this.rnode = Afflic.Node(this.chance , this.resist_after+tolerance, 1)
-                return
-            this.lnode = Afflic.Node(this.chance * (1-chance), this.resist_after, 0)
-            this.rnode = Afflic.Node(this.chance * chance, this.resist_after+tolerance, 1)
+    State = namedtuple("State", "timers resist")
 
     def __init__(this, name=None):
         this.name = name
         this.resist = 0
         this.rate = 1
         this.tolerance = 0.2
-        #this.history = 0
-        this.history = []
-        #this.maxproc = int((this.rate-this.get_resist())/this.get_tolerance()+0.9999)
-        this.maxdepth = 22
         this.duration = 12
-        this.stack = {}
-        this.stack_x_chance = 0.0
-        this.tree = []
+        this.stacking = 1
+        this.states = None
+        this._get = 0.0
 
         this.c_uptime = (0, 0)
         this.last_afflict = 0 
@@ -119,71 +86,39 @@ class Afflic(object):
 
     def get_tolerance(this):
         if this.tolerance > 1:
-            return float(this.tolerance)/100.0
+            return float(this.tolerance) / 100.0
         else:
             return this.tolerance
 
     def get_rate(this):
         if this.rate > 2:
-            return float(this.rate)/100.0
+            return float(this.rate) / 100.0
         else:
             return this.rate
 
-
     def get_resist(this):
-        if this.resist > 1 :
-            return float(this.resist)/100.0
+        if this.resist > 1:
+            return float(this.resist) / 100.0
         else:
             return this.resist
 
-    def p_tree(this, serial):
-        this.tree.append([])
-        rate = this.history[serial-1]
-        rsum = 0
-        if serial == 1:
-            root = Afflic.Node(1, this.resist, 0)
-            root.add(rate, this.get_tolerance())
-            if root.lnode :
-                this.tree[serial-1].append(root.lnode)
-            if root.rnode :
-                this.tree[serial-1].append(root.rnode)
-                rsum += root.rnode.chance
-        else:
-            for i in this.tree[serial-2]:
-                i.add(rate, this.get_tolerance())
-                if i.lnode:
-                    this.tree[serial-1].append(i.lnode)
-                if i.rnode:
-                    this.tree[serial-1].append(i.rnode)
-                    rsum += i.rnode.chance
-        return rsum
+    def get(this):
+        return this._get
 
-
-    def p_recursive(this, count, cmax ,resist):
-        rate = this.history[count-1]
-        if resist >= 1:
-            return 0
-        pchance = rate - resist
-        if pchance > 1:
-            pchance = 1
-        if pchance < 0:
-            pchance = 0
-        if count == cmax:
-            return pchance
-        p1 = pchance * this.p_recursive(count+1, cmax, resist+this.tolerance)
-        p2 = (1-pchance) * this.p_recursive(count+1,cmax, resist)
-        return p1+p2
-
+    def update(this):
+        total_p = 0.0
+        states = defaultdict(lambda: 0.0)
+        for state, state_p in this.states.items():
+            reduced_state = this.State(frozenset([t for t in state.timers if t.timing > now()]), state.resist)
+            states[reduced_state] += state_p
+            if reduced_state.timers:
+                total_p += state_p
+        this.states = states
+        this._get = total_p
+        return total_p
 
     def stack_end(this, t):
-        this.stack.pop(t)
-
-
-    def get(this):
-        nostackchance = 1.0
-        for i in this.stack:
-            nostackchance *= (1.0-this.stack[i])
-        return 1.0-nostackchance
+        this.update()
 
     def __call__(this, *args, **argv):
         return this.on(*args, **argv)
@@ -192,19 +127,28 @@ class Afflic(object):
         this.resist = this.get_resist()
         this.rate = this.get_rate()
         this.tolerance = this.get_tolerance()
-        this.history.append(this.rate)
-        t = Timer(this.stack_end)
-        count = len(this.history)
-        #in order not too deep
-        #if count > (1-this.resist)/this.tolerance*5:
-        if count > this.maxdepth:
-            return 0
-        else:
-            #t.p = this.p_recursive(1, count, this.resist)
-            t.p = this.p_tree(count)
-            this.stack[t] = t.p
-            t.on(this.duration)
-            return t.p
+        timer = Timer(this.stack_end, this.duration).on()
+        if this.states is None:
+            this.states = defaultdict(lambda: 0.0)
+            this.states[this.State(frozenset(), this.resist)] = 1.0
+        states = defaultdict(lambda: 0.0)
+        total_p = 0.0
+        for start_state, start_state_p in this.states.items():
+            timers = frozenset(list(start_state.timers) + [timer])
+            res = start_state.resist
+            if res >= 1 or (not this.stacking and any([t.online for t in start_state.timers])):
+                states[start_state] += start_state_p
+            else:
+                rate_after_res = min(1, this.rate - res)
+                state_on_succeed = this.State(timers, min(1.0, res + this.tolerance))
+                overall_succeed_p = start_state_p * rate_after_res
+                overall_fail_p = start_state_p * (1.0 - rate_after_res)
+                total_p += overall_succeed_p
+                states[state_on_succeed] += overall_succeed_p
+                states[start_state] += overall_fail_p
+        this.states = states
+        this.update()
+        return total_p
 
     def uptime(this, t):
         next_r = this.get()
@@ -237,46 +181,17 @@ class Afflic_dot(Afflic):
         dot.tick_dmg *= r
         return r
 
+
 class Afflic_cc(Afflic):
-    _static = Static({
-        'active_name': 0,
-        'active_cc': 0,
-        })
     def __init__(this, name=None):
         Afflic.__init__(this, name)
-        this.cc = Dot('',0,0,0)
+        this.stacking = 0
 
     def on(this, name, rate, duration=None):
         this.rate = rate
         if duration:
             this.duration = duration
-
-        if this._static.active_cc and this._static.active_cc.get():
-            if this._static.active_name == this.name:
-                this.cc.on()
-                return 0
-            else:
-                r = Afflic.on(this)
-                if random.random() < r:
-                    this._static.active_cc.off()
-                    this.cc = Dot('o_%s_%s'%(name, this.name), 0, this.duration, this.duration+0.001)
-                    this.cc.cb_end = this.cb_end
-                    this.cc.on()
-                    this._static.active_name = this.name
-                    this._static.active_cc = this.cc
-                    return 1
-                else:
-                    log('debug','cc', 'miss %f'%r, '%s_%s'%(name,this.name))
-                    return 0
-        else:
-            # clean now
-            log('debug','cc', 'clean')
-            this.cc = Dot('o_%s_%s'%(name, this.name), 0, this.duration, this.duration+0.001)
-            this.cc.cb_end = this.cb_end
-            this.cc.on()
-            this._static.active_name = this.name
-            this._static.active_cc = this.cc
-            return Afflic.on(this)
+        return Afflic.on(this)
 
     def cb_end(this):
         pass
@@ -285,24 +200,16 @@ class Afflic_cc(Afflic):
 class Afflic_scc(Afflic):
     def __init__(this, name=None):
         Afflic.__init__(this, name)
-        this.cc = Dot('',0,0,0)
+        this.stacking = 0
 
     def on(this, name, rate, duration=None):
         this.rate = rate
         if duration:
             this.duration = duration
-        if this.cc.get():
-            this.cc.cb_end = this.cb_end
-            this.cc.on()
-            return 0
-        this.cc = Dot('o_%s_%s'%(name, this.name) ,0, this.duration, this.duration+0.001)
-        this.cc.cb_end = this.cb_end
-        this.cc.on()
         return Afflic.on(this)
 
     def cb_end(this):
         pass
-
 
 
 class Afflics(object):
@@ -335,48 +242,47 @@ class Afflics(object):
         this.sleep = Afflic_cc('sleep')
         this.blind.duration = 6.5
 
-        this.poison.resist    = 0
-        this.burn.resist      = 0
+        this.poison.resist = 0
+        this.burn.resist = 0
         this.paralysis.resist = 0
-        this.blind.resist     = 80
-        this.bog.resist       = 80
-        this.freeze.resist    = 80
-        this.stun.resist      = 80
-        this.sleep.resist     = 80
+        this.blind.resist = 80
+        this.bog.resist = 80
+        this.freeze.resist = 80
+        this.stun.resist = 80
+        this.sleep.resist = 80
 
-        this.poison.tolerance    = 5
-        this.burn.tolerance      = 5
+        this.poison.tolerance = 5
+        this.burn.tolerance = 5
         this.paralysis.tolerance = 5
-        this.blind.tolerance     = 10
-        this.bog.tolerance       = 20
-        this.freeze.tolerance    = 20
-        this.stun.tolerance      = 20
-        this.sleep.tolerance     = 20
+        this.blind.tolerance = 10
+        this.bog.tolerance = 20
+        this.freeze.tolerance = 20
+        this.stun.tolerance = 20
+        this.sleep.tolerance = 20
 
-    
     def add(this, name, atype, rate, duration, coef=0, iv=0):
         if atype == 'burning':
             atype = 'burn'
         if atype == 'para':
             atype = 'paralysis'
-        if atype in ['poison','burn','paralysis']:
+        if atype in ['poison', 'burn', 'paralysis']:
             return this.add_dot(name, atype, rate, coef, duration, iv)
-        elif atype in ['blind','freeze','stun','sleep','bog']:
+        elif atype in ['blind', 'freeze', 'stun', 'sleep', 'bog']:
             return this.add_cc(name, atype, rate, coef, duration, iv)
 
     def get(this, atype):
-        if atype in ['poison','burn','paralysis']:
+        if atype in ['poison', 'burn', 'paralysis']:
             stack = 0
             for i in this.dot:
                 if i[0] == atype and i[1].get():
                     stack += 1
             return stack
-        elif atype in ['blind','freeze','stun','sleep','bog']:
+        elif atype in ['blind', 'freeze', 'stun', 'sleep', 'bog']:
             if atype in this.cc:
                 return this.cc[atype].get()
 
     def r(this):
-        return random.random()/this.luck
+        return random.random() / this.luck
 
     def refresh_dot(this):
         tmp = []
@@ -393,48 +299,48 @@ class Afflics(object):
         this.cc = tmp
 
     def add_dot(this, name, atype, rate, coef, duration, iv):
-        if not iv :
+        if not iv:
             errrrrr()
         if this.resist[atype] < 100:
             r = this.r()
-            log('afflic',rate, this.resist[atype],r*100)
+            log('afflic', rate, this.resist[atype], r * 100)
             if rate < this.resist[atype]:
                 return 0
-            if r*100 < (rate-this.resist[atype]):
+            if r * 100 < (rate - this.resist[atype]):
                 log('afflic', 'succ', name, atype)
                 this.refresh_dot()
-                dot = Dot('o_'+name+'_'+atype, coef, duration, iv)
+                dot = Dot('o_' + name + '_' + atype, coef, duration, iv)
                 dot.on()
-                this.dot.append((atype,dot))
-                this.resist[atype] += 20 # 5
+                this.dot.append((atype, dot))
+                this.resist[atype] += 20  # 5
                 return 1
         else:
-            log('afflic','perfect_resist')
+            log('afflic', 'perfect_resist')
         return 0
 
     def add_cc(this, name, atype, rate, coef, duration, iv):
         if this.resist[atype] < 100:
             r = this.r()
-            log('afflic',rate, this.resist[atype],r*100)
+            log('afflic', rate, this.resist[atype], r * 100)
             if atype in this.cc:
                 this.cc[atype].on()
                 return 0
             elif rate < this.resist[atype]:
                 return 0
-            elif r*100 < (rate-this.resist[atype]):
+            elif r * 100 < (rate - this.resist[atype]):
                 log('afflic', 'succ', name, atype)
                 this.refresh_cc()
-                cc = Dot('o_'+name+'_'+atype, 0, duration, duration+0.01)
+                cc = Dot('o_' + name + '_' + atype, 0, duration, duration + 0.01)
                 cc.on()
                 this.cc[atype] = cc
 
                 if atype == 'blind':
-                    this.resist[atype] += 20 # 10
-                else:  #elif atype in ['freeze','stun','sleep','bog']:
+                    this.resist[atype] += 20  # 10
+                else:  # elif atype in ['freeze','stun','sleep','bog']:
                     this.resist[atype] += 20
                 return 1
         else:
-            log('afflic','perfect_resist')
+            log('afflic', 'perfect_resist')
         return 0
 
     def get_uptimes(this):
