@@ -9,7 +9,6 @@ louise.py.rollfs.py
 noelle.py.zephyr.py
 d_xainfried.py.freyja.py
 g_elisanne.py.dj.py
-heinwald.py
 lathna.py.poison.py
 ieyasu.py.poison.py
 kirsty.py.poison.py
