@@ -1,6 +1,7 @@
 #!/bin/bash
 #python deploy.py adv.py
 #python deploy.py adv.py.sp.py -sp
+export COMMIT_MSG='update new shadow 70mc'
 python deploy.py botan.py
 python deploy.py cassandra.py
 python deploy.py curran.py
