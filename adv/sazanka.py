@@ -17,6 +17,11 @@ class Sazanka(Adv):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0
 
+    def init(this):
+        if this.condition('80 resist'):
+            this.afflics.sleep.resist=80
+        else:
+            this.afflics.sleep.resist=100
 
     def s1_proc(this, e):
         if random.random() < 0.8:
