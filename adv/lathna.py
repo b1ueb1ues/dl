@@ -3,17 +3,15 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 from adv import *
-from slot.a import *
-
-from slot.d import *
-
 
 def module():
     return Lathna
 
 class Lathna(Adv):
+    comment = 'no poison'
+    a1 = ('k_poison',0.15)
+    
     conf = {}
-    conf['slot.a'] = RR()+BN()
     conf['acl'] = """
         # s1a = this.s1a
         `s1a
@@ -35,8 +33,8 @@ class Lathna(Adv):
 
     def s1a(this):
         if this.s1.check():
-            with Modifier("s1killer", "poison_killer", "hit", 1.25):
-                this.dmg_make("s1", 1.58*4)
+            with Modifier("s1killer", "poison_killer", "hit", 0.5):
+                this.dmg_make("s1", 2.37*4)
             this.conf.s1.recovery = 4.05
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
             return this.s1()
@@ -44,9 +42,12 @@ class Lathna(Adv):
             return 0 
     
     def s1_proc(this, e):
-        with Modifier("s1killer", "poison_killer", "hit", 1.25):
-            this.dmg_make("s1", 1.58*3)
+        with Modifier("s1killer", "poison_killer", "hit", 0.5):
+            this.dmg_make("s1", 2.37*3)
 
+    def s2_proc(this, e):
+        with Modifier("s2killer", "poison_killer", "hit", 0.5):
+            this.dmg_make("s2", 17.26)
 
 if __name__ == '__main__':
     conf = {}

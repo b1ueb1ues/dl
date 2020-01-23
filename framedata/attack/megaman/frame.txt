@@ -1,0 +1,14 @@
+c1_start : 0   , 0
+c1_shot  : 18  , 18
+c2_shot  : 51  , 33
+c3_shot  : 82  , 31 
+c4_shot  : 135 , 53
+c5_shot  : 200 , 65
+c5_end   : 275 , 75
+
+fs failed.
+c5_shot  : 1598
+c5_end   : 1627 , 29
+c1_start : 1627 
+c1_shot  : 1645 , 18
+c2_shot  : 1678 , 33

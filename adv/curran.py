@@ -12,6 +12,10 @@ def module():
 
 class Curran(adv.Adv):
     comment = "no fs"
+
+    a1 = ('od',0.15)
+    a3 = ('lo',0.6)
+
     conf = {}
     conf['acl'] = """
         `s1
@@ -19,9 +23,14 @@ class Curran(adv.Adv):
         `s3, seq=5
         """
     conf['slot.a'] = KFM()+CE()
-    a1 = ('od',0.13)
-    a3 = ('lo',0.5)
 
+    def s1_proc(this, e):
+        with Modifier("s1killer", "poison_killer", "hit", 0.6):
+            this.dmg_make("s1", 14.70)
+
+    def s2_proc(this, e):
+        with Modifier("s2killer", "poison_killer", "hit", 1):
+            this.dmg_make("s2", 12.54)
 
 if __name__ == '__main__':
     conf = {}

@@ -5,7 +5,6 @@ else:
 from adv import *
 from slot.a import *
 from slot.d import *
-import slot.w
 
 def module():
     return W_Elisanne

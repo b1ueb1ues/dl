@@ -3,6 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from slot.a import *
 from slot.d import *
 from slot.a import *
 
@@ -22,6 +23,7 @@ class Musashi(adv.Adv):
         """
     conf['cond_afflict_res'] = 0
     def d_slots(this):
+        this.conf.slot.a = RR()+TP()
         if 'bow' in this.ex:
             this.conf.slot.d = Vayu()
 
