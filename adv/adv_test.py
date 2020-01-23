@@ -11,7 +11,7 @@ import conf as globalconf
 #import random
 from core import condition as m_condition
 from core.acl import *
-
+import multiprocessing
 
 page = ''
 if len(sys.argv) >= 3:
@@ -291,7 +291,7 @@ def report__2(condition, exdps, r, name, adv, amulets):
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
-            displayed_str, amulets+g_condicomment ,condi,comment,
+            displayed_str, amulets ,condi,comment,
             )
 #    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
 #    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
@@ -340,8 +340,8 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     if adv.conf['c.wt'] == 'blade':
         katana = 1.0
 
-    if 0 < dmin < dmax:
-        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*katana, dmax*katana)
+    # if 0 < dmin < dmax:
+    #     g_condicomment = ";dpsrange:(%d~%d)"%(dmin*katana, dmax*katana)
 
     line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
             name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
@@ -367,6 +367,26 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
             line += ',%s:%d'%(i, int(katana*r['o_sum'][i]/real_duration))
     return line
 
+def do_mass_sim_stub(sim_id, classname, conf, no_cond):
+    # print('SIM', 'cond', (not no_cond), sim_id)
+    global real_duration
+    global ex_set
+    real_duration = 0
+    sum_duration = 0
+    if not no_cond:
+        adv = classname(conf=conf,cond=1)
+        adv.ex = ex_set
+    else:
+        adv = classname(conf=conf,cond=0)
+        adv.ex = ex_set
+    from core.acl import dact
+    adv._acl = dact
+    real_duration = adv.run(sim_duration)
+    sum_duration += real_duration
+    #condi = adv.m_condition.p()
+    r = sum_dmg()
+    return r, sum_duration
+
 
 def do_mass_sim(classname, conf, no_cond=None):
     global real_duration
@@ -375,24 +395,36 @@ def do_mass_sim(classname, conf, no_cond=None):
     adv = classname(conf=conf)
     adv.ex = ex_set
     adv.run(1)
-    _acl, _acl_str = acl_func_str(
+    _acl_str = acl_func_str(
                     adv.acl_prepare_default+adv.conf['acl'] 
                     )
     real_duration = 0
     sum_duration = 0
-    for i in range(sim_times):
-        if not no_cond:
-            adv = classname(conf=conf,cond=1)
-            adv.ex = ex_set
-        else:
-            adv = classname(conf=conf,cond=0)
-            adv.ex = ex_set
-        adv._acl = _acl
-        real_duration = adv.run(sim_duration)
-        sum_duration += real_duration
-        #condi = adv.m_condition.p()
-        r = sum_dmg()
-        results.append(r)
+
+    #     if not no_cond:
+    #         adv = classname(conf=conf,cond=1)
+    #         adv.ex = ex_set
+    #     else:
+    #         adv = classname(conf=conf,cond=0)
+    #         adv.ex = ex_set
+    #     from core.acl import dact
+    #     adv._acl = dact
+    #     real_duration = adv.run(sim_duration)
+    #     sum_duration += real_duration
+    #     #condi = adv.m_condition.p()
+    #     r = sum_dmg()
+    #     results.append(r)
+
+    # for i in range(sim_times):
+    #     r, sum_d = do_mass_sim_stub(i, classname, conf, no_cond)
+    #     results.append(r)
+    #     sum_duration += sum_d
+
+    with multiprocessing.Pool(processes=8) as pool:
+        for dat, sum_d in pool.starmap(do_mass_sim_stub, [(i, classname, conf, no_cond) for i in range(sim_times)]):
+            results.append(dat)
+            sum_duration += sum_d
+
     real_duration = sum_duration / sim_times
     r = sum_mass_dmg(results)
     return r
