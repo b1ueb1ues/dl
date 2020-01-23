@@ -2,12 +2,13 @@ import adv_test
 from adv import *
 from module.bleed import Bleed
 from slot.a import *
+from slot.d import *
 
 def module():
     return Patia
 
 class Patia(Adv):
-    a1 = ('bt',0.25)
+    a1 = ('bt',0.35)
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
@@ -15,11 +16,10 @@ class Patia(Adv):
 
     def s1_proc(this, e):
         Event('defchain')()
-        #Teambuff('db_test',0.08,15).on()
+        #Teambuff('s1',0.10,9.375).on()
 
     def s2_proc(this, e):
-        if random.random() < 0.8:
-            Bleed("s2_bleed", 0.99).on()
+        Bleed("s2_bleed", 1.46).on()
 
     def a3_cooldown(this, t):
         this.a3_iscding = 0
@@ -47,13 +47,14 @@ class Patia(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = VC()+FRH()
+    conf['slots.a'] = VC()+HG()
+    conf['slot.d'] = Shinobi()
     conf['acl'] = """
-        `s1, seq=5
+        `s1
         `s2
-        `s3
+        `s3, seq=5
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=-2,mass=1)
+    adv_test.test(module(), conf, verbose=-2)
 
 

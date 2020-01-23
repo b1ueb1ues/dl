@@ -74,8 +74,7 @@ class Delphi(Adv):
 
 if __name__ == '__main__':
     conf = {}
-
-    conf['slots.a'] = Mega_Friends()+The_Plaguebringer()
+    conf['slot.a'] = Mega_Friends()+The_Plaguebringer()
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1

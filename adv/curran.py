@@ -1,5 +1,5 @@
 import adv_test
-import adv
+from adv import *
 from slot.d import *
 from slot.a import *
 
@@ -7,16 +7,22 @@ from slot.a import *
 def module():
     return Curran
 
-class Curran(adv.Adv):
+class Curran(Adv):
     comment = "no fs"
 
-    a1 = ('od',0.13)
-    a3 = ('lo',0.5)
+    a1 = ('od',0.15)
+    a3 = ('lo',0.6)
 
     conf = {}
     conf['slot.a'] = KFM()+CE()
 
+    def s1_proc(this, e):
+        with Modifier("s1killer", "poison_killer", "hit", 0.3):
+            this.dmg_make("s1", 14.70)
 
+    def s2_proc(this, e):
+        with Modifier("s2killer", "poison_killer", "hit", 1):
+            this.dmg_make("s2", 12.54)
 
 if __name__ == '__main__':
     conf = {}

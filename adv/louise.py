@@ -31,6 +31,7 @@ class Louise(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
+#    conf['slot.d'] = Pazuzu()
     conf['acl'] = """
         `s1, seq=5
         `s2, seq=5
