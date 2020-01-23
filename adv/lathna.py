@@ -34,11 +34,11 @@ class Lathna(Adv):
             return 0 
     
     def s1_proc(this, e):
-        with Modifier("s1killer", "poison_killer", "hit", 1.5):
+        with Modifier("s1killer", "poison_killer", "hit", 0.5):
             this.dmg_make("s1", 2.37*3)
 
     def s2_proc(this, e):
-        with Modifier("s2killer", "poison_killer", "hit", 1.5):
+        with Modifier("s2killer", "poison_killer", "hit", 0.5):
             this.dmg_make("s2", 17.26)
 
 if __name__ == '__main__':

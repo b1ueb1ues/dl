@@ -17,7 +17,7 @@ class Curran(Adv):
     conf['slot.a'] = KFM()+CE()
 
     def s1_proc(this, e):
-        with Modifier("s1killer", "poison_killer", "hit", 0.3):
+        with Modifier("s1killer", "poison_killer", "hit", 0.6):
             this.dmg_make("s1", 14.70)
 
     def s2_proc(this, e):
