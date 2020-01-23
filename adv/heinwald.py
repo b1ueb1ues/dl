@@ -7,11 +7,11 @@ def module():
     return Heinwald
 
 class Heinwald(Adv):
-    a1 = ('s',0.4)
+    a1 = ('s',0.4,'hp70')
     a3 = ('prep','100%')
     a3_c = 0.05
     conf = {}
-    conf['slots.a'] = RR()+BN()
+    conf['slots.a'] = RR()+Flash_of_Genius()
 
     def init(this):
         if this.condition("buff all teammates"):
