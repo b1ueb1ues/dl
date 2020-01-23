@@ -14,13 +14,12 @@ class Heinwald(Adv):
     a3 = ('prep','100%')
     a3_c = 0.05
     conf = {}
-    conf['slots.a'] = RR()+BN()
-    conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1, seq=5
         `s2, seq=5
         `s3
         """
+    conf['slots.a'] = RR()+Flash_of_Genius()
 
     def init(this):
         if this.condition("buff all teammates"):

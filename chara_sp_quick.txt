@@ -13,6 +13,7 @@ heinwald.py
 lathna.py.poison.py
 ieyasu.py.poison.py
 kirsty.py.poison.py
+curran.py.poison.py
 audric.py.dragon.py
 g_mym.py.dragon.py
 euden.py.dragon.py
