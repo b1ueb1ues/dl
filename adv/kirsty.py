@@ -1,6 +1,5 @@
 import adv_test
 from adv import *
-from slot.d import *
 
 def module():
     return Kirsty

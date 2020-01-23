@@ -16,17 +16,6 @@ class Sazanka(Adv):
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0
-        this.m = Modifier('skiller','att','killer',0.2)
-        this.m.get = this.getbane
-
-    def getbane(this):
-        return this.afflics.sleep.get()*0.2
-
-    def init(this):
-        if this.condition('80 resist'):
-            this.afflics.sleep.resist=80
-        else:
-            this.afflics.sleep.resist=100
 
 
     def s1_proc(this, e):

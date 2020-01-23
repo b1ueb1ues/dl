@@ -35,18 +35,22 @@ if __name__ == '__main__':
     conf = {}
     #conf['slot.d'] = Garland()
     conf['acl'] = """
-        `rotation
+        `s1,fsc and s2.charged<s2.sp-749
+        `s2	
+        `s3,fsc and not this.s2debuff.get()	
+        `fs,seq=2 and cancel and ((s1.charged>=909 and not this.s2debuff.get()) or s3.charged>=s3.sp)	
+        `fs,seq=3 and cancel	
     """
-    conf['rotation_init'] = """
-        c3fsc3fsc3fss1
-        c3fsc3fsc2fsc2fs
-    """
-    conf['rotation'] = """
-        s2c2fss1
-        c3fsc3fsc3fss1
-        c2fss3c3fsc3fs
-        s2c2fss1
-        c3fsc3fsc3fss1
-        c2fsc3fsc3fs
-    """
+    # conf['rotation_init'] = """
+    #     c3fsc3fsc3fss1
+    #     c3fsc3fsc2fsc2fs
+    # """
+    # conf['rotation'] = """
+    #     s2c2fss1
+    #     c3fsc3fsc3fss1
+    #     c2fss3c3fsc3fs
+    #     s2c2fss1
+    #     c3fsc3fsc3fss1
+    #     c2fsc3fsc3fs
+    # """
     adv_test.test(module(), conf, verbose=-2, mass=0)
