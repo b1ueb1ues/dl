@@ -10,13 +10,13 @@ class G_Luca(Adv):
     a3 = ('cc',0.13,'hit15')
 
     conf = {}
-    # conf['slot.a'] = RR()+JotS()
+    conf['slot.a'] = RR()+LC()
     conf['slot.d'] = Daikokuten()
-    # conf['acl'] = """
-    #     `s1
-    #     `s2, seq=5 and cancel
-    #     `s3, seq=5 and cancel
-    #     """
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3, x=5 and cancel
+        """
 
     def init(this):
         random.seed()
@@ -60,23 +60,28 @@ class G_Luca(Adv):
     def custom_crit_mod(this):
         cdmg = this.rand_crit_mod()
         if cdmg > 1 and not this.a1_iscding:
-            a1_buff = random.choice(this.a1_buffs)
-            a1_buff.on()
+            # cannot choose an already active buff
+            idx_choices = [0, 1, 2]
+            a1_buff_idx = random.choice(idx_choices)
+            while this.a1_buffs[a1_buff_idx].get():
+                idx_choices.remove(a1_buff_idx)
+                if len(idx_choices) == 0:
+                    return cdmg
+                a1_buff_idx = random.choice(idx_choices)
+            this.a1_buffs[a1_buff_idx].on()
             this.a1_iscding = True
             Timer(this.a1_cooldown).on(3)
         return cdmg
 
     def s1_proc(this, e):
         this.s1_crit_mod.on()
-        s1_hit1 = 6.50
-        s1_hit2 = 1.50
-        this.dmg_make('s1',s1_hit1*1)
-        this.dmg_make('s1',s1_hit2*1)
-        this.dmg_make('s1',s1_hit2*1)
-        this.dmg_make('s1',s1_hit2*1)
+        this.dmg_make('s1',3.14*1)
+        this.dmg_make('s1',3.14*1)
+        this.dmg_make('s1',3.14*1)
+        this.dmg_make('s1',3.14*1)
         this.s1_crit_mod.off()
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2, mass=0)
+    adv_test.test(module(), conf, verbose=-2, mass=1)
 

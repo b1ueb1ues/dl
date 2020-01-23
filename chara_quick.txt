@@ -131,3 +131,6 @@ mitsuhide.py
 nobunaga.py
 kirsty.py
 joachim.py
+ieyasu.py
+sinoa.py
+patia.py
