@@ -7,7 +7,7 @@ def module():
     return Heinwald
 
 class Heinwald(Adv):
-    a1 = ('s',0.35)
+    a1 = ('s',0.4)
     a3 = ('prep','100%')
     a3_c = 0.05
     conf = {}
@@ -51,5 +51,4 @@ if __name__ == '__main__':
         `s3
         """
     adv_test.test(module(), conf,verbose=-2)
-    adv_test.sum_ac()
 

@@ -33,9 +33,6 @@ class Rena(Adv):
         this.stance = 0
 
     def s1_proc(this, e):
-        this.dmg_make("s1", 0.72)
-        this.afflics.burn('s1',120,0.97)
-        this.dmg_make("s1", 0.72*3 + 6.65)
 
         if this.stance == 0:
             this.stance = 1
@@ -57,8 +54,6 @@ class Rena(Adv):
                 this.afflics.burn('s1',120,0.97)
                 this.dmg_make("o_s1_laterhits", 8.81)
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-            coef = this.afflics.burn.get()*9.53*0.8
-            this.dmg_make("o_s1_boost", coef)
 
 
     def s2_proc(this, e):

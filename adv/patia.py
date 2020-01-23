@@ -19,7 +19,7 @@ class Patia(Adv):
         #Teambuff('s1',0.10,9.375).on()
 
     def s2_proc(this, e):
-        Bleed("s2_bleed", 0.98).on()
+        Bleed("s2_bleed", 1.46).on()
 
     def a3_cooldown(this, t):
         this.a3_iscding = 0
@@ -47,7 +47,7 @@ class Patia(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = VC()+FWHC()
+    conf['slots.a'] = VC()+HG()
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
         `s1

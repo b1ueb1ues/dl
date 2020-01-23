@@ -1,11 +1,11 @@
 import adv_test
-import ieyasu
+import curran
 from slot.a import *
 
 def module():
-    return Ieyasu
+    return Curran
 
-class Ieyasu(ieyasu.Ieyasu):
+class Curran(curran.Curran):
     comment = ''
     def prerun(this):
         super().prerun()
@@ -15,7 +15,7 @@ class Ieyasu(ieyasu.Ieyasu):
             this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
     def d_slots(this):
-        this.slots.a = HoH()+The_Plaguebringer()
+        this.slots.a = KFM()+The_Plaguebringer()
 
 if __name__ == '__main__':
     conf = {}

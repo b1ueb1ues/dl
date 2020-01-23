@@ -10,13 +10,13 @@ class G_Luca(Adv):
     a3 = ('cc',0.13,'hit15')
 
     conf = {}
-    # conf['slot.a'] = RR()+JotS()
+    conf['slot.a'] = RR()+LC()
     conf['slot.d'] = Daikokuten()
-    # conf['acl'] = """
-    #     `s1
-    #     `s2, seq=5 and cancel
-    #     `s3, seq=5 and cancel
-    #     """
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3, seq=5 and cancel
+        """
 
     def init(this):
         random.seed()
@@ -68,15 +68,14 @@ class G_Luca(Adv):
 
     def s1_proc(this, e):
         this.s1_crit_mod.on()
-        s1_hit1 = 6.50
-        s1_hit2 = 1.50
-        this.dmg_make('s1',s1_hit1*1)
-        this.dmg_make('s1',s1_hit2*1)
-        this.dmg_make('s1',s1_hit2*1)
-        this.dmg_make('s1',s1_hit2*1)
+        this.dmg_make('s1',3.14)
+        this.dmg_make('s1',3.14)
+        this.dmg_make('s1',3.14)
+        this.dmg_make('s1',3.14)
+        #this.dmg_make('s1',3.14)
         this.s1_crit_mod.off()
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2, mass=0)
+    adv_test.test(module(), conf, verbose=-2, mass=1)
 

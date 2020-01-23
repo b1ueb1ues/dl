@@ -7,7 +7,7 @@ def module():
     return Delphi
 
 class Delphi(Adv):
-    a1 = ('a',-0.55)
+    a1 = ('a',-0.6)
 
     def prerun(this):
         this.hits = 0
@@ -52,11 +52,11 @@ class Delphi(Adv):
             this.hits += 5
 
         if this.hits >= 15:
-            this.proc_chance = 190
+            this.proc_chance = 180
 
     def s1_proc(this, e):
         if this.s1defdown :
-            Debuff('s1defdown',0.20,10,1).on()
+            Debuff('s1defdown',0.15,10,1).on()
         this.s1fscharge = 1
 
     def s2_before(this, e):
@@ -74,8 +74,7 @@ class Delphi(Adv):
 
 if __name__ == '__main__':
     conf = {}
-
-    conf['slots.a'] = Mega_Friends()+The_Plaguebringer()
+    conf['slot.a'] = Mega_Friends()+The_Plaguebringer()
     conf['slot.d'] = Marishiten()
     conf['acl'] = """
         `s1
