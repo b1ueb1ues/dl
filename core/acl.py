@@ -1,24 +1,24 @@
 #from core.log import *
 import sys
 from core.timeline import now
+import imp
 
 g_line = ""
 
-def acl_func_str(acl):
-    s = acl_str(acl)
-    try:
-        exec(s,globals())
-    except SyntaxError as e:
-        raise ValueError('Bad ACL syntax');
-    return do_act_list, s
+dact = None
 
-def acl_func(acl):
+def acl_func_str(acl):
+    global dact
     s = acl_str(acl)
-    try:
-        exec(s,globals())
-    except SyntaxError as e:
-        raise ValueError('Bad ACL syntax');
-    return do_act_list
+    exec(s,globals())
+    # return do_act_list, s
+    dact = do_act_list
+    return s
+
+# def acl_func(acl):
+#     s = acl_str(acl)
+#     exec(s,globals())
+#     return do_act_list
 
 def acl_str(acl):
     global g_line

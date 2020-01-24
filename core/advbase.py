@@ -1285,9 +1285,11 @@ class Adv(object):
         this.acl_backdoor()
 
         if not this._acl:
-            this._acl, this._acl_str = core.acl.acl_func_str(
+            this._acl_str = core.acl.acl_func_str(
                     this.acl_prepare_default+this.conf.acl
                     )
+            from core.acl import dact
+            this._acl = dact
 
 
         if type(this.conf.rotation) == list:
