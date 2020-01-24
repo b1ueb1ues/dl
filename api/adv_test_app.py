@@ -23,24 +23,30 @@ CORS(app)
 
 # Helpers
 ADV_DIR = '/home/wildshinobu/dl/adv/'
-MEANS_ADV = {
-    'addis': 'addis.py.means',
-    'sazanka': 'sazanka.py.means',
-    'sinoa': 'sinoa.py.means',
-    'victor': 'victor.py.m',
-}
+# MEANS_ADV = {
+#     'addis': 'addis.py.means',
+#     'sazanka': 'sazanka.py.means',
+#     'sinoa': 'sinoa.py.means',
+#     'victor': 'victor.py.m',
+# }
+
+MASS_SIM_ADV = []
+with open(ADV_DIR+'../chara_slow.txt') as f:
+    for l in f:
+        MASS_SIM_ADV.append(l.replace('.py', ''))
+
 def get_adv_module(adv_name):
-    if adv_name in MEANS_ADV:
-        with open('{}{}.py'.format(ADV_DIR, MEANS_ADV[adv_name]), 'rb') as fp:
-            return imp.load_module(
-                adv_name, fp, MEANS_ADV[adv_name],
-                ('.py', 'rb', imp.PY_SOURCE)
-            ).module()
-    else:
-        return getattr(
-            __import__('adv.{}'.format(adv_name.lower())),
-            adv_name.lower()
-        ).module()
+    # if adv_name in MEANS_ADV:
+    #     with open('{}{}.py'.format(ADV_DIR, MEANS_ADV[adv_name]), 'rb') as fp:
+    #         return imp.load_module(
+    #             adv_name, fp, MEANS_ADV[adv_name],
+    #             ('.py', 'rb', imp.PY_SOURCE)
+    #         ).module()
+    # else:
+    return getattr(
+        __import__('adv.{}'.format(adv_name.lower())),
+        adv_name.lower()
+    ).module()
 
 
 def is_amulet(obj):
@@ -94,6 +100,7 @@ def run_adv_test():
     teamdps = abs(float(params['teamdps'])) if 'teamdps' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
     log = -2
+    mass = 1 if adv_name in MASS_SIM_ADV else 0
 
     adv.adv_test.set_ex(ex)
     adv_module = get_adv_module(adv_name)
@@ -142,7 +149,7 @@ def run_adv_test():
     r = None
     try:
         with redirect_stdout(f):
-            r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t)
+            r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t, mass=mass)
     except Exception as e:
         result['error'] = str(e)
         return jsonify(result)
