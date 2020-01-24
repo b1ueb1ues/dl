@@ -18,7 +18,6 @@ class Lathna(Adv):
         `s2, seq = 5
         `s3, seq = 5
         """
-    conf['cond_afflict_res'] = 0
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
         # if this.conf['cond_afflict_res'] < 100:

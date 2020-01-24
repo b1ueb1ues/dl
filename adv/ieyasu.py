@@ -20,7 +20,6 @@ class Ieyasu(Adv):
         `s2, seq=5 and this.bleed._static['stacks'] > 0
         `s3, seq=4
         """
-    conf['cond_afflict_res'] = 0
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = RR()+BN()
