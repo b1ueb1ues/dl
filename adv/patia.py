@@ -14,6 +14,16 @@ class Patia(Adv):
     a1 = ('bt',0.35)
     a3 = ('primed_crit_chance',(0.10,5))
 
+    conf = {}
+    conf['slots.a'] = VC()+HG()
+    conf['slot.d'] = Shinobi()
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3, seq=5
+        `fs, seq=5
+        """
+
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.a3_iscding = 0
@@ -27,14 +37,6 @@ class Patia(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = VC()+HG()
-    conf['slot.d'] = Shinobi()
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3, seq=5
-        `fs, seq=5
-        """
     adv_test.test(module(), conf, verbose=-2)
 
 
