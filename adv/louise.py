@@ -40,13 +40,4 @@ class Louise(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-<<<<<<< HEAD
-=======
-#    conf['slot.d'] = Pazuzu()
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
-        """
->>>>>>> 0227482416a5b822e4dec2bb89d00712da0b6595
     adv_test.test(module(), conf, verbose=0)
