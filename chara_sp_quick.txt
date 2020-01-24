@@ -2,13 +2,9 @@ xander.py.best.py
 xander.py.2fs.py            
 veronica.py.1hp.py      
 marth.py.cheese.py      
-elisanne.py.dj.py            
 g_sarisse.py.rollfs.py  
 laranoa.py.rollfs.py    
 louise.py.rollfs.py     
-noelle.py.zephyr.py
-d_xainfried.py.freyja.py
-g_elisanne.py.dj.py
 lathna.py.poison.py
 ieyasu.py.poison.py
 kirsty.py.poison.py

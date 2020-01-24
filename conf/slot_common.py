@@ -46,10 +46,7 @@ def set(slots):
     if wt == 'wand': 
         slots.a = CC()+FoG()
     if wt == 'bow':
-        slots.a = FB()+DD()
-    if wt == 'megaman':
-        slots.a = FoG()+LC()
-    
+        slots.a = FB()+DD()    
 
     slots.c.ex = {wt:('ex',wt)}
     #slots.c.ex = [('ex', 'blade'), ('ex', 'wand')]

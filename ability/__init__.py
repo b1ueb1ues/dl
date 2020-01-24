@@ -141,10 +141,43 @@ class Ability(object):
                 adv.charge_p('amulet prep',value)
             if type(value) == float:
                 adv.charge_p('amulet prep',"%d%%"%(value*100))
+        elif name == 'prep_charge':
+            adv.charge_p('amulet prep','100%')
+            if type(value) == int:
+                value = "%d%%"%value
+            if type(value) == float:
+                value = "%d%%"%(value*100)
+            def skill_charge(e):
+                adv.charge_p('skill charge',value)
+            this.l_s = adv.Listener('s', skill_charge)
         elif name == 'resist':
             adv.conf.resist = (cond, value)
         elif name[:2] == 'k_':
             this.m = adv.Modifier('afflic_killer',name[2:] + '_killer','passive',value)
+        elif name[:7] == 'primed_':
+            from core.timeline import Event, Timer
+            if isinstance(value, tuple) and len(value) == 2:
+                buff_value, timing = value
+            else:
+                buff_value, timing = value, 10
+            
+            this.pm_is_cd = False
+            def pm_cd_end(t):
+                this.pm_is_cd = False
+                adv.log('cd',name,'end')
+                        
+            def l_primed(e):
+                if not this.pm_is_cd:
+                    if name[7:] == 'def':
+                        adv.Buff(name,0,timing,'def').on()
+                        Event('defchain')()
+                    else:
+                        buff_args = name[7:].split('_')
+                        adv.Buff(name,buff_value,timing,*buff_args).on()
+                    this.pm_is_cd = True
+                    Timer(pm_cd_end).on(15)
+
+            Event('s1_charged').listener(l_primed)
 
 #        elif name == 'ex' and value == 'wand':
 #            this.ex_wand(adv)

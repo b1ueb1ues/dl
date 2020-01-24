@@ -378,6 +378,7 @@ class Skill(object):
         this._static.silence = 0
         this.silence_end_timer = Timer(this.cb_silence_end)
         this.silence_end_event = Event('silence_end')
+        this.skill_charged = Event('{}_charged'.format(this.name))
         this.init()
 
     def __call__(this):
@@ -391,6 +392,8 @@ class Skill(object):
 
     def charge(this,sp):
         this.charged += sp   
+        if this.charged >= this.sp:
+            this.skill_charged()
         #if this.charged > this.sp:  # should be 
             #this.charged = this.sp
 

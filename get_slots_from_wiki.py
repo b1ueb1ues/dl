@@ -56,6 +56,9 @@ def parse_abilities(ability_data):
         'Skill Damage': 's',
         'Critical Rate': 'cc',
         'Critical Damage': 'cd',
+        'Primed Strength': 'primed_att',
+        'Primed Defense': 'primed_def',
+        'Primed Devastation': 'primed_crit_chance',
         'Strength': 'a',
         'Force Strike': 'fs',
         'Skill Haste': 'sp',
@@ -65,6 +68,7 @@ def parse_abilities(ability_data):
         'Buff Time': 'bt',
         'Burning Punisher': 'k_burn',
         'Paralyzed Punisher': 'k_paralysis',
+        'Poisoned Punisher': 'k_poison',
         'Strength Doublebuff': 'bc',
         'Last Offense': 'lo',
         'HP &amp; Strength': 'a',
@@ -89,20 +93,20 @@ def parse_abilities(ability_data):
         "High Jupiter's Bane": ('k', 'vs HJP'),
     }
     SPECIAL = {
-        'Strength &amp; Critical Damage I': [('att', 'passive', 30), ('crit','damage', 50)],
-        'Strength &amp; Critical Damage II': [('att', 'passive', 45), ('crit','damage', 55)],
-        'Dragonyule Blessing I': [('att', 'passive', 30), ('crit','chance', 15)],
-        'Dragonyule Blessing II': [('att', 'passive', 45), ('crit','chance', 20)],
-        'Strength &amp; Shadow Res II': [('att', 'passive', 50)],
-        'Strength &amp; Wind Res II': [('att', 'passive', 50)],
+        # 'Strength &amp; Critical Damage I': [('a', 0.30), ('cd', 0.50)],
+        'Strength &amp; Critical Damage II': [('a', 0.45), ('cd', 0.55)],
+        # 'Dragonyule Blessing I': [('a', 0.30), ('cc', 0.15)],
+        'Dragonyule Blessing II': [('a', 0.45), ('cc', 0.20)],
+        # 'Strength &amp; Shadow Res II': [('a', 0.50)],
+        'Strength &amp; Wind Res II': [('a', 0.50)],
     }
-    A_TO_AURA = {
-        's': ('s','passive'),
-        'a': ('att', 'passive'),
-        'cc': ('crit','chance'),
-        'cd': ('crit','damage'),
-        'sp': ('sp','passive')
-    }
+    # A_TO_AURA = {
+    #     's': ('s','passive'),
+    #     'a': ('att', 'passive'),
+    #     'cc': ('crit','chance'),
+    #     'cd': ('crit','damage'),
+    #     'sp': ('sp','passive')
+    # }
     ABILITY_PATTERN = re.compile(r'(\(([A-Za-z]*)\))?((Full) HP = |HP (\d+)\% = )?\s*(' + '|'.join(ABILITIES_NO_COND.keys())+ r')?(' + '|'.join(ABILITIES_COND.keys())+ r')?\s*\+(\d+)\%')
     parsed = {}
     for k, v in ability_data.items():
@@ -135,8 +139,8 @@ def parse_abilities(ability_data):
                         ability_tuple = (ab_type, ab_val, ab_cond)
                     else:
                         ability_tuple = (ab_type, ab_val)
-                if ab_type in A_TO_AURA.keys():
-                    ability_tuple = (*A_TO_AURA[ab_type], *(ability_tuple[1:]))
+                # if ab_type in A_TO_AURA.keys():
+                #     ability_tuple = (*A_TO_AURA[ab_type], *(ability_tuple[1:]))
                 if condition in ELEMENT_TYPE:
                     condition = 'c.ele == \'{}\''.format(condition.lower())
                 if condition in WEAPON_TYPE:
@@ -249,7 +253,7 @@ if __name__ == '__main__':
     tables = 'Dragons'
     fields = 'BaseId,Id,Name,FullName,NameJP,Title,TitleJP,Obtain,Rarity,ElementalType,ElementalTypeId,VariationId,IsPlayable,MinHp,MaxHp,MinAtk,MaxAtk,Skill1,SkillName,SkillDescription,Abilities11,Abilities12,Abilities21,Abilities22,ProfileText,FavoriteType,JapaneseCV,EnglishCV,SellCoin,SellDewPoint,MoveSpeed,DashSpeedRatio,TurnSpeed,IsTurnToDamageDir,MoveType,IsLongRange,ReleaseDate,Availability'
     for ele in ELEMENT_TYPE:
-        where = 'Rarity > 3 AND ElementalType = "{}"'.format(ele)
+        where = 'Rarity >= 5 AND ElementalType = "{}"'.format(ele)
         dragon_data = get_data(tables=tables, fields=fields, where=where)
         with open(DRAGON_DIR + '/' + ele.lower() + '.py', 'w') as f:
             f.write('from slot import *\n\n')
@@ -261,7 +265,7 @@ if __name__ == '__main__':
                 # ub_range = (2, 1) if dra['Rarity'] == '5' else [2]
                 ub_range = [2]
                 for ub_idx in ub_range:
-                    ab, ab_len = get_ability(dra, ability_data, 'dra', 2, ub_idx)
+                    ab, ab_len = get_ability(dra, ability_data, 'dra', 2, ub_idx, show_desc=False)
                     if ab_len == 0:
                         continue
                     clean_name = get_clean_name(dra['FullName'])
@@ -270,7 +274,7 @@ if __name__ == '__main__':
                     f.write('class {}(DragonBase):\n'.format(clean_name))
                     f.write('    ele = \'{}\'\n'.format(ele.lower()))
                     f.write('    att = {}\n'.format(dra_atk[ub_idx-1]))
-                    f.write('    aura = ' + ab + '\n')
+                    f.write('    a = ' + ab + '\n')
                     f.write('\n')
 
     # Weapons

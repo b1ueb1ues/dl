@@ -93,13 +93,14 @@ class WeaponBase(Slot):
 
 class DragonBase(Slot):
     stype = 'd'
-    aura = ('att','passive',0.60)
+    a = [('a', 0.60)]
 
     def setup(this, c):
         Slot.setup(this, c)
         if this.onele:
             this.att *= 1.5
-            this.mod = this.aura
+        else:
+            this.a = []
 
 
 class Amuletempty(object):

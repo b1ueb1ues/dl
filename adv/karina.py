@@ -1,6 +1,7 @@
 import adv_test
 import adv
 from slot.a import *
+from slot.d import *
 
 def module():
     return Karina

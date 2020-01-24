@@ -70,7 +70,6 @@ malora.py
 maribelle.py
 marth.py
 marty.py
-megaman.py
 melody.py
 melsa.py
 mikoto.py

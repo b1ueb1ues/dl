@@ -9,6 +9,7 @@ def module():
 
 class Patia(Adv):
     a1 = ('bt',0.35)
+    a3 = ('primed_crit_chance',(0.10,5))
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
@@ -20,30 +21,6 @@ class Patia(Adv):
 
     def s2_proc(this, e):
         Bleed("s2_bleed", 1.46).on()
-
-    def a3_cooldown(this, t):
-        this.a3_iscding = 0
-        log('cd','a3','end')
-
-    def a3_act(this):
-        #logcat()
-        #print this.a3_iscding
-        #exit()
-        if not this.a3_iscding :
-            this.a3_iscding = 1
-            Timer(this.a3_cooldown).on(15)
-            log('cd','a3','start')
-            Selfbuff('a3',0.05,5,'crit','chance').on()
-        else:
-            log('cd','a3','trigger failed')
-
-    def charge(this, name, sp):
-        if this.s1.check():
-            return Adv.charge(this, name, sp)
-        r = Adv.charge(this, name, sp)
-        if this.s1.check():
-            this.a3_act()
-        return r
 
 if __name__ == '__main__':
     conf = {}

@@ -3,39 +3,29 @@ from slot import *
 class Cerberus(DragonBase):
     ele = 'flame'
     att = 127
-
-class Sakuya(DragonBase):
-    ele = 'flame'
-    att = 127
-    aura = [('att','passive',0.2),
-            ('s','passive',0.9)]
+    a = [('a', 0.6)]
 
 class Arctos(DragonBase):
     ele = 'flame'
     att = 121
-    aura = [('att','passive',0.45),
-            ('crit','damage',0.55)]
-
-class Apollo(DragonBase):
-    ele = 'flame'
-    att = 126
-    aura = ('att','passive',0.5)
-
-    def oninit(this, adv):
-        DragonBase.oninit(this, adv)
-        this.adv = adv
-        m = adv.Modifier('apl','att','killer',0)
-        m.get = this.getbane
-
-    def getbane(this):
-        return this.adv.afflics.burn.get()*0.2
-
-class Ifrit(DragonBase):
-    ele = 'flame'
-    att = 101
-    aura = [('att','passive',0.45)]
+    a = [('a', 0.45), ('cd', 0.55)]
 
 class Prometheus(DragonBase):
     ele = 'flame'
     att = 121
-    aura = [('att','passive',0.50)]
+    a = [('a', 0.5)]
+
+class Sakuya(DragonBase):
+    ele = 'flame'
+    att = 121
+    a = [('s', 0.9), ('a', 0.2)]
+
+class Apollo(DragonBase):
+    ele = 'flame'
+    att = 127
+    a = [('k_burn', 0.2), ('a', 0.5)]
+
+class Kagutsuchi(DragonBase):
+    ele = 'flame'
+    att = 127
+    a = [('primed_att', 0.15), ('a', 0.45)]
