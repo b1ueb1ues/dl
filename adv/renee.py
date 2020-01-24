@@ -4,12 +4,16 @@ else:
     import adv.adv_test
 import adv
 from adv import *
+from slot.a import *
 
 def module():
     return Renee
 
 class Renee(adv.Adv):
     comment = 'no bog'
+
+    a1 = ('primed_crit_chance',(0.6,5))
+
     conf = {}
     conf['acl'] = """
         `s1
@@ -18,30 +22,8 @@ class Renee(adv.Adv):
         `fs, seq=5
         """
 
-    def prerun(this):
-        this.a1_iscding = 0
-
-    def a1_cooldown(this, t):
-        this.a1_iscding = 0
-        log('cd','a1','end')
-
-
-    def a1_act(this):
-        if not this.a1_iscding :
-            this.a1_iscding = 1
-            Timer(this.a1_cooldown).on(15)
-            log('cd','a1','start')
-            Selfbuff('a1',0.06,5,'crit','chance').on()
-
-    def charge(this, name, sp):
-        if this.s1.check():
-            return Adv.charge(this, name, sp)
-        Adv.charge(this, name, sp)
-        if this.s1.check():
-            this.a1_act()
-
-
-
+    def s2_proc(this, e):
+        Event('defchain')()
 
 if __name__ == '__main__':
     conf = {}

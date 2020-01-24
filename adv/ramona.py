@@ -10,11 +10,10 @@ def module():
     return Ramona
 
 class Ramona(Adv):
-    comment = 'no fs'
+    a1 = ('primed_att',0.10)
     a3 = ('bc',0.13)
     conf = {}
     conf['slots.a'] = KFM()+VC()
-    #conf['slots.a'] = KFM()+TL()
     conf['slots.d'] = Sakuya()
     conf['acl'] = """
         # s1a = this.s1a
@@ -22,19 +21,9 @@ class Ramona(Adv):
         `s2,seq=4
         `s3,seq=4 
         """
-    def d_slots(this):
-        if adv_test.sim_duration == 60:
-            this.comment += ';TL>EoL>CE>VC if trigger'
-        elif adv_test.sim_duration == 90:
-            this.comment += ';TL>EoL>CE>VC if trigger'
-        elif adv_test.sim_duration == 120:
-            this.comment += ';TL>EoL>VC>CE if trigger'
-        elif adv_test.sim_duration == 180:
-            this.comment += ';EoL>TL>VC>CE if trigger'
 
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
-        this.a1_iscding = 0
 
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery
@@ -51,26 +40,6 @@ class Ramona(Adv):
 
     def s2_proc(this, e):
        Event('defchain')()
-
-    def a1_cooldown(this, t):
-        this.a1_iscding = 0
-        log('cd','a1','end')
-
-
-    def a1_act(this):
-        if not this.a1_iscding :
-            this.a1_iscding = 1
-            Timer(this.a1_cooldown).on(15)
-            log('cd','a1','start')
-            Selfbuff('a1',0.1,10).on()
-
-    def charge(this, name, sp):
-        if this.s1.check():
-            return Adv.charge(this, name, sp)
-        Adv.charge(this, name, sp)
-        if this.s1.check():
-            this.a1_act()
-
 
 
 

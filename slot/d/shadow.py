@@ -4,22 +4,22 @@ from math import ceil
 class Marishiten(DragonBase):
     ele = 'shadow'
     att = 121
+    a = [('a', 0.6)]
 
 class Shinobi(DragonBase):
     ele = 'shadow'
     att = 128
-    aura = [('att','passive',0.2),
-            ('s','passive',0.9)]
+    a = [('s', 0.9), ('a', 0.2)]
 
-class Juggernaut(DragonBase):
+class Parallel_Zodiark(DragonBase):
     ele = 'shadow'
-    att = 102
-    aura = ('att', 'passive', 0.45)
+    att = 77
+    a = [('a', 0.2), ('cd', 0.4)]
 
 class Nyarlathotep(DragonBase):
     ele = 'shadow'
     att = 128
-    aura = ('att','passive',0.50,'hp30')
+    a = [('a', 0.5, 'hp30')]
 
     def oninit(this, adv):
         DragonBase.oninit(this, adv)
@@ -38,7 +38,7 @@ class Nyarlathotep(DragonBase):
 class Chthonius(DragonBase):
     ele = 'shadow'
     att = 128
-    aura = ('att','passive',0.55)
+    a = [('a',0.55)]
 
     def oninit(this, adv):
         DragonBase.oninit(this, adv)
@@ -50,7 +50,12 @@ class Chthonius(DragonBase):
         if adv.condition('shapeshift at {}s'.format(timing)):
             adv.Timer(dragon_might).on(timing)
 
-class Unreleased_Shadow35Haste(DragonBase):
+class Unreleased_ShadowSkillHaste(DragonBase):
     ele = 'shadow'
     att = 120
-    aura = [('sp','passive',0.35)]
+    a = [('sp', 0.35)]
+
+class Unreleased_ShadowPoisonPunish(DragonBase):
+    ele = 'shadow'
+    att = 127
+    a = [('k_poison', 0.2), ('a', 0.5)]

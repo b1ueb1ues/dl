@@ -8,6 +8,5 @@ import wep.lance
 import wep.bow
 import wep.wand
 import wep.staff
-import wep.megaman
 
 conf = Conf()

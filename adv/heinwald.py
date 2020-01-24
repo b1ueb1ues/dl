@@ -11,15 +11,16 @@ def module():
 
 class Heinwald(Adv):
     a1 = ('s',0.4,'hp70')
-    a3 = ('prep','100%')
-    a3_c = 0.05
+    a3 = ('prep_charge','5%')
+
     conf = {}
+    conf['slots.a'] = RR()+Flash_of_Genius()
     conf['acl'] = """
-        `s1, seq=5
+        `s2, pin='prep'
         `s2, seq=5
+        `s1, seq=5 or s=2
         `s3
         """
-    conf['slots.a'] = RR()+Flash_of_Genius()
 
     def init(this):
         if this.condition("buff all teammates"):
@@ -27,29 +28,15 @@ class Heinwald(Adv):
 
     def prerun(this):
         this.s2ssbuff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
-
-    def s1_proc(this, e):
-        this.skill_charge('s1', this.a3_c)
         
     def c_s2_proc(this, e):
         this.s2ssbuff.on()
-        Teambuff('s2team',0.1,10).on()
-        Selfbuff('s2self',0.1,10).on()
-        this.skill_charge('s2', this.a3_c)
+        Teambuff('s2team',0.15,10).on()
+        Selfbuff('s2self',0.10,10).on()
 
     def s2_proc(this, e):
         this.s2ssbuff.on()
-        Selfbuff('s2',0.2,10).on()
-        this.skill_charge('s2', this.a3_c)
-
-    def skill_charge(self, proc, c):
-        for s in ('s1', 's2', 's3'):
-            skill = getattr(self, s)
-            skill.charge(skill.sp*c)
-            log('sp','{}_charge_{}'.format(proc, s), 0, '{}/{}'.format(int(skill.charged), int(skill.sp)))
-    
-    def s3_proc(this, e):
-        this.skill_charge('s3', this.a3_c)
+        Selfbuff('s2',0.25,10).on()
 
 if __name__ == '__main__':
     conf = {}
