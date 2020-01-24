@@ -3,6 +3,7 @@ if __name__ == '__main__':
 else:
     import adv.adv_test
 import adv
+from adv import *
 from slot.d import *
 from slot.a import *
 
