@@ -24,7 +24,7 @@ class Patia(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slots.a'] = VC()+HG()
+    conf['slots.a'] = VC()+Luck_of_the_Draw()
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
         `s1
