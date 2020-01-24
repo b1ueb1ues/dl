@@ -423,7 +423,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     real_duration = 0
     sum_duration = 0
 
-    with multiprocessing.Pool(processes=8) as pool:
+    with multiprocessing.Pool(processes=4) as pool:
         for dat, sum_d in pool.starmap(do_mass_sim_stub, [(i, classname, conf, no_cond) for i in range(sim_times)]):
             results.append(dat)
             sum_duration += sum_d

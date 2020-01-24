@@ -33,7 +33,7 @@ ADV_DIR = '/home/wildshinobu/dl/adv/'
 MASS_SIM_ADV = []
 with open(ADV_DIR+'../chara_slow.txt') as f:
     for l in f:
-        MASS_SIM_ADV.append(l.replace('.py', ''))
+        MASS_SIM_ADV.append(l.strip().replace('.py', ''))
 
 def get_adv_module(adv_name):
     # if adv_name in MEANS_ADV:
@@ -101,6 +101,7 @@ def run_adv_test():
     t   = abs(int(params['t']) if 't' in params else 180)
     log = -2
     mass = 1 if adv_name in MASS_SIM_ADV else 0
+    print(adv_name, MASS_SIM_ADV)
 
     adv.adv_test.set_ex(ex)
     adv_module = get_adv_module(adv_name)
