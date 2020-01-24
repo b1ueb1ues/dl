@@ -263,6 +263,8 @@ class Summer_Paladyns(Amulet):
     def oninit(this, adv):
         Amulet.oninit(this, adv)
         this.adv = adv
+        from module import energy
+        energy.Energy(adv, {}, {})
         adv.Listener('defchain',this.dc_energy)
 
 
@@ -294,6 +296,8 @@ class Halidom_Grooms(Amulet):
     def oninit(this, adv):
         Amulet.oninit(this, adv)
         this.adv = adv
+        from module import energy
+        energy.Energy(adv, {}, {})
         adv.Listener('defchain',this.dc_energy)
 HG = Halidom_Grooms
 
