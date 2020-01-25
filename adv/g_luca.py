@@ -18,7 +18,7 @@ class G_Luca(Adv):
     conf['acl'] = """
         `s1
         `s2
-        `s3, x=5 and cancel
+        `s3, x=5
         """
 
     def init(this):
@@ -63,26 +63,17 @@ class G_Luca(Adv):
     def custom_crit_mod(this):
         cdmg = this.rand_crit_mod()
         if cdmg > 1 and not this.a1_iscding:
-            # cannot choose an already active buff
-            idx_choices = [0, 1, 2]
-            a1_buff_idx = random.choice(idx_choices)
-            while this.a1_buffs[a1_buff_idx].get():
-                idx_choices.remove(a1_buff_idx)
-                if len(idx_choices) == 0:
-                    return cdmg
-                a1_buff_idx = random.choice(idx_choices)
-            this.a1_buffs[a1_buff_idx].on()
+            random.choice(this.a1_buffs).on()
             this.a1_iscding = True
             Timer(this.a1_cooldown).on(3)
         return cdmg
 
     def s1_proc(this, e):
-        this.s1_crit_mod.on()
-        this.dmg_make('s1',3.14*1)
-        this.dmg_make('s1',3.14*1)
-        this.dmg_make('s1',3.14*1)
-        this.dmg_make('s1',3.14*1)
-        this.s1_crit_mod.off()
+        with this.s1_crit_mod:
+            this.dmg_make('s1',3.14*1)
+            this.dmg_make('s1',3.14*1)
+            this.dmg_make('s1',3.14*1)
+            this.dmg_make('s1',3.14*1)
 
 if __name__ == '__main__':
     conf = {}
