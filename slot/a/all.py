@@ -297,7 +297,7 @@ class Halidom_Grooms(Amulet):
         Amulet.oninit(this, adv)
         this.adv = adv
         from module import energy
-        this.adv.energy = energy.Energy(adv, {}, {})
+        energy.Energy(adv, {}, {})
         adv.Listener('defchain',this.dc_energy)
 HG = Halidom_Grooms
 

@@ -31,7 +31,7 @@ class D_Malora(Adv):
 
     def s2_proc(this, e):
         if this.mod('def')!= 1:
-            this.dmg_make('o_s2_boost',4.82*3*0.8)
+            this.dmg_make('o_s2_boost',4.32*3*0.8)
 
 if __name__ == '__main__':
     conf = {}
