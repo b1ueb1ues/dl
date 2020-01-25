@@ -148,6 +148,18 @@ class Agito0UB_Gungnir(Agito_Gungnir):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterLance(Agito_Gungnir):
+    ele = ['water']
+
+class UnreleasedAgito_WindLance(Agito_Gungnir):
+    ele = ['wind']
+
+class UnreleasedAgito_LightLance(Agito_Gungnir):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowLance(Agito_Gungnir):
+    ele = ['shadow']
+
 flame = HDT2_Pureflame_Lance
 water = HDT2_Limpid_Rush
 wind = HDT2_Guiding_Gale

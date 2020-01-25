@@ -148,6 +148,18 @@ class Agito0UB_Hrotti(Agito_Hrotti):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterDagger(Agito_Hrotti):
+    ele = ['water']
+
+class UnreleasedAgito_WindDagger(Agito_Hrotti):
+    ele = ['wind']
+
+class UnreleasedAgito_LightDagger(Agito_Hrotti):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowDagger(Agito_Hrotti):
+    ele = ['shadow']
+
 flame = HDT2_Flamerulers_Maw
 water = HDT2_Tiderulers_Maw
 wind = HDT2_Windrulers_Maw

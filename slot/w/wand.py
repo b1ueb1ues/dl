@@ -148,6 +148,18 @@ class Agito0UB_Brisingr(Agito_Brisingr):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterWand(Agito_Brisingr):
+    ele = ['water']
+
+class UnreleasedAgito_WindWand(Agito_Brisingr):
+    ele = ['wind']
+
+class UnreleasedAgito_LightWand(Agito_Brisingr):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowWand(Agito_Brisingr):
+    ele = ['shadow']
+
 flame = HDT2_Infernoblaze
 water = HDT2_Aquatic_Spiral
 wind = HDT2_Grand_Tempest

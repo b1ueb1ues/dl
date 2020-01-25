@@ -148,6 +148,18 @@ class Agito0UB_Tyrfing(Agito_Tyrfing):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterBlade(Agito_Tyrfing):
+    ele = ['water']
+
+class UnreleasedAgito_WindBlade(Agito_Tyrfing):
+    ele = ['wind']
+
+class UnreleasedAgito_LightBlade(Agito_Tyrfing):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowBlade(Agito_Tyrfing):
+    ele = ['shadow']
+
 flame = HDT2_Blinding_Conflagration
 water = HDT2_Ruinous_Torrent
 wind = HDT2_Endless_Horizon

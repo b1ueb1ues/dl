@@ -148,6 +148,18 @@ class Agito0UB_Nothung(Agito_Nothung):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterSword(Agito_Nothung):
+    ele = ['water']
+
+class UnreleasedAgito_WindSword(Agito_Nothung):
+    ele = ['wind']
+
+class UnreleasedAgito_LightSword(Agito_Nothung):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowSword(Agito_Nothung):
+    ele = ['shadow']
+
 flame = HDT2_Absolute_Crimson
 water = HDT2_Absolute_Aqua
 wind = HDT2_Absolute_Tempest

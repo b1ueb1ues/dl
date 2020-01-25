@@ -148,6 +148,18 @@ class Agito0UB_Gjallarhorn(Agito_Gjallarhorn):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterStaff(Agito_Gjallarhorn):
+    ele = ['water']
+
+class UnreleasedAgito_WindStaff(Agito_Gjallarhorn):
+    ele = ['wind']
+
+class UnreleasedAgito_LightStaff(Agito_Gjallarhorn):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowStaff(Agito_Gjallarhorn):
+    ele = ['shadow']
+
 flame = HDT2_Blazegambol
 water = HDT2_Oceans_Embrace
 wind = HDT2_Stormruler

@@ -149,6 +149,18 @@ class Agito0UB_Mjolnir(Agito_Mjolnir):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterAxe(Agito_Mjolnir):
+    ele = ['water']
+
+class UnreleasedAgito_WindAxe(Agito_Mjolnir):
+    ele = ['wind']
+
+class UnreleasedAgito_LightAxe(Agito_Mjolnir):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowAxe(Agito_Mjolnir):
+    ele = ['shadow']
+
 flame  = HDT2_Royal_Crimson_Heat
 water  = HDT2_Mercys_Azure_Tide
 wind   = HDT2_Glorystorms_Guide

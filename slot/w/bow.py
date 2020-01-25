@@ -148,6 +148,18 @@ class Agito0UB_Ydalir(Agito_Ydalir):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
+class UnreleasedAgito_WaterBow(Agito_Ydalir):
+    ele = ['water']
+
+class UnreleasedAgito_WindBow(Agito_Ydalir):
+    ele = ['wind']
+
+class UnreleasedAgito_LightBow(Agito_Ydalir):
+    ele = ['light']
+
+class UnreleasedAgito_ShadowBow(Agito_Ydalir):
+    ele = ['shadow']
+
 flame = HDT2_Valkyries_Fire
 water = HDT2_Azure_Mercurius
 wind = HDT2_Jormungands_Fury
