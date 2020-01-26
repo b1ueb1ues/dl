@@ -8,7 +8,7 @@ def module():
     return G_Luca
 
 class G_Luca(g_luca.G_Luca):
-    comment = '7 buff icons from team (buff value not considered); use FitF if HP<70'
+    comment = '7 buff icons from team (buff value not considered); use VC/FitF if HP<70'
 
     def d_slots(this):
         this.slots.a = The_Wyrmclan_Duo()+FoG()
@@ -18,5 +18,5 @@ class G_Luca(g_luca.G_Luca):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2, mass=1)
+    adv_test.test(module(), conf, verbose=-2, mass=0)
 
