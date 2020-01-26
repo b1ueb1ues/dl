@@ -344,12 +344,12 @@ function setDisplay(displayMode) {
     if (displayMode == 'Visual') {
         $('#copy-results').css('display', 'block');
         $('#test-results').css('display', 'none');
-        $('#display-mode').html(displayMode);
+        $('#display-mode').html('Visual Display');
         localStorage.setItem('displayMode', displayMode);
     } else if (displayMode == 'Markdown') {
         $('#copy-results').css('display', 'none');
         $('#test-results').css('display', 'block');
-        $('#display-mode').html(displayMode);
+        $('#display-mode').html('Text Display');
         localStorage.setItem('displayMode', displayMode);
     }
 }
