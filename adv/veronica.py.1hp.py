@@ -9,8 +9,6 @@ def module():
     return Veronica
 
 class Veronica(veronica.Veronica):
-    comment = '1hp; only c5 & s1; '
-
     def d_acl(this): 
         this.conf['acl'] = """
             `s1
