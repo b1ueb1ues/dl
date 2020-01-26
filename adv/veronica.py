@@ -9,24 +9,6 @@ class Veronica(adv.Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['slot.d'] = Shinobi()
-
-    def init(this):
-        if this.condition('hp=80%'):
-            this.s1boost = 1.25*0.2*0.2
-        else:
-            this.s1boost = 1.25*0.3*0.3
-
-    def prerun(this):
-        adv.Teambuff('last',2.28,1).on()
-
-
-    def s1_proc(this, e):
-        if this.s1boost:
-            this.dmg_make('o_s1_crisis', this.s1boost*10.84)
-
-
-if __name__ == '__main__':
-    conf = {}
     conf['acl'] = """
         `s1
         `s2, seq=5 and cancel
@@ -34,5 +16,15 @@ if __name__ == '__main__':
         `fs, seq=5 and s1.charged >= 2500
         """
 
+    def prerun(this):
+        adv.Teambuff('last',2.28,1).on()
+        this.hp = 80
+
+    def s1_proc(this, e):
+        with adv.CrisisModifier('s1', 2.25, this.hp):
+            this.dmg_make('o_s1_crisis', this.conf.s1.dmg)
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 
