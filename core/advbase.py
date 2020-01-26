@@ -296,16 +296,20 @@ class Teambuff(Buff):
         this.count_team_buff()
 
     def count_team_buff(this):
+
         this.dmg_test_event.modifiers = []
+        for i in this._static.all_buffs:
+            if i.name == 'simulated_debuff':
+                this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
-        modifiers = []
+
         for i in this._static.all_buffs:
             if i.bufftype=='team' or i.bufftype=='debuff':
-                modifiers.append(i.modifier)
-        this.dmg_test_event.modifiers = modifiers
+                this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         team_buff_dmg = this.dmg_test_event.dmg
+
         log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
 
 
@@ -944,19 +948,18 @@ class Adv(object):
                 if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
                     aff = vars(this.afflics)[this.conf.sim_afflict.type]
                     aff.resist = -5
-                    aff.on('simulated', 100, 0, duration=t, iv=t)
+                    aff.on('simulated_{}'.format(this.conf.sim_afflict.type), 100, 0, duration=t, iv=t)
 
     def sim_buffbot(this):
         if 'sim_buffbot' in this.conf:
             if 'debuff' in this.conf.sim_buffbot:
                 value = -this.conf.sim_buffbot.debuff
                 if this.condition('boss def {:+.0%}'.format(value)):
-                    buff = this.Selfbuff('simulated',value,-1,mtype='def')
-                    buff.bufftype = 'debuff'
+                    buff = this.Selfbuff('simulated_debuff',value,-1,mtype='def')
                     buff.on()
             if 'buff' in this.conf.sim_buffbot:
                 if this.condition('team str {:+.0%}'.format(this.conf.sim_buffbot.buff)):
-                    this.Selfbuff('simulated',this.conf.sim_buffbot.buff,-1).on()
+                    this.Selfbuff('simulated_buff',this.conf.sim_buffbot.buff,-1).on()
 
     def sync_slot(this, conf_slots):
         #this.cmnslots(conf)
@@ -1154,6 +1157,7 @@ class Adv(object):
 
     def def_mod(this):
         m = this.mod('def')
+        log('debug', 'def_mod', m)
         if m < 0.5:
             return 0.5
         else:
@@ -1441,7 +1445,7 @@ class Adv(object):
 
     def dmg_formula(this, name, dmg_coef):
         att = 1.0 * this.att_mod() * this.base_att
-        armor = 10.0 * this.def_mod()
+        armor = 10 * this.def_mod()
         #return float(dmg_coef) * this.dmg_mod(name) * this.att_mod() / this.def_mod()
         #return float(dmg_coef) * this.dmg_mod(name) * this.def_mod()
         return 5.0/3 * dmg_coef * this.dmg_mod(name) * att/armor * 1.5   # true formula
