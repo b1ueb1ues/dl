@@ -57,7 +57,6 @@ class G_Luca(Adv):
 
     def a1_cooldown(this, t):
         this.a1_iscding = False
-        this.buff_icon_count()
         log('cd','a1','end')
     
     def custom_crit_mod(this):

@@ -19,20 +19,13 @@ class Veronica(adv.Adv):
         `fs, seq=5 and s1.charged >= 2500
         """
 
-    def init(this):
-        if this.condition('hp=80%'):
-            this.s1boost = 1.25*0.2*0.2
-        else:
-            this.s1boost = 1.25*0.3*0.3
-
     def prerun(this):
         adv.Teambuff('last',2.28,1).on()
-
+        this.hp = 80
 
     def s1_proc(this, e):
-        if this.s1boost:
-            this.dmg_make('o_s1_crisis', this.s1boost*10.84)
-
+        with adv.CrisisModifier('s1', 2.25, this.hp):
+            this.dmg_make('o_s1_crisis', this.conf.s1.dmg)
 
 if __name__ == '__main__':
     conf = {}

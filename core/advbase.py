@@ -93,6 +93,26 @@ class Modifier(object):
         return '<%s %s %s %s>'%(this.mod_name, this.mod_type, this.mod_order, this.mod_value)
 
 
+class CrisisModifier(Modifier):
+    def __init__(this, name, scale, hp):
+        super().__init__('mod_{}_crisis'.format(name), 'att', 'hit', 0)
+        this.hp_scale = scale
+        this.hp_lost = 100 - hp
+        if hp == 0:
+            this.hp_cond = m_condition.on('hp=1')
+        elif hp < 100:
+            this.hp_cond = m_condition.on('hp={}%'.format(hp))
+        else:
+            this.hp_cond = 0
+
+    def get(this):
+        # minus 1 for hack separated bar display reasons
+        if this.hp_cond:
+            this.mod_value = (this.hp_scale - 1) * (this.hp_lost**2)/10000 - 1
+        else:
+            this.mod_value = -1
+        return this.mod_value
+
 
 class Buff(object):
     _static = Static({

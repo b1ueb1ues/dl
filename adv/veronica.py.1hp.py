@@ -12,35 +12,19 @@ def module():
     return Veronica
 
 class Veronica(veronica.Veronica):
-    comment = '1hp; only c5 & s1; '
-    a3 = ('prep','100%')
-    conf = {}
-    conf['slots.a'] = slot.a.FG() + slot.a.Heralds_of_Hinomoto()
-    conf['slots.d'] = slot.d.Shinobi()
+    def d_acl(this): 
+        this.conf['acl'] = """
+            `s1
+            `s3, seq=5 and cancel
+            `fs, seq=5 and s1.charged >= 2500
+        """
 
-    def init(this):
-        if this.condition('hp1'):
-            this.s1boost = 1.25
-        else:
-            this.s1boost = 0
-
-    def s1_proc(this, e):
-        if this.s1boost:
-            this.dmg_make('o_s1_crisis', this.s1boost*10.84)
+    def prerun(this):
+        super().prerun()
+        this.hp = 0
 
 
 if __name__ == '__main__':
     conf = {}
-#    conf['acl'] = """
-#        `s1, seq=5 and cancel or fsc
-#        `s1, pin == 'prep'
-#        `fs, seq=5 and s1.charged >= 2500
-#        """
-
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s1, pin == 'prep'
-        """
-
     adv_test.test(module(), conf, verbose=0)
 

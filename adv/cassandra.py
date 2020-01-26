@@ -9,6 +9,7 @@ def module():
     return Cassandra
 
 class Cassandra(Adv):
+    comment = 'no counter damage; s2 drops combo'
     a1 = ('prep_charge','5%')
     a3 = ('ro',(0.15, 60))
 
@@ -26,14 +27,8 @@ class Cassandra(Adv):
         else:
             this.afflics.poison.resist=100
 
-        if this.condition('hp80'):
-            this.s2boost = 1.2*0.2*0.2
-        else:
-            this.s2boost = 1.2*0.3*0.3
-
     def prerun(this):
-        this.comment = 's2 drops combo'
-        this.hits = 0
+        this.hp = 80
 
         if this.condition('reflect 500 damage on every s2'):
             this.s2reflect = 500
@@ -45,9 +40,10 @@ class Cassandra(Adv):
 
     def s2_proc(this, e):
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
-        this.dmg_make('o_s2_crisis',this.s2boost*10.82)
+        with CrisisModifier('s2', 2, this.hp):
+            this.dmg_make('o_s2_crisis',this.conf.s2.dmg)
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=0)
+    adv_test.test(module(), conf, verbose=-2)
 
