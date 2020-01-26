@@ -10,7 +10,7 @@ class G_Luca(Adv):
     a3 = ('cc',0.13,'hit15')
 
     conf = {}
-    conf['slot.a'] = RR()+LC()
+    conf['slot.a'] = The_Wyrmclan_Duo()+A_New_Years_Battle()
     conf['slot.d'] = Daikokuten()
     conf['acl'] = """
         `s1
@@ -54,8 +54,8 @@ class G_Luca(Adv):
                 current_rate += 0.1 * icon_count  # s1 icon crit
             current_rate = min(1.0, current_rate)
             mean_rate += current_rate * state_p
-
-            if (b := state[0]) is not None and t - b < 3.0:  # proc in last 3 seconds
+            
+            if state[0] is not None and t - state[0] < 3.0:  # proc in last 3 seconds
                 new_states[state] += state_p  # state won't change
             else:
                 miss_rate = 1.0 - current_rate

@@ -5,4 +5,3 @@ addis.py
 ezelith.py
 sazanka.py
 natalie.py
-g_luca.py
