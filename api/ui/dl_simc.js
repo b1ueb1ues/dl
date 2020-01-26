@@ -11,7 +11,7 @@ BASE_TEAM_DPS = 16000
 BASE_AFFLICT_UPTIME = {
     'poison': 90,
     'burn': 75,
-    'paralysis': 75
+    'paralysis': 80
 }
 PREFIX_MAPS = {
     'adv': {
@@ -374,18 +374,16 @@ function clearResults() {
 }
 function weaponSelectChange() {
     const weapon = $('#input-wep').val();
-    if (weapon.startsWith('Agito')) {
+    if (weapon.startsWith('Agito') || weapon.startsWith('UnreleasedAgito')) {
         $('#input-edit-acl').prop('checked', true);
         $('#input-acl').prop('disabled', false);
         const acl = $('#input-acl').val().split('\n');
-        let new_acl = ''
+        let new_acl = '`s3, not this.s3_buff_on and cancel\n';
         for (const line of acl) {
-            if (line.startsWith('`s3')) {
-                new_acl += '`s3, not this.s3_buff_on and cancel'
-            } else {
-                new_acl += line
+            if (!line.startsWith('`s3')) {
+                new_acl += line;
             }
-            new_acl += '\n'
+            new_acl += '\n';
         }
         $('#input-acl').val(new_acl);
     }
