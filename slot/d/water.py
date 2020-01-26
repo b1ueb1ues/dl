@@ -31,3 +31,8 @@ class Kamuy(DragonBase):
     ele = 'water'
     att = 125
     a = [('primed_att', 0.15), ('a', 0.45)]
+
+class Unreleased_WaterCritDamage(DragonBase):
+    ele = 'water'
+    att = 127
+    a = [('a', 0.45), ('cd', 0.55)]

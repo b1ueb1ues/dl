@@ -45,3 +45,13 @@ class Unreleased_LightSkillHaste(DragonBase):
     ele = 'light'
     att = 120
     a = [('sp', 0.35)]
+
+class Unreleased_LightCritDamage(DragonBase):
+    ele = 'light'
+    att = 127
+    a = [('a', 0.45), ('cd', 0.55)]
+
+class Unreleased_LightPrimedStr(DragonBase):
+    ele = 'light'
+    att = 127
+    a = [('primed_att', 0.15), ('a', 0.45)]

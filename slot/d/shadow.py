@@ -59,3 +59,8 @@ class Unreleased_ShadowPoisonPunish(DragonBase):
     ele = 'shadow'
     att = 127
     a = [('k_poison', 0.2), ('a', 0.5)]
+
+class Unreleased_ShadowPrimedStr(DragonBase):
+    ele = 'shadow'
+    att = 127
+    a = [('primed_att', 0.15), ('a', 0.45)]
