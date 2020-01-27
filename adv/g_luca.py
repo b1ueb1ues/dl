@@ -46,7 +46,7 @@ class G_Luca(Adv):
         mean_rate = 0.0
 
         for start_state, state_p in this.a1_states.items():
-            state = tuple([b if b is not None and t - b <= 20.0 * this.bufftime() else None for b in start_state])  # expire old stacks
+            state = tuple([b if b is not None and t - b <= 20.0 else None for b in start_state])  # expire old stacks
             current_rate = base_rate
             icon_count = base_icon_count
             a1_buff_count = len([b for b in state if b is not None])  # active a1buff count
