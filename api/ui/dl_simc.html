@@ -82,6 +82,24 @@
             padding: 0;
             margin: 0;
         }
+
+        .test-result-slot-grid {
+            display: inline-grid;
+            grid-template-columns: auto auto;
+            grid-column-gap: 0.25em;
+        }
+
+        .test-result-slot-grid > div:first-child {
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+        .slot-icon {
+            width: 1.7em;
+        }
+
+        .slot-icon.character {
+            width: 3em;
+        }
     </style>
 </head>
 

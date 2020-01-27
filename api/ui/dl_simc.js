@@ -28,6 +28,33 @@ PREFIX_MAPS = {
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
+const speshul = {
+    Lily: 'https://cdn.discordapp.com/emojis/664261164208750592.png',
+    // G_Luca: 'https://cdn.discordapp.com/emojis/619420426770186240.png',
+    // G_Cleo: 'https://cdn.discordapp.com/emojis/637119887071772673.png',
+    // G_Elisanne: 'https://cdn.discordapp.com/emojis/651238318327201792.png',
+    // G_Euden: 'https://cdn.discordapp.com/emojis/495873033203089418.png',
+    // G_Ranzal: 'https://cdn.discordapp.com/emojis/512920940963692566.png',
+    // G_Sarisse: 'https://cdn.discordapp.com/emojis/622190324059734028.png',
+    // G_Mym: 'https://cdn.discordapp.com/emojis/589506568148615178.gif'
+}
+function slots_icon_fmt(adv, slots){
+    const img_urls = [];
+    if (speshul.hasOwnProperty(adv) && Math.random() < 0.1){
+        img_urls.push('<img src="' + speshul[adv] + '" class="slot-icon character"/>');
+    }else{
+        img_urls.push('<img src="/dl-sim/pic/character/'+adv+'.png" class="slot-icon character"/>');
+    }
+    const slots_list = slots.replace(/\[/g, '').split(']');
+    const amulets = slots_list[0].split('+');
+    img_urls.push('<img src="/dl-sim/pic/amulet/'+amulets[0]+'.png" class="slot-icon"/>');
+    img_urls.push('<img src="/dl-sim/pic/amulet/'+amulets[1]+'.png" class="slot-icon"/>');
+    const dragon = slots_list[1];
+    if (!dragon.startsWith('Unreleased')){
+        img_urls.push('<img src="/dl-sim/pic/dragon/'+dragon+'.png" class="slot-icon"/>');
+    }
+    return img_urls;
+}
 function substitute_prefix(name, t) {
     if (PREFIX_MAPS.hasOwnProperty(t)) {
         prefix_map = PREFIX_MAPS[t];
@@ -300,6 +327,7 @@ function runAdvTest() {
                     const result = res.test_output.split('\n');
                     const cond_true = result[0].split(',');
                     const name = substitute_prefix(cond_true[1], 'adv');
+                    const icon_urls = slots_icon_fmt(cond_true[1], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
                     if (exArr.length > 0) {
                         copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
@@ -307,7 +335,7 @@ function runAdvTest() {
                         copyTxt += '(co-ab: none)'
                     }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
-                    newResultItem.append($('<h4>' + name + '</h4>'));
+                    newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('')+ '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
                         cond_false = result[1].split(',');
