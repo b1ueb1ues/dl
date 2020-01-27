@@ -53,8 +53,12 @@ class G_Sarisse(adv.Adv):
             this.hits += 8
         if this.hits >= 20:
             this.hits -= 20
-            adv.Selfbuff('sylvan strength',0.02,15).on()
-            adv.Selfbuff('sylvan crit',0.01,15,'crit','chance').on()
+            buff = adv.Selfbuff('sylvan strength',0.02,15)
+            buff.bufftime = buff.nobufftime
+            buff.on()
+            buff = adv.Selfbuff('sylvan crit',0.01,15,'crit','chance')
+            buff.bufftime = buff.nobufftime
+            buff.on()
 
     def s1_proc(this, e):
         buffcount = this.bc.buffcount()

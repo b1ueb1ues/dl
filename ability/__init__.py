@@ -169,11 +169,15 @@ class Ability(object):
             def l_primed(e):
                 if not this.pm_is_cd:
                     if name[7:] == 'def':
-                        adv.Buff(name,0,timing,'def').on()
+                        buff = adv.Buff(name,0,timing,'def')
+                        buff.bufftime = buff.nobufftime
+                        buff.on()
                         Event('defchain')()
                     else:
                         buff_args = name[7:].split('_')
-                        adv.Buff(name,buff_value,timing,*buff_args).on()
+                        buff = adv.Buff(name,buff_value,timing,*buff_args)
+                        buff.bufftime = buff.nobufftime
+                        buff.on()
                     this.pm_is_cd = True
                     Timer(pm_cd_end).on(15)
 
