@@ -463,6 +463,14 @@ class Wily_Warriors_Flash_and_Heat(Amulet):
     a = [('sp',0.08),('sp',0.12,'fs')]
 WWFH = Wily_Warriors_Flash_and_Heat
 
+class Wily_Warriors_Bubble_and_Wood(Amulet):
+    att = 54
+    a = [('a', 0.13, 'hp70')]
+
+class Wily_Warriors_Air_and_Crash(Amulet):
+    att = 49
+    a = [('a', 0.2, 'hit15')]
+
 class Howling_to_the_Heavens(Amulet):
     att = 65
     a = [('cd',0.20)]

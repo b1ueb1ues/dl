@@ -31,11 +31,6 @@ class Daikokuten(DragonBase):
     att = 124
     a = [('a', 0.25), ('a', 0.55)]
 
-class GalaShishimai_450CritDmg(DragonBase):
-    ele = 'light'
-    att = 124
-    aura = [('crit','damage',4.5)]
-
 class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'
     att = 128

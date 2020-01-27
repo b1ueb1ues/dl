@@ -11,11 +11,6 @@ class Shinobi(DragonBase):
     att = 128
     a = [('s', 0.9), ('a', 0.2)]
 
-class Parallel_Zodiark(DragonBase):
-    ele = 'shadow'
-    att = 77
-    a = [('a', 0.2), ('cd', 0.4)]
-
 class Nyarlathotep(DragonBase):
     ele = 'shadow'
     att = 128
