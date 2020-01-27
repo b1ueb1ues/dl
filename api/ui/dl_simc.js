@@ -38,6 +38,11 @@ const speshul = {
     // G_Sarisse: 'https://cdn.discordapp.com/emojis/622190324059734028.png',
     // G_Mym: 'https://cdn.discordapp.com/emojis/589506568148615178.gif'
 }
+const amulet_name_override = {
+    Dear_Diary_Fast_RO: 'Dear_Diary',
+    Dear_Diary_Slow_RO: 'Dear_Diary',
+    Spirit_of_the_Season_No_HP100: 'Spirit_of_the_Season'
+}
 function slots_icon_fmt(adv, slots){
     const img_urls = [];
     if (speshul.hasOwnProperty(adv) && Math.random() < 0.1){
@@ -47,8 +52,13 @@ function slots_icon_fmt(adv, slots){
     }
     const slots_list = slots.replace(/\[/g, '').split(']');
     const amulets = slots_list[0].split('+');
-    img_urls.push('<img src="/dl-sim/pic/amulet/'+amulets[0]+'.png" class="slot-icon"/>');
-    img_urls.push('<img src="/dl-sim/pic/amulet/'+amulets[1]+'.png" class="slot-icon"/>');
+    for (a of amulets){
+        if (amulet_name_override.hasOwnProperty(a)){
+            img_urls.push('<img src="/dl-sim/pic/amulet/'+amulet_name_override[a]+'.png" class="slot-icon"/>');
+        } else {
+            img_urls.push('<img src="/dl-sim/pic/amulet/'+a+'.png" class="slot-icon"/>');
+        }
+    }
     const dragon = slots_list[1];
     if (!dragon.startsWith('Unreleased')){
         img_urls.push('<img src="/dl-sim/pic/dragon/'+dragon+'.png" class="slot-icon"/>');
