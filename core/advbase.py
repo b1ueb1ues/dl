@@ -1157,7 +1157,6 @@ class Adv(object):
 
     def def_mod(this):
         m = this.mod('def')
-        log('debug', 'def_mod', m)
         if m < 0.5:
             return 0.5
         else:
