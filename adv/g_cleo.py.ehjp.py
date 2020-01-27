@@ -14,7 +14,7 @@ def module():
     return G_Cleo
 
 class G_Cleo(g_cleo.G_Cleo):
-    comment = '4 Gleo vs EHJP; with simulated break; no team dps'
+    comment = '4 Gleo vs EHJP; with simulated break; no team dps;'
 
     def d_slots(this):
         this.slots.a = Candy_Couriers()+King_of_the_Skies()
@@ -24,7 +24,7 @@ class G_Cleo(g_cleo.G_Cleo):
             `rotation
         """
         this.conf['rotation'] = """
-            s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 s3 c5 c5 fs s1 end
+            s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 c5 s3 c5 fs s1 end
         """
 
     def prerun(this):
@@ -32,7 +32,7 @@ class G_Cleo(g_cleo.G_Cleo):
         this.odbk = 991202+792960
         this.ehjp = 4488479
         this.dmgsum = 0
-        this.broken_punisher = Selfbuff(name='candy_couriers', value=0.25, duration=-1, mtype='att', morder='punisher')
+        this.broken_punisher = Selfbuff(name='candy_couriers', value=0.25, duration=-1, mtype='att', morder='bk')
 
     def dmg_proc(this, name, amount):
         this.dmgsum += int(amount) * 4
