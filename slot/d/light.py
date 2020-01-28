@@ -5,6 +5,11 @@ class Gilgamesh(DragonBase):
     att = 124
     a = [('a', 0.5)]
 
+class PopStar_Siren(DragonBase):
+    ele = 'light'
+    att = 124
+    a = [('a', 0.4)]
+
 class Cupid(DragonBase):
     ele = 'light'
     att = 119
