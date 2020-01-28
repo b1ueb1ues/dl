@@ -100,18 +100,15 @@ class Ability(object):
             adv.Buff('slayerstrength',value*5,-1).on()
         elif name == 'dc':
             # adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
-            from adv.adv_test import sim_duration
-            timing = int(sim_duration/2)
-            if adv.condition('shapeshift at {}s'.format(timing)):
-                buff_value = value
+            if hasattr(adv, 'no_dclaws') and not adv.no_dclaws:
+                from adv.adv_test import sim_duration
                 timing = int(sim_duration/2)
+                buff_value = value
                 def dc_buff(t):
-                    adv.Buff('dragons_claw', buff_value, -1).on()
-                adv.Timer(dc_buff).on(timing)
-        elif name == 'dc_max':
-            # adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
-            for buff_value in value:
-                adv.Buff('dragons_claw', buff_value, -1).on()
+                    if adv.condition('shapeshift at {}s'.format(timing)):
+                        adv.Buff('dragons_claw', buff_value, -1).on()
+                adv.dragon_claw_buff = adv.Timer(dc_buff)
+                adv.dragon_claw_buff.on()
         elif name == 'ro':
             if isinstance(value, tuple) and len(value) == 2:
                 buff_value, timing = value
