@@ -520,6 +520,11 @@ class A_Dogs_Day(Amulet):
             this.a = [('bt',0.25), ('sp',0.1)]
 ADD = A_Dogs_Day
 
+class The_Bridal_Dragon(Amulet):
+    att = 64
+    a = []
+TBD = The_Bridal_Dragon
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
