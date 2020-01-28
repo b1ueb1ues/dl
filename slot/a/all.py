@@ -277,13 +277,6 @@ class The_Shining_Overlord(Amulet):
             this.a += [('s',0.40)]
 TSO = The_Shining_Overlord
 
-class The_Shining_Overlord_Max_Stacks(Amulet):
-    att = 65
-    a = [('dc_max', (0.06, 0.09, 0.15))]
-    def on(this, c):
-        if c.wt == 'sword':
-            this.a = [('dc_max', (0.06, 0.09, 0.15)), ('s',0.40)]
-
 class Halidom_Grooms(Amulet):
     att = 50
     a = [('bt',0.2)]

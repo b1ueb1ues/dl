@@ -1,7 +1,6 @@
 from slot import *
 from math import ceil
-
-from slot import *
+import core.condition
 
 class Marishiten(DragonBase):
     ele = 'shadow'
@@ -13,6 +12,15 @@ class Shinobi(DragonBase):
     att = 128
     a = [('s', 0.9), ('a', 0.2)]
 
+class Fatalis(DragonBase):
+    ele = 'shadow'
+    att = 121
+    a = [('a', 0.8)]
+
+    def oninit(this, adv):
+        DragonBase.oninit(this, adv)
+        adv.no_dclaws = True
+            
 class Parallel_Zodiark(DragonBase):
     ele = 'shadow'
     att = 77
