@@ -14,7 +14,7 @@ def module():
 class Rena(Adv):
     conf = {}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = Felyne_Hospitality()+EE()
+    conf['slot.a'] = RR()+EE()
     conf['acl'] = """
         `s3, cancel
         `s1

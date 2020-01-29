@@ -34,11 +34,6 @@ class Fatalis(DragonBase):
                 timing = int(sim_duration/2)
                 adv.Timer(permanent_curse).on(timing)
 
-class Parallel_Zodiark(DragonBase):
-    ele = 'shadow'
-    att = 77
-    a = [('a', 0.2), ('cd', 0.4)]
-
 class Nyarlathotep(DragonBase):
     ele = 'shadow'
     att = 128

@@ -10,7 +10,6 @@ class Berserker(Adv):
     a3 = ('lo',0.3)
 
     conf = {}
-    conf['slot.a'] = TSO()+A_Suit_of_Midnight()
     conf['acl'] = """
         `s1
         `s3, fsc
