@@ -10,7 +10,7 @@ class G_Luca(Adv):
     a3 = ('cc',0.13,'hit15')
 
     conf = {}
-    conf['slot.a'] = The_Wyrmclan_Duo()+A_New_Years_Battle()
+    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['slot.d'] = Daikokuten()
     conf['acl'] = """
         `s1

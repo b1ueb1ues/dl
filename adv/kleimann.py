@@ -9,9 +9,7 @@ class Kleimann(adv.Adv):
     a1 = ('fs',0.4)
     a3 = ('s',0.2)
  
-    import slot
     conf = {}
-    conf['slot.d'] = slot.d.Shinobi()
  
 
 

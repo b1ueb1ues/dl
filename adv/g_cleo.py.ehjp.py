@@ -18,13 +18,14 @@ class G_Cleo(g_cleo.G_Cleo):
 
     def d_slots(this):
         this.slots.a = Candy_Couriers()+King_of_the_Skies()
+        this.slots.d = slot.d.Shinobi()
     
     def d_acl(this):
         this.conf['acl'] = """
             `rotation
         """
         this.conf['rotation'] = """
-            s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 c5 s3 c5 fs s1 end
+            s2 s1 c5 fs s3 c5 s1 c5 c5 fs s2 s1 c5 s3 c5 fs s1 end
         """
 
     def prerun(this):

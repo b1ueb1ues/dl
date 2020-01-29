@@ -27,7 +27,6 @@ class Xania(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.a'] = CC()+EE()
     conf['slot.d'] = Apollo()
     conf['acl'] = """
         `s1

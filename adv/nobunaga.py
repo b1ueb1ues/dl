@@ -27,7 +27,7 @@ class Nobunaga(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['slot.a'] = RR()+FoG()
+    conf['slot.a'] = RR()+Primal_Crisis()
     #conf['slot.d'] = Cerberus()
     conf['acl'] = """
         `s1

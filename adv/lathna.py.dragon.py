@@ -19,7 +19,7 @@ class Lathna(adv.Adv):
     a1 = ('k_poison',0.15)
     conf = {}
     conf['slot.a'] = RR()+The_Plaguebringer()
-    #conf['slot.d'] = Marishiten()
+    conf['slot.d'] = Shinobi()
     conf['acl'] = """
         # s1a = this.s1a
         `this.dragon

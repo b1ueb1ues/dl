@@ -88,9 +88,6 @@ class Yaten(adv.Adv):
     def energy_doublebuff(this, e):
         Selfbuff("double_buff", 0.2, 15).on()
 
-    def s3_proc(this, e):
-        Event('defchain')()
-
 if __name__ == '__main__':
     conf = {}
     from slot.a import *

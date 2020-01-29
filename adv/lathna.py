@@ -9,6 +9,7 @@ class Lathna(Adv):
     a1 = ('k_poison',0.15)
     
     conf = {}
+    conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
         # s1a = this.s1a
         `s1a

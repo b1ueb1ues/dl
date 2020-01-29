@@ -12,7 +12,6 @@ class Durant(Adv):
 
     conf = {}
     conf['slot.a'] = Seaside_Princess()+FWHC()
-    conf['slot.d'] = Marishiten()
 
     conf['acl'] = """
         `s1

@@ -34,10 +34,6 @@ class W_Elisanne(Adv):
         this.s2on = 0
 
 
-    def s3_proc(this, e):
-        Event('defchain')()
-
-
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """

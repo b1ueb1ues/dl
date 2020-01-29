@@ -10,20 +10,18 @@ class Berserker(Adv):
     a3 = ('lo',0.3)
 
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+JotS()
-            this.conf.slot.d = Shinobi()
-        else:
-            this.conf.slot.a = TSO()+BN()
-            this.conf.slot.d = Shinobi()
-
-if __name__ == '__main__':
-    conf = {}
+    conf['slot.a'] = TSO()+A_Suit_of_Midnight()
     conf['acl'] = """
         `s1
         `s3, fsc
         `fs, seq=2 and cancel
         """
+
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.conf.slot.a = TSO()+JotS()
+
+if __name__ == '__main__':
+    conf = {}
     adv_test.test(module(), conf, verbose=0)
 

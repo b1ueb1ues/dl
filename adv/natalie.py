@@ -14,7 +14,7 @@ class Natalie(adv.Adv):
     comment = 's2 without str buff'
     conf = {}
     conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
-    conf['slot.d'] = Shinobi()
+    conf['slot.d'] = Fatalis()
     conf['acl'] = """
         `s2, pin='prep'
         `s2, seq=5

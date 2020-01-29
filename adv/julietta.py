@@ -7,8 +7,9 @@ def module():
 
 class Julietta(adv.Adv):
     comment = 'no fs & no s2'
-    pass
 
+    def s2_proc(this, e):
+       adv.Event('defchain')()
 
 if __name__ == '__main__':
     conf = {}

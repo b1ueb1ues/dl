@@ -19,8 +19,21 @@ class Fatalis(DragonBase):
 
     def oninit(this, adv):
         DragonBase.oninit(this, adv)
-        adv.no_dclaws = True
-            
+        if type(adv.slots.a).__name__ != 'A_Suit_of_Midnight' and type(adv.slots.a.a2).__name__ != 'A_Suit_of_Midnight':
+            if adv.condition('no shapeshift'):
+                adv.no_dclaws = True
+            else:
+                adv.no_dclaws = False
+                def permanent_curse(t):
+                    def null_cast():
+                        return 0
+                    for s in [adv.s1, adv.s2, adv.s3]:
+                        s.cast = null_cast
+                    adv.log('debug', 'permanent_curse')
+                from adv.adv_test import sim_duration
+                timing = int(sim_duration/2)
+                adv.Timer(permanent_curse).on(timing)
+
 class Parallel_Zodiark(DragonBase):
     ele = 'shadow'
     att = 77

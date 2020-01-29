@@ -2,7 +2,6 @@ import adv_test
 from adv import *
 from module.bleed import Bleed
 from slot.a import *
-from slot.d import *
 
 def module():
     return Patia
@@ -13,7 +12,6 @@ class Patia(Adv):
 
     conf = {}
     conf['slots.a'] = VC()+Jewels_of_the_Sun()
-    conf['slot.d'] = Shinobi()
     conf['acl'] = """
         `s1
         `s2

@@ -27,7 +27,7 @@ class G_Cleo(Adv):
 
 
     def d_slots(this):
-        this.slots.a = CC()+JotS()  # wand c2*1.08 = 217
+        # this.slots.a = CC()+JotS()  # wand c2*1.08 = 217
         this.slots.d = Shinobi()
 
 
