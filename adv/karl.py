@@ -14,7 +14,7 @@ class Karl(adv.Adv):
     a3 = ('a',0.15,'hp70')
 
     conf = {}
-    conf['slot.a'] = The_Shining_Overlord()+Flash_of_Genius()
+    conf['slot.a'] = The_Shining_Overlord()+Primal_Crisis()
     conf['acl'] = """
         `s1, fsc
         `s2

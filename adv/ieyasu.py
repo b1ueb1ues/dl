@@ -15,6 +15,7 @@ class Ieyasu(Adv):
 
     conf = {}
     conf['slots.a'] = RR()+JotS()
+    conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
         `s1
         `s2, seq=5 and this.bleed._static['stacks'] > 0

@@ -15,7 +15,7 @@ class D_Xainfried(Adv):
 
     conf = {}
     conf['slots.d'] = Longlong()
-    conf['slots.a'] = CC()+ADD()
+    conf['slots.a'] = ADD()+Primal_Crisis()
     conf['acl'] = """
         `s1
         `s2, seq=5

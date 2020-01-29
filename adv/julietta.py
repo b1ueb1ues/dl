@@ -10,13 +10,15 @@ def module():
 
 class Julietta(adv.Adv):
     comment = 'no fs & no s2'
-    conf = {}
+
+    def s2_proc(this, e):
+       adv.Event('defchain')()
+
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
         `s3,seq=5
         """
-
 
 if __name__ == '__main__':
     conf = {}

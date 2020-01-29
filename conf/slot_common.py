@@ -22,7 +22,7 @@ def set(slots):
         else:
             slots.d = slot.d.light.Cupid()
     elif ele == 'shadow':
-        slots.d = slot.d.shadow.Shinobi()
+        slots.d = slot.d.shadow.Fatalis()
 
 
     slots.a = RR()+CE()
@@ -44,7 +44,7 @@ def set(slots):
         slots.a = RR()+BN()
         #slots.a = LC()+Dragon_and_Tamer()
     if wt == 'wand': 
-        slots.a = CC()+FoG()
+        slots.a = CC()+Primal_Crisis()
     if wt == 'bow':
         slots.a = FB()+DD()    
 

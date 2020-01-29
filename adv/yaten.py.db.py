@@ -44,11 +44,6 @@ class Yaten(yaten.Yaten):
         this.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
 
 
-    def s3_proc(this, e):
-        Event('defchain')()
-
-
-
 if __name__ == '__main__':
     conf = {}
     from slot.a import *

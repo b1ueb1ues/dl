@@ -10,10 +10,11 @@ def module():
     return Delphi
 
 class Delphi(Adv):
-    a1 = ('a',-0.6)
+    comment = 'Fatalis > Chthonius(1+ shift) > Marishiten > Shinobi'
+    a1 = ('a',-0.55)
+
     conf = {}
-    conf['slots.a'] = Mega_Friends()+The_Plaguebringer()
-    conf['slot.d'] = Marishiten()
+    conf['slot.a'] = Mega_Friends()+The_Plaguebringer()
     conf['acl'] = """
         `s1
         `s2,this.s1fscharge == 0
@@ -29,7 +30,7 @@ class Delphi(Adv):
             this.afflics.poison.resist=100
 
         this.hits = 0
-        this.proc_chance = 120
+        this.flurry_poison = 0
 
         if this.condition('s1 defdown for 10s'):
             this.s1defdown = 1
@@ -50,46 +51,34 @@ class Delphi(Adv):
         log('sp','s1autocharge')
 
     def dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 2
-        elif name == 'x3':
-            this.hits += 2
-        elif name == 'x4':
-            this.hits += 1
-        elif name == 'x5':
-            this.hits += 1
-        elif name == 'fs':
-            this.hits += 3
-        elif name == 's1':
-            this.hits += 1
-        elif name == 's2':
-            this.hits += 1
-        elif name == 's3':
-            this.hits += 5
-
-        if this.hits >= 15:
-            this.proc_chance = 180
+        delphi_hits = {
+            'x1': 1, 'x2': 2, 'x3': 2, 'x4': 1, 'x5': 1, 'fs': 3,
+            's1': 1, 's2': 2, 's3': 5
+        }
+        try:
+            this.hits += delphi_hits[name]
+            if this.hits >= 15:
+                this.flurry_poison = 70
+        except:
+            pass
 
     def s1_proc(this, e):
-        if this.s1defdown :
-            Debuff('s1defdown',0.15,10,1).on()
+        Debuff('s1defdown',0.20,10,1).on()
         this.s1fscharge = 1
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
 
     def s2_before(this, e):
         this.hits = 0
-        this.proc_chance = 120
-
+        this.flurry_poison = 0
+    
     def s2_proc(this, e):
-        this.afflics.poison('s2',this.proc_chance,3.00,24)
+        this.afflics.poison('s2',120+this.flurry_poison,3.00,27)
 
     def fs_proc(this, e):
         if this.s1fscharge > 0:
             this.s1fscharge -= 1
             this.dmg_make("o_fs_boost",0.21*3)
-            this.afflics.poison('fs',this.proc_chance,3.00,24)
+            this.afflics.poison('fs',120+this.flurry_poison,3.00,27)
 
 if __name__ == '__main__':
     conf = {}

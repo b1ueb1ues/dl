@@ -27,7 +27,12 @@ class G_Cleo(Adv):
         `s1, fsc or s=2
         `s3, x=5 or fsc
         """
-    conf['slots.a'] = CC()+JotS() # wand c2*1.08 = 217
+
+
+    def d_slots(this):
+        # this.slots.a = CC()+JotS()  # wand c2*1.08 = 217
+        this.slots.d = Shinobi()
+
 
     # def d_acl(this):
     #     if 'blade' in this.ex:

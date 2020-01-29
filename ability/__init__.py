@@ -52,10 +52,6 @@ class Ability(object):
         if dtype[0] == 's':
             this.adv.log('dmg', 'o_ex_wand', count*0.15)
 
-
-    def defchain(this, e):
-        this.adv.Buff('defchain',this.value,15).on()
-
     def get_killer(this):
         aff = vars(this.adv.afflics)[this.ktype]
         return aff.get()*this.kvalue
@@ -91,9 +87,14 @@ class Ability(object):
         elif name == 'lo':
             if adv.condition('last offense'):
                 adv.Buff('lo',value,15).on()
-        elif name == 'bc':
-            e = adv.Event('defchain').listener(this.defchain)
-            this.adv = adv
+        elif name[:2] == 'bc':
+            if len(name) > 2:
+                buff_args = name[3:].split('_')
+            else:
+                buff_args = ('att', 'buff')
+            def defchain(e):
+                adv.Buff('defchain',value,15,*buff_args).on()
+            adv.Event('defchain').listener(defchain)
         elif name == 'sts':
             adv.Buff('strikerstrength',value*5,-1).on()
         elif name == 'sls':

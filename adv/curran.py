@@ -24,6 +24,7 @@ class Curran(adv.Adv):
         `s3, seq=5
         """
     conf['slot.a'] = KFM()+CE()
+    conf['slot.d'] = Shinobi()
 
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.6):

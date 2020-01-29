@@ -30,10 +30,6 @@ class W_Elisanne(Adv):
             Debuff('s2defdown',0.15,10,1).on()
 
 
-    def s3_proc(this, e):
-        Event('defchain')()
-
-
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """

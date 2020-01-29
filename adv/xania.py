@@ -12,7 +12,6 @@ def module():
 class Xania(adv.Adv):
     a1 = ('s',0.35)
     conf = {}
-    conf['slot.a'] = CC()+EE()
     conf['slot.d'] = Apollo()
     conf['acl'] = """
         `s1

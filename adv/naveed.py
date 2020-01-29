@@ -19,7 +19,7 @@ class Naveed(adv.Adv):
         `s3, fsc
         `fs, seq=3 and cancel
         """
-    conf['slot.a'] = TSO()+Flash_of_Genius()
+    conf['slot.a'] = TSO()+Primal_Crisis()
             
     def prerun(this):
         this.s1level = 0

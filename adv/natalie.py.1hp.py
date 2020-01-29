@@ -1,7 +1,7 @@
 import adv_test
 import adv
 import natalie
-from slot.a import HoH, FoG
+from slot.a import HoH, Primal_Crisis
 from module import energy
 import random
 
@@ -12,7 +12,7 @@ class Natalie(natalie.Natalie):
     comment = ''
 
     def d_slots(this):
-        this.slots.a = HoH() + FoG()
+        this.slots.a = HoH() + Primal_Crisis()
 
     def d_acl(this):
         this.conf['acl'] = """

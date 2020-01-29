@@ -12,20 +12,16 @@ def module():
 class Berserker(Adv):
     a3 = ('lo',0.3)
     conf = {}
-    conf['slot.a'] = RR()+SS()
-    conf['slot.d'] = Marishiten()
+    conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1
         `s3, fsc
         `fs, seq=2 and cancel
         """
 
-    conf = {}
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = TSO()+JotS()
-            this.conf.slot.d = Shinobi()
-
 
 if __name__ == '__main__':
     conf = {}

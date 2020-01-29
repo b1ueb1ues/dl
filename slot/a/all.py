@@ -518,6 +518,20 @@ class The_Bridal_Dragon(Amulet):
     a = []
 TBD = The_Bridal_Dragon
 
+class A_Suit_of_Midnight(Amulet):
+    att = 52
+    a = []
+
+class Primal_Crisis(Amulet):
+    att = 55
+    a = [('a', 0.20, 'hit15'), ('cc', 0.10, 'hit15')]
+PC = Primal_Crisis
+
+class Felyne_Hospitality(Amulet):
+    att = 65
+    a = [('cc', 0.10, 'hp70'), ('bc_crit_damage', 0.15)]
+FH = Felyne_Hospitality
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

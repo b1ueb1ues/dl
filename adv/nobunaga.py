@@ -12,7 +12,7 @@ def module():
 class Nobunaga(Adv):
     a1 = ('a',0.2,'hit15')
     conf = {}
-    conf['slot.a'] = RR()+FoG()
+    conf['slot.a'] = RR()+Primal_Crisis()
     conf['acl'] = """
         `s1
         `s2, cancel
