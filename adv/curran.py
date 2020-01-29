@@ -14,8 +14,12 @@ class Curran(Adv):
     a3 = ('lo',0.6)
 
     conf = {}
-    conf['slot.a'] = KFM()+CE()
-    conf['slot.d'] = Shinobi()
+    conf['acl'] = """
+        `s1
+        `s2, seq=2
+        `s3, seq=5
+        """
+    conf['slot.a'] = KFM()+FitF()
 
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.6):
@@ -27,10 +31,4 @@ class Curran(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=2
-        `s3, seq=5
-        """
-    conf['slot.d'] = Shinobi()
     adv_test.test(module(), conf, verbose=-2)
