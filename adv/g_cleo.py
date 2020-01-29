@@ -20,6 +20,8 @@ class G_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
     conf = {}
+    conf['slot.a'] = CC()+JotS()  # wand c2*1.08 = 217
+    conf['slot.d'] = Shinobi()
     conf['acl'] = """
         `s2, pin='prep'
         `fs, s1.charged>=s1.sp and this.fsa_charge
@@ -27,12 +29,6 @@ class G_Cleo(Adv):
         `s1, fsc or s=2
         `s3, x=5 or fsc
         """
-
-
-    def d_slots(this):
-        # this.slots.a = CC()+JotS()  # wand c2*1.08 = 217
-        this.slots.d = Shinobi()
-
 
     # def d_acl(this):
     #     if 'blade' in this.ex:
