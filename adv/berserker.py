@@ -12,7 +12,6 @@ def module():
 class Berserker(Adv):
     a3 = ('lo',0.3)
     conf = {}
-    conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
         `s1
         `s3, fsc
