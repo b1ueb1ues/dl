@@ -1,6 +1,7 @@
 import adv_test
 import curran
 from slot.a import *
+from slot.d import *
 
 def module():
     return Curran
@@ -16,6 +17,7 @@ class Curran(curran.Curran):
 
     def d_slots(this):
         this.slots.a = KFM()+The_Plaguebringer()
+        this.slots.d = Shinobi()
 
 if __name__ == '__main__':
     conf = {}
