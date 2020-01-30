@@ -34,7 +34,7 @@ class Shishimai(DragonBase):
 class Daikokuten(DragonBase):
     ele = 'light'
     att = 124
-    a = [('a', 0.25), ('a', 0.55)]
+    a = [('a', 0.25, 'hit15'), ('a', 0.55)]
 
 class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'

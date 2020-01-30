@@ -71,9 +71,13 @@ class G_Luca(Adv):
     def s1_proc(this, e):
         this.in_s1 = True
         this.dmg_make('s1', 3.14)
+        this.hits += 1
         this.dmg_make('s1', 3.14)
+        this.hits += 1
         this.dmg_make('s1', 3.14)
+        this.hits += 1
         this.dmg_make('s1', 3.14)
+        this.hits += 1
         this.in_s1 = False
 
 if __name__ == '__main__':

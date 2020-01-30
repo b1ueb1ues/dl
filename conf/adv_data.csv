@@ -1,4 +1,4 @@
-name,stars,element,weapon,str_adv,,s1_hitdmg,s1_hits,s1_sp,s2_hitdmg,s2hits,s2_sp,,s1_dmgpc,s2_dmgpc,s1_buff,s2_buff,,lv2_autos
+name,stars,element,weapon,str_adv,,s1_hitdmg,s1_hits,s1_sp,s2_hitdmg,s2_hits,s2_sp,,s1_dmgpc,s2_dmgpc,s1_buff,s2_buff,,lv2_autos
 addis,4,wind,blade,509,,216,4,2537,0,0,4877,,864,0,,,,
 aeleen,4,wind,lance,470,,838,1,2579,0,0,8534,,838,0,,,,
 alain,3,flame,lance,525,,274,3,2581,411,2,5112,,822,822,,,,TRUE
@@ -123,7 +123,7 @@ lea,5,flame,sword,505,,148,5,2325,371,2,4730,,740,742,,,,
 emma,4,flame,lance,470,,0,0,3817,0,0,9154,,0,0,,,,
 g_euden,5,light,sword,502,,,,3817,,,999999,,413,2100,,team;0.15;15,,
 audric,4,shadow,sword,481,,350,2,2503,169,4,4593,,700,676,,,,
-delphi,5,shadow,dagger,572,,366,1,999999,499,1,999999,,366,499,,,,TRUE
+delphi,5,shadow,dagger,572,,366,1,999999,499,-1,999999,,366,499,,,,TRUE
 cassandra,5,shadow,wand,616,,541,2,2919,972,1,4935,,1082,972,,,,TRUE
 patia,4,shadow,lance,537,,0,0,4367,749,1,5157,,0,749,team;0.15;15,,,TRUE
 h_mym,5,flame,axe,493,,280,2,3849,0,0,8534,,560,0,,,,
@@ -143,7 +143,8 @@ chitose,4,light,wand,447,,0,0,3817,0,0,7288,,0,0,,,,
 hanabusa,4,light,blade,503,,869,1,2840,0,0,7634,,869,0,,,,
 joachim,4,wind,bow,478,,0,0,2803,0,0,5599,,0,0,,self;0.25;5,,
 kirsty,5,wind,lance,509,,921,1,2930,0,0,8534,,921,0,,team;0.2;15,,
-g_luca,5,light,blade,517,,0,0,2870,0,0,3899,,0,0,,self;0.8;10;crit;damage,,
+g_luca,5,light,blade,517,,0,1,2870,0,0,3899,,0,0,,self;0.8;10;crit;damage,,
 h_lowen,4,flame,staff,454,,0,0,5916,0,0,11832,,0,0,,,,
-mh_berserker,5,flame,sword,505,,805,1,2630,0,0,5600,,805,0,,,,
-mh_vanessa,5,light,lance,507,,805,1,2786,0,0,14000,,805,0,,,,
+aurien,3,flame,staff,533,,0,0,5916,562,1,9214,,0,562,,,,TRUE
+mh_berserker,5,flame,sword,505,,708,1,2630,0,0,5600,,708,0,,,,
+mh_vanessa,5,light,lance,507,,903,1,2786,0,0,14000,,903,0,,,,

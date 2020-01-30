@@ -21,7 +21,7 @@ class Delphi(Adv):
 
     def prerun(this):
         this.hits = 0
-        this.flurry_poison = 0
+        this.flurry_poison = 70
         
         if this.condition('0 resist'):
             this.afflics.poison.resist=0
@@ -36,34 +36,18 @@ class Delphi(Adv):
         this.s2.charge(999999.0*0.05)
         log('sp','s1autocharge')
 
-    def dmg_proc(this, name, amount):
-        delphi_hits = {
-            'x1': 1, 'x2': 2, 'x3': 2, 'x4': 1, 'x5': 1, 'fs': 3,
-            's1': 1, 's2': 2, 's3': 5
-        }
-        try:
-            this.hits += delphi_hits[name]
-            if this.hits >= 15:
-                this.flurry_poison = 70
-        except:
-            pass
-
     def s1_proc(this, e):
         Debuff('s1defdown',0.20,10,1).on()
         this.s1fscharge = 1
-
-    def s2_before(this, e):
-        this.hits = 0
-        this.flurry_poison = 0
     
     def s2_proc(this, e):
-        this.afflics.poison('s2',120+this.flurry_poison,3.00,27)
+        this.afflics.poison('s2',120+this.flurry_poison*(this.hits>=15),3.00,27)
 
     def fs_proc(this, e):
         if this.s1fscharge > 0:
             this.s1fscharge -= 1
             this.dmg_make("o_fs_boost",0.21*3)
-            this.afflics.poison('fs',120+this.flurry_poison,3.00,27)
+            this.afflics.poison('fs',120+this.flurry_poison*(this.hits>=15),3.00,27)
 
 if __name__ == '__main__':
     conf = {}

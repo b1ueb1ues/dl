@@ -25,7 +25,7 @@ def set(slots):
         slots.d = slot.d.shadow.Fatalis()
 
 
-    slots.a = RR()+CE()
+    slots.a = RR()+BN()
 
     if wt == 'sword':
         slots.a = TSO()+BN()
@@ -46,7 +46,9 @@ def set(slots):
     if wt == 'wand': 
         slots.a = CC()+Primal_Crisis()
     if wt == 'bow':
-        slots.a = FB()+DD()    
+        slots.a = FB()+DD()
+    if wt == 'staff':
+        slots.a = RR()+BN()
 
     slots.c.ex = {wt:('ex',wt)}
     #slots.c.ex = [('ex', 'blade'), ('ex', 'wand')]

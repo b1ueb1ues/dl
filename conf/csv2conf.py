@@ -56,11 +56,19 @@ def get(mname):
 
     conf.s1.dmg = float(csvconf['s1_dmgpc'])/100.0
     conf.s1.sp = int(csvconf['s1_sp'])
+    try:
+        conf.s1.hit = int(csvconf['s1_hits'])
+    except:
+        conf.s1.hit = 0
     if 's1_buff' in csvconf:
         conf.s1.buff = csvconf['s1_buff']
 
     conf.s2.dmg = float(csvconf['s2_dmgpc'])/100.0
     conf.s2.sp = int(csvconf['s2_sp'])
+    try:
+        conf.s2.hit = int(csvconf['s2_hits'])
+    except:
+        conf.s2.hit = 0
     if 's2_buff' in csvconf:
         conf.s2.buff = csvconf['s2_buff']
 

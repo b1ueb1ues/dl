@@ -105,6 +105,7 @@ class HDT1_Darkened_Fang(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 2.3      ,
+        "hit"      : 5        ,
     } # Bloodstarved Darkness
     a = [('k', 0.3, 'vs HJP')]
 
@@ -117,6 +118,7 @@ class HDT2_Shaderulers_Maw(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 2.3      ,
+        "hit"      : 5        ,
     } # Bloodstarved Shadowruler
     a = []
 

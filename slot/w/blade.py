@@ -93,6 +93,7 @@ class HDT2_Brilliant_Flash(WeaponBase):
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
+        "hit"      : 5      ,
     } # Brilliant Blade
     a = []
 
