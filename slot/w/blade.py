@@ -9,6 +9,7 @@ class HDT1_Conflagration(WeaponBase):
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
+        "hit"      : 3        ,
     } # Conflagration Blade
     a = [('k', 0.3, 'vs HMS')]
 
@@ -21,6 +22,7 @@ class HDT2_Blinding_Conflagration(WeaponBase):
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
+        "hit"      : 3        ,
     } # Blinding Blade
     a = []
 
@@ -33,6 +35,7 @@ class HDT1_Torrent(WeaponBase):
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
+        "hit"      : 3        ,
     } # Torrent Blade
     a = [('k', 0.3, 'vs HBH')]
 
@@ -45,6 +48,7 @@ class HDT2_Ruinous_Torrent(WeaponBase):
         "sp"       : 7227     ,
         "startup"  : 0.1      ,
         "recovery" : 2.65     ,
+        "hit"      : 3        ,
     } # Surging Blade
     a = []
 
@@ -57,6 +61,7 @@ class HDT1_Horizon(WeaponBase):
         "sp"       : 7582   ,
         "startup"  : 0.1    ,
         "recovery" : 2.35   ,
+        "hit"      : -1     ,
     } # Horizon Blade
     a = [('k', 0.3, 'vs HMC')]
 
@@ -69,6 +74,7 @@ class HDT2_Endless_Horizon(WeaponBase):
         "sp"       : 7582   ,
         "startup"  : 0.1    ,
         "recovery" : 2.35   ,
+        "hit"      : -1     ,
     } # Endless Blade
     a = []
 
@@ -81,6 +87,7 @@ class HDT1_Flash(WeaponBase):
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
+        "hit"      : 5      ,
     } # Flashing Blade
     a = [('k', 0.3, 'vs HZD')]
 
@@ -93,6 +100,7 @@ class HDT2_Brilliant_Flash(WeaponBase):
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
+        "hit"      : 5      ,
     } # Brilliant Blade
     a = []
 
@@ -105,6 +113,7 @@ class HDT1_Abyss(WeaponBase):
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
+        "hit"      : 5      ,
     } # Enigmatic Blade
     a = [('k', 0.3, 'vs HJP')]
 
@@ -117,6 +126,7 @@ class HDT2_True_Abyss(WeaponBase):
         "sp"       : 6925   ,
         "startup"  : 0.1    ,
         "recovery" : 2.68   ,
+        "hit"      : 5      ,
     } # Hellish Blade
     a = []
 

@@ -30,7 +30,7 @@ class V_Ezelith(Adv):
                 )
 
     def prerun(this):
-        this.hits = 0
+        this.ehit = 0
         this.energy = energy.Energy(this, 
                 self={},
                 team={}
@@ -48,21 +48,9 @@ class V_Ezelith(Adv):
             this.afflics.burn.resist=100
 
     def c_dmg_proc(this, name, amount):
-        if name[:2] == 'x1':
-            this.hits += 3
-        elif name[:2] == 'x2':
-            this.hits += 2
-        elif name[:2] == 'x3':
-            this.hits += 3
-        elif name[:2] == 'x4':
-            this.hits += 2
-        elif name[:2] == 'x5':
-            this.hits += 5
-        elif name[:2] == 'fs':
-            this.hits += 8
-        if this.hits >= 35:
+        if this.hits // 30 > this.ehit:
             this.energy.add_energy('hit')
-            this.hits -= 35
+            this.ehit = this.hits // 30
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)

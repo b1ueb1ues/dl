@@ -23,6 +23,15 @@ class Serena(adv.Adv):
         `fs, seq=3
         """
 
+    conf = {}
+    conf['slot.a'] = TSO()+Primal_Crisis()
+    conf['acl'] = """
+        `s1
+        `s2,fsc
+        `s3,fsc 
+        `fs, seq=3
+        """
+
     def s1_before(this, e):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()
 
@@ -39,25 +48,6 @@ class Serena(adv.Adv):
 
 
     def c_dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 1
-        elif name == 'x3':
-            this.hits += 1
-        elif name == 'x4':
-            this.hits += 1
-        elif name == 'x5':
-            this.hits += 1
-        elif name == 'fs':
-            this.hits += 1
-        elif name == 's1':
-            this.hits += 2
-        elif name == 's2':
-            this.hits += 4
-        elif name == 's3':
-            this.hits += 5
-
         a1old = this.a1count
         if this.hits > 60:
             this.a1count = 3

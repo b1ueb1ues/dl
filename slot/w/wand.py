@@ -9,6 +9,7 @@ class HDT1_Muspelheim(WeaponBase):
         "sp"       : 8757     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
+        "hit"      : 4        ,
     } # Crimson Flames
     a = [('k', 0.3, 'vs HMS')]
 
@@ -21,6 +22,7 @@ class HDT2_Infernoblaze(WeaponBase):
         "sp"       : 8757     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
+        "hit"      : 4        ,
     } # Adoring Flames
     a = []
 
@@ -33,6 +35,7 @@ class HDT1_Hydroballista(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
+        "hit"      : 4        ,
     } # Flowing Waves
     a = [('k', 0.3, 'vs HBH')]
 
@@ -45,6 +48,7 @@ class HDT2_Aquatic_Spiral(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
+        "hit"      : 4        ,
     } # Cascading Waves
     a = []
 
@@ -57,6 +61,7 @@ class HDT1_Tornado_Tail(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
+        "hit"      : 4        ,
     } # Primal Cyclone
     a = [('k', 0.3, 'vs HMC')]
 
@@ -69,6 +74,7 @@ class HDT2_Grand_Tempest(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.8      ,
+        "hit"      : 4        ,
     } # Raging Cyclone
     a = []
 
@@ -81,6 +87,7 @@ class HDT1_Crossed_Lightning(WeaponBase):
         "sp"       : 7881     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9     ,
+        "hit"      : 4        ,
     } # Mirthful Lightning
     a = [('k', 0.3, 'vs HZD')]
 
@@ -93,6 +100,7 @@ class HDT2_Primeval_Thunder(WeaponBase):
         "sp"       : 7881     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9     ,
+        "hit"      : 4        ,
     } # Ecstatic Lightning
     a = []
 
@@ -105,6 +113,7 @@ class HDT1_Venomous_Curse(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.75     ,
+        "hit"      : 1        ,
     } # Enveloping Darkness
     a = [('k', 0.3, 'vs HJP')]
 
@@ -117,6 +126,7 @@ class HDT2_Darkbinder(WeaponBase):
         "sp"       : 7635     ,
         "startup"  : 0.1      ,
         "recovery" : 1.75     ,
+        "hit"      : 1        ,
     } # Binding Darkness
     a = []
 

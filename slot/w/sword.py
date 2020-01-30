@@ -9,6 +9,7 @@ class HDT1_Crimson(WeaponBase):
         "sp"       : 6847     ,
         "startup"  : 0.1      ,
         "recovery" : 3.1      ,
+        "hit"      : 5        ,
     } # Crimson Storm
     a = [('k', 0.3, 'vs HMS')]
 
@@ -21,6 +22,7 @@ class HDT2_Absolute_Crimson(WeaponBase):
         "sp"       : 6847     ,
         "startup"  : 0.1      ,
         "recovery" : 3.1      ,
+        "hit"      : 5        ,
     } # Infinite Crimson
     a = []
 
@@ -33,6 +35,7 @@ class HDT1_Aqua(WeaponBase):
         "sp"       : 6418     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 3        ,
     } # Aqua Storm
     a = [('k', 0.3, 'vs HBH')]
 
@@ -45,6 +48,7 @@ class HDT2_Absolute_Aqua(WeaponBase):
         "sp"       : 6418     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 3        ,
     } # Infinite Aqua
     a = []
 
@@ -57,6 +61,7 @@ class HDT1_Tempest(WeaponBase):
         "sp"       : 6418     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 3        ,
     } # Tempest Storm
     a = [('k', 0.3, 'vs HMC')]
 
@@ -69,6 +74,7 @@ class HDT2_Absolute_Tempest(WeaponBase):
         "sp"       : 6418     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 3        ,
     } # Infinite Tempest
     a = []
 
@@ -81,6 +87,7 @@ class HDT1_Lightning(WeaponBase):
         "sp"       : 6418     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 3        ,
     } # Lightning Storm
     a = [('k', 0.3, 'vs HZD')]
 
@@ -93,6 +100,7 @@ class HDT2_Absolute_Lightning(WeaponBase):
         "sp"       : 6418     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 3        ,
     } # Infinite Lightning
     a = []
 
@@ -105,6 +113,7 @@ class HDT1_Hex(WeaponBase):
         "sp"       : 6163     ,
         "startup"  : 0.1      ,
         "recovery" : 3.1      ,
+        "hit"      : 5        ,
     } # Hexing Storm
     a = [('k', 0.3, 'vs HJP')]
 
@@ -117,6 +126,7 @@ class HDT2_Absolute_Hex(WeaponBase):
         "sp"       : 6163     ,
         "startup"  : 0.1      ,
         "recovery" : 3.1      ,
+        "hit"      : 5        ,
     } # Infinite Hexes
     a = []
 

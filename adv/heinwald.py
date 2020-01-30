@@ -14,7 +14,6 @@ class Heinwald(Adv):
     a3 = ('prep_charge','5%')
 
     conf = {}
-    conf['slots.a'] = RR()+Primal_Crisis()
     conf['acl'] = """
         `s2, pin='prep'
         `s2, seq=5

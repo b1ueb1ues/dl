@@ -58,7 +58,7 @@ class Modifier(object):
             return this
         if modifier == None:
             modifier = this
-        if modifier.mod_condition :
+        if modifier.mod_condition:
             if not m_condition.on(modifier.mod_condition):
                 return this
 
@@ -941,6 +941,8 @@ class Adv(object):
         this.fsf = this.a_fsf
         this.dodge = this.a_dodge
 
+        this.hits = 0
+
     def sim_affliction(this):
         if 'sim_afflict' in this.conf:
             t = int(this.conf.sim_afflict.time)
@@ -1230,6 +1232,7 @@ class Adv(object):
         this.think_pin('x')
 
     def cb_missile(this, t):
+        this.update_hits(t.dname)
         this.dmg_make(t.dname, t.amount)
         this.charge(t.dname, t.samount)
 
@@ -1242,6 +1245,7 @@ class Adv(object):
             log('x', '%s'%xseq, 0,'-------------------------------------c5')
         else:
             log('x', '%s'%xseq, 0)
+        this.update_hits(xseq)
         this.dmg_make('%s'%xseq, dmg_coef)
         this.think_pin('x')
         this.charge('%s'%xseq, sp)
@@ -1253,6 +1257,19 @@ class Adv(object):
         log('dodge','-')
         this.think_pin('dodge')
 
+    def update_hits(this, name):
+        if '_missile' in name:
+            name = name.split('_')[0]
+        try:
+            hit = this.conf['{}.hit'.format(name)]
+            if hit >= 0:
+                this.hits += hit
+                # print('debug', 'combo add', name, '{} -> {}'.format(hit, this.hits))
+            else:
+                this.hits = -hit
+                # print('debug', 'combo break', name, '{} -> {}'.format(hit, this.hits))
+        except AttributeError:
+            pass
 
     def run(this, d = 300):
         global loglevel
@@ -1496,6 +1513,7 @@ class Adv(object):
         log('fs','succ')
         dmg_coef = this.conf.fs.dmg
         this.fs_before(e)
+        this.update_hits('fs')
         this.dmg_make('fs', dmg_coef)
         this.fs_proc(e)
         this.think_pin('fs')
@@ -1504,6 +1522,7 @@ class Adv(object):
     def l_range_fs(this, e):
         log('fs','succ')
         this.fs_before(e)
+        this.update_hits('fs')
         dmg_coef = this.conf['fs.dmg']
         sp_gain = this.conf['fs.sp']
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv']['fs'] )
@@ -1514,8 +1533,9 @@ class Adv(object):
         this.fs_proc(e)
         this.think_pin('fs')
 
-
     def l_s(this, e):
+        this.update_hits(e.name)
+
         prev, index, stat = this.getprev()
         if prev == 'fs':
             log('cast', e.name, 0,'<cast> %d/%d, %d/%d, %d/%d (%s after fs)'%(\
@@ -1551,8 +1571,6 @@ class Adv(object):
                 buff = Buff(e.name, *buffarg).on()
             if e.name == 's3' and buff.toggle:
                 this.s3_buff_on = buff.get()
-
-
         func = e.name + '_proc'
         getattr(this, func)(e)
 

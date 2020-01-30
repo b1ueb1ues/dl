@@ -88,7 +88,9 @@ class G_Cleo(Adv):
 
     def s1_dmg(this, t):
         this.dmg_make('s1_hit_single',0.88)
+        this.hits += 1
         this.dmg_make('s1_hit_aoe',2.65)
+        this.hits += 1
 
     def s1_proc(this, e):
         this.s1p += 1

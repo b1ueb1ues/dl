@@ -44,6 +44,7 @@ class Hanabusa(Adv):
             Teambuff('s2',0.15,21).on()
 
     def stanceend(this, e):
+        this.s1.sp = 2840
         this.stance = 0
 
 if __name__ == '__main__':

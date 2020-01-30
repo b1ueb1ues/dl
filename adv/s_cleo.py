@@ -50,19 +50,24 @@ class S_Cleo(Adv):
 
     def s1_lantency(this, t):
         this.dmg_make('s1_missile',1.06)
+        this.hits += 1
         p = this.afflics.paralysis('s1',120,0.97)
         buffcount = this.bc.buffcount()
         this.afflics.paralysis.get()
         if random.random() < p :
             Selfbuff('a1',0.10,20,'sp','passive').on()
         this.dmg_make('s1_missile',1.06)
+        this.hits += 1
         this.dmg_make('s1_missile',1.06)
+        this.hits += 1
         this.dmg_make('s1_big_missile',5.3)
+        this.hits += 1
 
         if buffcount > 4:
             buffcount = 4
         for i in range(buffcount):
             this.dmg_make('o_s1_boost',1.06)
+            this.hits += 1
 
     def s1_proc(this, e):
         Timer(this.s1_lantency).on(1)

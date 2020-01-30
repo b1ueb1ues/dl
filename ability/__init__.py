@@ -192,19 +192,30 @@ class Ability(object):
         if cond:
             i += cond
 
+        def flurry_get():
+            return m.mod_value if adv.hits >= flurry_hits else 0
+
         if type(j) == tuple:
-            adv.Modifier(i,*j)
+            m = adv.Modifier(i,*j)
+            if cond and cond.startswith('hit'):
+                flurry_hits = int(cond[3:])
+                m.get = flurry_get
         elif type(j) == list:
             idx = 0
             for k in j:
-                adv.Modifier(i+'_%d'%idx,*k)
+                m = adv.Modifier(i+'_%d'%idx,*k)
                 idx += 1
+                if cond and cond.startswith('hit'):
+                    flurry_hits = int(cond[3:])
+                    m.get = flurry_get
         elif type(j) == dict:
             idx = 0
             for k in j:
-                adv.Modifier(i+k+'_%d'%idx,*j[k])
+                m = adv.Modifier(i+k+'_%d'%idx,*j[k])
                 idx += 1
-
+                if cond and cond.startswith('hit'):
+                    flurry_hits = int(cond[3:])
+                    m.get = flurry_get
 
     def __repr__(this):
         return str((this.name,this.value,this.cond))

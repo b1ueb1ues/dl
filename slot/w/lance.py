@@ -9,6 +9,7 @@ class HDT1_Crimsonflame_Lance(WeaponBase):
         "sp"       : 7299     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 2        ,
     } # Crimson Beacon
     a = [('k', 0.3, 'vs HMS')]
 
@@ -21,6 +22,7 @@ class HDT2_Pureflame_Lance(WeaponBase):
         "sp"       : 7299     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 2        ,
     } # Crimson Wildfire
     a = []
 
@@ -33,6 +35,7 @@ class HDT1_Limpid_Lance(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.33     ,
+        "hit"      : 2        ,
     } # Limpid Petals
     a = [('k', 0.3, 'vs HBH')]
 
@@ -45,6 +48,7 @@ class HDT2_Limpid_Rush(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.33     ,
+        "hit"      : 2        ,
     } # Limpid Shore
     a = []
 
@@ -57,6 +61,7 @@ class HDT1_Promising_Breeze(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.65     ,
+        "hit"      : 10       ,
     } # Sworn Gale
     a = [('k', 0.3, 'vs HMC')]
 
@@ -69,6 +74,7 @@ class HDT2_Guiding_Gale(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.65     ,
+        "hit"      : 10       ,
     } # Glorious Gale
     a = []
 
@@ -81,6 +87,7 @@ class HDT1_Lightflash(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.33     ,
+        "hit"      : 2        ,
     } # Flashing Thunder
     a = [('k', 0.3, 'vs HZD')]
 
@@ -93,6 +100,7 @@ class HDT2_Brilliant_Lightflash(WeaponBase):
         "sp"       : 6762     ,
         "startup"  : 0.1      ,
         "recovery" : 3.33     ,
+        "hit"      : 2        ,
     } # Brilliant Thunder
     a = []
 
@@ -105,6 +113,7 @@ class HDT1_Scourge_Lance(WeaponBase):
         "sp"       : 7299     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 2        ,
     } # Hazy Hex
     a = [('k', 0.3, 'vs HJP')]
 
@@ -117,6 +126,7 @@ class HDT2_Ebon_Scourge_Lance(WeaponBase):
         "sp"       : 7299     ,
         "startup"  : 0.1      ,
         "recovery" : 1.9      ,
+        "hit"      : 2        ,
     } # Shadowy Hex
     a = []
 

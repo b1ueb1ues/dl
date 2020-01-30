@@ -15,22 +15,20 @@ class Laranoa(Adv):
     a3 = ('s',0.3)
     conf = {}
     #conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
-    conf['slot.d'] = DJ()
     conf['acl'] = """
         `s1
         `s2,fsc
         `s3,fsc
         `fs, seq=4
         """
+    conf['slot.d'] = Siren()
     
     def init(this):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
-        if this.condition('never lose comboes'):
-            this.dmg_proc = this.c_dmg_proc
 
     def prerun(this):
-        this.hits = 0
+        this.ahits = 0
 
     
     def c_s2_proc(this, e):
@@ -41,23 +39,9 @@ class Laranoa(Adv):
         Selfbuff('s2_str',0.10,10).on()
         Selfbuff('s2_sp',0.20,10,'sp','passive').on()
 
-    def c_dmg_proc(this, name, amount):
-        if name[:2] == 'x1':
-            this.hits += 3
-        elif name[:2] == 'x2':
-            this.hits += 2
-        elif name[:2] == 'x3':
-            this.hits += 3
-        elif name[:2] == 'x4':
-            this.hits += 2
-        elif name[:2] == 'x5':
-            this.hits += 5
-        elif name[:2] == 'fs':
-            this.hits += 8
-        elif name[:2] == 's1':
-            this.hits += 14
-        if this.hits >= 20:
-            this.hits -= 20
+    def dmg_proc(this, name, amount):
+        if this.hits // 20 > this.ahits:
+            this.ahits = this.hits // 20
             Selfbuff('sylvan critdmg',0.10,20,'crit','damage').on()
 
 

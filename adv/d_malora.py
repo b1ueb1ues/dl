@@ -28,6 +28,7 @@ class D_Malora(Adv):
         if this.s1debuff:
             this.s1debuff.on()
         this.dmg_make('s1',4.67,'s')
+        this.hits += 1
 
     def s2_proc(this, e):
         if this.mod('def')!= 1:
