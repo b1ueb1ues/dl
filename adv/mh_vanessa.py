@@ -1,4 +1,7 @@
-import adv_test
+if __name__ == '__main__':
+    import adv_test
+else:
+    import adv.adv_test
 from adv import *
 from slot.a import *
 from slot.d import *
@@ -21,6 +24,7 @@ class MH_Vanessa(Adv):
         `s2, not this.s2_att_boost.get()
         `s3, x=5 or fsc
     """
+    conf['cond_afflict_res'] = 0
 
     def d_slots(this):
         from adv_test import sim_duration
@@ -86,8 +90,8 @@ class MH_Vanessa(Adv):
         return this.a_fs2()
 
     def prerun(this):        
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 
