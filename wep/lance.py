@@ -41,7 +41,8 @@ conf = {
     'fs.recovery': 25 / 60.0,
     'fs.hit': 5,
 
-    'dodge.recovery': 43 / 60.0,
+    'dodge.startup': 36 / 60.0,
+    'dodge.recovery': 0 / 60.0,
 }
 
 lv2 = {

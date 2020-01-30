@@ -20,8 +20,12 @@ class MH_Vanessa(Adv):
         `s1, x=5 or fsc
         `s2, not this.s2_att_boost.get()
         `s3, x=5 or fsc
-        `dodge, fsc
     """
+
+    def d_slots(this):
+        from adv_test import sim_duration
+        if sim_duration <= 90:
+            this.slots.a = Resounding_Rendition()+The_Chocolatiers()
 
     def init(this):
         this.conf.fs.hit = 1
@@ -81,7 +85,12 @@ class MH_Vanessa(Adv):
     def fs2(this):
         return this.a_fs2()
 
-    def prerun(this):     
+    def prerun(this):        
+        if this.condition('0 resist'):
+            this.afflics.paralysis.resist=0
+        else:
+            this.afflics.paralysis.resist=100
+
         this.s2_att_boost = Selfbuff('s2', 0.30, 90, 'att', 'buff')
    
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)

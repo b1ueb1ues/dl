@@ -46,9 +46,9 @@ conf = {
     'fsf.startup': 0,
     'fsf.recovery': 41 / 60.0,
 
-    'dodge.recovery': 43 / 60.0,
-
- }
+    'dodge.startup': 36 / 60.0,
+    'dodge.recovery': 0 / 60.0,
+}
 
 lv2 = {
     'x1.dmg': 125.4 / 100.0,
@@ -56,4 +56,4 @@ lv2 = {
     'x3.dmg': 224.4 / 100.0,
     'x4.dmg': 237.6 / 100.0,
     'x5.dmg': 250.8 / 100.0,
- }
+}

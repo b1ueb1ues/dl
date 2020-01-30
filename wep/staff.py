@@ -42,7 +42,8 @@ conf = {
     'fs.recovery': 240/60.0,
     'fs.hit': 4,
 
-    'dodge.recovery': 43/60.0,
+    'dodge.startup': 36 / 60.0,
+    'dodge.recovery': 0 / 60.0,
 
     'missile_iv': {
         'fs': 0.7/2,

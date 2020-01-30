@@ -43,7 +43,8 @@ conf = {
     'x4fs.startup': 54 / 60.0,
     'x5fs.startup': 64 / 60.0,
 
-    'dodge.recovery': 43 / 60.0,
+    'dodge.startup': 36 / 60.0,
+    'dodge.recovery': 0 / 60.0,
 }
 
 lv2 = {

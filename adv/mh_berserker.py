@@ -12,11 +12,12 @@ def module():
 class MH_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
-    conf['slot.a'] = Stellar_Show()+Resounding_Rendition()   
-    conf['slot.d'] = Arctos() 
+    conf['slot.a'] = Resounding_Rendition()+Stellar_Show()   
+    conf['slot.d'] = Arctos()
     conf['acl'] = """
         #fs=None
         #fs1=this.fs1
+        #fs2=this.fs2
         #fs3=this.fs3
         `s1, fsc
         `s2, fsc
@@ -29,21 +30,20 @@ class MH_Berserker(Adv):
             1: {
                 'dmg': 296 / 100.0,
                 'sp': 600,
-                'startup': (30+10) / 60.0,
+                'startup': (24+39) / 60.0,
                 'recovery': 30 / 60.0,
             },
-            # 2: {
-            #     'fs.dmg': 424 / 100.0,
-            #     'fs.sp': 960,
-            #     # 'fs.startup'     : 19      / 60.0  ,
-            #     # 'fs.recovery'    : 21      / 60.0  ,
-            # },
+            2: {
+                'dmg': 424 / 100.0,
+                'sp': 960,
+                'startup': (48+39) / 60.0,
+                'recovery': 21 / 60.0,
+            },
             3: {
                 'dmg': 548 / 100.0,
                 'sp': 1400,
-                'startup': 120 / 60.0,
+                'startup': (72+39) / 60.0,
                 'recovery': 30 / 60.0,
-                'hit': 1,
             }
         }
 
@@ -53,6 +53,13 @@ class MH_Berserker(Adv):
         this.a_fs1.interrupt_by = ['s']
         this.a_fs1.cancel_by = ['s','dodge']
         this.l_fs1 = Listener('fs1',this.l_fs1)
+
+        this.conf['fs2'] = Conf(conf_alt_fs[2])
+        this.a_fs2 = Action('fs2', this.conf['fs2'])
+        this.a_fs2.atype = 'fs'
+        this.a_fs2.interrupt_by = ['s']
+        this.a_fs2.cancel_by = ['s','dodge']
+        this.l_fs2 = Listener('fs2',this.l_fs2)
 
         this.conf['fs3'] = Conf(conf_alt_fs[3])
         this.a_fs3 = Action('fs3', this.conf['fs3'])
@@ -74,6 +81,19 @@ class MH_Berserker(Adv):
     def fs1(this):
         return this.a_fs1()
 
+    def l_fs2(this, e):
+        this.a_fs2.getdoing().cancel_by.append('fs2')
+        this.a_fs2.getdoing().interrupt_by.append('fs2')
+        this.fs_before(e)
+        this.update_hits('fs')
+        this.dmg_make('fs', this.conf.fs2.dmg, 'fs')
+        this.fs_proc(e)
+        this.think_pin('fs')
+        this.charge('fs2',this.conf.fs2.sp)
+
+    def fs2(this):
+        return this.a_fs2()
+    
     def l_fs3(this, e):
         this.a_fs3.getdoing().cancel_by.append('fs3')
         this.a_fs3.getdoing().interrupt_by.append('fs3')

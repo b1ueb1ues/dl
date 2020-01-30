@@ -40,7 +40,8 @@ conf = {
     'fsf.startup': 0,
     'fsf.recovery': 33 / 60,
 
-    'dodge.recovery': 43 / 60.0,
+    'dodge.startup': 36 / 60.0,
+    'dodge.recovery': 0 / 60.0,
 }
 
 lv2 = {

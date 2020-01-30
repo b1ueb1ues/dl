@@ -10,5 +10,7 @@ python deploy.py laranoa.py
 python deploy.py laranoa.py.rollfs.py -sp
 python deploy.py s_cleo.py
 python deploy.py v_ezelith.py
+python deploy.py g_luca.py
+python deploy.py g_luca.py -sp
 # these r mh people
 python deploy.py -c
