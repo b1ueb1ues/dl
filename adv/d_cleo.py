@@ -21,14 +21,14 @@ class D_Cleo(adv.Adv):
 
     def c_prerun(this):
         this.stance = 0
-        this.hits = 0
+        this.ehit = 0
         this.energy = energy.Energy(this, 
                 self={'s1':1,'hit':1},
                 team={'s1':1}
                 )
     def prerun(this):
         this.stance = 0
-        this.hits = 0
+        this.ehit = 0
         this.energy = energy.Energy(this, 
                 self={},
                 team={}
@@ -36,25 +36,9 @@ class D_Cleo(adv.Adv):
 
 
     def c_dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 2
-        elif name == 'x3':
-            this.hits += 2
-        elif name == 'x4':
-            this.hits += 1
-        elif name == 'x5':
-            this.hits += 1
-        elif name == 'fs':
-            this.hits += 3
-        elif name == 's1':
-            this.hits += 11
-        elif name == 's2':
-            this.hits += 5
-        if this.hits >= 30:
+        if this.hits // 30 > this.ehit:
             this.energy.add_energy('hit')
-            this.hits -= 30
+            this.ehit = this.hits // 30
 
     def s1_proc(this, e): # buggy lvl3 s1
         if this.stance == 0:

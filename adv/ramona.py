@@ -31,6 +31,7 @@ class Ramona(Adv):
             this.conf.s1.dmg += 2.93*6
             this.conf.s1.recovery = 6.25
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
+            this.hits += 6
             return this.s1()
         else:
             return 0

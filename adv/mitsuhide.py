@@ -13,37 +13,17 @@ class Mitsuhide(Adv):
     def init(this):
         this.s1_stance = 1
 
-    def prerun(this):
-        this.hits = 0
-        
+    def prerun(this):        
         if this.condition('0 resist'):
             this.afflics.paralysis.resist=0
         else:
             this.afflics.paralysis.resist=100
 
-    def dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 2
-        elif name == 'x3':
-            this.hits += 2
-        elif name == 'x4':
-            this.hits += 1
-        elif name == 'x5':
-            this.hits += 1
-        elif name == 'fs':
-            this.hits += 3
-        elif name == 's1':
-            this.hits += 12
-        elif name == 's2':
-            this.hits += 1
-        elif name == 's3':
-            this.hits += 5
-
     def s1_proc(this, e):
         this.afflics.paralysis('s1',120, 0.97)
-        this.dmg_make('o_s1',0.61*11,'s')
+        for _ in range(11):
+            this.dmg_make('o_s1',0.61,'s')
+            this.hits += 1
 
     def s2_proc(this, e):
         if(this.hits >= 5):

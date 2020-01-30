@@ -10,6 +10,7 @@ class HDT1_Crimson_Heat(WeaponBase):
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
+        "hit"      : 3        ,
     } # Crimson Passion
     a = [('k', 0.3, 'vs HMS')]
 
@@ -22,6 +23,7 @@ class HDT2_Royal_Crimson_Heat(WeaponBase):
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
+        "hit"      : 3        ,
     } # Royal Crimson Passion
     a = []
 
@@ -34,6 +36,7 @@ class HDT1_Mercys_Tide(WeaponBase):
         "sp"       : 8260     ,
         "startup"  : 0.1      ,
         "recovery" : 4.08     ,
+        "hit"      : 5        ,
     } # Mercy's Embrace
     a = [('k', 0.3, 'vs HBH')]
 
@@ -46,6 +49,7 @@ class HDT2_Mercys_Azure_Tide(WeaponBase):
         "sp"       : 8260     ,
         "startup"  : 0.1      ,
         "recovery" : 4.08     ,
+        "hit"      : 5        ,
     } # Mercy's Azure Embrace
     a = []
 
@@ -58,6 +62,7 @@ class HDT1_Storms_Guide(WeaponBase):
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
+        "hit"      : 3        ,
     } # Storm's Wisdom
     a = [('k', 0.3, 'vs HMC')]
 
@@ -70,6 +75,7 @@ class HDT2_Glorystorms_Guide(WeaponBase):
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
+        "hit"      : 3        ,
     } # Glorystorm's Wisdom
     a = []
 
@@ -82,6 +88,7 @@ class HDT1_Thundercrash(WeaponBase):
         "sp"       : 8260     ,
         "startup"  : 0.1      ,
         "recovery" : 4.08     ,
+        "hit"      : 5        ,
     } # Thunder's Delight
     a = [('k', 0.3, 'vs HZD')]
 
@@ -94,6 +101,7 @@ class HDT2_Mighty_Thundercrash(WeaponBase):
         "sp"       : 8260     ,
         "startup"  : 0.1      ,
         "recovery" : 4.08     ,
+        "hit"      : 5        ,
     } # Mighty Thunder's Delight
     a = []
 
@@ -106,6 +114,7 @@ class HDT1_Darkbite_Axe(WeaponBase):
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
+        "hit"      : 3        ,
     } # Darkbite's Curse
     a = [('k', 0.3, 'vs HJP')]
 
@@ -118,6 +127,7 @@ class HDT2_Shadowy_Darkbite_Axe(WeaponBase):
         "sp"       : 8895     ,
         "startup"  : 0.1      ,
         "recovery" : 2.12     ,
+        "hit"      : 3        ,
     } # Shadowy Darkbite's Curse
     a = []
 

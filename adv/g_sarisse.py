@@ -10,49 +10,24 @@ def module():
 class G_Sarisse(adv.Adv):
     a3 = ('bt',0.3)
     conf = {}
+    conf['acl'] = """
+        `s1
+        `s2
+        `s3, fsc
+        `fs, seq=4
+    """
     conf['slot.d'] = slot.d.Sakuya()
     #conf['mod'] = {'ex':('sp','passive',-0.15)}
     conf['slot.a'] = FB()+DD()
 
     def prerun(this):
-        this.hits = 0
+        this.ahits = 0
         this.bc = adv.Selfbuff()
         this.s2stance = 0
 
-
-    def init(this):
-        if this.condition('never lose combos'):
-            this.dmg_proc = this.c_dmg_proc
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1
-                `s2
-                `s3, fsc
-                `fs, seq=4
-                """
-        else:
-            this.conf['acl'] = """
-                `s1
-                `s2
-                `s3
-                """
-        return 'never lose combos'
-
-    def c_dmg_proc(this, name, amount):
-        if name[:2] == 'x1':
-            this.hits += 3
-        elif name[:2] == 'x2':
-            this.hits += 2
-        elif name[:2] == 'x3':
-            this.hits += 3
-        elif name[:2] == 'x4':
-            this.hits += 2
-        elif name[:2] == 'x5':
-            this.hits += 5
-        elif name[:2] == 'fs':
-            this.hits += 8
-        if this.hits >= 20:
-            this.hits -= 20
+    def dmg_proc(this, name, amount):
+        if this.hits // 20 > this.ahits:
+            this.ahits = this.hits // 20
             buff = adv.Selfbuff('sylvan strength',0.02,15)
             buff.bufftime = buff.nobufftime
             buff.on()
@@ -61,19 +36,17 @@ class G_Sarisse(adv.Adv):
             buff.on()
 
     def s1_proc(this, e):
-        buffcount = this.bc.buffcount()
-        if buffcount > 7:
-            buffcount = 7
+        buffcount = min(this.bc.buffcount(), 7)
         this.dmg_make('s1_missile*%d'%buffcount,0.95*buffcount)
-        this.hits += 1 + buffcount
+        this.hits += buffcount
             
-
     def s2_proc(this, e):
         if this.s2stance == 0:
             adv.Teambuff('s2str',0.20,10).on()
             this.s2stance = 1
         elif this.s2stance == 1:
             adv.Teambuff('s2def',1,15,'defup').on()
+            Event('defchain')()
             this.s2stance = 0
 
 

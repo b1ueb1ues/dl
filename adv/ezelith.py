@@ -19,16 +19,22 @@ class Ezelith(Adv):
 
     def s1_proc(this, e):
         this.dmg_make('s1',0.63*2,'s')
+        this.hits += 2
         Selfbuff('a1',0.2,7.5,'crit','chance').on()
         this.dmg_make('s1',0.63*2,'s')
+        this.hits += 2
         Selfbuff('a1',0.2,8.0,'crit','chance').on()
         this.dmg_make('s1',0.63*2,'s')
+        this.hits += 2
         Selfbuff('a1',0.2,8.5,'crit','chance').on()
         this.dmg_make('s1',0.63*2,'s')
+        this.hits += 2
         Selfbuff('a1',0.2,9.0,'crit','chance').on()
         this.dmg_make('s1',0.63*2,'s')
+        this.hits += 2
         Selfbuff('a1',0.2,9.5,'crit','chance').on()
         this.dmg_make('s1',4.00,'s')
+        this.hits += 2
 
     def s2_proc(this, e):
         this.s2buff.on()

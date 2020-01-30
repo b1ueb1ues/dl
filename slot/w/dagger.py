@@ -9,6 +9,7 @@ class HDT1_Crimson_Fang(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
+        "hit"      : 8        ,
     } # Savage Crimson
     a = [('k', 0.3, 'vs HMS')]
 
@@ -21,6 +22,7 @@ class HDT2_Flamerulers_Maw(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
+        "hit"      : 8        ,
     } # Savage Flameruler
     a = []
 
@@ -33,6 +35,7 @@ class HDT1_Tidal_Fang(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
+        "hit"      : 8        ,
     } # Vicious Tides
     a = [('k', 0.3, 'vs HBH')]
 
@@ -45,6 +48,7 @@ class HDT2_Tiderulers_Maw(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
+        "hit"      : 8        ,
     } # Vicious Tideruler
     a = []
 
@@ -57,6 +61,7 @@ class HDT1_Galestorm_Fang(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
+        "hit"      : 5        ,
     } # Merciless Galestorm
     a = [('k', 0.3, 'vs HMC')]
 
@@ -69,6 +74,7 @@ class HDT2_Windrulers_Maw(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
+        "hit"      : 5        ,
     } # Merciless Windruler
     a = []
 
@@ -81,6 +87,7 @@ class HDT1_Lightning_Fang(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
+        "hit"      : 5        ,
     } # Ferocious Lightning
     a = [('k', 0.3, 'vs HZD')]
 
@@ -93,6 +100,7 @@ class HDT2_Fulminators_Maw(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
+        "hit"      : 5        ,
     } # Ferocious Fulminator
     a = []
 

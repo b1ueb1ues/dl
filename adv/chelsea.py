@@ -75,12 +75,19 @@ class Chelsea(Adv):
             this.a1spd.off()
         
         this.dmg_make('s1',1.36)
+        this.hits += 1
         this.dmg_make('s1',1.36)
+        this.hits += 1
         this.dmg_make('s1',1.36)
+        this.hits += 1
         this.dmg_make('s1',1.36)
+        this.hits += 1
         this.dmg_make('s1',1.36)
+        this.hits += 1
         this.dmg_make('s1',1.36)
+        this.hits += 1
         this.dmg_make('s1',1.36)
+        this.hits += 1
 
     def s2_proc(this, e):
         Selfbuff('s2',0.3,60).on()

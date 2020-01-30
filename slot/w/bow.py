@@ -9,6 +9,7 @@ class HDT1_Valkyries_Blaze(WeaponBase):
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 2.73     ,
+        "hit"      : 3        ,
     } # Valkyrie's Raid
     a = [('k', 0.3, 'vs HMS')]
 
@@ -21,6 +22,7 @@ class HDT2_Valkyries_Fire(WeaponBase):
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 2.73     ,
+        "hit"      : 3        ,
     } # Valkyrie's Heroic Raid
     a = []
 
@@ -33,6 +35,7 @@ class HDT1_Blue_Mercurius(WeaponBase):
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
         "recovery" : 2.38     ,
+        "hit"      : 1        ,
     } # Mercurius's Knowledge
     a = [('k', 0.3, 'vs HBH')]
 
@@ -45,6 +48,7 @@ class HDT2_Azure_Mercurius(WeaponBase):
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
         "recovery" : 2.38     ,
+        "hit"      : 1        ,
     } # Mercurius's Transcendant Knowledge
     a = []
 
@@ -69,6 +73,7 @@ class HDT2_Jormungands_Fury(WeaponBase):
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 2.73     ,
+        "hit"      : 3        ,
     } # Jormungand's Boundless World
     a = []
 
@@ -81,6 +86,7 @@ class HDT1_Jupiters_Light(WeaponBase):
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
         "recovery" : 2.38     ,
+        "hit"      : 1        ,
     } # Jupiter's Protection
     a = [('k', 0.3, 'vs HZD')]
 
@@ -93,6 +99,7 @@ class HDT2_Jupiters_Sky(WeaponBase):
         "sp"       : 7267     ,
         "startup"  : 0.1      ,
         "recovery" : 2.38     ,
+        "hit"      : 1        ,
     } # Jupiter's Celestial Protection
     a = []
 
@@ -105,6 +112,7 @@ class HDT1_Dark_Prophecy(WeaponBase):
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 1.52     ,
+        "hit"      : 1        ,
     } # Prophecy's Guidance
     a = [('k', 0.3, 'vs HJP')]
 
@@ -117,6 +125,7 @@ class HDT2_Hellish_Prophecy(WeaponBase):
         "sp"       : 6750     ,
         "startup"  : 0.1      ,
         "recovery" : 1.52     ,
+        "hit"      : 1        ,
     } # Prophecy's Immaculate Guidance
     a = []
 

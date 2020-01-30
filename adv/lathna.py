@@ -30,6 +30,7 @@ class Lathna(Adv):
                 this.dmg_make("s1", 2.37*4)
             this.conf.s1.recovery = 4.05
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
+            this.hits += 4
             return this.s1()
         else:
             return 0 
@@ -37,6 +38,7 @@ class Lathna(Adv):
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.5):
             this.dmg_make("s1", 2.37*3)
+            this.hits += 3
 
     def s2_proc(this, e):
         with Modifier("s2killer", "poison_killer", "hit", 0.5):

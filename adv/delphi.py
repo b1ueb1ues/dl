@@ -20,7 +20,6 @@ class Delphi(Adv):
     """
 
     def prerun(this):
-        this.hits = 0
         this.flurry_poison = 70
         
         if this.condition('0 resist'):

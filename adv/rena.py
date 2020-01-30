@@ -36,23 +36,29 @@ class Rena(Adv):
 
         if this.stance == 0:
             this.stance = 1
-            this.dmg_make("o_s1_hit1", 0.72)
+            this.dmg_make("s1", 0.72)
+            this.hits += 1
             this.afflics.burn('s1',120,0.97)
-            this.dmg_make("o_s1_laterhits", 8.81)
+            this.dmg_make("s1", 8.81)
+            this.hits += 4
 
         elif this.stance == 1:
             this.stance = 2
-            this.dmg_make("o_s1_hit1", 0.72)
+            this.dmg_make("s1", 0.72)
             this.afflics.burn('s1',120,0.97)
-            this.dmg_make("o_s1_laterhits", 8.81)
+            this.hits += 1
+            this.dmg_make("s1", 8.81)
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
+            this.hits += 4
 
         elif this.stance == 2:
             this.stance = 0
             with Modifier("s1killer", "burn_killer", "hit", 0.8):
-                this.dmg_make("o_s1_hit1", 0.72)
+                this.dmg_make("s1", 0.72)
+                this.hits += 1
                 this.afflics.burn('s1',120,0.97)
-                this.dmg_make("o_s1_laterhits", 8.81)
+                this.dmg_make("s1", 8.81)
+                this.hits += 4
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
 
 
