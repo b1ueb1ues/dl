@@ -21,11 +21,13 @@ class MH_Berserker(Adv):
         #fs3=this.fs3
         `s1, fsc
         `s2, fsc
+        `s3, fsc
         `dodge, fsc
         `fs3
         """
     
     def init(this):
+        this.conf.fs.hit = -1
         conf_alt_fs = {
             1: {
                 'dmg': 296 / 100.0,
