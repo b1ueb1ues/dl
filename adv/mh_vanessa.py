@@ -27,7 +27,7 @@ class MH_Vanessa(Adv):
     conf['cond_afflict_res'] = 0
 
     def d_slots(this):
-        from adv_test import sim_duration
+        from adv.adv_test import sim_duration
         if sim_duration <= 90:
             this.slots.a = Resounding_Rendition()+The_Chocolatiers()
 
@@ -89,14 +89,14 @@ class MH_Vanessa(Adv):
     def fs2(this):
         return this.a_fs2()
 
-    def prerun(this):        
+    def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
             this.afflics.paralysis.resist=this.conf['cond_afflict_res']
         else:
             this.afflics.paralysis.resist=100
 
         this.s2_att_boost = Selfbuff('s2', 0.30, 90, 'att', 'buff')
-   
+
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
         this.a3_crit.get = this.a3_crit_get
         this.a3_crit.on()

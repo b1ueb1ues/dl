@@ -34,3 +34,8 @@ class Unreleased_FlameSkillHaste(DragonBase):
     ele = 'flame'
     att = 120
     a = [('sp', 0.35)]
+
+class Unreleased_Flame80Str(DragonBase):
+    ele = 'flame'
+    att = 127
+    a = [('a', 0.8, 'some wacky condition')]

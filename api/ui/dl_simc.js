@@ -22,7 +22,8 @@ PREFIX_MAPS = {
         's_maribelle': 'school_maribelle',
         's_': 'summer_',
         'v_': 'valentine_',
-        'w_': 'wedding_'
+        'w_': 'wedding_',
+        'mh_': 'hunter_'
     },
 }
 function name_fmt(name) {
@@ -62,6 +63,8 @@ function slots_icon_fmt(adv, slots){
     const dragon = slots_list[1];
     if (!dragon.startsWith('Unreleased')){
         img_urls.push('<img src="/dl-sim/pic/dragon/'+dragon+'.png" class="slot-icon"/>');
+    } else {
+        img_urls.push('<img src="/dl-sim/pic/dragon/Unreleased.png" class="slot-icon"/>');
     }
     return img_urls;
 }

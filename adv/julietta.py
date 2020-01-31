@@ -14,6 +14,7 @@ class Julietta(adv.Adv):
     def s2_proc(this, e):
        adv.Event('defchain')()
 
+    conf = {}
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1

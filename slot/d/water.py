@@ -36,3 +36,8 @@ class Unreleased_WaterCritDamage(DragonBase):
     ele = 'water'
     att = 127
     a = [('a', 0.45), ('cd', 0.55)]
+
+class Unreleased_Water80Str(DragonBase):
+    ele = 'water'
+    att = 127
+    a = [('a', 0.8, 'some wacky condition')]
