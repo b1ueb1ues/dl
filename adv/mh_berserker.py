@@ -12,8 +12,8 @@ def module():
 class MH_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
-    conf['slot.a'] = Resounding_Rendition()+Stellar_Show()   
-    conf['slot.d'] = Arctos()
+    conf['slot.a'] = Stellar_Show()+Dear_Diary()
+    conf['slot.d'] = Cerberus()
     conf['acl'] = """
         #fs=None
         #fs1=this.fs1
@@ -21,9 +21,8 @@ class MH_Berserker(Adv):
         #fs3=this.fs3
         `s1, fsc
         `s2, fsc
-        `s3, fsc
-        `dodge, fsc
         `fs3
+        `dodge, fsc
         """
     
     def init(this):
@@ -33,19 +32,19 @@ class MH_Berserker(Adv):
                 'dmg': 296 / 100.0,
                 'sp': 600,
                 'startup': (24+39) / 60.0,
-                'recovery': 30 / 60.0,
+                'recovery': 40 / 60.0,
             },
             2: {
                 'dmg': 424 / 100.0,
                 'sp': 960,
-                'startup': (48+39) / 60.0,
-                'recovery': 21 / 60.0,
+                'startup': (48+40+10) / 60.0,
+                'recovery': 40 / 60.0,
             },
             3: {
                 'dmg': 548 / 100.0,
                 'sp': 1400,
-                'startup': (72+39) / 60.0,
-                'recovery': 30 / 60.0,
+                'startup': (72+40+10) / 60.0,
+                'recovery': 40 / 60.0,
             }
         }
 
@@ -71,6 +70,7 @@ class MH_Berserker(Adv):
         this.l_fs3 = Listener('fs3',this.l_fs3)
     
     def l_fs1(this, e):
+        log('fs','succ')
         this.a_fs1.getdoing().cancel_by.append('fs1')
         this.a_fs1.getdoing().interrupt_by.append('fs1')
         this.fs_before(e)
@@ -84,6 +84,7 @@ class MH_Berserker(Adv):
         return this.a_fs1()
 
     def l_fs2(this, e):
+        log('fs','succ')
         this.a_fs2.getdoing().cancel_by.append('fs2')
         this.a_fs2.getdoing().interrupt_by.append('fs2')
         this.fs_before(e)
@@ -97,6 +98,7 @@ class MH_Berserker(Adv):
         return this.a_fs2()
     
     def l_fs3(this, e):
+        log('fs','succ')
         this.a_fs3.getdoing().cancel_by.append('fs3')
         this.a_fs3.getdoing().interrupt_by.append('fs3')
         this.fs_before(e)
