@@ -20,24 +20,14 @@ class Renelle(Adv):
     def s2_proc(this, e):
         this.afflics.burn('s2',100,0.803)
 
-    def rinit(this):
-        this.rotation('')
-
 if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = TB()+EE()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1
-        `s2
+        `s1, cancel
+        `s2, cancel
+        `fs, x=5
         """
-    conf['rotation_init'] = """
-        c4fs C4FS C1- 
-    """
-    conf['rotation'] = """
-        S1 C4FS C4FS C1- S1 C1- S2 C4FS C5- S1 C1- S3
-        C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 C4fs !c5!
-    """
-    # why c4fs at end, not c5
     adv_test.test(module(), conf, verbose=-2)
 

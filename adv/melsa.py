@@ -13,18 +13,9 @@ if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1
-        `s2
+        `s1, cancel
+        `s2, cancel
+        `fs, x=5
         """
-    conf['rotation'] = """
-        C4FS C4FS C2- S1 C4FS C5- S2 C2- S1 C4FS C5- S3 C1- S1 C4FS C5-
-        S2 C2- S1 C4FS C4FS C1- S1 C4FS C5- S3 C1- S2 C1- S1
-    """
-
-    #conf['acl'] = """
-    #    `s3, not this.s3_buff_on
-    #    `s1
-    #    `s2
-    #    """
     adv_test.test(module(), conf, verbose=0, mass=0)
 

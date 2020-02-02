@@ -10,7 +10,7 @@ def module():
 class V_Ezelith(Adv):
     a3 = ('bk',0.2)
     conf = {}
-    #conf['slot.a'] = RR()+EE()
+    conf['slot.a'] = EE()+DD()
 
     def c_prerun(this):
         this.o_prerun()
@@ -18,13 +18,6 @@ class V_Ezelith(Adv):
                 self={'hit':1},
                 team={}
                 )
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s3, not this.s3_buff_on
-                `s1
-                `s2
-                `fs, seq=4
-                """
 
     def prerun(this):
         this.ehit = 0
@@ -63,6 +56,7 @@ if __name__ == '__main__':
         `s3, not this.s3_buff_on
         `s1
         `s2
-        """
+        `fs, seq=4
+    """
     adv_test.test(module(), conf, verbose=0)
 

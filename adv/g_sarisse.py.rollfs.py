@@ -11,9 +11,9 @@ def module():
 class G_Sarisse(g_sarisse.G_Sarisse):
     def d_acl(this):
         this.conf['acl'] = """
+            `s3, not this.s3_buff_on
             `s1,fsc
             `s2,fsc
-            `s3,fsc
             `dodge, fsc
             `fs
         """
