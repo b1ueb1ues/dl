@@ -157,7 +157,7 @@ class Agito0UB_Ydalir(Agito_Ydalir):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame = HDT2_Valkyries_Fire
+flame = Agito_Ydalir
 water = HDT2_Azure_Mercurius
 wind = HDT2_Jormungands_Fury
 light = HDT2_Jupiters_Sky

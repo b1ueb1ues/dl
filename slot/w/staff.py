@@ -158,7 +158,7 @@ class Agito0UB_Gjallarhorn(Agito_Gjallarhorn):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame = HDT2_Blazegambol
+flame = Agito_Gjallarhorn
 water = HDT2_Oceans_Embrace
 wind = HDT2_Stormruler
 light = HDT2_Heavensneer

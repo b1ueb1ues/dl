@@ -158,7 +158,7 @@ class Agito0UB_Gungnir(Agito_Gungnir):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame = HDT2_Pureflame_Lance
+flame = Agito_Gungnir
 water = HDT2_Limpid_Rush
 wind = HDT2_Guiding_Gale
 light = HDT2_Brilliant_Lightflash

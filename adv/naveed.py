@@ -10,9 +10,9 @@ class Naveed(adv.Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s2, this.s1level < 5
         `s1
-        `s3, fsc
         `fs, seq=3 and cancel
         """
     conf['slot.a'] = TSO()+Primal_Crisis()

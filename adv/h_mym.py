@@ -37,9 +37,9 @@ if __name__ == '__main__':
     conf['slots.a'] = KFM()+JotS()
     conf['slot.d'] = Cerberus()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2, seq=5
-        `s3, fsc
         `fs, seq=5
     """
 

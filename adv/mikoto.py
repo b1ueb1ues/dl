@@ -17,13 +17,6 @@ class Mikoto(Adv):
         else:
             this.conf['slots.d'] = slot.d.Arctos()
     
-    def d_acl(this):
-        this.conf.acl = """
-            `s1, x=5
-            `s2, x=5
-            `s3, x=5
-        """
-
 
     def prerun(this):
         this.s1buff = Selfbuff("s1",0.0, 20)
@@ -67,9 +60,9 @@ class Mikoto(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1, x=5
         `s2, x=5
-        `s3, x=5
         """
 
 

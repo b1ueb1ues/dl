@@ -104,9 +104,9 @@ if __name__ == '__main__':
 
     conf['acl'] = """
         `this.dragon
+        `s3, not this.s3_buff_on
         `s1
         `s2, fsc
-        `s3, fsc
         `fs, seq=5
         """
     adv_test.test(module(), conf, verbose=0)

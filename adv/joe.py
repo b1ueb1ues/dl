@@ -22,9 +22,9 @@ class Joe(adv.Adv):
 
         if this.condition('c4+fs'):
             this.conf['acl'] = """
+                `s3, not this.s3_buff_on
                 `s1
                 `s2, fsc
-                `s3, fsc
                 `fs, seq=4
                 """
     def s1_proc(this, e):

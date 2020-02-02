@@ -158,7 +158,7 @@ class Agito0UB_Hrotti(Agito_Hrotti):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame = HDT2_Flamerulers_Maw
+flame = Agito_Hrotti
 water = HDT2_Tiderulers_Maw
 wind = HDT2_Windrulers_Maw
 light = HDT2_Fulminators_Maw

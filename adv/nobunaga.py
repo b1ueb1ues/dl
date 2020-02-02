@@ -30,10 +30,10 @@ if __name__ == '__main__':
     conf['slot.a'] = RR()+Primal_Crisis()
     #conf['slot.d'] = Cerberus()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2, cancel
         `fs, x=5 and this.ba=1
-        `s3, x=5 or fsc
         """
 
     adv_test.test(module(), conf, verbose=-2, mass=0)

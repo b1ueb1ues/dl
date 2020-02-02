@@ -27,7 +27,9 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = TB()+EE()
     conf['acl'] = """
-        `rotation
+        `s3, not this.s3_buff_on
+        `s1
+        `s2
         """
     conf['rotation_init'] = """
         c4fs C4FS C1- 

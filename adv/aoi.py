@@ -24,9 +24,9 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = RR()+EE()
     conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5
+        `s3, not this.s3_buff_on 
+        `s1
+        `s2
         """
     adv_test.test(module(), conf, verbose=-2)
 

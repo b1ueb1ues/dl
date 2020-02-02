@@ -36,9 +36,9 @@ class Marth(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s2
         `s1,fsc
-        `s3,fsc
         `fs, seq=2
         """
 #    import slot

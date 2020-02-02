@@ -14,9 +14,9 @@ class S_Maribelle(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2
-        `s3, seq=5 and cancel
         """
 
     #conf['slots.d'] = Cerberus()

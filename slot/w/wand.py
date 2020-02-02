@@ -158,7 +158,7 @@ class Agito0UB_Brisingr(Agito_Brisingr):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame = HDT2_Infernoblaze
+flame = Agito_Brisingr
 water = HDT2_Aquatic_Spiral
 wind = HDT2_Grand_Tempest
 light = HDT2_Primeval_Thunder

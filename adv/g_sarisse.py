@@ -11,9 +11,9 @@ class G_Sarisse(adv.Adv):
     a3 = ('bt',0.3)
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
-        `s2
-        `s3, fsc
+        `s2, fsc
         `fs, seq=4
     """
     conf['slot.d'] = slot.d.Sakuya()

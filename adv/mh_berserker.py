@@ -15,13 +15,13 @@ class MH_Berserker(Adv):
     conf['slot.a'] = Resounding_Rendition()+Stellar_Show()   
     conf['slot.d'] = Arctos()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         #fs=None
         #fs1=this.fs1
         #fs2=this.fs2
         #fs3=this.fs3
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `dodge, fsc
         `fs3
         """
