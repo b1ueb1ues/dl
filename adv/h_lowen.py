@@ -17,9 +17,9 @@ class H_Lowen(Adv):
     conf['slots.a'] = The_Bridal_Dragon()+From_Whence_He_Came()
     conf['slots.d'] = PopStar_Siren()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1, x=5
         `s2, pin='prep' or x=5 and this.hp_stack < 3
-        `s3, x=5
         `fs, s=3 and this.o_fs_prep_c > 0
     """
 

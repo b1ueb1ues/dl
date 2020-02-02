@@ -31,9 +31,9 @@ class Sinoa(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = '''
+        `s3, not this.s3_buff_on
         `s1
         `s2
-        `s3, seq=5
         `fs, seq=5
         '''
     adv_test.test(module(), conf, verbose=-2, mass=0)

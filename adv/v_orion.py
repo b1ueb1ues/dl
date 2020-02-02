@@ -30,8 +30,8 @@ if __name__ == '__main__':
 
     module().comment = 'no s2'
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
-        `s3, fsc
         `fs, seq=3 and cancel
         """
     conf['slots.a'] = TSO()+EE()

@@ -15,14 +15,15 @@ class MH_Berserker(Adv):
     conf['slot.a'] = Stellar_Show()+Dear_Diary()
     conf['slot.d'] = Cerberus()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         #fs=None
         #fs1=this.fs1
         #fs2=this.fs2
         #fs3=this.fs3
         `s1, fsc
         `s2, fsc
-        `fs3
         `dodge, fsc
+        `fs3
         """
     
     def init(this):

@@ -52,9 +52,9 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.d'] = Arctos()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2, seq=4
-        `s3, seq=5
         `fs, seq=5
         """
 

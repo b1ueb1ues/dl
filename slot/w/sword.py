@@ -158,7 +158,7 @@ class Agito0UB_Nothung(Agito_Nothung):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame = HDT2_Absolute_Crimson
+flame = Agito_Nothung
 water = HDT2_Absolute_Aqua
 wind = HDT2_Absolute_Tempest
 light = HDT2_Absolute_Lightning

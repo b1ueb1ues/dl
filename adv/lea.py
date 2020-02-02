@@ -31,8 +31,8 @@ if __name__ == '__main__':
     conf = {}
     conf['slot.a'] = TSO()+EE()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1, fsc
-        `s3, fsc
         `fs, seq=2
         """
 

@@ -12,7 +12,9 @@ class Melsa(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `rotation
+        `s3, not this.s3_buff_on
+        `s1
+        `s2
         """
     conf['rotation'] = """
         C4FS C4FS C2- S1 C4FS C5- S2 C2- S1 C4FS C5- S3 C1- S1 C4FS C5-
@@ -20,8 +22,8 @@ if __name__ == '__main__':
     """
 
     #conf['acl'] = """
+    #    `s3, not this.s3_buff_on
     #    `s1
-    #    `s3
     #    `s2
     #    """
     adv_test.test(module(), conf, verbose=0, mass=0)

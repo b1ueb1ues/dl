@@ -18,14 +18,14 @@ class Emma(Adv):
         if 'bow' in this.ex:
             this.conf.slot.a = HG()+JotS()
             this.conf['acl'] = """
+                        `s3, not this.s3_buff_on
                         `s1
-                        `s3, seq=5
                         """
         else:
             this.conf.slot.a = HG()+FWHC()
             this.conf['acl'] = """
-                        `s1
-                        `s3, fsc
+                        `s3, not this.s3_buff_on
+                        `s1, fsc
                         `fs, seq=5
                         """
 

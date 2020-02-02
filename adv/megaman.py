@@ -44,10 +44,10 @@ class Megaman(Adv):
 if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         # bs = this.bleed._static['stacks']
         `s1, bs <= 1 and this.ammo['1'] >= 1000
         `s2, this.ammo['2'] >= 1000
-        `s3, seq=5
     """
 
     adv_test.test(module(), conf, verbose=0)

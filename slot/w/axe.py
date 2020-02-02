@@ -159,7 +159,7 @@ class Agito0UB_Mjolnir(Agito_Mjolnir):
         "recovery" : 1.05-0.15  ,
     } # Megingjörð
 
-flame  = HDT2_Royal_Crimson_Heat
+flame  = Agito_Mjolnir
 water  = HDT2_Mercys_Azure_Tide
 wind   = HDT2_Glorystorms_Guide
 light  = HDT2_Mighty_Thundercrash
