@@ -136,3 +136,5 @@ patia.py
 heinwald.py
 g_luca.py
 aurien.py
+mh_berserker.py
+mh_vanessa.py
