@@ -14,8 +14,8 @@ class V_Orion(adv.Adv):
 
     comment = 'no s2'
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
-        `s3
         `fs, seq=3 and cancel
         """
     conf['slots.a'] = TSO()+EE()

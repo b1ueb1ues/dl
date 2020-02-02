@@ -1,8 +1,7 @@
 xander.py.best.py       
 xander.py.2fs.py            
 veronica.py.1hp.py      
-marth.py.cheese.py      
-g_sarisse.py.rollfs.py  
+g_sarisse.py.rollfs.py
 laranoa.py.rollfs.py    
 louise.py.rollfs.py     
 lathna.py.poison.py

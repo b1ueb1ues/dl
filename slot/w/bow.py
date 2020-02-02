@@ -169,7 +169,7 @@ class UnreleasedAgito_LightBow(Agito_Ydalir):
 class UnreleasedAgito_ShadowBow(Agito_Ydalir):
     ele = ['shadow']
 
-flame = HDT2_Valkyries_Fire
+flame = Agito_Ydalir
 water = HDT2_Azure_Mercurius
 wind = HDT2_Jormungands_Fury
 light = HDT2_Jupiters_Sky

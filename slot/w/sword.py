@@ -170,7 +170,7 @@ class UnreleasedAgito_LightSword(Agito_Nothung):
 class UnreleasedAgito_ShadowSword(Agito_Nothung):
     ele = ['shadow']
 
-flame = HDT2_Absolute_Crimson
+flame = Agito_Nothung
 water = HDT2_Absolute_Aqua
 wind = HDT2_Absolute_Tempest
 light = HDT2_Absolute_Lightning

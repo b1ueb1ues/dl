@@ -171,7 +171,7 @@ class UnreleasedAgito_LightAxe(Agito_Mjolnir):
 class UnreleasedAgito_ShadowAxe(Agito_Mjolnir):
     ele = ['shadow']
 
-flame  = HDT2_Royal_Crimson_Heat
+flame  = Agito_Mjolnir
 water  = HDT2_Mercys_Azure_Tide
 wind   = HDT2_Glorystorms_Guide
 light  = HDT2_Mighty_Thundercrash

@@ -16,19 +16,19 @@ class Emma(Adv):
 
     conf = {}
     conf['slots.d'] = Cerberus()
-    conf['slot.a'] = HG()+BB()
+    conf['slot.a'] = HG()+FWHC()
     conf['acl'] = """
-                `s1
-                `s3, fsc
-                `fs, seq=5
-                """
+        `s3, not this.s3_buff_on
+        `s1, fsc
+        `fs, seq=5
+        """
 
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = HG()+JotS()
             this.conf['acl'] = """
+                        `s3, not this.s3_buff_on
                         `s1
-                        `s3, seq=5
                         """
 
     def init(this):

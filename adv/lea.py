@@ -17,9 +17,8 @@ class Lea(Adv):
     conf = {}
     conf['slot.a'] = TSO()+EE()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1, fsc
-        `s2, fsc
-        `s3, fsc
         `fs, seq=2
         """
     conf['cond_afflict_res'] = 0

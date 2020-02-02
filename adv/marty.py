@@ -13,8 +13,8 @@ class Marty(adv.Adv):
     conf = {}
     conf['slots.a'] = TSO()+BN()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1,fsc
-        `s3,fsc
         `fs, seq=3
         """
 

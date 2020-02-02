@@ -16,9 +16,9 @@ class Karl(adv.Adv):
     conf = {}
     conf['slot.a'] = The_Shining_Overlord()+Primal_Crisis()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1, fsc
         `s2
-        `s3, fsc
         `fs, seq=3
         """
 

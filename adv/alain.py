@@ -12,9 +12,9 @@ class Alain(Adv):
     conf = {}
     conf['slot.a'] = RR()+EE()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2
-        `s3
         `fs, seq=5
         """
     conf['cond_afflict_res'] = 0

@@ -14,9 +14,9 @@ class Xania(adv.Adv):
     conf = {}
     conf['slot.d'] = Apollo()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2
-        `s3
         """
     conf['cond_afflict_res'] = 0
     def prerun(this):

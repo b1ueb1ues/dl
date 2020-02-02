@@ -78,9 +78,9 @@ class Euden(adv.Adv):
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['acl'] = """
         `this.dragon
+        `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `fs, seq=3 and cancel
         """
 

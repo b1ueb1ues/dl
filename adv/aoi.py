@@ -13,9 +13,9 @@ class Aoi(adv.Adv):
     conf = {}
     conf['slot.a'] = RR()+EE()
     conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5
+        `s3, not this.s3_buff_on 
+        `s1
+        `s2
         """
     conf['cond_afflict_res'] = 0
     def prerun(this):

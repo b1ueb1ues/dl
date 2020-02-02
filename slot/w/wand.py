@@ -170,7 +170,7 @@ class UnreleasedAgito_LightWand(Agito_Brisingr):
 class UnreleasedAgito_ShadowWand(Agito_Brisingr):
     ele = ['shadow']
 
-flame = HDT2_Infernoblaze
+flame = Agito_Brisingr
 water = HDT2_Aquatic_Spiral
 wind = HDT2_Grand_Tempest
 light = HDT2_Primeval_Thunder

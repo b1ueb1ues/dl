@@ -13,9 +13,9 @@ class Yue(adv.Adv):
     #comment = 'Arctos'
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2,seq=4
-        `s3,seq=4
         `fs,seq=5
         """
 

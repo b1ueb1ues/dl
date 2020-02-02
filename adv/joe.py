@@ -12,9 +12,9 @@ class Joe(adv.Adv):
     conf = {}
     #conf['slots.a'] = RR()+EE()
     conf['acl'] = """
-        `s1, fsc
+        `s3, not this.s3_buff_on
+        `s1
         `s2, fsc
-        `s3, fsc
         `fs, seq=4
         """
     conf['cond_afflict_res'] = 0

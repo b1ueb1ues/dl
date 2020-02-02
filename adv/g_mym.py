@@ -14,9 +14,9 @@ class G_Mym(Adv):
     conf = {}
     conf['slot.a'] = RR()+BN()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2, fsc
-        `s3, fsc
         `fs, seq=5
         """
 

@@ -170,7 +170,7 @@ class UnreleasedAgito_LightStaff(Agito_Gjallarhorn):
 class UnreleasedAgito_ShadowStaff(Agito_Gjallarhorn):
     ele = ['shadow']
 
-flame = HDT2_Blazegambol
+flame = Agito_Gjallarhorn
 water = HDT2_Oceans_Embrace
 wind = HDT2_Stormruler
 light = HDT2_Heavensneer

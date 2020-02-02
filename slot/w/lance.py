@@ -170,7 +170,7 @@ class UnreleasedAgito_LightLance(Agito_Gungnir):
 class UnreleasedAgito_ShadowLance(Agito_Gungnir):
     ele = ['shadow']
 
-flame = HDT2_Pureflame_Lance
+flame = Agito_Gungnir
 water = HDT2_Limpid_Rush
 wind = HDT2_Guiding_Gale
 light = HDT2_Brilliant_Lightflash

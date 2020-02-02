@@ -24,6 +24,13 @@ class Marth(adv.Adv):
         `fs, seq=2
         """
 
+    conf['acl'] = """
+        `s3, not this.s3_buff_on
+        `s2
+        `s1,fsc
+        `fs, seq=2
+        """
+
     def init(this):
         this.stance = 0
 

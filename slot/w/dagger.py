@@ -170,7 +170,7 @@ class UnreleasedAgito_LightDagger(Agito_Hrotti):
 class UnreleasedAgito_ShadowDagger(Agito_Hrotti):
     ele = ['shadow']
 
-flame = HDT2_Flamerulers_Maw
+flame = Agito_Hrotti
 water = HDT2_Tiderulers_Maw
 wind = HDT2_Windrulers_Maw
 light = HDT2_Fulminators_Maw

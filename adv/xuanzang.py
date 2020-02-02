@@ -13,11 +13,11 @@ class Xuanzang(Adv):
     a3 = ('cc',0.06,'hp70')
     conf = {}
     conf['acl'] = """
-    `s1
-    `s2
-    `s3
-    `fs, seq=5
-    """
+        `s3, not this.s3_buff_on
+        `s1
+        `s2
+        `fs, seq=5
+        """
 
     conf = {}
     def d_slots(this):

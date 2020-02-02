@@ -13,10 +13,13 @@ class Euden(adv.Adv):
     a1 = ('dc', 0.10)
     conf ={}
     conf['slot.a'] = TSO()+EE()
+    conf['slot.d'] = Apollo()
+    a1 = ('dc', 0.10)
+    
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `fs, seq=3 and cancel
         """
     conf['cond_afflict_res'] = 0
