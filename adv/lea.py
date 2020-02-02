@@ -18,6 +18,7 @@ class Lea(Adv):
     conf['slot.a'] = TSO()+EE()
     conf['acl'] = """
         `s3, not this.s3_buff_on
+        `s2, fsc
         `s1, fsc
         `fs, seq=2
         """
