@@ -21,7 +21,9 @@ class Ability(object):
 
 
         elif name == 'sp':
-            if cond != 'fs':
+            if cond == 'fs':
+                this.mod = [('sp','fs',value)]
+            else:
                 this.mod = [('sp','passive',value, cond)]
 
         elif name == 'bk':
@@ -81,10 +83,11 @@ class Ability(object):
         cond = this.cond
         value = this.value
 
-        if name == 'sp':
-            if cond == 'fs':
-                adv.conf.fs.sp *=(1+value)
-        elif name == 'lo':
+        # if name == 'sp':
+        #     if cond == 'fs':
+        #         # adv.conf.fs.sp *=(1+value)
+        #         name = 'sp_fs'
+        if name == 'lo':
             if adv.condition('last offense'):
                 adv.Buff('lo',value,15).on()
         elif name[:2] == 'bc':

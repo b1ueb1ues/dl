@@ -258,7 +258,7 @@ class Buff(object):
 
 class Selfbuff(Buff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
-        Buff.__init__(this, name,value,duration,mtype,morder,toggle)
+        Buff.__init__(this,name,value,duration,mtype,morder,toggle)
         this.bufftype = 'self'
         this.bufftime = this._bufftime
 
@@ -1165,7 +1165,15 @@ class Adv(object):
             return m
 
     def sp_mod(this, name):
-        return this.mod('sp')
+        sp_mod = 1
+        for m in this.all_modifiers:
+            if m.mod_type == 'sp':
+                if m.mod_order == 'fs':
+                    if name.startswith('fs'):
+                        sp_mod += m.get()
+                else:
+                    sp_mod += m.get()
+        return sp_mod
 
     def bufftime(this):
         return this.mod('buff')

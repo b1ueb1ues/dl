@@ -30,6 +30,11 @@ class Kagutsuchi(DragonBase):
     att = 127
     a = [('primed_att', 0.15), ('a', 0.45)]
 
+class Dreadking_Rathalos(DragonBase):
+    ele = 'flame'
+    att = 127
+    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]
+
 class Unreleased_FlameSkillHaste(DragonBase):
     ele = 'flame'
     att = 120
