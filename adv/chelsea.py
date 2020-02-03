@@ -1,15 +1,17 @@
 import adv.adv_test
 from adv import *
-
+from slot.d import *
 def module():
     return Chelsea
 
 class Chelsea(Adv):
     conf = {}
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
         `s2
+        `fs, x=3
         """
 
     def prerun(this):

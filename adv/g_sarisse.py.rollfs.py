@@ -7,15 +7,15 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.g_sarisse.G_Sarisse):
-    def d_acl(this):
-        this.conf['acl'] = """
-            `s3, not this.s3_buff_on
-            `s1,fsc
-            `s2,fsc
-            `dodge, fsc
-            `fs
-        """
-
+    conf = {}
+    conf['slot.d'] = Dreadking_Rathalos()
+    conf['acl'] = """
+        `s3, not this.s3_buff_on
+        `s1,fsc
+        `s2,fsc
+        `dodge, fsc
+        `fs
+    """
 
 if __name__ == '__main__':
     conf = {}

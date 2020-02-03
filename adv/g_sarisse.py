@@ -16,7 +16,6 @@ class G_Sarisse(adv.Adv):
         `s2, fsc
         `fs, seq=4
     """
-    conf['slot.d'] = slot.d.Sakuya()
 
     def prerun(this):
         this.ahits = 0
@@ -24,14 +23,15 @@ class G_Sarisse(adv.Adv):
         this.s2stance = 0
 
     def dmg_proc(this, name, amount):
-        if this.hits // 20 > this.ahits:
-            this.ahits = this.hits // 20
-            buff = adv.Selfbuff('sylvan strength',0.02,15)
-            buff.bufftime = buff.nobufftime
-            buff.on()
-            buff = adv.Selfbuff('sylvan crit',0.01,15,'crit','chance')
-            buff.bufftime = buff.nobufftime
-            buff.on()
+        if this.condition('never lose combos'):
+            if this.hits // 20 > this.ahits:
+                this.ahits = this.hits // 20
+                buff = adv.Selfbuff('sylvan strength',0.02,15)
+                buff.bufftime = buff.nobufftime
+                buff.on()
+                buff = adv.Selfbuff('sylvan crit',0.01,15,'crit','chance')
+                buff.bufftime = buff.nobufftime
+                buff.on()
 
     def s1_proc(this, e):
         buffcount = min(this.bc.buffcount(), 7)

@@ -1,5 +1,6 @@
 import adv.adv_test
 from slot.d import *
+from slot.a import *
 import adv.chelsea
 
 def module():
@@ -9,11 +10,11 @@ class Chelsea(adv.chelsea.Chelsea):
 
     def d_slots(this):
         this.slots.d = Dreadking_Rathalos()
+        this.slots.a = Stellar_Show()+Dear_Diary()
 
     def d_acl(this):
         this.conf['acl'] = """
             `s3,not this.s3_buff_on
-            `s1,fsc
             `s2,fsc
             `dodge, fsc
             `fs
