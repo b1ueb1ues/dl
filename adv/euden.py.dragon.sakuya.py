@@ -67,9 +67,7 @@ dragon_confs = {
     }
 }
 
-class Euden(adv.Adv):
-    comment = 'get 10% dragon charge from enemy every 18s; end dragon after C3+Skill'
-    
+class Euden(adv.Adv):    
     conf = {}
     conf['dragonform'] = 'Apollo'
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
@@ -93,8 +91,10 @@ class Euden(adv.Adv):
         this.dragonboost = 1.4 # max dragolith
 
         this.dp = 0
-        timing = adv_test.sim_duration/10
+        from adv_test import sim_duration
+        timing = int(sim_duration/10)
         this.t_dp = Timer(this.cb_recoverdp, repeat=1).on(timing)
+        this.comment = 'get 10% dragon charge from enemy every {}s; end dragon after C3+Skill'.format(timing)
 
         this.d = Action('d')
         this.d.conf.startup = 1.8

@@ -11,6 +11,11 @@ class Laxi(Adv):
     
     conf = {}
     conf['slot.a'] = HoH()+DD()
+    conf['acl'] = """
+        `s3, not this.s3_buff_on
+        `s2, not this.s2buff.get()
+        `s1
+        """
 
     def prerun(this):
         this.hp = 0.0
@@ -45,7 +50,7 @@ class Laxi(Adv):
         if this.hp <= 30.0:
             this.a3buff.on()
             if this.healed == 0:
-                this.heal_proc()
+                this.heal_proc(None)
         else:
             this.a3buff.off()
 
@@ -59,12 +64,6 @@ class Laxi(Adv):
         this.heal.getdoing().cancel_by.append('heal')
         this.heal.getdoing().interrupt_by.append('heal')
         this.heal()
-
-    conf['acl'] = """
-        `s3, not this.s3_buff_on
-        `s2, not this.s2buff.get()
-        `s1
-        """
 if __name__ == '__main__':
     adv.adv_test.test(module(), conf, verbose=0)
 

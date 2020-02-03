@@ -6,7 +6,7 @@ from slot.a import *
 def module():
     return V_Orion
 
-class V_Orion(adv.Adv):
+class V_Orion(Adv):
     conf = {}
 
     comment = 'no s2'

@@ -96,9 +96,11 @@ class Ability(object):
                 adv.Buff('defchain',value,15,*buff_args).on()
             adv.Event('defchain').listener(defchain)
         elif name == 'sts':
-            adv.Buff('strikerstrength',value*5,-1).on()
+            for _ in range(5):
+                adv.Buff('striker_strength',value,-1).on()
         elif name == 'sls':
-            adv.Buff('slayerstrength',value*5,-1).on()
+            for _ in range(5):
+                adv.Buff('slayerstrength',value,-1).on()
         elif name == 'dc':
             # adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
             if hasattr(adv, 'no_dclaws') and not adv.no_dclaws:

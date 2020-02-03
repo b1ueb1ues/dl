@@ -7,9 +7,9 @@ def module():
 class Chelsea(Adv):
     conf = {}
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2
-        `s3
         """
 
     def prerun(this):

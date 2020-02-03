@@ -1,9 +1,8 @@
-xander.py.best.py       
-xander.py.2fs.py            
-veronica.py.1hp.py      
+xander.py.best.py
+veronica.py.1hp.py
 g_sarisse.py.rollfs.py
-laranoa.py.rollfs.py    
-louise.py.rollfs.py     
+laranoa.py.rollfs.py
+louise.py.rollfs.py
 lathna.py.poison.py
 ieyasu.py.poison.py
 kirsty.py.poison.py

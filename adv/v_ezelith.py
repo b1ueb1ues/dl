@@ -17,6 +17,7 @@ class V_Ezelith(Adv):
         `s2
         `fs, seq=4
     """
+    conf['cond_afflict_res'] = 0
 
     def c_prerun(this):
         this.o_prerun()

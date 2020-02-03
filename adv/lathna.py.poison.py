@@ -1,11 +1,11 @@
-import adv_test
-import lathna
+import adv.adv_test
+import adv.lathna
 from slot.a import *
 
 def module():
     return Lathna
 
-class Lathna(lathna.Lathna):
+class Lathna(adv.lathna.Lathna):
     comment = ''
     def prerun(this):
         super().prerun()

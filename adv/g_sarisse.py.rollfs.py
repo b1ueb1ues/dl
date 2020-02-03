@@ -1,14 +1,12 @@
 import adv.adv_test
-import adv
-from adv import *
-import slot
 from slot.a import *
 from slot.d import *
-import g_sarisse
+import adv.g_sarisse
+
 def module():
     return G_Sarisse
 
-class G_Sarisse(g_sarisse.G_Sarisse):
+class G_Sarisse(adv.g_sarisse.G_Sarisse):
     def d_acl(this):
         this.conf['acl'] = """
             `s3, not this.s3_buff_on

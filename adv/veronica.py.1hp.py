@@ -1,6 +1,5 @@
 import adv.adv_test
-import adv
-import veronica
+import adv.veronica
 import slot
 from slot import *
 
@@ -8,7 +7,7 @@ from slot import *
 def module():
     return Veronica
 
-class Veronica(veronica.Veronica):
+class Veronica(adv.veronica.Veronica):
     def d_acl(this): 
         this.conf['acl'] = """
             `s1

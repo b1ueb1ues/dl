@@ -17,13 +17,6 @@ class G_Sarisse(adv.Adv):
         `fs, seq=4
     """
     conf['slot.d'] = slot.d.Sakuya()
-    #conf['mod'] = {'ex':('sp','passive',-0.15)}
-    conf['acl'] = """
-        `s1
-        `s2
-        `s3, fsc
-        `fs, seq=4
-        """
 
     def prerun(this):
         this.ahits = 0
@@ -57,6 +50,4 @@ class G_Sarisse(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-
     adv.adv_test.test(module(), conf, verbose=-2)
-

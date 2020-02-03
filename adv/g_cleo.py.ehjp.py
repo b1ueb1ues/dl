@@ -1,4 +1,4 @@
-import adv_test
+import adv.adv_test
 from adv import *
 import g_cleo
 from slot.a import Amulet
@@ -25,7 +25,7 @@ class G_Cleo(g_cleo.G_Cleo):
             `rotation
         """
         this.conf['rotation'] = """
-            s2 s1 c5 fs s3 c5 s1 c5 c5 fs s2 s1 c5 s3 c5 fs s1 end
+            s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 c5 s3 c5 fs s1 end
         """
 
     def prerun(this):
@@ -86,6 +86,6 @@ class G_Cleo(g_cleo.G_Cleo):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.team_dps = 0
+    adv.adv_test.team_dps = 0
     adv.adv_test.test(module(), conf, verbose=0)
 

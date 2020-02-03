@@ -1,5 +1,4 @@
-import adv_test
-from adv import *
+import adv.adv_test
 import kirsty
 from slot.a import *
 

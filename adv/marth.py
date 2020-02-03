@@ -13,14 +13,6 @@ class Marth(adv.Adv):
     a3 = ('cc',0.13,'hit15')
     conf = {}
     conf['slot.a'] = TSO()+Primal_Crisis()
-    #conf['slot.d'] = Cerberus()
-    conf['acl'] = """
-        `s2
-        `s1,fsc
-        `s3,fsc
-        `fs, seq=2
-        """
-
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s2

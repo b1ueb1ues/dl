@@ -7,16 +7,16 @@ def module():
     return G_Mym
 
 class G_Mym(Adv):
-    comment = 'get 10% dragon charge from enemy every 18s;'
-
     def prerun(this):
 
         this.dragonboost = 1.4 # max dracolith
 
         this.dp = 0
         this.truemumu = 0
-        timing = adv_test.sim_duration/10
+        from adv_test import sim_duration
+        timing = int(sim_duration/10)
         this.t_dp = Timer(this.cb_recoverdp, repeat=1).on(timing)
+        this.comment = 'get 10% dragon charge from enemy every {}s; end dragon after C3+Skill'.format(timing)
 
         this.d1 = Action('d1')
         this.d2 = Action('d2')

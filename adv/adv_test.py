@@ -48,7 +48,7 @@ def set_ex(ex_str):
     katana = 0
     ex_set = {}
     ex_team_init = 0
-    team_dps = 6000
+    team_dps = 16000
     energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
     for i in ex_str:
         if i == 'k':

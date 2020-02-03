@@ -6,7 +6,7 @@ from slot.d import *
 def module():
     return Euden
 
-class Euden(adv.Adv):
+class Euden(Adv):
     a1 = ('dc', 0.10)
     conf ={}
     conf['slot.a'] = TSO()+EE()

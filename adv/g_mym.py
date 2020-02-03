@@ -24,7 +24,8 @@ class G_Mym(Adv):
     def prerun(this):
         this.dp = 0
         this.truemumu = 0
-        timing = adv_test.sim_duration/2
+        from adv_test import sim_duration
+        timing = sim_duration/2
         Timer(this.dragon).on(timing)
         #this.dragon(0)
 
