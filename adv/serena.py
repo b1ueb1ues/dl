@@ -14,18 +14,18 @@ class Serena(adv.Adv):
     conf['slot.d'] = Arctos()
     conf['slot.a'] = TSO()+LC()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2,fsc
-        `s3,fsc 
         `fs, seq=3
         """
 
     conf = {}
     conf['slot.a'] = TSO()+Primal_Crisis()
     conf['acl'] = """
+        `s3, not this.s3_buff_on
         `s1
         `s2,fsc
-        `s3,fsc 
         `fs, seq=3
         """
 
