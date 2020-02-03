@@ -11,11 +11,10 @@ class Karl(adv.Adv):
     a3 = ('a',0.15,'hp70')
 
     conf = {}
-    conf['slot.a'] = The_Shining_Overlord()+Primal_Crisis()
+    conf['slot.a'] = Stellar_Show()+Primal_Crisis()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1, cancel
         `s2, cancel
         `fs, seq=2
         """

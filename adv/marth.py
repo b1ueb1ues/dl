@@ -12,10 +12,11 @@ class Marth(adv.Adv):
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')
     conf = {}
-    conf['slot.a'] = TSO()+Primal_Crisis()
+    conf['slot.a'] = Mega_Friends()+Primal_Crisis()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s2
+        `s2,fsc
         `s1,fsc
         `fs, seq=2
         """
