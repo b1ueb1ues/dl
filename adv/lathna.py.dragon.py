@@ -28,7 +28,7 @@ class Lathna(adv.Adv):
         this.s1tmp = Conf(this.conf.s1)
 
         this.afflics.poison.resist=0
-        from adv_test import sim_duration
+        from adv.adv_test import sim_duration
         if this.condition('always poisoned'):
             this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration)
 
