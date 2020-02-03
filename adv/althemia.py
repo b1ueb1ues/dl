@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 import adv
 
 def module():
@@ -18,5 +15,5 @@ class Althemia(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf)
+    adv.adv_test.test(module(), conf)
 

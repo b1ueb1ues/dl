@@ -87,5 +87,5 @@ class G_Cleo(g_cleo.G_Cleo):
 if __name__ == '__main__':
     conf = {}
     adv_test.team_dps = 0
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 

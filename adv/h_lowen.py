@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from adv import *
 from slot.a.all import The_Bridal_Dragon, From_Whence_He_Came
 from slot.d import PopStar_Siren
@@ -48,5 +45,5 @@ class H_Lowen(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf,verbose=0, mass=0)
+    adv.adv_test.test(module(), conf,verbose=0, mass=0)
 

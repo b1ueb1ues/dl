@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from adv import *
 from slot.a import *
 from slot.d import *
@@ -47,4 +44,4 @@ if __name__ == '__main__':
 #    conf['rotation'] = """
 #        c5fsc5s1
 #    """
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)

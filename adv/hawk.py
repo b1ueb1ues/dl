@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from adv import *
 from slot.d import *
 
@@ -51,5 +48,5 @@ class Hawk(Adv):
 if __name__ == '__main__':
     #module().comment = 'boost dmg from stun 3 times'
     conf = {}
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 

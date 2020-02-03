@@ -58,5 +58,5 @@ if __name__ == '__main__':
         `fs, seq=5
         """
 
-    adv_test.test(module(), conf, mass=1, verbose=-2)
+    adv.adv_test.test(module(), conf, mass=1, verbose=-2)
 

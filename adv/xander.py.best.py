@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from xander import *
 from slot.a import *
 from slot.d import *
@@ -36,7 +33,7 @@ if __name__ == '__main__':
         `s2
         `fs, seq=2 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 
 #    def foo(e):
 #        return
@@ -48,5 +45,5 @@ if __name__ == '__main__':
 #    conf['acl'] = """
 #        `fs, seq=2 and cancel
 #        """
-#    adv_test.test(module(), conf, verbose=0)
+#    adv.adv_test.test(module(), conf, verbose=0)
 #

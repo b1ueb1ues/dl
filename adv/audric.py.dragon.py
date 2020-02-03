@@ -89,5 +89,5 @@ if __name__ == '__main__':
         `s2, fsc
         `fs, seq=3
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 

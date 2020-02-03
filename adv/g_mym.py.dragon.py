@@ -1,8 +1,5 @@
 # encoding:utf8
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from adv import *
 from slot.a import *
 
@@ -112,5 +109,5 @@ if __name__ == '__main__':
         `s2, fsc
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 

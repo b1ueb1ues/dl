@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from adv import *
 from slot.a import *
 from slot.d import *
@@ -61,4 +58,4 @@ class S_Celliera(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf, verbose=-2)

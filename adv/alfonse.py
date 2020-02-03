@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 import adv
 from adv import *
 from core.log import *
@@ -32,5 +29,5 @@ class Alfonse(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 

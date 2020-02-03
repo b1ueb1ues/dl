@@ -38,5 +38,5 @@ if __name__ == '__main__':
     conf['acl'] = """
         `fs, seq=2 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)
 

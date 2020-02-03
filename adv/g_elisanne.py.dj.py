@@ -24,5 +24,5 @@ class G_Elisanne(g_elisanne.G_Elisanne):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf, verbose=-2)
 

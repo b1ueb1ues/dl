@@ -67,4 +67,4 @@ def test(adv, conf, duration=180):
     for i in acls:
         conf['acl'] = acls[i]
         adv.comment = '(',i,')'
-        adv_test.test(adv, conf, verbose=255, mass=0, duration=duration)
+        adv.adv_test.test(adv, conf, verbose=255, mass=0, duration=duration)

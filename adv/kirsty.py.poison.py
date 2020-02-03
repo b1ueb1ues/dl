@@ -20,4 +20,4 @@ class Kirsty(kirsty.Kirsty):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf, verbose=0)

@@ -33,7 +33,6 @@ team_dps = 16000
 
 # 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
 energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
-katana = 0
 
 katana = 0
 ex_str = '_'
@@ -67,6 +66,7 @@ def set_ex(ex_str):
 
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
     set_ex(sys.argv[3])
+    ex_str = sys.argv[3]
 
 mname = ""
 base_str = 0

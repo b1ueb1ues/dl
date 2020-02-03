@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 from adv import *
 from adv import sazanka
 from module.bleed import mBleed
@@ -22,4 +19,4 @@ class Sazanka(sazanka.Sazanka):
 
 if __name__ == '__main__':
     conf = {}
-    adv_test.test(module(), conf, mass=0)
+    adv.adv_test.test(module(), conf, mass=0)

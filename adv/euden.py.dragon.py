@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import adv_test
-else:
-    import adv.adv_test
+import adv.adv_test
 import adv
 from adv import *
 from core.log import *
@@ -161,8 +158,8 @@ if __name__ == '__main__':
 
     if dra in dragon_confs:
         conf['dragonform'] = dra
-        adv_test.test(module(), conf)
+        adv.adv_test.test(module(), conf)
     else:
         for dra in dragon_confs:
             conf['dragonform'] = dra
-            adv_test.test(module(), conf)
+            adv.adv_test.test(module(), conf)
