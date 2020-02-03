@@ -11,6 +11,7 @@ class Mikoto(Adv):
     a3 = ('cc',0.08)
     
     conf = {}
+    conf['slot.d'] = Arctos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1, x=5
@@ -19,10 +20,7 @@ class Mikoto(Adv):
 
     def d_slots(this):
         if 'wand' in this.ex:
-            this.conf['slots.d'] = slot.d.Sakuya()
-        else:
-            this.conf['slots.d'] = slot.d.Arctos()
-    
+            this.conf['slots.d'] = slot.d.Sakuya()    
 
     def prerun(this):
         this.s1buff = Selfbuff("s1",0.0, 20)
