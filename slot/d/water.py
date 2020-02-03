@@ -13,7 +13,7 @@ class Siren(DragonBase):
 class Dragonyule_Jeanne(DragonBase):
     ele = 'water'
     att = 125
-    a = [('a', 0.30), ('cc', 0.15)]
+    a = [('a', 0.45), ('cc', 0.20)]
 DJ = Dragonyule_Jeanne
 
 class Simurgh(DragonBase):
