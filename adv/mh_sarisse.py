@@ -4,45 +4,52 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return MH_Berserker
+    return MH_Sarisse
 
-class MH_Berserker(Adv):
+class MH_Sarisse(Adv):
     a1 = ('fs', 0.30)
-    conf ={}
-    conf['slot.a'] = Stellar_Show()+Dear_Diary()
-    conf['slot.d'] = Dreadking_Rathalos()
+    a3 = ('fs', 0.25)
+
+    conf = {}
     conf['acl'] = """
         #fs=None
         #fs1=this.fs1
         #fs2=this.fs2
         #fs3=this.fs3
-        `s3, not this.s3_buff_on
-        `s1, fsc
-        `s2, fsc
+        #fs4=this.fs4
+        `s1
+        `s2
+        `s3
         `dodge, fsc
-        `fs3
-        """
-    
+        `fs4
+    """
+
     def init(this):
-        this.conf.fs.hit = -1
+        this.conf.fs.hit = 1
         conf_alt_fs = {
             'fs1': {
-                'dmg': 296 / 100.0,
-                'sp': 600,
-                'startup': (24+39) / 60.0,
-                'recovery': 40 / 60.0,
+                'dmg': 0.31*8,
+                'sp': 460,
+                'startup': 63 / 60.0, 
+                'recovery': 37 / 60.0, 
             },
             'fs2': {
-                'dmg': 424 / 100.0,
-                'sp': 960,
-                'startup': (48+40+10) / 60.0,
-                'recovery': 40 / 60.0,
+                'dmg': 0.31*8,
+                'sp': 460,
+                'startup': 63 / 60.0, 
+                'recovery': 37 / 60.0, 
             },
             'fs3': {
-                'dmg': 548 / 100.0,
-                'sp': 1400,
-                'startup': (72+40+10) / 60.0,
-                'recovery': 40 / 60.0,
+                'dmg': 0.31*8,
+                'sp': 460,
+                'startup': 63 / 60.0, 
+                'recovery': 37 / 60.0, 
+            },
+            'fs4': {
+                'dmg': 0.31*8,
+                'sp': 460,
+                'startup': 63 / 60.0, 
+                'recovery': 37 / 60.0, 
             }
         }
         for n, c in conf_alt_fs.items():
@@ -56,7 +63,8 @@ class MH_Berserker(Adv):
         this.l_fs1 = Listener('fs1',this.l_fs1)
         this.l_fs2 = Listener('fs2',this.l_fs2)
         this.l_fs3 = Listener('fs3',this.l_fs3)
-    
+        this.l_fs4 = Listener('fs4',this.l_fs4)
+
     def do_fs(this, e, name):
         log('fs','succ')
         this.__dict__['a_'+name].getdoing().cancel_by.append(name)
@@ -79,37 +87,35 @@ class MH_Berserker(Adv):
 
     def fs2(this):
         return this.a_fs2()
-    
+
     def l_fs3(this, e):
         this.do_fs(e, 'fs3')
 
     def fs3(this):
         return this.a_fs3()
 
+    def l_fs4(this, e):
+        this.do_fs(e, 'fs4')
+
+    def fs4(this):
+        return this.a_fs4()
+
     def prerun(this):
-        this.s1_debuff = Debuff('s1', 0.05, 10)
-
-        this.s2_fs_boost = Selfbuff('s2', 0.80, -1, 'fs', 'buff')
-
-        this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
-        this.a3_crit.get = this.a3_crit_get
-        this.a3_crit.on()
-
-    def a3_crit_get(this):
-        return (this.mod('def') != 1) * 0.20
+        this.s1_fs_boost = Selfbuff('s1', 1.00, -1, 'fs', 'buff')
+        this.s2_spd_boost = Spdbuff('s2', 0, 30) # update this to affect FS start up only???
 
     def s1_proc(this, e):
-        this.s1_debuff.on()
-
+        if not this.s1_fs_boost.get():
+            this.s1_fs_boost.on()
+    
     def s2_proc(this, e):
-        if not this.s2_fs_boost.get():
-            this.s2_fs_boost.on()
-    
+        this.s2_spd_boost.on()
+
     def fs_proc(this, e):
-        this.s2_fs_boost.off()
-    
+        this.s1_fs_boost.off()
 
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)
+
 

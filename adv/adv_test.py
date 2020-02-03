@@ -1,9 +1,5 @@
 # /usr/bin/env python
 # encoding:utf-8
-if __package__ is None or __package__ == '':
-    import os
-    os.sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from core.log import *
 import time
 import sys

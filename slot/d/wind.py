@@ -43,3 +43,8 @@ class Garland(DragonBase):
 
     def dauntless_rampart(this, t):
         this.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
+
+class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):
+    ele = 'wind'
+    att = 127
+    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]

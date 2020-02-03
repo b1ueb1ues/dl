@@ -1175,6 +1175,9 @@ class Adv(object):
                     sp_mod += m.get()
         return sp_mod
 
+    def sp_val(this, name):
+        return this.ceiling(this.float_problem(this.conf[name+'.sp']*this.float_problem(this.sp_mod(name))))
+
     def bufftime(this):
         return this.mod('buff')
 

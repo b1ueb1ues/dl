@@ -17,10 +17,9 @@ class Noelle(Adv):
     conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
 
     conf['acl'] = """
-        `# fs_sp = this.ceiling(this.float_problem(this.conf.fs.sp*this.float_problem(this.sp_mod('fs_missile'))))
         `s1
-        `fs, this.fs_prep_c==3 and s1.charged>=s1.sp*1/2-fs_sp
-        `fs, this.fs_prep_c==1 and s1.charged>=s1.sp*3/4-fs_sp
+        `fs, this.fs_prep_c==3 and s1.charged>=s1.sp*1/2-this.sp_val('fs')
+        `fs, this.fs_prep_c==1 and s1.charged>=s1.sp*3/4-this.sp_val('fs')
         `s2, x=5
         `s3, x=5
         """

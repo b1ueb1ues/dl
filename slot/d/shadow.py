@@ -81,3 +81,8 @@ class Unreleased_ShadowPrimedStr(DragonBase):
     ele = 'shadow'
     att = 127
     a = [('primed_att', 0.15), ('a', 0.45)]
+
+class Unreleased_DKR_No_More(DragonBase):
+    ele = 'shadow'
+    att = 127
+    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]
