@@ -2,6 +2,7 @@ import adv.adv_test
 from adv import *
 from core.log import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return V_Orion
@@ -12,10 +13,11 @@ class V_Orion(Adv):
     comment = 'no s2'
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1
-        `fs, seq=3 and cancel
+        `s1, fsc
+        `fs, seq=2 and cancel
         """
-    conf['slots.a'] = TSO()+EE()
+    conf['slot.a'] = TSO()+EE()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['cond_afflict_res'] = 0
 
     def prerun(this):

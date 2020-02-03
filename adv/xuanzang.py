@@ -2,6 +2,7 @@ import adv.adv_test
 from adv import *
 from slot.a import *
 import random
+from slot.d import *
 
 def module():
     return Xuanzang
@@ -9,14 +10,14 @@ def module():
 class Xuanzang(Adv):
     a3 = ('cc',0.06,'hp70')
     conf = {}
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1
-        `s2
-        `fs, seq=5
+        `s1, fsc
+        `s2, cancel
+        `fs, seq=1
         """
 
-    conf = {}
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = RR()+JotS()

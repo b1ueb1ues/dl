@@ -12,21 +12,13 @@ class Emma(Adv):
     a3 = ('primed_att', 0.05)
 
     conf = {}
-    conf['slots.d'] = Cerberus()
-    conf['slot.a'] = HG()+FWHC()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = Lunar_Festivities()+FWHC()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1, fsc
-        `fs, seq=5
+        `s1, cancel
+        `fs, x=1
         """
-
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = HG()+JotS()
-            this.conf['acl'] = """
-                        `s3, not this.s3_buff_on
-                        `s1
-                        """
 
     def init(this):
         comment = 'no s2'

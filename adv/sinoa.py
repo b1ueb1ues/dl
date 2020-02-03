@@ -11,6 +11,7 @@ class Sinoa(adv.Adv):
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)
     conf = {}
+    conf['slot.d'] = slot.d.Dreadking_Rathalos()
     conf['acl'] = '''
         `s3, not this.s3_buff_on
         `s1

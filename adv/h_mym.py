@@ -11,12 +11,12 @@ class H_Mym(Adv):
 
     conf = {}
     conf['slots.a'] = KFM()+JotS()
-    conf['slot.d'] = Cerberus()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
-        `s2, seq=5
-        `fs, seq=5
+        `s2, x=5 or fsc
+        `fs, x=5
     """
 
     def prerun(this):

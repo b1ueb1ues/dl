@@ -1,7 +1,7 @@
 import adv.adv_test
 import adv
 from slot.a import *
-
+from slot.d import *
 
 def module():
     return Karl
@@ -12,11 +12,12 @@ class Karl(adv.Adv):
 
     conf = {}
     conf['slot.a'] = The_Shining_Overlord()+Primal_Crisis()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1, fsc
-        `s2
-        `fs, seq=3
+        `s1, cancel
+        `s2, cancel
+        `fs, seq=2
         """
 
 

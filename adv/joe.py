@@ -1,18 +1,18 @@
 import adv.adv_test
 import adv
 from slot.a import *
-
+from slot.d import *
 def module():
     return Joe
 
 class Joe(adv.Adv):
     conf = {}
-    #conf['slots.a'] = RR()+EE()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1
+        `s1, fsc
         `s2, fsc
-        `fs, seq=4
+        `fs, seq=3
         """
     conf['cond_afflict_res'] = 0
 

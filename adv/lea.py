@@ -13,18 +13,15 @@ class Lea(Adv):
         
     conf = {}
     conf['slot.a'] = TSO()+EE()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s2, fsc
         `s1, fsc
+        `s2, fsc
         `fs, seq=2
         """
     conf['cond_afflict_res'] = 0
-
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.d = Sakuya()
-
+    
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
             this.afflics.burn.resist=this.conf['cond_afflict_res']

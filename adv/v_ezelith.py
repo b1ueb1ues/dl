@@ -3,6 +3,7 @@ import adv
 from adv import *
 from module import energy
 from slot.a import *
+from slot.d import *
 
 def module():
     return V_Ezelith
@@ -11,11 +12,12 @@ class V_Ezelith(Adv):
     a3 = ('bk',0.2)
     conf = {}
     conf['slot.a'] = EE()+DD()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
         `s2
-        `fs, seq=4
+        `fs, seq=3
     """
     conf['cond_afflict_res'] = 0
 

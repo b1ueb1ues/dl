@@ -10,13 +10,13 @@ class MH_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
     conf['slot.a'] = Stellar_Show()+Dear_Diary()
-    conf['slot.d'] = Cerberus()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
         #fs=None
         #fs1=this.fs1
         #fs2=this.fs2
         #fs3=this.fs3
+        `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
         `dodge, fsc
