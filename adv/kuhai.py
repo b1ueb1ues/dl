@@ -22,7 +22,7 @@ class Kuhai(Adv):
         `fs, seq=2 and this.s2fsbuff.get()
         `fs, seq=3
         """
-    conf['slots.a'] = slot.a.Stellar_Show() + slot.a.RR()
+    conf['slots.a'] = slot.a.The_Lurker_in_the_Woods() + slot.a.RR()
     conf['slot.d'] = Zephyr()
 
     def init(this):

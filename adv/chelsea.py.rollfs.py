@@ -10,7 +10,7 @@ class Chelsea(adv.chelsea.Chelsea):
 
     def d_slots(this):
         this.slots.d = Dreadking_Rathalos()
-        this.slots.a = Stellar_Show()+Dear_Diary()
+        this.slots.a = The_Lurker_in_the_Woods()+Dear_Diary()
 
     def d_acl(this):
         this.conf['acl'] = """

@@ -9,7 +9,7 @@ class Odetta(Adv):
     comment = 'c2+fs'
 
     conf = {}
-    conf['slot.a'] = RR() + Stellar_Show()
+    conf['slot.a'] = RR() + The_Lurker_in_the_Woods()
     conf['acl'] = """
         `s2, fsc
         `s1, fsc

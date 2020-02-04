@@ -87,9 +87,13 @@ class Ability(object):
         #     if cond == 'fs':
         #         # adv.conf.fs.sp *=(1+value)
         #         name = 'sp_fs'
-        if name == 'lo':
+        if name[:2] == 'lo':
+            if len(name) > 2:
+                buff_args = name[3:].split('_')
+            else:
+                buff_args = ('att', 'buff')
             if adv.condition('last offense'):
-                adv.Buff('lo',value,15).on()
+                adv.Buff(name,value,15,*buff_args).on()
         elif name[:2] == 'bc':
             if len(name) > 2:
                 buff_args = name[3:].split('_')

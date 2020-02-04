@@ -48,29 +48,28 @@ class MH_Sarisse(Adv):
     """
 
     def init(this):
-        this.conf.fs.hit = 1
         conf_alt_fs = {
             'fs1': {
-                'dmg': 0.31*8,
-                'sp': 460,
+                'dmg': 0.74,
+                'sp': 500,
                 'startup': 63 / 60.0, 
                 'recovery': 37 / 60.0, 
             },
             'fs2': {
-                'dmg': 0.31*8,
-                'sp': 460,
+                'dmg': 0.84,
+                'sp': 710,
                 'startup': 63 / 60.0, 
                 'recovery': 37 / 60.0, 
             },
             'fs3': {
-                'dmg': 0.31*8,
-                'sp': 460,
+                'dmg': 0.94,
+                'sp': 920,
                 'startup': 63 / 60.0, 
                 'recovery': 37 / 60.0, 
             },
             'fs4': {
-                'dmg': 0.31*8,
-                'sp': 460,
+                'dmg': 1.29,
+                'sp': 1140,
                 'startup': 63 / 60.0, 
                 'recovery': 37 / 60.0, 
             }
@@ -91,8 +90,12 @@ class MH_Sarisse(Adv):
         this.__dict__['a_'+name].getdoing().cancel_by.append(name)
         this.__dict__['a_'+name].getdoing().interrupt_by.append(name)
         this.fs_before(e)
-        this.update_hits('fs')
-        this.dmg_make('fs', this.conf[name+'.dmg'], 'fs')
+        for _ in range(4):
+            # does 8 hits, 4 at 0.25x damage (?)
+            this.dmg_make('fs', this.conf[name+'.dmg'], 'fs')
+            this.hits += 1
+            this.dmg_make('fs', this.conf[name+'.dmg']/4, 'fs')
+            this.hits += 1
         this.fs_proc(e)
         this.think_pin('fs')
         this.charge(name,this.conf[name+'.sp'])

@@ -530,6 +530,14 @@ class Felyne_Hospitality(Amulet):
     a = [('cc', 0.10, 'hp70'), ('bc_crit_damage', 0.15)]
 FH = Felyne_Hospitality
 
+class Unexpected_Requests(Amulet):
+    att = 65
+    a = [('lo', 0.50), ('lo_crit_chance', 0.30)]
+
+class The_Lurker_in_the_Woods(Amulet):
+    att = 65
+    a = [('fs', 0.50), ('bk', 0.25)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
