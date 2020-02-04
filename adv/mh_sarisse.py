@@ -15,21 +15,46 @@ class FS_Speedable(Action):
         this.fs_speed = 1.2
         this.t_fs_speed = Timer(this.fs_speed_off)
         this.l_fs_speed= Listener('fs_speed_buff', this.fs_speed_on)
+        this._startup_a = 0
 
     def fs_speed_on(this, e):
-        print('fs_speed_on', now())
         this.fs_speed = 1.5
         this.t_fs_speed = this.t_fs_speed.on(30)
 
     def fs_speed_off(this, t):
         this.fs_speed = 1.2
 
+    def sync_config(this, c):
+        this._startup_c = c.startup
+        this._startup_h = 4 / 60
+        this._recovery = 59 / 60
+        this._active = c.active
+
     def getstartup(this):
-        startup = super().getstartup()
-        # might be additive with regular atk speed, not sure
-        return startup / this.fs_speed
+        startup = this._startup_a
+        startup += this._startup_c / this.fs_speed
+        startup += this._startup_h / this.speed()
+        return startup
+
+    def __call__(this, before):
+        if type(before).__name__ == 'FS_Speedable':
+            this._startup_a = 88 / 60
+        elif type(before).__name__ == 'X':
+            if now()-before.startup_start > 0:
+                if before.name == 'x1' and this.fs_speed == 1.2:
+                    this._startup_a = 3 / 60
+                else:
+                    this._startup_a = 0
+            else:
+                return this(before.getprev())
+        elif type(before).__name__ == 'S':
+            this._startup_a = 0
+        elif type(before).__name__ == 'Dodge':
+            this._startup_a = 14 / 60
+        return this.tap()
 
 class MH_Sarisse(Adv):
+    comment = 'assumed 4 big hits 4 small hits for fs4; hard to keep combo with full fs4'
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)
 
@@ -40,38 +65,42 @@ class MH_Sarisse(Adv):
         #fs2=this.fs2
         #fs3=this.fs3
         #fs4=this.fs4
-        `s1
-        `s2, not this.s2_spd_boost.online
-        `s3
+        `fs4, s
+        `s1, fsc
+        `s2, fsc
+        `s3, fsc
         `dodge, fsc
         `fs4
     """
+    conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
+    conf['slot.d'] = Dragonyule_Jeanne()
 
     def init(this):
         conf_alt_fs = {
             'fs1': {
                 'dmg': 0.74,
                 'sp': 500,
-                'startup': 63 / 60.0, 
-                'recovery': 37 / 60.0, 
+                'startup': 29 / 60.0, 
+                'recovery': 4 / 60.0,
+                'hit': 3
             },
             'fs2': {
                 'dmg': 0.84,
                 'sp': 710,
-                'startup': 63 / 60.0, 
-                'recovery': 37 / 60.0, 
+                'startup': (29+43) / 60.0,
+                'hit': 3
             },
             'fs3': {
                 'dmg': 0.94,
                 'sp': 920,
-                'startup': 63 / 60.0, 
-                'recovery': 37 / 60.0, 
+                'startup': (29+43*2) / 60.0,
+                'hit': 3
             },
             'fs4': {
                 'dmg': 1.29,
                 'sp': 1140,
-                'startup': 63 / 60.0, 
-                'recovery': 37 / 60.0, 
+                'startup': (29+43*3) / 60.0,
+                'hit': 4
             }
         }
         for n, c in conf_alt_fs.items():
@@ -90,12 +119,15 @@ class MH_Sarisse(Adv):
         this.__dict__['a_'+name].getdoing().cancel_by.append(name)
         this.__dict__['a_'+name].getdoing().interrupt_by.append(name)
         this.fs_before(e)
-        for _ in range(4):
-            # does 8 hits, 4 at 0.25x damage (?)
+        for _ in range(this.conf[name+'.hit']):
+            # does big hit + small hit
             this.dmg_make('fs', this.conf[name+'.dmg'], 'fs')
             this.hits += 1
-            this.dmg_make('fs', this.conf[name+'.dmg']/4, 'fs')
+        # for _ in range(int(this.conf[name+'.hit']/2)):
+            this.dmg_make('fs', this.conf[name+'.dmg']*0.3, 'fs')
             this.hits += 1
+        if name == 'fs4':
+            this.hits = 8
         this.fs_proc(e)
         this.think_pin('fs')
         this.charge(name,this.conf[name+'.sp'])
@@ -104,25 +136,29 @@ class MH_Sarisse(Adv):
         this.do_fs(e, 'fs1')
 
     def fs1(this):
-        return this.a_fs1()
+        doing = this.action.getdoing()
+        return this.a_fs1(doing)
 
     def l_fs2(this, e):
         this.do_fs(e, 'fs2')
 
     def fs2(this):
-        return this.a_fs2()
+        doing = this.action.getdoing()
+        return this.a_fs2(doing)
 
     def l_fs3(this, e):
         this.do_fs(e, 'fs3')
 
     def fs3(this):
-        return this.a_fs3()
+        doing = this.action.getdoing()
+        return this.a_fs3(doing)
 
     def l_fs4(this, e):
         this.do_fs(e, 'fs4')
 
     def fs4(this):
-        return this.a_fs4()
+        doing = this.action.getdoing()
+        return this.a_fs4(doing)
 
     def prerun(this):
         this.s1_fs_boost = Selfbuff('s1', 1.00, -1, 'fs', 'buff')
@@ -132,7 +168,6 @@ class MH_Sarisse(Adv):
             this.s1_fs_boost.on()
     
     def s2_proc(this, e):
-        print('s2_proc', now())
         Event('fs_speed_buff')()
 
     def fs_proc(this, e):
@@ -141,5 +176,3 @@ class MH_Sarisse(Adv):
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)
-
-

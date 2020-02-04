@@ -9,7 +9,7 @@ def module():
 class Zace(Adv):
     a1 = ('s',0.2)
     conf = {}
-    conf['slot.a'] = Unexpected_Requests() + RR()
+    conf['slot.a'] = RR()+Jewels_of_the_Sun()
     conf['acl'] = """
         `s1
         `s2

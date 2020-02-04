@@ -9,7 +9,7 @@ def module():
 class MH_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
-    conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
+    conf['slot.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         #fs=None
