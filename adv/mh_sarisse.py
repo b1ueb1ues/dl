@@ -65,10 +65,8 @@ class MH_Sarisse(Adv):
         #fs2=this.fs2
         #fs3=this.fs3
         #fs4=this.fs4
-        `fs4, s
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `dodge, fsc
         `fs4
     """
@@ -82,25 +80,29 @@ class MH_Sarisse(Adv):
                 'sp': 500,
                 'startup': 29 / 60.0, 
                 'recovery': 4 / 60.0,
-                'hit': 3
+                'hit': 3,
+                'pierce': 2
             },
             'fs2': {
                 'dmg': 0.84,
                 'sp': 710,
                 'startup': (29+43) / 60.0,
-                'hit': 3
+                'hit': 3,
+                'pierce': 2
             },
             'fs3': {
                 'dmg': 0.94,
                 'sp': 920,
                 'startup': (29+43*2) / 60.0,
-                'hit': 3
+                'hit': 3,
+                'pierce': 2
             },
             'fs4': {
                 'dmg': 1.29,
                 'sp': 1140,
                 'startup': (29+43*3) / 60.0,
-                'hit': 4
+                'hit': 4,
+                'pierce': 2
             }
         }
         for n, c in conf_alt_fs.items():
@@ -119,15 +121,18 @@ class MH_Sarisse(Adv):
         this.__dict__['a_'+name].getdoing().cancel_by.append(name)
         this.__dict__['a_'+name].getdoing().interrupt_by.append(name)
         this.fs_before(e)
-        for _ in range(this.conf[name+'.hit']):
-            # does big hit + small hit
-            this.dmg_make('fs', this.conf[name+'.dmg'], 'fs')
-            this.hits += 1
-        # for _ in range(int(this.conf[name+'.hit']/2)):
-            this.dmg_make('fs', this.conf[name+'.dmg']*0.3, 'fs')
-            this.hits += 1
+        fs_hits = 0
+        for p in range(this.conf[name+'.pierce']):
+            coef = this.conf[name+'.dmg']*(0.3**p)
+            if coef < 0.01:
+                break
+            for _ in range(this.conf[name+'.hit']):
+                this.dmg_make('fs', coef, 'fs')
+                fs_hits += 1
         if name == 'fs4':
-            this.hits = 8
+            this.hits = fs_hits
+        else:
+            this.hits += fs_hits
         this.fs_proc(e)
         this.think_pin('fs')
         this.charge(name,this.conf[name+'.sp'])
