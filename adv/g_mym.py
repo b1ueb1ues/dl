@@ -1,6 +1,7 @@
 import adv.adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return G_Mym
@@ -9,12 +10,13 @@ class G_Mym(Adv):
     comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
-    conf['slot.a'] = RR()+BN()
+    conf['slot.a'] = Mega_Friends()+BN()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
-        `s2, fsc
-        `fs, seq=5
+        `s2,fsc
+        `fs, x=1
         """
 
     def d_slots(this):
