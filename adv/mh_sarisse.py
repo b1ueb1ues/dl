@@ -6,6 +6,29 @@ from slot.d import *
 def module():
     return MH_Sarisse
 
+class FS_Speedable(Action):
+    def __init__(this, name=None, conf=None, act=None):
+        super().__init__(name, conf, act)
+        this.atype = 'fs'
+        this.interrupt_by = ['s']
+        this.cancel_by = ['s','dodge']
+        this.fs_speed = 1.2
+        this.t_fs_speed = Timer(this.fs_speed_off)
+        this.l_fs_speed= Listener('fs_speed_buff', this.fs_speed_on)
+
+    def fs_speed_on(this, e):
+        print('fs_speed_on', now())
+        this.fs_speed = 1.5
+        this.t_fs_speed = this.t_fs_speed.on(30)
+
+    def fs_speed_off(this, t):
+        this.fs_speed = 1.2
+
+    def getstartup(this):
+        startup = super().getstartup()
+        # might be additive with regular atk speed, not sure
+        return startup / this.fs_speed
+
 class MH_Sarisse(Adv):
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)
@@ -18,7 +41,7 @@ class MH_Sarisse(Adv):
         #fs3=this.fs3
         #fs4=this.fs4
         `s1
-        `s2
+        `s2, not this.s2_spd_boost.online
         `s3
         `dodge, fsc
         `fs4
@@ -54,10 +77,8 @@ class MH_Sarisse(Adv):
         }
         for n, c in conf_alt_fs.items():
             this.conf[n] = Conf(c)
-            act = Action(n, this.conf[n])
-            act.atype = 'fs'
-            act.interrupt_by = ['s']
-            act.cancel_by = ['s','dodge']
+            act = FS_Speedable(n, this.conf[n])
+            this.s2_spd_boost = act.t_fs_speed
             this.__dict__['a_'+n] = act
         
         this.l_fs1 = Listener('fs1',this.l_fs1)
@@ -102,14 +123,14 @@ class MH_Sarisse(Adv):
 
     def prerun(this):
         this.s1_fs_boost = Selfbuff('s1', 1.00, -1, 'fs', 'buff')
-        this.s2_spd_boost = Spdbuff('s2', 0, 30) # update this to affect FS start up only???
 
     def s1_proc(this, e):
         if not this.s1_fs_boost.get():
             this.s1_fs_boost.on()
     
     def s2_proc(this, e):
-        this.s2_spd_boost.on()
+        print('s2_proc', now())
+        Event('fs_speed_buff')()
 
     def fs_proc(this, e):
         this.s1_fs_boost.off()
