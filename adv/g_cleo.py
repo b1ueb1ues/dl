@@ -22,43 +22,14 @@ class G_Cleo(Adv):
     conf['acl'] = """
         `s2, pin='prep'
         `fs, s1.charged>=s1.sp and this.fsa_charge
-        `s2, x=5 and cancel
-        `s1, fsc or s=2
+        `s2, x=5 or x=4 or fsc
+        `s1, s=2 or fsc
         `s3, x=5 or fsc
         """
 
-    # def d_acl(this):
-    #     if 'blade' in this.ex:
-    #         pass
-    #     if this.condition('always in a1'):
-    #         this.conf['acl'] = """
-    #             `rotation
-    #             """
-    #         if 'bow' in this.ex:
-    #             this.conf['rotation_init'] = """
-    #                 s3s2s1
-    #             """
-    #             this.conf['rotation'] = """
-    #                 c5c4fss1
-    #                 c5s2c4fss1
-    #             """
-    #         else:
-    #             this.conf['rotation_init'] = """
-    #                 s3s2s1
-    #                 c5c4fss1
-    #             """
-    #             this.conf['rotation'] = """
-    #                 c5c4fss1
-    #                 c5s2c5fss1
-    #             """
-              #  this.conf['rotation_init'] = """
-              #      s2s1
-              #  """
-              #  this.conf['rotation'] = """
-              #      c5c4fss1
-              #      c5c5s2fss1
-              #  """
-
+    def d_slots(this):
+        if 'bow' in this.ex:
+            this.slots.a = CC()+Primal_Crisis()
 
     def prerun(this):
         this.a1_buffed = this.condition('always in a1')
@@ -93,7 +64,6 @@ class G_Cleo(Adv):
         this.s1p += 1
         if this.s1p > 3 :
             this.s1p = 1
-
         if this.s1p == 1:
             Timer(this.s1_dmg).on((42.0 + 12*0 )/60)
             Timer(this.s1_dmg).on((42.0 + 12*1 )/60)
