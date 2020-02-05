@@ -100,7 +100,7 @@ def run_adv_test():
     teamdps = abs(float(params['teamdps'])) if 'teamdps' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
     log = -2
-    mass = 1 if adv_name in MASS_SIM_ADV else 0
+    mass = 25 if adv_name in MASS_SIM_ADV else 0
     print(adv_name, MASS_SIM_ADV)
 
     adv.adv_test.set_ex(ex)

@@ -22,7 +22,7 @@ if not sys.argv[0].endswith('flask') and len(sys.argv) >= 3:
     else:
         sim_duration = int(sys.argv[2])
         page = sys.argv[2]
-sim_times = 25
+sim_times = 1000
 
 team_dps = 16000
 #team_dps = 5000
