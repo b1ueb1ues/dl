@@ -54,7 +54,7 @@ class FS_Speedable(Action):
         return this.tap()
 
 class MH_Sarisse(Adv):
-    comment = 'assumed 4 big hits 4 small hits for fs4; hard to keep combo with full fs4'
+    comment = 'fs hit count vary on distance and enemy size; extra hits do 70% less damage than previous hits'
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)
 
@@ -74,6 +74,7 @@ class MH_Sarisse(Adv):
     conf['slot.d'] = Dragonyule_Jeanne()
 
     def init(this):
+        default_pierce = 2 if this.condition('lance+ distance from HBH sized enemy') else 1
         conf_alt_fs = {
             'fs1': {
                 'dmg': 0.74,
@@ -81,28 +82,28 @@ class MH_Sarisse(Adv):
                 'startup': 29 / 60.0, 
                 'recovery': 4 / 60.0,
                 'hit': 3,
-                'pierce': 2
+                'pierce': default_pierce
             },
             'fs2': {
                 'dmg': 0.84,
                 'sp': 710,
                 'startup': (29+43) / 60.0,
                 'hit': 3,
-                'pierce': 2
+                'pierce': default_pierce
             },
             'fs3': {
                 'dmg': 0.94,
                 'sp': 920,
                 'startup': (29+43*2) / 60.0,
                 'hit': 3,
-                'pierce': 2
+                'pierce': default_pierce
             },
             'fs4': {
                 'dmg': 1.29,
                 'sp': 1140,
                 'startup': (29+43*3) / 60.0,
                 'hit': 4,
-                'pierce': 2
+                'pierce': default_pierce
             }
         }
         for n, c in conf_alt_fs.items():
@@ -124,10 +125,11 @@ class MH_Sarisse(Adv):
         fs_hits = 0
         for p in range(this.conf[name+'.pierce']):
             coef = this.conf[name+'.dmg']*(0.3**p)
+            coef_name = 'fs' if p == 0 else 'o_fs_extra_{}'.format(p)
             if coef < 0.01:
                 break
             for _ in range(this.conf[name+'.hit']):
-                this.dmg_make('fs', coef, 'fs')
+                this.dmg_make(coef_name, coef, 'fs')
                 fs_hits += 1
         if name == 'fs4':
             this.hits = fs_hits
