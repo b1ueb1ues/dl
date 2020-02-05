@@ -13,7 +13,7 @@ class Emma(Adv):
 
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = Lunar_Festivities()+FWHC()
+    conf['slot.a'] = Sisters_Day_Out()+FWHC()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1, cancel
