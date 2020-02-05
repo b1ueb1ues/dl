@@ -20,7 +20,7 @@ class Sinoa(adv.Adv):
         '''
 
     def prerun(this):
-        this.s1_buff_mode = 'alternate'
+        this.s1_buff_mode = 'means'
         this.prev_buff = 'crit'
 
     def s1_proc(this, e):
