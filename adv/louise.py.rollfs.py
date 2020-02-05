@@ -7,7 +7,7 @@ def module():
     return Louise
 
 class Louise(louise.Louise):
-    comment = 'rollfs'
+    comment = 'roll fs'
     
     def init(this):
         this.conf.mod = {'ex':('sp','passive',0.15)}

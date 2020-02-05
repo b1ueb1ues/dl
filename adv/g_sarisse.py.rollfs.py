@@ -7,6 +7,7 @@ def module():
     return G_Sarisse
 
 class G_Sarisse(adv.g_sarisse.G_Sarisse):
+    comment = 'roll fs'
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
