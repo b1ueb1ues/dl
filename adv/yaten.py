@@ -11,20 +11,12 @@ def module():
 class Yaten(adv.Adv):
     conf = {}
     conf['slot.a'] = HoH()+JotS()
-
     conf['acl'] = """
         `s1
         `s2, fsc and this.energy() < 4
         `fs, seq=3
         """
 
-    #conf['slot.a'] = HoH()+JotS()
-    #conf['slot.a'] = The_Shining_Overlord()+ The_Petal_Queen()
-    #conf['slot.a'] = The_Shining_Overlord()+ Halidom_Grooms()
-    #conf['slot.d'] = Marishiten()
-
-
-    conf = {}
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = TSO()+BN()

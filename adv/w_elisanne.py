@@ -9,8 +9,9 @@ def module():
 
 class W_Elisanne(Adv):
     comment = '2in1'
-    
-    conf = {}
+    a1 = ('sp',0.08)
+    a3 = ('bc',0.13)
+
     conf = {}
     conf['acl'] = """
         `s1,fsc and s2.charged<s2.sp-749
@@ -23,11 +24,6 @@ class W_Elisanne(Adv):
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = TSO()+FRH()
-        else:
-            this.conf.slot.a = TSO()+JotS()
-
-    a1 = ('sp',0.08)
-    a3 = ('bc',0.13)
 
     def prerun(this):
         this.s2debuff = Debuff('s2defdown',0.15,10,1)

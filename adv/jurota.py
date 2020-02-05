@@ -7,9 +7,6 @@ def module():
 
 class Jurota(adv.Adv):
     a1 = ('bk',0.2)
-    #comment = 'reach 100 resist with Saintly Delivery'
-    #conf = {}
-    #conf['slots.a'] = Saintly_Delivery()+RR()
     conf = {}
     conf['acl'] = """
         `s1

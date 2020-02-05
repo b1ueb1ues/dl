@@ -2,9 +2,9 @@ import adv.adv_test
 from adv import *
 
 def module():
-    return Sufang
+    return Su_Fang
 
-class Sufang(Adv):
+class Su_Fang(Adv):
     a3 = ('s',0.20)
     conf = {}
     conf['acl'] = """

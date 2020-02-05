@@ -17,9 +17,6 @@ class D_Cleo(adv.Adv):
         `fs, seq=5
         """
 
-    conf = {}
-    #conf['slot.d'] = DJ()
-
     def init(this):
         if this.condition('energy'):
             this.prerun = this.c_prerun
