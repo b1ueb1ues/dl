@@ -7,7 +7,6 @@ def module():
     return Chelsea
 
 class Chelsea(adv.chelsea.Chelsea):
-
     def d_slots(this):
         this.slots.d = Dreadking_Rathalos()
         this.slots.a = The_Lurker_in_the_Woods()+Dear_Diary()

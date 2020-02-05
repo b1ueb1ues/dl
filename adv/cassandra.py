@@ -8,7 +8,7 @@ def module():
 class Cassandra(Adv):
     comment = 'no counter damage; s2 drops combo'
     a1 = ('prep_charge','5%')
-    a3 = ('ro',(0.15, 60))
+    a3 = ('ro', 0.15)
 
     conf = {}
     conf['slots.a'] = CC()+TP()

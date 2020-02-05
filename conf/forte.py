@@ -14,9 +14,7 @@ def c(ele,wt):
     if wt :
         r += 0.30
 
-    if wt == 'dagger':
-        r += 0.05
-    elif wt == 'bow':
+    if wt == 'dagger' or wt == 'bow':
         r += 0.05
 
     return 1+r

@@ -123,19 +123,19 @@ class Ability(object):
             if isinstance(value, tuple) and len(value) == 2:
                 buff_value, timing = value
             else:
-                buff_value, timing = value, 30
-            if adv.condition('RO proc at 0s {}s {}s'.format(timing, timing*2)):
+                buff_value, timing = value, 90
+            if adv.condition('hp30 every {}s'.format(timing)):
                 def ro_buff(t):
                     adv.Buff('resilient_offense',buff_value, -1).on()
                 ro_buff(0)
-                adv.Timer(ro_buff).on(timing)
-                adv.Timer(ro_buff).on(timing*2)
+                for i in range(1, 3):
+                    adv.Timer(ro_buff).on(timing*i)        
         elif name == 'uo':
             if isinstance(value, tuple) and len(value) == 2:
                 buff_value, timing = value
             else:
                 buff_value, timing = value, 20
-            if adv.condition('UO proc every {}s'.format(timing)):
+            if adv.condition('hp70 every {}s'.format(timing)):
                 def uo_buff(t):
                     adv.Buff('unyielding_offense',buff_value, -1).on()
                 uo_buff(0)
