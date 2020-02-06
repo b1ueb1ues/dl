@@ -100,7 +100,7 @@ class Euden(adv.Adv):
         this.sd_boost = 0
 
     def l_d(this, e):
-        this.dmg_make('o_d_ss',this.dragonboost*1.5)
+        this.dmg_make('o_d_ss',this.dragonboost*2.0)
         this.d_skill(this)
         this.dmg_make('o_d_autos',this.dragonboost*this.dragon_config['autos'])
 

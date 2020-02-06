@@ -30,6 +30,7 @@ conf = {
     'x5.sp': 600,
     'x5.startup': 0,
     'x5.recovery': 35 / 60.0,
+    # 'x5.recovery': 67 / 60.0,
     'x5.hit': 1,
 
     'fs._startup': 0,
@@ -37,9 +38,11 @@ conf = {
 
     'fs.dmg': 30*5 / 100.0,
     'fs.sp': 400,
-    'fs.startup': 49 / 60.0,
-    'fs.recovery': 25 / 60.0,
+    'fs.startup': 35 / 60.0,
+    'fs.recovery': 36 / 60.0,
     'fs.hit': 5,
+
+    'x1fs.startup': 51 / 60.0, # 16 delay + fs
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
@@ -52,3 +55,14 @@ lv2 = {
     'x4.dmg': 165 / 100.0,
     'x5.dmg': 123.2 / 100.0,
 }
+
+# Lance FS Framedata
+# Roll: 36
+# FS: 8 (Charge) + 7 (FS1) + 4 (FS2) + 7 (FS3) + 4 (FS4) + 5 (FS5) + 36 (Recovery)
+
+# C1FS: 9 (C1) + 16 (FS Delay) + FS
+# C2FS: 9 (C1) + 31 (C2A) + 10 (C2B)  + FS
+
+# Roll FS: Fish Roll + Rice FS (no interactions)
+
+# Pretty confident there is no FS Delay for further combo, too.

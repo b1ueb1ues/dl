@@ -3,7 +3,7 @@ conf = {
 
     'x1.dmg': 75 / 100.0,
     'x1.sp': 150,
-    'x1.startup': 9 / 60.0,
+    'x1.startup': 11 / 60.0,
     'x1.recovery': 26 / 60.0,
     'x1.hit': 1,
 
@@ -33,12 +33,12 @@ conf = {
 
     'fs.dmg': 115 / 100.0,
     'fs.sp': 345,
-    'fs.startup': 19 / 60.0,
-    'fs.recovery': 21 / 60.0,
+    'fs.startup': 11 / 60.0,
+    'fs.recovery': 18 / 60.0,
     'fs.hit': 1,
 
-    'x1fs.startup': 39 / 60.0,
-    'x1fs.recovery': 21 / 60.0,
+    'x1fs.startup': 26 / 60.0, # 15 delay + 11
+    'x2fs.startup': 12 / 60.0, # 1 delay + 11
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
@@ -51,3 +51,13 @@ lv2 = {
     'x4.dmg': 120 / 100.0,
     'x5.dmg': 180 / 100.0,
 }
+
+# Sword FS Framedata - MsNyara
+# Roll: 36
+# FS: 2 (Charge) + 9 (Hit) + 18 (Recovery)
+
+# C1FS: 11 (Hit) + 15 (FS Delay) + FS
+# C2FS: 11 (Hit 1) + 26 (Hit 2) + 1 (FS Delay) + FS
+# Roll FS: Roll... +... FS, no delays
+
+# Suspected: There is no FS Delay for C3, C4 or C5.

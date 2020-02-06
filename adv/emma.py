@@ -13,16 +13,15 @@ class Emma(Adv):
 
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = Sisters_Day_Out()+FWHC()
+    conf['slot.a'] = Castle_Cheer_Corps()+FWHC()
     conf['acl'] = """
+        `fs, this.fs_prep_c==3
         `s3, not this.s3_buff_on
         `s1, cancel
-        `fs, x=1
+        `fs, x=5
         """
 
     def init(this):
-        comment = 'no s2'
-        energy.Energy(this,{},{})
         if this.condition('buff all team'):
             this.s1_proc = this.c_s1_proc
 
@@ -38,5 +37,5 @@ class Emma(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)
 

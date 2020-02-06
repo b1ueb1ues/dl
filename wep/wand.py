@@ -3,7 +3,7 @@ conf = {
 
     'x1.dmg': 0.98,
     'x1.sp': 130,
-    'x1.startup': 18/60.0,
+    'x1.startup': 15/60.0,
     'x1.recovery': 33/60.0,
     'x1.hit': 1,
 
@@ -37,9 +37,12 @@ conf = {
 
     'fs.dmg': 0.9*2,
     'fs.sp': 400,
-    'fs.startup': 42/60.0,
-    'fs.recovery': 81/60.0,
+    'fs.startup': 43 / 60.0, # 30f for 2nd hit not considered
+    'fs.recovery': 46 / 60.0,
     'fs.hit': 2,
+
+    'x1fs.startup': 54 / 60.0, # 11 delay + fs
+    'x2fs.startup': 50 / 60.0, # 7 delay + fs
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
@@ -67,3 +70,13 @@ lv2 = {
     'x4.dmg': 0.897*2,
     'x5.dmg': (0.414575*4)+0.7107,
 }
+
+# Wand FS Framedata - MsNyara
+# Roll: 36
+# FS: 28 (Charge) + 15 (FS1) + 30 (FS2) + 46 (Recovery, from FS1, since it is a projectile)
+# FS to FS Recovery (from FS1): 99
+
+# C1FS: 15 (C1) + 11 (FS Delay) + FS
+# C2FS: 15 (C1) + 33 (C2) + 7 (FS Delay) + FS
+
+# Note #1: You cannot dodge or skill cancel before FS1 connects. Not perfectly verified, but dodge 1 frame after worked fine (FS2 wasn't lost neither) and with dodge 2 frames before hit the whole FS was lost, so I have little doubts you cannot cancel before FS1 hit. This was tested in MG. Obviously hit timings are going to vary if you are attacking from distance (and size of the objective, for FS2), by which case the projectile (since it is a proper one) is generated at the same timing as FS1 Hit and it is safe to cancel then.

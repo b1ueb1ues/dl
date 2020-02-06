@@ -33,15 +33,18 @@ conf = {
 
     'fs.dmg': 0.31*8,
     'fs.sp': 460,
-    'fs.startup': 63 / 60.0, 
-    'fs.recovery': 37 / 60.0, 
+    'fs.startup': 65 / 60.0, 
+    'fs.recovery': 43 / 60.0, 
     'fs.hit': 8,
+
+    'x1fs.startup': 67 / 60.0, # 2 delay + fs
+    'x2fs.startup': 50 / 60.0, # 7 delay + fs
 
     'fsf.startup': 0, 
     'fsf.recovery': 32 / 60.0, 
 
-    'dfs.startup': (86-36) / 60.0, # ???
-    'dfs.recovery': 37 / 60.0,
+    # 'dfs.startup': (86-36) / 60.0, # ???
+    # 'dfs.recovery': 37 / 60.0,
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
 
@@ -62,3 +65,14 @@ lv2 = {
     'x4.dmg': 0.7875*2,
     'x5.dmg': 0.4375*5,
 }
+
+# Bow FS Framedata - MsNyara
+# Roll: 36
+# FS: 20 (Charge) + 45 (Projectile Creation) + 43 (Recovery, from Projectile Creation)
+# FS Hits (from Projectile Creation): 42 + 7 + 9 + 7 + 9 + 7 + 9 + 8
+# FS to FS Recovery (from Projectile Creation): ?
+
+# C1FS: 22 (C1) + 2 (FS Delay) + FS
+# C2FS: 22 (C1) + 20 (C2A) + 13 (C2B) + FS
+
+# I suspect there is no FS Delay for following combos. All C1 hits lands at the same frame, too. If you cancel before projectile creation you lost it altogether.

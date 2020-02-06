@@ -46,7 +46,7 @@ class Audric(Adv):
 
     def l_d(this, e):
         with Modifier("a3_crit", "crit", "chance", 0.30):
-            this.dmg_make('o_d_ss',this.dragonboost*1.5)
+            this.dmg_make('o_d_ss',this.dragonboost*2.0)
             this.dmg_make('o_d_atk',this.dragonboost*29.22)
             this.dmg_make('o_d_skl',this.dragonboost*4.90,'s')
             # Bleed("marishiten_bleed", 1.46).on()

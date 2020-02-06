@@ -4,7 +4,7 @@ conf = {
 
     'x1.dmg': 0.69,
     'x1.sp': 232,
-    'x1.startup': 18/60.0,
+    'x1.startup': 16/60.0,
     'x1.recovery': 29/60.0,
     'x1.hit': 1,
 
@@ -38,20 +38,33 @@ conf = {
 
     'fs.dmg': 0.61*4,
     'fs.sp': 580,
-    'fs.startup': 42/60.0,
-    'fs.recovery': 240/60.0,
+    'fs.startup': 124 / 60.0,
+    'fs.recovery': 40 / 60.0,
     'fs.hit': 4,
+
+    'x1fs.startup': 133 / 60.0, # 9 delay + fs
+    'x2fs.startup': 130 / 60.0, # 6 delay + fs
+
+    'dfs.dmg': 0.61, # represents 1 hit fs from early dodge
+    'dfs.startup': 66 / 60.0,
+    'dfs.hit': 1,
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
 
     'missile_iv': {
-        'fs': 0.7/2,
-        'x1': 0.7,
-        'x2': 0.7,
-        'x3': 0.7,
-        'x4': 0.7,
-        'x5': 0.7,
+        # 'fs': 0.7/2,
+        # 'x1': 0.7,
+        # 'x2': 0.7,
+        # 'x3': 0.7,
+        # 'x4': 0.7,
+        # 'x5': 0.7,
+        'fs': 0,
+        'x1': 0,
+        'x2': 0,
+        'x3': 0,
+        'x4': 0,
+        'x5': 0,
     }, 
 }
 
@@ -62,3 +75,11 @@ lv2 = {
     'x4.dmg': 180 / 100.0,
     'x5.dmg': 235.2 / 100.0,
 }
+
+# Staff FS Framedata - MsNyara
+# Roll: 36
+# FS: 24 (Charge) + 42 (FS1) + 22 (FS2) + 22 (FS3) + 14 (FS4) + 40 (Recovery)
+# Roll FS: No Interactions Blah.
+
+# C1FS: 16 (C1) + 9 (FS Delay) + FS
+# C2FS: 16 (C1) + 29 (C2) +  6 (FS Delay) + FS

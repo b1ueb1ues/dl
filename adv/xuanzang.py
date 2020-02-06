@@ -11,18 +11,17 @@ class Xuanzang(Adv):
     a3 = ('cc',0.06,'hp70')
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = RR()+Jewels_of_the_Sun()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, cancel
-        `fs, seq=1
+        `fs, seq=4
         """
 
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = RR()+JotS()
-        else:
-            this.conf.slot.a = RR()+BN()
 
     def s1_proc(this, e):
         if this.mod('def')!= 1:

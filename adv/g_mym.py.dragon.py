@@ -30,7 +30,7 @@ class G_Mym(Adv):
 
 
     def l_d1(this, e):
-        this.dmg_make('o_d_ss',this.dragonboost*1.5)
+        this.dmg_make('o_d_ss',this.dragonboost*2.0)
         this.dmg_make('o_d_atk',this.dragonboost*37.85)
         this.dmg_make('o_d_skl',this.dragonboost*7.56,'s')
 

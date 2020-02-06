@@ -73,7 +73,7 @@ class G_Cleo(adv.g_cleo.G_Cleo):
         Debuff('s2',0.10,20).on()
 
     def fs_proc(this, e):
-        if this.fsa_charge:
+        if this.fsa_charge and this.a1_buffed:
             Debuff('a1_str',-0.25,10,1,'att','buff').on()
             Debuff('a1_str',-0.25,10,1,'att','buff').on()
             Debuff('a1_str',-0.25,10,1,'att','buff').on()

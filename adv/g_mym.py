@@ -15,8 +15,8 @@ class G_Mym(Adv):
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
-        `s2,fsc
-        `fs, x=1
+        `s2, fsc
+        `fs, x=4
         """
 
     def d_slots(this):

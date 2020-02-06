@@ -33,15 +33,15 @@ conf = {
 
     'fs.dmg': 47*3 / 100.0,
     'fs.sp': 288,
-    'fs.startup': 54 / 60.0,
+    'fs.startup': 38 / 60.0,
     'fs.recovery': 14 / 60.0,
     'fs.hit': 3,
 
-    'x1fs.startup': 62 / 60.0,
-    'x2fs.startup': 52 / 60.0,
-    'x3fs.startup': 56 / 60.0,
-    'x4fs.startup': 54 / 60.0,
-    'x5fs.startup': 64 / 60.0,
+    'x1fs.startup': 50 / 60.0, # 12 delay + 38
+    # 'x2fs.startup': 52 / 60.0,
+    # 'x3fs.startup': 56 / 60.0,
+    # 'x4fs.startup': 54 / 60.0,
+    # 'x5fs.startup': 64 / 60.0,
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
@@ -54,3 +54,14 @@ lv2 = {
     'x4.dmg': 142.8 / 100.0,
     'x5.dmg': 142.8 / 100.0,
 }
+
+# Dagger FS Framedata - MsNyara
+# Roll: 36
+# FS: 8 (Charge) + 8 (FS1) + 8 (FS2) + 14 (FS3) + 14 (Recovery)
+
+# C1FS: 12 (C1) + 12 (FS Delay) + FS
+# C2AFS: 12 (C1) + 14 (C2A) + 2 (FS Delay) + FS
+# C2BFS: 12 (C1) + 14 (C2A) + 8 (C2B) + FS
+# Roll FS: Roll + FS, no interactions.
+
+# I suspect C3FS and onwad have no FS delay.

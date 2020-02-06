@@ -13,9 +13,9 @@ class Heinwald(Adv):
     conf = {}
     conf['acl'] = """
         `s2, pin='prep'
-        `s2, seq=5
-        `s1, seq=5 or s=2
-        `s3
+        `s2, cancel
+        `s1, cancel
+        `s3, cancel
         """
 
     def init(this):
