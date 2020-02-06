@@ -22,7 +22,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Helpers
-ADV_DIR = '/home/wildshinobu/dl/adv/'
+ROOT_DIR = '/home/wildshinobu/dl/'
 # MEANS_ADV = {
 #     'addis': 'addis.py.means',
 #     'sazanka': 'sazanka.py.means',
@@ -30,23 +30,36 @@ ADV_DIR = '/home/wildshinobu/dl/adv/'
 #     'victor': 'victor.py.m',
 # }
 
+NORMAL_ADV = []
 MASS_SIM_ADV = []
-with open(ADV_DIR+'../chara_slow.txt') as f:
+SPECIAL_ADV = {}
+
+with open(ROOT_DIR+'chara_quick.txt') as f:
+    for l in f:
+        NORMAL_ADV.append(l.strip().replace('.py', ''))
+
+with open(ROOT_DIR+'chara_slow.txt') as f:
     for l in f:
         MASS_SIM_ADV.append(l.strip().replace('.py', ''))
 
+with open(ROOT_DIR+'chara_sp_quick.txt') as f:
+    for l in f:
+        adv_name = l.strip().replace('.py', '-')
+        SPECIAL_ADV[adv_name] = l
+
 def get_adv_module(adv_name):
-    # if adv_name in MEANS_ADV:
-    #     with open('{}{}.py'.format(ADV_DIR, MEANS_ADV[adv_name]), 'rb') as fp:
-    #         return imp.load_module(
-    #             adv_name, fp, MEANS_ADV[adv_name],
-    #             ('.py', 'rb', imp.PY_SOURCE)
-    #         ).module()
-    # else:
-    return getattr(
-        __import__('adv.{}'.format(adv_name.lower())),
-        adv_name.lower()
-    ).module()
+    if adv_name in SPECIAL_ADV:
+        fn = SPECIAL_ADV[adv_name]
+        with open('{}{}'.format(ROOT_DIR+'adv/', fn), 'rb') as fp:
+            return imp.load_module(
+                adv_name, fp, fn,
+                ('.py', 'rb', imp.PY_SOURCE)
+            ).module()
+    else:
+        return getattr(
+            __import__('adv.{}'.format(adv_name.lower())),
+            adv_name.lower()
+        ).module()
 
 
 def is_amulet(obj):
@@ -209,13 +222,7 @@ def get_adv_wp_list():
     if not (request.method == 'GET' or request.method == 'POST'):
         return 'Wrong request method.'
     result = {}
-    result['adv'] = []
     result['amulets'] = list_members(slot.a, is_amulet)
-    py_pattern = re.compile(r'([A-Za-z_]*)\.py')
-    for f in listdir(ADV_DIR):
-        if f == 'adv_test.py' or f == '__init__.py':
-            continue
-        match = py_pattern.fullmatch(f)
-        if isfile(join(ADV_DIR, f)) and match is not None:
-            result['adv'].append(match.group(1))
+    result['adv'] = NORMAL_ADV+MASS_SIM_ADV
+    result['adv-special'] = SPECIAL_ADV
     return jsonify(result)
