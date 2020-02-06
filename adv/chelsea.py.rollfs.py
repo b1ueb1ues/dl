@@ -13,26 +13,20 @@ class Dear_Diary(Amulet):
 
 class Chelsea(adv.chelsea.Chelsea):
     comment = 'roll fs; only use s1 3 times to proc RO at'
-
-    def d_slots(this):
-        this.slots.d = Dreadking_Rathalos()
-        this.slots.a = The_Lurker_in_the_Woods()+Dear_Diary()
-
-    def d_acl(this):
-        this.conf['acl'] = """
-            `s3,not this.s3_buff_on
-            `s2,fsc
-            `s1,fsc and this.hp < 30 and this.ro_charges > 0
-            `dodge, fsc
-            `fs
-        """
+    conf = adv.chelsea.Chelsea.conf
+    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
+    conf['acl'] = """
+        `s3,not this.s3_buff_on
+        `s2,fsc
+        `s1,fsc and this.hp < 30 and this.ro_charges > 0
+        `dodge, fsc
+        `fs
+    """
 
     def prerun(this):
         super().prerun()
         this.ro_charges = 3
-        # adv.Buff('resilient_offense',0.10, -1).on()
-        # this.comment += ' 0s'
-        # this.hp = 20
 
     def dmg_before(this, name):
         hpold = this.hp

@@ -1,8 +1,5 @@
 import io
 import inspect
-from os import listdir
-from os.path import isfile, join
-import re
 import imp
 
 from contextlib import redirect_stdout
@@ -11,7 +8,6 @@ from flask import request
 from flask import jsonify
 from flask_cors import CORS
 
-from core.advbase import Adv as adventurer
 import adv.adv_test
 import adv
 import slot.a
@@ -23,16 +19,14 @@ CORS(app)
 
 # Helpers
 ROOT_DIR = '/home/wildshinobu/dl/'
-# MEANS_ADV = {
-#     'addis': 'addis.py.means',
-#     'sazanka': 'sazanka.py.means',
-#     'sinoa': 'sinoa.py.means',
-#     'victor': 'victor.py.m',
-# }
+MEANS_ADV = {
+    'addis': 'addis.py.means.py',
+    'sazanka': 'sazanka.py.means.py',
+    'victor': 'victor.py.m.py',
+}
 
-NORMAL_ADV = []
+NORMAL_ADV = ['h_lowen.py']
 MASS_SIM_ADV = []
-SPECIAL_ADV = {}
 
 with open(ROOT_DIR+'chara_quick.txt') as f:
     for l in f:
@@ -42,14 +36,34 @@ with open(ROOT_DIR+'chara_slow.txt') as f:
     for l in f:
         MASS_SIM_ADV.append(l.strip().replace('.py', ''))
 
-with open(ROOT_DIR+'chara_sp_quick.txt') as f:
-    for l in f:
-        adv_name = l.strip().replace('.py', '-')
-        SPECIAL_ADV[adv_name] = l
+# ???
+# audric.py.dragon.py
+# g_mym.py.dragon.py
+# euden.py.dragon.py
+# euden.py.dragon.sakuya.py
+# lathna.py.dragon.py
+
+SPECIAL_ADV = {
+    'chelsea_rollfs': {
+        'fn': 'chelsea.py.rollfs.py',
+        'nc': ['wp']
+    },
+    'g_cleo_ehjp': {
+        'fn': 'g_cleo.py.ehjp.py',
+        'nc': ['wp', 'acl']
+    },
+    'g_luca_maxstacks': {
+        'fn': 'g_luca.py.maxstacks.py',
+        'nc': []
+    }
+}
 
 def get_adv_module(adv_name):
-    if adv_name in SPECIAL_ADV:
-        fn = SPECIAL_ADV[adv_name]
+    if adv_name in SPECIAL_ADV or adv_name in MEANS_ADV:
+        if adv_name in MEANS_ADV:
+            fn = MEANS_ADV[adv_name]
+        else:
+            fn = SPECIAL_ADV[adv_name]['fn']
         with open('{}{}'.format(ROOT_DIR+'adv/', fn), 'rb') as fp:
             return imp.load_module(
                 adv_name, fp, fn,
@@ -113,8 +127,16 @@ def run_adv_test():
     teamdps = abs(float(params['teamdps'])) if 'teamdps' in params else None
     t   = abs(int(params['t']) if 't' in params else 180)
     log = -2
-    mass = 25 if adv_name in MASS_SIM_ADV else 0
-    print(adv_name, MASS_SIM_ADV)
+    mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
+    print(params)
+
+    if adv_name in SPECIAL_ADV:
+        not_customizable = SPECIAL_ADV[adv_name]['nc']
+        if 'wp' in not_customizable:
+            wp1 = None
+            wp2 = None
+        if 'acl' in not_customizable:
+            acl = None
 
     adv.adv_test.set_ex(ex)
     adv_module = get_adv_module(adv_name)
@@ -211,6 +233,8 @@ def get_adv_slotlist():
             result['adv']['afflict_res'] = adv_instance.conf.cond_afflict_res
         else:
             result['adv']['afflict_res'] = None
+        if result['adv']['name'] in SPECIAL_ADV:
+            result['adv']['no_config'] = SPECIAL_ADV[result['adv']['name']]['nc']
     # result['amulets'] = list_members(slot.a, is_amulet)
     result['dragons'] = list_members(dragon_module, is_dragon, element=adv_ele)
     result['weapons'] = list_members(weap_module, is_weapon, element=adv_ele)
@@ -223,6 +247,5 @@ def get_adv_wp_list():
         return 'Wrong request method.'
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
-    result['adv'] = NORMAL_ADV+MASS_SIM_ADV
-    result['adv-special'] = SPECIAL_ADV
+    result['adv'] = NORMAL_ADV+MASS_SIM_ADV+list(SPECIAL_ADV.keys())
     return jsonify(result)

@@ -194,6 +194,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
 
     f = io.StringIO()
     with redirect_stdout(f):
+        sum_ac()
         logcat()
     r['logs'] = f.getvalue()
 

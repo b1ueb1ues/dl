@@ -267,7 +267,19 @@ function loadAdvSlots() {
                     $('#input-afflict').prop('disabled', true);
                     $('#input-afflict').val(slots.adv.afflict_res);
                 }
-
+                if (slots.adv.no_config != undefined) {
+                    if(slots.adv.no_config.includes('wp')){
+                        $('#input-wp1').prop('disabled', true);
+                        $('#input-wp2').prop('disabled', true);
+                    }
+                    if(slots.adv.no_config.includes('acl')){
+                        $('#input-edit-acl').prop('disabled', true);
+                    }
+                } else {
+                    $('#input-wp1').prop('disabled', false);
+                    $('#input-wp2').prop('disabled', false);
+                    $('#input-edit-acl').prop('disabled', false);
+                }
                 runAdvTest();
             }
         },
