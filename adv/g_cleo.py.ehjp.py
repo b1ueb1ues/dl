@@ -15,7 +15,7 @@ def module():
 
 class G_Cleo(adv.g_cleo.G_Cleo):
     comment = '4 Gleo vs EHJP; with simulated break; no team dps;'
-    conf = adv.g_cleo.G_Cleo.conf
+    conf = adv.g_cleo.G_Cleo.conf.copy()
     conf['slot.a'] = Candy_Couriers()+King_of_the_Skies()
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = "`rotation"

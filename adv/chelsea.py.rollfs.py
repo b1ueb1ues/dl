@@ -13,7 +13,7 @@ class Dear_Diary(Amulet):
 
 class Chelsea(adv.chelsea.Chelsea):
     comment = 'roll fs; only use s1 3 times to proc RO at'
-    conf = adv.chelsea.Chelsea.conf
+    conf = adv.chelsea.Chelsea.conf.copy()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
     conf['acl'] = """
