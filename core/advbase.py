@@ -1175,8 +1175,11 @@ class Adv(object):
                     sp_mod += m.get()
         return sp_mod
 
-    def sp_val(this, name):
-        return this.ceiling(this.float_problem(this.conf[name+'.sp']*this.float_problem(this.sp_mod(name))))
+    def sp_val(this, param):
+        if isinstance(param, str):
+            return this.ceiling(this.float_problem(this.conf[param+'.sp']*this.float_problem(this.sp_mod(param))))
+        elif isinstance(param, int) and 1 <= param <= 5:
+            return sum([this.ceiling(this.float_problem(this.conf['x{}.sp'.format(x)]*this.float_problem(this.sp_mod('x{}'.format(x))))) for x in range(1, param+1)])
 
     def bufftime(this):
         return this.mod('buff')
