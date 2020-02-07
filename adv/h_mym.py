@@ -10,13 +10,13 @@ class H_Mym(Adv):
     a1 = ('cd',0.3)
 
     conf = {}
-    conf['slots.a'] = KFM()+JotS()
+    conf['slots.a'] = KFM()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
-        `s2, x=5 or fsc
-        `fs, x=5
+        `s2
+        `fs, x=1
     """
 
     def prerun(this):

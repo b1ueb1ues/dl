@@ -10,7 +10,7 @@ class G_Mym(Adv):
     comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
-    conf['slot.a'] = Mega_Friends()+BN()
+    conf['slot.a'] = Resounding_Rendition()+BN()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
