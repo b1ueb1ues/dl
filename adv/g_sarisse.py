@@ -1,8 +1,8 @@
 import adv.adv_test
 import adv
 from adv import *
-import slot
 from slot.a import *
+from slot.d import *
 
 def module():
     return G_Sarisse
@@ -10,9 +10,11 @@ def module():
 class G_Sarisse(adv.Adv):
     a3 = ('bt',0.3)
     conf = {}
+    conf['slot.d'] = Sakuya()
+    conf['slot.a'] = Forest_Bonds()+Dear_Diary()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
-        `s1
+        `s3, fsc and not this.s3_buff_on
+        `s1, cancel
         `s2, fsc
         `fs, seq=4
     """

@@ -1,6 +1,7 @@
 import adv.adv_test
 from adv import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Renelle
@@ -9,12 +10,13 @@ class Renelle(Adv):
     a1 = ('cc',0.15,'hit15')
     conf = {}
     conf['cond_afflict_res'] = 0
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = TB()+EE()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1, cancel
-        `s2, cancel
-        `fs, x=5
+        `s1, fsc
+        `s2, fsc
+        `fs, x=2
         """
 
     def prerun(this):

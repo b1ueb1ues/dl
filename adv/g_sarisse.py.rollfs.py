@@ -11,9 +11,9 @@ class G_Sarisse(adv.g_sarisse.G_Sarisse):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
-        `s1,fsc
-        `s2,fsc
+        `s3, fsc and not this.s3_buff_on
+        `s1, fsc
+        `s2, fsc
         `dodge, fsc
         `fs
     """

@@ -1,18 +1,19 @@
 import adv.adv_test
 import adv
 from slot.a import *
-
+from slot.d import *
 def module():
     return Marty
 
 class Marty(adv.Adv):
     a1 = ('sp',0.05)
     conf = {}
-    conf['slots.a'] = TSO()+BN()
+    conf['slots.a'] = Mega_Friends()+BN()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
-        `s1,fsc
-        `fs, seq=3
+        `s3, fsc and not this.s3_buff_on
+        `s1, fsc
+        `fs, seq=2
         """
 
 

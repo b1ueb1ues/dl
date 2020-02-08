@@ -39,7 +39,7 @@ def set(slots):
         else:
             slots.a = TB()+LC()
     if wt == 'axe':
-        slots.a = KFM()+CE()
+        slots.a = KFM()+FitF()
     if wt == 'lance': 
         slots.a = RR()+BN()
         #slots.a = LC()+Dragon_and_Tamer()

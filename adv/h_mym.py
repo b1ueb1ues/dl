@@ -16,7 +16,7 @@ class H_Mym(Adv):
         `s3, not this.s3_buff_on
         `s1
         `s2
-        `fs, x=1
+        `fs, x=5
     """
 
     def prerun(this):
@@ -44,4 +44,4 @@ class H_Mym(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2, mass=0)
+    adv.adv_test.test(module(), conf, verbose=0, mass=0)

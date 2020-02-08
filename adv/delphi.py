@@ -14,9 +14,9 @@ class Delphi(Adv):
     conf['slot.a'] = Mega_Friends()+The_Plaguebringer()
     conf['acl'] = """
         `s1
-        `s2,this.s1fscharge == 0
+        `s2, this.s1fscharge == 0 and (s1.charged <= ((s1.sp/13)*9))
         `s3
-        `fs,seq=2 and cancel and (this.s1fscharge == 0 or this.hits >= 15)
+        `fs, x=2 and (this.s1fscharge == 0 or this.hits >= 15)
     """
     conf['cond_afflict_res'] = 0
 

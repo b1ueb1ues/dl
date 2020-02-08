@@ -10,13 +10,13 @@ class G_Mym(Adv):
     comment = 'get a1 boost half way; no dragon(see special page with dragon)'
 
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+BN()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
+    conf['slot.d'] = Sakuya()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
         `s2, fsc
-        `fs, x=4
+        `fs, x=5
         """
 
     def d_slots(this):

@@ -14,6 +14,7 @@ class Xania(adv.Adv):
         `s3, not this.s3_buff_on
         `s1
         `s2
+        `fs, (s1.charged>=s1.sp-this.sp_val('fs')) or (s2.charged>=s2.sp-this.sp_val('fs'))
         """
     conf['cond_afflict_res'] = 0
     def prerun(this):

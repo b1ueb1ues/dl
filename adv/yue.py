@@ -7,13 +7,14 @@ def module():
     return Yue
 
 class Yue(adv.Adv):
-    #comment = 'Arctos'
     conf = {}
+    conf['slot.a'] = Kung_Fu_Masters()+Flower_in_the_Fray()
+    conf['slot.d'] = Arctos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        `s1
-        `s2,seq=4
-        `fs,seq=5
+        `s1, cancel
+        `s2, fsc
+        `fs, x=5
         """
 
 

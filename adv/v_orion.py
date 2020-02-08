@@ -10,13 +10,12 @@ def module():
 class V_Orion(Adv):
     conf = {}
 
-    comment = 'no s2'
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, fsc and not this.s3_buff_on
         `s1, fsc
         `fs, seq=2 and cancel
         """
-    conf['slot.a'] = TSO()+EE()
+    conf['slot.a'] = Mega_Friends()+EE()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['cond_afflict_res'] = 0
 

@@ -8,11 +8,12 @@ def module():
 class Joe(adv.Adv):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = Mega_Friends()+Dear_Diary()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
-        `fs, seq=3
+        `fs, x=3
         """
     conf['cond_afflict_res'] = 0
 

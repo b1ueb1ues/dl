@@ -13,8 +13,8 @@ class Nobunaga(Adv):
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
-        `s2, cancel
-        `fs, x=5 and this.ba=1
+        `s2
+        `fs, x=5
         """
 
     def prerun(this):

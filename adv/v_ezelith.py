@@ -14,10 +14,10 @@ class V_Ezelith(Adv):
     conf['slot.a'] = EE()+DD()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
-        `s1
-        `s2
-        `fs, seq=3
+        `s3, fsc and not this.s3_buff_on
+        `s1, fsc
+        `s2, fsc
+        `fs, seq=2
     """
     conf['cond_afflict_res'] = 0
 
