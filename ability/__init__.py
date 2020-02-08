@@ -119,6 +119,21 @@ class Ability(object):
                         adv.Buff('dragons_claw', buff_value, -1).on()
                 adv.dragon_claw_buff = adv.Timer(dc_buff)
                 adv.dragon_claw_buff.on()
+        elif name == 'dc_true': # real dclaws, based on Event('dragon')
+            from core.timeline import Event
+            dc_levels = {
+                1: (0.04,0.06,0.10),
+                2: (0.05,0.08,0.12),
+                3: (0.06,0.09,0.15),
+                4: (0.10,0.15,0.15)
+            }
+            this.dc_values = dc_levels[value]
+            this.dc_level = 1
+            def l_dc_buff(t):
+                if this.dc_level <= len(this.dc_values):
+                    adv.Buff('dc{}_{}'.format(value, this.dc_level), this.dc_values[this.dc_level-1], -1).on()
+                    this.dc_level += 1
+            Event('dragon').listener(l_dc_buff)
         elif name == 'ro':
             if isinstance(value, tuple) and len(value) == 2:
                 buff_value, timing = value

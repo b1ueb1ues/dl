@@ -10,15 +10,16 @@ class Dot(object):
     Damage over time; e.g. poison
     """
 
-    def __init__(this, name, coef, duration, iv):
+    def __init__(this, name, coef, duration, iv, dtype=None):
         this.name = name
+        this.dtype = dtype
         this.active = 0
         this.coef = coef
         this.iv = iv  # Seconds between each damage tick
         this.duration = duration
         this.true_dmg_event = Event('true_dmg')
         this.true_dmg_event.dname = name
-        this.true_dmg_event.dtype = name
+        this.true_dmg_event.dtype = dtype if dtype else name
         this.true_dmg_event.comment = ''
         this.tick_dmg = 0
         this.quickshot_event = Event('dmg_formula')
@@ -56,6 +57,7 @@ class Dot(object):
         this.dotend_timer.on(this.duration)
         this.quickshot_event.dmg_coef = this.coef
         this.quickshot_event.dname = this.name
+        this.quickshot_event.dtype = this.dtype if this.dtype else this.name
         this.quickshot_event()
         this.tick_dmg = this.quickshot_event.dmg
         log('dot', this.name, 'start\t', '%f/%d' % (this.iv, this.duration))
@@ -257,14 +259,15 @@ class Afflic_dot(AfflicUncapped):
         this.iv = 3.99
         this.duration = 12
 
-    def on(this, name, rate, coef, duration=None, iv=None):
+    def on(this, name, rate, coef, duration=None, iv=None, dtype=None):
         this.rate = rate
         this.coef = coef
+        this.dtype = dtype
         if duration:
             this.duration = duration
         if iv:
             this.iv = iv
-        dot = Dot('o_%s_%s' % (name, this.name), coef, this.duration, this.iv)
+        dot = Dot('o_%s_%s' % (name, this.name), coef, this.duration, this.iv, this.dtype)
         dot.on()
         r = super().on()
         dot.tick_dmg *= r
