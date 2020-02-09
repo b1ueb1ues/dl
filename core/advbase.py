@@ -796,15 +796,16 @@ class DragonForm(Action):
         this.idle_event()
 
     def d_act_start(this, name):
-        if this._static.doing == this and this.action_timer is None:
-            prev_act = this.c_act_name
-            prev_conf = this.c_act_conf
-            this.c_act_name = name
-            this.c_act_conf = this.conf[name]
-            if this.c_act_name == 'ds' and prev_act is not None:
-                this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup-prev_conf.recovery).on()
-            else:
-                this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup).on()
+        if name in this.conf:
+            if this._static.doing == this and this.action_timer is None:
+                prev_act = this.c_act_name
+                prev_conf = this.c_act_conf
+                this.c_act_name = name
+                this.c_act_conf = this.conf[name]
+                if this.c_act_name == 'ds' and prev_act is not None:
+                    this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup-prev_conf.recovery).on()
+                else:
+                    this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup).on()
 
     def d_act_do(this, t):
         this.adv.hits += this.c_act_conf.hit
@@ -839,17 +840,18 @@ class DragonForm(Action):
             this.d_act_start('dx1')
 
     def parse_act(this):
-        this.act_list = []
-        for a in this.conf.act.split(' '):
-            if a[0] == 'c' or a[0] == 'x':
-                for i in range(1, int(a[1])+1):
-                    dxseq = 'dx{}'.format(i)
-                    if dxseq in this.conf:
-                        this.act_list.append(dxseq)
-            elif a == 's' or a == 'ds':
-                this.act_list.append('ds')
-            elif a == 'end':
-                this.act_list.append('end')
+        if 'act' in this.conf:
+            this.act_list = []
+            for a in this.conf.act.split(' '):
+                if a[0] == 'c' or a[0] == 'x':
+                    for i in range(1, int(a[1])+1):
+                        dxseq = 'dx{}'.format(i)
+                        if dxseq in this.conf:
+                            this.act_list.append(dxseq)
+                elif a == 's' or a == 'ds':
+                    this.act_list.append('ds')
+                elif a == 'end':
+                    this.act_list.append('end')
 
     def __call__(this):
         if this.dragon_gauge >= 50:

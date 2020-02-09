@@ -1,7 +1,7 @@
 import adv.adv_test
 import adv
 from slot.a import The_Shining_Overlord, Elegant_Escort
-from slot.d import Apollo
+from slot.d import *
 
 import sys
 
