@@ -89,7 +89,7 @@ class MH_Berserker(Adv):
     def prerun(this):
         this.s1_debuff = Debuff('s1', 0.05, 10)
 
-        this.s2_fs_boost = Selfbuff('s2', 0.80, -1, 'fs', 'buff')
+        this.s2_fs_boost = adv.SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
 
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
         this.a3_crit.get = this.a3_crit_get
@@ -102,11 +102,7 @@ class MH_Berserker(Adv):
         this.s1_debuff.on()
 
     def s2_proc(this, e):
-        if not this.s2_fs_boost.get():
-            this.s2_fs_boost.on()
-    
-    def fs_proc(this, e):
-        this.s2_fs_boost.off()
+        this.s2_fs_boost.on(1)
     
 
 if __name__ == '__main__':

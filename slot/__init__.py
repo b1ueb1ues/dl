@@ -96,11 +96,15 @@ class DragonBase(Slot):
     default_dragonform = {
         'duration': 600 / 60, # 10s dragon time
         'dracolith': 0.40,
+        'act': 'end',
 
         'dshift.startup': 96 / 60, # shift 102 -> 96 + 6
         'dshift.recovery': 6 / 60,
         'dshift.dmg': 2.00,
         'dshift.hit': 1,
+
+        'end.startup': 0.2, # represents trying to find something to die on
+        'end.recovery': 0
     }
     dragonform = {}
 
@@ -136,7 +140,7 @@ class AmuletBase(Slot):
 
     def __add__(this, another):
         if type(this) is type(another):
-            raise ValueError('Cannot equip two of the same wyrmprint');
+            raise ValueError('Cannot equip two of the same wyrmprint')
         this.a2 = another
         this.a2.stype = 'a2'
         return this

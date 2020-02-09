@@ -10,6 +10,32 @@ class Arctos(DragonBase):
     ele = 'flame'
     att = 121
     a = [('a', 0.45), ('cd', 0.55)]
+    dragonform = {
+        'act': 's c3',
+
+        'dx1.dmg': 2.10,
+        'dx1.startup': 19 / 60.0, # c1 frames
+        'dx1.recovery': 39 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.31,
+        'dx2.startup': 0,
+        'dx2.recovery': (60+27) / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 4.20*2,
+        'dx3.startup': 0,
+        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 56
+        'dx3.hit': 2,
+
+        'ds.startup': 168 / 60, # skill frames
+        'ds.recovery': 0,
+        'ds.hit': 2,
+    }
+
+    def ds_proc(self):
+        # also does a stun
+        return self.adv.dmg_make('o_d_ds',10.00,'s')
 
 class Prometheus(DragonBase):
     ele = 'flame'
@@ -20,14 +46,45 @@ class Sakuya(DragonBase):
     ele = 'flame'
     att = 121
     a = [('s', 0.9), ('a', 0.2)]
+    dragonform = {
+        'act': 'c3 s end',
+
+        'dx1.dmg': 2.08,
+        'dx1.startup': 25 / 60.0, # c1 frames
+        'dx1.recovery': 40 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.29,
+        'dx2.startup': 0,
+        'dx2.recovery': 48 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.99,
+        'dx3.startup': 0,
+        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 69
+        'dx3.hit': 1,
+
+        'ds.startup': 167 / 60, # skill frames
+        'ds.recovery': 0,
+        'ds.hit': -1,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from adv import SingleActionBuff
+        self.ds_buff = SingleActionBuff('d_sd_buff',0.40,1,'s','buff')
+
+    def ds_proc(self):
+        self.ds_buff.on(1)
+        return self.adv.dmg_make('o_d_ds',6.60,'s')
 
 class Apollo(DragonBase):
     ele = 'flame'
     att = 127
     a = [('k_burn', 0.2), ('a', 0.5)]
     dragonform = {
-        'act': 'c3 s',
-        
+        'act': 's c2',
+
         'dx1.dmg': 1.90,
         'dx1.startup': 23 / 60.0, # c1 frames
         'dx1.recovery': 36 / 60.0, # c2 frames
@@ -50,10 +107,10 @@ class Apollo(DragonBase):
     
     def ds_proc(self):
         from adv import Debuff
-        self.adv.dmg_make('o_d_ds',1.80)
+        dmg = self.adv.dmg_make('o_d_ds',1.80,'s')
         Debuff('ds',0.05,10).on()
         self.adv.afflics.burn('o_d_ds',120,0.311,30,dtype='s')
-        self.adv.dmg_make('o_d_ds',4.20)
+        return dmg + self.adv.dmg_make('o_d_ds',4.20,'s')
 
 class Kagutsuchi(DragonBase):
     ele = 'flame'

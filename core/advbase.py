@@ -272,6 +272,30 @@ class Selfbuff(Buff):
                 bc+=1
         return bc
 
+class SingleActionBuff(Buff):
+    # this buff lasts until the action it is buffing is completed
+    def __init__(this, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None):
+        super().__init__(name, value, -1, mtype, morder, False)
+        this.bufftype = 'self'
+        this.casts = casts
+        this.end_event = event if event is not None else mtype
+        if isinstance(this.end_event, str):
+            Listener(this.end_event, this.l_off).on()
+        else:
+            for e in this.end_event:
+                Listener(e, this.l_off).on()
+
+    def on(this, casts=1):
+        this.casts = casts
+        return super().on(-1)
+
+    def l_off(this, e):
+        this.casts -= 1
+        if this.casts <= 0:
+            return super().off()
+        else:
+            return this
+    
 class Teambuff(Buff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
         Buff.__init__(this, name,value,duration,mtype,morder,toggle)
@@ -760,6 +784,7 @@ class DragonForm(Action):
 
         shift_time = this.conf.dshift.startup + this.conf.duration
         this.shift_start_time = 0
+        this.shift_damage_sum = 0
         this.shift_end_timer = Timer(this.d_shift_end, timeout=shift_time)
         this.idle_event = Event('idle')
 
@@ -787,7 +812,13 @@ class DragonForm(Action):
             log('dragon', 'gauge', '{:.2f} / 100'.format(this.dragon_gauge))
 
     def d_shift_end(this, t):
-        log('debug', 'dshift_end', 'duration {:.2f}'.format(this.shift_end_timer.timing - this.shift_start_time))
+        duration = now()-this.shift_start_time
+        log('debug', 'dshift_end', 
+            '{:.2f} dmg over {:.2f}s'.format(this.shift_damage_sum, duration),
+            'dps {:.2f}'.format(this.shift_damage_sum/duration))
+        if this.action_timer is not None:
+            this.action_timer.off()
+            this.action_timer = None
         this.dracolith_mod.off()
         this.has_skill = True
         this.status = -2
@@ -796,37 +827,39 @@ class DragonForm(Action):
         this.idle_event()
 
     def d_act_start(this, name):
-        if name in this.conf:
-            if this._static.doing == this and this.action_timer is None:
-                prev_act = this.c_act_name
-                prev_conf = this.c_act_conf
-                this.c_act_name = name
-                this.c_act_conf = this.conf[name]
-                if this.c_act_name == 'ds' and prev_act is not None:
-                    this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup-prev_conf.recovery).on()
-                else:
-                    this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup).on()
+        if name in this.conf and this._static.doing == this and this.action_timer is None:
+            prev_act = this.c_act_name
+            prev_conf = this.c_act_conf
+            this.c_act_name = name
+            this.c_act_conf = this.conf[name]
+            if this.c_act_name == 'ds' and prev_act is not None:
+                this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup-prev_conf.recovery).on()
+            else:
+                this.action_timer = Timer(this.d_act_do, this.c_act_conf.startup).on()            
 
     def d_act_do(this, t):
-        this.adv.hits += this.c_act_conf.hit
         if this.c_act_name == 'ds':
             this.has_skill = False
             this.shift_end_timer.timing += this.conf.ds.startup
-            this.ds_proc()
+            this.shift_damage_sum += this.ds_proc()
+        elif this.c_act_name == 'end':
+            this.shift_end_timer.off()
+            this.d_shift_end(None)
+            return
         else:
-            dname = this.c_act_name[:-1] if this.c_act_name != 'dshift' else this.c_act_name
-            this.adv.dmg_make('o_d_'+dname, this.c_act_conf.dmg)
+            # dname = this.c_act_name[:-1] if this.c_act_name != 'dshift' else this.c_act_name
+            this.shift_damage_sum += this.adv.dmg_make('o_d_'+this.c_act_name, this.c_act_conf.dmg)
+        if this.c_act_conf.hit > -1:
+            this.adv.hits += this.c_act_conf.hit
+        else:
+            this.adv.hits = -this.c_act_conf.hit
         this.action_timer = Timer(this.d_act_next, this.c_act_conf.recovery).on()
     
     def d_act_next(this, t):
         this.action_timer = None
         if len(this.act_list) > 0:
             nact = this.act_list.pop(0)
-            if nact == 'end':
-                this.shift_end_timer.off()
-                this.d_shift_end(None)
-            else:
-                this.d_act_start(nact)
+            this.d_act_start(nact)
         elif this.c_act_name[0:2] == 'dx':
             nx = 'dx{}'.format(int(this.c_act_name[2])+1)
             if nx in this.conf:
