@@ -35,19 +35,19 @@ def logcat(filter=None, log=None):
             if i[3] == None:
                 print("%-8.3f: %-16s, %-16s, \t\t, %s"%(i[0],i[1],i[2],i[4]))
             elif type(i[3]) == float:
-                print("%-8.3f: %-16s, %-16s, %-8.4f\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                print("%-8.3f: %-16s, %-16s, %-16.4f, %s"%(i[0],i[1],i[2],i[3],i[4]))
             elif type(i[3]) == int:
-                print("%-8.3f: %-16s, %-16s, %-8d\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                print("%-8.3f: %-16s, %-16s, %-16d, %s"%(i[0],i[1],i[2],i[3],i[4]))
             else:
-                print("%-8.3f: %-16s, %-16s, %-16ss, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                print("%-8.3f: %-16s, %-16s, %-16s, %s"%(i[0],i[1],i[2],i[3],i[4]))
     else :
         for i in log:
             for j in filter :
                 if i[1] == j:
                     if type(i[3]) == float:
-                        print("%-8.3f: %-16s, %-24s, %-8.4f\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                        print("%-8.3f: %-16s, %-24s, %-16.4f, %s"%(i[0],i[1],i[2],i[3],i[4]))
                     elif type(i[3]) == int:
-                        print("%-8.3f: %-16s, %-24s, %-8d\t, %s"%(i[0],i[1],i[2],i[3],i[4]))
+                        print("%-8.3f: %-16s, %-24s, %-16d, %s"%(i[0],i[1],i[2],i[3],i[4]))
                     else:
                         print("%-8.3f: %-16s, %-24s, %-16s, %s"%(i[0],i[1],i[2],i[3],i[4]))
 
