@@ -2,7 +2,6 @@ import copy
 from core import Conf
 from ability import *
 
-
 class Slot(object):
     att = 0
     ele = 'none'
@@ -94,6 +93,7 @@ class WeaponBase(Slot):
 class DragonBase(Slot):
     stype = 'd'
     a = [('a', 0.60)]
+    dragonform = {}
 
     def setup(this, c):
         Slot.setup(this, c)
@@ -102,6 +102,14 @@ class DragonBase(Slot):
         else:
             this.a = []
 
+    def ds_proc(this):
+        pass
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from adv import DragonForm
+        self.adv = adv
+        self.adv.dragonform = DragonForm(type(self).__name__, Conf(self.dragonform), adv, self.ds_proc)
 
 class Amuletempty(object):
     stype = 'a2'

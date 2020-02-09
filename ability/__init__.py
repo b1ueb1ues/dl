@@ -109,17 +109,17 @@ class Ability(object):
             for _ in range(5):
                 adv.Buff('slayerstrength',value,-1).on()
         elif name == 'dc':
-            # adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
-            if hasattr(adv, 'no_dclaws') and not adv.no_dclaws:
-                from adv.adv_test import sim_duration
-                timing = int(sim_duration/2)
-                buff_value = value
-                def dc_buff(t):
-                    if adv.condition('shapeshift at {}s'.format(timing)):
-                        adv.Buff('dragons_claw', buff_value, -1).on()
-                adv.dragon_claw_buff = adv.Timer(dc_buff)
-                adv.dragon_claw_buff.on()
-        elif name == 'dc_true': # real dclaws, based on Event('dragon')
+        #     # adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
+        #     if hasattr(adv, 'no_dclaws') and not adv.no_dclaws:
+        #         from adv.adv_test import sim_duration
+        #         timing = int(sim_duration/2)
+        #         buff_value = value
+        #         def dc_buff(t):
+        #             if adv.condition('shapeshift at {}s'.format(timing)):
+        #                 adv.Buff('dragons_claw', buff_value, -1).on()
+        #         adv.dragon_claw_buff = adv.Timer(dc_buff)
+        #         adv.dragon_claw_buff.on()
+        # elif name == 'dc_true': # real dclaws, based on Event('dragon')
             from core.timeline import Event
             dc_levels = {
                 1: (0.04,0.06,0.10),

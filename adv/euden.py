@@ -7,11 +7,11 @@ def module():
     return Euden
 
 class Euden(Adv):
-    a1 = ('dc', 0.10)
+    a1 = ('dc', 4)
+
     conf ={}
     conf['slot.a'] = TSO()+EE()
     conf['slot.d'] = Apollo()
-    a1 = ('dc', 0.10)
     
     conf['acl'] = """
         `s3, not this.s3_buff_on

@@ -270,10 +270,10 @@ class Summer_Paladyns(Amulet):
 
 class The_Shining_Overlord(Amulet):
     att = 65
-    a = [('dc', 0.06)]
+    a = [('dc', 3)]
     def on(this, c):
         if c.wt == 'sword':
-            this.a = [('dc', 0.06)]
+            this.a = [('dc', 3)]
             this.a += [('s',0.40)]
 TSO = The_Shining_Overlord
 

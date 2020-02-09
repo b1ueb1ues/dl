@@ -7,7 +7,7 @@ def module():
     return D_Xainfried
 
 class D_Xainfried(Adv):
-    a1 = ('dc', 0.04)
+    a1 = ('dc', 1)
     a3 = ('primed_att', 0.08)
 
     conf = {}
