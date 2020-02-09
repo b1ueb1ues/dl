@@ -9,6 +9,48 @@ class PopStar_Siren(DragonBase):
     ele = 'light'
     att = 124
     a = [('a', 0.4)]
+    dragonform = {
+        'duration': 13.0, # 13s dragon time
+        'act': 's c3 c3 s end',
+
+        'dx1.dmg': 0.80,
+        'dx1.startup': 17 / 60.0, # c1 frames
+        'dx1.recovery': 39 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 0.96,
+        'dx2.startup': 0,
+        'dx2.recovery': 53 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 1.44,
+        'dx3.startup': 0,
+        'dx3.recovery': 41 / 60.0, # dodge frames
+        'dx3.hit': 1,
+
+        'ds.startup': 120 / 60, # skill frames
+        'ds.recovery': 0,
+        'ds.hit': 0,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from module.energy import Energy
+        self.ds_charges = 2
+        Energy(adv, self={}, team={})
+        self.energy = self.adv.Event('add_energy')
+        self.energy.name = 'team'
+
+    def ds_proc(self):
+        self.ds_charges -= 1
+        if self.ds_charges > 0:
+            self.adv.dragonform.has_skill = True
+        from adv import Teambuff, Event
+        Teambuff('d_att_buff',0.20,20).on()
+        Event('defchain')()
+        for _ in range(0, 3):
+            self.energy()
+        return 0
 
 class Cupid(DragonBase):
     ele = 'light'

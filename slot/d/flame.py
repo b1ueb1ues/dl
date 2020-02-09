@@ -83,7 +83,7 @@ class Apollo(DragonBase):
     att = 127
     a = [('k_burn', 0.2), ('a', 0.5)]
     dragonform = {
-        'act': 's c2',
+        'act': 'c3 s',
 
         'dx1.dmg': 1.90,
         'dx1.startup': 23 / 60.0, # c1 frames
@@ -97,18 +97,23 @@ class Apollo(DragonBase):
 
         'dx3.dmg': 2.57,
         'dx3.startup': 0,
-        'dx3.recovery': 40 / 60.0, # dodge frames
+        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 41
         'dx3.hit': 1,
 
         'ds.startup': 110 / 60, # skill frames
         'ds.recovery': 0,
         'ds.hit': 2,
     }
-    
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from adv import Debuff
+        self.ds_buff = Debuff('ds',0.05,10)
+
     def ds_proc(self):
         from adv import Debuff
         dmg = self.adv.dmg_make('o_d_ds',1.80,'s')
-        Debuff('ds',0.05,10).on()
+        self.ds_buff.on()
         self.adv.afflics.burn('o_d_ds',120,0.311,30,dtype='s')
         return dmg + self.adv.dmg_make('o_d_ds',4.20,'s')
 

@@ -813,9 +813,9 @@ class DragonForm(Action):
 
     def d_shift_end(this, t):
         duration = now()-this.shift_start_time
-        log('debug', 'dshift_end', 
+        log('dragon_end', this.name, 
             '{:.2f} dmg over {:.2f}s'.format(this.shift_damage_sum, duration),
-            'dps {:.2f}'.format(this.shift_damage_sum/duration))
+            '{:.2f} dps'.format(this.shift_damage_sum/duration))
         if this.action_timer is not None:
             this.action_timer.off()
             this.action_timer = None
@@ -888,6 +888,7 @@ class DragonForm(Action):
 
     def __call__(this):
         if this.dragon_gauge >= 50:
+            log('dragon_start', this.name)
             this.parse_act()
             this.dragon_gauge -= 50
             this.has_skill = True

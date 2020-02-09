@@ -103,7 +103,7 @@ class DragonBase(Slot):
         'dshift.dmg': 2.00,
         'dshift.hit': 1,
 
-        'end.startup': 0.2, # represents trying to find something to die on
+        'end.startup': 0, # amount of time needed to kys, 0 default
         'end.recovery': 0
     }
     dragonform = {}

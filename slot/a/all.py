@@ -514,11 +514,17 @@ ADD = A_Dogs_Day
 class The_Bridal_Dragon(Amulet):
     att = 64
     a = []
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        adv.dragonform.charge_gauge(10)
 TBD = The_Bridal_Dragon
 
 class A_Suit_of_Midnight(Amulet):
     att = 52
     a = []
+    def oninit(this, adv):
+        Amulet.oninit(this, adv)
+        adv.dragonform.charge_gauge(10)
 
 class Primal_Crisis(Amulet):
     att = 55
