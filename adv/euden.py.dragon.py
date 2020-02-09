@@ -23,20 +23,11 @@ class DragonForm(Action):
         this.ds_proc = ds_proc
         this.has_skill = True
         this.act_list = []
-        for a in this.conf.act.split(' '):
-            if a[0] == 'c' or a[0] == 'x':
-                for i in range(1, int(a[1])+1):
-                    dxseq = 'dx{}'.format(i)
-                    if dxseq in this.conf:
-                        this.act_list.append(dxseq)
-            elif a == 's' or a == 'ds':
-                this.act_list.append('ds')
-            elif a == 'end':
-                this.act_list.append('end')
 
         this.action_timer = None
 
         shift_time = this.conf.dshift.startup + this.conf.duration
+        this.shift_start_time = 0
         this.shift_end_timer = Timer(this.d_shift_end, timeout=shift_time)
         this.idle_event = Event('idle')
 
@@ -55,15 +46,16 @@ class DragonForm(Action):
         this.charge_gauge(10)
 
     def charge_gauge(this, value):
-        if this.adv.slots.c.wt == 'sword':
-            this.dragon_gauge += value*1.15
-        else:
-            this.dragon_gauge += value
-        this.dragon_gauge = min(this.dragon_gauge, 100)
-        log('dragon', 'gauge', '{}% / 100'.format(this.dragon_gauge))
+        if this.status != -1:
+            if this.adv.slots.c.wt == 'sword':
+                this.dragon_gauge += value*1.15
+            else:
+                this.dragon_gauge += value
+            this.dragon_gauge = min(this.dragon_gauge, 100)
+            log('dragon', 'gauge', '{:.2f} / 100'.format(this.dragon_gauge))
 
     def d_shift_end(this, t):
-        log('dragon', 'end', this.shift_end_timer.timing)
+        log('debug', 'dshift_end', 'duration {:.2f}'.format(this.shift_end_timer.timing - this.shift_start_time))
         this.dracolith_mod.off()
         this.has_skill = True
         this.status = -2
@@ -113,20 +105,35 @@ class DragonForm(Action):
         else:
             this.d_act_start('dx1')
 
+    def parse_act(this):
+        this.act_list = []
+        for a in this.conf.act.split(' '):
+            if a[0] == 'c' or a[0] == 'x':
+                for i in range(1, int(a[1])+1):
+                    dxseq = 'dx{}'.format(i)
+                    if dxseq in this.conf:
+                        this.act_list.append(dxseq)
+            elif a == 's' or a == 'ds':
+                this.act_list.append('ds')
+            elif a == 'end':
+                this.act_list.append('end')
+
     def __call__(this):
-        if this.dragon_gauge < 50:
-            return False
-        else:
+        if this.dragon_gauge >= 50:
+            this.parse_act()
             this.dragon_gauge -= 50
             this.has_skill = True
             this.status = -1
             this._setdoing()
+            this.shift_start_time = now()
             this.shift_end_timer.on()
             this.dracolith_mod.on()
             # this.adv.shift_proc() for weird interactions
             Event('dragon')()
             this.d_act_start('dshift')
             return True
+        else:
+            return False
 
 class Apollo(DragonBase):
     ele = 'flame'
@@ -165,12 +172,12 @@ class Apollo(DragonBase):
     def oninit(self, adv):
         DragonBase.oninit(self, adv)
         self.adv = adv
-        self.adv.dform = DragonForm(type(self).__name__, Conf(self.dragonform), adv, self.ds_proc)
+        self.adv.dragonform = DragonForm(type(self).__name__, Conf(self.dragonform), adv, self.ds_proc)
     
     def ds_proc(self):
         self.adv.dmg_make('o_d_ds',1.80)
         Debuff('ds',0.05,10).on()
-        self.adv.afflics.burn('ds',120,0.311,30,dtype='s')
+        self.adv.afflics.burn('o_d_ds',120,0.311,30,dtype='s')
         self.adv.dmg_make('o_d_ds',4.20)
 
 class Euden(adv.Adv):
@@ -179,7 +186,7 @@ class Euden(adv.Adv):
     conf['slot.d'] = Apollo()
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['acl'] = """
-        #dragon=this.dform
+        #dragon=this.dragonform
         `dragon, cancel
         `s3, not this.s3_buff_on
         `s1, fsc
@@ -195,7 +202,7 @@ class Euden(adv.Adv):
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)
-        this.dform.charge_gauge(3)
+        this.dragonform.charge_gauge(3)
 
 if __name__ == '__main__':
     conf = {}
