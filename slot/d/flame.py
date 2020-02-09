@@ -5,6 +5,39 @@ class Cerberus(DragonBase):
     ele = 'flame'
     att = 127
     a = [('a', 0.6)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.00,
+        'dx1.startup': 12 / 60.0, # c1 frames
+        'dx1.recovery': 26 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 1.40,
+        'dx2.startup': 0,
+        'dx2.recovery': (41+15) / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 1.40*2,
+        'dx3.startup': 0,
+        'dx3.recovery': 38 / 60.0, # recovery
+        'dx3.hit': 2,
+
+        'ds.startup': 270 / 60, # skill frames
+        'ds.recovery': 0,
+        'ds.hit': 7,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from adv import Debuff
+        self.ds_buff = Debuff('ds',0.05,10)
+
+    def ds_proc(self):
+        dmg = self.adv.dmg_make('o_d_ds',1.10,'s')
+        self.ds_buff.on()
+        self.adv.afflics.burn('o_d_ds',120,0.97,12,dtype='s')
+        return dmg + self.adv.dmg_make('o_d_ds',1.10*6,'s')
 
 class Arctos(DragonBase):
     ele = 'flame'
@@ -111,7 +144,6 @@ class Apollo(DragonBase):
         self.ds_buff = Debuff('ds',0.05,10)
 
     def ds_proc(self):
-        from adv import Debuff
         dmg = self.adv.dmg_make('o_d_ds',1.80,'s')
         self.ds_buff.on()
         self.adv.afflics.burn('o_d_ds',120,0.311,30,dtype='s')
