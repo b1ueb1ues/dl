@@ -813,7 +813,8 @@ class DragonForm(Action):
             this.shift_end_timer.timing += this.conf.ds.startup
             this.ds_proc()
         else:
-            this.adv.dmg_make('o_d_'+this.c_act_name, this.c_act_conf.dmg)
+            dname = this.c_act_name[:-1] if this.c_act_name != 'dshift' else this.c_act_name
+            this.adv.dmg_make('o_d_'+dname, this.c_act_conf.dmg)
         this.action_timer = Timer(this.d_act_next, this.c_act_conf.recovery).on()
     
     def d_act_next(this, t):
@@ -985,6 +986,7 @@ class Adv(object):
         #fs=this.fs
         #fsf=this.fsf
         #dodge=this.dodge
+        #dragon=this.dragonform
     '''
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print(sx)\n    print(pin)\n    errrrrrrr()
 
@@ -1059,6 +1061,7 @@ class Adv(object):
         this.dodge = this.a_dodge
 
         this.hits = 0
+        this.dragonform = None
 
     def sim_affliction(this):
         if 'sim_afflict' in this.conf:

@@ -14,7 +14,6 @@ class Euden(adv.Adv):
     conf['slot.d'] = Apollo()
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['acl'] = """
-        #dragon=this.dragonform
         `dragon, cancel
         `s3, not this.s3_buff_on
         `s1, fsc

@@ -93,6 +93,15 @@ class WeaponBase(Slot):
 class DragonBase(Slot):
     stype = 'd'
     a = [('a', 0.60)]
+    default_dragonform = {
+        'duration': 600 / 60, # 10s dragon time
+        'dracolith': 0.40,
+
+        'dshift.startup': 96 / 60, # shift 102 -> 96 + 6
+        'dshift.recovery': 6 / 60,
+        'dshift.dmg': 2.00,
+        'dshift.hit': 1,
+    }
     dragonform = {}
 
     def setup(this, c):
@@ -109,7 +118,8 @@ class DragonBase(Slot):
         super().oninit(adv)
         from adv import DragonForm
         self.adv = adv
-        self.adv.dragonform = DragonForm(type(self).__name__, Conf(self.dragonform), adv, self.ds_proc)
+        dconf = Conf({**self.default_dragonform, **self.dragonform})
+        self.adv.dragonform = DragonForm(type(self).__name__, dconf, adv, self.ds_proc)
 
 class Amuletempty(object):
     stype = 'a2'

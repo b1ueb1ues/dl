@@ -11,6 +11,7 @@ class Xania(adv.Adv):
     conf = {}
     conf['slot.d'] = Apollo()
     conf['acl'] = """
+        `dragon, cancel
         `s3, not this.s3_buff_on
         `s1
         `s2
@@ -31,4 +32,4 @@ class Xania(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)

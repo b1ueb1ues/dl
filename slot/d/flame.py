@@ -26,15 +26,8 @@ class Apollo(DragonBase):
     att = 127
     a = [('k_burn', 0.2), ('a', 0.5)]
     dragonform = {
-        'duration': 600 / 60, # 10s dragon time
-        'dracolith': 0.40,
         'act': 'c3 s',
-
-        'dshift.startup': 96 / 60, # shift 102 -> 96 + 6
-        'dshift.recovery': 6 / 60,
-        'dshift.dmg': 2.00,
-        'dshift.hit': 1,
-
+        
         'dx1.dmg': 1.90,
         'dx1.startup': 23 / 60.0, # c1 frames
         'dx1.recovery': 36 / 60.0, # c2 frames
