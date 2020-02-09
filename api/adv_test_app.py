@@ -25,7 +25,7 @@ MEANS_ADV = {
     'victor': 'victor.py.m.py',
 }
 
-NORMAL_ADV = ['h_lowen.py']
+NORMAL_ADV = ['h_lowen']
 MASS_SIM_ADV = []
 
 with open(ROOT_DIR+'chara_quick.txt') as f:
