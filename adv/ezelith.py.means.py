@@ -8,13 +8,8 @@ def module():
 class Ezelith(adv.ezelith.Ezelith):
 
     def dmg_proc(this, name, amount):    
-        if name[0] != 'x':
-            return
-        if this.s2buff.get():
-            # r = random.random()
-            # if r < this.s2chance:
-            #     Debuff("s2_ab",0.05,5,1).on()
-            Debuff('s2_ab', 0.05, 5, this.s2chance).on()
+        if name[0] == 'x' and this.s2_buff.get():
+            Debuff('s2_ab', 0.05, 5, this.s2_chance()).on()
 
 
 if __name__ == '__main__':
