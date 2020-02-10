@@ -13,6 +13,7 @@ class G_Luca(Adv):
     conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['slot.d'] = Daikokuten()
     conf['acl'] = """
+        `dragon, s=2
         `s1
         `s2
         `s3, x=5

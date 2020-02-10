@@ -7,7 +7,9 @@ class DragonForm(Action):
         self.name = name
         self.conf = conf
         self.adv = adv
-        
+        self.cancel_by = []
+        self.interrupt_by = []
+
         self.ds_proc = ds_proc
         self.has_skill = True
         self.act_list = []

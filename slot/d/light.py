@@ -77,7 +77,7 @@ class Daikokuten(DragonBase):
     att = 124
     a = [('a', 0.25, 'hit15'), ('a', 0.55)]
     dragonform = {
-        'act': 'c3 c1 s',
+        'act': 'c3 s',
 
         'dx1.dmg': 2.55,
         'dx1.startup': 18 / 60.0, # c1 frames
