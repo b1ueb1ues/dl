@@ -29,6 +29,8 @@ class Amulet(AmuletBase):
                 'prep'   : 100,    # skill prep
                 'resist' : 10000,  # resist
                 #'k_paralysis'      : 0.3,    # afflic killer
+                'dra'    : 0.18, # dragon damage
+                'drt'    : 0.20, # dragon time
                 }
 
 

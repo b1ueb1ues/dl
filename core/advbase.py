@@ -1093,19 +1093,18 @@ class Adv(object):
 
 
     def dmg_mod(this, name):
+        mod = 1
         if name[:2] == 'o_':
             name = name[2:]
-        #if name.find('o_') != -1:
-        #    name = name.replace('o_','')
 
         if name[0] == 's':
-            return this.mod('s')
+            return mod * this.mod('s')
         elif name[0:2] == 'fs':
-            return this.mod('fs')
+            return mod * this.mod('fs')
         elif name[0] == 'x':
-            return this.mod('x')
+            return mod * this.mod('x')
         else:
-            return 1
+            return mod
 
     def mod(this, mtype):
         m = {}

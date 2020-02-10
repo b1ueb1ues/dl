@@ -17,15 +17,14 @@ class DragonForm(Action):
 
         self.action_timer = None
 
-        shift_time = self.conf.dshift.startup + self.conf.duration
         self.shift_start_time = 0
         self.shift_damage_sum = 0
-        self.shift_end_timer = Timer(self.d_shift_end, timeout=shift_time)
+        self.shift_end_timer = Timer(self.d_shift_end)
         self.idle_event = Event('idle')
 
         self.c_act_name = None
         self.c_act_conf = None
-        self.dracolith_mod = self.adv.Modifier('dracolith', 'att', 'hit', self.conf.dracolith)
+        self.dracolith_mod = self.adv.Modifier('dracolith', 'att', 'dragon', 0)
         self.dracolith_mod.off()
 
         self.dragon_gauge = 0
@@ -139,10 +138,11 @@ class DragonForm(Action):
             self.has_skill = True
             self.status = -1
             self._setdoing()
+            # I hope there are never dragon damage or dragon time buff skills ever :bolbjed:
             self.shift_start_time = now()
-            self.shift_end_timer.on()
+            self.shift_end_timer.on(self.conf.dshift.startup + self.conf.duration * self.conf.dragon_time)
+            self.dracolith_mod.mod_value = self.conf.dracolith
             self.dracolith_mod.on()
-            # self.adv.shift_proc() for weird interactions
             Event('dragon')()
             self.d_act_start('dshift')
             return True

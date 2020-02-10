@@ -11,8 +11,9 @@ class Mitsuhide(Adv):
     a3 = ('k_paralysis',0.3)
 
     conf = {}
-    conf['slot.a'] = TB()+SotS()
+    conf['slot.a'] = TB()+Spirit_of_the_Season()
     conf['acl'] = """
+        `dragon
         `s1
         `s2
         `s3

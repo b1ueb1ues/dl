@@ -204,6 +204,10 @@ class Ability(object):
                     Timer(pm_cd_end).on(15)
 
             Event('s1_charged').listener(l_primed)
+        elif name == 'dra':
+            adv.dragonform.conf.dracolith += value
+        elif name == 'drt':
+            adv.dragonform.conf.dragon_time += value
 
 #        elif name == 'ex' and value == 'wand':
 #            this.ex_wand(adv)
