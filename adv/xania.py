@@ -11,7 +11,6 @@ class Xania(adv.Adv):
     conf = {}
     conf['slot.d'] = Apollo()
     conf['acl'] = """
-        `dragon, cancel
         `s3, not this.s3_buff_on
         `s1
         `s2

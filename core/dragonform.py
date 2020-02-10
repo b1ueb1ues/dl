@@ -3,14 +3,15 @@ from core.timeline import Event, Timer, now
 from core.log import log
 
 class DragonForm(Action):
-    def __init__(self, name, conf, adv, ds_proc=None, timing=None):
+    def __init__(self, name, conf, adv, ds_proc, timing=None):
         self.name = name
         self.conf = conf
         self.adv = adv
         
-        self.ds_proc = ds_proc if ds_proc is not None else self.default_ds_proc
+        self.ds_proc = ds_proc
         self.has_skill = True
         self.act_list = []
+        self.dx_last = ['dx{}'.format(i) for i in range(1, 6) if 'dx{}'.format(i) in self.conf][-1]
 
         self.action_timer = None
 
@@ -31,12 +32,6 @@ class DragonForm(Action):
             timing = int(sim_duration/10)
         self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(timing)
 
-    def default_ds_proc(self):
-        try:
-            return self.adv.dmg_make('d_ds',self.conf.ds.dmg,'s')
-        except:
-            return 0
-
     def auto_gauge(self, t):
         self.charge_gauge(10)
 
@@ -55,7 +50,7 @@ class DragonForm(Action):
             self.action_timer = None
         duration = now()-self.shift_start_time
         log('dragon_end', self.name, 
-            '{:.2f} dmg over {:.2f}s'.format(self.shift_damage_sum, duration),
+            '{:.2f} dmg / {:.2f}s'.format(self.shift_damage_sum, duration),
             '{:.2f} dps'.format(self.shift_damage_sum/duration))
         self.dracolith_mod.off()
         self.has_skill = True
@@ -79,7 +74,7 @@ class DragonForm(Action):
     def d_act_do(self, t):
         if self.c_act_name == 'ds':
             self.has_skill = False
-            self.shift_end_timer.timing += self.conf.ds.startup
+            self.shift_end_timer.timing += self.conf.ds.startup+self.conf.ds.recovery
             self.shift_damage_sum += self.ds_proc()
         elif self.c_act_name == 'end':
             self.d_shift_end(None)
@@ -88,6 +83,8 @@ class DragonForm(Action):
         else:
             # dname = self.c_act_name[:-1] if self.c_act_name != 'dshift' else self.c_act_name
             self.shift_damage_sum += self.adv.dmg_make('d_'+self.c_act_name, self.c_act_conf.dmg)
+            if self.dx_last == self.c_act_name:
+                log('dx', self.c_act_name, 0, '-------------------------------------c'+self.dx_last[-1])
         if self.c_act_conf.hit > -1:
             self.adv.hits += self.c_act_conf.hit
         else:

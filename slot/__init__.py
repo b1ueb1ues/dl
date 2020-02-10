@@ -119,7 +119,11 @@ class DragonBase(Slot):
         else:
             this.a = []
 
-    ds_proc = None
+    def ds_proc(self):
+        try:
+            return self.adv.dmg_make('d_ds',self.conf.ds.dmg,'s')
+        except:
+            return 0
 
     def oninit(self, adv):
         super().oninit(adv)

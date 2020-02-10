@@ -25,7 +25,7 @@ class PopStar_Siren(DragonBase):
 
         'dx3.dmg': 1.44,
         'dx3.startup': 0,
-        'dx3.recovery': 41 / 60.0, # dodge frames
+        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 53
         'dx3.hit': 1,
 
         'ds.recovery': 120 / 60, # skill frames
@@ -76,6 +76,37 @@ class Daikokuten(DragonBase):
     ele = 'light'
     att = 124
     a = [('a', 0.25, 'hit15'), ('a', 0.55)]
+    dragonform = {
+        'act': 'c3 c1 s',
+
+        'dx1.dmg': 2.55,
+        'dx1.startup': 18 / 60.0, # c1 frames
+        'dx1.recovery': 39 / 60.0, # c2 frames
+        'dx1.hit': 3,
+
+        'dx2.dmg': 2.92,
+        'dx2.startup': 0,
+        'dx2.recovery': 39 / 60.0, # c3 frames
+        'dx2.hit': 4,
+
+        'dx3.dmg': 4.10,
+        'dx3.startup': 0,
+        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 66
+        'dx3.hit': 5,
+
+        'ds.recovery': 120 / 60, # skill frames
+        'ds.hit': 1,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from adv import Spdbuff
+        self.ds_buff = Spdbuff('ds',0.2,10,wide='team')
+        self.ds_buff.bufftime = self.ds_buff.nobufftime
+
+    def ds_proc(self):
+        self.ds_buff.on()
+        return self.adv.dmg_make('d_ds',7.00,'s')
 
 class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'

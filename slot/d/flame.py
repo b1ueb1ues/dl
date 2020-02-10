@@ -66,7 +66,7 @@ class Prometheus(DragonBase):
     att = 121
     a = [('a', 0.5)]
     dragonform = {
-        'act': 's c3',
+        'act': 'c3 s',
 
         'dx1.dmg': 1.60,
         'dx1.startup': 14 / 60.0, # c1 frames
@@ -158,6 +158,31 @@ class Kagutsuchi(DragonBase):
     ele = 'flame'
     att = 127
     a = [('primed_att', 0.15), ('a', 0.45)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.00,
+        'dx1.startup': 28 / 60.0, # c1 frames
+        'dx1.recovery': 48 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.40,
+        'dx2.recovery': 63 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 5.80,
+        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 64
+        'dx3.hit': 2,
+
+        'ds.recovery': 141 / 60, # skill frames
+        'ds.hit': 2,
+    }
+
+    def ds_proc(self):
+        dmg = self.adv.dmg_make('d_ds',2.20,'s')
+        self.adv.afflics.burn('ds',120,0.97,12,dtype='s')
+        return dmg + self.adv.dmg_make('d_ds',4.40,'s')
+
 
 class Dreadking_Rathalos(DragonBase):
     ele = 'flame'

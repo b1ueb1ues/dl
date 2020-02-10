@@ -8,17 +8,17 @@ def module():
 
 class Euden(Adv):
     a1 = ('dc', 4)
-
-    conf ={}
-    conf['slot.a'] = TSO()+EE()
+    conf = {}
     conf['slot.d'] = Apollo()
-    
+    conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['acl'] = """
+        `dragon, cancel
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
-        `fs, seq=3 and cancel
+        `fs, x=3
         """
+
     conf['cond_afflict_res'] = 0
     def prerun(this):
         if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
@@ -28,6 +28,7 @@ class Euden(Adv):
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)
+        this.dragonform.charge_gauge(3)
 
 if __name__ == '__main__':
     conf = {}
