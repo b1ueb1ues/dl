@@ -219,6 +219,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         dmg_sum = {}
         sdmg_sum = {}
         o_sum = {}
+        d_sum = {}
         for i in r['dmg_sum']:
             dmg_sum[i] = int(r['dmg_sum'][i])
         for i in r['sdmg_sum']:
@@ -231,11 +232,16 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         for i in r['o_sum']:
             o_sum[i] = int(r['o_sum'][i])
 
+        for i in r['dragon_sum']:
+            d_sum[i] = int(r['dragon_sum'][i])
+
         print("dmgsum     | "+ str(dmg_sum))
         print("skill_stat | "+ str(sdmg_sum))
         print("x_stat     | "+ str(r['x_sum']))
         if r['o_sum']:
             print("others     | "+ str(o_sum))
+        if r['dragon_sum']:
+            print("dragon     | "+ str(d_sum))
 
     elif loglevel == -1:
         if condition != '':
@@ -330,6 +336,9 @@ def report__2(condition, exdps, r, name, adv, amulets):
     if r['o_sum'] != {}:
         for i in r['o_sum']:
             line += ',%s:%d'%(i, int(r['o_sum'][i]/real_duration))
+    if r['dragon_sum']['dx'] > 0:
+        for i in r['dragon_sum']:
+            line += ',%s:%d'%(i, int(r['dragon_sum'][i]/real_duration))
     return line
 
 def report__2_k(condition, exdps, r, name, adv, amulets):
@@ -384,6 +393,9 @@ def report__2_k(condition, exdps, r, name, adv, amulets):
     if r['o_sum'] != {}:
         for i in r['o_sum']:
             line += ',%s:%d'%(i, int(katana*r['o_sum'][i]/real_duration))
+    if r['dragon_sum']['dx'] > 0:
+        for i in r['dragon_sum']:
+            line += ',%s:%d'%(i, int(katana*r['dragon_sum'][i]/real_duration))
     return line
 
 def do_mass_sim_stub(sim_id, classname, conf, no_cond):
@@ -617,12 +629,13 @@ def sum_ac():
 
 def sum_dmg():
     l = logget()
-    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0 }
+    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'dragon': 0 }
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
                 's3':{"dmg":0, "count": 0}, 
                 }
-    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
+    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0, "shift":0}
+    dragon_sum = {'dx': 0}
     team_buff_powertime = 0
     team_buff_power = 0
     team_buff_start = 0
@@ -645,6 +658,19 @@ def sum_dmg():
             elif i[2][:2] == 'fs':
                 dmg_sum['fs'] += i[3]
                 x_sum['fs'] += 1
+            elif i[2][0] == 'd':
+                dmg_sum['dragon'] += i[3]
+                parts = i[2].split('_')
+                if parts[1][0:2] == 'dx':
+                    dragon_sum['dx'] += i[3]
+                elif parts[1] == 'dshift':
+                    x_sum['shift'] += 1
+                    dragon_sum['dx'] += i[3]
+                else:
+                    try:
+                        dragon_sum[parts[1]] += i[3]
+                    except:
+                        dragon_sum[parts[1]] = i[3]
             elif i[2][0] == 'o':
                 dmg_sum['others'] += i[3]
                 if i[2][2:] in o_sum:
@@ -671,7 +697,7 @@ def sum_dmg():
     team_buff_powertime += (real_duration - team_buff_start)*team_buff_power
 
 
-    total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs'] + dmg_sum['others']
+    total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs'] + dmg_sum['others'] + dmg_sum['dragon']
     dmg_sum['total'] = total
     x_sum['x1'] -= x_sum['x5']
     x_sum['x2'] -= x_sum['x5']
@@ -699,6 +725,7 @@ def sum_dmg():
     r['o_sum'] = o_sum
     r['buff_sum'] = team_buff_powertime/real_duration
     r['energy_sum'] = team_energy
+    r['dragon_sum'] = dragon_sum
     return r
 
 class Result(object):

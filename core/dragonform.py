@@ -1,4 +1,4 @@
-from core.advbase import Action
+from core.advbase import Action, S
 from core.timeline import Event, Timer, now
 from core.log import log
 
@@ -33,7 +33,7 @@ class DragonForm(Action):
 
     def default_ds_proc(self):
         try:
-            return self.adv.dmg_make('o_d_ds',self.conf.ds.dmg,'s')
+            return self.adv.dmg_make('d_ds',self.conf.ds.dmg,'s')
         except:
             return 0
 
@@ -50,13 +50,13 @@ class DragonForm(Action):
             log('dragon', 'gauge', '{:.2f} / 100'.format(self.dragon_gauge))
 
     def d_shift_end(self, t):
+        if self.action_timer is not None:
+            self.action_timer.off()
+            self.action_timer = None
         duration = now()-self.shift_start_time
         log('dragon_end', self.name, 
             '{:.2f} dmg over {:.2f}s'.format(self.shift_damage_sum, duration),
             '{:.2f} dps'.format(self.shift_damage_sum/duration))
-        if self.action_timer is not None:
-            self.action_timer.off()
-            self.action_timer = None
         self.dracolith_mod.off()
         self.has_skill = True
         self.status = -2
@@ -70,14 +70,11 @@ class DragonForm(Action):
 
     def d_act_start(self, name):
         if name in self.conf and self._static.doing == self and self.action_timer is None:
-            prev_act = self.c_act_name
-            prev_conf = self.c_act_conf
+            self.prev_act = self.c_act_name
+            self.prev_conf = self.c_act_conf
             self.c_act_name = name
             self.c_act_conf = self.conf[name]
-            if self.c_act_name == 'ds' and prev_act is not None:
-                self.act_timer(self.d_act_do, self.c_act_conf.startup-prev_conf.recovery)
-            else:
-                self.act_timer(self.d_act_do, self.c_act_conf.startup)
+            self.act_timer(self.d_act_do, self.c_act_conf.startup)
 
     def d_act_do(self, t):
         if self.c_act_name == 'ds':
@@ -85,17 +82,20 @@ class DragonForm(Action):
             self.shift_end_timer.timing += self.conf.ds.startup
             self.shift_damage_sum += self.ds_proc()
         elif self.c_act_name == 'end':
-            self.shift_end_timer.off()
             self.d_shift_end(None)
+            self.shift_end_timer.off()
             return
         else:
             # dname = self.c_act_name[:-1] if self.c_act_name != 'dshift' else self.c_act_name
-            self.shift_damage_sum += self.adv.dmg_make('o_d_'+self.c_act_name, self.c_act_conf.dmg)
+            self.shift_damage_sum += self.adv.dmg_make('d_'+self.c_act_name, self.c_act_conf.dmg)
         if self.c_act_conf.hit > -1:
             self.adv.hits += self.c_act_conf.hit
         else:
             self.adv.hits = -self.c_act_conf.hit
-        self.act_timer(self.d_act_next, self.c_act_conf.recovery)
+        if self.c_act_name == 'ds' and self.prev_act is not None:
+            self.act_timer(self.d_act_next, max(0, self.c_act_conf.recovery-self.prev_conf.recovery))
+        else:
+            self.act_timer(self.d_act_next, self.c_act_conf.recovery)
 
     def d_act_next(self, t):
         self.action_timer = None
@@ -129,6 +129,10 @@ class DragonForm(Action):
                     self.act_list.append('end')
 
     def __call__(self):
+        doing = self.getdoing()
+        if isinstance(doing, S):
+            if not doing.idle:
+                return False
         if self.dragon_gauge >= 50:
             log('dragon_start', self.name)
             self.parse_act()

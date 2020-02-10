@@ -103,6 +103,10 @@ class DragonBase(Slot):
         'dshift.dmg': 2.00,
         'dshift.hit': 1,
 
+        'dx2.startup': 0,
+        'dx3.startup': 0,
+        'ds.startup': 0,
+
         'end.startup': 0, # amount of time needed to kys, 0 default
         'end.recovery': 0
     }

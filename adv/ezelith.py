@@ -11,7 +11,7 @@ class Ezelith(Adv):
     conf = {}
     conf['slot.d'] = Arctos()
     conf['acl'] = """
-        `dragon
+        `dragon, s=1
         `s3, not this.s3_buff_on
         `s1
         `s2, seq=4
@@ -44,11 +44,11 @@ class Ezelith(Adv):
             f_sum += f
             t_s1 = Timer(this.s1_hit)
             t_s1.dmg_coef = 0.63
-            t_s1.on((f_sum+3)/60)
+            t_s1.on(f_sum/60)
         f_sum += this.s1_hit_frames[-1]
         t_s1 = Timer(this.s1_hit)
         t_s1.dmg_coef = 4.00
-        t_s1.on((f_sum+3)/60)
+        t_s1.on(f_sum/60)
 
     def s2_proc(this, e):
         this.s2_buff.on()

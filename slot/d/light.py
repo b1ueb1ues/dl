@@ -28,8 +28,7 @@ class PopStar_Siren(DragonBase):
         'dx3.recovery': 41 / 60.0, # dodge frames
         'dx3.hit': 1,
 
-        'ds.startup': 120 / 60, # skill frames
-        'ds.recovery': 0,
+        'ds.recovery': 120 / 60, # skill frames
         'ds.hit': 0,
     }
 
