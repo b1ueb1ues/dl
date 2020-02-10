@@ -61,14 +61,11 @@ class Arctos(DragonBase):
         'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 56
         'dx3.hit': 2,
 
+        'ds.dmg': 10,
         'ds.startup': 168 / 60, # skill frames
         'ds.recovery': 0,
         'ds.hit': 2,
     }
-
-    def ds_proc(self):
-        # also does a stun
-        return self.adv.dmg_make('o_d_ds',10.00,'s')
 
 class Prometheus(DragonBase):
     ele = 'flame'

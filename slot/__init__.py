@@ -115,12 +115,11 @@ class DragonBase(Slot):
         else:
             this.a = []
 
-    def ds_proc(this):
-        pass
+    ds_proc = None
 
     def oninit(self, adv):
         super().oninit(adv)
-        from adv import DragonForm
+        from core.dragonform import DragonForm
         self.adv = adv
         dconf = Conf({**self.default_dragonform, **self.dragonform})
         self.adv.dragonform = DragonForm(type(self).__name__, dconf, adv, self.ds_proc)
