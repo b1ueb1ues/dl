@@ -7,10 +7,8 @@ def module():
     return H_Mym
 
 class H_Mym(Adv):
-    a1 = ('cd',0.3)
-
     conf = {}
-    conf['slots.a'] = KFM()+The_Lurker_in_the_Woods()
+    conf['slots.a'] = KFM()+Jewels_of_the_Sun()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not this.s3_buff_on
