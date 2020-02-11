@@ -542,6 +542,10 @@ class Prayers_Unto_Him(Amulet):
     att = 64
     a = [('da', 0.18), ('dt', 0.15)]
 
+class An_Ancient_Oath(Amulet):
+    att = 65
+    a = [('da', 0.18), ('dc', 4)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

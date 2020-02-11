@@ -35,14 +35,14 @@ class Energy():
         else:
             return this.energy
 
-    def add_energy(this, name):
+    def add_energy(this, name, n=1):
         self = 0
         team = 0
 
         if name == 'self':
-            self = 1
+            self = n
         elif name == 'team':
-            team = 1
+            team = n
             log('energy','team',team)
 
         if name in this.energy_self:
@@ -53,7 +53,7 @@ class Energy():
             if team:
                 log('energy','team',team)
 
-        if not this.energized :
+        if not this.energized:
             this.energy += self
             if this.energy > 0:
                 this.energy_buff.set(this.energy).on()

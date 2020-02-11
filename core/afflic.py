@@ -323,16 +323,16 @@ class Afflics(object):
         this.blind.duration = 8
 
         this.bog = Afflic_scc('bog')
-        this.blind.duration = 8
+        this.bog.duration = 8
 
         this.freeze = Afflic_cc('freeze')
-        this.blind.duration = 4.5
+        this.freeze.duration = 4.5
 
         this.stun = Afflic_cc('stun')
-        this.blind.duration = 6.5
+        this.stun.duration = 6.5
 
         this.sleep = Afflic_cc('sleep')
-        this.blind.duration = 6.5
+        this.sleep.duration = 6.5
 
         this.poison.resist = 0
         this.burn.resist = 0
@@ -437,7 +437,8 @@ class Afflics(object):
 
     def get_uptimes(this):
         uptimes = {}
-        for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
+        # for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
+        for atype in ['poison', 'burn', 'paralysis']:
             aff = this.__dict__[atype]
             rate, t = aff.c_uptime
             # last = aff.last_afflict

@@ -10,7 +10,7 @@ class PopStar_Siren(DragonBase):
     att = 124
     a = [('a', 0.4)]
     dragonform = {
-        'duration': 13.0, # 13s dragon time
+        'exhilaration': 3.0,
         'act': 's c3 c3 s end',
 
         'dx1.dmg': 0.80,
@@ -19,12 +19,10 @@ class PopStar_Siren(DragonBase):
         'dx1.hit': 1,
 
         'dx2.dmg': 0.96,
-        'dx2.startup': 0,
         'dx2.recovery': 53 / 60.0, # c3 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 1.44,
-        'dx3.startup': 0,
         'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 53
         'dx3.hit': 1,
 
@@ -36,9 +34,7 @@ class PopStar_Siren(DragonBase):
         super().oninit(adv)
         from module.energy import Energy
         self.ds_charges = 2
-        Energy(adv, self={}, team={})
-        self.energy = self.adv.Event('add_energy')
-        self.energy.name = 'team'
+        self.energy = Energy(adv, self={}, team={})
 
     def ds_proc(self):
         self.ds_charges -= 1
@@ -47,8 +43,7 @@ class PopStar_Siren(DragonBase):
         from adv import Teambuff, Event
         Teambuff('d_att_buff',0.20,20).on()
         Event('defchain')()
-        for _ in range(0, 3):
-            self.energy()
+        self.energy.add_energy('team', 3)
         return 0
 
 class Cupid(DragonBase):
@@ -64,12 +59,10 @@ class Cupid(DragonBase):
         'dx1.hit': 3,
 
         'dx2.dmg': 2.20,
-        'dx2.startup': 0,
         'dx2.recovery': 53 / 60.0, # c3 frames
         'dx2.hit': 4,
 
         'dx3.dmg': 2.80,
-        'dx3.startup': 0,
         'dx3.recovery': 39 / 60.0, # dodge frames, real recovery 720 (visible confusion)
         'dx3.hit': 5,
 
@@ -111,12 +104,10 @@ class Daikokuten(DragonBase):
         'dx1.hit': 3,
 
         'dx2.dmg': 2.92,
-        'dx2.startup': 0,
         'dx2.recovery': 39 / 60.0, # c3 frames
         'dx2.hit': 4,
 
         'dx3.dmg': 4.10,
-        'dx3.startup': 0,
         'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 66
         'dx3.hit': 5,
 

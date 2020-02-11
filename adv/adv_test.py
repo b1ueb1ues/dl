@@ -570,6 +570,7 @@ def sum_ac():
             else:
                 ret.append(i[2])
         if i[1] == 'dragon_start':
+            lastc = 0
             ret.append('dragon')
     if lastc:
         ret.append(lastc)
@@ -599,7 +600,7 @@ def sum_ac():
                 prin += i+'\n'
             prev = 's'
         elif i[0] == 'c':
-            if prev == 's' and prin[-1] is not '\n':
+            if (prev == 's' or prev == 'd') and prin[-1] is not '\n':
                 row = 0
                 prin += '\n'
             elif prev == 'fs':
@@ -632,6 +633,7 @@ def sum_ac():
             if prin[-1] != '\n':
                 prin += '\n'
             prin += '--- dragon ---'
+            prev = 'd'
             row = 0
     #if prev == 'c' :
     #    prin += i

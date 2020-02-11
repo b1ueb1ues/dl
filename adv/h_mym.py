@@ -7,16 +7,14 @@ def module():
     return H_Mym
 
 class H_Mym(Adv):
-    a3 = ('da',0.20)
-
     conf = {}
     conf['slots.a'] = KFM()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon, s=2
         `s3, not this.s3_buff_on
-        `s1
-        `s2
+        `s1, fsc
+        `s2, cancel
         `fs, x=5
     """
     conf['dragonform'] = {
@@ -53,6 +51,8 @@ class H_Mym(Adv):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
 
+        this.s2_da = Selfbuff('a3_dreamboost',0.20,15,'da','buff')
+
         this.a1_spd = Spdbuff('a1',0.15,-1,wide='self')
         Event('dragon').listener(this.a1_on)
         Event('idle').listener(this.a1_off)
@@ -76,6 +76,7 @@ class H_Mym(Adv):
     def s2_proc(this, e):
         Selfbuff('s2',0.20,15).on()
         Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
+        this.s2_da.on()
 
 if __name__ == '__main__':
     conf = {}

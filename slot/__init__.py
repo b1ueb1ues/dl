@@ -96,6 +96,7 @@ class DragonBase(Slot):
     default_dragonform = {
         'duration': 600 / 60, # 10s dragon time
         'dracolith': 0.40, # base dragon damage
+        'exhilaration': 0, # psiren aura
         'act': 'end',
 
         'dshift.startup': 96 / 60, # shift 102 -> 96 + 6

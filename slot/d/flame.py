@@ -91,7 +91,7 @@ class Sakuya(DragonBase):
     att = 121
     a = [('s', 0.9), ('a', 0.2)]
     dragonform = {
-        'act': 'c3 s end',
+        'act': 'c3 s',
 
         'dx1.dmg': 2.08,
         'dx1.startup': 25 / 60.0, # c1 frames
@@ -116,8 +116,9 @@ class Sakuya(DragonBase):
         self.ds_buff = SingleActionBuff('d_sd_buff',0.40,1,'s','buff')
 
     def ds_proc(self):
+        dmg = self.adv.dmg_make('d_ds',6.60,'s')
         self.ds_buff.on(1)
-        return self.adv.dmg_make('d_ds',6.60,'s')
+        return dmg
 
 class Apollo(DragonBase):
     ele = 'flame'

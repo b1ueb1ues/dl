@@ -13,7 +13,6 @@ class DragonForm(Action):
         self.ds_proc = ds_proc
         self.has_skill = True
         self.act_list = []
-        self.dx_last = ['dx{}'.format(i) for i in range(1, 6) if 'dx{}'.format(i) in self.conf][-1]
         self.act_sum = []
 
         self.action_timer = None
@@ -33,7 +32,7 @@ class DragonForm(Action):
             self.off_ele_mod.off()
 
         self.dragon_gauge = 0
-        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(timing or 12)
+        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(timing or 15)
 
     def auto_gauge(self, t):
         self.charge_gauge(10)
@@ -46,7 +45,7 @@ class DragonForm(Action):
             log('dragon_gauge', '+{:.2f}%'.format(value), '{:.2f}%'.format(self.dragon_gauge))
 
     def dtime(self):
-        return self.conf.dshift.startup + self.conf.duration * self.adv.mod('dt')
+        return self.conf.dshift.startup + self.conf.duration * self.adv.mod('dt') + self.conf.exhilaration * (self.off_ele_mod is None)
 
     def ddamage(self):
         return self.conf.dracolith + self.adv.mod('da') - 1
@@ -92,9 +91,11 @@ class DragonForm(Action):
         else:
             # dname = self.c_act_name[:-1] if self.c_act_name != 'dshift' else self.c_act_name
             self.shift_damage_sum += self.adv.dmg_make('d_'+self.c_act_name, self.c_act_conf.dmg)
-            if self.dx_last == self.c_act_name:
-                # log('dx', self.c_act_name, 0, '-------------------------------------c'+self.dx_last[-1])
-                self.act_sum.append('c'+self.dx_last[-1])
+            if self.c_act_name.startswith('dx'):
+                if len(self.act_sum) > 0 and self.act_sum[-1][0] == 'c' and int(self.act_sum[-1][1]) < int(self.c_act_name[-1]):
+                    self.act_sum[-1] = 'c'+self.c_act_name[-1]
+                else:
+                    self.act_sum.append('c'+self.c_act_name[-1])
         if self.c_act_conf.hit > -1:
             self.adv.hits += self.c_act_conf.hit
         else:
@@ -111,7 +112,7 @@ class DragonForm(Action):
             self.d_act_start(nact)
         elif self.c_act_name[0:2] == 'dx':
             nx = 'dx{}'.format(int(self.c_act_name[2])+1)
-            if nx in self.conf:
+            if nx in self.conf and 'dmg' in self.conf[nx]:
                 self.d_act_start(nx)
             else:
                 if self.has_skill:
@@ -124,6 +125,7 @@ class DragonForm(Action):
     def parse_act(self):
         if 'act' in self.conf:
             self.act_list = []
+            self.act_sum = []
             for a in self.conf.act.split(' '):
                 if a[0] == 'c' or a[0] == 'x':
                     for i in range(1, int(a[1])+1):
@@ -143,7 +145,6 @@ class DragonForm(Action):
         if self.dragon_gauge >= 50:
             log('dragon_start', self.name)
             self.shift_damage_sum = 0
-            self.act_sum = []
             self.parse_act()
             self.dragon_gauge -= 50
             self.has_skill = True
