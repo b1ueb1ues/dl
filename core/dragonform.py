@@ -14,6 +14,8 @@ class DragonForm(Action):
         self.has_skill = True
         self.act_list = []
         self.act_sum = []
+        if 'act' in self.conf:
+            self.parse_act(self.conf.act)
 
         self.action_timer = None
 
@@ -121,20 +123,24 @@ class DragonForm(Action):
         else:
             self.d_act_start('dx1')
 
-    def parse_act(self):
-        if 'act' in self.conf:
-            self.act_list = []
-            self.act_sum = []
-            for a in self.conf.act.split(' '):
-                if a[0] == 'c' or a[0] == 'x':
-                    for i in range(1, int(a[1])+1):
-                        dxseq = 'dx{}'.format(i)
-                        if dxseq in self.conf:
-                            self.act_list.append(dxseq)
-                elif a == 's' or a == 'ds':
-                    self.act_list.append('ds')
-                elif a == 'end':
-                    self.act_list.append('end')
+    def parse_act(self, act_str):
+        self.act_list = []
+        self.act_sum = []
+        for a in act_str.split(' '):
+            if a[0] == 'c' or a[0] == 'x':
+                for i in range(1, int(a[1])+1):
+                    dxseq = 'dx{}'.format(i)
+                    if dxseq in self.conf:
+                        self.act_list.append(dxseq)
+            elif a == 's' or a == 'ds':
+                self.act_list.append('ds')
+            elif a == 'end':
+                self.act_list.append('end')
+
+    def act(self, act_str=None):
+        if act_str:
+            self.parse_act(act_str)
+        return self
 
     def __call__(self):
         doing = self.getdoing()
@@ -144,7 +150,7 @@ class DragonForm(Action):
         if self.dragon_gauge >= 50:
             log('dragon_start', self.name)
             self.shift_damage_sum = 0
-            self.parse_act()
+            self.act_sum = []
             self.dragon_gauge -= 50
             self.has_skill = True
             self.status = -1

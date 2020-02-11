@@ -11,7 +11,7 @@ class Ezelith(Adv):
     conf = {}
     conf['slot.d'] = Arctos()
     conf['acl'] = """
-        `dragon, s=1
+        `dragon.act("c3 s"), s=1
         `s3, not this.s3_buff_on
         `s1
         `s2, seq=4
