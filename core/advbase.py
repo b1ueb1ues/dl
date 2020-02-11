@@ -320,20 +320,21 @@ class Teambuff(Buff):
         this.count_team_buff()
 
     def count_team_buff(this):
-
         this.dmg_test_event.modifiers = []
         for i in this._static.all_buffs:
             if i.name == 'simulated_debuff':
                 this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
-
+        sd_mods = 1
         for i in this._static.all_buffs:
             if i.bufftype=='team' or i.bufftype=='debuff':
-                this.dmg_test_event.modifiers.append(i.modifier)
+                if i.modifier.mod_type == 's':
+                    sd_mods = 1 + i.get() * 1/2
+                else:
+                    this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
-        team_buff_dmg = this.dmg_test_event.dmg
-
+        team_buff_dmg = this.dmg_test_event.dmg * sd_mods
         log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
 
 
@@ -365,15 +366,20 @@ class Spdbuff(Buff):
 
     def count_team_buff(this):
         this.dmg_test_event.modifiers = []
+        for i in this._static.all_buffs:
+            if i.name == 'simulated_debuff':
+                this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
-        modifiers = []
+        sd_mods = 1
         for i in this._static.all_buffs:
             if i.bufftype=='team' or i.bufftype=='debuff':
-                modifiers.append(i.modifier)
-        this.dmg_test_event.modifiers = modifiers
+                if i.modifier.mod_type == 's':
+                    sd_mods = 1 + i.get() * 1/2
+                else:
+                    this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
-        team_buff_dmg = this.dmg_test_event.dmg
+        team_buff_dmg = this.dmg_test_event.dmg * sd_mods
         spd = this.stack() * this.value()
         if this.bufftype=='team' or this.bufftype=='debuff':
             team_buff_dmg += team_buff_dmg * spd

@@ -56,6 +56,35 @@ class Halloween_Maritimus(DragonBase):
     ele = 'water'
     att = 119
     a = [('sp', 0.35)]
+    dragonform = {
+        'act': 'c3 c3 c3 s',
+
+        'dx1.dmg': 2.00,
+        'dx1.startup': 18 / 60.0, # c1 frames
+        'dx1.recovery': 40 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.20,
+        'dx2.recovery': 86 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 7.60,
+        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 46
+        'dx3.hit': 2,
+
+        'ds.recovery': 151 / 60, # skill frames
+        'ds.hit': 0,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from core.advbase import Teambuff
+        self.ds_buff = Teambuff('ds_sd',0.3,10,'s','buff')
+        self.ds_buff.bufftime = self.ds_buff.nobufftime
+
+    def ds_proc(self):
+        self.ds_buff.on()
+        return 0
 H_Maritimus = Halloween_Maritimus
 
 class Kamuy(DragonBase):

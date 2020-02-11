@@ -4,6 +4,26 @@ class Gilgamesh(DragonBase):
     ele = 'light'
     att = 124
     a = [('a', 0.5)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.60,
+        'dx1.startup': 21 / 60.0, # c1 frames
+        'dx1.recovery': 24 / 60.0, # c2 frames
+        'dx1.hit': 2,
+
+        'dx2.dmg': 1.76,
+        'dx2.recovery': 35 / 60.0, # c3 frames
+        'dx2.hit': 4,
+
+        'dx3.dmg': 2.22,
+        'dx3.recovery': 33 / 60.0, # dodge frames, real recovery 83
+        'dx3.hit': 6,
+
+        'ds.dmg': 5.60,
+        'ds.recovery': 100 / 60, # skill frames
+        'ds.hit': 0,
+    }
 
 class PopStar_Siren(DragonBase):
     ele = 'light'
@@ -79,17 +99,58 @@ class Takemikazuchi(DragonBase):
     ele = 'light'
     att = 124
     a = [('od', 0.25), ('a', 0.4)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.53,
+        'dx1.startup': 20 / 60.0, # c1 frames
+        'dx1.recovery': 34 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 1.68,
+        'dx2.recovery': 44 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.44,
+        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 53
+        'dx3.hit': 1,
+
+        'ds.dmg': 9.95,
+        'ds.recovery': 188 / 60, # skill frames
+        'ds.hit': 0,
+    }
 
 class Corsaint_Phoenix(DragonBase):
     ele = 'light'
     att = 124
     a = [('k_paralysis', 0.2), ('a', 0.5)]
-C_Phoenix = Corsaint_Phoenix
+    dragonform = {
+        'act': 'c3 s',
 
-class Shishimai(DragonBase):
-    ele = 'light'
-    att = 75
-    a = [('cd', 0.7)]
+        'dx1.dmg': 2.20,
+        'dx1.startup': 17 / 60.0, # c1 frames
+        'dx1.recovery': 58 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.53,
+        'dx2.recovery': 30 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.74,
+        'dx3.recovery': 19 / 60.0, # recovery
+        'dx3.hit': 1,
+
+        'ds.dmg': 9.95,
+        'ds.recovery': 150 / 60, # skill frames
+        'ds.hit': 7,
+    }
+
+    def ds_proc(self):
+        dmg = self.adv.dmg_make('d_ds',1.30,'s')
+        self.adv.afflics.paralysis('ds',110,0.883,13,dtype='s')
+        return dmg + self.adv.dmg_make('d_ds',1.30*6,'s')
+
+C_Phoenix = Corsaint_Phoenix
 
 class Daikokuten(DragonBase):
     ele = 'light'
