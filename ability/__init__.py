@@ -40,9 +40,17 @@ class Ability(object):
                 this.mod = [('sp','passive',0.15)]
             elif value == 'wand':
                 this.mod = [('s','ex',0.15)]
+            elif value == 'sword':
+                this.mod = [('dh','passive',0.15)]
             elif value == 'hmym':
-                this.mod = [('crit','damage',0.3)]
+                this.mod = [('crit','damage',0.30)]
+            elif value == 'geuden':
+                this.mod = [('da','passive',0.10),('dt','passive',0.20)]
 
+        elif name == 'da':
+            this.mod = [('da','passive',value,cond)]
+        elif name == 'dt':
+            this.mod = [('dt','passive',value,cond)]
 
     def ex_dmg_make(this, name, dmg_coef, dtype=None):
         count = this.adv_dmg_make(name, dmg_coef, dtype)
@@ -204,10 +212,8 @@ class Ability(object):
                     Timer(pm_cd_end).on(15)
 
             Event('s1_charged').listener(l_primed)
-        elif name == 'dra':
-            adv.dragonform.conf.dracolith += value
-        elif name == 'drt':
-            adv.dragonform.conf.dragon_time += value
+        elif name == 'dp':
+            adv.dragonform.dragon_gauge += 10
 
 #        elif name == 'ex' and value == 'wand':
 #            this.ex_wand(adv)

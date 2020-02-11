@@ -10,7 +10,7 @@ class Pazuzu(DragonBase):
     att = 127
     a = [('k_poison', 0.2), ('a', 0.5)]
 
-class Longlong(DragonBase):
+class Long_Long(DragonBase):
     ele = 'wind'
     att = 127
     a = [('a', 0.45), ('cd', 0.55)]

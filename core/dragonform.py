@@ -14,6 +14,7 @@ class DragonForm(Action):
         self.has_skill = True
         self.act_list = []
         self.dx_last = ['dx{}'.format(i) for i in range(1, 6) if 'dx{}'.format(i) in self.conf][-1]
+        self.act_sum = []
 
         self.action_timer = None
 
@@ -26,34 +27,40 @@ class DragonForm(Action):
         self.c_act_conf = None
         self.dracolith_mod = self.adv.Modifier('dracolith', 'att', 'dragon', 0)
         self.dracolith_mod.off()
+        self.off_ele_mod = None
+        if self.adv.slots.c.ele != self.adv.slots.d.ele:
+            self.off_ele_mod = self.adv.Modifier('off_ele', 'att', 'dragon', -1/3)
+            self.off_ele_mod.off()
 
         self.dragon_gauge = 0
-        if timing is None:
-            from adv.adv_test import sim_duration
-            timing = int(sim_duration/10)
-        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(timing)
+        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(timing or 12)
 
     def auto_gauge(self, t):
         self.charge_gauge(10)
 
     def charge_gauge(self, value):
         if self.status != -1:
-            if self.adv.slots.c.wt == 'sword':
-                self.dragon_gauge += value*1.15
-            else:
-                self.dragon_gauge += value
+            value = value * self.adv.mod('dh')
+            self.dragon_gauge += value
             self.dragon_gauge = min(self.dragon_gauge, 100)
-            log('dragon', 'gauge', '{:.2f} / 100'.format(self.dragon_gauge))
+            log('dragon_gauge', '+{:.2f}%'.format(value), '{:.2f}%'.format(self.dragon_gauge))
+
+    def dtime(self):
+        return self.conf.dshift.startup + self.conf.duration * self.adv.mod('dt')
+
+    def ddamage(self):
+        return self.conf.dracolith + self.adv.mod('da') - 1
 
     def d_shift_end(self, t):
         if self.action_timer is not None:
             self.action_timer.off()
             self.action_timer = None
         duration = now()-self.shift_start_time
-        log('dragon_end', self.name, 
-            '{:.2f} dmg / {:.2f}s'.format(self.shift_damage_sum, duration),
-            '{:.2f} dps'.format(self.shift_damage_sum/duration))
+        log('dragon_end',
+            '{:.2f}dmg / {:.2f}s = {:.2f} dps'.format(self.shift_damage_sum, duration, self.shift_damage_sum/duration), ' '.join(self.act_sum))
         self.dracolith_mod.off()
+        if self.off_ele_mod is not None:
+            self.off_ele_mod.on()
         self.has_skill = True
         self.status = -2
         self._setprev() # turn self from doing to prev
@@ -77,6 +84,7 @@ class DragonForm(Action):
             self.has_skill = False
             self.shift_end_timer.timing += self.conf.ds.startup+self.conf.ds.recovery
             self.shift_damage_sum += self.ds_proc()
+            self.act_sum.append('s')
         elif self.c_act_name == 'end':
             self.d_shift_end(None)
             self.shift_end_timer.off()
@@ -85,7 +93,8 @@ class DragonForm(Action):
             # dname = self.c_act_name[:-1] if self.c_act_name != 'dshift' else self.c_act_name
             self.shift_damage_sum += self.adv.dmg_make('d_'+self.c_act_name, self.c_act_conf.dmg)
             if self.dx_last == self.c_act_name:
-                log('dx', self.c_act_name, 0, '-------------------------------------c'+self.dx_last[-1])
+                # log('dx', self.c_act_name, 0, '-------------------------------------c'+self.dx_last[-1])
+                self.act_sum.append('c'+self.dx_last[-1])
         if self.c_act_conf.hit > -1:
             self.adv.hits += self.c_act_conf.hit
         else:
@@ -133,16 +142,19 @@ class DragonForm(Action):
                 return False
         if self.dragon_gauge >= 50:
             log('dragon_start', self.name)
+            self.shift_damage_sum = 0
+            self.act_sum = []
             self.parse_act()
             self.dragon_gauge -= 50
             self.has_skill = True
             self.status = -1
             self._setdoing()
-            # I hope there are never dragon damage or dragon time buff skills ever :bolbjed:
             self.shift_start_time = now()
-            self.shift_end_timer.on(self.conf.dshift.startup + self.conf.duration * self.conf.dragon_time)
-            self.dracolith_mod.mod_value = self.conf.dracolith
+            self.shift_end_timer.on(self.dtime())
+            self.dracolith_mod.mod_value = self.ddamage()
             self.dracolith_mod.on()
+            if self.off_ele_mod is not None:
+                self.off_ele_mod.on()
             Event('dragon')()
             self.d_act_start('dshift')
             return True

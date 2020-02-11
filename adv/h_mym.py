@@ -7,17 +7,43 @@ def module():
     return H_Mym
 
 class H_Mym(Adv):
-    a1 = ('cd',0.3)
+    a3 = ('da',0.20)
 
     conf = {}
     conf['slots.a'] = KFM()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
+        `dragon, s=2
         `s3, not this.s3_buff_on
         `s1
         `s2
         `fs, x=5
     """
+    conf['dragonform'] = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.20,
+        'dx1.startup': 15 / 60.0, # c1 frames
+        'dx1.recovery': 44 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 3.30,
+        'dx2.recovery': (38+24) / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.74*2,
+        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 54
+        'dx3.hit': 2,
+
+        'ds.recovery': 178 / 60, # skill frames
+        'ds.hit': 8,
+    }
+    def ds_proc(this):
+        return this.dmg_make('d_ds',12.32,'s')
+
+    def init(this):
+        del this.slots.c.ex['axe']
+        this.slots.c.ex['hmym'] = ('ex', 'hmym')
 
     def prerun(this):
         if this.condition('s1 defdown for 10s'):
@@ -27,8 +53,17 @@ class H_Mym(Adv):
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
 
-    def init(this):
-        this.slots.c.ex = {'hmym':('ex', 'hmym')}
+        this.a1_spd = Spdbuff('a1',0.15,-1,wide='self')
+        Event('dragon').listener(this.a1_on)
+        Event('idle').listener(this.a1_off)
+
+    def a1_on(this, e):
+        if not this.a1_spd.get():
+            this.a1_spd.on()
+
+    def a1_off(this, e):
+        if this.a1_spd.get():
+            this.a1_spd.off()
 
     def s1_proc(this, e):
         if this.s1defdown :

@@ -513,18 +513,12 @@ ADD = A_Dogs_Day
 
 class The_Bridal_Dragon(Amulet):
     att = 64
-    a = [('dra', 0.18)]
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        adv.dragonform.charge_gauge(10)
+    a = [('dp',0.10),('da',0.18)]
 TBD = The_Bridal_Dragon
 
 class A_Suit_of_Midnight(Amulet):
     att = 52
-    a = []
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        adv.dragonform.charge_gauge(10)
+    a = [('dp',0.10)]
 
 class Primal_Crisis(Amulet):
     att = 55
@@ -546,7 +540,7 @@ class The_Lurker_in_the_Woods(Amulet):
 
 class Prayers_Unto_Him(Amulet):
     att = 64
-    a = [('dra', 0.18), ('drt', 0.15)]
+    a = [('da', 0.18), ('dt', 0.15)]
 
 amulets = []
 for k in list(globals()):

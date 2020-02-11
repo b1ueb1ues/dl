@@ -55,6 +55,32 @@ class Cupid(DragonBase):
     ele = 'light'
     att = 119
     a = [('a', 0.6)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.01,
+        'dx1.startup': 17 / 60.0, # c1 frames
+        'dx1.recovery': 38 / 60.0, # c2 frames
+        'dx1.hit': 3,
+
+        'dx2.dmg': 2.20,
+        'dx2.startup': 0,
+        'dx2.recovery': 53 / 60.0, # c3 frames
+        'dx2.hit': 4,
+
+        'dx3.dmg': 2.80,
+        'dx3.startup': 0,
+        'dx3.recovery': 39 / 60.0, # dodge frames, real recovery 720 (visible confusion)
+        'dx3.hit': 5,
+
+        'ds.recovery': 140 / 60, # skill frames
+        'ds.hit': 0,
+    }
+
+    def ds_proc(self):
+        from adv import Teambuff
+        Teambuff('d_cc_buff',0.25,15).on()
+        return 0
 
 class Takemikazuchi(DragonBase):
     ele = 'light'

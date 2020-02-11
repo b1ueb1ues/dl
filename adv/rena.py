@@ -13,6 +13,7 @@ class Rena(Adv):
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = RR()+EE()
     conf['acl'] = """
+        `dragon
         `s3, not this.s3_buff_on
         `s1
         `s2, s=1

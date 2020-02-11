@@ -11,7 +11,7 @@ class Mitsuhide(Adv):
     a3 = ('k_paralysis',0.3)
 
     conf = {}
-    conf['slot.a'] = TB()+Spirit_of_the_Season()
+    conf['slot.a'] = TB()+The_Bridal_Dragon()
     conf['acl'] = """
         `dragon
         `s1
@@ -54,7 +54,7 @@ class Mitsuhide(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)
 
 
 

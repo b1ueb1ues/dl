@@ -58,6 +58,10 @@ def set_ex(ex_str):
             ex_set['bow'] = ('ex','bow')
         elif i == 'm':
             ex_set['hmym'] = ('ex', 'hmym')
+        elif i == 's':
+            ex_set['sword'] = ('ex', 'sword')
+        elif i == 'g':
+            ex_set['geuden'] = ('ex', 'geuden')
 
 
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
@@ -128,7 +132,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         adv = classname(conf=conf,cond=1)
     else:
         adv = classname(conf=conf,cond=0)
-    adv.ex = ex_set
+    adv.ex.update(ex_set)
 
     real_duration = adv.run(sim_duration)
     comment = adv.comment
@@ -406,10 +410,9 @@ def do_mass_sim_stub(sim_id, classname, conf, no_cond):
     sum_duration = 0
     if not no_cond:
         adv = classname(conf=conf,cond=1)
-        adv.ex = ex_set
     else:
         adv = classname(conf=conf,cond=0)
-        adv.ex = ex_set
+    adv.ex.update(ex_set)
     from core.acl import dact
     adv._acl = dact
     real_duration = adv.run(sim_duration)
@@ -424,7 +427,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     global ex_set
     results = []
     adv = classname(conf=conf)
-    adv.ex = ex_set
+    adv.ex.update(ex_set)
     adv.run(1)
     _acl_str = acl_func_str(
                     adv.acl_prepare_default+adv.conf['acl'] 
@@ -566,6 +569,8 @@ def sum_ac():
                 prev = 0
             else:
                 ret.append(i[2])
+        if i[1] == 'dragon_start':
+            ret.append('dragon')
     if lastc:
         ret.append(lastc)
 
@@ -594,7 +599,7 @@ def sum_ac():
                 prin += i+'\n'
             prev = 's'
         elif i[0] == 'c':
-            if prev == 's':
+            if prev == 's' and prin[-1] is not '\n':
                 row = 0
                 prin += '\n'
             elif prev == 'fs':
@@ -623,6 +628,11 @@ def sum_ac():
                 prin += 'fs '
                 row +=3
             prev = 'fs'
+        elif i == 'dragon':
+            if prin[-1] != '\n':
+                prin += '\n'
+            prin += '--- dragon ---'
+            row = 0
     #if prev == 'c' :
     #    prin += i
     print(prin)

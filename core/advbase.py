@@ -824,7 +824,7 @@ class Adv(object):
     a1 = None
     a2 = None
     a3 = None
-    ex = None
+    ex = {}
 
     conf_default = Conf()
 

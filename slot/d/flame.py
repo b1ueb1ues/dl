@@ -41,7 +41,7 @@ class Arctos(DragonBase):
     att = 121
     a = [('a', 0.45), ('cd', 0.55)]
     dragonform = {
-        'act': 's c3',
+        'act': 'c3 s',
 
         'dx1.dmg': 2.10,
         'dx1.startup': 19 / 60.0, # c1 frames
@@ -188,6 +188,30 @@ class Dreadking_Rathalos(DragonBase):
     ele = 'flame'
     att = 127
     a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]
+    dragonform = {
+        'act': 'c1 c1 c3 s',
+
+        'dx1.dmg': 2.20,
+        'dx1.startup': 6 / 60.0, # c1 frames
+        'dx1.recovery': 41 / 60.0, # c2 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.42,
+        'dx2.recovery': 57 / 60.0, # c3 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 1.44+3.40,
+        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 93
+        'dx3.hit': 2,
+
+        'ds.recovery': 161 / 60, # skill frames
+        'ds.hit': 2,
+    }
+
+    def ds_proc(self):
+        dmg = self.adv.dmg_make('d_ds',1.00,'s')
+        self.adv.afflics.burn('ds',120,0.97,12,dtype='s')
+        return dmg + self.adv.dmg_make('d_ds',4.00,'s')
 
 class Unreleased_FlameSkillHaste(DragonBase):
     ele = 'flame'

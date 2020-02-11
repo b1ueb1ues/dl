@@ -48,7 +48,7 @@ class Slot(object):
 class CharacterBase(Slot):
     name = 'null'
     stars = 5
-    ex = []
+    ex = {}
     def setup(this):
         return
 
@@ -95,8 +95,7 @@ class DragonBase(Slot):
     a = [('a', 0.60)]
     default_dragonform = {
         'duration': 600 / 60, # 10s dragon time
-        'dracolith': 0.40,
-        'dragon_time': 1, # dragon time mod
+        'dracolith': 0.40, # base dragon damage
         'act': 'end',
 
         'dshift.startup': 96 / 60, # shift 102 -> 96 + 6
@@ -122,7 +121,7 @@ class DragonBase(Slot):
 
     def ds_proc(self):
         try:
-            return self.adv.dmg_make('d_ds',self.conf.ds.dmg,'s')
+            return self.adv.dmg_make('d_ds',self.adv.dragonform.conf.ds.dmg,'s')
         except:
             return 0
 
@@ -130,8 +129,15 @@ class DragonBase(Slot):
         super().oninit(adv)
         from core.dragonform import DragonForm
         self.adv = adv
-        dconf = Conf({**self.default_dragonform, **self.dragonform})
-        self.adv.dragonform = DragonForm(type(self).__name__, dconf, adv, self.ds_proc)
+        if 'dragonform' in adv.conf:
+            name = type(adv).__name__
+            dconf = Conf(self.default_dragonform)
+            dconf += adv.conf.dragonform
+            self.adv.dragonform = DragonForm(name, dconf, adv, adv.ds_proc)
+        else:
+            name = type(self).__name__
+            dconf = Conf({**self.default_dragonform, **self.dragonform})
+            self.adv.dragonform = DragonForm(name, dconf, adv, self.ds_proc)
 
 class Amuletempty(object):
     stype = 'a2'
