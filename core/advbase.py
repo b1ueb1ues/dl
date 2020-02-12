@@ -950,18 +950,18 @@ class Adv(object):
                 if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
                     aff = vars(this.afflics)[this.conf.sim_afflict.type]
                     aff.resist = -5
-                    aff.on('simulated_{}'.format(this.conf.sim_afflict.type), 100, 0, duration=t, iv=t)
+                    aff.on('simulated'.format(this.conf.sim_afflict.type), 100, 0, duration=t, iv=t)
 
     def sim_buffbot(this):
         if 'sim_buffbot' in this.conf:
             if 'debuff' in this.conf.sim_buffbot:
                 value = -this.conf.sim_buffbot.debuff
                 if this.condition('boss def {:+.0%}'.format(value)):
-                    buff = this.Selfbuff('simulated_debuff',value,-1,mtype='def')
+                    buff = this.Selfbuff('simulated_def',value,-1,mtype='def')
                     buff.on()
             if 'buff' in this.conf.sim_buffbot:
                 if this.condition('team str {:+.0%}'.format(this.conf.sim_buffbot.buff)):
-                    this.Selfbuff('simulated_buff',this.conf.sim_buffbot.buff,-1).on()
+                    this.Selfbuff('simulated_att',this.conf.sim_buffbot.buff,-1).on()
 
     def sync_slot(this, conf_slots):
         #this.cmnslots(conf)
