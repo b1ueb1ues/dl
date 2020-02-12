@@ -8,7 +8,7 @@ def module():
 
 class H_Mym(Adv):
     conf = {}
-    conf['slots.a'] = KFM()+The_Lurker_in_the_Woods()
+    conf['slots.a'] = KFM()+Jewels_of_the_Sun()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon, s=2
