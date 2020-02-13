@@ -19,7 +19,7 @@ class Euden(Adv):
         `s2, fsc
         `fs, seq=3 and cancel
         """
-    conf['afflict_res.poison'] = 0
+    conf['afflict_res.burn'] = 0
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)
