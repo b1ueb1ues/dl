@@ -262,7 +262,7 @@ function loadAdvSlots() {
                 $('#input-acl').prop('disabled', true);
                 $('#input-acl').val(trimAcl(slots.adv.acl));
                 if (slots.adv.afflict_res != undefined) {
-                    for (const key in Object.keys(slots.adv.afflict_res)) {
+                    for (const key in slots.adv.afflict_res) {
                         $('#input-afflict').prop('disabled', false);
                         $('#input-afflict').data('affliction', key);
                         $('#input-afflict').val(slots.adv.afflict_res[key]);

@@ -232,9 +232,13 @@ def get_adv_slotlist():
         }
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
-            result['adv']['afflict_res'] = dict(adv_instance.conf.afflict_res)
-        else:
-            result['adv']['afflict_res'] = None
+            res_conf = adv_instance.conf.afflict_res
+            res_dict = {}
+            for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+                if afflic in res_conf:
+                    res_dict[afflic] = res_conf[afflic]
+            if len(res_dict.keys()) > 0:
+                result['adv']['afflict_res'] = res_dict
         if result['adv']['name'] in SPECIAL_ADV:
             result['adv']['no_config'] = SPECIAL_ADV[result['adv']['name']]['nc']
     # result['amulets'] = list_members(slot.a, is_amulet)
