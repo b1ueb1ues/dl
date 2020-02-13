@@ -49,7 +49,7 @@ class Slot(object):
 class CharacterBase(Slot):
     name = 'null'
     stars = 5
-    ex = []
+    ex = {}
     def setup(this):
         return
 

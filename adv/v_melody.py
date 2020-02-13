@@ -4,42 +4,42 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return H_Mym
+    return Valentines_Melody
 
-class H_Mym(Adv):
+class Valentines_Melody(Adv):
+    a3 = ('k_poison',0.3)
+
     conf = {}
     conf['slots.a'] = KFM()+Jewels_of_the_Sun()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.d'] = Freyja()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
         `s2
         `fs, x=5
     """
+    conf['cond_afflict_res'] = 0
 
     def prerun(this):
+        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
+            this.afflics.poison.resist=this.conf['cond_afflict_res']
+        else:
+            this.afflics.poison.resist=100
         if this.condition('s1 defdown for 10s'):
             this.s1defdown = 1
         else:
             this.s1defdown = 0
-        if this.condition('buff all team'):
-            this.s2_proc = this.c_s2_proc
 
     def init(this):
         del this.slots.c.ex['axe']
-        this.slots.c.ex['hmym'] = ('ex', 'axe2')
+        this.slots.c.ex['vmelody'] = ('ex', 'axe2')
 
     def s1_proc(this, e):
         if this.s1defdown :
-            Debuff('s1defdown',0.15,10,1).on()
+            Debuff('s1',0.15,10,1).on()
     
-    def c_s2_proc(this, e):
-        Teambuff('s2',0.20,15).on()
-        Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
-
     def s2_proc(this, e):
-        Selfbuff('s2',0.20,15).on()
-        Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
+        this.afflics.poison('s2', 120, 0.582)
 
 if __name__ == '__main__':
     conf = {}
