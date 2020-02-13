@@ -9,6 +9,7 @@ class DragonForm(Action):
         self.adv = adv
         self.cancel_by = []
         self.interrupt_by = []
+        self.disabled = False
 
         self.ds_proc = ds_proc
         self.has_skill = True
@@ -127,7 +128,7 @@ class DragonForm(Action):
             else:
                 nact = 'dx1'
         if nact == 'ds' or nact == 'dodge': # cancel
-            self.act_timer(self.d_act_start_t, 0, nact)
+            self.act_timer(self.d_act_start_t, self.conf.latency, nact)
         else: # regular recovery
             self.act_timer(self.d_act_start_t, self.c_act_conf.recovery, nact)
 
@@ -159,6 +160,8 @@ class DragonForm(Action):
         return self
 
     def __call__(self):
+        if self.disabled:
+            return False
         doing = self.getdoing()
         if isinstance(doing, S):
             if not doing.idle:

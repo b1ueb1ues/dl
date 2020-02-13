@@ -67,6 +67,7 @@ class PopStar_Siren(DragonBase):
         from adv import Teambuff, Event
         Teambuff('d_att_buff',0.20,20).on()
         Event('defchain')()
+        self.energy.add_energy('self', 3)
         self.energy.add_energy('team', 3)
         return 0
 

@@ -518,7 +518,7 @@ TBD = The_Bridal_Dragon
 
 class A_Suit_of_Midnight(Amulet):
     att = 52
-    a = [('dp',0.10)]
+    a = [('dp',0.10), ('afflict_guard', 3)]
 
 class Primal_Crisis(Amulet):
     att = 55
