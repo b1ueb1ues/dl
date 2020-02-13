@@ -9,20 +9,22 @@ class Gilgamesh(DragonBase):
 
         'dx1.dmg': 1.60,
         'dx1.startup': 21 / 60.0, # c1 frames
-        'dx1.recovery': 24 / 60.0, # c2 frames
         'dx1.hit': 2,
 
         'dx2.dmg': 1.76,
-        'dx2.recovery': 35 / 60.0, # c3 frames
+        'dx2.startup': 24 / 60.0, # c2 frames
         'dx2.hit': 4,
 
         'dx3.dmg': 2.22,
-        'dx3.recovery': 33 / 60.0, # dodge frames, real recovery 83
+        'dx3.startup': 35 / 60.0, # c3 frames
+        'dx3.recovery': 83 / 60.0, # recovery
         'dx3.hit': 6,
 
         'ds.dmg': 5.60,
         'ds.recovery': 100 / 60, # skill frames
-        'ds.hit': 0,
+        'ds.hit': 1,
+        
+        'dodge.startup': 33 / 60, # dodge frames
     }
 
 class PopStar_Siren(DragonBase):
@@ -35,19 +37,21 @@ class PopStar_Siren(DragonBase):
 
         'dx1.dmg': 0.80,
         'dx1.startup': 17 / 60.0, # c1 frames
-        'dx1.recovery': 39 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 0.96,
-        'dx2.recovery': 53 / 60.0, # c3 frames
+        'dx2.startup': 39 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 1.44,
-        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 53
+        'dx3.startup': 53 / 60.0, # c3 frames
+        'dx3.recovery': 720 / 60.0, # recovery unknown but longer than dodge
         'dx3.hit': 1,
 
         'ds.recovery': 120 / 60, # skill frames
         'ds.hit': 0,
+
+        'dodge.startup': 41 / 60, # dodge frames
     }
 
     def oninit(self, adv):
@@ -75,19 +79,21 @@ class Cupid(DragonBase):
 
         'dx1.dmg': 2.01,
         'dx1.startup': 17 / 60.0, # c1 frames
-        'dx1.recovery': 38 / 60.0, # c2 frames
         'dx1.hit': 3,
 
         'dx2.dmg': 2.20,
-        'dx2.recovery': 53 / 60.0, # c3 frames
+        'dx2.startup': 38 / 60.0, # c2 frames
         'dx2.hit': 4,
 
         'dx3.dmg': 2.80,
-        'dx3.recovery': 39 / 60.0, # dodge frames, real recovery 720 (visible confusion)
+        'dx3.startup': 53 / 60.0, # c3 frames
+        'dx3.recovery': 39 / 60.0, # recovery unknown but longer than dodge
         'dx3.hit': 5,
 
         'ds.recovery': 140 / 60, # skill frames
         'ds.hit': 0,
+
+        'dodge.startup': 39 / 60, # dodge frames
     }
 
     def ds_proc(self):
@@ -104,20 +110,22 @@ class Takemikazuchi(DragonBase):
 
         'dx1.dmg': 1.53,
         'dx1.startup': 20 / 60.0, # c1 frames
-        'dx1.recovery': 34 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 1.68,
-        'dx2.recovery': 44 / 60.0, # c3 frames
+        'dx2.startup': 34 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 3.44,
-        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 53
+        'dx3.startup': 44 / 60.0, # c3 frames
+        'dx3.recovery': 53 / 60.0, # recovery
         'dx3.hit': 1,
 
         'ds.dmg': 9.95,
         'ds.recovery': 188 / 60, # skill frames
-        'ds.hit': 0,
+        'ds.hit': 5,
+
+        'dodge.startup': 39 / 60, # dodge frames
     }
 
 class Corsaint_Phoenix(DragonBase):
@@ -129,14 +137,14 @@ class Corsaint_Phoenix(DragonBase):
 
         'dx1.dmg': 2.20,
         'dx1.startup': 17 / 60.0, # c1 frames
-        'dx1.recovery': 58 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 2.53,
-        'dx2.recovery': 30 / 60.0, # c3 frames
+        'dx2.startup': 58 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 3.74,
+        'dx3.startup': 30 / 60.0, # c3 frames
         'dx3.recovery': 19 / 60.0, # recovery
         'dx3.hit': 1,
 
@@ -161,11 +169,11 @@ class Daikokuten(DragonBase):
 
         'dx1.dmg': 2.55,
         'dx1.startup': 18 / 60.0, # c1 frames
-        'dx1.recovery': 39 / 60.0, # c2 frames
+        'dx2.startup': 39 / 60.0, # c2 frames
         'dx1.hit': 3,
 
         'dx2.dmg': 2.92,
-        'dx2.recovery': 39 / 60.0, # c3 frames
+        'dx3.startup': 39 / 60.0, # c3 frames
         'dx2.hit': 4,
 
         'dx3.dmg': 4.10,

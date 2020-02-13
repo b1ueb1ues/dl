@@ -120,8 +120,10 @@ class DragonForm(Action):
                 if not nact in self.dx_list:
                     if self.has_skill:
                         nact = 'ds'
-                    else:
+                    elif self.dodge_cancel:
                         nact = 'dodge'
+                    else:
+                        nact = 'dx1'
             else:
                 nact = 'dx1'
         if nact == 'ds' or nact == 'dodge': # cancel

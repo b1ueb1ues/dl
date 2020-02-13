@@ -1,6 +1,33 @@
 from slot import *
 from adv import *
 
+class Agni(DragonBase):
+    ele = 'flame'
+    att = 127
+    a = [('a', 0.6)]
+    dragonform = {
+        'act': 'c2 c2 c2 c2 c2 s c2',
+
+        'dx1.dmg': 2.80,
+        'dx1.startup': 36 / 60.0, # c1 frames
+        'dx1.hit': 2,
+
+        'dx2.dmg': 3.08,
+        'dx2.startup': 34 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.92,
+        'dx3.startup': 79 / 60.0, # c3 frames
+        'dx3.recovery': 80 / 60.0, # recovery
+        'dx3.hit': 1,
+
+        'ds.dmg': 9.80,
+        'ds.recovery': 265 / 60, # skill frames
+        'ds.hit': -2,
+
+        'dodge.startup': 39 / 60, # dodge frames
+    }
+
 class Cerberus(DragonBase):
     ele = 'flame'
     att = 127
@@ -84,6 +111,8 @@ class Prometheus(DragonBase):
         'ds.dmg': 5.60,
         'ds.recovery': 126 / 60, # skill frames
         'ds.hit': 2,
+
+        'dodge.startup': 39 / 60, # dodge frames
     }
 
 class Sakuya(DragonBase):
