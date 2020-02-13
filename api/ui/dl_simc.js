@@ -4,8 +4,9 @@ EX_MAP = {
     'wand': 'r',
     'bow': 'b',
     'dagger': 'd',
-    'hmym': 'm'
+    'axe2': 'm'
 }
+AXE2_ADV = ['h_mym', 'v_melody']
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 16000
 BASE_AFFLICT_UPTIME = {
@@ -252,9 +253,9 @@ function loadAdvSlots() {
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv.wt).prop('checked', true);
                 $('#ex-' + slots.adv.wt).prop('disabled', true);
-                if($('#input-adv').val() === 'h_mym'){
-                    $('#ex-hmym').prop('checked', true);
-                    $('#ex-hmym').prop('disabled', true);
+                if(AXE2_ADV.includes($('#input-adv').val())){
+                    $('#ex-axe2').prop('checked', true);
+                    $('#ex-axe2').prop('disabled', true);
                 }
                 $('#input-acl').blur();
                 $('#input-edit-acl').prop('checked', false);
