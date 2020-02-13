@@ -1,7 +1,6 @@
 import adv.adv_test
 import adv
 from slot.a import *
-from slot.d.light import *
 
 def module():
     return Julietta
@@ -13,7 +12,6 @@ class Julietta(adv.Adv):
        adv.Event('defchain')()
 
     conf = {}
-    conf['slot.d'] = Corsaint_Phoenix()
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `dragon
@@ -24,6 +22,3 @@ class Julietta(adv.Adv):
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)
-    from core.log import logcat
-    logcat([str(type(Julietta.conf['slot.d']).__name__)])
-    logcat(['dragon_action'])

@@ -169,15 +169,15 @@ class Daikokuten(DragonBase):
 
         'dx1.dmg': 2.55,
         'dx1.startup': 18 / 60.0, # c1 frames
-        'dx2.startup': 39 / 60.0, # c2 frames
         'dx1.hit': 3,
 
         'dx2.dmg': 2.92,
-        'dx3.startup': 39 / 60.0, # c3 frames
+        'dx2.startup': 39 / 60.0, # c2 frames
         'dx2.hit': 4,
 
         'dx3.dmg': 4.10,
-        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 66
+        'dx3.startup': 39 / 60.0, # c3 frames
+        'dx3.recovery': 66 / 60.0, # recovery
         'dx3.hit': 5,
 
         'ds.recovery': 120 / 60, # skill frames
