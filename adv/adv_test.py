@@ -57,7 +57,7 @@ def set_ex(ex_str):
         elif i == 'b':
             ex_set['bow'] = ('ex','bow')
         elif i == 'm':
-            ex_set['hmym'] = ('ex', 'hmym')
+            ex_set['axe2'] = ('ex', 'axe2')
 
 
 if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
