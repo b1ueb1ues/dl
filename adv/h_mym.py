@@ -22,26 +22,28 @@ class H_Mym(Adv):
 
         'dx1.dmg': 2.20,
         'dx1.startup': 15 / 60.0, # c1 frames
-        'dx1.recovery': 44 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 3.30,
-        'dx2.recovery': (38+24) / 60.0, # c3 frames
+        'dx2.startup': 44 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 3.74*2,
-        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 54
+        'dx3.startup': (38+24) / 60.0, # c3 frames
+        'dx3.recovery': 54 / 60.0, # recovery
         'dx3.hit': 2,
 
         'ds.recovery': 178 / 60, # skill frames
         'ds.hit': 8,
+
+        'dodge.startup': 41 / 60.0, # dodge frames
     }
     def ds_proc(this):
         return this.dmg_make('d_ds',12.32,'s')
 
     def init(this):
         del this.slots.c.ex['axe']
-        this.slots.c.ex['hmym'] = ('ex', 'hmym')
+        this.slots.c.ex['hmym'] = ('ex', 'axe2')
 
     def prerun(this):
         if this.condition('s1 defdown for 10s'):

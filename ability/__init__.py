@@ -42,7 +42,7 @@ class Ability(object):
                 this.mod = [('s','ex',0.15)]
             elif value == 'sword':
                 this.mod = [('dh','passive',0.15)]
-            elif value == 'hmym':
+            elif value == 'axe2':
                 this.mod = [('crit','damage',0.30)]
             elif value == 'geuden':
                 this.mod = [('da','passive',0.10),('dt','passive',0.20)]

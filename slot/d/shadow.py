@@ -206,15 +206,15 @@ class Chthonius(DragonBase):
         self.adv.afflics.poison('ds',120,0.582,dtype='s')
         return dmg
 
+class Epimetheus(DragonBase):
+    ele = 'shadow'
+    att = 128
+    a = [('k_poison', 0.2), ('a', 0.5)]
+
 class Unreleased_ShadowSkillHaste(DragonBase):
     ele = 'shadow'
     att = 120
     a = [('sp', 0.35)]
-
-class Unreleased_ShadowPoisonPunish(DragonBase):
-    ele = 'shadow'
-    att = 127
-    a = [('k_poison', 0.2), ('a', 0.5)]
 
 class Unreleased_ShadowPrimedStr(DragonBase):
     ele = 'shadow'
