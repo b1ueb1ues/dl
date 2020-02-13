@@ -125,11 +125,11 @@ class Ability(object):
                 4: (0.10,0.15,0.15)
             }
             this.dc_values = dc_levels[value]
-            this.dc_level = 1
+            adv.dc_level = 0
             def l_dc_buff(t):
-                if this.dc_level <= len(this.dc_values):
-                    adv.Buff('dc', this.dc_values[this.dc_level-1], -1).on()
-                    this.dc_level += 1
+                if adv.dc_level < len(this.dc_values):
+                    adv.Buff('dc', this.dc_values[adv.dc_level], -1).on()
+                    adv.dc_level += 1
             Event('dragon').listener(l_dc_buff)
         elif name == 'ro':
             if isinstance(value, tuple) and len(value) == 2:

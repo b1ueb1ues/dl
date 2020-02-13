@@ -285,7 +285,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
                 print(output_k)
 
 
-    if condition != '':
+    if condition != '' and no_cond is None:
         r2 = test(classname, conf, verbose, mass, duration, 1)
         g_condition = ''
         r['no_cond'] = r2
@@ -575,10 +575,10 @@ def sum_ac():
     if lastc:
         ret.append(lastc)
 
-    print(ret)
+    # print(ret)
     prev = 'c0'
     row = 0
-    rowend = 11
+    rowend = 20
     c5count = 0
     prin = ''
     for i in ret:
@@ -594,7 +594,7 @@ def sum_ac():
 
         if i[0] == 's':
             if prev != 's':
-                prin += '-'*(rowend - row)+' '+i+' '
+                prin += '-'*(rowend - row)+i+' '
                 row = 0
             else:
                 prin += i+'\n'
@@ -603,9 +603,9 @@ def sum_ac():
             if (prev == 's' or prev == 'd') and prin[-1] is not '\n':
                 row = 0
                 prin += '\n'
-            elif prev == 'fs':
-                row = 0
-                prin += '\n'
+            # elif prev == 'fs':
+            #     row = 0
+            #     prin += '\n'
             if i == 'c5':
                 c5count+=1
             else:
@@ -622,17 +622,21 @@ def sum_ac():
                     row += 8
             prev = 'c'
         elif i == 'fs':
-            if prev == 'fs':
+            # if prev == 'fs':
+            #     prin += '\nfs '
+            #     row = 3
+            # else:
+            if prev == 's':
                 prin += '\nfs '
                 row = 3
             else:
                 prin += 'fs '
-                row +=3
+                row += 3
             prev = 'fs'
         elif i == 'dragon':
             if prin[-1] != '\n':
                 prin += '\n'
-            prin += '--- dragon ---\n'
+            prin += '------- dragon -------\n'
             prev = 'd'
             row = 0
     #if prev == 'c' :

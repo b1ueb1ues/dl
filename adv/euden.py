@@ -9,13 +9,18 @@ def module():
 class Euden(Adv):
     a1 = ('dc', 4)
     conf = {}
-    conf['slot.d'] = Apollo()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
+        # `dragon.act("s end"), this.dc_level<2
+        # `dragon, this.dc_level>=2
+
     conf['acl'] = """
-        `dragon, cancel
+        `dragon.act("c3 s end"), this.dc_level<2
+        `dragon, this.dc_level>=2
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
+        `fs, x=2 and s1.charged > this.sp_val(3)+this.sp_val('fs')
         `fs, x=3
         """
 
@@ -33,3 +38,4 @@ class Euden(Adv):
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)
+    # logcat([str(type(Euden.conf['slot.d']).__name__)])

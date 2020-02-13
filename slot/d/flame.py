@@ -6,18 +6,18 @@ class Cerberus(DragonBase):
     att = 127
     a = [('a', 0.6)]
     dragonform = {
-        'act': 'c3 s',
+        'act': 'c3 s', # "c3 c2 s c2 c2 c2 c2 c2 c2"
 
         'dx1.dmg': 2.00,
         'dx1.startup': 12 / 60.0, # c1 frames
-        'dx1.recovery': 26 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 1.40,
-        'dx2.recovery': (41+15) / 60.0, # c3 frames
+        'dx2.startup': 26 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 1.40*2,
+        'dx3.startup': (41+15) / 60.0, # c3 frames
         'dx3.recovery': 38 / 60.0, # recovery
         'dx3.hit': 2,
 
@@ -45,15 +45,15 @@ class Arctos(DragonBase):
 
         'dx1.dmg': 2.10,
         'dx1.startup': 19 / 60.0, # c1 frames
-        'dx1.recovery': 39 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 2.31,
-        'dx2.recovery': (60+27) / 60.0, # c3 frames
+        'dx2.startup': 39 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 4.20*2,
-        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 56
+        'dx3.startup': (60+27) / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
         'dx3.hit': 2,
 
         'ds.dmg': 10,
@@ -70,15 +70,15 @@ class Prometheus(DragonBase):
 
         'dx1.dmg': 1.60,
         'dx1.startup': 14 / 60.0, # c1 frames
-        'dx1.recovery': 36 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 1.76,
-        'dx2.recovery': 36 / 60.0, # c3 frames
+        'dx2.startup': 36 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 2.24,
-        'dx3.recovery': 39 / 60.0, # dodge frames, real recovery 56
+        'dx3.startup': 36 / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
         'dx3.hit': 2,
 
         'ds.dmg': 5.60,
@@ -95,15 +95,15 @@ class Sakuya(DragonBase):
 
         'dx1.dmg': 2.08,
         'dx1.startup': 25 / 60.0, # c1 frames
-        'dx1.recovery': 40 / 60.0, # c2 frames
+        'dx2.startup': 40 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 2.29,
-        'dx2.recovery': 48 / 60.0, # c3 frames
+        'dx3.startup': 48 / 60.0, # c3 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 3.99,
-        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 69
+        'dx3.recovery': 69 / 60.0, # recovery
         'dx3.hit': 1,
 
         'ds.recovery': 167 / 60, # skill frames
@@ -129,15 +129,15 @@ class Apollo(DragonBase):
 
         'dx1.dmg': 1.90,
         'dx1.startup': 23 / 60.0, # c1 frames
-        'dx1.recovery': 36 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 2.09,
-        'dx2.recovery': 35 / 60.0, # c3 frames
+        'dx2.startup': 36 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 2.57,
-        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 41
+        'dx3.startup': 35 / 60.0, # c3 frames
+        'dx3.recovery': 41 / 60.0, # recovery
         'dx3.hit': 1,
 
         'ds.recovery': 110 / 60, # skill frames
@@ -164,15 +164,15 @@ class Kagutsuchi(DragonBase):
 
         'dx1.dmg': 2.00,
         'dx1.startup': 28 / 60.0, # c1 frames
-        'dx1.recovery': 48 / 60.0, # c2 frames
+        'dx2.startup': 48 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 2.40,
-        'dx2.recovery': 63 / 60.0, # c3 frames
+        'dx3.startup': 63 / 60.0, # c3 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 5.80,
-        'dx3.recovery': 40 / 60.0, # dodge frames, real recovery 64
+        'dx3.recovery': 64 / 60.0, # recovery
         'dx3.hit': 2,
 
         'ds.recovery': 141 / 60, # skill frames
@@ -194,19 +194,21 @@ class Dreadking_Rathalos(DragonBase):
 
         'dx1.dmg': 2.20,
         'dx1.startup': 6 / 60.0, # c1 frames
-        'dx1.recovery': 41 / 60.0, # c2 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 2.42,
-        'dx2.recovery': 57 / 60.0, # c3 frames
+        'dx2.startup': 41 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 1.44+3.40,
-        'dx3.recovery': 41 / 60.0, # dodge frames, real recovery 93
+        'dx3.startup': 57 / 60.0, # c3 frames
+        'dx3.recovery': 93 / 60.0, # recovery
         'dx3.hit': 2,
 
         'ds.recovery': 161 / 60, # skill frames
         'ds.hit': 2,
+
+        'dodge.startup': 41 / 60, # dodge frames
     }
 
     def ds_proc(self):

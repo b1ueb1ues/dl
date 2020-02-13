@@ -97,16 +97,24 @@ class DragonBase(Slot):
         'duration': 600 / 60, # 10s dragon time
         'dracolith': 0.40, # base dragon damage
         'exhilaration': 0, # psiren aura
+        'gauge_iv': 12, # gauge interval
         'act': 'end',
 
         'dshift.startup': 96 / 60, # shift 102 -> 96 + 6
-        'dshift.recovery': 6 / 60,
+        'dshift.recovery': 0 / 60, # assumed cancel
         'dshift.dmg': 2.00,
         'dshift.hit': 1,
 
-        'dx2.startup': 0,
-        'dx3.startup': 0,
+        'dx1.recovery': 0,
+        'dx2.recovery': 0,
+        'dx3.recovery': 0,
+        'dx4.recovery': 0,
+        'dx5.recovery': 0,
         'ds.startup': 0,
+
+        'dodge.startup': 40 / 60, # dodge frames
+        'dodge.recovery': 0,
+        'dodge.hit': 0,
 
         'end.startup': 0, # amount of time needed to kys, 0 default
         'end.recovery': 0
