@@ -1182,7 +1182,7 @@ class Adv(object):
         m = 1
         for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
             rate = vars(this.afflics)[afflic].get()
-            m *= 1 + (this.mod(afflic + '_killer') - 1) * rate
+            m += (this.mod(afflic + '_killer') - 1) * rate
         return m
 
     def def_mod(this):
