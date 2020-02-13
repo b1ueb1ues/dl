@@ -9,11 +9,6 @@ def module():
 
 class Addis(addis.Addis):
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)

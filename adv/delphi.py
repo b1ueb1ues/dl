@@ -18,14 +18,9 @@ class Delphi(Adv):
         `s3
         `fs, x=2 and (this.s1fscharge == 0 or this.hits >= 15)
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
         this.flurry_poison = 70
         
         if this.condition('s1 defdown for 10s'):

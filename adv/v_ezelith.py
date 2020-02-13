@@ -19,7 +19,7 @@ class V_Ezelith(Adv):
         `s2, fsc
         `fs, seq=2
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
 
     def c_prerun(this):
         this.o_prerun()
@@ -40,11 +40,6 @@ class V_Ezelith(Adv):
             this.o_prerun = this.prerun
             this.prerun = this.c_prerun
             this.dmg_proc = this.c_dmg_proc
-
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
 
     def c_dmg_proc(this, name, amount):
         if this.hits // 30 > this.ehit:

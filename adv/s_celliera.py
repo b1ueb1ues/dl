@@ -7,11 +7,9 @@ def module():
     return S_Celliera
 
 class S_Celliera(Adv):
-    comment = 'no bog; don\'t s3; c2fs'
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}
-    #conf['slot.a'] = TSO() + JotS()
     conf['slot.a'] = VC() + JotS()
     conf['slot.d'] = DJ()
     conf['acl'] = """
@@ -20,23 +18,22 @@ class S_Celliera(Adv):
         `s3, fsc
         `fs, seq=2
         """
+    conf['afflict_res.bog'] = 100
 
     def d_slots(this):
         if 'wand' in this.ex:
             this.conf['slot.d'] = Siren()
         if 'bow' in this.ex:
             this.conf['slot.a'] = TSO() + FRH()
-            this.conf['acl'] = """
-                    `s2
-                    `s1
-                    `s3, fsc
-                    `fs, seq=3
-                    """
-
 
     def init(this):
         this.s2_stance = 1
 
+    def s1_proc(this, e):
+        #560+168+392
+        this.dmg_make('s1',1.84)
+        this.afflics.bog.on('s1', 110)
+        this.dmg_make('s1',5.52)
 
     def s2_proc(this, e):
         if this.s2_stance == 1:

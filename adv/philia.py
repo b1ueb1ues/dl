@@ -14,13 +14,7 @@ class Philia(adv.Adv):
         `s2, seq=5 or fsc
         `s3, seq=5 or fsc
         """
-    conf['cond_afflict_res'] = 0
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
+    conf['afflict_res.paralysis'] = 0
 
     def s2_proc(this, e):
         this.afflics.paralysis('s2',90,0.60)

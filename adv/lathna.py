@@ -18,11 +18,6 @@ class Lathna(Adv):
         """
     def prerun(this):
         this.s1tmp = Conf(this.conf.s1)
-        # if this.conf['cond_afflict_res'] < 100:
-        #     from adv.adv_test import sim_duration
-        #     if this.condition('always poisoned'):
-        #         this.afflics.poison.resist=0
-        #         this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
     def s1back(this, t):
         this.conf.s1.recovery = this.s1tmp.recovery

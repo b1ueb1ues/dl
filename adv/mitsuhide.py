@@ -20,16 +20,10 @@ class Mitsuhide(Adv):
         `s3
         `fs, seq=4
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.paralysis'] = 0
 
     def init(this):
         this.s1_stance = 1
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
 
     def s1_proc(this, e):
         this.afflics.paralysis('s1',120, 0.97)

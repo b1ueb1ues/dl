@@ -15,20 +15,13 @@ class Hawk(Adv):
         `fs, seq=4
     """
     conf['slot.d'] = Garland()
-    conf['cond_afflict_res'] = 80
+    conf['afflict_res.stun'] = 80
     def init(this):
         this.s2fscharge = 0
-        if this.condition('fullhp=stun'):
+        if this.condition('hp100'):
             this.fullhp = 1
         else:
             this.fullhp = 0
-
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.stun.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.stun.resist=100
 
     def s1_proc(this, e):
         with Modifier("s1killer", "stun_killer", "hit", 1.15):

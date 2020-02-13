@@ -8,7 +8,6 @@ def module():
 class S_Julietta(Adv):
     a3 = ('primed_att',0.10)
 
-    comment = 'no fs; no bog'
     conf = {}
     conf['slot.a'] = KFM() + JotS()
     conf['acl'] = """
@@ -16,20 +15,18 @@ class S_Julietta(Adv):
         `s1
         `s3
         """
+    conf['afflict_res.bog'] = 100
 
     def init(this):
         this.s2_stance = 1
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
-        #if this.condition('bog resist 60'):
-        #    this.afflics.bog.resist = 60
-        #else:
-        #    this.afflics.bog.resist = 100
 
-    #def s1_proc(this, e):
-    #    r = this.afflics.bog('s1',110)
-    #    if r:
-    #       Debuff('s1_bog',-0.5*r,8,1,'att','bog').on()
+    def s1_proc(this, e):
+        #560+168+392
+        this.dmg_make('s1',5.60)
+        this.afflics.bog.on('s1', 110)
+        this.dmg_make('s1',5.60)
 
     def s2_proc(this, e):
         if this.s2_stance == 1:
@@ -59,4 +56,4 @@ class S_Julietta(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)

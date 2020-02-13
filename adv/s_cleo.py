@@ -11,7 +11,7 @@ class S_Cleo(Adv):
     conf = {}
     conf['slot.d'] = Corsaint_Phoenix()
     comment = 'nofs'
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
     conf['acl'] = """
             `s2
             `s1
@@ -22,26 +22,6 @@ class S_Cleo(Adv):
         this.bc = Selfbuff()
         if this.condition('buff all team'):
             this.s2_proc = this.c_s2_proc
-
-        #if this.condition('c4+fs'):
-        #    this.conf['acl'] = """
-        #        `s3,s1.charged>=s1.sp
-        #        `s2
-        #        `s1
-        #        `fs, seq=4
-        #        """
-        #else:
-        #    this.conf['acl'] = """
-        #        `s3,s1.charged>=s1.sp
-        #        `s2
-        #        `s1
-        #        """
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
-
 
     def s1_lantency(this, t):
         this.dmg_make('s1_missile',1.06)

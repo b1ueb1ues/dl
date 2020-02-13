@@ -21,15 +21,13 @@ class Albert(Adv):
         """
     conf['slot.a'] = TSO()+SDO()
     conf['slot.d'] = C_Phoenix()
-    conf['cond_afflict_res'] = 0
-
+    conf['afflict_res.paralysis'] = 0
 
     def init(this):
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
 
     def prerun(this):
-
         this.fsaconf = Conf()
         this.fsaconf.fs = Conf(this.conf.fs)
         this.fsaconf( {
@@ -39,11 +37,6 @@ class Albert(Adv):
                 'x1fs.recovery':26/60.0,
                 })
         this.s2timer = Timer(this.s2autocharge,1,1).on()
-        this.afflics.paralysis.maxdepth=15
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
         this.s2buff = Selfbuff("s2_shapshift",1, 20,'ss','ss')
         this.a3 = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
@@ -53,14 +46,10 @@ class Albert(Adv):
     def altend(this,t):
         fs_back(this)
 
-
     def s2autocharge(this, t):
         if not this.s2buff.get():
             this.s2.charge(160000.0/40)
             log('sp','s2autocharge')
-
-
-
 
     def c_s1_proc(this, e):
         if this.s2buff.get():

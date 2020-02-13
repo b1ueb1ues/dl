@@ -23,13 +23,7 @@ class Euden(Adv):
         `fs, x=2 and s1.charged > this.sp_val(3)+this.sp_val('fs')
         `fs, x=3
         """
-
-    conf['cond_afflict_res'] = 0
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
+    conf['afflict_res.burn'] = 0
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)

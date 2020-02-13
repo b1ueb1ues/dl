@@ -14,24 +14,7 @@ class Aoi(adv.Adv):
         `s1
         `s2
         """
-    conf['cond_afflict_res'] = 0
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
-
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
-        else:
-            this.afflics.burn.resist=100
-
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
-        else:
-            this.afflics.burn.resist=100
+    conf['afflict_res.burn'] = 0
 
     def s1_proc(this, e):
         this.afflics.burn('s1',100,0.803)

@@ -21,18 +21,12 @@ class Rena(Adv):
         `s2, s=1
         `fs, seq=5 and (s1.charged=1500 or s1.charged=3200)
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
-
         this.stance = 0
 
     def s1_proc(this, e):
-
         if this.stance == 0:
             this.stance = 1
             this.dmg_make("s1", 0.72)

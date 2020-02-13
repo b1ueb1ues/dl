@@ -45,25 +45,25 @@ const amulet_name_override = {
     Dear_Diary_Slow_RO: 'Dear_Diary',
     Spirit_of_the_Season_No_HP100: 'Spirit_of_the_Season'
 }
-function slots_icon_fmt(adv, slots){
+function slots_icon_fmt(adv, slots) {
     const img_urls = [];
-    if (speshul.hasOwnProperty(adv) && Math.random() < 0.1){
+    if (speshul.hasOwnProperty(adv) && Math.random() < 0.1) {
         img_urls.push('<img src="' + speshul[adv] + '" class="slot-icon character"/>');
-    }else{
-        img_urls.push('<img src="/dl-sim/pic/character/'+adv+'.png" class="slot-icon character"/>');
+    } else {
+        img_urls.push('<img src="/dl-sim/pic/character/' + adv + '.png" class="slot-icon character"/>');
     }
     const slots_list = slots.replace(/\[/g, '').split(']');
     const amulets = slots_list[0].split('+');
-    for (a of amulets){
-        if (amulet_name_override.hasOwnProperty(a)){
-            img_urls.push('<img src="/dl-sim/pic/amulet/'+amulet_name_override[a]+'.png" class="slot-icon"/>');
+    for (a of amulets) {
+        if (amulet_name_override.hasOwnProperty(a)) {
+            img_urls.push('<img src="/dl-sim/pic/amulet/' + amulet_name_override[a] + '.png" class="slot-icon"/>');
         } else {
-            img_urls.push('<img src="/dl-sim/pic/amulet/'+a+'.png" class="slot-icon"/>');
+            img_urls.push('<img src="/dl-sim/pic/amulet/' + a + '.png" class="slot-icon"/>');
         }
     }
     const dragon = slots_list[1];
-    if (!dragon.startsWith('Unreleased')){
-        img_urls.push('<img src="/dl-sim/pic/dragon/'+dragon+'.png" class="slot-icon"/>');
+    if (!dragon.startsWith('Unreleased')) {
+        img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon"/>');
     } else {
         img_urls.push('<img src="/dl-sim/pic/dragon/Unreleased.png" class="slot-icon"/>');
     }
@@ -253,7 +253,7 @@ function loadAdvSlots() {
                 $('input[id^="ex-"]').prop('disabled', false);
                 $('#ex-' + slots.adv.wt).prop('checked', true);
                 $('#ex-' + slots.adv.wt).prop('disabled', true);
-                if(AXE2_ADV.includes($('#input-adv').val())){
+                if (AXE2_ADV.includes($('#input-adv').val())) {
                     $('#ex-axe2').prop('checked', true);
                     $('#ex-axe2').prop('disabled', true);
                 }
@@ -262,18 +262,23 @@ function loadAdvSlots() {
                 $('#input-acl').prop('disabled', true);
                 $('#input-acl').val(trimAcl(slots.adv.acl));
                 if (slots.adv.afflict_res != undefined) {
-                    $('#input-afflict').prop('disabled', false);
-                    $('#input-afflict').val(slots.adv.afflict_res);
+                    for (const key in slots.adv.afflict_res) {
+                        $('#input-afflict').prop('disabled', false);
+                        $('#input-afflict').data('affliction', key);
+                        $('#input-afflict').val(slots.adv.afflict_res[key]);
+                        break;
+                    }
                 } else {
                     $('#input-afflict').prop('disabled', true);
-                    $('#input-afflict').val(slots.adv.afflict_res);
+                    $('#input-afflict').prop('data-affliction', 'None');
+                    $('#input-afflict').val('');
                 }
                 if (slots.adv.no_config != undefined) {
-                    if(slots.adv.no_config.includes('wp')){
+                    if (slots.adv.no_config.includes('wp')) {
                         $('#input-wp1').prop('disabled', true);
                         $('#input-wp2').prop('disabled', true);
                     }
-                    if(slots.adv.no_config.includes('acl')){
+                    if (slots.adv.no_config.includes('acl')) {
                         $('#input-edit-acl').prop('disabled', true);
                     }
                 } else {
@@ -319,8 +324,9 @@ function runAdvTest() {
     if (!isNaN(parseInt(t))) {
         requestJson['t'] = t;
     }
-    if (!isNaN(parseInt($('#input-afflict').val()))) {
-        requestJson['afflict_res'] = $('#input-afflict').val();
+    const affliction = $('#input-afflict').data('affliction');
+    if (affliction != 'None' && !isNaN(parseInt($('#input-afflict').val()))) {
+        requestJson['afflict_res_' + affliction] = $('#input-afflict').val();
     }
     if (!isNaN(parseInt($('#input-teamdps').val()))) {
         requestJson['teamdps'] = $('#input-teamdps').val();
@@ -361,7 +367,7 @@ function runAdvTest() {
                         copyTxt += '(co-ab: none)'
                     }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
-                    newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('')+ '</div></h4>'));
+                    newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
                     if (result.length > 1 && result[1].includes(',')) {
                         cond_false = result[1].split(',');

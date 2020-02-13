@@ -19,7 +19,7 @@ class Addis(Adv):
         `s3, seq=5 and not this.s2buff.get()
         `fs, this.s2buff.get() and seq=4 and this.s1.charged>=s1.sp-200
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
    # conf['acl'] = """
    #     `s2, s1.charged>=s1.sp-260 and seq=5
@@ -36,11 +36,6 @@ class Addis(Adv):
 
     def prerun(this):
         random.seed()
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)

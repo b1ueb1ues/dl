@@ -19,18 +19,11 @@ class Sazanka(Adv):
         `s2, fsc
         `fs, seq=5
         """
-    conf['cond_afflict_res'] = 80
+    conf['afflict_res.sleep'] = 80
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0
-
-    def init(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.sleep.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.sleep.resist=100
-
 
     def s1_proc(this, e):
         if random.random() < 0.8:

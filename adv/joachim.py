@@ -19,17 +19,10 @@ class Joachim(Adv):
         `s1
         `s3
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
     def init(this):
         this.s1_stance = 1
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
 
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.8):

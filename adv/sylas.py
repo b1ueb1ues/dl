@@ -19,13 +19,7 @@ class Sylas(adv.Adv):
         """
     conf['slot.d'] = Vayu()
     conf['slot.a'] = RR()+The_Plaguebringer()
-    conf['cond_afflict_res'] = 0
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
+    conf['afflict_res.poison'] = 0
 
     def s1_proc(this, e):
         this.afflics.poison('s1',120,0.582)

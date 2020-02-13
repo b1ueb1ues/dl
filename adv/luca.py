@@ -16,18 +16,10 @@ class Luca(adv.Adv):
         `s3, fsc
         `fs, seq=4
         """
-    conf['cond_afflict_res'] = 0
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
+    conf['afflict_res.paralysis'] = 0
 
     def s1_proc(this, e):
         this.afflics.paralysis('s1',110,0.883)
-
-
 
 if __name__ == '__main__':
     conf = {}
