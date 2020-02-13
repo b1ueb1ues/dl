@@ -18,13 +18,9 @@ class Valentines_Melody(Adv):
         `s2
         `fs, x=5
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
         if this.condition('s1 defdown for 10s'):
             this.s1defdown = 1
         else:

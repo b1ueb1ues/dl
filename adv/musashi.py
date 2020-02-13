@@ -18,17 +18,11 @@ class Musashi(adv.Adv):
         `s1
         `s3, s
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
     def d_slots(this):
         this.conf.slot.a = RR()+TP()
         if 'bow' in this.ex:
             this.conf.slot.d = Vayu()
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
 
     def s1_proc(this, e):
         this.afflics.poison('s1',110,0.53)

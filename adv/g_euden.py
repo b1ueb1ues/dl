@@ -17,14 +17,9 @@ class G_Euden(Adv):
         `s3,fsc
         `fs,seq=2 and cancel
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.paralysis'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
-
         if this.condition('s1 buff for 10s'):
             this.s1on = 1
         else:

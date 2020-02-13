@@ -943,6 +943,16 @@ class Adv(object):
 
         this.hits = 0
 
+    def afflic_condition(this):
+        if 'afflict_res' in this.conf:
+            res_conf = this.conf.afflict_res
+            for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+                if afflic in res_conf and 0 <= res_conf[afflic] <= 100:
+                    if this.condition('{} {} res'.format(res_conf[afflic], afflic)):
+                        vars(this.afflics)[afflic].resist = res_conf[afflic]
+                    else:
+                        vars(this.afflics)[afflic].resist = 100
+
     def sim_affliction(this):
         if 'sim_afflict' in this.conf:
             t = int(this.conf.sim_afflict.time)
@@ -1335,6 +1345,7 @@ class Adv(object):
         this.slots.oninit(this)
 
         this.prerun()
+        this.afflic_condition()
         this.sim_affliction()
         this.sim_buffbot()
 

@@ -303,6 +303,13 @@ class Afflic_scc(AfflicCapped):
     def cb_end(this):
         pass
 
+class Afflic_bog(Afflic_scc):
+    def on(this, name, rate, duration=None):
+        p = super().on(name, rate, duration)
+        if p:
+            from core.advbase import Debuff
+            Debuff('{}_bog'.format(name),-0.5*p,this.duration,1,'att','bog').on()
+        return p
 
 class Afflics(object):
     def __init__(this):
@@ -322,17 +329,17 @@ class Afflics(object):
         this.blind = Afflic_scc('blind')
         this.blind.duration = 8
 
-        this.bog = Afflic_scc('bog')
-        this.blind.duration = 8
+        this.bog = Afflic_bog('bog')
+        this.bog.duration = 8
 
         this.freeze = Afflic_cc('freeze')
-        this.blind.duration = 4.5
+        this.freeze.duration = 4.5
 
         this.stun = Afflic_cc('stun')
-        this.blind.duration = 6.5
+        this.stun.duration = 6.5
 
         this.sleep = Afflic_cc('sleep')
-        this.blind.duration = 6.5
+        this.sleep.duration = 6.5
 
         this.poison.resist = 0
         this.burn.resist = 0

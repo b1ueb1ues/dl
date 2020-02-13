@@ -15,14 +15,9 @@ class Joe(adv.Adv):
         `s2, fsc
         `fs, x=3
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
-
         if this.condition('hp100'):
             this.fullhp = 1
         else:

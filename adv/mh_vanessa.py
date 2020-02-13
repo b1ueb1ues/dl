@@ -21,7 +21,7 @@ class MH_Vanessa(Adv):
         `s2, not this.s2_att_boost.get()
         `s3, x=5 or fsc
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.paralysis'] = 0
 
     def d_slots(this):
         from adv.adv_test import sim_duration
@@ -81,11 +81,6 @@ class MH_Vanessa(Adv):
         return this.a_fs2()
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
-
         this.s2_att_boost = Selfbuff('s2', 0.30, 90, 'att', 'buff')
 
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)

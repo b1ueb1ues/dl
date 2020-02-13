@@ -9,7 +9,7 @@ def module():
 class Renelle(Adv):
     a1 = ('cc',0.15,'hit15')
     conf = {}
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = TB()+EE()
     conf['acl'] = """
@@ -18,12 +18,6 @@ class Renelle(Adv):
         `s2, fsc
         `fs, x=2
         """
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
 
     def s1_proc(this, e):
         this.afflics.burn('s1',100,0.803)

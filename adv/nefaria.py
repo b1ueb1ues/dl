@@ -13,15 +13,11 @@ class Nefaria(Adv):
         `s3, fsc
         `fs, seq=4
         """
-    conf['cond_afflict_res'] = 80
+    conf['afflict_res.blind'] = 80
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.blind.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.blind.resist=100
         this.s2fscharge = 0
-        if this.condition('fullhp=blind'):
+        if this.condition('hp100'):
             this.fullhp = 1
         else:
             this.fullhp = 0

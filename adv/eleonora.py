@@ -15,14 +15,10 @@ class Eleonora(adv.Adv):
         `fs, seq=4
         """
     conf['slot.d'] = Garland()
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-        if this.condition('fullhp=poison'):
+        if this.condition('hp100'):
             this.fullhp = 1
         else:
             this.fullhp = 0

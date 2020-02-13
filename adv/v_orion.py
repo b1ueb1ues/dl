@@ -17,14 +17,9 @@ class V_Orion(Adv):
         """
     conf['slot.a'] = Mega_Friends()+EE()
     conf['slot.d'] = Dreadking_Rathalos()
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
 
     def prerun(this):
-        this.afflics.burn.maxdepth = 15
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
         this.dc_event = Event('defchain')
 
     def s1_proc(this, e):

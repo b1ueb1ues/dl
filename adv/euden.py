@@ -19,12 +19,7 @@ class Euden(Adv):
         `s2, fsc
         `fs, seq=3 and cancel
         """
-    conf['cond_afflict_res'] = 0
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
+    conf['afflict_res.poison'] = 0
 
     def s1_proc(this, e):
         this.afflics.burn('s1',110,0.883)

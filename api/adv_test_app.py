@@ -162,10 +162,11 @@ def run_adv_test():
     adv_module.acl_backdoor = acl_injection
 
     conf = {}
-    try:
-        conf['cond_afflict_res'] = min(abs(int(params['afflict_res'])), 100)
-    except:
-        pass
+    for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+        try:
+            conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res_'+afflic])), 100)
+        except:
+            pass
     try:
         if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison']:
             conf['sim_afflict.time'] = t * min(abs(int(params['sim_afflict_time'])), 100)/100
@@ -230,8 +231,8 @@ def get_adv_slotlist():
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
         result['adv']['acl'] = adv_instance.conf.acl
-        if 'cond_afflict_res' in adv_instance.conf:
-            result['adv']['afflict_res'] = adv_instance.conf.cond_afflict_res
+        if 'afflict_res' in adv_instance.conf:
+            result['adv']['afflict_res'] = dict(adv_instance.conf.afflict_res)
         else:
             result['adv']['afflict_res'] = None
         if result['adv']['name'] in SPECIAL_ADV:

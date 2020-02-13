@@ -8,11 +8,10 @@ def module():
 
 class Fleur(Adv):
     comment = 'c4fs'
-    conf = {}
     a1 = ('sp',0.08,'hp70')
     a3 = ('k_paralysis',0.2)
-    
 
+    conf = {}
     conf['slot.a'] = TB()+SotS()
     conf['acl'] = """
         `s2, s=1
@@ -20,18 +19,10 @@ class Fleur(Adv):
         `s3
         `fs, seq=4
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.paralysis'] = 0
 
     def init(this):
         this.s1_stance = 1
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
-
-
 
     def s1_proc(this, e):
         with Modifier("s1killer", "paralysis_killer", "hit", 0.8):
