@@ -11,7 +11,7 @@ class Valentines_Melody(Adv):
 
     conf = {}
     conf['slots.a'] = KFM()+Jewels_of_the_Sun()
-    conf['slot.d'] = Freyja()
+    conf['slot.d'] = Vayu()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1
@@ -36,6 +36,8 @@ class Valentines_Melody(Adv):
     
     def s2_proc(this, e):
         this.afflics.poison('s2', 120, 0.582)
+        if this.afflics.poison.get():
+            Teambuff('a1',0.10*this.afflics.poison.get(),10).on()
 
 if __name__ == '__main__':
     conf = {}

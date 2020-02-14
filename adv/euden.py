@@ -7,18 +7,20 @@ def module():
     return Euden
 
 class Euden(Adv):
+    comment = 'c3fs c2fs c2fs s1'
     a1 = ('dc', 0.10)
     conf ={}
     conf['slot.a'] = TSO()+EE()
-    conf['slot.d'] = Apollo()
+    conf['slot.d'] = Dreadking_Rathalos()
     a1 = ('dc', 0.10)
     
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
-        `fs, seq=3 and cancel
-        """
+        `fs, x=2 and s1.charged > this.sp_val(3)+this.sp_val('fs')
+        `fs, x=3
+    """
     conf['afflict_res.burn'] = 0
 
     def s1_proc(this, e):
