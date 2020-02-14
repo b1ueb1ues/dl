@@ -15,7 +15,7 @@ class Bleed(Dot):
         this.quickshot_event.dname = 's_bleed'
         this.dot_end_timer = Timer(this.dot_end_proc)
         this.true_dmg_event = Event("true_dmg")
-        this.true_dmg_event.dname = 'o_bleed'
+        this.true_dmg_event.dname = 'o_{}_bleed'.format(name)
         this.true_dmg_event.dtype = 's'
 
     def reset(this):

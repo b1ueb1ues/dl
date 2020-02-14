@@ -27,7 +27,7 @@ class Sazanka(Adv):
 
     def s1_proc(this, e):
         if random.random() < 0.8:
-            Bleed("s1_bleed", 1.32).on()
+            Bleed("s1", 1.32).on()
 
     def s2_proc(this, e):
         this.s2fscharge = 3

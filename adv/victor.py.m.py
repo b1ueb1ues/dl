@@ -15,7 +15,7 @@ class Victor(victor.Victor):
 
 
     def s1_proc(this, e):
-        Bleed("s1_bleed", 1.46).on()
+        Bleed("s1", 1.46).on()
 
 
 if __name__ == '__main__':

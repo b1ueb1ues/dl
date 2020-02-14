@@ -27,7 +27,7 @@ class Patia(Adv):
         #Teambuff('s1',0.10,9.375).on()
 
     def s2_proc(this, e):
-        Bleed("s2_bleed", 1.46).on()
+        Bleed("s2", 1.46).on()
 
 if __name__ == '__main__':
     conf = {}

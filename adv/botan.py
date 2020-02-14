@@ -15,7 +15,7 @@ class Botan(Adv):
     conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s2, pin='prep' or fsc
-        `s1, x=5 or fsc
+        `s1, (x=5 or fsc) and this.bleed._static['stacks']<3
         `s3, x=5 or fsc
         `fs, x=5
         """
@@ -28,7 +28,7 @@ class Botan(Adv):
         this.bleed = Bleed("g_bleed",0).reset()
 
     def s1_proc(this, e):
-        Bleed("s1_bleed", 1.46).on()
+        Bleed("s1", 1.46).on()
 
     def c_s2_proc(this, e):
         Teambuff('s2',0.1,15,'crit','chance').on()

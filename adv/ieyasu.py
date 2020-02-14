@@ -14,7 +14,7 @@ class Ieyasu(Adv):
     conf['slots.a'] = RR()+JotS()
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
-        `s1
+        `s1, this.bleed._static['stacks']<3
         `s2, seq=5 and this.bleed._static['stacks'] > 0
         `s3, seq=4
         """
@@ -38,7 +38,7 @@ class Ieyasu(Adv):
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.2):
             this.dmg_make("s1", 12.40)
-            Bleed("s1_bleed", 1.46).on()
+            Bleed("s1", 1.46).on()
 
     def s2_proc(this, e):
         this.s2buff.on()
