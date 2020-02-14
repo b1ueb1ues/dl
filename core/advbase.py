@@ -321,7 +321,7 @@ class Teambuff(Buff):
     def count_team_buff(this):
         this.dmg_test_event.modifiers = []
         for i in this._static.all_buffs:
-            if i.name == 'simulated_debuff':
+            if i.name == 'simulated_def':
                 this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
@@ -366,7 +366,7 @@ class Spdbuff(Buff):
     def count_team_buff(this):
         this.dmg_test_event.modifiers = []
         for i in this._static.all_buffs:
-            if i.name == 'simulated_debuff':
+            if i.name == 'simulated_def':
                 this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
