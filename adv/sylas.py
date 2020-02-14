@@ -18,7 +18,7 @@ class Sylas(adv.Adv):
         `fs, seq=5
         """
     conf['slot.d'] = Vayu()
-    conf['slot.a'] = RR()+The_Plaguebringer()
+    conf['slot.a'] = RR()+The_Fires_of_Hate()
     conf['afflict_res.poison'] = 0
 
     def s1_proc(this, e):

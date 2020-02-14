@@ -1,8 +1,8 @@
 xander.py.best.py
 veronica.py.1hp.py
+v_addis.py.1hp.py
 g_sarisse.py.rollfs.py
 laranoa.py.rollfs.py
-louise.py.rollfs.py
 chelsea.py.rollfs.py
 ieyasu.py.poison.py
 kirsty.py.poison.py

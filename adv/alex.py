@@ -13,13 +13,13 @@ class Alex(adv.Adv):
 
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `s1
+        `s2
+        `s3
+        `fs, x=5
         """
     conf['afflict_res.poison'] = 0
-    conf['slot.a'] = TB()+TP()
+    conf['slot.a'] = Twinfold_Bonds()+The_Plaguebringer()
 
     def s1_proc(this, e):
         this.afflics.poison('s1',100,0.396)

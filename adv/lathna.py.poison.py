@@ -10,7 +10,14 @@ class Lathna(adv.lathna.Lathna):
     conf = adv.lathna.Lathna.conf.copy()
     conf['sim_afflict.time'] = 180
     conf['sim_afflict.type'] = 'poison'
-    conf['slots.a'] = Resounding_Rendition()+The_Plaguebringer()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['acl'] = """
+        # s1a = this.s1a
+        `dragon
+        `s1a
+        `s2, seq = 5
+        `s3, seq = 5
+        """
 
 if __name__ == '__main__':
     conf = {}

@@ -11,7 +11,7 @@ class Kirsty(adv.kirsty.Kirsty):
     conf = adv.kirsty.Kirsty.conf.copy()
     conf['sim_afflict.time'] = adv.adv_test.sim_duration
     conf['sim_afflict.type'] = 'poison'
-    conf['slots.a'] = RR()+The_Plaguebringer()
+    conf['slots.a'] = RR()+The_Fires_of_Hate()
 
 if __name__ == '__main__':
     conf = {}

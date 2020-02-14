@@ -21,7 +21,7 @@ class Addis(addis.Addis):
             this.s2buff.buff_end_timer.timing += 2.5
             this.s2str.buff_end_timer.timing += 2.5
             log('-special','s1_with_s2')
-            mBleed("s1_bleed", 1.32).on()
+            mBleed("s1", 1.32).on()
         else:
             this.afflics.poison('s1',100,0.53)
 

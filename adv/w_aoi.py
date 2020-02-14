@@ -14,7 +14,7 @@ class W_Aoi(Adv):
         `s3, seq=5 or fsc
         `fs, seq=5
         """
-    conf['afflict_res.burn'] = 80
+    conf['afflict_res.sleep'] = 80
 
     def init(this):
         if this.condition('big hitbox'):

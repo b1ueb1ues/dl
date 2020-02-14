@@ -11,7 +11,7 @@ class D_Xainfried(Adv):
     a3 = ('primed_att', 0.08)
 
     conf = {}
-    conf['slots.d'] = Longlong()
+    conf['slots.d'] = Long_Long()
     conf['slots.a'] = ADD()+Primal_Crisis()
     conf['acl'] = """
         `s1

@@ -12,7 +12,7 @@ class Curran(adv.curran.Curran):
     conf = adv.curran.Curran.conf.copy()
     conf['sim_afflict.time'] = adv.adv_test.sim_duration
     conf['sim_afflict.type'] = 'poison'
-    conf['slots.a'] = KFM()+The_Plaguebringer()
+    conf['slots.a'] = KFM()+The_Fires_of_Hate()
     conf['slots.d'] = Shinobi()
 
 if __name__ == '__main__':

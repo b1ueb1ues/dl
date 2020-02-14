@@ -7,11 +7,11 @@ def module():
     return Delphi
 
 class Delphi(Adv):
-    comment = 'Fatalis > Chthonius(1+ shift) > Marishiten > Shinobi'
     a1 = ('a',-0.55)
 
     conf = {}
-    conf['slot.a'] = Mega_Friends()+The_Plaguebringer()
+    conf['slot.d'] = Fatalis()
+    conf['slot.a'] = Mega_Friends()+The_Fires_of_Hate()
     conf['acl'] = """
         `s1
         `s2, this.s1fscharge == 0 and (s1.charged <= ((s1.sp/13)*9))

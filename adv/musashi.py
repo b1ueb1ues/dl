@@ -11,18 +11,14 @@ class Musashi(adv.Adv):
     a1 = ('lo',0.40)
     a3 = ('od',0.08)
     conf = {}
-    conf['slot.d'] = Pazuzu()
-    conf['slot.a'] = RR()+The_Plaguebringer()
+    conf['slot.d'] = Vayu()
+    conf['slot.a'] = RR()+The_Fires_of_Hate()
     conf['acl'] = """
         `s2, seq=5
         `s1
         `s3, s
         """
     conf['afflict_res.poison'] = 0
-    def d_slots(this):
-        this.conf.slot.a = RR()+TP()
-        if 'bow' in this.ex:
-            this.conf.slot.d = Vayu()
 
     def s1_proc(this, e):
         this.afflics.poison('s1',110,0.53)

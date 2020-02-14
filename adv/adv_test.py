@@ -448,13 +448,14 @@ def sum_mass_dmg(rs):
     global g_condicomment
     global dmax
     global dmin
-    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'total':0 }
+    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'dragon': 0,'total': 0}
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
                 's3':{"dmg":0, "count": 0}, 
                 }
-    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
+    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0, "shift":0}
     o_sum = {}
+    dragon_sum = {}
     team_buff = 0
     team_energy = 0
 
@@ -462,7 +463,7 @@ def sum_mass_dmg(rs):
     dmin = 0
 
     for i in rs:
-        for j in i['dmg_sum'] :
+        for j in i['dmg_sum']:
             dmg_sum[j] += i['dmg_sum'][j] / sim_times
         for j in i['sdmg_sum'] :
             for k in i['sdmg_sum'][j]:
@@ -473,6 +474,10 @@ def sum_mass_dmg(rs):
             if j not in o_sum:
                 o_sum[j] = 0
             o_sum[j] += i['o_sum'][j] / sim_times
+        for j in i['dragon_sum'] :
+            if j not in dragon_sum:
+                dragon_sum[j] = 0
+            dragon_sum[j] += i['dragon_sum'][j] / sim_times
         team_buff += i['buff_sum'] / sim_times
         team_energy += i['energy_sum']  / sim_times
         
@@ -498,6 +503,7 @@ def sum_mass_dmg(rs):
     r['o_sum'] = o_sum 
     r['buff_sum'] = team_buff  
     r['energy_sum'] = team_energy 
+    r['dragon_sum'] = dragon_sum
     return r
 
 

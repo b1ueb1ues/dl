@@ -49,7 +49,7 @@ class G_Cleo(adv.g_cleo.G_Cleo):
         if this.broken_punisher.get():
             generic_name = name.split('_')[0]
             if generic_name[0] == 'x':
-                generic_name = 'x'
+                generic_name = 'attack'
             name = 'o_'+generic_name+'_on_bk'
         if dtype == None:
             dtype = name

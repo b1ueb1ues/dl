@@ -11,7 +11,6 @@ class H_Mym(Adv):
     conf['slots.a'] = KFM()+Jewels_of_the_Sun()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `dragon, s=2
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, cancel
@@ -44,7 +43,7 @@ class H_Mym(Adv):
 
     def init(this):
         del this.slots.c.ex['axe']
-        this.slots.c.ex['hmym'] = ('ex', 'axe2')
+        this.slots.c.ex['axe2'] = ('ex', 'axe2')
 
     def prerun(this):
         if this.condition('s1 defdown for 10s'):

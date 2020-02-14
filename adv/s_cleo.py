@@ -11,7 +11,7 @@ class S_Cleo(Adv):
     conf = {}
     conf['slot.d'] = Corsaint_Phoenix()
     comment = 'nofs'
-    conf['afflict_res.burn'] = 0
+    conf['afflict_res.paralysis'] = 0
     conf['acl'] = """
             `s2
             `s1

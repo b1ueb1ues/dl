@@ -11,12 +11,8 @@ class Euden(Adv):
     conf = {}
     conf['slot.d'] = Apollo()
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
-        # `dragon.act("s end"), this.dc_level<2
-        # `dragon, this.dc_level>=2
 
     conf['acl'] = """
-        `dragon.act("c3 s end"), this.dc_level<2
-        `dragon, this.dc_level>=2
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc

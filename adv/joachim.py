@@ -12,7 +12,7 @@ class Joachim(Adv):
     a3 = ('k_poison',0.2)
     
     conf = {}
-    conf['slot.a'] = Dear_Diary() + TP()
+    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
     conf['slot.d'] = Vayu()
     conf['acl'] = """
         `s2, s=1

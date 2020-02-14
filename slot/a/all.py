@@ -546,6 +546,10 @@ class An_Ancient_Oath(Amulet):
     att = 65
     a = [('da', 0.18), ('dc', 4)]
 
+class The_Fires_of_Hate(Amulet):
+    att = 65
+    a = [('k_poison', 0.2), ('a', 0.15, 'hp100')]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

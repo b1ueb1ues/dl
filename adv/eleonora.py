@@ -1,6 +1,7 @@
 import adv.adv_test
 import adv
 from slot.d import *
+from slot.a import *
 
 def module():
     return Eleonora
@@ -14,7 +15,8 @@ class Eleonora(adv.Adv):
         `s3, fsc
         `fs, seq=4
         """
-    conf['slot.d'] = Garland()
+    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
+    conf['slot.d'] = Vayu()
     conf['afflict_res.poison'] = 0
 
     def prerun(this):

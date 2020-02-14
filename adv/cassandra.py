@@ -11,7 +11,7 @@ class Cassandra(Adv):
     a3 = ('ro', 0.15)
 
     conf = {}
-    conf['slots.a'] = CC()+TP()
+    conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
     conf['acl'] = """
         `s1
         `s2, seq=5
@@ -37,5 +37,5 @@ class Cassandra(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)
 

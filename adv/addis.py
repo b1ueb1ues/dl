@@ -21,14 +21,6 @@ class Addis(Adv):
         """
     conf['afflict_res.poison'] = 0
 
-   # conf['acl'] = """
-   #     `s2, s1.charged>=s1.sp-260 and seq=5
-   #     `s1, s2.charged<s2.sp
-   #     `s3, not this.s2buff.get()
-   #     `s3, s2.sp > 2000 and sx=1
-   #     `fs, this.s2buff.get() and seq=5
-   #     """
-
     def getbleedpunisher(this):
         if this.bleed._static['stacks'] > 0:
             return 0.08

@@ -11,10 +11,10 @@ class Louise(adv.Adv):
     a1 = ('od',0.13)
     comment = 'no fs'
     conf = {}
-    conf['slot.a'] = DD()+TP()
+    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
     conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
+        `s1
+        `s2
         `s3, seq=5
         """
     conf['afflict_res.poison'] = 0

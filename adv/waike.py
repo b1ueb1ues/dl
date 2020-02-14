@@ -18,7 +18,7 @@ class Waike(adv.Adv):
 
     def init(this):
         this.fullhp = 0
-        if conf['afflict_res.bog'] < 100:
+        if this.conf['afflict_res.bog'] < 100:
             if this.condition('hp100'):
                 this.fullhp = 1
 

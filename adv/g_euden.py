@@ -13,8 +13,6 @@ class G_Euden(Adv):
     conf['slot.a'] = The_Chocolatiers()+SDO()
     conf['slot.d'] = Daikokuten()
     conf['acl'] = """
-        `s2,pin='prep'
-        `dragon, s=1
         `s1,fsc or s=2
         `s2,fsc
         `s3,fsc
