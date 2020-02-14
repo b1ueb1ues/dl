@@ -51,7 +51,7 @@ class Shinobi(DragonBase):
     a = [('s', 0.9), ('a', 0.2)]
     dragonform = {
         'act': 'c3 s',
-        'dshift.startup': 88 / 60, # shift 98 -> 88 + 10
+        # 'dshift.startup': 88 / 60, # shift 98 -> 88 + 10
 
         'dx1.dmg': 1.50,
         'dx1.startup': 16 / 60.0, # c1 frames

@@ -57,10 +57,6 @@ class G_Mym(Adv):
     def ds_proc(this):
         return this.dmg_make('d_ds',this.dragonform.conf.ds.dmg,'s')
 
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = RR()+JotS()
-
     def prerun(this):
         this.a1_buff = Selfbuff('flamewyrm', 0.15, -1, 'att', 'passive')
         Event('dragon').listener(this.a1_on)

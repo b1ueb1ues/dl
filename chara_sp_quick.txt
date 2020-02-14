@@ -4,15 +4,14 @@ g_sarisse.py.rollfs.py
 laranoa.py.rollfs.py
 louise.py.rollfs.py
 chelsea.py.rollfs.py
-lathna.py.poison.py
 ieyasu.py.poison.py
 kirsty.py.poison.py
 curran.py.poison.py
+lathna.py.poison.py
 audric.py.dragon.py
 g_mym.py.dragon.py
 euden.py.apollo.py
 euden.py.dkr.py
 g_cleo.py.ehjp.py
-lathna.py.dragon.py
 g_luca.py.maxstacks.py
 h_lowen.py

@@ -9,7 +9,7 @@ def module():
 class Euden(Adv):
     a1 = ('dc', 4)
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.d'] = Apollo()
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
         # `dragon.act("s end"), this.dc_level<2
         # `dragon, this.dc_level>=2

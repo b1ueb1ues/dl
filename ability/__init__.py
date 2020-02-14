@@ -202,7 +202,7 @@ class Ability(object):
 
             Event('s1_charged').listener(l_primed)
         elif name == 'dp':
-            adv.dragonform.dragon_gauge += 10
+            adv.dragonform.dragon_gauge += value
         elif name == 'afflict_guard':
             adv.afflict_guard = value
 

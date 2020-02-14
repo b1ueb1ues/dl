@@ -513,12 +513,12 @@ ADD = A_Dogs_Day
 
 class The_Bridal_Dragon(Amulet):
     att = 64
-    a = [('dp',0.10),('da',0.18)]
+    a = [('dp',10),('da',0.18)]
 TBD = The_Bridal_Dragon
 
 class A_Suit_of_Midnight(Amulet):
     att = 52
-    a = [('dp',0.10), ('afflict_guard', 3)]
+    a = [('dp',10), ('afflict_guard', 3)]
 
 class Primal_Crisis(Amulet):
     att = 55

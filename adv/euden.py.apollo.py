@@ -7,13 +7,12 @@ def module():
     return Euden
 
 class Euden(adv.euden.Euden):
-    comment = 'end first shift early; DKR > Apollo if more than 1 burn user'
+    comment = 'DKR > Apollo if more than 1 burn user'
     a1 = ('dc', 4)
     conf = adv.euden.Euden.conf.copy()
     conf['slot.d'] = Apollo()
     conf['acl'] = """
-        `dragon.act("c3 s end"), this.dc_level<2
-        `dragon, this.dc_level>=2
+        `dragon
         `s3, fsc and not this.s3_buff_on
         `s1, fsc
         `s2, fsc
