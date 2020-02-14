@@ -22,7 +22,7 @@ PREFIX_MAPS = {
         'h_': 'halloween_',
         's_maribelle': 'school_maribelle',
         's_': 'summer_',
-        'v_': 'valentine_',
+        'v_': 'valentines_',
         'w_': 'wedding_',
         'mh_': 'hunter_'
     },
@@ -100,7 +100,13 @@ function populateSelect(id, data) {
 colorMap = {
     'attack': 'FireBrick',
     'force_strike': 'Maroon',
-    'team_buff': 'IndianRed'
+    'team_buff': 'IndianRed',
+    'dx': 'mediumpurple',
+    'ds': 'blueviolet'
+}
+nameMap = {
+    'ds': 'dragon_skill',
+    'dx': 'dragon_attack'
 }
 colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
 // charList = ['&#9636', '&#9637', '&#9639', '&#9640']
@@ -159,6 +165,9 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
                 // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
                 const portion = 100 * (parseInt(dmg[1]) / total_dps);
                 let damageTxt = dmg[0] + ': ' + dmg[1];
+                if (nameMap.hasOwnProperty(dmg[0])) {
+                    damageTxt = nameMap[dmg[0]] + ': ' + dmg[1];
+                }
                 if (dmg[0] in extra) {
                     damageTxt += ' (' + extra[dmg[0]] + ')'
                 }
