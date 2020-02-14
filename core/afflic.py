@@ -160,12 +160,13 @@ class AfflicUncapped(object):
 class AfflicCapped(object):
     State = namedtuple("State", "timers resist")
 
-    def __init__(this, name=None):
+    def __init__(this, name=None, duration=12):
         this.name = name
         this.resist = 0
         this.rate = 1
         this.tolerance = 0.2
-        this.duration = 12
+        this.default_duration = duration
+        this.duration = duration
         this.stack_cap = 1
         this.states = None
         this._get = 0.0
@@ -253,20 +254,20 @@ class AfflicCapped(object):
             log('{}_uptime'.format(this.name), '{:.2f}/{:.2f}'.format(rate, next_t), '{:.2%}'.format(rate/next_t))
 
 class Afflic_dot(AfflicUncapped):
-    def __init__(this, name=None):
+    def __init__(this, name=None, duration=12, iv=3.99):
         super().__init__(name)
         this.coef = 0.97
-        this.iv = 3.99
-        this.duration = 12
+        this.default_duration = duration
+        this.duration = duration
+        this.default_iv = iv
+        this.iv = iv
 
     def on(this, name, rate, coef, duration=None, iv=None, dtype=None):
         this.rate = rate
         this.coef = coef
         this.dtype = dtype
-        if duration:
-            this.duration = duration
-        if iv:
-            this.iv = iv
+        this.duration = duration or this.default_duration
+        this.iv = iv or this.default_iv
         dot = Dot('o_%s_%s' % (name, this.name), coef, this.duration, this.iv, this.dtype)
         dot.on()
         r = super().on()
@@ -275,14 +276,13 @@ class Afflic_dot(AfflicUncapped):
 
 
 class Afflic_cc(AfflicCapped):
-    def __init__(this, name=None):
-        super().__init__(name)
+    def __init__(this, name=None, duration=6.5):
+        super().__init__(name, duration)
         this.stack_cap = 1
 
     def on(this, name, rate, duration=None):
         this.rate = rate
-        if duration:
-            this.duration = duration
+        this.duration = duration or this.default_duration
         return super().on()
 
     def cb_end(this):
@@ -290,14 +290,13 @@ class Afflic_cc(AfflicCapped):
 
 
 class Afflic_scc(AfflicCapped):
-    def __init__(this, name=None):
-        super().__init__(name)
+    def __init__(this, name=None, duration=8):
+        super().__init__(name, duration)
         this.stack_cap = 1
 
     def on(this, name, rate, duration=None):
         this.rate = rate
-        if duration:
-            this.duration = duration
+        this.duration = duration or this.default_duration
         return super().on()
 
     def cb_end(this):
@@ -314,32 +313,16 @@ class Afflic_bog(Afflic_scc):
 class Afflics(object):
     def __init__(this):
         this.rinit()
-        this.poison = Afflic_dot('poison')
-        this.poison.duration = 15
-        this.poison.iv = 2.99
 
-        this.burn = Afflic_dot('burn')
-        this.burn.duration = 12
-        this.burn.iv = 3.99
+        this.poison = Afflic_dot('poison', duration=15, iv=2.99)
+        this.burn = Afflic_dot('burn', duration=12, iv=3.99)
+        this.paralysis = Afflic_dot('paralysis', duration=13, iv=3.99)
 
-        this.paralysis = Afflic_dot('paralysis')
-        this.paralysis.duration = 13
-        this.paralysis.iv = 3.99
-
-        this.blind = Afflic_scc('blind')
-        this.blind.duration = 8
-
-        this.bog = Afflic_bog('bog')
-        this.bog.duration = 8
-
-        this.freeze = Afflic_cc('freeze')
-        this.freeze.duration = 4.5
-
-        this.stun = Afflic_cc('stun')
-        this.stun.duration = 6.5
-
-        this.sleep = Afflic_cc('sleep')
-        this.sleep.duration = 6.5
+        this.blind = Afflic_scc('blind', duration=8)
+        this.bog = Afflic_bog('bog', duration=8)
+        this.freeze = Afflic_cc('freeze', duration=4.5)
+        this.stun = Afflic_cc('stun', duration=6.5)
+        this.sleep = Afflic_cc('sleep', duration=6.5)
 
         this.poison.resist = 0
         this.burn.resist = 0

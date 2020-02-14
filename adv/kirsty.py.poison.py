@@ -1,21 +1,17 @@
 import adv.adv_test
-import kirsty
+import adv.kirsty
 from slot.a import *
 
 def module():
     return Kirsty
 
-class Kirsty(kirsty.Kirsty):
+class Kirsty(adv.kirsty.Kirsty):
     comment = ''
-    def d_slots(this):
-        this.slots.a = RR()+The_Plaguebringer()
 
-    def prerun(this):
-        super().prerun()
-        from adv.adv_test import sim_duration
-        if this.condition('always poisoned'):
-            this.afflics.poison.resist=0
-            this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
+    conf = adv.kirsty.Kirsty.conf.copy()
+    conf['sim_afflict.time'] = adv.adv_test.sim_duration
+    conf['sim_afflict.type'] = 'poison'
+    conf['slots.a'] = RR()+The_Plaguebringer()
 
 if __name__ == '__main__':
     conf = {}

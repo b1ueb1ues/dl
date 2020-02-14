@@ -7,17 +7,11 @@ def module():
 
 class Lathna(adv.lathna.Lathna):
     comment = ''
-    def prerun(this):
-        super().prerun()
-        from adv.adv_test import sim_duration
-        if this.condition('always poisoned'):
-            this.afflics.poison.resist=0
-            this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
-
-    def d_slots(this):
-        this.slots.a = RR()+The_Plaguebringer()
+    conf = adv.lathna.Lathna.conf.copy()
+    conf['sim_afflict.time'] = 180
+    conf['sim_afflict.type'] = 'poison'
+    conf['slots.a'] = Resounding_Rendition()+The_Plaguebringer()
 
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf, verbose=0, mass=0)
-

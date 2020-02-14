@@ -986,10 +986,11 @@ class Adv(object):
         if 'sim_afflict' in this.conf:
             t = int(this.conf.sim_afflict.time)
             if t > 0:
-                if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
-                    aff = vars(this.afflics)[this.conf.sim_afflict.type]
-                    aff.resist = -5
-                    aff.on('simulated'.format(this.conf.sim_afflict.type), 100, 0, duration=t, iv=t)
+                # if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
+                aff = vars(this.afflics)[this.conf.sim_afflict.type]
+                aff.resist = 0
+                aff.on('simulated'.format(this.conf.sim_afflict.type), 100, 0, duration=t, iv=t)
+                aff.states = None
 
     def sim_buffbot(this):
         if 'sim_buffbot' in this.conf:

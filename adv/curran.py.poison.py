@@ -8,16 +8,12 @@ def module():
 
 class Curran(adv.curran.Curran):
     comment = ''
-    def prerun(this):
-        super().prerun()
-        from adv.adv_test import sim_duration
-        if this.condition('always poisoned'):
-            this.afflics.poison.resist=0
-            this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
 
-    def d_slots(this):
-        this.slots.a = KFM()+The_Plaguebringer()
-        this.slots.d = Shinobi()
+    conf = adv.curran.Curran.conf.copy()
+    conf['sim_afflict.time'] = adv.adv_test.sim_duration
+    conf['sim_afflict.type'] = 'poison'
+    conf['slots.a'] = KFM()+The_Plaguebringer()
+    conf['slots.d'] = Shinobi()
 
 if __name__ == '__main__':
     conf = {}

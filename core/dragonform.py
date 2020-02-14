@@ -17,7 +17,7 @@ class DragonForm(Action):
         self.act_sum = []
 
         self.dx_list = ['dx{}'.format(i) for i in range(1, 6) if 'dmg' in self.conf['dx{}'.format(i)]]
-        self.dodge_cancel = self.conf[self.dx_list[-1]].recovery > self.conf.dodge.startup
+        self.dodge_cancel = len(self.dx_list) > 0 and self.conf[self.dx_list[-1]].recovery > self.conf.dodge.startup
 
         self.action_timer = None
 

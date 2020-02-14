@@ -1,21 +1,16 @@
 import adv.adv_test
-import ieyasu
+import adv.ieyasu
 from slot.a import *
 
 def module():
     return Ieyasu
 
-class Ieyasu(ieyasu.Ieyasu):
+class Ieyasu(adv.ieyasu.Ieyasu):
     comment = ''
-    def prerun(this):
-        super().prerun()
-        from adv.adv_test import sim_duration
-        if this.condition('always poisoned'):
-            this.afflics.poison.resist=0
-            this.afflics.poison.on('always_poisoned', 1, 0, duration=sim_duration, iv=sim_duration)
-
-    def d_slots(this):
-        this.slots.a = HoH()+The_Plaguebringer()
+    conf = adv.ieyasu.Ieyasu.conf.copy()
+    conf['sim_afflict.time'] = adv.adv_test.sim_duration
+    conf['sim_afflict.type'] = 'poison'
+    conf['slots.a'] = HoH()+The_Plaguebringer()
 
 if __name__ == '__main__':
     conf = {}

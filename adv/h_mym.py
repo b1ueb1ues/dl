@@ -33,13 +33,14 @@ class H_Mym(Adv):
         'dx3.recovery': 54 / 60.0, # recovery
         'dx3.hit': 2,
 
+        'ds.dmg': 12.32,
         'ds.recovery': 178 / 60, # skill frames
         'ds.hit': 8,
 
         'dodge.startup': 41 / 60.0, # dodge frames
     }
     def ds_proc(this):
-        return this.dmg_make('d_ds',12.32,'s')
+        return this.dmg_make('d_ds',this.dragonform.conf.ds.dmg,'s')
 
     def init(this):
         del this.slots.c.ex['axe']
