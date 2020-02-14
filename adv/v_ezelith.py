@@ -1,6 +1,6 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 from module import energy
 from slot.a import *
 from slot.d import *

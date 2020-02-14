@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Aoi
 
-class Aoi(adv.Adv):
+class Aoi(Adv):
     a1 = ('od',0.15)
     conf = {}
     conf['slot.a'] = RR()+EE()

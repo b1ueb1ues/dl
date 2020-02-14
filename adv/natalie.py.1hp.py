@@ -1,5 +1,5 @@
 import adv_test
-import adv
+from core.advbase import *
 import natalie
 from slot.a import HoH, Primal_Crisis
 from module import energy

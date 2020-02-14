@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Karl
 
-class Karl(adv.Adv):
+class Karl(Adv):
     a1 = ('a',0.08,'hit15')
     a3 = ('a',0.15,'hp70')
 

@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+import from core.advbase import *
 from slot.a import *
 from slot.d import *
 def module():
     return Joe
 
-class Joe(adv.Adv):
+class Joe(Adv):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Mega_Friends()+Dear_Diary()

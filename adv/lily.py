@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Lily
 
-class Lily(adv.Adv):
+class Lily(Adv):
     a1 = ('a',0.15,'hp100')
     a3 = ('prep','100%')
 

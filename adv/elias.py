@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from module import energy
 
 def module():
     return Elias
 
-class Elias(adv.Adv):
+class Elias(Adv):
     a3 = ('lo',0.4)
     conf = {}
     conf['acl'] = """

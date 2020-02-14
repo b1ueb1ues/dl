@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Jurota
 
-class Jurota(adv.Adv):
+class Jurota(Adv):
     a1 = ('bk',0.2)
     conf = {}
     conf['acl'] = """

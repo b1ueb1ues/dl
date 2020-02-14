@@ -1,12 +1,11 @@
 import adv.adv_test
-from adv import *
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Alex
 
-class Alex(adv.Adv):
+class Alex(Adv):
     comment = 'not consider bk boost of her s2'
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)

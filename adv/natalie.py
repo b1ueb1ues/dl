@@ -1,7 +1,7 @@
 import adv.adv_test
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 from module import energy
 from slot.d import *
 from slot.a import *
@@ -11,7 +11,7 @@ import random
 def module():
     return Natalie
 
-class Natalie(adv.Adv):
+class Natalie(Adv):
     comment = 's2 without str buff'
     conf = {}
     conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()

@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Melody
 
-class Melody(adv.Adv):
+class Melody(Adv):
     comment = 'no s2'
     a1 = ('cc',0.08,'hp100')
 

@@ -1,5 +1,5 @@
 from slot import *
-from adv import *
+from core.advbase import *
 
 class Agni(DragonBase):
     ele = 'flame'

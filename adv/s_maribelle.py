@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 import slot
 from slot.d import *
 
 def module():
     return S_Maribelle
 
-class S_Maribelle(adv.Adv):
+class S_Maribelle(Adv):
     a1 = ('s', 0.4, 'hp100')
     a3 = ('bk',0.3)
     conf = {}

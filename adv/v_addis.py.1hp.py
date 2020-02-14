@@ -1,5 +1,5 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 import adv.v_addis
 
 def module():

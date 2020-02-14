@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return Pietro
 
-class Pietro(adv.Adv):
+class Pietro(Adv):
     a1 = ('cd',0.13)
 #    comment = 'unsuitable resist'
     conf = {}

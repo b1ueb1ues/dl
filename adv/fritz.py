@@ -1,11 +1,10 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 
 def module():
     return Fritz
 
-class Fritz(adv.Adv):
+class Fritz(Adv):
     conf = {}
     conf['acl'] = """
         `s1, seq=5 and cancel or fsc

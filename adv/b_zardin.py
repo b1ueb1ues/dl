@@ -1,6 +1,5 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 from slot.a import *
 from module import energy
 import slot.a
@@ -9,7 +8,7 @@ import slot.w
 def module():
     return B_Zardin
 
-class B_Zardin(adv.Adv):
+class B_Zardin(Adv):
     a3 = ('s',0.35,'hp70')
 
     conf = {}

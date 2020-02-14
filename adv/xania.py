@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Xania
 
-class Xania(adv.Adv):
+class Xania(Adv):
     a1 = ('s',0.35)
     conf = {}
     conf['slot.d'] = Apollo()

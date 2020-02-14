@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Johanna
 
-class Johanna(adv.Adv):
+class Johanna(Adv):
     conf = {}
     conf['slot.a'] = KFM()+CE()
     conf['acl'] = """

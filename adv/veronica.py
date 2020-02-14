@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return Veronica
 
-class Veronica(adv.Adv):
+class Veronica(Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['slot.d'] = Shinobi()

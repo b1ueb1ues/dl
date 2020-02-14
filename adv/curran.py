@@ -1,6 +1,5 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
@@ -8,7 +7,7 @@ from slot.a import *
 def module():
     return Curran
 
-class Curran(adv.Adv):
+class Curran(Adv):
     comment = "no fs"
 
     a1 = ('od',0.15)

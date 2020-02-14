@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 def module():
     return Vanessa
 
-class Vanessa(adv.Adv):
+class Vanessa(Adv):
     comment = ''
     a1 = ('fs',0.4)
     a3 = ('lo',0.3)

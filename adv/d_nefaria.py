@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return D_Nefaria
 
-class D_Nefaria(adv.Adv):
+class D_Nefaria(Adv):
     a1 = ('s',0.25)
     conf = {}
     conf['acl'] = """

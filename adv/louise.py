@@ -1,13 +1,12 @@
 import adv.adv_test
-import adv
-from core.advbase import Modifier
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Louise
 
-class Louise(adv.Adv):
+class Louise(Adv):
     a1 = ('od',0.13)
     comment = 'no fs'
     conf = {}

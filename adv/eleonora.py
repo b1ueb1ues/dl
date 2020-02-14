@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
 def module():
     return Eleonora
 
-class Eleonora(adv.Adv):
+class Eleonora(Adv):
     a3 = ('prep','50%')
     conf = {}
     conf['acl'] = """

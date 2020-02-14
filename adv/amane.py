@@ -1,10 +1,10 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Amane
 
-class Amane(adv.Adv):
+class Amane(Adv):
     a3 = ('bk',0.2)
     a1 = ('prep','75%')
     conf = {}

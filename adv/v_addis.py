@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
 def module():
     return Valentines_Addis
 
-class Valentines_Addis(adv.Adv):
+class Valentines_Addis(Adv):
     comment = 'use s2 more than once'
     a1 = ('k_poison',0.3)
     conf = {}

@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return Waike
 
 
-class Waike(adv.Adv):
+class Waike(Adv):
     conf = {}
     conf['acl'] = """
         `s1, fsc

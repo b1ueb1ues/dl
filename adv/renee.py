@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Renee
 
-class Renee(adv.Adv):
+class Renee(Adv):
     a1 = ('primed_crit_chance',(0.6,5))
 
     conf = {}

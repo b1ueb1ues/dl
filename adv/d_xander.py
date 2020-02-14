@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from module import energy
 from slot.a import *
 
 def module():
     return D_Xander
 
-class D_Xander(adv.Adv):
+class D_Xander(Adv):
     a3 = ('sp',0.05)
     conf = {}
     acl12 = """

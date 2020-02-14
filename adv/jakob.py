@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return Jakob
 
-class Jakob(adv.Adv):
+class Jakob(Adv):
     a1 = ('prep','50%')
 
     conf = {}

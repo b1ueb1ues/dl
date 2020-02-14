@@ -1,13 +1,13 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Luca
 
-class Luca(adv.Adv):
+class Luca(Adv):
     a1 = ('a',0.13,'hp100')
     conf = {}
     conf['acl'] = """

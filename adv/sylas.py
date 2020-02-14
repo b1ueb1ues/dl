@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Sylas
 
-class Sylas(adv.Adv):
+class Sylas(Adv):
     a3 = ('a',0.13,'hp70')
 
     comment = 'not consider skill haste for team'

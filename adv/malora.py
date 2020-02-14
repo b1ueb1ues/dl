@@ -1,10 +1,10 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Malora
 
-class Malora(adv.Adv):
+class Malora(Adv):
     a1 = ('bk',0.2)
     conf = {}
     conf['acl'] = """

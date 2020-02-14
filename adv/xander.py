@@ -1,5 +1,5 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 import slot.a
 from slot.d import *
@@ -7,7 +7,7 @@ from slot.d import *
 def module():
     return Xander
 
-class Xander(adv.Adv):
+class Xander(Adv):
     a3 = ('fs',0.50)
     comment = 'c2+fs'
     conf = {}

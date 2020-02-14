@@ -1,5 +1,5 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 from slot.a import *
@@ -7,7 +7,7 @@ from slot.a import *
 def module():
     return Musashi
 
-class Musashi(adv.Adv):
+class Musashi(Adv):
     a1 = ('lo',0.40)
     a3 = ('od',0.08)
     conf = {}

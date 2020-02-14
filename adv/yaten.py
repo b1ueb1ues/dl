@@ -1,6 +1,6 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 from module import energy
 from slot.a import *
 from slot.d import *
@@ -8,7 +8,7 @@ from slot.d import *
 def module():
     return Yaten
 
-class Yaten(adv.Adv):
+class Yaten(Adv):
     conf = {}
     conf['slot.a'] = HoH()+JotS()
     conf['acl'] = """

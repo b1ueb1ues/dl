@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 import adv.g_cleo
 from slot.a import Amulet
 

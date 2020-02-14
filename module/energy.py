@@ -1,4 +1,4 @@
-from adv import *
+from core.advbase import *
 
 
 class Energy():

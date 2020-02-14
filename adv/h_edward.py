@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return H_Edward
 
-class H_Edward(adv.Adv):
+class H_Edward(Adv):
     a1 = ('a',0.1,'hp100')
 
     conf = {}

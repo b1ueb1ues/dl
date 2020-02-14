@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from adv import addis
 from module.bleed import mBleed
 from slot.a import *

@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return Philia
 
-class Philia(adv.Adv):
+class Philia(Adv):
     a1 = ('a',0.1,'hp100')
     conf = {}
     conf['slot.d'] = Garland()

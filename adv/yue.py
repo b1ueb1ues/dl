@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Yue
 
-class Yue(adv.Adv):
+class Yue(Adv):
     conf = {}
     conf['slot.a'] = Kung_Fu_Masters()+Flower_in_the_Fray()
     conf['slot.d'] = Arctos()

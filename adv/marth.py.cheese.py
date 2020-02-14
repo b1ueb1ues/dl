@@ -1,6 +1,5 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 import marth
 
 def module():
