@@ -6,10 +6,10 @@ from slot.d import *
 def module():
     return Euden
 
-class Euden(Adv):
+class Euden(adv.Adv):
     a1 = ('dc', 4)
     conf = {}
-    conf['slot.d'] = Apollo()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
 
     conf['acl'] = """

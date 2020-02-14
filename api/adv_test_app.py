@@ -9,7 +9,6 @@ from flask import jsonify
 from flask_cors import CORS
 
 import adv.adv_test
-from core.advbase import *
 import slot.a
 import slot.d
 import slot.w

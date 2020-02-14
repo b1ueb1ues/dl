@@ -132,7 +132,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         adv = classname(conf=conf,cond=1)
     else:
         adv = classname(conf=conf,cond=0)
-    adv.ex.update(ex_set)
+    adv.slots.c.ex.update(ex_set)
 
     real_duration = adv.run(sim_duration)
     comment = adv.comment
@@ -412,7 +412,7 @@ def do_mass_sim_stub(sim_id, classname, conf, no_cond):
         adv = classname(conf=conf,cond=1)
     else:
         adv = classname(conf=conf,cond=0)
-    adv.ex.update(ex_set)
+    adv.slots.c.ex.update(ex_set)
     from core.acl import dact
     adv._acl = dact
     real_duration = adv.run(sim_duration)
@@ -427,7 +427,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     global ex_set
     results = []
     adv = classname(conf=conf)
-    adv.ex.update(ex_set)
+    adv.slots.c.ex.update(ex_set)
     adv.run(1)
     _acl_str = acl_func_str(
                     adv.acl_prepare_default+adv.conf['acl'] 

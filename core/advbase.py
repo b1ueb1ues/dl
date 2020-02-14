@@ -830,7 +830,6 @@ class Adv(object):
     a1 = None
     a2 = None
     a3 = None
-    ex = {}
 
     conf_default = Conf()
 
@@ -916,8 +915,6 @@ class Adv(object):
         this.modifier._static.all_modifiers = this.all_modifiers
 
         # set ex
-        if this.ex:
-            this.slots.c.ex.update(this.ex)
         this.ex = this.slots.c.ex
 
         # init actions
