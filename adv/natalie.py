@@ -11,11 +11,14 @@ import random
 def module():
     return Natalie
 
+class Dear_Diary(Dear_Diary_Slow_RO):
+    att = 65
+
 class Natalie(Adv):
     comment = 's2 without str buff'
     conf = {}
-    conf['slot.a'] = slot.a.HoH() + slot.a.One_with_the_Shadows()
-    conf['slot.d'] = Fatalis()
+    conf['slot.a'] = HoH() + Dear_Diary()
+    conf['slot.d'] = Shinobi()
     conf['acl'] = """
         `s2, pin='prep'
         `s2, seq=5
@@ -33,17 +36,22 @@ class Natalie(Adv):
 
     def init(this):
         random.seed()
-        this.hp = 100
         if this.condition('energy'):
             this.prerun = this.c_prerun
 
     def prerun(this):
+        this.hp = 100
+        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
+        this.a3spd = Spdbuff('a3spd',0.10,-1)
         this.energy = energy.Energy(this,
                 self={} ,
                 team={} 
                 )
 
     def c_prerun(this):
+        this.hp = 100
+        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
+        this.a3spd = Spdbuff('a3spd',0.10,-1)
         this.energy = energy.Energy(this,
                 self={'s1':1,'a1':1} ,
                 team={}
@@ -51,11 +59,8 @@ class Natalie(Adv):
 
 
     def s1_proc(this, e):
-        with adv.CrisisModifier('s1', 2, this.hp):
-            this.dmg_make('o_s1_crisis', this.conf.s1.dmg)
-            if this.energy() == 5:
-                dmg = this.conf.s1.dmg * this.energy.get_energy_boost()
-                this.dmg_make('o_s1_crisis_energized', dmg)
+        with adv.CrisisModifier('s1', 1, this.hp):
+            this.dmg_make('s1', 10.62)
 
         if random.random() < 0.8:
             this.energy.add_energy('a1')
@@ -63,10 +68,10 @@ class Natalie(Adv):
     def s2_proc(this, e):
         if this.hp > 30:
             this.hp = 20
-            this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive').on()
-            this.a3spd = Spdbuff('a3spd',0.10,-1).on()
-        # else:
-        #     Selfbuff('s2', 0.15, 10).on()
+            this.a3atk.on()
+            this.a3spd.on()
+        else:
+            Selfbuff('s2', 0.15, 10).on()
 
 if __name__ == '__main__':
     conf = {}

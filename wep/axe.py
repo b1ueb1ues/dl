@@ -16,13 +16,13 @@ conf = {
     'x3.dmg': 204 / 100.0,
     'x3.sp': 360,
     'x3.startup': 0 / 60.0,
-    'x3.recovery': 40 / 60.0,
+    'x3.recovery': 36 / 60.0, # https://streamable.com/36bjj
     'x3.hit': 1,
 
     'x4.dmg': 216 / 100.0,
     'x4.sp': 380,
     'x4.startup': 0,
-    'x4.recovery': 78 / 60.0,
+    'x4.recovery': 79 / 60.0,
     'x4.hit': 1,
 
     'x5.dmg': 228 / 100.0,
@@ -44,7 +44,7 @@ conf = {
     'x5fs.startup': 40 / 60.0, # need confirm
 
     'fsf.startup': 0,
-    'fsf.recovery': 41 / 60.0,
+    'fsf.recovery': 34 / 60.0, # https://streamable.com/36bjj
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,

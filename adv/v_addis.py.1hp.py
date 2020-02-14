@@ -1,5 +1,6 @@
 import adv.adv_test
 from core.advbase import *
+from slot.a import Forest_Bonds, Primal_Crisis
 import adv.v_addis
 
 def module():
@@ -9,6 +10,7 @@ class Valentines_Addis(adv.v_addis.Valentines_Addis):
     comment = 'no s2'
 
     conf = adv.v_addis.Valentines_Addis.conf.copy()
+    conf['slot.a'] = Forest_Bonds()+Primal_Crisis()
     conf['acl'] = """
         `s1
         `s3

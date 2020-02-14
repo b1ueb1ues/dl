@@ -7,12 +7,14 @@ def module():
     return Valentines_Addis
 
 class Valentines_Addis(Adv):
-    comment = 'use s2 more than once'
+    comment = 'use s2 once'
+
     a1 = ('k_poison',0.3)
     conf = {}
     conf['slot.d'] = Shinobi()
+    conf['slot.a'] = The_Plaguebringer()+Primal_Crisis()
     conf['acl'] = """
-        `s2
+        `s2, not this.a3atk.get()
         `s1
         `s3
     """
@@ -24,9 +26,9 @@ class Valentines_Addis(Adv):
         this.a3spd = adv.Spdbuff('a3spd',0.10,-1)
 
     def s1_proc(this, e):
-        with adv.CrisisModifier('s1', 2.25, this.hp):
+        with adv.CrisisModifier('s1', 1.25, this.hp):
             this.afflics.poison('s1', 120, 0.582)
-            this.dmg_make('o_s1_crisis', this.conf.s1.dmg)
+            this.dmg_make('s1', 8.60)
 
     def s2_proc(this, e):
         if this.hp > 30:

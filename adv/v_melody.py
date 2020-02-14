@@ -7,6 +7,7 @@ def module():
     return Valentines_Melody
 
 class Valentines_Melody(Adv):
+    comment = 'c4fsf c5 c4 s1'
     a3 = ('k_poison',0.3)
 
     conf = {}
@@ -15,7 +16,8 @@ class Valentines_Melody(Adv):
     conf['acl'] = """
         `s1
         `s2
-        `s3, x=4
+        `s3, this.afflics.poison.get() and this.mod('def')!=1
+        `fsf, x=4 and (s1.charged == this.sp_val(4))
     """
     conf['afflict_res.poison'] = 0
 

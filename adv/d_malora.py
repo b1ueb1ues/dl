@@ -7,13 +7,15 @@ def module():
     return D_Malora
 
 class D_Malora(Adv):
+    comment = 'c4fsf c5 c4 s1'
     a1 = ('od',0.13)
 
     conf = {}
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
-        `s2, seq=4
+        `s2, this.mod('def')!=1
+        `fsf, x=4 and (s1.charged == this.sp_val(4))
         """
 
     def prerun(this):

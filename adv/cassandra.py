@@ -11,7 +11,7 @@ class Cassandra(Adv):
     a3 = ('ro', 0.15)
 
     conf = {}
-    conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
+    conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
     conf['acl'] = """
         `s1
         `s2, seq=5
@@ -32,8 +32,8 @@ class Cassandra(Adv):
 
     def s2_proc(this, e):
         this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
-        with CrisisModifier('s2', 2, this.hp):
-            this.dmg_make('o_s2_crisis',this.conf.s2.dmg)
+        with CrisisModifier('s2', 1, this.hp):
+            this.dmg_make('s2',9.72)
 
 if __name__ == '__main__':
     conf = {}

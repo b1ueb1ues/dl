@@ -21,8 +21,8 @@ class Veronica(Adv):
         this.hp = 80
 
     def s1_proc(this, e):
-        with adv.CrisisModifier('s1', 2.25, this.hp):
-            this.dmg_make('o_s1_crisis', this.conf.s1.dmg)
+        with adv.CrisisModifier('s1', 1.25, this.hp):
+            this.dmg_make('s1', 10.84)
 
 if __name__ == '__main__':
     conf = {}

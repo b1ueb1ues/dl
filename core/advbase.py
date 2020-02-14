@@ -106,11 +106,10 @@ class CrisisModifier(Modifier):
             this.hp_cond = 0
 
     def get(this):
-        # minus 1 for hack separated bar display reasons
         if this.hp_cond:
-            this.mod_value = (this.hp_scale - 1) * (this.hp_lost**2)/10000 - 1
+            this.mod_value = this.hp_scale * (this.hp_lost**2)/10000
         else:
-            this.mod_value = -1
+            this.mod_value = 0
         return this.mod_value
 
 
