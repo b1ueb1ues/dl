@@ -1,30 +1,22 @@
 import adv.adv_test
-import adv
-from core.advbase import Modifier
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Louise
 
-class Louise(adv.Adv):
+class Louise(Adv):
     a1 = ('od',0.13)
     comment = 'no fs'
     conf = {}
-    conf['slot.a'] = DD()+TP()
+    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
     conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
+        `s1
+        `s2
         `s3, seq=5
         """
-    conf['cond_afflict_res'] = 0
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
+    conf['afflict_res.poison'] = 0
 
     def s1_proc(this, e):
         this.afflics.poison('s1', 120, 0.582)

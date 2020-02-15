@@ -1,10 +1,10 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Taro
 
-class Taro(adv.Adv):
+class Taro(Adv):
     conf = {}
     conf['acl'] = """
         `s1

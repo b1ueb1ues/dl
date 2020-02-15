@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+import from core.advbase import *
 from slot.a import *
 from slot.d import *
 def module():
     return Joe
 
-class Joe(adv.Adv):
+class Joe(Adv):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Mega_Friends()+Dear_Diary()
@@ -15,14 +15,9 @@ class Joe(adv.Adv):
         `s2, fsc
         `fs, x=3
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
-
         if this.condition('hp100'):
             this.fullhp = 1
         else:

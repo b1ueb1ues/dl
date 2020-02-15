@@ -1,13 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 
 def module():
     return Waike
 
 
-class Waike(adv.Adv):
-    comment = 'no bog'
+class Waike(Adv):
     conf = {}
     conf['acl'] = """
         `s1, fsc
@@ -15,10 +14,16 @@ class Waike(adv.Adv):
         `s3, fsc
         `fs, seq=4
         """
+    conf['afflict_res.bog'] = 100
 
-    def d_slots(this):
-        #this.conf.slot.d = DJ()
-        return
+    def init(this):
+        this.fullhp = 0
+        if this.conf['afflict_res.bog'] < 100:
+            if this.condition('hp100'):
+                this.fullhp = 1
+
+    def s2_proc(this, e):
+        this.afflics.bog.on('s2', 80+this.fullhp*40)
 
 if __name__ == '__main__':
     conf = {}

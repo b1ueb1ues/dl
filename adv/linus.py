@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Linus
 
-class Linus(adv.Adv):
+class Linus(Adv):
     # comment = 'do not use weapon skill'
     conf = {}
     conf['slot.a'] = KFM()+FitF()

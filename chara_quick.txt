@@ -139,3 +139,5 @@ aurien.py
 mh_berserker.py
 mh_vanessa.py
 mh_sarisse.py
+v_melody.py
+v_addis.py

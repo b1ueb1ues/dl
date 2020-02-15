@@ -1,12 +1,12 @@
 import adv.adv_test
-from adv import *
-import adv
+from core.advbase import *
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Naveed
 
-class Naveed(adv.Adv):
+class Naveed(Adv):
     a1 = ('a',0.08,'hit15')
     a3 = ('prep','100%')
     conf = {}

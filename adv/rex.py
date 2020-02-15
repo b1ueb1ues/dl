@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Rex
 
-class Rex(adv.Adv):
+class Rex(Adv):
     conf = {}
     conf['slot.a'] = KFM()+CE()
     conf['acl'] = """

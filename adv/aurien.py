@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a.all import *
 from slot.d.flame import *
 
@@ -16,12 +16,7 @@ class Aurien(Adv):
         `s3, not this.s3_buff_on
         `s2, x=5
     """
-    
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
-        else:
-            this.afflics.burn.resist=100
+    conf['afflict_res.burn'] = 0
 
     def s2_proc(this, e):
         this.afflics.burn('s2',100,0.803)

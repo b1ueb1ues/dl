@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from module.bleed import Bleed
 from slot.d import *
 from slot.a import *
@@ -19,22 +19,15 @@ class Sazanka(Adv):
         `s2, fsc
         `fs, seq=5
         """
-    conf['cond_afflict_res'] = 80
+    conf['afflict_res.sleep'] = 80
 
     def prerun(this):
         this.bleed = Bleed("g_bleed",0).reset()
         this.s2fscharge = 0
 
-    def init(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.sleep.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.sleep.resist=100
-
-
     def s1_proc(this, e):
         if random.random() < 0.8:
-            Bleed("s1_bleed", 1.32).on()
+            Bleed("s1", 1.32).on()
 
     def s2_proc(this, e):
         this.s2fscharge = 3

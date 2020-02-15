@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -82,4 +82,4 @@ class G_Luca(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2, mass=0)
+    adv.adv_test.test(module(), conf)

@@ -1,6 +1,6 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 from core.log import *
 from slot.d import *
 from slot.a import *
@@ -8,7 +8,7 @@ from slot.a import *
 def module():
     return Serena
 
-class Serena(adv.Adv):
+class Serena(Adv):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Mega_Friends()+Primal_Crisis()

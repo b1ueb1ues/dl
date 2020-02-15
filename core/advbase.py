@@ -106,11 +106,10 @@ class CrisisModifier(Modifier):
             this.hp_cond = 0
 
     def get(this):
-        # minus 1 for hack separated bar display reasons
         if this.hp_cond:
-            this.mod_value = (this.hp_scale - 1) * (this.hp_lost**2)/10000 - 1
+            this.mod_value = this.hp_scale * (this.hp_lost**2)/10000
         else:
-            this.mod_value = -1
+            this.mod_value = 0
         return this.mod_value
 
 
@@ -272,6 +271,30 @@ class Selfbuff(Buff):
                 bc+=1
         return bc
 
+class SingleActionBuff(Buff):
+    # this buff lasts until the action it is buffing is completed
+    def __init__(this, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None):
+        super().__init__(name, value, -1, mtype, morder, False)
+        this.bufftype = 'self'
+        this.casts = casts
+        this.end_event = event if event is not None else mtype
+        if isinstance(this.end_event, str):
+            Listener(this.end_event, this.l_off).on()
+        else:
+            for e in this.end_event:
+                Listener(e, this.l_off).on()
+
+    def on(this, casts=1):
+        this.casts = casts
+        return super().on(-1)
+
+    def l_off(this, e):
+        this.casts -= 1
+        if this.casts <= 0:
+            return super().off()
+        else:
+            return this
+    
 class Teambuff(Buff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
         Buff.__init__(this, name,value,duration,mtype,morder,toggle)
@@ -296,20 +319,21 @@ class Teambuff(Buff):
         this.count_team_buff()
 
     def count_team_buff(this):
-
         this.dmg_test_event.modifiers = []
         for i in this._static.all_buffs:
-            if i.name == 'simulated_debuff':
+            if i.name == 'simulated_def':
                 this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
-
+        sd_mods = 1
         for i in this._static.all_buffs:
             if i.bufftype=='team' or i.bufftype=='debuff':
-                this.dmg_test_event.modifiers.append(i.modifier)
+                if i.modifier.mod_type == 's':
+                    sd_mods = 1 + i.get() * 1/2
+                else:
+                    this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
-        team_buff_dmg = this.dmg_test_event.dmg
-
+        team_buff_dmg = this.dmg_test_event.dmg * sd_mods
         log('buff','team', team_buff_dmg/no_team_buff_dmg-1)
 
 
@@ -341,15 +365,20 @@ class Spdbuff(Buff):
 
     def count_team_buff(this):
         this.dmg_test_event.modifiers = []
+        for i in this._static.all_buffs:
+            if i.name == 'simulated_def':
+                this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
         no_team_buff_dmg = this.dmg_test_event.dmg
-        modifiers = []
+        sd_mods = 1
         for i in this._static.all_buffs:
             if i.bufftype=='team' or i.bufftype=='debuff':
-                modifiers.append(i.modifier)
-        this.dmg_test_event.modifiers = modifiers
+                if i.modifier.mod_type == 's':
+                    sd_mods = 1 + i.get() * 1/2
+                else:
+                    this.dmg_test_event.modifiers.append(i.modifier)
         this.dmg_test_event()
-        team_buff_dmg = this.dmg_test_event.dmg
+        team_buff_dmg = this.dmg_test_event.dmg * sd_mods
         spd = this.stack() * this.value()
         if this.bufftype=='team' or this.bufftype=='debuff':
             team_buff_dmg += team_buff_dmg * spd
@@ -747,9 +776,6 @@ class Dodge(Action):
         this.act_event = Event('dodge')
         this.act_event.name = this.name
 
-
-
-
 class Adv(object):
     Timer = Timer
     Event = Event
@@ -803,7 +829,6 @@ class Adv(object):
     a1 = None
     a2 = None
     a3 = None
-    ex = None
 
     conf_default = Conf()
 
@@ -868,6 +893,7 @@ class Adv(object):
         #fs=this.fs
         #fsf=this.fsf
         #dodge=this.dodge
+        #dragon=this.dragonform
     '''
         #if pin[-2:] == '-x':\n    s=pidx\n    sx=pidx\n    print(sx)\n    print(pin)\n    errrrrrrr()
 
@@ -888,8 +914,6 @@ class Adv(object):
         this.modifier._static.all_modifiers = this.all_modifiers
 
         # set ex
-        if this.ex:
-            this.slots.c.ex.update(this.ex)
         this.ex = this.slots.c.ex
 
         # init actions
@@ -942,15 +966,26 @@ class Adv(object):
         this.dodge = this.a_dodge
 
         this.hits = 0
+        this.dragonform = None
+
+    def afflic_condition(this):
+        if 'afflict_res' in this.conf:
+            res_conf = this.conf.afflict_res
+            for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+                if afflic in res_conf and 0 <= res_conf[afflic] <= 100:
+                    if this.condition('{} {} res'.format(res_conf[afflic], afflic)):
+                        vars(this.afflics)[afflic].resist = res_conf[afflic]
+                    else:
+                        vars(this.afflics)[afflic].resist = 100
 
     def sim_affliction(this):
         if 'sim_afflict' in this.conf:
             t = int(this.conf.sim_afflict.time)
             if t > 0:
-                if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
-                    aff = vars(this.afflics)[this.conf.sim_afflict.type]
-                    aff.resist = -5
-                    aff.on('simulated'.format(this.conf.sim_afflict.type), 100, 0, duration=t, iv=t)
+                # if this.condition('{} for {}s'.format(this.conf.sim_afflict.type, t)):
+                aff = vars(this.afflics)[this.conf.sim_afflict.type]
+                aff.on('simulated'.format(this.conf.sim_afflict.type), 200, 0, duration=t, iv=t)
+                aff.states = None
 
     def sim_buffbot(this):
         if 'sim_buffbot' in this.conf:
@@ -1070,19 +1105,18 @@ class Adv(object):
 
 
     def dmg_mod(this, name):
+        mod = 1
         if name[:2] == 'o_':
             name = name[2:]
-        #if name.find('o_') != -1:
-        #    name = name.replace('o_','')
 
         if name[0] == 's':
-            return this.mod('s')
+            return mod * this.mod('s')
         elif name[0:2] == 'fs':
-            return this.mod('fs')
+            return mod * this.mod('fs')
         elif name[0] == 'x':
-            return this.mod('x')
+            return mod * this.mod('x')
         else:
-            return 1
+            return mod
 
     def mod(this, mtype):
         m = {}
@@ -1154,7 +1188,7 @@ class Adv(object):
         m = 1
         for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
             rate = vars(this.afflics)[afflic].get()
-            m *= 1 + (this.mod(afflic + '_killer') - 1) * rate
+            m += (this.mod(afflic + '_killer') - 1) * rate
         return m
 
     def def_mod(this):
@@ -1335,6 +1369,7 @@ class Adv(object):
         this.slots.oninit(this)
 
         this.prerun()
+        this.afflic_condition()
         this.sim_affliction()
         this.sim_buffbot()
 

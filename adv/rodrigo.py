@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+import core.advbase.Adv as adv
 from slot.a import *
 
 def module():
     return Rodrigo
 
-class Rodrigo(adv.Adv):
+class Rodrigo(Adv):
     a1 = ('a',0.08,'hp70')
     conf = {}
     conf['slot.a'] = TSO()+BN()

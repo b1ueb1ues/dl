@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 
 def module():
     return W_Aoi
@@ -14,19 +14,13 @@ class W_Aoi(Adv):
         `s3, seq=5 or fsc
         `fs, seq=5
         """
-    conf['cond_afflict_res'] = 80
+    conf['afflict_res.sleep'] = 80
 
     def init(this):
         if this.condition('big hitbox'):
             this.s1_addition = 4
         else:
             this.s1_addition = 1
-
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.sleep.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.sleep.resist=100
-
 
     def s1_before(this, e):
         this.dmg_make('o_s1_hit1',1.47)

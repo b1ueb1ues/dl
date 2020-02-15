@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -20,13 +20,9 @@ class Lea(Adv):
         `s2, fsc
         `fs, seq=2
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.burn'] = 0
     
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
         if this.condition('reflect 500 damage on every s2'):
             this.s2reflect = 500
         else:

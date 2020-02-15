@@ -1,13 +1,12 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 from slot.d import *
 from module import energy
 
 def module():
     return D_Cleo
 
-class D_Cleo(adv.Adv):
+class D_Cleo(Adv):
     a1 = ('a',0.13,'hp70')
     conf = {}
     conf['acl'] = """

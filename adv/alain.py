@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 
 def module():
@@ -14,12 +14,7 @@ class Alain(Adv):
         `s2
         `fs, seq=5
         """
-    conf['cond_afflict_res'] = 0
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.burn.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.burn.resist=100
+    conf['afflict_res.burn'] = 0
 
     def s1_proc(this, e):
         this.afflics.burn('s1',100,0.803)

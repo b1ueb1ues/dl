@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Karina
 
-class Karina(adv.Adv):
+class Karina(Adv):
     a3 = ('prep','50%')
     conf = Conf()
     conf.slot.a = KFM()+CE()

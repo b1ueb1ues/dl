@@ -1,10 +1,10 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Rawn
 
-class Rawn(adv.Adv):
+class Rawn(Adv):
     conf = {}
     conf['acl'] = """
         `s1, cancel

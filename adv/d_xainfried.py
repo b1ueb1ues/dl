@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -7,11 +7,11 @@ def module():
     return D_Xainfried
 
 class D_Xainfried(Adv):
-    a1 = ('dc', 0.04)
+    a1 = ('dc', 1)
     a3 = ('primed_att', 0.08)
 
     conf = {}
-    conf['slots.d'] = Longlong()
+    conf['slots.d'] = Long_Long()
     conf['slots.a'] = ADD()+Primal_Crisis()
     conf['acl'] = """
         `s1

@@ -1,13 +1,12 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return G_Sarisse
 
-class G_Sarisse(adv.Adv):
+class G_Sarisse(Adv):
     a3 = ('bt',0.3)
     conf = {}
     conf['slot.d'] = Sakuya()

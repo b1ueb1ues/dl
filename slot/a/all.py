@@ -270,10 +270,10 @@ class Summer_Paladyns(Amulet):
 
 class The_Shining_Overlord(Amulet):
     att = 65
-    a = [('dc', 0.06)]
+    a = [('dc', 3)]
     def on(this, c):
         if c.wt == 'sword':
-            this.a = [('dc', 0.06)]
+            this.a = [('dc', 3)]
             this.a += [('s',0.40)]
 TSO = The_Shining_Overlord
 
@@ -513,12 +513,12 @@ ADD = A_Dogs_Day
 
 class The_Bridal_Dragon(Amulet):
     att = 64
-    a = []
+    a = [('dp',10),('da',0.18)]
 TBD = The_Bridal_Dragon
 
 class A_Suit_of_Midnight(Amulet):
     att = 52
-    a = []
+    a = [('dp',10), ('afflict_guard', 3)]
 
 class Primal_Crisis(Amulet):
     att = 55
@@ -537,6 +537,18 @@ class Unexpected_Requests(Amulet):
 class The_Lurker_in_the_Woods(Amulet):
     att = 65
     a = [('fs', 0.50), ('bk', 0.25)]
+
+class Prayers_Unto_Him(Amulet):
+    att = 64
+    a = [('da', 0.18), ('dt', 0.15)]
+
+class An_Ancient_Oath(Amulet):
+    att = 65
+    a = [('da', 0.18), ('dc', 4)]
+
+class The_Fires_of_Hate(Amulet):
+    att = 65
+    a = [('k_poison', 0.2), ('a', 0.15, 'hp100')]
 
 amulets = []
 for k in list(globals()):

@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 
 def module():
     return Xiaolei
 
-class Xiaolei(adv.Adv):
+class Xiaolei(Adv):
     a1 = ('s',0.2)
     conf = {}
     conf['acl'] = """

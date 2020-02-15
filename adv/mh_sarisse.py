@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -95,7 +95,7 @@ class MH_Sarisse(Adv):
                 'dmg': 0.94,
                 'sp': 920,
                 'startup': (29+43*2) / 60.0,
-                'hit': 3,
+                'hit': 4,
                 'pierce': default_pierce
             },
             'fs4': {
@@ -168,17 +168,13 @@ class MH_Sarisse(Adv):
         return this.a_fs4(doing)
 
     def prerun(this):
-        this.s1_fs_boost = Selfbuff('s1', 1.00, -1, 'fs', 'buff')
+        this.s1_fs_boost = adv.SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3','fs4'])
 
     def s1_proc(this, e):
-        if not this.s1_fs_boost.get():
-            this.s1_fs_boost.on()
+        this.s1_fs_boost.on()
     
     def s2_proc(this, e):
         Event('fs_speed_buff')()
-
-    def fs_proc(this, e):
-        this.s1_fs_boost.off()
 
 if __name__ == '__main__':
     conf = {}

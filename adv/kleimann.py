@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 import slot
 
 def module():
     return Kleimann
 
-class Kleimann(adv.Adv):
+class Kleimann(Adv):
     a1 = ('fs',0.4)
     a3 = ('s',0.2)
  

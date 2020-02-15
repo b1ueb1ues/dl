@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 
 def module():
     return Norwin
@@ -13,13 +13,7 @@ class Norwin(Adv):
         `s3
         `fs, seq=5
         """
-    conf['cond_afflict_res'] = 80
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.blind.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.blind.resist=100
+    conf['afflict_res.blind'] = 80
 
     def s1_proc(this, e):
         this.afflics.blind('s1',100)

@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot import *
 from slot.w import *
 from slot.a import *

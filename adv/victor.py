@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
 from slot.d import *
@@ -28,7 +28,7 @@ class Victor(Adv):
 
     def s1_proc(this, e):
         if random.random() < 0.8:
-            Bleed("s1_bleed", 1.46).on()
+            Bleed("s1", 1.46).on()
 
 
 if __name__ == '__main__':

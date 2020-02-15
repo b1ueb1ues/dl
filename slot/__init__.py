@@ -2,7 +2,6 @@ import copy
 from core import Conf
 from ability import *
 
-
 class Slot(object):
     att = 0
     ele = 'none'
@@ -49,7 +48,7 @@ class Slot(object):
 class CharacterBase(Slot):
     name = 'null'
     stars = 5
-    ex = []
+    ex = {}
     def setup(this):
         return
 
@@ -94,6 +93,34 @@ class WeaponBase(Slot):
 class DragonBase(Slot):
     stype = 'd'
     a = [('a', 0.60)]
+    default_dragonform = {
+        'duration': 600 / 60, # 10s dragon time
+        'dracolith': 0.40, # base dragon damage
+        'exhilaration': 0, # psiren aura
+        'gauge_iv': 15, # gauge interval
+        'latency': 0, # amount of delay for cancel
+        'act': 'end',
+
+        'dshift.startup': 96 / 60, # shift 102 -> 96 + 6
+        'dshift.recovery': 0 / 60, # assumed cancel
+        'dshift.dmg': 2.00,
+        'dshift.hit': 1,
+
+        'dx1.recovery': 0,
+        'dx2.recovery': 0,
+        'dx3.recovery': 0,
+        'dx4.recovery': 0,
+        'dx5.recovery': 0,
+        'ds.startup': 0,
+
+        'dodge.startup': 40 / 60, # dodge frames
+        'dodge.recovery': 0,
+        'dodge.hit': 0,
+
+        'end.startup': 0, # amount of time needed to kys, 0 default
+        'end.recovery': 0
+    }
+    dragonform = {}
 
     def setup(this, c):
         Slot.setup(this, c)
@@ -102,6 +129,25 @@ class DragonBase(Slot):
         else:
             this.a = []
 
+    def ds_proc(self):
+        try:
+            return self.adv.dmg_make('d_ds',self.adv.dragonform.conf.ds.dmg,'s')
+        except:
+            return 0
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from core.dragonform import DragonForm
+        self.adv = adv
+        if 'dragonform' in adv.conf:
+            name = type(adv).__name__
+            dconf = Conf(self.default_dragonform)
+            dconf += adv.conf.dragonform
+            self.adv.dragonform = DragonForm(name, dconf, adv, adv.ds_proc)
+        else:
+            name = type(self).__name__
+            dconf = Conf({**self.default_dragonform, **self.dragonform})
+            self.adv.dragonform = DragonForm(name, dconf, adv, self.ds_proc)
 
 class Amuletempty(object):
     stype = 'a2'
@@ -118,7 +164,7 @@ class AmuletBase(Slot):
 
     def __add__(this, another):
         if type(this) is type(another):
-            raise ValueError('Cannot equip two of the same wyrmprint');
+            raise ValueError('Cannot equip two of the same wyrmprint')
         this.a2 = another
         this.a2.stype = 'a2'
         return this

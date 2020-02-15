@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
@@ -8,7 +8,7 @@ def module():
 
 class Xainfried(Adv):
     comment = 'use s1 only to cancel c5 or fs'
-    a1 = ('dc', 0.06)
+    a1 = ('dc', 3)
     conf = {}
     conf['acl'] = """
         `s1

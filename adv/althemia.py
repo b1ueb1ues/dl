@@ -1,10 +1,10 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Althemia
 
-class Althemia(adv.Adv):
+class Althemia(Adv):
     a1 = ('s',0.3,'hp100')
     conf = {}
     conf['acl'] = """

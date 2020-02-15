@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 from slot.w import *
@@ -24,13 +24,9 @@ class Yachiyo(Adv):
         `s1
         `s3
         """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.paralysis'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.paralysis.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.paralysis.resist=100
         this.fsa_charge = 0        
 
     def s1_proc(this, e):

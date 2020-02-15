@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -7,25 +7,20 @@ def module():
     return Delphi
 
 class Delphi(Adv):
-    comment = 'Fatalis > Chthonius(1+ shift) > Marishiten > Shinobi'
     a1 = ('a',-0.55)
 
     conf = {}
-    conf['slot.a'] = Mega_Friends()+The_Plaguebringer()
+    conf['slot.d'] = Fatalis()
+    conf['slot.a'] = Mega_Friends()+The_Fires_of_Hate()
     conf['acl'] = """
         `s1
         `s2, this.s1fscharge == 0 and (s1.charged <= ((s1.sp/13)*9))
         `s3
         `fs, x=2 and (this.s1fscharge == 0 or this.hits >= 15)
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
     def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
         this.flurry_poison = 70
         
         if this.condition('s1 defdown for 10s'):

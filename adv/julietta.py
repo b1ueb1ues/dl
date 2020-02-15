@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Julietta
 
-class Julietta(adv.Adv):
+class Julietta(Adv):
     comment = 'no fs & no s2'
 
     def s2_proc(this, e):
@@ -20,5 +20,4 @@ class Julietta(adv.Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=0)
-
+    adv.adv_test.test(module(), conf)

@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
 def module():
     return Ranzal
 
-class Ranzal(adv.Adv):
+class Ranzal(Adv):
     comment = 'do not use fs'
 
     conf = {}

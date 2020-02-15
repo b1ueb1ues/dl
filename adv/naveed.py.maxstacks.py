@@ -1,5 +1,5 @@
 import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 import naveed
 

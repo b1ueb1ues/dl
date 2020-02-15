@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Erik
 
-class Erik(adv.Adv):
+class Erik(Adv):
     comment =''
     a1 = ('fs',0.30)
 

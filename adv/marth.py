@@ -1,13 +1,12 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
 def module():
     return Marth
 
-class Marth(adv.Adv):
+class Marth(Adv):
     comment = 'c2fs'
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')

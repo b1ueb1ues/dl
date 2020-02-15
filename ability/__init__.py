@@ -40,9 +40,17 @@ class Ability(object):
                 this.mod = [('sp','passive',0.15)]
             elif value == 'wand':
                 this.mod = [('s','ex',0.15)]
-            elif value == 'hmym':
-                this.mod = [('crit','damage',0.3)]
+            elif value == 'sword':
+                this.mod = [('dh','passive',0.15)]
+            elif value == 'axe2':
+                this.mod = [('crit','damage',0.30)]
+            elif value == 'geuden':
+                this.mod = [('da','passive',0.10),('dt','passive',0.20)]
 
+        elif name == 'da':
+            this.mod = [('da','passive',value,cond)]
+        elif name == 'dt':
+            this.mod = [('dt','passive',value,cond)]
 
     def ex_dmg_make(this, name, dmg_coef, dtype=None):
         count = this.adv_dmg_make(name, dmg_coef, dtype)
@@ -109,17 +117,6 @@ class Ability(object):
             for _ in range(5):
                 adv.Buff('slayerstrength',value,-1).on()
         elif name == 'dc':
-            # adv.Buff('dragonclaw',(float(value)+3.0)/200.0,-1).on()
-            if hasattr(adv, 'no_dclaws') and not adv.no_dclaws:
-                from adv.adv_test import sim_duration
-                timing = int(sim_duration/2)
-                buff_value = value
-                def dc_buff(t):
-                    if adv.condition('shapeshift at {}s'.format(timing)):
-                        adv.Buff('dragons_claw', buff_value, -1).on()
-                adv.dragon_claw_buff = adv.Timer(dc_buff)
-                adv.dragon_claw_buff.on()
-        elif name == 'dc_true': # real dclaws, based on Event('dragon')
             from core.timeline import Event
             dc_levels = {
                 1: (0.04,0.06,0.10),
@@ -128,11 +125,11 @@ class Ability(object):
                 4: (0.10,0.15,0.15)
             }
             this.dc_values = dc_levels[value]
-            this.dc_level = 1
+            adv.dc_level = 0
             def l_dc_buff(t):
-                if this.dc_level <= len(this.dc_values):
-                    adv.Buff('dc{}_{}'.format(value, this.dc_level), this.dc_values[this.dc_level-1], -1).on()
-                    this.dc_level += 1
+                if adv.dc_level < len(this.dc_values):
+                    adv.Buff('dc', this.dc_values[adv.dc_level], -1).on()
+                    adv.dc_level += 1
             Event('dragon').listener(l_dc_buff)
         elif name == 'ro':
             if isinstance(value, tuple) and len(value) == 2:
@@ -204,6 +201,10 @@ class Ability(object):
                     Timer(pm_cd_end).on(15)
 
             Event('s1_charged').listener(l_primed)
+        elif name == 'dp':
+            adv.dragonform.dragon_gauge += value
+        elif name == 'afflict_guard':
+            adv.afflict_guard = value
 
 #        elif name == 'ex' and value == 'wand':
 #            this.ex_wand(adv)

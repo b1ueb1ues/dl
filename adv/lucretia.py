@@ -1,12 +1,11 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
 from module import energy
 
 def module():
     return Lucretia
 
-class Lucretia(adv.Adv):
+class Lucretia(Adv):
     a3 = ('bk',0.3)
     conf = {}
     conf['acl'] = """

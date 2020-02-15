@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
 
@@ -19,15 +19,7 @@ class Addis(Adv):
         `s3, seq=5 and not this.s2buff.get()
         `fs, this.s2buff.get() and seq=4 and this.s1.charged>=s1.sp-200
         """
-    conf['cond_afflict_res'] = 0
-
-   # conf['acl'] = """
-   #     `s2, s1.charged>=s1.sp-260 and seq=5
-   #     `s1, s2.charged<s2.sp
-   #     `s3, not this.s2buff.get()
-   #     `s3, s2.sp > 2000 and sx=1
-   #     `fs, this.s2buff.get() and seq=5
-   #     """
+    conf['afflict_res.poison'] = 0
 
     def getbleedpunisher(this):
         if this.bleed._static['stacks'] > 0:
@@ -36,11 +28,6 @@ class Addis(Adv):
 
     def prerun(this):
         random.seed()
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
         this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         this.s2str = Selfbuff("s2_str",0.25,10)
         this.bleedpunisher = Modifier("bleed","att","killer",0.08)
@@ -56,9 +43,9 @@ class Addis(Adv):
             this.s2str.buff_end_timer.timing += 2.5
             log('-special','s1_with_s2')
             if random.random() < 0.8:
-                Bleed("s1_bleed", 1.32).on()
+                Bleed("s1", 1.32).on()
             else:
-                log('-special','s1_bleed_failed')
+                log('-special','s1_failed')
         else:
             this.afflics.poison('s1',100,0.53)
 

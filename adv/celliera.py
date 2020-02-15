@@ -1,5 +1,5 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.d import *
 from slot.a import *
 
@@ -7,7 +7,7 @@ from slot.a import *
 def module():
     return Celliera
 
-class Celliera(adv.Adv):
+class Celliera(Adv):
     a3 = ('a',0.08,'hp70')
 
     conf = {}

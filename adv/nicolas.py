@@ -1,10 +1,10 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Nicolas
 
-class Nicolas(adv.Adv):
+class Nicolas(Adv):
     conf = {}
     conf['acl'] = """
         `s1

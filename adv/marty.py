@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 def module():
     return Marty
 
-class Marty(adv.Adv):
+class Marty(Adv):
     a1 = ('sp',0.05)
     conf = {}
     conf['slots.a'] = Mega_Friends()+BN()

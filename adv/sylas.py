@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Sylas
 
-class Sylas(adv.Adv):
+class Sylas(Adv):
     a3 = ('a',0.13,'hp70')
 
     comment = 'not consider skill haste for team'
@@ -18,14 +18,8 @@ class Sylas(adv.Adv):
         `fs, seq=5
         """
     conf['slot.d'] = Vayu()
-    conf['slot.a'] = RR()+The_Plaguebringer()
-    conf['cond_afflict_res'] = 0
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
+    conf['slot.a'] = RR()+The_Fires_of_Hate()
+    conf['afflict_res.poison'] = 0
 
     def s1_proc(this, e):
         this.afflics.poison('s1',120,0.582)

@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Raemond
 
-class Raemond(adv.Adv):
+class Raemond(Adv):
     conf = {}
     conf['slot.a'] = TSO()+BN()
     conf['acl'] = """

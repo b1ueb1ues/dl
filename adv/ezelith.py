@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.d import *
 
 def module():
@@ -43,11 +43,11 @@ class Ezelith(Adv):
             f_sum += f
             t_s1 = Timer(this.s1_hit)
             t_s1.dmg_coef = 0.63
-            t_s1.on((f_sum+3)/60)
+            t_s1.on(f_sum/60)
         f_sum += this.s1_hit_frames[-1]
         t_s1 = Timer(this.s1_hit)
         t_s1.dmg_coef = 4.00
-        t_s1.on((f_sum+3)/60)
+        t_s1.on(f_sum/60)
 
     def s2_proc(this, e):
         this.s2_buff.on()

@@ -1,11 +1,11 @@
 import adv.adv_test
-import adv
-from adv import *
+from core.advbase import *
+from core.advbase import *
 
 def module():
     return Sinoa
 
-class Sinoa(adv.Adv):
+class Sinoa(Adv):
     comment = 'buff modes: means/random/att/crit'
 
     a1 = ('a',0.13,'hp100')

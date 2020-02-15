@@ -1,12 +1,12 @@
 import adv.adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
     return Zardin
 
-class Zardin(adv.Adv):
+class Zardin(Adv):
     a1 = ('a',0.10,'hp100')
     
     conf = {}

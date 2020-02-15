@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a.all import The_Bridal_Dragon, From_Whence_He_Came
 from slot.d import PopStar_Siren
 

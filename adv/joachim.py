@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -12,24 +12,17 @@ class Joachim(Adv):
     a3 = ('k_poison',0.2)
     
     conf = {}
-    conf['slot.a'] = Dear_Diary() + TP()
+    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
     conf['slot.d'] = Vayu()
     conf['acl'] = """
         `s2, s=1
         `s1
         `s3
     """
-    conf['cond_afflict_res'] = 0
+    conf['afflict_res.poison'] = 0
 
     def init(this):
         this.s1_stance = 1
-
-    def prerun(this):
-        if this.condition('{} resist'.format(this.conf['cond_afflict_res'])):
-            this.afflics.poison.resist=this.conf['cond_afflict_res']
-        else:
-            this.afflics.poison.resist=100
-
 
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.8):

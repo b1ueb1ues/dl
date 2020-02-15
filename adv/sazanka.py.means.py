@@ -1,5 +1,5 @@
 import adv.adv_test
-from adv import *
+from core.advbase import *
 from adv import sazanka
 from module.bleed import mBleed
 from slot.d import *
@@ -14,7 +14,7 @@ class Sazanka(sazanka.Sazanka):
         this.s2fscharge = 0
 
     def s1_proc(this, e):
-        mBleed("s1_bleed", 1.32).on()
+        mBleed("s1", 1.32).on()
 
 
 if __name__ == '__main__':
