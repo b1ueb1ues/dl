@@ -129,14 +129,13 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     if (cond != undefined && !cond.startsWith('!')) {
         if (cond != '') {
             cond_comment.push(cond);
-            cond_cpy_str = ' ' + cond;
         }
         if (comment != '') {
-            cond_comment.push(comment)
+            cond_comment.push(comment);
         }
         if (cond_comment.length > 0) {
-            // cond_comment_cpy = ' ' + cond_comment.join(' ');
             cond_comment_str = '<br/>' + cond_comment.join(' ');
+            cond_cpy_str = ' ' + cond_comment.join(' ');
         }
     } else {
         slots = '';

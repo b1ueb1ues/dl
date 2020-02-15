@@ -210,6 +210,32 @@ class Epimetheus(DragonBase):
     ele = 'shadow'
     att = 128
     a = [('k_poison', 0.2), ('a', 0.5)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.80,
+        'dx1.startup': 14 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 1.98,
+        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 2.52,
+        'dx3.startup': 38 / 60.0, # c3 frames
+        'dx3.recovery': 50 / 60.0, # recovery
+        'dx3.hit': 2,
+
+        'ds.recovery': 123 / 60, # skill frames
+        'ds.hit': 1,
+
+        'dodge.startup': 41 / 60, # dodge frames
+    }
+
+    def ds_proc(self):
+        dmg = self.adv.dmg_make('d_ds',6.30,'s')
+        self.adv.afflics.poison('ds',120,0.291,30,dtype='s')
+        return dmg
 
 class Unreleased_ShadowSkillHaste(DragonBase):
     ele = 'shadow'
