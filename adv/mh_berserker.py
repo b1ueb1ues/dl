@@ -9,7 +9,7 @@ def module():
 class MH_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
-    conf['slot.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
+    conf['slot.a'] = Levins_Champion()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         #fs=None
@@ -89,7 +89,7 @@ class MH_Berserker(Adv):
     def prerun(this):
         this.s1_debuff = Debuff('s1', 0.05, 10)
 
-        this.s2_fs_boost = adv.SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
+        this.s2_fs_boost = adv.SingleActionBuff('s1', 0.80, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
 
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
         this.a3_crit.get = this.a3_crit_get

@@ -17,10 +17,19 @@ class Chelsea(Adv):
     def prerun(this):
         this.hp = 100
         this.obsession = 0
+        this.s2_buffs = []
 
         this.a1atk = Selfbuff('a1atk',0.20,-1,'att','passive')
         this.a1spd = Spdbuff('a1spd',0.10,-1)
         this.a3 = Selfbuff('a3_str_passive',0.3,60,'att','passive')
+
+        Event('dragon').listener(this.s2_clear)
+
+    def s2_clear(this, e):
+        for buff in this.s2_buffs:
+            buff.off()
+        this.s2_buffs = []
+        this.obsession = 0
 
     def dmg_before(this, name):
         hpold = this.hp
@@ -92,7 +101,7 @@ class Chelsea(Adv):
         this.hits += 1
 
     def s2_proc(this, e):
-        Selfbuff('s2',0.3,60).on()
+        this.s2_buffs.append(Selfbuff('s2',0.3,60).on())
         this.obsession = Selfbuff('s2').stack()
         this.a3.on()
 

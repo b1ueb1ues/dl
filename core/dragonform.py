@@ -1,6 +1,7 @@
 from core.advbase import Action, S
 from core.timeline import Event, Timer, now
 from core.log import log
+from math import ceil
 
 class DragonForm(Action):
     def __init__(self, name, conf, adv, ds_proc):
@@ -45,7 +46,7 @@ class DragonForm(Action):
         # if self.status != -1:
         # ignore dragonform blocking gauge (as it would in game) to avoid break-pointy bullshit
         value = value * self.adv.mod('dh')
-        self.dragon_gauge += value
+        self.dragon_gauge += ceil(value*10)/10
         self.dragon_gauge = min(self.dragon_gauge, 100)
         log('dragon_gauge', '+{:.2f}%'.format(value), '{:.2f}%'.format(self.dragon_gauge))
 
