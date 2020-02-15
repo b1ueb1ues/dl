@@ -74,6 +74,7 @@ class H_Mym(Adv):
     def c_s2_proc(this, e):
         Teambuff('s2',0.20,15).on()
         Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
+        this.s2_da.on()
 
     def s2_proc(this, e):
         Selfbuff('s2',0.20,15).on()

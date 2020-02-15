@@ -42,11 +42,12 @@ class DragonForm(Action):
         self.charge_gauge(10)
 
     def charge_gauge(self, value):
-        if self.status != -1:
-            value = value * self.adv.mod('dh')
-            self.dragon_gauge += value
-            self.dragon_gauge = min(self.dragon_gauge, 100)
-            log('dragon_gauge', '+{:.2f}%'.format(value), '{:.2f}%'.format(self.dragon_gauge))
+        # if self.status != -1:
+        # ignore dragonform blocking gauge (as it would in game) to avoid break-pointy bullshit
+        value = value * self.adv.mod('dh')
+        self.dragon_gauge += value
+        self.dragon_gauge = min(self.dragon_gauge, 100)
+        log('dragon_gauge', '+{:.2f}%'.format(value), '{:.2f}%'.format(self.dragon_gauge))
 
     def dtime(self):
         return self.conf.dshift.startup + self.conf.duration * self.adv.mod('dt') + self.conf.exhilaration * (self.off_ele_mod is None)
