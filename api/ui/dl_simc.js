@@ -383,7 +383,12 @@ function runAdvTest() {
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);
-                    $('#damage-log').text(res.logs);
+                    const logs = Object.keys(['dragon', 'action', 'timeline']).map(key => {
+                        if (res.logs[key].length > 0) {
+                            return res.logs[key]
+                        }
+                    })
+                    $('#damage-log').html(logs.join('<hr class="log-divider">'));
                     $('#test-results').prepend(newResultItem);
                     $('#copy-results').prepend($('<textarea>' + copyTxt + '</textarea>').attr({ class: 'copy-txt', rows: (copyTxt.match(/\n/g) || [0]).length + 1 }));
                 }
