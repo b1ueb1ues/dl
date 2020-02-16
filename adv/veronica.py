@@ -17,11 +17,11 @@ class Veronica(Adv):
         """
 
     def prerun(this):
-        adv.Teambuff('last',2.28,1).on()
+        Teambuff('last',2.28,1).on()
         this.hp = 80
 
     def s1_proc(this, e):
-        with adv.CrisisModifier('s1', 1.25, this.hp):
+        with CrisisModifier('s1', 1.25, this.hp):
             this.dmg_make('s1', 10.84)
 
 if __name__ == '__main__':

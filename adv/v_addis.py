@@ -22,11 +22,11 @@ class Valentines_Addis(Adv):
 
     def prerun(this):
         this.hp = 100
-        this.a3atk = adv.Selfbuff('a3atk',0.20,-1,'att','passive')
-        this.a3spd = adv.Spdbuff('a3spd',0.10,-1)
+        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
+        this.a3spd = Spdbuff('a3spd',0.10,-1)
 
     def s1_proc(this, e):
-        with adv.CrisisModifier('s1', 1.25, this.hp):
+        with CrisisModifier('s1', 1.25, this.hp):
             this.afflics.poison('s1', 120, 0.582)
             this.dmg_make('s1', 8.60)
 

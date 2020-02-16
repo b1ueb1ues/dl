@@ -25,7 +25,7 @@ class Sylas(Adv):
         this.afflics.poison('s1',120,0.582)
 
     def s2_proc(this, e):
-        adv.Selfbuff('s2_shaste',0.20,15,'sp','buff').on()
+        Selfbuff('s2_shaste',0.20,15,'sp','buff').on()
 
 
 

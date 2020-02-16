@@ -8,6 +8,7 @@ def module():
 class Malka(Adv):
     comment = ''
 
+    conf = {}
     conf['acl'] = """
         `s1
         `s2

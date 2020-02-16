@@ -6,8 +6,6 @@ def module():
     return Sinoa
 
 class Sinoa(Adv):
-    comment = 'buff modes: means/random/att/crit'
-
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)
     conf = {}
@@ -21,18 +19,17 @@ class Sinoa(Adv):
 
     def prerun(this):
         this.s1_buff_mode = 'means'
-        this.prev_buff = 'crit'
 
     def s1_proc(this, e):
         if this.s1_buff_mode == 'means':
-            adv.Teambuff('s1_att',0.25/4,15,'att').on()
-            adv.Teambuff('s1_crit',0.25/4,10,'crit').on()
+            Teambuff('s1_att',0.25/4,15,'att').on()
+            Teambuff('s1_crit',0.25/4,10,'crit').on()
         elif this.s1_buff_mode == 'random':
             r = random.random()
             if r<0.25  :
-                adv.Teambuff('s1_att',0.25,15,'att').on()
+                Teambuff('s1_att',0.25,15,'att').on()
             elif r<0.5 :
-                adv.Teambuff('s1_crit',0.25,10,'crit').on()
+                Teambuff('s1_crit',0.25,10,'crit').on()
             elif r<0.75:
                 Event('defchain')()
             else:

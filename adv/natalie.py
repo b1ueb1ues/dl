@@ -1,6 +1,4 @@
 import adv.adv_test
-import adv.adv_test
-from core.advbase import *
 from core.advbase import *
 from module import energy
 from slot.d import *
@@ -45,7 +43,7 @@ class Natalie(Adv):
         this.a3spd = Spdbuff('a3spd',0.10,-1)
         this.energy = energy.Energy(this,
                 self={} ,
-                team={} 
+                team={}
                 )
 
     def c_prerun(this):
@@ -59,7 +57,7 @@ class Natalie(Adv):
 
 
     def s1_proc(this, e):
-        with adv.CrisisModifier('s1', 1, this.hp):
+        with CrisisModifier('s1', 1, this.hp):
             this.dmg_make('s1', 10.62)
 
         if random.random() < 0.8:

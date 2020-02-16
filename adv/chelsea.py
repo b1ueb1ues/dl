@@ -29,6 +29,7 @@ class Chelsea(Adv):
         for buff in this.s2_buffs:
             buff.off()
         this.s2_buffs = []
+        this.a3.off()
         this.obsession = 0
 
     def dmg_before(this, name):
