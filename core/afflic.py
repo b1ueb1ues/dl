@@ -172,7 +172,7 @@ class AfflicCapped(object):
         this._get = 0.0
 
         this.c_uptime = (0, 0)
-        this.last_afflict = 0 
+        this.last_afflict = 0
         Timer(this.uptime, repeat=1).on(1)
 
     def get_tolerance(this):
@@ -328,7 +328,7 @@ class Afflics(object):
         this.burn.resist = 0
         this.paralysis.resist = 0
         this.blind.resist = 80
-        this.bog.resist = 80
+        this.bog.resist = 100
         this.freeze.resist = 80
         this.stun.resist = 80
         this.sleep.resist = 80

@@ -6,7 +6,6 @@ from contextlib import redirect_stdout
 from flask import Flask
 from flask import request
 from flask import jsonify
-from flask_cors import CORS
 
 import adv.adv_test
 import slot.a
@@ -14,7 +13,6 @@ import slot.d
 import slot.w
 
 app = Flask(__name__)
-CORS(app)
 
 # Helpers
 ROOT_DIR = '/home/wildshinobu/dl/'

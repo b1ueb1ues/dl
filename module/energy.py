@@ -118,5 +118,6 @@ class Energy():
         a.dmg_proc = this.e_dmg_proc
 
         Listener('add_energy', this.l_add_energy)
+        a.energy = this
 
 
