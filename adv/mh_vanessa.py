@@ -13,9 +13,6 @@ class MH_Vanessa(Adv):
     conf['slot.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['slot.d'] = Corsaint_Phoenix()
     conf['acl'] = """
-        #fs=None
-        #fs1=this.fs1
-        #fs2=this.fs2
         `fs2, s1.charged>=s1.sp-this.sp_val('fs2')
         `s1, x=5 or fsc
         `s2, not this.s2_att_boost.get()
@@ -56,6 +53,7 @@ class MH_Vanessa(Adv):
         
         this.l_fs1 = Listener('fs1',this.l_fs1)
         this.l_fs2 = Listener('fs2',this.l_fs2)
+        this.fs = None
 
     def do_fs(this, e, name):
         log('fs','succ')

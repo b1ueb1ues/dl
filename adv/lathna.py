@@ -12,7 +12,6 @@ class Lathna(Adv):
     conf = {}
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
-        # s1a = this.s1a
         `s1a
         `s2, seq = 5
         `s3, seq = 5

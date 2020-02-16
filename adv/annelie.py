@@ -11,7 +11,6 @@ class Annelie(Adv):
     comment = '1121'
     a1 = ('s',0.35,'hp70')
     conf['acl'] = """
-        # e = this.energy()
         `s1, s2.charged<=10000
         `s1, s=2
         `s2

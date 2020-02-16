@@ -60,11 +60,6 @@ class MH_Sarisse(Adv):
 
     conf = {}
     conf['acl'] = """
-        #fs=None
-        #fs1=this.fs1
-        #fs2=this.fs2
-        #fs3=this.fs3
-        #fs4=this.fs4
         `s1, fsc
         `s2, fsc
         `dodge, fsc
@@ -116,6 +111,7 @@ class MH_Sarisse(Adv):
         this.l_fs2 = Listener('fs2',this.l_fs2)
         this.l_fs3 = Listener('fs3',this.l_fs3)
         this.l_fs4 = Listener('fs4',this.l_fs4)
+        this.fs = None
 
     def do_fs(this, e, name):
         log('fs','succ')

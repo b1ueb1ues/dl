@@ -14,7 +14,6 @@ class Ramona(Adv):
     conf['slots.d'] = Sakuya()
     conf['acl'] = """
         `s3, not this.s3_buff_on
-        # s1a = this.s1a
         `s1a
         `s2,seq=4
         """

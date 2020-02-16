@@ -36,13 +36,13 @@ class Laxi(Adv):
             this.dmg_make("o_s1_boost",0.87*4)
 
     def s2_proc(this, e):
-        this.s2buff.on()
-        # if not this.s2buff.get():
-        #     this.s2buff.on()
-        #     this.s2tick.on()
-        # else:
-        #     this.s2buff.off()
-        #     this.s2tick.off()
+        # this.s2buff.on()
+        if not this.s2buff.get():
+            this.s2buff.on()
+            this.s2tick.on()
+        else:
+            this.s2buff.off()
+            this.s2tick.off()
 
     def s2_tick(this, t):
         if this.hp >= 4.0:
@@ -59,7 +59,7 @@ class Laxi(Adv):
         this.hp = 100.0
         this.s2buff.off()
         this.s2tick.off()
-        #this.a3buff.off()
+        this.a3buff.off()
 
         this.heal.getdoing().cancel_by.append('heal')
         this.heal.getdoing().interrupt_by.append('heal')

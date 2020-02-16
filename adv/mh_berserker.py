@@ -12,10 +12,6 @@ class MH_Berserker(Adv):
     conf['slot.a'] = Levins_Champion()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        #fs=None
-        #fs1=this.fs1
-        #fs2=this.fs2
-        #fs3=this.fs3
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
@@ -56,6 +52,7 @@ class MH_Berserker(Adv):
         this.l_fs1 = Listener('fs1',this.l_fs1)
         this.l_fs2 = Listener('fs2',this.l_fs2)
         this.l_fs3 = Listener('fs3',this.l_fs3)
+        this.fs = None
 
     def do_fs(this, e, name):
         log('fs','succ')

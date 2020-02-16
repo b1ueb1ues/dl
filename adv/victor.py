@@ -12,8 +12,7 @@ class Victor(Adv):
     conf = {}
     conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
     conf['acl'] = """
-        # bs = this.bleed._static['stacks']
-        `s1
+        `s1, this.bleed._static['stacks'] < 3
         `s2, seq=5
         `s3, seq=5
         """

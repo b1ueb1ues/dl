@@ -12,8 +12,6 @@ class Lily(Adv):
     conf = {}
     conf['slot.a'] = CC()+Seaside_Princess()
     conf['acl'] = """
-        #prep=0
-        #if pin=='prep': prep=1
         `s2, seq=5 and cancel
         `s1, seq=5 and cancel
         `s3, seq=5 and cancel
