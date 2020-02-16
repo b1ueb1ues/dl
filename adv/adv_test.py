@@ -645,7 +645,7 @@ def sum_ac():
                 row += 3
             prev = 'fs'
         elif i == 'dragon':
-            if prin[-1] != '\n':
+            if len(prin) > 0 and prin[-1] != '\n':
                 prin += '\n'
             prin += '------- dragon -------\n'
             prev = 'd'
