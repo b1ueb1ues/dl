@@ -1,5 +1,5 @@
 import adv.adv_test
-import core.advbase.Adv as adv
+from core.advbase import *
 from slot.a import *
 
 def module():

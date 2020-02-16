@@ -1,18 +1,20 @@
 #from core.log import *
 import sys
 from core.timeline import now
+from adv.adv_test import sim_duration
 import imp
+import re
 
 g_line = ""
 
-dact = None
+do_act = None
 
 def acl_func_str(acl):
-    global dact
+    global do_act
     s = acl_str(acl)
     exec(s,globals())
     # return do_act_list, s
-    dact = do_act_list
+    do_act = do_act_list
     return s
 
 # def acl_func(acl):
@@ -20,7 +22,7 @@ def acl_func_str(acl):
 #     exec(s,globals())
 #     return do_act_list
 
-def acl_str(acl):
+def acl_str_but_it_cursed(acl):
     global g_line
     aif = []
     aif_list = []
@@ -77,26 +79,58 @@ def acl_str(acl):
     return line
 
 
-if __name__ == "__main__":
-    a = 1
-    b = 0
-    this = 0
-    e = 0
-    epin = 'a'
-    def foo():
-        print('foo')
+def eq_replace(s):
+    return s[1]+'=='+s[2]
 
+def acl_str(acl):
+    act_cond_dict = {}
 
-    acl = """
-        #if a>b :\n    b=3\n
-        `s1,a>b and pin!='sp'
-        `s2
-        `s3
-        #s1 = foo
-        #s2 = foo
-        #s3 = foo
-        #pin = epin
-        """
-
-    acl_func_str(acl)[0](this, e)
-    print(g_line)
+    for line in acl.split('\n'):
+        line = line.strip()
+        if len(line) > 0 and line[0] == '`':
+            parts = [l.strip() for l in line[1:].split(',')]
+            try:
+                act_cond_dict[parts[0]] = parts[1] if len(parts[1]) > 0 else None
+            except:
+                act_cond_dict[parts[0]] = None
+    
+    acl_base = """
+def do_act_list(this, e):
+    pin, dname, dstat, didx = e.pin, e.dname, e.dstat, e.didx
+    prev = this.action.getprev()
+    seq = didx if dname[0] == 'x' else 0 if dstat == -2 else -1
+    cancel = pin =='x' or pin == 'fs'
+    x = didx if pin =='x' else 0
+    fsc = pin =='fs'
+    s = int(pin[1]) if (pin[0] == 's' and pin[1] != 'p') or pin[-2:] == '-x' else 0
+    sp = dname if pin == 'sp' else 0
+{act_prep_block}
+{act_cond_block}
+    return 0"""
+    acl_prep = """    try:
+        {act} = this.{act}
+    except Exception:
+        raise AttributeError('{act} is not an action')"""
+    acl_prep_dragon = """    dragon = this.{act}
+    if not type(dragon).__name__ == 'DragonForm':
+        raise AttributeError('{act} is not an action')"""
+    acl_if_no_cond = """    if {act}():
+        return '{act}'"""
+    acl_if_cond = """    if {cond}:
+        if {act}():
+            return \'{act}\'"""
+    act_prep_block = []
+    act_cond_block = []
+    for act, cond in act_cond_dict.items():
+        if act.startswith('dragon'):
+            act_prep_block.append(acl_prep_dragon.format(act=act.replace('dragon', 'dragonform')))
+            act = 'dragon'
+        else:
+            act_prep_block.append(acl_prep.format(act=act))
+        if cond is None:
+            act_cond_block.append(acl_if_no_cond.format(act=act))
+        else:
+            cond = re.sub(r'([^=><!])=([^=])', eq_replace, cond)
+            act_cond_block.append(acl_if_cond.format(cond=cond, act=act))
+    acl_string = acl_base.format(act_prep_block='\n'.join(act_prep_block),act_cond_block='\n'.join(act_cond_block))
+    return acl_string

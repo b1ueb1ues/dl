@@ -9,7 +9,6 @@ from contextlib import redirect_stdout
 
 #import random
 from core import condition as m_condition
-from core.acl import *
 import multiprocessing
 page = ''
 
@@ -420,8 +419,8 @@ def do_mass_sim_stub(sim_id, classname, conf, no_cond):
     else:
         adv = classname(conf=conf,cond=0)
     adv.slots.c.ex.update(ex_set)
-    from core.acl import dact
-    adv._acl = dact
+    from core.acl import do_act
+    adv._acl = do_act
     real_duration = adv.run(sim_duration)
     sum_duration += real_duration
     #condi = adv.m_condition.p()
@@ -436,9 +435,8 @@ def do_mass_sim(classname, conf, no_cond=None):
     adv = classname(conf=conf)
     adv.slots.c.ex.update(ex_set)
     adv.run(1)
-    _acl_str = acl_func_str(
-                    adv.acl_prepare_default+adv.conf['acl'] 
-                    )
+    # from core.acl import acl_func_str
+    # _acl_str = acl_func_str(adv.conf['acl'])
     real_duration = 0
     sum_duration = 0
 

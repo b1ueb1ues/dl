@@ -1378,11 +1378,9 @@ class Adv(object):
         this.acl_backdoor()
 
         if not this._acl:
-            this._acl_str = core.acl.acl_func_str(
-                    this.acl_prepare_default+this.conf.acl
-                    )
-            from core.acl import dact
-            this._acl = dact
+            this._acl_str = core.acl.acl_func_str(this.conf.acl)
+            from core.acl import do_act
+            this._acl = do_act
 
 
         if type(this.conf.rotation) == list:
@@ -1661,6 +1659,8 @@ class Adv(object):
             #r = this.fs()
         elif anext in ['dodge','d']:
             r = this.dodge()
+        elif anext == 'dragon':
+            r = this.dragonform()
         elif anext == 'end':
             #def end(foo):
             #    Timeline.stop()
@@ -1730,6 +1730,9 @@ class Adv(object):
         elif rt[p:p+2] == 'fs':
             ret = 'fs'
             p += 2
+        elif rt[p:p+6] == 'dragon':
+            ret = 'dragon'
+            p += 6
         elif rt[p] == 'd':
             ret = 'dodge'
             p += 1

@@ -10,8 +10,8 @@ class Lucretia(Adv):
     conf = {}
     conf['acl'] = """
         `s2, seq=5 and cancel
-        `s3, sx=2 
-        `s1, sx=3
+        `s3, s=2 
+        `s1, s=3
         `s1, seq=5 and cancel
         """
 
