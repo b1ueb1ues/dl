@@ -1036,12 +1036,13 @@ class Adv(object):
 
 
     def default_slot(this):
+        from conf import slot_common
         this.cmnslots = slot.Slots()
         this.cmnslots.c.att = this.conf.c.att
         this.cmnslots.c.wt = this.conf.c.wt
         this.cmnslots.c.stars = this.conf.c.stars
         this.cmnslots.c.ele = this.conf.c.ele
-        this.slot_common = this.conf.slot_common[0]
+        this.slot_common = slot_common.set
         this.slot_common(this.cmnslots)
         this.slots = this.cmnslots
         #print this.cmnslots

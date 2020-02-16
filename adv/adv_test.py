@@ -7,7 +7,6 @@ import io
 import csv
 from contextlib import redirect_stdout
 
-import conf as globalconf
 #import random
 from core import condition as m_condition
 from core.acl import *

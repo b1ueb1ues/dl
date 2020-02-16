@@ -1,53 +1,39 @@
-import copy
-import conf.skillframe
-import conf.csv2conf
+import json
 import conf.slot_common
-import conf.forte
-import slot
+from slot import Slots
 from core import Conf
 
-conf = Conf()
+import conf.forte
 
-def get_skillframe(name):
-    global conf
-    for i in skillframe.skills:
-        sf = skillframe.skills[i]
-        if name.lower() == i.lower():
-            if sf[0] == '1':
-                conf.s1.startup = 0.25
-                conf.s1.recovery = 0.90
-            else:
-                conf.s1.recovery = float(sf[0])
+fname = ''
+find = '/'
+if __file__.find('/') == -1:
+    find = '\\'
+    if __file__.find('\\') == -1:
+        find = None
+        fname = 'conf.json'
+if find:
+    l = __file__.rfind(find)
+    fname = __file__[:l] + find + 'conf.json'
 
-            if sf[1] == '1':
-                conf.s2.startup = 0.25
-                conf.s2.recovery = 0.90
-            else:
-                conf.s2.recovery = float(sf[1])
+json_confs = None
+with open(fname, 'r') as f:
+    json_confs = json.load(f, parse_float=float, parse_int=int)
 
 def get(name):
-    global conf
     conf = Conf()
 
-    get_skillframe(name)
+    json_conf = Conf(json_confs.get(name))
 
-    csvconf = csv2conf.get(name)
-
-    conf += csvconf
-
-    slots = slot.Slots()
-
-    conf.slot_common = [slot_common.set]
-
+    conf += json_conf
+    
     import wep
     wt = conf.c.wt
     weapon = getattr(wep, wt)
     wepconf = Conf(weapon.conf)
-    if conf.c.lv2_autos:
+    if bool(conf.c.lv2_autos):
         wepconf += Conf(weapon.lv2)
 
     conf += Conf(wepconf)
 
     return conf
-    
-

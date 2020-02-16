@@ -13,7 +13,7 @@ class Leviathan(DragonBase):
 
         'dx2.dmg': 4.44,
         'dx2.startup': 47 / 60.0, # c2 frames
-        'dx2.recovery': 720 / 60.0 # recovery unknown but longer than dodge
+        'dx2.recovery': 720 / 60.0, # recovery unknown but longer than dodge
         'dx2.hit': 2,
 
         # Levi c3 is a myth
@@ -21,7 +21,7 @@ class Leviathan(DragonBase):
         'ds.recovery': 181 / 60, # skill frames
         'ds.hit': 1,
 
-        'dodge.startup': 39 / 
+        'dodge.startup': 39 / 60
     }
 
     def oninit(self, adv):

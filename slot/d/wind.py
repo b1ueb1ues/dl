@@ -61,7 +61,7 @@ class Pazuzu(DragonBase):
     def ds_proc(self):
         dmg = self.adv.dmg_make('d_ds',0.91,'s')
         self.ds_buff.on()
-        self.adv.afflics.poison('ds',120,0.0.291,30,dtype='s')
+        self.adv.afflics.poison('ds',120,0.291,30,dtype='s')
         return dmg + self.adv.dmg_make('d_ds',7*0.91,'s')
 
 class Long_Long(DragonBase):
