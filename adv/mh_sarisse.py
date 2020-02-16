@@ -79,7 +79,7 @@ class MH_Sarisse(Adv):
             'fs1': {
                 'dmg': 0.74,
                 'sp': 500,
-                'startup': 29 / 60.0, 
+                'startup': 29 / 60.0,
                 'recovery': 4 / 60.0,
                 'hit': 3,
                 'pierce': default_pierce
@@ -111,7 +111,7 @@ class MH_Sarisse(Adv):
             act = FS_Speedable(n, this.conf[n])
             this.s2_spd_boost = act.t_fs_speed
             this.__dict__['a_'+n] = act
-        
+
         this.l_fs1 = Listener('fs1',this.l_fs1)
         this.l_fs2 = Listener('fs2',this.l_fs2)
         this.l_fs3 = Listener('fs3',this.l_fs3)
@@ -168,11 +168,11 @@ class MH_Sarisse(Adv):
         return this.a_fs4(doing)
 
     def prerun(this):
-        this.s1_fs_boost = adv.SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3','fs4'])
+        this.s1_fs_boost = SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3','fs4'])
 
     def s1_proc(this, e):
         this.s1_fs_boost.on()
-    
+
     def s2_proc(this, e):
         Event('fs_speed_buff')()
 

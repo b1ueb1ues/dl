@@ -1,5 +1,6 @@
 import adv.adv_test
-from adv import now
+from core.advbase import Selfbuff
+from core.timeline import now
 from slot.d import Dreadking_Rathalos
 from slot.a import Amulet, The_Lurker_in_the_Woods
 import adv.chelsea
@@ -32,7 +33,7 @@ class Chelsea(adv.chelsea.Chelsea):
         hpold = this.hp
         super().dmg_before(name)
         if this.ro_charges > 0 and hpold > 30 and this.hp < 30:
-            adv.Buff('resilient_offense',0.10, -1).on()
+            Selfbuff('resilient_offense',0.10, -1).on()
             this.comment += ' {}s'.format(round(now()))
             this.ro_charges -= 1
 

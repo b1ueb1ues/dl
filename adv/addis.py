@@ -13,9 +13,8 @@ class Addis(Adv):
     a3 = ('bk',0.20)
     conf = {}
     conf['acl'] = """
-        # bs = this.bleed._static['stacks']
-        `s2, s1.charged>=s1.sp-260 and seq=5 and bs != 3
-        `s1, s2.charged<s2.sp and bs != 3
+        `s2, s1.charged>=s1.sp-260 and seq=5 and this.bleed._static['stacks'] != 3
+        `s1, s2.charged<s2.sp and this.bleed._static['stacks'] != 3
         `s3, seq=5 and not this.s2buff.get()
         `fs, this.s2buff.get() and seq=4 and this.s1.charged>=s1.sp-200
         """

@@ -10,7 +10,7 @@ class Lucretia(Adv):
     conf = {}
     conf['acl'] = """
         `s2, seq=5 and cancel
-        `s3, s=2 
+        `s3, s=2
         `s1, s=3
         `s1, seq=5 and cancel
         """
@@ -22,7 +22,7 @@ class Lucretia(Adv):
     def prerun(this):
         energy.Energy(this,
                 self={} ,
-                team={} 
+                team={}
                 )
         Event('energized').listener(this.energy_doublebuff)
 
@@ -34,7 +34,7 @@ class Lucretia(Adv):
         Event('energized').listener(this.energy_doublebuff)
 
     def energy_doublebuff(this, e):
-        adv.Selfbuff("double_buff", 0.2, 15).on()
+        Selfbuff("double_buff", 0.2, 15).on()
 
 
 
@@ -49,10 +49,10 @@ if __name__ == '__main__':
 2 1 | 2 3 1 | 2 1 | 1 3 2 | 2 1 | 3 2 1 | 2 1 | 2 3 1 | 2 1 | 2 3 1 |
 2 3 | 5 0 1 | 3 4 | 5 0 2 | 4 5 | 0 2 3 | 5 0.| 2 2 3 | 5 0 | 2 2 3 |
 
-2 1 | 2 1 3 | 2 1 | 2 1 3 | 
+2 1 | 2 1 3 | 2 1 | 2 1 3 |
 2 3 | 5 0 0 | 2 3 | 5 0 0 |
 
-2 1 | 2 3 1 | 2 1 | 2 3 1 | 
+2 1 | 2 3 1 | 2 1 | 2 3 1 |
 2 3 | 5 0 1 | 3 4 | 6.0 1 |
 
 2 1 | 2 3 1 | 2 1 | 1 3 2 | 2 1 | 3 2 1 | 1 2 | 3 2 1

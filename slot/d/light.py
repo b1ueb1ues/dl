@@ -23,7 +23,7 @@ class Gilgamesh(DragonBase):
         'ds.dmg': 5.60,
         'ds.recovery': 100 / 60, # skill frames
         'ds.hit': 1,
-        
+
         'dodge.startup': 33 / 60, # dodge frames
     }
 
@@ -64,7 +64,8 @@ class PopStar_Siren(DragonBase):
         self.ds_charges -= 1
         if self.ds_charges > 0:
             self.adv.dragonform.has_skill = True
-        from adv import Teambuff, Event
+        from core.advbase import Teambuff
+        from core.timeline import Event
         Teambuff('d_att_buff',0.20,20).on()
         Event('defchain')()
         self.energy.add_energy('self', 3)
@@ -98,7 +99,7 @@ class Cupid(DragonBase):
     }
 
     def ds_proc(self):
-        from adv import Teambuff
+        from core.advbase import Teambuff
         Teambuff('d_cc_buff',0.25,15).on()
         return 0
 
@@ -187,7 +188,7 @@ class Daikokuten(DragonBase):
 
     def oninit(self, adv):
         super().oninit(adv)
-        from adv import Spdbuff
+        from core.advbase import Spdbuff
         self.ds_buff = Spdbuff('ds',0.2,10,wide='team')
         self.ds_buff.bufftime = self.ds_buff.nobufftime
 

@@ -54,7 +54,7 @@ class Cerberus(DragonBase):
 
     def oninit(self, adv):
         super().oninit(adv)
-        from adv import Debuff
+        from core.advbase import Debuff
         self.ds_buff = Debuff('ds',0.05,10)
 
     def ds_proc(self):
@@ -141,7 +141,7 @@ class Sakuya(DragonBase):
 
     def oninit(self, adv):
         super().oninit(adv)
-        from adv import SingleActionBuff
+        from core.advbase import SingleActionBuff
         self.ds_buff = SingleActionBuff('d_sd_buff',0.40,1,'s','buff')
 
     def ds_proc(self):
@@ -175,7 +175,7 @@ class Apollo(DragonBase):
 
     def oninit(self, adv):
         super().oninit(adv)
-        from adv import Debuff
+        from core.advbase import Debuff
         self.ds_buff = Debuff('ds',0.05,10)
 
     def ds_proc(self):

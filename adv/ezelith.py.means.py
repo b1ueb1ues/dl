@@ -1,13 +1,13 @@
 import adv.adv_test
 import adv.ezelith
-from adv import Debuff
+from core.advbase import Debuff
 
 def module():
     return Ezelith
 
 class Ezelith(adv.ezelith.Ezelith):
 
-    def dmg_proc(this, name, amount):    
+    def dmg_proc(this, name, amount):
         if name[0] == 'x' and this.s2_buff.get():
             Debuff('s2_ab', 0.05, 5, this.s2_chance()).on()
 

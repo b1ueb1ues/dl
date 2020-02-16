@@ -22,15 +22,15 @@ class Celliera(Adv):
         `s2, seq=5
         `s1
         `s3
-        """ 
+        """
     conf['acl'] = acl21
     def d_slots(this):
         if 'bow' in this.ex:
             this.conf.slot.a = RR()+BN()
 
     def prerun(this):
-        this.s2buff = adv.Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
-        this.s2str = adv.Selfbuff("s2_str",0.25,10)
+        this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
+        this.s2str = Selfbuff("s2_str",0.25,10)
 
 
 

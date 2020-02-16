@@ -22,7 +22,7 @@ class MH_Berserker(Adv):
         `dodge, fsc
         `fs3
         """
-    
+
     def init(this):
         this.conf.fs.hit = -1
         conf_alt_fs = {
@@ -52,11 +52,11 @@ class MH_Berserker(Adv):
             act.interrupt_by = ['s']
             act.cancel_by = ['s','dodge']
             this.__dict__['a_'+n] = act
-        
+
         this.l_fs1 = Listener('fs1',this.l_fs1)
         this.l_fs2 = Listener('fs2',this.l_fs2)
         this.l_fs3 = Listener('fs3',this.l_fs3)
-    
+
     def do_fs(this, e, name):
         log('fs','succ')
         this.__dict__['a_'+name].getdoing().cancel_by.append(name)
@@ -79,7 +79,7 @@ class MH_Berserker(Adv):
 
     def fs2(this):
         return this.a_fs2()
-    
+
     def l_fs3(this, e):
         this.do_fs(e, 'fs3')
 
@@ -89,7 +89,7 @@ class MH_Berserker(Adv):
     def prerun(this):
         this.s1_debuff = Debuff('s1', 0.05, 10)
 
-        this.s2_fs_boost = adv.SingleActionBuff('s1', 0.80, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
+        this.s2_fs_boost = SingleActionBuff('s1', 0.80, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
 
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
         this.a3_crit.get = this.a3_crit_get
@@ -103,7 +103,7 @@ class MH_Berserker(Adv):
 
     def s2_proc(this, e):
         this.s2_fs_boost.on(1)
-    
+
 
 if __name__ == '__main__':
     conf = {}

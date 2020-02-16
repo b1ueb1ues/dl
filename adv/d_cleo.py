@@ -25,14 +25,14 @@ class D_Cleo(Adv):
     def c_prerun(this):
         this.stance = 0
         this.ehit = 0
-        this.energy = energy.Energy(this, 
+        this.energy = energy.Energy(this,
                 self={'s1':1,'hit':1},
                 team={'s1':1}
                 )
     def prerun(this):
         this.stance = 0
         this.ehit = 0
-        this.energy = energy.Energy(this, 
+        this.energy = energy.Energy(this,
                 self={},
                 team={}
                 )
@@ -48,11 +48,11 @@ class D_Cleo(Adv):
             this.stance = 1
         elif this.stance == 1:
             this.stance = 2
-            adv.Teambuff('s1s',0.1,10).on()
+            Teambuff('s1s',0.1,10).on()
         elif this.stance == 2:
             this.stance = 0
-            adv.Teambuff('s1s',0.1,10).on()
-            adv.Teambuff('s1c',0.08,10,'crit','chance').on()
+            Teambuff('s1s',0.1,10).on()
+            Teambuff('s1c',0.08,10,'crit','chance').on()
 
 
 

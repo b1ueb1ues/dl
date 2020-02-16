@@ -31,7 +31,7 @@ class Marishiten(DragonBase):
 
         'ds.recovery': 228 / 60, # skill frames
         'ds.hit': 6,
-        
+
         'dodge.startup': 45 / 60, # dodge frames
     }
 

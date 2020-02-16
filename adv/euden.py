@@ -6,7 +6,7 @@ from slot.d import *
 def module():
     return Euden
 
-class Euden(adv.Adv):
+class Euden(Adv):
     a1 = ('dc', 4)
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()

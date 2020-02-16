@@ -14,7 +14,7 @@ class Alfonse(Adv):
     conf['acl'] = """
         `s1
         `s2,fsc
-        `s3,fsc 
+        `s3,fsc
         `fs, seq=3
         """
     def d_slots(this):
@@ -22,7 +22,7 @@ class Alfonse(Adv):
             this.conf.slot.a = TSO()+JotS()
 
     def s1_before(this, e):
-        adv.Selfbuff('s1buff',0.15,10).on()
+        Selfbuff('s1buff',0.15,10).on()
 
 
 if __name__ == '__main__':
