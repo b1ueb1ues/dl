@@ -33,6 +33,7 @@ class PopStar_Siren(DragonBase):
     a = [('a', 0.4)]
     dragonform = {
         'exhilaration': 3.0,
+        'skill_use': 2,
         'act': 's c3 c3 s end',
 
         'dx1.dmg': 0.80,
@@ -57,13 +58,9 @@ class PopStar_Siren(DragonBase):
     def oninit(self, adv):
         super().oninit(adv)
         from module.energy import Energy
-        self.ds_charges = 2
         self.energy = Energy(adv, self={}, team={})
 
     def ds_proc(self):
-        self.ds_charges -= 1
-        if self.ds_charges > 0:
-            self.adv.dragonform.has_skill = True
         from core.advbase import Teambuff
         from core.timeline import Event
         Teambuff('d_att_buff',0.20,20).on()

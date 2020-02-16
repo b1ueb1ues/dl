@@ -13,7 +13,7 @@ class DragonForm(Action):
         self.disabled = False
 
         self.ds_proc = ds_proc
-        self.has_skill = True
+        self.skill_use = self.conf.skill_use
         self.act_list = []
         self.act_sum = []
 
@@ -67,7 +67,7 @@ class DragonForm(Action):
         self.dracolith_mod.off()
         if self.off_ele_mod is not None:
             self.off_ele_mod.on()
-        self.has_skill = True
+        self.skill_use = self.conf.skill_use
         self.status = -2
         self._setprev() # turn self from doing to prev
         self._static.doing = self.nop
@@ -92,7 +92,7 @@ class DragonForm(Action):
 
     def d_act_do(self, t):
         if self.c_act_name == 'ds':
-            self.has_skill = False
+            self.skill_use -= 1
             self.shift_end_timer.timing += self.conf.ds.startup+self.conf.ds.recovery
             self.shift_damage_sum += self.ds_proc()
             self.act_sum.append('s')
@@ -121,7 +121,7 @@ class DragonForm(Action):
             if self.c_act_name[0:2] == 'dx':
                 nact = 'dx{}'.format(int(self.c_act_name[2])+1)
                 if not nact in self.dx_list:
-                    if self.has_skill:
+                    if self.skill_use > 0:
                         nact = 'ds'
                     elif self.dodge_cancel:
                         nact = 'dodge'
@@ -136,6 +136,7 @@ class DragonForm(Action):
 
     def parse_act(self, act_str):
         self.act_list = []
+        skill_usage = 0
         for a in act_str.split(' '):
             if a[0] == 'c' or a[0] == 'x':
                 for i in range(1, int(a[1])+1):
@@ -147,8 +148,9 @@ class DragonForm(Action):
             else:
                 if len(self.act_list) > 0 and self.act_list[-1] == 'dodge':
                     self.act_list.pop()
-                if a == 's' or a == 'ds':
+                if (a == 's' or a == 'ds') and skill_usage < self.skill_use:
                     self.act_list.append('ds')
+                    skill_usage += 1
                 elif a == 'end':
                     self.act_list.append('end')
                 elif a == 'dodge':
@@ -181,7 +183,6 @@ class DragonForm(Action):
             self.act()
         self.shift_damage_sum = 0
         self.dragon_gauge -= 50
-        self.has_skill = True
         self.status = -1
         self._setdoing()
         self.shift_start_time = now()

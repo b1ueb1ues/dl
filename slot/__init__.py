@@ -97,6 +97,7 @@ class DragonBase(Slot):
         'duration': 600 / 60, # 10s dragon time
         'dracolith': 0.40, # base dragon damage
         'exhilaration': 0, # psiren aura
+        'skill_use': 1, # number of skill usage
         'gauge_iv': 15, # gauge interval
         'latency': 0, # amount of delay for cancel
         'act': 'end',
