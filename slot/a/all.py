@@ -550,6 +550,10 @@ class The_Fires_of_Hate(Amulet):
     att = 65
     a = [('k_poison', 0.2), ('a', 0.15, 'hp100')]
 
+class The_Fires_of_Hate_No_HP100(Amulet):
+    att = 65
+    a = [('k_poison',0.2)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]
