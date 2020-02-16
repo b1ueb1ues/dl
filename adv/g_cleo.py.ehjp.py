@@ -14,17 +14,19 @@ def module():
     return G_Cleo
 
 class G_Cleo(adv.g_cleo.G_Cleo):
-    comment = '4 Gleo vs EHJP; with simulated break; no team dps;'
+    comment = '4 Gleo vs EHJP; simulated break & no team dps; s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 dragon end'
     conf = adv.g_cleo.G_Cleo.conf.copy()
     conf['slot.a'] = Candy_Couriers()+King_of_the_Skies()
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
-        s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 c5 s3 c5 fs s1 end
+        s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 dragon end
     """
 
     def prerun(this):
         super().prerun()
+        this.dragonform.dragon_gauge = 100
+        this.dragonform.conf.act = 'c3 s c3 end'
         this.odbk = 991202+792960
         this.ehjp = 4488479
         this.dmgsum = 0
@@ -50,6 +52,8 @@ class G_Cleo(adv.g_cleo.G_Cleo):
             generic_name = name.split('_')[0]
             if generic_name[0] == 'x':
                 generic_name = 'attack'
+            if generic_name[0] == 'd':
+                generic_name = name.split('_')[1][0:2]
             name = 'o_'+generic_name+'_on_bk'
         if dtype == None:
             dtype = name

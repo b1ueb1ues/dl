@@ -10,8 +10,8 @@ def module():
 class G_Euden(Adv):
     comment = 'c2+fs'
     conf = {}
-    conf['slot.a'] = The_Chocolatiers()+SDO()
-    conf['slot.d'] = Daikokuten()
+    conf['slot.a'] = The_Shining_Overlord()+SDO()
+    conf['slot.d'] = Cupid()
     conf['acl'] = """
         `s1,fsc or s=2
         `s2,fsc

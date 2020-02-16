@@ -196,14 +196,19 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     bps = r['buff_sum'] #* team_dps
     team_energy = r['energy_sum'] #* energy_efficiency
 
+    r['logs'] = {}
     f = io.StringIO()
     with redirect_stdout(f):
-        logcat([str(type(adv.conf['slot.d']).__name__)])
-        print('\n<hr class="log-divider">\n')
+        logcat([str(type(adv.slots.d).__name__)])
+    r['logs']['dragon'] = f.getvalue()
+    f = io.StringIO()
+    with redirect_stdout(f):
         sum_ac()
-        print('\n<hr class="log-divider">\n')
+    r['logs']['action'] = f.getvalue()
+    f = io.StringIO()
+    with redirect_stdout(f):
         logcat()
-    r['logs'] = f.getvalue()
+    r['logs']['timeline'] = f.getvalue()
 
     recount = "%d"%(dps)
     if bps:
