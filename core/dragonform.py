@@ -164,27 +164,32 @@ class DragonForm(Action):
     def __call__(self):
         if self.disabled:
             return False
-        doing = self.getdoing()
-        if isinstance(doing, S):
-            if not doing.idle:
-                return False
-        if self.dragon_gauge >= 50:
-            log('dragon_start', self.name)
-            if len(self.act_list) == 0:
-                self.act()
-            self.shift_damage_sum = 0
-            self.dragon_gauge -= 50
-            self.has_skill = True
-            self.status = -1
-            self._setdoing()
-            self.shift_start_time = now()
-            self.shift_end_timer.on(self.dtime())
-            self.dracolith_mod.mod_value = self.ddamage()
-            self.dracolith_mod.on()
-            if self.off_ele_mod is not None:
-                self.off_ele_mod.on()
-            Event('dragon')()
-            self.d_act_start('dshift')
-            return True
-        else:
+        if self.dragon_gauge < 50:
             return False
+        doing = self.getdoing()
+        if not doing.idle:
+            if isinstance(doing, S):
+                return False
+            if doing.status == -1:
+                doing.startup_timer.off()
+                log('interrupt', doing.name , 'by '+self.name+'\t', 'after {:.2f}s'.format(now()-doing.startup_start))
+            elif doing.status == 1:
+                doing.recovery_timer.off()
+                log('cancel', doing.name , 'by '+self.name+'\t', 'after {:.2f}s'.format(now()-doing.recover_start))
+        log('dragon_start', self.name)
+        if len(self.act_list) == 0:
+            self.act()
+        self.shift_damage_sum = 0
+        self.dragon_gauge -= 50
+        self.has_skill = True
+        self.status = -1
+        self._setdoing()
+        self.shift_start_time = now()
+        self.shift_end_timer.on(self.dtime())
+        self.dracolith_mod.mod_value = self.ddamage()
+        self.dracolith_mod.on()
+        if self.off_ele_mod is not None:
+            self.off_ele_mod.on()
+        Event('dragon')()
+        self.d_act_start('dshift')
+        return True

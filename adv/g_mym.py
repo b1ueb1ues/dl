@@ -63,7 +63,6 @@ class G_Mym(Adv):
     def a1_on(this, e):
         if not this.a1_buff.get():
             this.a1_buff.on()
-            this.dragonform.name = 'Super G_Mym'
             this.dragonform.conf += this.conf.dragonform2
 
     def s1_proc(this, e):

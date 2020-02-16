@@ -198,7 +198,7 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     r['logs'] = {}
     f = io.StringIO()
     with redirect_stdout(f):
-        logcat([str(type(adv.slots.d).__name__)])
+        logcat([str(type(adv.slots.d).__name__), str(type(adv).__name__)])
     r['logs']['dragon'] = f.getvalue()
     f = io.StringIO()
     with redirect_stdout(f):
