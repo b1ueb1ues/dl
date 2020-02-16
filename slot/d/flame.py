@@ -133,7 +133,7 @@ class Sakuya(DragonBase):
 
         'dx3.dmg': 3.99,
         'dx3.recovery': 69 / 60.0, # recovery
-        'dx3.hit': 1,
+        'dx3.hit': 3,
 
         'ds.recovery': 167 / 60, # skill frames
         'ds.hit': -1,

@@ -22,7 +22,10 @@ class Naveed(Adv):
         this.s1level = 0
 
     def s1_proc(this, e):
-        this.dmg_make("o_s1_boost",3*this.s1level*0.7,'s')
+        for _ in range(this.s1level):
+            for _ in range(3):
+                this.dmg_make("o_s1_boost",0.7,'s')
+                this.hits += 1
 
     def s2_proc(this, e):
         this.s1level += 1
