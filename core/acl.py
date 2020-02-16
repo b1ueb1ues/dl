@@ -83,16 +83,16 @@ def eq_replace(s):
     return s[1]+'=='+s[2]
 
 def acl_str(acl):
-    act_cond_dict = {}
+    act_cond_list = []
 
     for line in acl.split('\n'):
         line = line.strip()
         if len(line) > 0 and line[0] == '`':
             parts = [l.strip() for l in line[1:].split(',')]
             try:
-                act_cond_dict[parts[0]] = parts[1] if len(parts[1]) > 0 else None
+                act_cond_list.append((parts[0], parts[1] if len(parts[1]) > 0 else None))
             except:
-                act_cond_dict[parts[0]] = None
+                act_cond_list.append((parts[0], None))
     
     acl_base = """
 def do_act_list(this, e):
@@ -121,7 +121,7 @@ def do_act_list(this, e):
             return \'{act}\'"""
     act_prep_block = []
     act_cond_block = []
-    for act, cond in act_cond_dict.items():
+    for act, cond in act_cond_list:
         if act.startswith('dragon'):
             act_prep_block.append(acl_prep_dragon.format(act=act.replace('dragon', 'dragonform')))
             act = 'dragon'
