@@ -15,7 +15,7 @@ import slot.w
 app = Flask(__name__)
 
 # Helpers
-ROOT_DIR = '../'
+ROOT_DIR = '/home/wildshinobu/dl/'
 MEANS_ADV = {
     'addis': 'addis.py.means.py',
     'sazanka': 'sazanka.py.means.py',
