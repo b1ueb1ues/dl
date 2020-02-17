@@ -2,7 +2,7 @@ import adv.adv_test
 from core.advbase import *
 
 def module():
-    return Sufang
+    return Su_Fang
 
 class Su_Fang(Adv):
     a3 = ('s',0.20)

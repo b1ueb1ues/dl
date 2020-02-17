@@ -1076,7 +1076,7 @@
             "hit": 2
         }
     },
-    "Kuhai": {
+    "Ku_Hai": {
         "c": {
             "att": 488,
             "ele": "wind",
@@ -1175,7 +1175,7 @@
             "hit": 2
         }
     },
-    "Linyou": {
+    "Lin_You": {
         "c": {
             "att": 517,
             "ele": "wind",
@@ -1961,7 +1961,7 @@
             "hit": 2
         }
     },
-    "Sufang": {
+    "Su_Fang": {
         "c": {
             "att": 474,
             "ele": "wind",
@@ -2287,7 +2287,7 @@
             "hit": 1
         }
     },
-    "Xiaolei": {
+    "Xiao_Lei": {
         "c": {
             "att": 461,
             "ele": "light",
@@ -2386,7 +2386,7 @@
             "hit": 1
         }
     },
-    "B_Zardin": {
+    "Beautician_Zardin": {
         "c": {
             "att": 517,
             "ele": "light",
@@ -2536,7 +2536,7 @@
             "hit": 4
         }
     },
-    "Xuanzang": {
+    "Xuan_Zang": {
         "c": {
             "att": 461,
             "ele": "flame",
