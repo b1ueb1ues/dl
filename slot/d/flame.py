@@ -115,7 +115,7 @@ class Prometheus(DragonBase):
         'dodge.startup': 39 / 60, # dodge frames
     }
 
-class Sakuya(DragonBase):
+class Konohana_Sakuya(DragonBase):
     ele = 'flame'
     att = 121
     a = [('s', 0.9), ('a', 0.2)]
@@ -148,6 +148,7 @@ class Sakuya(DragonBase):
         dmg = self.adv.dmg_make('d_ds',6.60,'s')
         self.ds_buff.on(1)
         return dmg
+Sakuya = Konohana_Sakuya
 
 class Apollo(DragonBase):
     ele = 'flame'

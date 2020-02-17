@@ -5,14 +5,14 @@ from slot.a import *
 from module import energy
 
 def module():
-    return G_Elisanne
+    return Gala_Elisanne
 
-class G_Elisanne(Adv):
+class Gala_Elisanne(Adv):
     a3 = ('primed_att',0.10)
 
     conf = {}
     conf['slots.a'] = BB()+FWHC()
-    conf['slots.d'] = H_Maritimus()
+    conf['slots.d'] = Halloween_Maritimus()
     conf['acl'] = """
         `s1
         `fs, seq=5

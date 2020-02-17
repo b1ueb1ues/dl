@@ -4,9 +4,9 @@ from module import energy
 from slot.a import *
 
 def module():
-    return D_Xander
+    return Dragonyule_Xander
 
-class D_Xander(Adv):
+class Dragonyule_Xander(Adv):
     a3 = ('sp',0.05)
     conf = {}
     acl12 = """

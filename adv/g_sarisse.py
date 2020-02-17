@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return G_Sarisse
+    return Gala_Sarisse
 
-class G_Sarisse(Adv):
+class Gala_Sarisse(Adv):
     a3 = ('bt',0.3)
     conf = {}
     conf['slot.d'] = Sakuya()

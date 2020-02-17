@@ -5,9 +5,9 @@ import random
 from slot.d import *
 
 def module():
-    return Xuanzang
+    return Xuan_Zang
 
-class Xuanzang(Adv):
+class Xuan_Zang(Adv):
     a3 = ('cc',0.06,'hp70')
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()

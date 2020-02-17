@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return H_Mym
+    return Halloween_Mym
 
-class H_Mym(Adv):
+class Halloween_Mym(Adv):
     conf = {}
     conf['slots.a'] = KFM()+Jewels_of_the_Sun()
     conf['slot.d'] = Dreadking_Rathalos()

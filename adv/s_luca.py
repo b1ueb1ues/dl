@@ -6,9 +6,9 @@ import random
 
 
 def module():
-    return S_Luca
+    return Summer_Luca
 
-class S_Luca(Adv):
+class Summer_Luca(Adv):
     #comment = 'no fs; no bog'
     a1 = ('a',0.1,'hp70')
 

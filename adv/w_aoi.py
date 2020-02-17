@@ -2,9 +2,9 @@ import adv.adv_test
 from core.advbase import *
 
 def module():
-    return W_Aoi
+    return Wedding_Aoi
 
-class W_Aoi(Adv):
+class Wedding_Aoi(Adv):
     comment = ''
     a3 = ('sp',0.12,'fs')
     conf = {}

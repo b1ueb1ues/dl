@@ -3,9 +3,9 @@ from core.advbase import *
 from slot.a import *
 
 def module():
-    return S_Estelle
+    return Summer_Estelle
 
-class S_Estelle(Adv):
+class Summer_Estelle(Adv):
     a3 = ('bt',0.2)
     conf = {}
     acl12 = """

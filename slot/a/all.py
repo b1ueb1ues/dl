@@ -75,11 +75,11 @@ BT = Bellathorna
 #         ('s',0.20)]
 
 
-class First_Rate_Hospitality(Amulet):
+class FirstRate_Hospitality(Amulet):
     att = 55
     a = [('a',0.08,'hp70'),
          ('bc',0.10)]
-FRH = First_Rate_Hospitality
+FRH = FirstRate_Hospitality
 
 
 class The_Bustling_Hut(Amulet):
@@ -411,11 +411,11 @@ class Candy_Couriers(Amulet):
             this.a += [('s',0.40)]
 CC = Candy_Couriers
 
-class From_Whence_He_Came(Amulet):
+class From_Whence_He_Comes(Amulet):
     att = 50
     a = [('bt',0.2),
          ('prep',0.25)]
-FWHC = From_Whence_He_Came
+FWHC = From_Whence_He_Comes
 
 class Dear_Diary(Amulet):
     att = 65

@@ -366,7 +366,7 @@
             "hit": 3
         }
     },
-    "D_Cleo": {
+    "Dragonyule_Cleo": {
         "c": {
             "att": 474,
             "ele": "water",
@@ -389,7 +389,7 @@
             "hit": 5
         }
     },
-    "D_Nefaria": {
+    "Dragonyule_Nefaria": {
         "c": {
             "att": 465,
             "ele": "water",
@@ -412,7 +412,7 @@
             "hit": 0
         }
     },
-    "D_Xander": {
+    "Dragonyule_Xander": {
         "c": {
             "att": 505,
             "ele": "water",
@@ -698,7 +698,7 @@
             "hit": 0
         }
     },
-    "G_Ranzal": {
+    "Gala_Ranzal": {
         "c": {
             "att": 504,
             "ele": "wind",
@@ -721,7 +721,7 @@
             "hit": 0
         }
     },
-    "G_Sarisse": {
+    "Gala_Sarisse": {
         "c": {
             "att": 485,
             "ele": "flame",
@@ -744,7 +744,7 @@
             "hit": 0
         }
     },
-    "H_Edward": {
+    "Halloween_Edward": {
         "c": {
             "att": 491,
             "ele": "light",
@@ -767,7 +767,7 @@
             "hit": 1
         }
     },
-    "H_Elisanne": {
+    "Halloween_Elisanne": {
         "c": {
             "att": 483,
             "ele": "light",
@@ -2040,7 +2040,7 @@
             "hit": 1
         }
     },
-    "V_Ezelith": {
+    "Valentines_Ezelith": {
         "c": {
             "att": 462,
             "ele": "flame",
@@ -2069,7 +2069,7 @@
             "hit": 1
         }
     },
-    "V_Orion": {
+    "Valentines_Orion": {
         "c": {
             "att": 471,
             "ele": "flame",
@@ -2461,7 +2461,7 @@
             "hit": 0
         }
     },
-    "G_Mym": {
+    "Gala_Mym": {
         "c": {
             "att": 510,
             "ele": "flame",
@@ -2484,7 +2484,7 @@
             "hit": 4
         }
     },
-    "S_Maribelle": {
+    "Student_Maribelle": {
         "c": {
             "att": 513,
             "ele": "flame",
@@ -2559,7 +2559,7 @@
             "hit": 0
         }
     },
-    "W_Elisanne": {
+    "Wedding_Elisanne": {
         "c": {
             "att": 480,
             "ele": "wind",
@@ -2582,7 +2582,7 @@
             "hit": 1
         }
     },
-    "W_Aoi": {
+    "Wedding_Aoi": {
         "c": {
             "att": 475,
             "ele": "wind",
@@ -2727,7 +2727,7 @@
             "hit": 4
         }
     },
-    "G_Cleo": {
+    "Gala_Cleo": {
         "c": {
             "att": 489,
             "ele": "shadow",
@@ -2756,7 +2756,7 @@
             "hit": 1
         }
     },
-    "S_Celliera": {
+    "Summer_Celliera": {
         "c": {
             "att": 479,
             "ele": "water",
@@ -2779,7 +2779,7 @@
             "hit": 1
         }
     },
-    "S_Julietta": {
+    "Summer_Julietta": {
         "c": {
             "att": 516,
             "ele": "water",
@@ -2802,7 +2802,7 @@
             "hit": 0
         }
     },
-    "S_Estelle": {
+    "Summer_Estelle": {
         "c": {
             "att": 471,
             "ele": "water",
@@ -2831,7 +2831,7 @@
             "hit": 0
         }
     },
-    "S_Ranzal": {
+    "Summer_Ranzal": {
         "c": {
             "att": 454,
             "ele": "water",
@@ -2854,7 +2854,7 @@
             "hit": 0
         }
     },
-    "S_Luca": {
+    "Summer_Luca": {
         "c": {
             "att": 498,
             "ele": "light",
@@ -2877,7 +2877,7 @@
             "hit": 0
         }
     },
-    "S_Cleo": {
+    "Summer_Cleo": {
         "c": {
             "att": 469,
             "ele": "light",
@@ -2992,7 +2992,7 @@
             "hit": 0
         }
     },
-    "G_Euden": {
+    "Gala_Euden": {
         "c": {
             "att": 502,
             "ele": "light",
@@ -3117,7 +3117,7 @@
             "hit": 1
         }
     },
-    "H_Mym": {
+    "Halloween_Mym": {
         "c": {
             "att": 493,
             "ele": "flame",
@@ -3140,7 +3140,7 @@
             "hit": 0
         }
     },
-    "H_Odetta": {
+    "Halloween_Odetta": {
         "c": {
             "att": 486,
             "ele": "water",
@@ -3238,7 +3238,7 @@
             "hit": 0
         }
     },
-    "G_Elisanne": {
+    "Gala_Elisanne": {
         "c": {
             "att": 516,
             "ele": "water",
@@ -3319,7 +3319,7 @@
             "hit": 0
         }
     },
-    "D_Malora": {
+    "Dragonyule_Malora": {
         "c": {
             "att": 515,
             "ele": "light",
@@ -3365,7 +3365,7 @@
             "hit": 0
         }
     },
-    "D_Xainfried": {
+    "Dragonyule_Xainfried": {
         "c": {
             "att": 472,
             "ele": "wind",
@@ -3536,7 +3536,7 @@
             "hit": 0
         }
     },
-    "G_Luca": {
+    "Gala_Luca": {
         "c": {
             "att": 517,
             "ele": "light",
@@ -3566,7 +3566,7 @@
             "hit": 0
         }
     },
-    "H_Lowen": {
+    "Halloween_Lowen": {
         "c": {
             "att": 454,
             "ele": "flame",
@@ -3612,7 +3612,7 @@
             "hit": 1
         }
     },
-    "MH_Berserker": {
+    "Hunter_Berserker": {
         "c": {
             "att": 505,
             "ele": "flame",
@@ -3635,7 +3635,7 @@
             "hit": 0
         }
     },
-    "MH_Vanessa": {
+    "Hunter_Vanessa": {
         "c": {
             "att": 507,
             "ele": "light",
@@ -3658,7 +3658,7 @@
             "hit": 0
         }
     },
-    "MH_Sarisse": {
+    "Hunter_Sarisse": {
         "c": {
             "att": 493,
             "ele": "water",

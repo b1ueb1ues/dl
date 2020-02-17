@@ -4,9 +4,9 @@ import slot
 from slot.d import *
 
 def module():
-    return S_Maribelle
+    return Student_Maribelle
 
-class S_Maribelle(Adv):
+class Student_Maribelle(Adv):
     a1 = ('s', 0.4, 'hp100')
     a3 = ('bk',0.3)
     conf = {}

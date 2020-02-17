@@ -5,7 +5,7 @@ from slot.d import *
 import adv.g_mym
 
 def module():
-    return adv.g_mym.G_Mym
+    return adv.g_mym.Gala_Mym
 
 if __name__ == '__main__':
     conf = {}

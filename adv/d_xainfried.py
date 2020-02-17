@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return D_Xainfried
+    return Dragonyule_Xainfried
 
-class D_Xainfried(Adv):
+class Dragonyule_Xainfried(Adv):
     a1 = ('dc', 1)
     a3 = ('primed_att', 0.08)
 

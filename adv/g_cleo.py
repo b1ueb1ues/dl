@@ -11,9 +11,9 @@ random.seed()
 
 
 def module():
-    return G_Cleo
+    return Gala_Cleo
 
-class G_Cleo(Adv):
+class Gala_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
     conf = {}

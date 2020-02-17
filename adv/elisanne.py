@@ -12,7 +12,7 @@ class Elisanne(Adv):
 
     conf = {}
     conf['slots.a'] = BB() + FWHC()
-    conf['slots.d'] = H_Maritimus()
+    conf['slots.d'] = Halloween_Maritimus()
     conf['acl'] = """
         `s1
     """

@@ -4,10 +4,10 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return G_Euden
+    return Gala_Euden
 
 
-class G_Euden(Adv):
+class Gala_Euden(Adv):
     comment = 'c2+fs'
     conf = {}
     conf['slot.a'] = The_Shining_Overlord()+SDO()

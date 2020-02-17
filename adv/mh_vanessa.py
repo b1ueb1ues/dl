@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return MH_Vanessa
+    return Hunter_Vanessa
 
-class MH_Vanessa(Adv):
+class Hunter_Vanessa(Adv):
     a1 = ('fs', 0.30)
 
     conf = {}

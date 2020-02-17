@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return S_Celliera
+    return Summer_Celliera
 
-class S_Celliera(Adv):
+class Summer_Celliera(Adv):
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}

@@ -1,17 +1,17 @@
 import adv.adv_test
 from core.advbase import *
-from slot.a.all import The_Bridal_Dragon, From_Whence_He_Came
+from slot.a.all import The_Bridal_Dragon, From_Whence_He_Comes
 from slot.d import PopStar_Siren
 
 def module():
-    return H_Lowen
+    return Halloween_Lowen
 
-class H_Lowen(Adv):
+class Halloween_Lowen(Adv):
     comment = 'hlowen dps <= burn DoT'
     a3 = ('prep','75%')
 
     conf = {}
-    conf['slots.a'] = The_Bridal_Dragon()+From_Whence_He_Came()
+    conf['slots.a'] = The_Bridal_Dragon()+From_Whence_He_Comes()
     conf['slots.d'] = PopStar_Siren()
     conf['acl'] = """
         `s3, not this.s3_buff_on

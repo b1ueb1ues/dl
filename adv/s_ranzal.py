@@ -3,9 +3,9 @@ from core.advbase import *
 from slot.a import *
 
 def module():
-    return S_Ranzal
+    return Summer_Ranzal
 
-class S_Ranzal(Adv):
+class Summer_Ranzal(Adv):
     a1 = ('lo',0.4)
     a3 = ('primed_def', 0.08)
 

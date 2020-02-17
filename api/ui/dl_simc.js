@@ -32,18 +32,19 @@ function name_fmt(name) {
 }
 const speshul = {
     Lily: 'https://cdn.discordapp.com/emojis/664261164208750592.png',
-    // G_Luca: 'https://cdn.discordapp.com/emojis/619420426770186240.png',
-    // G_Cleo: 'https://cdn.discordapp.com/emojis/637119887071772673.png',
-    // G_Elisanne: 'https://cdn.discordapp.com/emojis/651238318327201792.png',
-    // G_Euden: 'https://cdn.discordapp.com/emojis/495873033203089418.png',
-    // G_Ranzal: 'https://cdn.discordapp.com/emojis/512920940963692566.png',
-    // G_Sarisse: 'https://cdn.discordapp.com/emojis/622190324059734028.png',
-    // G_Mym: 'https://cdn.discordapp.com/emojis/589506568148615178.gif'
+    // Gala_Luca: 'https://cdn.discordapp.com/emojis/619420426770186240.png',
+    // Gala_Cleo: 'https://cdn.discordapp.com/emojis/637119887071772673.png',
+    // Gala_Elisanne: 'https://cdn.discordapp.com/emojis/651238318327201792.png',
+    // Gala_Euden: 'https://cdn.discordapp.com/emojis/495873033203089418.png',
+    // Gala_Ranzal: 'https://cdn.discordapp.com/emojis/512920940963692566.png',
+    // Gala_Sarisse: 'https://cdn.discordapp.com/emojis/622190324059734028.png',
+    // Gala_Mym: 'https://cdn.discordapp.com/emojis/589506568148615178.gif'
 }
 const amulet_name_override = {
     Dear_Diary_Fast_RO: 'Dear_Diary',
     Dear_Diary_Slow_RO: 'Dear_Diary',
-    Spirit_of_the_Season_No_HP100: 'Spirit_of_the_Season'
+    Spirit_of_the_Season_No_HP100: 'Spirit_of_the_Season',
+    The_Fires_of_Hate_No_HP100: 'The_Fires_of_Hate',
 }
 function slots_icon_fmt(adv, slots) {
     const img_urls = [];

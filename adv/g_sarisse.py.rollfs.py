@@ -4,9 +4,9 @@ from slot.d import *
 import adv.g_sarisse
 
 def module():
-    return G_Sarisse
+    return Gala_Sarisse
 
-class G_Sarisse(adv.g_sarisse.G_Sarisse):
+class Gala_Sarisse(adv.g_sarisse.Gala_Sarisse):
     comment = 'roll fs'
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()

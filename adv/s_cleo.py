@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return S_Cleo
+    return Summer_Cleo
 
-class S_Cleo(Adv):
+class Summer_Cleo(Adv):
     a3 = ('k_paralysis',0.3)
     conf = {}
     conf['slot.d'] = Corsaint_Phoenix()

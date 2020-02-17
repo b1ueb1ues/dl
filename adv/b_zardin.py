@@ -6,9 +6,9 @@ import slot.a
 import slot.w
 
 def module():
-    return B_Zardin
+    return Beautician_Zardin
 
-class B_Zardin(Adv):
+class Beautician_Zardin(Adv):
     a3 = ('s',0.35,'hp70')
 
     conf = {}

@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return G_Luca
+    return Gala_Luca
 
-class G_Luca(Adv):
+class Gala_Luca(Adv):
     a3 = ('cc',0.13,'hit15')
 
     conf = {}

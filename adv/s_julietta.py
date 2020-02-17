@@ -3,9 +3,9 @@ from core.advbase import *
 from slot.a import *
 
 def module():
-    return S_Julietta
+    return Summer_Julietta
 
-class S_Julietta(Adv):
+class Summer_Julietta(Adv):
     a3 = ('primed_att',0.10)
 
     conf = {}

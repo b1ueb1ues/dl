@@ -193,7 +193,7 @@ class Hastur(DragonBase):
         'ds.hit': 6,
     }
 
-class Garland(DragonBase):
+class AC011_Garland(DragonBase):
     ele = 'wind'
     att = 127
     a = [('a', 0.5)]
@@ -226,6 +226,7 @@ class Garland(DragonBase):
 
     def dauntless_rampart(this, t):
         this.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
+Garland = AC011_Garland
 
 class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):
     ele = 'wind'

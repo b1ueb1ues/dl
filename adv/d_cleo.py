@@ -4,9 +4,9 @@ from slot.d import *
 from module import energy
 
 def module():
-    return D_Cleo
+    return Dragonyule_Cleo
 
-class D_Cleo(Adv):
+class Dragonyule_Cleo(Adv):
     a1 = ('a',0.13,'hp70')
     conf = {}
     conf['acl'] = """

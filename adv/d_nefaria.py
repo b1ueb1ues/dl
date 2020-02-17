@@ -3,9 +3,9 @@ from core.advbase import *
 from slot.d import *
 
 def module():
-    return D_Nefaria
+    return Dragonyule_Nefaria
 
-class D_Nefaria(Adv):
+class Dragonyule_Nefaria(Adv):
     a1 = ('s',0.25)
     conf = {}
     conf['acl'] = """

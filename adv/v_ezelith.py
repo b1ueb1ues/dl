@@ -6,9 +6,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return V_Ezelith
+    return Valentines_Ezelith
 
-class V_Ezelith(Adv):
+class Valentines_Ezelith(Adv):
     a3 = ('bk',0.2)
     conf = {}
     conf['slot.a'] = EE()+DD()

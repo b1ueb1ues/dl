@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return MH_Berserker
+    return Hunter_Berserker
 
-class MH_Berserker(Adv):
+class Hunter_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
     conf['slot.a'] = Levins_Champion()+The_Lurker_in_the_Woods()

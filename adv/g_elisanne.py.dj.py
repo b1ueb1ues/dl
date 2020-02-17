@@ -5,9 +5,9 @@ from slot.a import *
 import g_elisanne
 
 def module():
-    return G_Elisanne
+    return Gala_Elisanne
 
-class G_Elisanne(g_elisanne.G_Elisanne):
+class Gala_Elisanne(g_elisanne.Gala_Elisanne):
 
     conf = {}
     

@@ -3,9 +3,9 @@ from core.advbase import *
 import d_xainfried
 
 def module():
-    return D_Xainfried
+    return Dragonyule_Xainfried
 
-class D_Xainfried(d_xainfried.D_Xainfried):
+class Dragonyule_Xainfried(d_xainfried.Dragonyule_Xainfried):
     conf = {}
     def d_slots(this):
         this.slots.d = slot.d.Freyja()

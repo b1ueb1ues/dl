@@ -3,9 +3,9 @@ from core.advbase import *
 from core.advbase import *
 
 def module():
-    return Xiaolei
+    return Xiao_Lei
 
-class Xiaolei(Adv):
+class Xiao_Lei(Adv):
     a1 = ('s',0.2)
     conf = {}
     conf['acl'] = """

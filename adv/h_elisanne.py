@@ -3,9 +3,9 @@ from core.advbase import *
 from slot.a import *
 
 def module():
-    return H_Elisanne
+    return Halloween_Elisanne
 
-class H_Elisanne(Adv):
+class Halloween_Elisanne(Adv):
     a1 = ('s',0.3)
     conf = {}
     conf['slots.a'] = RR()+JotS()

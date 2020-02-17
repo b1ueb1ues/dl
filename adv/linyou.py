@@ -4,9 +4,9 @@ from slot import *
 from slot.a import *
 
 def module():
-    return Linyou
+    return Lin_You
 
-class Linyou(Adv):
+class Lin_You(Adv):
     comment = '2in1 ' 
     a1 = ('cc',0.10,'hp70')
     a3 = ('sp',0.08)

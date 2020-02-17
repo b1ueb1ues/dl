@@ -11,11 +11,11 @@ class Candy_Couriers(Amulet):
     a = [('s',0.40)]
 
 def module():
-    return G_Cleo
+    return Gala_Cleo
 
-class G_Cleo(adv.g_cleo.G_Cleo):
+class Gala_Cleo(adv.g_cleo.Gala_Cleo):
     comment = '4 Gleo vs EHJP; simulated break & no team dps; s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 dragon end'
-    conf = adv.g_cleo.G_Cleo.conf.copy()
+    conf = adv.g_cleo.Gala_Cleo.conf.copy()
     conf['slot.a'] = Candy_Couriers()+King_of_the_Skies()
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = "`rotation"

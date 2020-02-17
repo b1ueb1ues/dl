@@ -3,9 +3,9 @@ from core.advbase import *
 from slot.a import *
 
 def module():
-    return H_Edward
+    return Halloween_Edward
 
-class H_Edward(Adv):
+class Halloween_Edward(Adv):
     a1 = ('a',0.1,'hp100')
 
     conf = {}

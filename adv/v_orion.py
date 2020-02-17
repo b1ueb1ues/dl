@@ -5,9 +5,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return V_Orion
+    return Valentines_Orion
 
-class V_Orion(Adv):
+class Valentines_Orion(Adv):
     conf = {}
 
     conf['acl'] = """

@@ -4,10 +4,10 @@ from module.fsalt import *
 from slot.a import *
 
 def module():
-    return G_Ranzal
+    return Gala_Ranzal
 
 
-class G_Ranzal(Adv):
+class Gala_Ranzal(Adv):
     comment = 'no s2'
 
     conf = {}

@@ -4,7 +4,7 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return MH_Sarisse
+    return Hunter_Sarisse
 
 class FS_Speedable(Action):
     def __init__(this, name=None, conf=None, act=None):
@@ -53,7 +53,7 @@ class FS_Speedable(Action):
             this._startup_a = 14 / 60
         return this.tap()
 
-class MH_Sarisse(Adv):
+class Hunter_Sarisse(Adv):
     comment = 'fs hit count vary on distance and enemy size; extra hits do 70% less damage than previous hits'
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)

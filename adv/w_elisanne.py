@@ -4,10 +4,10 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return W_Elisanne
+    return Wedding_Elisanne
 
 
-class W_Elisanne(Adv):
+class Wedding_Elisanne(Adv):
     comment = '2in1'
     a1 = ('sp',0.08)
     a3 = ('bc',0.13)

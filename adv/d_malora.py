@@ -4,9 +4,9 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return D_Malora
+    return Dragonyule_Malora
 
-class D_Malora(Adv):
+class Dragonyule_Malora(Adv):
     comment = 'c4fsf c5 c4 s1'
     a1 = ('od',0.13)
 

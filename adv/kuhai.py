@@ -5,10 +5,9 @@ import slot
 from slot.d import *
 
 def module():
-    return Kuhai
+    return Ku_Hai
 
-
-class Kuhai(Adv):
+class Ku_Hai(Adv):
     comment = 'c2+fs during s2'
     a1 = ('cd',0.15)
     a3 = ('cd',0.15, 'hp70')

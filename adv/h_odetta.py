@@ -5,9 +5,9 @@ from slot.d import *
 from slot.w import *
 
 def module():
-    return H_Odetta
+    return Halloween_Odetta
 
-class H_Odetta(Adv):
+class Halloween_Odetta(Adv):
 
     conf = {}
     conf['slot.a'] = MF() + FRH()
