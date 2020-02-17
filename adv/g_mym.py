@@ -13,6 +13,7 @@ class G_Mym(Adv):
     conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
     conf['slot.d'] = Sakuya()
     conf['acl'] = """
+        `dragon
         `s3, not this.s3_buff_on
         `s1
         `s2, fsc
@@ -53,6 +54,7 @@ class G_Mym(Adv):
         'ds.recovery': 125 / 60, # skill frames
     }
     conf['dragonform'] = conf['dragonform1']
+
     def ds_proc(this):
         return this.dmg_make('d_ds',this.dragonform.conf.ds.dmg,'s')
 
@@ -63,6 +65,7 @@ class G_Mym(Adv):
     def a1_on(this, e):
         if not this.a1_buff.get():
             this.a1_buff.on()
+        else:
             this.dragonform.conf += this.conf.dragonform2
 
     def s1_proc(this, e):

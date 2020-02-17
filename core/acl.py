@@ -104,6 +104,7 @@ def do_act_list(this, e):
     fsc = pin =='fs'
     s = int(pin[1]) if (pin[0] == 's' and pin[1] != 'p') or pin[-2:] == '-x' else 0
     sp = dname if pin == 'sp' else 0
+    prep = pin == 'prep'
 {act_prep_block}
 {act_cond_block}
     return 0"""
@@ -111,26 +112,28 @@ def do_act_list(this, e):
         {act} = this.{act}
     except Exception:
         raise AttributeError('{act} is not an action')"""
-    acl_prep_dragon = """    dragon = this.{act}
-    if not type(dragon).__name__ == 'DragonForm':
-        raise AttributeError('{act} is not an action')"""
-    acl_if_no_cond = """    if {act}():
+    acl_if_no_cond = """    if {act}{args}:
         return '{act}'"""
     acl_if_cond = """    if {cond}:
-        if {act}():
+        if {act}{args}:
             return \'{act}\'"""
     act_prep_block = []
     act_cond_block = []
     for act, cond in act_cond_list:
         if act.startswith('dragon'):
-            act_prep_block.append(acl_prep_dragon.format(act=act.replace('dragon', 'dragonform')))
-            act = 'dragon'
+            act_prep_block.append(acl_prep.format(act='dragonform'))
+            if act.startswith('dragon.act'):
+                args = act.replace('dragon', '')
+            else:
+                args = '()'
+            act = 'dragonform'
         else:
             act_prep_block.append(acl_prep.format(act=act))
+            args = '()'
         if cond is None:
-            act_cond_block.append(acl_if_no_cond.format(act=act))
+            act_cond_block.append(acl_if_no_cond.format(act=act, args=args))
         else:
             cond = re.sub(r'([^=><!])=([^=])', eq_replace, cond)
-            act_cond_block.append(acl_if_cond.format(cond=cond, act=act))
+            act_cond_block.append(acl_if_cond.format(cond=cond, act=act, args=args))
     acl_string = acl_base.format(act_prep_block='\n'.join(act_prep_block),act_cond_block='\n'.join(act_cond_block))
     return acl_string

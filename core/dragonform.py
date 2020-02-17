@@ -137,6 +137,7 @@ class DragonForm(Action):
     def parse_act(self, act_str):
         self.act_list = []
         skill_usage = 0
+
         for a in act_str.split(' '):
             if a[0] == 'c' or a[0] == 'x':
                 for i in range(1, int(a[1])+1):
@@ -156,12 +157,9 @@ class DragonForm(Action):
                 elif a == 'dodge':
                     self.act_list.append('dodge')
 
-    def act(self, act_str=None):
-        if act_str:
-            self.parse_act(act_str)
-        elif 'act' in self.conf:
-            self.parse_act(self.conf.act)
-        return self
+    def act(self, act_str):
+        self.parse_act(act_str)
+        return self()
 
     def __call__(self):
         if self.disabled:
@@ -180,7 +178,7 @@ class DragonForm(Action):
                 log('cancel', doing.name , 'by '+self.name+'\t', 'after {:.2f}s'.format(now()-doing.recover_start))
         log('dragon_start', self.name)
         if len(self.act_list) == 0:
-            self.act()
+            self.parse_act(self.conf.act)
         self.shift_damage_sum = 0
         self.dragon_gauge -= 50
         self.status = -1
