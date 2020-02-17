@@ -11,10 +11,10 @@ if __file__.find('/') == -1:
     find = '\\'
     if __file__.find('\\') == -1:
         find = None
-        fname = 'conf.json'
+        fname = 'advconf.json'
 if find:
     l = __file__.rfind(find)
-    fname = __file__[:l] + find + 'conf.json'
+    fname = __file__[:l] + find + 'advconf.json'
 
 json_confs = None
 with open(fname, 'r') as f:

@@ -8,12 +8,13 @@ def module():
     return Veronica
 
 class Veronica(adv.veronica.Veronica):
-    def d_acl(this): 
-        this.conf['acl'] = """
-            `s1
-            `s3, seq=5 and cancel
-            `fs, seq=5 and s1.charged >= 2500
-        """
+
+    conf = adv.veronica.Veronica.conf.copy()
+    conf['acl'] = """
+        `s1
+        `s3, seq=5 and cancel
+        `fs, seq=5 and s1.charged >= 2500
+    """
 
     def prerun(this):
         super().prerun()

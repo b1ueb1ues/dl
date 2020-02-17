@@ -53,6 +53,18 @@ SPECIAL_ADV = {
     'g_luca_maxstacks': {
         'fn': 'g_luca.py.maxstacks.py',
         'nc': []
+    },
+    'veronica_1hp': {
+        'fn': 'veronica.py.1hp.py',
+        'nc': []
+    },
+    'natalie_1hp': {
+        'fn': 'natalie.py.1hp.py',
+        'nc': []
+    },
+    'v_addis_1hp': {
+        'fn': 'v_addis.py.1hp.py',
+        'nc': []
     }
 }
 
