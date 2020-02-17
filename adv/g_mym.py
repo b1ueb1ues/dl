@@ -13,7 +13,6 @@ class G_Mym(Adv):
     conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
     conf['slot.d'] = Sakuya()
     conf['acl'] = """
-        `dragon
         `s3, not this.s3_buff_on
         `s1
         `s2, fsc

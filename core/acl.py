@@ -93,6 +93,8 @@ def acl_str(acl):
                 act_cond_list.append((parts[0], parts[1] if len(parts[1]) > 0 else None))
             except:
                 act_cond_list.append((parts[0], None))
+
+    act_cond_list = list(dict.fromkeys(act_cond_list).keys())
     
     acl_base = """
 def do_act_list(this, e):
@@ -117,18 +119,18 @@ def do_act_list(this, e):
     acl_if_cond = """    if {cond}:
         if {act}{args}:
             return \'{act}\'"""
-    act_prep_block = []
+    act_prep_block = set()
     act_cond_block = []
     for act, cond in act_cond_list:
         if act.startswith('dragon'):
-            act_prep_block.append(acl_prep.format(act='dragonform'))
+            act_prep_block.add(acl_prep.format(act='dragonform'))
             if act.startswith('dragon.act'):
                 args = act.replace('dragon', '')
             else:
                 args = '()'
             act = 'dragonform'
         else:
-            act_prep_block.append(acl_prep.format(act=act))
+            act_prep_block.add(acl_prep.format(act=act))
             args = '()'
         if cond is None:
             act_cond_block.append(acl_if_no_cond.format(act=act, args=args))
