@@ -4,7 +4,9 @@ EX_MAP = {
     'wand': 'r',
     'bow': 'b',
     'dagger': 'd',
-    'axe2': 'm'
+    'axe2': 'm',
+    'sword': 's',
+    'geuden': 'g'
 }
 AXE2_ADV = ['h_mym', 'v_melody']
 BASE_SIM_T = 180
@@ -242,13 +244,14 @@ function loadAdvSlots() {
     if ($('#input-adv').val() == '') {
         return false;
     }
+    const adv_name = $('#input-adv').val();
     localStorage.setItem('selectedAdv', $('#input-adv').val());
     $.ajax({
         url: APP_URL + 'simc_adv_slotlist',
         dataType: 'text',
         type: 'post',
         contentType: 'application/json',
-        data: JSON.stringify({ 'adv': $('#input-adv').val() }),
+        data: JSON.stringify({ 'adv': adv_name }),
         success: function (data, textStatus, jqXHR) {
             if (jqXHR.status == 200) {
                 const slots = JSON.parse(data);
@@ -260,11 +263,15 @@ function loadAdvSlots() {
                 $('#wp2-' + slots.adv.pref_wp.wp2).prop('selected', true);
                 $('input[id^="ex-"]').prop('checked', false);
                 $('input[id^="ex-"]').prop('disabled', false);
-                $('#ex-' + slots.adv.wt).prop('checked', true);
-                $('#ex-' + slots.adv.wt).prop('disabled', true);
-                if (AXE2_ADV.includes($('#input-adv').val())) {
+                if (AXE2_ADV.includes(adv_name)) {
                     $('#ex-axe2').prop('checked', true);
                     $('#ex-axe2').prop('disabled', true);
+                }else if (adv_name == 'g_euden') {
+                    $('#ex-geuden').prop('checked', true);
+                    $('#ex-geuden').prop('disabled', true);
+                }else{
+                    $('#ex-' + slots.adv.wt).prop('checked', true);
+                    $('#ex-' + slots.adv.wt).prop('disabled', true);
                 }
                 $('#input-acl').blur();
                 $('#input-edit-acl').prop('checked', false);

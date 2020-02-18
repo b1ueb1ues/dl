@@ -78,7 +78,7 @@ class WeaponBase(Slot):
                 if c.ele == i :
                     this.onele = 1
                     break
-        
+
         if this.onele :
             this.att *= 1.5
             this.conf.s3 = Conf(this.s3)
@@ -99,6 +99,7 @@ class DragonBase(Slot):
         'exhilaration': 0, # psiren aura
         'skill_use': 1, # number of skill usage
         'gauge_iv': 15, # gauge interval
+        'gauge_val': 10, # gauge regen value
         'latency': 0, # amount of delay for cancel
         'act': 'end',
 
@@ -139,15 +140,18 @@ class DragonBase(Slot):
     def oninit(self, adv):
         super().oninit(adv)
         from core.dragonform import DragonForm
+        from adv.adv_test import sim_duration
         self.adv = adv
         if 'dragonform' in adv.conf:
             name = type(adv).__name__
             dconf = Conf(self.default_dragonform)
             dconf += adv.conf.dragonform
+            dconf.gauge_iv = int(sim_duration/12)
             self.adv.dragonform = DragonForm(name, dconf, adv, adv.ds_proc)
         else:
             name = type(self).__name__
             dconf = Conf({**self.default_dragonform, **self.dragonform})
+            dconf.gauge_iv = int(sim_duration/12)
             self.adv.dragonform = DragonForm(name, dconf, adv, self.ds_proc)
 
 class Amuletempty(object):
