@@ -81,7 +81,7 @@ line_k = ''
 dmax = 0
 dmin = 0
 
-def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
+def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None, lines=None):
     global team_dps
     global energy_efficiency
     global mname
@@ -108,6 +108,13 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
         mname = classname.name
     else:
         mname = classname.__name__
+
+    if lines is None:
+        lines = {}
+        lines['_'] = []
+        lines['k'] = []
+        lines['r'] = []
+        lines['kr'] = []
 
     if verbose == 255:
         loglevel = -2
@@ -289,10 +296,17 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
                 output_k += line_k
                 print(output)
                 print(output_k)
-
+    elif loglevel == -6:
+        lines['_'].append(report(condition, r, mname, adv, amulets))
+        lines['k'].append(report(condition, r, mname, adv, amulets, ex_mod='k'))
+        lines['r'].append(report(condition, r, mname, adv, amulets, ex_mod='r'))
+        lines['kr'].append(report(condition, r, mname, adv, amulets, ex_mod='kr'))
+        if no_cond or condition == '':
+            for ex in ('_', 'k', 'r', 'kr'):
+                print('\n'.join(lines[ex]))
 
     if condition != '' and no_cond is None:
-        r2 = test(classname, conf, verbose, mass, duration, 1)
+        r2 = test(classname, conf, verbose, mass, duration, 1, lines=lines)
         g_condition = ''
         r['no_cond'] = r2
     elif g_condition != '':
@@ -304,6 +318,90 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None):
     elif loglevel < 0 and not loglevel-1 & 8:
         print('-----------------------\nrun in %f'%(b-a))
     return r
+
+def report_dps_k(name, value):
+    return value * 1.10
+
+def report_dps_r(name, value):
+    return value * 1.15 if (name[0] == 's' or name[0:2] == 'ds') else value
+
+def report_dps_kr(name, value):
+    return (value * 1.15 if (name[0] == 's' or name[0:2] == 'ds') else value) * 1.10
+
+def report(condition, r, name, adv, amulets, ex_mod=None):
+    global displayed_str
+    global page
+    global ex_str
+    global comment
+    global g_condition
+    global sim_duration
+    global real_duration
+
+    report_csv = []
+    report_csv.extend([
+        '_c_'+name if condition == '' and g_condition else name,
+        adv.conf['c.stars']+'*',
+        adv.conf['c.ele'],
+        adv.conf['c.wt'],
+        displayed_str,
+        amulets,
+        '!<{}>'.format(g_condition) if g_condition else '!<{}>'.format(condition),
+        comment
+    ])
+    dps_mappings = {
+        'attack': r['dmg_sum']['x']/real_duration,
+        'force_strike': r['dmg_sum']['fs']/real_duration,
+        'skill_1': r['sdmg_sum']['s1']['dmg']/real_duration,
+        'skill_2': r['sdmg_sum']['s2']['dmg']/real_duration,
+        'skill_3': r['sdmg_sum']['s3']['dmg']/real_duration,
+        'team_buff': r['buff_sum']*team_dps
+    }
+    if r['energy_sum']:
+        dmg_val = r['energy_sum']*energy_efficiency
+        if dmg_val > 0:
+            dps_mappings['team_energy'] = r['energy_sum']*energy_efficiency
+    for i in r['o_sum']:
+        dmg_val = r['o_sum'][i]/real_duration
+        if dmg_val > 0:
+            dps_mappings[i] = dmg_val
+    for i in r['dragon_sum']:
+        dmg_val = r['dragon_sum'][i]/real_duration
+        if dmg_val > 0:
+            dps_mappings[i] = dmg_val
+    dps_mod_f = None
+    if ex_mod is not None:
+        has_k = 'k' in ex_mod and adv.conf['c.wt'] != 'blade' and 'k' not in ex_str
+        has_r = 'r' in ex_mod and adv.conf['c.wt'] != 'wand' and 'r' not in ex_str
+        if has_k: 
+            if has_r:
+                dps_mod_f = report_dps_kr
+            else:
+                dps_mod_f = report_dps_k
+        elif has_r:
+            dps_mod_f = report_dps_r
+
+    dps_sum = 0
+    for name, value in dps_mappings.items():
+        if dps_mod_f is not None:
+            dps_mappings[name] = dps_mod_f(name, value)
+        else:
+            dps_mappings[name] = value
+        dps_sum += dps_mappings[name]
+
+    report_csv = [int(dps_sum)] + report_csv
+    report_csv.extend(['{}:{}'.format(name, int(value)) for name, value in dps_mappings.items()])
+
+    output_line = ','.join([str(s) for s in report_csv])
+    if not condition == '' or not g_condition:
+        real_ex = ex_str
+        if ex_mod is not None: 
+            if ex_str == '_':
+                real_ex = ex_mod
+            else:
+                real_ex = ex_str+ex_mod
+        output_line = ','.join(['-',page,real_ex])+'\n' + output_line
+    return output_line
+
 
 def report__2(condition, exdps, r, name, adv, amulets):
     global mname
