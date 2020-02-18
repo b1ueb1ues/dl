@@ -1,6 +1,7 @@
 import io
 import inspect
 import imp
+import os
 
 from contextlib import redirect_stdout
 from flask import Flask
@@ -15,7 +16,7 @@ import slot.w
 app = Flask(__name__)
 
 # Helpers
-ROOT_DIR = '/home/wildshinobu/dl/'
+ROOT_DIR = os.getenv('ROOT_DIR', '.')
 MEANS_ADV = {
     'addis': 'addis.py.means.py',
     'sazanka': 'sazanka.py.means.py',
@@ -26,11 +27,11 @@ MEANS_ADV = {
 NORMAL_ADV = ['h_lowen']
 MASS_SIM_ADV = []
 
-with open(ROOT_DIR+'chara_quick.txt') as f:
+with open(os.path.join(ROOT_DIR, 'chara_quick.txt')) as f:
     for l in f:
         NORMAL_ADV.append(l.strip().replace('.py', ''))
 
-with open(ROOT_DIR+'chara_slow.txt') as f:
+with open(os.path.join(ROOT_DIR, 'chara_slow.txt')) as f:
     for l in f:
         MASS_SIM_ADV.append(l.strip().replace('.py', ''))
 
@@ -74,7 +75,7 @@ def get_adv_module(adv_name):
             fn = MEANS_ADV[adv_name]
         else:
             fn = SPECIAL_ADV[adv_name]['fn']
-        with open('{}{}'.format(ROOT_DIR+'adv/', fn), 'rb') as fp:
+        with open(os.path.join(ROOT_DIR, 'adv', fn), 'rb') as fp:
             return imp.load_module(
                 adv_name, fp, fn,
                 ('.py', 'rb', imp.PY_SOURCE)
