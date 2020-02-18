@@ -122,9 +122,53 @@ def set_log_res(result, r, suffix=''):
     result['logs' + suffix] = r['logs']
     return result
 
+def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=None, conf=None, teamdps=None, t=180, log=-2, mass=0):
+    adv.adv_test.set_ex(ex)
+    adv_module = get_adv_module(adv_name)
+    def slot_injection(this):
+        if wp1 is not None and wp2 is not None:
+            this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+        if dra is not None:
+            this.conf['slots.d'] = getattr(slot.d, dra)()
+        if wep is not None:
+            this.conf['slots.w'] = getattr(slot.w, wep)()
+        if teamdps is not None:
+            adv.adv_test.team_dps = teamdps
+            # assume team dps * 1.25 = raw skill dmg
+            adv.adv_test.energy_efficiency = (teamdps * 1.25) * 0.5 * 2 / 5 / adv.adv_test.sim_duration
+        else:
+            adv.adv_test.team_dps = 6000
+            adv.adv_test.energy_efficiency = 7500 * 0.5 * 2 / 5 / adv.adv_test.sim_duration
+    def acl_injection(this):
+        if acl is not None:
+            this.conf['acl'] = acl
+    adv_module.slot_backdoor = slot_injection
+    adv_module.acl_backdoor = acl_injection
+    if conf is None:
+        conf = {}
+    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}, 'logs': ''}
+    f = io.StringIO()
+    r = None
+    try:
+        with redirect_stdout(f):
+            r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t, mass=mass)
+    except Exception as e:
+        result['error'] = str(e)
+        return result
+    result['test_output'] = f.getvalue()
+    f.close()
+    if r is not None:
+        result = set_teamdps_res(result, r)
+        result = set_log_res(result, r)
+        if 'no_cond' in r:
+            result = set_teamdps_res(result, r['no_cond'], '_no_cond')
+            # result = set_log_res(result, r['no_cond'], '_no_cond')
+
+    return result
+
 # API
 @app.route('/simc_adv_test', methods=['POST'])
-def run_adv_test():
+def simc_adv_test():
     if not request.method == 'POST':
         return 'Wrong request method.'
     params = request.get_json(silent=True)
@@ -149,28 +193,6 @@ def run_adv_test():
         if 'acl' in not_customizable:
             acl = None
 
-    adv.adv_test.set_ex(ex)
-    adv_module = get_adv_module(adv_name)
-    def slot_injection(this):
-        if wp1 is not None and wp2 is not None:
-            this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
-        if dra is not None:
-            this.conf['slots.d'] = getattr(slot.d, dra)()
-        if wep is not None:
-            this.conf['slots.w'] = getattr(slot.w, wep)()
-        if teamdps is not None:
-            adv.adv_test.team_dps = teamdps
-            # assume team dps * 1.25 = raw skill dmg
-            adv.adv_test.energy_efficiency = (teamdps * 1.25) * 0.5 * 2 / 5 / adv.adv_test.sim_duration
-        else:
-            adv.adv_test.team_dps = 6000
-            adv.adv_test.energy_efficiency = 7500 * 0.5 * 2 / 5 / adv.adv_test.sim_duration
-    def acl_injection(this):
-        if acl is not None:
-            this.conf['acl'] = acl
-    adv_module.slot_backdoor = slot_injection
-    adv_module.acl_backdoor = acl_injection
-
     conf = {}
     for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
         try:
@@ -192,26 +214,8 @@ def run_adv_test():
     except:
         pass
 
-    result = {'test_output': '', 'extra': {}, 'extra_no_cond': {}, 'logs': ''}
-    f = io.StringIO()
-    r = None
-    try:
-        with redirect_stdout(f):
-            r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t, mass=mass)
-    except Exception as e:
-        result['error'] = str(e)
-        return jsonify(result)
-    result['test_output'] = f.getvalue()
-    f.close()
-    if r is not None:
-        result = set_teamdps_res(result, r)
-        result = set_log_res(result, r)
-        if 'no_cond' in r:
-            result = set_teamdps_res(result, r['no_cond'], '_no_cond')
-            # result = set_log_res(result, r['no_cond'], '_no_cond')
-
+    result = run_adv_test(adv_name, wp1, wp2, dra, wep, ex, acl, conf, teamdps, t=t, log=log, mass=mass)
     return jsonify(result)
-
 
 @app.route('/simc_adv_slotlist', methods=['GET', 'POST'])
 def get_adv_slotlist():
