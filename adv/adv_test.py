@@ -142,21 +142,21 @@ def test(classname, conf, verbose=None, mass=0, duration=None, no_cond=None, lin
     real_duration = adv.run(sim_duration)
     comment = adv.comment
     
-    global ex_team_init
-    if not ex_team_init :
-        ex_team_init = 1
-        for i in adv.ex:
-            if i == 'blade':
-                team_dps *= 1.1
-                energy_efficiency *= 1.1
-            elif i == 'wand':
-                team_dps *= 1.08
-                energy_efficiency *= 1.15
-            elif i == 'dagger':
-                team_dps *= 1.07
-                energy_efficiency *= 1.07
-            elif i == 'bow':
-                team_dps *= 1.05
+    # global ex_team_init
+    # if not ex_team_init :
+    #     ex_team_init = 1
+    #     for i in adv.ex:
+    #         if i == 'blade':
+    #             team_dps *= 1.1
+    #             energy_efficiency *= 1.1
+    #         elif i == 'wand':
+    #             team_dps *= 1.08
+    #             energy_efficiency *= 1.15
+    #         elif i == 'dagger':
+    #             team_dps *= 1.07
+    #             energy_efficiency *= 1.07
+    #         elif i == 'bow':
+    #             team_dps *= 1.05
 
 
 
@@ -382,7 +382,7 @@ def report(condition, r, name, adv, amulets, ex_mod=None):
 
     dps_sum = 0
     for name, value in dps_mappings.items():
-        if dps_mod_f is not None:
+        if dps_mod_f is not None and not name[0:4] == 'team':
             dps_mappings[name] = dps_mod_f(name, value)
         else:
             dps_mappings[name] = value
