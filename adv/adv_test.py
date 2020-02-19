@@ -307,7 +307,7 @@ def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
         adv.conf['c.wt'],
         displayed_str,
         amulets,
-        '<{}>'.format(condition) if condition != '' else '!<{}>'.format(g_condition),
+        '!<{}>'.format(g_condition) if condition == '' and g_condition != '' else '<{}>'.format(condition),
         comment
     ])
     dps_mappings = {
