@@ -54,7 +54,7 @@ def sim_adv(adv_file, special=None, mass=None):
 
 def sim_adv_list(list_file):
     special = list_file.startswith('chara_sp')
-    mass = list_file.endswith('slow.txt')
+    mass = list_file.endswith('slow.txt') and not special
     with open(os.path.join(ROOT_DIR, list_file)) as f:
         for adv_file in f:
             sim_adv(adv_file.strip(), special, mass)
