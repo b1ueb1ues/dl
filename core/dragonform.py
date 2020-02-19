@@ -168,7 +168,7 @@ class DragonForm(Action):
             return False
         doing = self.getdoing()
         if not doing.idle:
-            if isinstance(doing, S):
+            if isinstance(doing, S) or isinstance(doing, DragonForm):
                 return False
             if doing.status == -1:
                 doing.startup_timer.off()

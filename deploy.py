@@ -87,7 +87,7 @@ def combine():
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
-        print('USAGE python {} sim_targets [-c] [-sp]'.format(sys.argv))
+        print('USAGE python {} sim_targets [-c] [-sp]'.format(sys.argv[0]))
         exit(1)
     t_start = time()
 
