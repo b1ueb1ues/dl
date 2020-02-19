@@ -124,7 +124,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
     let slots = ' ' + arr[6];
-    const cond = (arr[7] != undefined && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
+    const cond = (arr[7] != undefined && arr[7] != '<>' && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
     const comment = (arr[8] != undefined) ? arr[8] : '';
     let cond_comment = [];
     let cond_comment_str = '';
