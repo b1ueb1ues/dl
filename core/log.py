@@ -3,8 +3,6 @@ import core.timeline
 import sys
 
 loglevel = 0
-if not sys.argv[0].endswith('flask') and len(sys.argv) >= 2:
-    loglevel = int(sys.argv[1])
 
 #g_log = []
 g_log_active = []

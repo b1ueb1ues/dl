@@ -1,7 +1,8 @@
 import io
 import inspect
-import imp
+from importlib.util import spec_from_file_location, module_from_spec
 import os
+import sys
 
 from contextlib import redirect_stdout
 from flask import Flask
@@ -17,6 +18,7 @@ app = Flask(__name__)
 
 # Helpers
 ROOT_DIR = os.getenv('ROOT_DIR', '.')
+ADV_DIR = 'adv'
 MEANS_ADV = {
     'addis': 'addis.py.means.py',
     'sazanka': 'sazanka.py.means.py',
@@ -72,14 +74,15 @@ SPECIAL_ADV = {
 def get_adv_module(adv_name):
     if adv_name in SPECIAL_ADV or adv_name in MEANS_ADV:
         if adv_name in MEANS_ADV:
-            fn = MEANS_ADV[adv_name]
+            adv_file = MEANS_ADV[adv_name]
         else:
-            fn = SPECIAL_ADV[adv_name]['fn']
-        with open(os.path.join(ROOT_DIR, 'adv', fn), 'rb') as fp:
-            return imp.load_module(
-                adv_name, fp, fn,
-                ('.py', 'rb', imp.PY_SOURCE)
-            ).module()
+            adv_file = SPECIAL_ADV[adv_name]['fn']
+        fn = os.path.join(ROOT_DIR, ADV_DIR, adv_file)
+        spec = spec_from_file_location(adv_name, fn)
+        module = module_from_spec(spec)
+        sys.modules[adv_name] = module
+        spec.loader.exec_module(module)
+        return module.module()
     else:
         return getattr(
             __import__('adv.{}'.format(adv_name.lower())),
