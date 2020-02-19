@@ -100,12 +100,13 @@ def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, 
 
     if ex is not None:
         ex_str = ex
+        set_ex(ex_str)
     else:
         try:
             ex_str = sys.argv[3]
+            set_ex(ex_str)
         except:
-            ex_str = '_'
-    set_ex(ex_str)
+            pass 
 
     if mass is None:
         try:
