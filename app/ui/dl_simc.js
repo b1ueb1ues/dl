@@ -266,10 +266,10 @@ function loadAdvSlots() {
                 if (AXE2_ADV.includes(adv_name)) {
                     $('#ex-axe2').prop('checked', true);
                     $('#ex-axe2').prop('disabled', true);
-                }else if (adv_name == 'g_euden') {
+                } else if (adv_name == 'g_euden') {
                     $('#ex-geuden').prop('checked', true);
                     $('#ex-geuden').prop('disabled', true);
-                }else{
+                } else {
                     $('#ex-' + slots.adv.wt).prop('checked', true);
                     $('#ex-' + slots.adv.wt).prop('disabled', true);
                 }
@@ -373,7 +373,7 @@ function runAdvTest() {
                     $('#test-error').html('Error: ' + res.error);
                 } else {
                     const result = res.test_output.split('\n');
-                    const cond_true = result[0].split(',');
+                    const cond_true = result[1].split(',');
                     const name = substitute_prefix(cond_true[1], 'adv');
                     const icon_urls = slots_icon_fmt(cond_true[1], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
@@ -385,8 +385,8 @@ function runAdvTest() {
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
-                    if (result.length > 1 && result[1].includes(',')) {
-                        cond_false = result[1].split(',');
+                    if (result.length > 2 && result[2].includes(',')) {
+                        cond_false = result[2].split(',');
                         extra = Object.keys(res.extra_no_cond).length > 0 ? res.extra_no_cond : res.extra
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }

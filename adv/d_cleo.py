@@ -59,7 +59,7 @@ class Dragonyule_Cleo(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf)
     # conf['s1_sp'] = 2400
     # conf['s1_dmg'] = 0.63*11
     # conf['str_adv'] = 474-17

@@ -164,10 +164,9 @@ def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, 
 
     if not no_cond:
         condition = adv.m_condition.p()
+        g_condition = condition
     else:
         condition = ''
-    if condition != '' :
-        g_condition = condition
 
     displayed_str = adv.displayed_att
     base_str = adv.base_att
@@ -302,13 +301,13 @@ def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
 
     report_csv = []
     report_csv.extend([
-        '_c_'+name if condition == '' and g_condition else name,
+        '_c_'+name if condition == '' and g_condition != '' else name,
         adv.conf['c.stars']+'*',
         adv.conf['c.ele'],
         adv.conf['c.wt'],
         displayed_str,
         amulets,
-        '!<{}>'.format(g_condition) if g_condition else '<{}>'.format(condition),
+        '<{}>'.format(condition) if condition != '' else '!<{}>'.format(g_condition),
         comment
     ])
     dps_mappings = {
