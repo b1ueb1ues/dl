@@ -19,4 +19,4 @@ class Sazanka(sazanka.Sazanka):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, mass=0)
+    adv.adv_test.test(module(), conf)

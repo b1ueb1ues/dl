@@ -51,4 +51,4 @@ class Summer_Luca(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2, mass=100)
+    adv.adv_test.test(module(), conf)

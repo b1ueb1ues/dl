@@ -15,5 +15,5 @@ class Taro(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=1)
+    adv.adv_test.test(module(), conf)
 

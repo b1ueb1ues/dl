@@ -22,5 +22,5 @@ if __name__ == '__main__':
         `s3,fsc
         `fsf,seq=4
         """
-    adv.adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf)
 

@@ -1219,6 +1219,12 @@ class Adv(object):
     def bufftime(this):
         return this.mod('buff')
 
+    def have_buff(this, name):
+        for b in this.all_buffs:
+            if b.name.startswith(name) and b.get():
+                return True
+        return False
+
     def l_idle(this, e):
         """
         Listener that is called when there is nothing to do.

@@ -86,5 +86,5 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf)
 

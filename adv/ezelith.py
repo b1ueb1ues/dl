@@ -61,4 +61,4 @@ class Ezelith(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, mass=1, verbose=-2)
+    adv.adv_test.test(module(), conf)

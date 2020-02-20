@@ -57,4 +57,4 @@ if __name__ == '__main__':
         `fs,seq=2 and cancel
     """
 
-    adv.adv_test.test(module(), conf, verbose=-2, mass=0)
+    adv.adv_test.test(module(), conf)

@@ -11,7 +11,7 @@ class Summer_Celliera(Adv):
     a3 = ('bt',0.30)
     conf = {}
     conf['slot.a'] = VC() + JotS()
-    conf['slot.d'] = DJ()
+    conf['slot.d'] = Siren()
     conf['acl'] = """
         `s2
         `s1
@@ -21,8 +21,6 @@ class Summer_Celliera(Adv):
     conf['afflict_res.bog'] = 100
 
     def d_slots(this):
-        if 'wand' in this.ex:
-            this.conf['slot.d'] = Siren()
         if 'bow' in this.ex:
             this.conf['slot.a'] = TSO() + FRH()
 
@@ -55,4 +53,4 @@ class Summer_Celliera(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)

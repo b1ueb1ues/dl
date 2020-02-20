@@ -65,5 +65,5 @@ class Laxi(Adv):
         this.heal.getdoing().interrupt_by.append('heal')
         this.heal()
 if __name__ == '__main__':
-    adv.adv_test.test(module(), conf, verbose=0)
+    adv.adv_test.test(module(), conf)
 

@@ -14,5 +14,5 @@ class Ezelith(adv.ezelith.Ezelith):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, mass=0, verbose=-2)
+    adv.adv_test.test(module(), conf)
 

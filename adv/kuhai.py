@@ -98,5 +98,5 @@ class Ku_Hai(Adv):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=0, mass=0)
+    adv.adv_test.test(module(), conf)
 

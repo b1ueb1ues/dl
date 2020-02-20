@@ -26,4 +26,4 @@ class Elisanne(Adv):
 
 
 if __name__ == '__main__':
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)

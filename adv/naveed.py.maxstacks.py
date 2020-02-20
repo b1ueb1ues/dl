@@ -12,5 +12,5 @@ class Naveed(naveed.Naveed):
 
 if __name__ == '__main__':
     conf = {}
-    adv.adv_test.test(module(), conf, verbose=-2)
+    adv.adv_test.test(module(), conf)
 

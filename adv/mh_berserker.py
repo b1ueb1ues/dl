@@ -9,9 +9,10 @@ def module():
 class Hunter_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
-    conf['slot.a'] = Levins_Champion()+The_Lurker_in_the_Woods()
+    conf['slot.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
+        
         `s3, not this.s3_buff_on
         `s1, fsc
         `s2, fsc
