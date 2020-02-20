@@ -5,10 +5,10 @@ from slot.d import *
 import adv.g_mym
 
 def module():
-    return adv.g_mym.Gala_Mym
+    return Gala_Mym
 
-if __name__ == '__main__':
-    conf = {}
+class Gala_Mym(adv.g_mym.Gala_Mym):
+    conf = adv.g_mym.Gala_Mym.conf.copy()
     conf['acl'] = """
         `dragon.act("c3 c3 s end"), not this.a1_buff.get()
         `dragon
@@ -19,4 +19,7 @@ if __name__ == '__main__':
     """
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = Resounding_Rendition()+An_Ancient_Oath()
+
+if __name__ == '__main__':
+    conf = {}
     adv.adv_test.test(module(), conf, verbose=0)
