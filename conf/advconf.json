@@ -3261,27 +3261,21 @@
             "hit": 3
         }
     },
-    "Megaman": {
+    "Mega_Man": {
         "c": {
             "att": 472,
             "ele": "flame",
-            "wt": "megaman",
+            "wt": "wand",
             "stars": "5",
             "lv2_autos": 0
         },
         "s1": {
             "startup": 0.1,
-            "recovery": 0.75,
-            "dmg": 0.0,
-            "sp": 1,
-            "hit": 0
+            "recovery": 0.75
         },
         "s2": {
             "startup": 0.1,
-            "recovery": 0.75,
-            "dmg": 0.0,
-            "sp": 1,
-            "hit": 0
+            "recovery": 0.75
         }
     },
     "Durant": {

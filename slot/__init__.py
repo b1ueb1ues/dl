@@ -248,19 +248,6 @@ class Slots(object):
         # return tmp.c.att*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + tmp.a.att
         return (tmp.c.att+100)*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + (tmp.a.att+200)
 
-    def _att(this, forte=None):
-        a = this.att(forte)
-        dm = this.tmp.d.mod
-        md = 0
-        if type(dm) == list:
-            for i in dm:
-                if i[0] == 'att':
-                    md += i[2]
-        elif type(dm) == tuple:
-            if dm[0] == 'att':
-                md += dm[2]
-        return a+a*md
-
 import slot.d as d
 import slot.w as w
 import slot.a as a

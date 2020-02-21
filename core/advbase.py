@@ -444,7 +444,7 @@ class Skill(object):
         pass
 
     def charge(this,sp):
-        this.charged += sp   
+        this.charged = min(this.sp, this.charged + sp)
         if this.charged >= this.sp:
             this.skill_charged()
         #if this.charged > this.sp:  # should be 
@@ -1372,7 +1372,6 @@ class Adv(object):
         this.slot_backdoor()
         #print this.slots
         this.base_att = int(this.slots.att(globalconf.forte))
-        this.displayed_att = int(this.slots._att(globalconf.forte))
         this.slots.oninit(this)
 
         this.prerun()
@@ -1388,6 +1387,7 @@ class Adv(object):
             from core.acl import do_act
             this._acl = do_act
 
+        this.displayed_att = this.base_att * this.mod('att')
 
         if type(this.conf.rotation) == list:
             for i in this.conf.rotation:

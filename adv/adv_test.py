@@ -79,8 +79,6 @@ def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, 
     global real_duration
     global sim_times
     global ex_str
-    global line
-    global line_k
 
     if duration:
         sim_duration = duration
