@@ -130,8 +130,8 @@ class HDT2_Darkbinder(WeaponBase):
     } # Binding Darkness
     a = []
 
-class Chimeratech_Archmage(WeaponBase):
-    ele = ['flame']
+class Chimeratech_Wand(WeaponBase):
+    ele = ['flame', 'shadow']
     wt = 'wand'
     att = 1001
     s3 = {} #

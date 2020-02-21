@@ -129,8 +129,8 @@ class HDT2_Hellish_Prophecy(WeaponBase):
     } # Prophecy's Immaculate Guidance
     a = []
 
-class Chimeratech_Sniper(WeaponBase):
-    ele = ['flame']
+class Chimeratech_Bow(WeaponBase):
+    ele = ['flame', 'shadow']
     wt = 'bow'
     att = 961
     s3 = {} #

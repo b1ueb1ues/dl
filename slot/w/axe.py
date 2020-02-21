@@ -131,8 +131,8 @@ class HDT2_Shadowy_Darkbite_Axe(WeaponBase):
     } # Shadowy Darkbite's Curse
     a = []
 
-class Chimeratech_Warlord(WeaponBase):
-    ele = ['flame']
+class Chimeratech_Axe(WeaponBase):
+    ele = ['flame', 'shadow']
     wt = 'axe'
     att = 1051
     s3 = {} #
