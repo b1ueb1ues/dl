@@ -140,6 +140,7 @@ class Mega_Man(Adv):
 
     def init(self):
         self.conf += Conf(megaman_conf)
+        del self.slots.c.ex['wand']
 
     def prerun(self):
         self.s1 = Skill_Ammo('s1', self.conf.s1)

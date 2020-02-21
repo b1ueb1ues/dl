@@ -269,7 +269,7 @@ function loadAdvSlots() {
                 } else if (adv_name == 'g_euden') {
                     $('#ex-geuden').prop('checked', true);
                     $('#ex-geuden').prop('disabled', true);
-                } else {
+                } else if (adv_name != 'megaman') {
                     $('#ex-' + slots.adv.wt).prop('checked', true);
                     $('#ex-' + slots.adv.wt).prop('disabled', true);
                 }
