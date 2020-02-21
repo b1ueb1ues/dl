@@ -45,10 +45,6 @@ conf = {
     'x1fs.startup': 133 / 60.0, # 9 delay + fs
     'x2fs.startup': 130 / 60.0, # 6 delay + fs
 
-    'dfs.dmg': 0.61, # represents 1 hit fs from early dodge
-    'dfs.startup': 66 / 60.0,
-    'dfs.hit': 1,
-
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
 
@@ -65,7 +61,7 @@ conf = {
         'x3': 0,
         'x4': 0,
         'x5': 0,
-    }, 
+    },
 }
 
 lv2 = {
