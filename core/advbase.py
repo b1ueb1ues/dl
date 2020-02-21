@@ -1387,7 +1387,7 @@ class Adv(object):
             from core.acl import do_act
             this._acl = do_act
 
-        this.displayed_att = this.base_att * this.mod('att')
+        this.displayed_att = int(this.base_att * this.mod('att'))
 
         if type(this.conf.rotation) == list:
             for i in this.conf.rotation:

@@ -5,3 +5,4 @@ addis.py
 ezelith.py
 sazanka.py
 natalie.py
+megaman.py
