@@ -12,7 +12,7 @@ class Yuya(Adv):
         `fs, seq=4
         """
 
-    a3 = ('primed_crit_chance',(0.5,5))
+    a3 = ('primed_crit_chance', 0.5,5)
 
     def prerun(this):
         if this.condition('hp60'):

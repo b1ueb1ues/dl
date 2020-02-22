@@ -19,7 +19,7 @@ class Halloween_Odetta(Adv):
         `fs, seq=2
         """
 
-    a1 = ('primed_def', 0.10)
+    a1 = ('primed_defense', 0.10)
     a3 = ('bt',0.2)
 
     def init(this):

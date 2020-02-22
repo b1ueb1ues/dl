@@ -6,6 +6,7 @@ def module():
 
 class Orion(Adv):
     a1 = ('cc',0.10,'hit15')
+    a3 = ('prep', 0.50)
     conf = {}
     conf['acl'] = """
     `s1, x=5
@@ -13,9 +14,6 @@ class Orion(Adv):
     `s3, seq=4 and cancel or fsc
     `fs, seq=4 and s1.charged <= s1.sp - 288
     """
-
-    def prerun(this):
-        this.charge_p('prep','50%')
 
 
 if __name__ == '__main__':

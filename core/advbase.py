@@ -22,12 +22,13 @@ class Modifier(object):
     mod_type = '_nop' or 'att' or 'x' or 'fs' or 's' #....
     mod_order = '_nop' or 'passive' or 'ex' or 'buff' # chance dmg for crit
     mod_value = 0
-    def __init__(this, name, mtype, order, value, condition=None):
+    def __init__(this, name, mtype, order, value, condition=None, get=None):
         this.mod_name = name
         this.mod_type = mtype
         this.mod_order = order
         this.mod_value = value
         this.mod_condition = condition
+        this.mod_get = get
         this.__active = 0
         this.on()
         #this._static.all_modifiers.append(this)
@@ -50,15 +51,19 @@ class Modifier(object):
         return ret
 
     def get(this):
+        if callable(this.mod_get) and not this.mod_get():
+            return 0
         return this.mod_value
-
 
     def on(this, modifier=None):
         if this.__active == 1:
             return this
         if modifier == None:
             modifier = this
-        if modifier.mod_condition:
+        # if modifier.mod_condition:
+        #     if not m_condition.on(modifier.mod_condition):
+        #         return this
+        if modifier.mod_condition is not None:
             if not m_condition.on(modifier.mod_condition):
                 return this
 
@@ -240,6 +245,9 @@ class Buff(object):
         value, stack = this.valuestack()
         if stack > 1:
             log('buff', this.name, '%s: %.2f'%(this.mod_type, value), this.name+' buff stack <%d>'%stack)
+
+        if this.mod_type == 'defense':
+            Event('defchain').on()
 
         this.modifier.on()
         return this
@@ -1478,15 +1486,13 @@ class Adv(object):
 
 
     def charge_p(this, name, sp):
-        if type(sp) == str and sp[-1] == '%':
-            percent = int(sp[:-1])
-            this.s1.charge(this.ceiling(this.conf.s1.sp*percent/100))
-            this.s2.charge(this.ceiling(this.conf.s2.sp*percent/100))
-            this.s3.charge(this.ceiling(this.conf.s3.sp*percent/100))
-            log('sp', name, '%d%%   '%percent,'%d/%d, %d/%d, %d/%d'%(\
-                this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
-            this.think_pin('prep')
-            return
+        percent = sp
+        this.s1.charge(this.ceiling(this.conf.s1.sp*percent))
+        this.s2.charge(this.ceiling(this.conf.s2.sp*percent))
+        this.s3.charge(this.ceiling(this.conf.s3.sp*percent))
+        log('sp', name, '{:.0f}%   '.format(percent*100),'%d/%d, %d/%d, %d/%d'%(\
+            this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
+        this.think_pin('prep')
 
     def charge(this, name, sp):
         # sp should be integer

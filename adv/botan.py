@@ -9,7 +9,7 @@ def module():
 
 class Botan(Adv):
 #    comment = "RR+Jewels"
-    a3 = ('prep_charge','5%')
+    a3 = ('prep_charge',0.05)
     conf = {}
     conf['slots.a'] = RR() + BN()
     conf['slots.d'] = Shinobi()

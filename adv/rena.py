@@ -9,11 +9,11 @@ def module():
     return Rena
 
 class Rena(Adv):
-    a1 = ('primed_def',0.08)
+    a1 = ('primed_defense',0.08)
 
     conf = {}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+EE()
+    conf['slot.a'] = RR()+Felyne_Hospitality()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1

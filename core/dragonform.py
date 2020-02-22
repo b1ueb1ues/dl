@@ -37,7 +37,7 @@ class DragonForm(Action):
             self.off_ele_mod.off()
 
         self.dragon_gauge = 0
-        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(self.conf.gauge_iv)
+        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
 
     def auto_gauge(self, t):
         self.charge_gauge(self.conf.gauge_val)

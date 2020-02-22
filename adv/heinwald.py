@@ -8,7 +8,7 @@ def module():
 
 class Heinwald(Adv):
     a1 = ('s',0.4,'hp70')
-    a3 = ('prep_charge','5%')
+    a3 = ('prep_charge',0.05)
 
     conf = {}
     conf['acl'] = """

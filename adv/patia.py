@@ -8,7 +8,7 @@ def module():
 
 class Patia(Adv):
     a1 = ('bt',0.35)
-    a3 = ('primed_crit_chance',(0.10,5))
+    a3 = ('primed_crit_chance', 0.10, 5)
 
     conf = {}
     conf['slots.a'] = VC()+Jewels_of_the_Sun()
@@ -23,7 +23,7 @@ class Patia(Adv):
         this.bleed = Bleed("g_bleed",0).reset()
 
     def s1_proc(this, e):
-        Event('defchain')()
+        Teambuff('s1', 0.25, 15, 'defense').on()
         #Teambuff('s1',0.10,9.375).on()
 
     def s2_proc(this, e):

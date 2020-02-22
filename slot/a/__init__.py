@@ -31,6 +31,8 @@ class Amulet(AmuletBase):
                 #'k_paralysis'      : 0.3,    # afflic killer
                 'dra'    : 0.18, # dragon damage
                 'drt'    : 0.20, # dragon time
+
+                'eprep'  : 5, # energy prep
                 }
 
 
@@ -68,7 +70,7 @@ class Amulet(AmuletBase):
             this.a = {}
 
         for i in this.tmp:
-            if len(i)==2 or (len(i)==3 and i[2]==None):
+            if len(i)==2 or (len(i)==3 and not isinstance(i[2], str)):
                 k = i[0]
                 if k not in this.mmax:
                     this.merge(this.a, i)
@@ -81,7 +83,7 @@ class Amulet(AmuletBase):
                         this.merge(this.a, i)
                         this.mmax[k] = 0
         for i in this.tmp:
-            if len(i)==3 and i[2]!=None:
+            if len(i)==3 and isinstance(i[2], str):
                 k = i[0]
                 if k not in this.mmax:
                     this.merge_cond(this.a, i)

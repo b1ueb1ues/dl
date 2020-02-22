@@ -10,7 +10,7 @@ def module():
 
 class Noelle(Adv):
     a1 = ('bt',0.25)
-    a3 = ('primed_def',0.08)
+    a3 = ('primed_defense',0.08)
 
     conf = {}
     conf['slots.d'] = Freyja()

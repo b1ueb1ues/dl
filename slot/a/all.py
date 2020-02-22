@@ -84,11 +84,7 @@ FRH = FirstRate_Hospitality
 
 class The_Bustling_Hut(Amulet):
     att = 50
-    a = [('bc',0.08)]
-    def on(this, c):
-        if c.ele == 'light':
-            a = [('bc',0.08),
-                 ('sp',0.07)]
+    a = [('bc',0.08), ('sp',0.07,'light')]
 
 
 class Jewels_of_the_Sun(Amulet):
@@ -127,12 +123,7 @@ FitF = Flower_in_the_Fray
 
 class The_Prince_of_Dragonyule(Amulet):
     att = 63
-    a = [('cd',0.20)]
-    def on(this, c):
-        if c.ele == 'water':
-            this.a = [('cd',0.20)]
-            this.a += [('cc',0.12,'hit15')]
-
+    a = [('cd',0.20), ('cc',0.12,'water_hit15')]
 
 class Evening_of_Luxury(Amulet):
     att = 65
@@ -185,11 +176,7 @@ class Saintly_Delivery(Amulet):
 
 class Luck_of_the_Draw(Amulet):
     att = 33
-    a = [('resist',25,'paralysis')]
-    def on(this, c):
-        if c.ele == 'shadow':
-            this.a = [('resist',25,'paralysis')]
-            this.a += [('bt',0.25)]
+    a = [('resist',25,'paralysis'), ('bt',0.25,'shadow')]
 
 
 class Lunar_Festivities(Amulet):
@@ -213,59 +200,31 @@ SS = Stellar_Show
 
 class Kung_Fu_Masters(Amulet):
     att = 64
-    a = [('s',0.20)]
-    def on(this, c):
-        if c.wt == 'axe':
-            this.a = [('s',0.20)]
-            this.a += [('cc',0.14)]
+    a = [('s',0.20), ('cc',0.14,'axe')]
 KFM = Kung_Fu_Masters
 
 
 class Forest_Bonds(Amulet):
     att = 64
-    a = [('sp',0.12,'fs')]
-    def on(this, c):
-        if c.wt == 'bow':
-            this.a = [('sp',0.12,'fs')]
-            this.a += [('s',0.40)]
+    a = [('sp',0.12,'fs'), ('s',0.40,'bow')]
 FB = Forest_Bonds
 
 
 class Dragon_and_Tamer(Amulet):
     att = 57
-    def on(this, c):
-        if c.wt == 'lance':
-            this.a = [('s',0.40)]
+    a = [('s',0.40, 'lance')]
 DnT = Dragon_and_Tamer
 
 
 class Twinfold_Bonds(Amulet):
     att = 65
-    a = [('a',0.15,'hit15')]
-    def on(this, c):
-        if c.wt == 'dagger':
-            this.a = [('s',0.40)]
-            this.a += [('a',0.15,'hit15')]
+    a = [('a',0.15,'hit15'), ('s',0.40,'dagger')]
 TB = Twinfold_Bonds
 
 
 class Summer_Paladyns(Amulet):
     att = 64
-    def on(this, c):
-        if c.wt == 'axe':
-            this.a = [('s',0.40)]
-
-    def dc_energy(this, e):
-        e = this.adv.Event('add_energy')
-        e.name = 'self'
-        e()
-
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        this.adv = adv
-        from module import energy
-        energy.Energy(adv, {}, {})
-        adv.Listener('defchain',this.dc_energy)
+    a = [('s',0.40, 'axe'), ('bc_energy', 1)]
 
 
 class The_Shining_Overlord(Amulet):
@@ -279,47 +238,19 @@ TSO = The_Shining_Overlord
 
 class Halidom_Grooms(Amulet):
     att = 50
-    a = [('bt',0.2)]
-
-    def dc_energy(this, e):
-        e = this.adv.Event('add_energy')
-        e.name = 'self'
-        e()
-
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        this.adv = adv
-        from module import energy
-        energy.Energy(adv, {}, {})
-        adv.Listener('defchain',this.dc_energy)
+    a = [('bt',0.2), ('bc_energy', 1)]
 HG = Halidom_Grooms
 
 
 class Beach_Battle(Amulet):
     att = 50
-    a = [('bt',0.2)]
-    def on(this, c):
-        if c.ele == 'water':
-            this.a = [('bt',0.2), ('sp',0.07)]
+    a = [('bt',0.2), ('sp',0.07,'water')]
 BB = Beach_Battle
 
 
 class The_Petal_Queen(Amulet):
     att = 53
-
-    def startup(this, t):
-        e = this.adv.Event('add_energy')
-        e.name = 'self'
-        e()
-        e()
-        e()
-        e()
-        e()
-
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        this.adv = adv
-        adv.Timer(this.startup).on()
+    a = [('eprep', 5)]
 
 
 class Hanetsuki_Rally(Amulet):
@@ -330,29 +261,13 @@ HR = Hanetsuki_Rally
 
 class Indelible_Summer(Amulet):
     att = 52
-    def on(this, c):
-        if c.ele == 'water':
-            this.a = [('sp',0.09)]
+    a = [('sp',0.09,'water')]
 IS = Indelible_Summer
 
 
 class Sisters_Day_Out(Amulet):
     att = 64
-    a = [('fs',0.40)]
-    def fs_proc(this, e):
-        this.o_fs_proc(e)
-        if this.adv.fs_prep_c > 0:
-            diff = this.adv.fs_prep_c - max(this.adv.fs_prep_c-this.adv.conf.fs.hit, 0)
-            for _ in range(diff):
-                this.adv.charge_p('fs_charge','25%')
-            this.adv.fs_prep_c = this.adv.fs_prep_c - diff
-
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        this.adv = adv
-        this.adv.fs_prep_c = 3
-        this.o_fs_proc = adv.fs_proc
-        adv.fs_proc = this.fs_proc
+    a = [('fs',0.40), ('fsprep', 3, 0.25)]
 SDO = Sisters_Day_Out
 
 
@@ -368,39 +283,20 @@ BN = Beautiful_Nothingness
 
 class Castle_Cheer_Corps(Amulet):
     att = 64
-    a = [('sp',0.06)]
-    def fs_proc(this, e):
-        this.o_fs_proc(e)
-        if this.adv.fs_prep_c > 0:
-            diff = this.adv.fs_prep_c - max(this.adv.fs_prep_c-this.adv.conf.fs.hit, 0)
-            for _ in range(diff):
-                this.adv.charge_p('fs_charge','25%')
-            this.adv.fs_prep_c = this.adv.fs_prep_c - diff
-
-    def oninit(this, adv):
-        Amulet.oninit(this, adv)
-        this.adv = adv
-        this.adv.fs_prep_c = 3
-        this.o_fs_proc = adv.fs_proc
-        adv.fs_proc = this.fs_proc
+    a = [('sp',0.06), ('fsprep', 3, 0.25)]
 CCC = Castle_Cheer_Corps
 
 class Honest_Repose(Amulet):
     att = 53
-    def on(this, c):
-        if c.ele == 'flame':
-            this.a = [('sp', 10)]
+    a = [('sp', 10, 'flame')]
+
 
 class High_Dragon_WP(Amulet):
     att = 39
 
 class Candy_Couriers(Amulet):
     att = 65
-    a = [('bk',0.25)]
-    def on(this, c):
-        if c.wt == 'wand':
-            this.a = [('bk',0.25), ('s',0.40)]
-
+    a = [('bk',0.25), ('s',0.40,'wand')]
 
 class Candy_Couriers(Amulet):
     att = 65
@@ -419,25 +315,16 @@ FWHC = From_Whence_He_Comes
 
 class Dear_Diary(Amulet):
     att = 65
-    a = [('ro', 0.10)]
-    def on(this, c):
-        if c.wt == 'bow':
-            this.a = [('ro', 0.10), ('cc',0.14)]
+    a = [('ro', 0.10), ('cc',0.14,'bow')]
 DD = Dear_Diary
 
 class Dear_Diary_Fast_RO(Amulet):
     att = 65
-    a = [('ro', (0.1, 30))]
-    def on(this, c):
-        if c.wt == 'bow':
-            this.a = [('ro', (0.1, 30)), ('cc',0.14)]
+    a = [('ro', 0.1, 30), ('cc',0.14,'bow')]
 
 class Dear_Diary_Slow_RO(Amulet):
     att = 65
-    a = [('ro', (0.1, 180))]
-    def on(this, c):
-        if c.wt == 'bow':
-            this.a = [('ro', (0.1, 180)), ('cc',0.14)]
+    a = [('ro', 0.1, 180), ('cc',0.14,'bow')]
 
 class Odd_Sparrows(Amulet):
     att = 51
@@ -464,11 +351,7 @@ class Wily_Warriors_Air_and_Crash(Amulet):
 
 class Howling_to_the_Heavens(Amulet):
     att = 65
-    a = [('cd',0.20)]
-    def on(this, c):
-        if c.ele == 'shadow':
-            this.a = [('cd',0.20)]
-            this.a += [('cc',0.12,'hit15')]
+    a = [('cd',0.20), ('cc',0.12,'shadow_hit15')]
 HttH = Howling_to_the_Heavens
 
 class Spirit_of_the_Season(Amulet):
@@ -493,10 +376,7 @@ ANYB = A_New_Years_Battle
 
 class A_Game_of_Cat_and_Boar(Amulet):
     att = 33
-    a = []
-    def on(self, c):
-        if c.ele == 'light':
-            self.a = [('bt', 0.25)]
+    a = [('bt', 0.25,'light')]
 AGoCaB = A_Game_of_Cat_and_Boar
 
 class The_Plaguebringer(Amulet):
@@ -506,9 +386,7 @@ TP = The_Plaguebringer
 
 class A_Dogs_Day(Amulet):
     att = 62
-    def on(this, c):
-        if c.ele == 'wind':
-            this.a = [('bt',0.25), ('sp',0.1)]
+    a = [('bt',0.25,'wind'), ('sp',0.1,'wind')]
 ADD = A_Dogs_Day
 
 class The_Bridal_Dragon(Amulet):
@@ -518,7 +396,7 @@ TBD = The_Bridal_Dragon
 
 class A_Suit_of_Midnight(Amulet):
     att = 52
-    a = [('dp',10), ('afflict_guard', 3)]
+    a = [('dp',10), ('ag', 3)]
 
 class Primal_Crisis(Amulet):
     att = 55

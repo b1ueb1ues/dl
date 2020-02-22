@@ -1,6 +1,6 @@
 import adv.adv_test
 from core.advbase import *
-from slot.a.all import The_Bridal_Dragon, From_Whence_He_Comes
+from slot.a.all import The_Bridal_Dragon, From_Whence_He_Comes, Castle_Cheer_Corps
 from slot.d import PopStar_Siren
 
 def module():
@@ -8,20 +8,28 @@ def module():
 
 class Halloween_Lowen(Adv):
     comment = 'hlowen dps <= burn DoT'
+    a1 = ('fsprep', 3)
     a3 = ('prep','75%')
 
     conf = {}
-    conf['slots.a'] = The_Bridal_Dragon()+From_Whence_He_Comes()
+    conf['slots.a'] = From_Whence_He_Comes()+Castle_Cheer_Corps()
     conf['slots.d'] = PopStar_Siren()
+    # conf['acl'] = """
+    #     `s3, not this.s3_buff_on
+    #     `s1, x=5
+    #     `s2, pin='prep' or x=5 and this.hp_stack < 3
+    #     `fs, s=3 and this.fs_prep_c > 0
+    # """
+
     conf['acl'] = """
-        `s3, not this.s3_buff_on
-        `s1, x=5
-        `s2, pin='prep' or x=5 and this.hp_stack < 3
-        `fs, s=3 and this.o_fs_prep_c > 0
+        `s1
+        `s2
+        `s3
+        `fs, x=5
     """
 
+
     def init(this):
-        this.o_fs_prep_c = 3
         this.hp_stack = 0
         # this.doublebuff = this.condition('doublebuff 3 other')
     
@@ -34,14 +42,6 @@ class Halloween_Lowen(Adv):
         if this.hp_stack < 3:
             this.hp_stack += 1
         log('debug', 'HP {}0%'.format(this.hp_stack))
-
-    def fs_proc(this, e):
-        fs_hits = {'sword': 1, 'blade': 1, 'dagger': 3, 'axe': 1, 'lance': 5, 'wand': 2, 'bow': 8, 'staff': 4}
-        if this.o_fs_prep_c > 0:
-            diff = this.o_fs_prep_c - max(this.o_fs_prep_c-fs_hits[this.slots.c.wt], 0)
-            for _ in range(diff):
-                this.charge_p('fs_charge','25%')
-            this.o_fs_prep_c = this.o_fs_prep_c - diff
 
 if __name__ == '__main__':
     conf = {}

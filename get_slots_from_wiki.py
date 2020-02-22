@@ -57,7 +57,7 @@ def parse_abilities(ability_data):
         'Critical Rate': 'cc',
         'Critical Damage': 'cd',
         'Primed Strength': 'primed_att',
-        'Primed Defense': 'primed_def',
+        'Primed Defense': 'primed_defense',
         'Primed Devastation': 'primed_crit_chance',
         'Strength': 'a',
         'Force Strike': 'fs',

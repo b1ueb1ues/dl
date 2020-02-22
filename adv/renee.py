@@ -7,7 +7,7 @@ def module():
     return Renee
 
 class Renee(Adv):
-    a1 = ('primed_crit_chance',(0.6,5))
+    a1 = ('primed_crit_chance', 0.6,5)
 
     conf = {}
     conf['acl'] = """

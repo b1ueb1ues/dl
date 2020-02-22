@@ -44,8 +44,7 @@ class Gala_Sarisse(Adv):
             Teambuff('s2str',0.20,10).on()
             this.s2stance = 1
         elif this.s2stance == 1:
-            Teambuff('s2def',0.20,15,'defup').on()
-            Event('defchain')()
+            Teambuff('s2def',0.20,15,'defense').on()
             this.s2stance = 0
 
 

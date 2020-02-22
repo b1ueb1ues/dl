@@ -35,19 +35,16 @@ class Summer_Celliera(Adv):
 
     def s2_proc(this, e):
         if this.s2_stance == 1:
-            Teambuff('s2def',0.0,10).on()
-            Event('defchain').on()
+            Teambuff('s2def',0.1,10,'defense').on()
             this.s2_stance = 2
         elif this.s2_stance == 2:
-            Teambuff('s2def',0.0,10).on()
+            Teambuff('s2def',0.1,10,'defense').on()
             Teambuff('s2atk',0.1,10).on()
-            Event('defchain').on()
             this.s2_stance = 3
         elif this.s2_stance == 3:
-            Teambuff('s2def',0.0,10).on()
+            Teambuff('s2def',0.1,10,'defense').on()
             Teambuff('s2atk',0.1,10).on()
             Spdbuff('s2spd',0.2,10,wide='team').on()
-            Event('defchain').on()
             this.s2_stance = 1
 
 

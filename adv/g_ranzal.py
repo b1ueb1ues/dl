@@ -121,10 +121,6 @@ class Gala_Ranzal(Adv):
         Event('defchain')()
 
 
-    def s3_proc(this, e):
-        Event('defchain')()
-
-
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)
