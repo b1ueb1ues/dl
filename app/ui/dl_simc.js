@@ -310,6 +310,30 @@ function loadAdvSlots() {
         }
     });
 }
+function buildConditionList(conditions) {
+    const conditionDiv = $('#input-conditions');
+    conditionDiv.empty();
+    for (cond in conditions) {
+        const newCondCheck = $('<div></div>').attr({ class: 'custom-control custom-checkbox custom-control-inline' });
+        const newCondCheckInput = $('<input/>').attr({ id: 'input-cond-' + cond, type: 'checkbox', class: 'custom-control-input' }).prop('checked', conditions[cond]).data('cond', cond);
+        const newCondCheckLabel = $('<label>' + cond + '</label>').attr({ for: 'input-cond-' + cond, class: 'custom-control-label' });
+        newCondCheck.append(newCondCheckInput);
+        newCondCheck.append(newCondCheckLabel);
+        conditionDiv.append(newCondCheck);
+    }
+}
+function readConditionList() {
+    let conditions = {};
+    const condCheckList = $('#input-conditions  > div > input[type="checkbox"]');
+    if (condCheckList.length === 0) {
+        return null;
+    } else {
+        condCheckList.each(function (idx, condCheck) {
+            conditions[$(condCheck).data('cond')] = $(condCheck).prop('checked');
+        });
+        return conditions;
+    }
+}
 function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
@@ -360,6 +384,10 @@ function runAdvTest() {
     if (!isNaN(parseInt($('#input-sim-buff-def').val()))) {
         requestJson['sim_buff_def'] = $('#input-sim-buff-def').val();
     }
+    const condition = readConditionList();
+    if (condition !== null) {
+        requestJson['condition'] = condition;
+    }
     $.ajax({
         url: APP_URL + 'simc_adv_test',
         dataType: 'text',
@@ -372,6 +400,7 @@ function runAdvTest() {
                 if (res.hasOwnProperty('error')) {
                     $('#test-error').html('Error: ' + res.error);
                 } else {
+                    buildConditionList(res.condition);
                     const result = res.test_output.split('\n');
                     const cond_true = result[1].split(',');
                     const name = substitute_prefix(cond_true[1], 'adv');
@@ -454,6 +483,7 @@ function clearResults() {
     $('#input-sim-afflict-time').prop('disabled', true);
     $('#input-sim-buff-str').val('');
     $('#input-sim-buff-def').val('');
+    $('#input-conditions').empty();
 }
 function weaponSelectChange() {
     const weapon = $('#input-wep').val();

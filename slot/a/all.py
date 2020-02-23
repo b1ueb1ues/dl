@@ -359,10 +359,6 @@ class Spirit_of_the_Season(Amulet):
     a = [('a',0.15,'hp100'),('k_paralysis',0.2)]
 SotS = Spirit_of_the_Season
 
-class Spirit_of_the_Season_No_HP100(Amulet):
-    att = 65
-    a = [('k_paralysis',0.2)]
-
 class The_Wyrmclan_Duo(Amulet):
     att = 65
     a = [('s',0.30),
@@ -427,10 +423,6 @@ class An_Ancient_Oath(Amulet):
 class The_Fires_of_Hate(Amulet):
     att = 65
     a = [('k_poison', 0.2), ('a', 0.15, 'hp100')]
-
-class The_Fires_of_Hate_No_HP100(Amulet):
-    att = 65
-    a = [('k_poison',0.2)]
 
 amulets = []
 for k in list(globals()):

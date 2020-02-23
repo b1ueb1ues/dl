@@ -81,6 +81,14 @@
             margin: 0;
         }
 
+        .custom-control-input:checked~.custom-control-label::before {
+            border-color: #ced4da;
+        }
+
+        .custom-checkbox .custom-control-input:disabled:checked~.custom-control-label::before {
+            background-color: #ced4da;
+        }
+
         .test-result-slot-grid {
             display: inline-grid;
             grid-template-columns: auto auto;
@@ -135,34 +143,35 @@
             </div>
             <div class="form-row">
                 <div class="col">
-                    <label class="coab-label">Co-Abilities:&nbsp;</label>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-blade" class="form-check-input" type="checkbox" />
-                        <label for="ex-blade" class="form-check-label" title="×10% Strength">Blade</label>
+                    <label class="coab-label">Co-Abilities:</label>
+                    &nbsp;
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-blade" class="custom-control-input" type="checkbox" />
+                        <label for="ex-blade" class="custom-control-label" title="×10% Strength">Blade</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-wand" class="form-check-input" type="checkbox" />
-                        <label for="ex-wand" class="form-check-label" title="×15% Skill Damage">Wand</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-wand" class="custom-control-input" type="checkbox" />
+                        <label for="ex-wand" class="custom-control-label" title="×15% Skill Damage">Wand</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-dagger" class="form-check-input" type="checkbox" />
-                        <label for="ex-dagger" class="form-check-label" title="+10% Crit Rate">Dagger</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-dagger" class="custom-control-input" type="checkbox" />
+                        <label for="ex-dagger" class="custom-control-label" title="+10% Crit Rate">Dagger</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-bow" class="form-check-input" type="checkbox" />
-                        <label for="ex-bow" class="form-check-label" title="+15% Skill Haste">Bow</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-bow" class="custom-control-input" type="checkbox" />
+                        <label for="ex-bow" class="custom-control-label" title="+15% Skill Haste">Bow</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-axe2" class="form-check-input" type="checkbox" />
-                        <label for="ex-axe2" class="form-check-label" title="+30% Crit Damage">Axe(CD)</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-axe2" class="custom-control-input" type="checkbox" />
+                        <label for="ex-axe2" class="custom-control-label" title="+30% Crit Damage">Axe(CD)</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-sword" class="form-check-input" type="checkbox" />
-                        <label for="ex-sword" class="form-check-label" title="+15% Dragon Haste">Sword</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-sword" class="custom-control-input" type="checkbox" />
+                        <label for="ex-sword" class="custom-control-label" title="+15% Dragon Haste">Sword</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input id="ex-geuden" class="form-check-input" type="checkbox" />
-                        <label for="ex-geuden" class="form-check-label" title="+10% Dragon Damage, +20% Dragon Time">GEuden</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="ex-geuden" class="custom-control-input" type="checkbox" />
+                        <label for="ex-geuden" class="custom-control-label" title="+10% Dragon Damage, +20% Dragon Time">GEuden</label>
                     </div>
                 </div>
             </div>
@@ -182,26 +191,36 @@
                 <div class="col-sm-9">
                     <label for="input-acl">ACL</label>
                     &nbsp;
-                    <div class="form-check form-check-inline">
-                        <input id="input-edit-acl" class="form-check-input" type="checkbox" />
-                        <label for="input-edit-acl" class="form-check-label">Edit</label>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="input-edit-acl" class="custom-control-input" type="checkbox" />
+                        <label for="input-edit-acl" class="custom-control-label">Edit</label>
                     </div>
                     <textarea id="input-acl" class="form-control" disabled></textarea>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row collapse" id="advanced-inputs">
                 <div class="col">
-                    <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
-                    <button type="button" id="display-mode" class="btn btn-secondary"></button>
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#damageLogBox">Log</button>
-                    <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
-                    <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#aboutBox">About</button>
-                    <a href="https://notte.moe/a-quick-guide-to-dragalia-dps-simulator/">
-                        <button type="button" class="btn btn-dark">Usage Guide</button>
-                    </a>
+                    <label class="condition-label">Conditions</label>
+                    <div id="input-conditions"></div>
                 </div>
             </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
+                <button type="button" id="toggle-advanced" class="btn btn-info" data-toggle="collapse" data-target="#advanced-inputs" aria-expanded="false" aria-controls="advanced-inputs">
+                    Conditions
+                </button>
+                <button type="button" id="display-mode" class="btn btn-secondary"></button>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#damageLogBox">Log</button>
+                <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
+                <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#aboutBox">About</button>
+                <a href="https://notte.moe/a-quick-guide-to-dragalia-dps-simulator/">
+                    <button type="button" class="btn btn-dark">Usage Guide</button>
+                </a>
+            </div>
+        </div>
         </div>
         <div class="modal fade" id="aboutBox" tabindex="-1" role="dialog" aria-labelledby="aboutTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">

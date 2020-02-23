@@ -125,7 +125,7 @@ def set_log_res(result, r, suffix=''):
     result['logs' + suffix] = r['logs']
     return result
 
-def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=None, conf=None, teamdps=None, t=180, log=-2, mass=0):
+def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
     adv.adv_test.set_ex(ex)
     adv_module = get_adv_module(adv_name)
     def slot_injection(this):
@@ -154,7 +154,7 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=
     r = None
     try:
         with redirect_stdout(f):
-            r = adv.adv_test.test(adv_module, conf, verbose=log, duration=t, mass=mass)
+            r = adv.adv_test.test(adv_module, conf, cond=cond, verbose=log, duration=t, mass=mass)
     except Exception as e:
         result['error'] = str(e)
         return result
@@ -175,15 +175,16 @@ def simc_adv_test():
     if not request.method == 'POST':
         return 'Wrong request method.'
     params = request.get_json(silent=True)
-    adv_name = params['adv'].lower() if 'adv' in params else 'euden'
+    adv_name = 'euden' if not 'adv' in params else params['adv'].lower()
     wp1 = params['wp1'] if 'wp1' in params else None
     wp2 = params['wp2'] if 'wp2' in params else None
     dra = params['dra'] if 'dra' in params else None
     wep = params['wep'] if 'wep' in params else None
     ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
-    teamdps = abs(float(params['teamdps'])) if 'teamdps' in params else None
-    t   = abs(int(params['t']) if 't' in params else 180)
+    cond = params['condition'] if 'condition' in params and params['condition'] != {} else None
+    teamdps = None if not 'teamdps' in params else abs(float(params['teamdps']))
+    t   = 180 if not 't' in params else abs(int(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
     print(params)
@@ -217,7 +218,7 @@ def simc_adv_test():
     except:
         pass
 
-    result = run_adv_test(adv_name, wp1, wp2, dra, wep, ex, acl, conf, teamdps, t=t, log=log, mass=mass)
+    result = run_adv_test(adv_name, wp1, wp2, dra, wep, ex, acl, conf, cond, teamdps, t=t, log=log, mass=mass)
     return jsonify(result)
 
 @app.route('/simc_adv_slotlist', methods=['GET', 'POST'])
@@ -236,7 +237,6 @@ def get_adv_slotlist():
     weap_module = slot.w
     if result['adv']['name'] is not None:
         adv_instance = get_adv_module(result['adv']['name'])()
-        adv_instance.run(1)
         adv_ele = adv_instance.slots.c.ele.lower()
         result['adv']['ele'] = adv_ele
         dragon_module = getattr(slot.d, adv_ele)
@@ -248,7 +248,6 @@ def get_adv_slotlist():
             'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
-        result['adv']['condition'] = dict(adv_instance.condition)
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res

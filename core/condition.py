@@ -17,5 +17,8 @@ class Condition(dict):
             self[key] = cond
         return self[key] and self.global_cond
 
+    def exist(self):
+        return any(self.values()) and self.global_cond
+
     def __call__(self, key, cond=True):
         return self.cond_set(key, cond)

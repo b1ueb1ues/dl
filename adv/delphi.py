@@ -23,10 +23,7 @@ class Delphi(Adv):
     def prerun(this):
         this.flurry_poison = 70
         
-        if this.condition('s1 defdown for 10s'):
-            this.s1defdown = 1
-        else:
-            this.s1defdown = 0
+        this.s1defdown = this.condition('s1 defdown for 10s')
 
         if this.condition('reflect 500 damage on every s2'):
             this.s2reflect = 500
@@ -42,7 +39,8 @@ class Delphi(Adv):
         log('sp','s1autocharge')
 
     def s1_proc(this, e):
-        Debuff('s1defdown',0.20,10,1).on()
+        if this.s1defdown:
+            Debuff('s1defdown',0.20,10,1).on()
         this.s1fscharge = 1
     
     def s2_proc(this, e):

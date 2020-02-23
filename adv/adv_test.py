@@ -158,11 +158,12 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
     amulets += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
     #comment = amulets + comment
 
-    if cond != False:
+    if adv.condition.exist():
         r['condition'] = dict(adv.condition)
         condition = adv.condition.cond_str()
         g_condition = condition
     else:
+        r['condition'] = None
         condition = ''
 
     displayed_str = adv.displayed_att
@@ -260,7 +261,7 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
             for ex in ('_', 'k', 'r', 'kr'):
                 print('\n'.join(lines[ex]))
 
-    if condition != '' and cond is None:
+    if adv.condition.exist():
         r2 = test(classname, conf, verbose, mass, duration, False, lines=lines)
         g_condition = ''
         r['no_cond'] = r2
