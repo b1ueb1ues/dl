@@ -44,9 +44,9 @@ class Delphi(Adv):
     def s1_proc(this, e):
         Debuff('s1defdown',0.20,10,1).on()
         this.s1fscharge = 1
-        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
     
     def s2_proc(this, e):
+        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
         this.afflics.poison('s2',120+this.flurry_poison*(this.hits>=15),3.00,27)
 
     def fs_proc(this, e):

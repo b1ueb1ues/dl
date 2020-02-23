@@ -10,10 +10,7 @@ class Zace(Adv):
     a1 = ('s',0.2)
     # a1 = ('prep_charge', 0.05)
     conf = {}
-    conf['slot.a'] = RR()+Sisters_Day_Out()
-    conf['slot.d'] = Marishiten()
     conf['acl'] = """
-        `dragon
         `s1
         `s2
         `s3

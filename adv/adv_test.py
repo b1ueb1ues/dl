@@ -8,7 +8,7 @@ import csv
 from contextlib import redirect_stdout
 
 #import random
-from core import condition as m_condition
+from core.condition import Condition
 import multiprocessing
 
 page = ''
@@ -66,7 +66,7 @@ real_duration = 0
 dmax = 0
 dmin = 0
 
-def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, ex=None, lines=None, special=False):
+def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=None, lines=None, special=False):
     global team_dps
     global energy_efficiency
     global mname
@@ -141,17 +141,14 @@ def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, 
         return
 
     global ex_set
-    if not no_cond:
-        adv = classname(conf=conf,cond=1)
-    else:
-        adv = classname(conf=conf,cond=0)
+    adv = classname(conf=conf,cond=cond)
     adv.slots.c.ex.update(ex_set)
     real_duration = adv.run(sim_duration)
 
     if mass and loglevel <=0:
         if mass != 1:
             sim_times = mass
-        r, real_duration = do_mass_sim(classname, conf, 0 if no_cond else 1, ex_set, sim_duration)
+        r, real_duration = do_mass_sim(classname, conf, cond, ex_set, sim_duration)
     else:
         r = sum_dmg(real_duration)
     comment = adv.comment
@@ -161,8 +158,8 @@ def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, 
     amulets += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
     #comment = amulets + comment
 
-    if not no_cond:
-        condition = adv.m_condition.p()
+    if cond != False:
+        condition = adv.condition.cond_str()
         g_condition = condition
     else:
         condition = ''
@@ -258,12 +255,12 @@ def test(classname, conf, verbose=None, mass=None, duration=None, no_cond=None, 
         lines['k'].append(report(condition, r, mname, adv, amulets, special, ex_mod='k'))
         lines['r'].append(report(condition, r, mname, adv, amulets, special, ex_mod='r'))
         lines['kr'].append(report(condition, r, mname, adv, amulets, special, ex_mod='kr'))
-        if no_cond or condition == '':
+        if cond == False or condition == '':
             for ex in ('_', 'k', 'r', 'kr'):
                 print('\n'.join(lines[ex]))
 
-    if condition != '' and no_cond is None:
-        r2 = test(classname, conf, verbose, mass, duration, 1, lines=lines)
+    if condition != '' and cond is None:
+        r2 = test(classname, conf, verbose, mass, duration, False, lines=lines)
         g_condition = ''
         r['no_cond'] = r2
     elif g_condition != '':

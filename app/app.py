@@ -235,7 +235,8 @@ def get_adv_slotlist():
     dragon_module = slot.d
     weap_module = slot.w
     if result['adv']['name'] is not None:
-        adv_instance = get_adv_module(result['adv']['name'])(cond=1)
+        adv_instance = get_adv_module(result['adv']['name'])()
+        adv_instance.run(1)
         adv_ele = adv_instance.slots.c.ele.lower()
         result['adv']['ele'] = adv_ele
         dragon_module = getattr(slot.d, adv_ele)
@@ -247,6 +248,7 @@ def get_adv_slotlist():
             'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
+        result['adv']['conditions'] = dict(adv_instance.conditions)
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res

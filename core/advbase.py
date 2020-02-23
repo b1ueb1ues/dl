@@ -8,15 +8,19 @@ from core.log import *
 from core.afflic import *
 import core.acl
 import conf as globalconf
-import core.condition
 import slot
 import core.floatsingle as floatsingle
-m_condition = core.condition
+
+# import core.condition
+# m_condition = core.condition
+from core.condition import Condition
+
 conf = Conf()
 
 class Modifier(object):
     _static = Static({
         'all_modifiers': [],
+        'g_condition': None
         })
     mod_name = '<nop>'
     mod_type = '_nop' or 'att' or 'x' or 'fs' or 's' #....
@@ -64,7 +68,7 @@ class Modifier(object):
         #     if not m_condition.on(modifier.mod_condition):
         #         return this
         if modifier.mod_condition is not None:
-            if not m_condition.on(modifier.mod_condition):
+            if not this._static.g_condition(modifier.mod_condition):
                 return this
 
         this._static.all_modifiers.append(modifier)
@@ -920,6 +924,7 @@ class Adv(object):
         this.modifier = Modifier(0,0,0,0)
         this.all_modifiers = []
         this.modifier._static.all_modifiers = this.all_modifiers
+        this.modifier._static.g_condition = this.condition
 
         # set ex
         this.ex = this.slots.c.ex
@@ -1055,7 +1060,7 @@ class Adv(object):
         this.slots = this.cmnslots
         #print this.cmnslots
 
-    def __init__(this,conf={},cond=0):
+    def __init__(this,conf={},cond=None):
         if not this.name:
             this.name = this.__class__.__name__
         this.Event = Event
@@ -1069,9 +1074,9 @@ class Adv(object):
 
         this.conf_init = conf
         this.ctx = Ctx().on()
-        this.condition = m_condition.on
-        this.m_condition = m_condition
-        this.m_condition.set(cond)
+        this.condition = Condition(cond)
+        # this.m_condition = m_condition
+        # this.m_condition.set(cond)
         this._log = []
         loginit(this._log)
 
