@@ -108,9 +108,9 @@ class CrisisModifier(Modifier):
         this.hp_scale = scale
         this.hp_lost = 100 - hp
         if hp == 0:
-            this.hp_cond = m_condition.on('hp=1')
+            this.hp_cond = this._static.g_condition('hp=1')
         elif hp < 100:
-            this.hp_cond = m_condition.on('hp={}%'.format(hp))
+            this.hp_cond = this._static.g_condition('hp={}%'.format(hp))
         else:
             this.hp_cond = 0
 

@@ -166,7 +166,7 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=
         if 'no_cond' in r:
             result = set_teamdps_res(result, r['no_cond'], '_no_cond')
             # result = set_log_res(result, r['no_cond'], '_no_cond')
-
+        result['condition'] = r['condition']
     return result
 
 # API
@@ -248,7 +248,7 @@ def get_adv_slotlist():
             'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
-        result['adv']['conditions'] = dict(adv_instance.condition)
+        result['adv']['condition'] = dict(adv_instance.condition)
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res

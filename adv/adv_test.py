@@ -159,6 +159,7 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
     #comment = amulets + comment
 
     if cond != False:
+        r['condition'] = dict(adv.condition)
         condition = adv.condition.cond_str()
         g_condition = condition
     else:

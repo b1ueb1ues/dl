@@ -22,7 +22,7 @@ PREFIX_MAPS = {
         'b_zardin': 'beautician_zardin',
         'd_': 'dragonyule_',
         'h_': 'halloween_',
-        's_maribelle': 'school_maribelle',
+        's_maribelle': 'student_maribelle',
         's_': 'summer_',
         'v_': 'valentines_',
         'w_': 'wedding_',
