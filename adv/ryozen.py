@@ -12,7 +12,9 @@ class Ryozen(Adv):
         `s3
         `fs, seq=5
         """
-
+    
+    def s1_proc(this, e):
+        Teambuff('s1', 0.25, 15, 'defense').on()
 
 if __name__ == '__main__':
     conf = {}
