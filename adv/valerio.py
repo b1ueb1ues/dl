@@ -9,7 +9,7 @@ def module():
 class Valerio(Adv):
     conf = {}
     conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
-    conf['slot.d'] = Nimis()
+    conf['slot.d'] = Siren()
     conf['acl'] = """
         `appetizer, s1.check()
         `s1
@@ -77,7 +77,7 @@ class Valerio(Adv):
             # Appetizer Stance: Inflicts frostbite and
             # reduces enemies' defense by 5% for 30 seconds.
             # This defense reduction effect will not stack.
-            self.afflics.frostbite('s1',120,0.803)
+            self.afflics.frostbite('s1',120,1.00)
             self.s1_debuff.on()
         else:
             pass

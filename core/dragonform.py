@@ -39,6 +39,8 @@ class DragonForm(Action):
         self.dragon_gauge = 0
         self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
 
+        self.shift_count = 0
+
     def auto_gauge(self, t):
         self.charge_gauge(self.conf.gauge_val)
 
@@ -177,6 +179,7 @@ class DragonForm(Action):
                 doing.recovery_timer.off()
                 log('cancel', doing.name , 'by '+self.name+'\t', 'after {:.2f}s'.format(now()-doing.recover_start))
         log('dragon_start', self.name)
+        self.shift_count += 1
         if len(self.act_list) == 0:
             self.parse_act(self.conf.act)
         self.shift_damage_sum = 0

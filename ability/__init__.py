@@ -230,11 +230,11 @@ class Dragon_Claw(Ability):
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
-        adv.dc_level = 0
+        self.dc_level = 0
         def l_dc_buff(t):
-            if adv.dc_level < len(self.dc_values):
-                adv.Buff('dc', self.dc_values[adv.dc_level], -1).on()
-                adv.dc_level += 1
+            if self.dc_level < len(self.dc_values):
+                adv.Buff('dc', self.dc_values[self.dc_level], -1).on()
+                self.dc_level += 1
         adv.Event('dragon').listener(l_dc_buff)
 
 ability_dict['dc'] = Dragon_Claw
