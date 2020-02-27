@@ -23,7 +23,6 @@ class Valerio(Adv):
         self.inspiration = 0
         self.stance = None
         self.stance_list = ['appetizer', 'entree', 'dessert']
-        self.stance_actions = []
         self.crit_mod = self.custom_crit_mod
         self.a1_cd = False
         self.s1_debuff = Debuff('s1', 0.05, 30)
@@ -35,7 +34,7 @@ class Valerio(Adv):
 
     def custom_crit_mod(self):
         crit = self.rand_crit_mod()
-        if crit > 1:
+        if crit > 1 and not self.a1_cd:
             # Increases attack rate by 10% for 20 seconds each
             # time one of the user's attacks is a critical hit.
             # After activating, this ability will not activate again
