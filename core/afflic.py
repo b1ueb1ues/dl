@@ -4,6 +4,7 @@ from core.timeline import *
 from core.log import *
 import random
 
+AFFLICT_LIST = ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep', 'frostbite']
 
 class Dot(object):
     """
@@ -317,6 +318,7 @@ class Afflics(object):
         this.poison = Afflic_dot('poison', duration=15, iv=2.99)
         this.burn = Afflic_dot('burn', duration=12, iv=3.99)
         this.paralysis = Afflic_dot('paralysis', duration=13, iv=3.99)
+        this.frostbite = Afflic_dot('frostbite', duration=13, iv=3.99)
 
         this.blind = Afflic_scc('blind', duration=8)
         this.bog = Afflic_bog('bog', duration=8)
@@ -332,6 +334,7 @@ class Afflics(object):
         this.freeze.resist = 80
         this.stun.resist = 80
         this.sleep.resist = 80
+        this.frostbite.resist = 0
 
         this.poison.tolerance = 5
         this.burn.tolerance = 5
@@ -341,6 +344,7 @@ class Afflics(object):
         this.freeze.tolerance = 20
         this.stun.tolerance = 20
         this.sleep.tolerance = 20
+        this.frostbite.tolerance = 5
 
     def add(this, name, atype, rate, duration, coef=0, iv=0):
         if atype == 'burning':
@@ -428,7 +432,7 @@ class Afflics(object):
     def get_uptimes(this):
         uptimes = {}
         # for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
-        for atype in ['poison', 'burn', 'paralysis']:
+        for atype in ['poison', 'burn', 'paralysis', 'frostbite']:
             aff = this.__dict__[atype]
             rate, t = aff.c_uptime
             # last = aff.last_afflict

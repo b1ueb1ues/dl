@@ -189,10 +189,16 @@ class Kamuy(DragonBase):
         'ds.hit': 4,
     }
 
-class Unreleased_WaterCritDamage(DragonBase):
+class Nimis(DragonBase):
     ele = 'water'
-    att = 127
+    att = 125
     a = [('a', 0.45), ('cd', 0.55)]
+
+    def ds_proc(self):
+        self.adv.dragonform.charge_gauge(20)
+        # Shapeshift time cannot exceed the maximum permitted time. (?)
+        self.adv.dragonform.shift_end_timer.timing += 5
+        return 0
 
 class Unreleased_Water80Str(DragonBase):
     ele = 'water'

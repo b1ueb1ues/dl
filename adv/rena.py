@@ -13,7 +13,7 @@ class Rena(Adv):
 
     conf = {}
     conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+Felyne_Hospitality()
+    conf['slot.a'] = RR()+Elegant_Escort()
     conf['acl'] = """
         `s3, not this.s3_buff_on
         `s1

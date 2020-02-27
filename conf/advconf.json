@@ -1560,11 +1560,11 @@
     },
     "Nefaria": {
         "c": {
-            "att": 472,
+            "att": 565,
             "ele": "shadow",
             "wt": "bow",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
@@ -2092,6 +2092,29 @@
             "hit": 0
         }
     },
+    "Valerio": {
+        "c": {
+            "att": 518,
+            "ele": "water",
+            "wt": "blade",
+            "stars": "5",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.1,
+            "recovery": 1.9,
+            "dmg": 11.4,
+            "sp": 3033,
+            "hit": 2
+        },
+        "s2": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0.0,
+            "sp": 6016,
+            "hit": 0
+        }
+    },
     "Vanessa": {
         "c": {
             "att": 501,
@@ -2215,11 +2238,11 @@
     },
     "Xainfried": {
         "c": {
-            "att": 484,
+            "att": 580,
             "ele": "water",
             "wt": "lance",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
@@ -2234,7 +2257,7 @@
             "buff": [
                 "team",
                 0.2,
-                15.0
+                20.0
             ],
             "dmg": 0.0,
             "sp": 8534,

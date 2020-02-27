@@ -984,7 +984,7 @@ class Adv(object):
     def afflic_condition(this):
         if 'afflict_res' in this.conf:
             res_conf = this.conf.afflict_res
-            for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+            for afflic in AFFLICT_LIST:
                 if afflic in res_conf and 0 <= res_conf[afflic] <= 100:
                     if this.condition('{} {} res'.format(res_conf[afflic], afflic)):
                         vars(this.afflics)[afflic].resist = res_conf[afflic]
@@ -1150,7 +1150,7 @@ class Adv(object):
         this.action._static.spd_func = this.speed
 
     def have_speed(this):
-        return this.mod('spd')
+        return min(this.mod('spd'), 1.30)
 
 
     def crit_mod(this):
@@ -1200,7 +1200,7 @@ class Adv(object):
 
     def killer_mod(this):
         m = 1
-        for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+        for afflic in AFFLICT_LIST:
             rate = vars(this.afflics)[afflic].get()
             m += (this.mod(afflic + '_killer') - 1) * rate
         return m

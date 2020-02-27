@@ -13,6 +13,7 @@ import adv.adv_test
 import slot.a
 import slot.d
 import slot.w
+from core.afflic import AFFLICT_LIST
 
 app = Flask(__name__)
 
@@ -198,7 +199,7 @@ def simc_adv_test():
             acl = None
 
     conf = {}
-    for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+    for afflic in AFFLICT_LIST:
         try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res_'+afflic])), 100)
         except:
@@ -252,7 +253,7 @@ def get_adv_slotlist():
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res
             res_dict = {}
-            for afflic in ['poison', 'paralysis', 'burn', 'blind', 'bog', 'stun', 'freeze', 'sleep']:
+            for afflic in AFFLICT_LIST:
                 if afflic in res_conf:
                     res_dict[afflic] = res_conf[afflic]
             if len(res_dict.keys()) > 0:

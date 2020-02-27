@@ -5,7 +5,8 @@ def module():
     return Nefaria
 
 class Nefaria(Adv):
-    a3 = ('k_blind',0.3)
+    a1 = ('k_poison',0.3)
+    a3 = ('k_blind',0.4)
     conf = {}
     conf['acl'] = """
         `s1, fsc
@@ -14,6 +15,7 @@ class Nefaria(Adv):
         `fs, seq=4
         """
     conf['afflict_res.blind'] = 80
+    conf['afflict_res.poison'] = 0
 
     def prerun(this):
         this.s2fscharge = 0
@@ -23,8 +25,11 @@ class Nefaria(Adv):
             this.fullhp = 0
 
     def s1_proc(this, e):
-        with Modifier("s1killer", "blind_killer", "hit", 0.74):
-            this.dmg_make('s1',8*1.06)
+        # double killer???
+        with Modifier("s1killer", "poison_killer", "hit", 0.74):
+            with Modifier("s1killer", "blind_killer", "hit", 0.74):
+                this.afflics.poison('s1', 120+this.fullhp*60, 0.582)
+                this.dmg_make('s1',8*1.06)
 
     def s2_proc(this, e):
         this.s2fscharge = 3

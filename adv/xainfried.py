@@ -7,8 +7,8 @@ def module():
     return Xainfried
 
 class Xainfried(Adv):
-    comment = 'use s1 only to cancel c5 or fs'
-    a1 = ('dc', 3)
+    a1 = ('dc', 4)
+    a3 = ('dt', 0.25)
     conf = {}
     conf['acl'] = """
         `s1
@@ -16,10 +16,14 @@ class Xainfried(Adv):
         `s3
         `fs, seq=5
         """
+    conf['afflict_res.frostbite'] = 0
 
-    def d_slots(this):
-        if 'wand' not in this.ex:
-            this.conf.slot.d = Siren()
+    def s1_proc(this, e):
+        this.afflics.frostbite('s1',120,0.803)
+
+    def s2_proc(this, e):
+        # unknown gauge amount
+        this.dragonform.charge_gauge(5)
 
 if __name__ == '__main__':
     conf = {}
