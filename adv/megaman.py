@@ -97,7 +97,7 @@ class Mega_Man(Adv):
     conf['slot.a'] = Primal_Crisis()+Dear_Diary()
     conf['acl'] = """
         # check_s(n) means neither s1 or s2 are active, and s[n] has full ammo
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1, this.check_s(1) and this.bleed._static['stacks']<3
         `s2, this.s1.is_active and this.bleed._static['stacks']>=3
         `s1, this.s1.is_active and this.bleed._static['stacks']>=3

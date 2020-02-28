@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Crimson_Fang(WeaponBase):
     ele = ['flame']
@@ -141,34 +142,39 @@ class Agito_Hrotti(WeaponBase):
     ele = ['flame']
     wt = 'dagger'
     att = 1513
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Hrotti(Agito_Hrotti):
     att = 981
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterDagger(Agito_Hrotti):
+class Agito_Qinghong_Jian(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Qinghong_Jian(Agito_Qinghong_Jian):
+    att = 981
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterDagger(Agito_Hrotti):
     ele = ['water']
 
-class UnreleasedAgito_WindDagger(Agito_Hrotti):
+class UnreleasedAgitoStr_WindDagger(Agito_Hrotti):
     ele = ['wind']
 
-class UnreleasedAgito_LightDagger(Agito_Hrotti):
+class UnreleasedAgitoStr_LightDagger(Agito_Hrotti):
     ele = ['light']
 
-class UnreleasedAgito_ShadowDagger(Agito_Hrotti):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterDagger(Agito_Qinghong_Jian):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindDagger(Agito_Qinghong_Jian):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightDagger(Agito_Qinghong_Jian):
+    ele = ['light']
 
 flame = Agito_Hrotti
 water = HDT2_Tiderulers_Maw

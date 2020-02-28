@@ -11,7 +11,7 @@ class Naveed(Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s2, this.s1level < 5
         `s1
         `fs, seq=3 and cancel

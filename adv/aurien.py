@@ -13,7 +13,7 @@ class Aurien(Adv):
     conf = {}
     conf['slots.d'] = Apollo()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s2, x=5
     """
     conf['afflict_res.burn'] = 0

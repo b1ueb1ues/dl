@@ -1,5 +1,5 @@
-from slot import *
-import slot
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Crimson_Heat(WeaponBase):
     ele = ['flame']
@@ -142,34 +142,39 @@ class Agito_Mjolnir(WeaponBase):
     ele = ['flame']
     wt = 'axe'
     att = 1621
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Mjolnir(Agito_Mjolnir):
     att = 1051
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterAxe(Agito_Mjolnir):
+class Agito_Fangtian_Huaji(WeaponBase):
+    ele = ['shadow']
+    wt = 'axe'
+    att = 1621
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Fangtian_Huaji(Agito_Fangtian_Huaji):
+    att = 1051
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterAxe(Agito_Mjolnir):
     ele = ['water']
 
-class UnreleasedAgito_WindAxe(Agito_Mjolnir):
+class UnreleasedAgitoStr_WindAxe(Agito_Mjolnir):
     ele = ['wind']
 
-class UnreleasedAgito_LightAxe(Agito_Mjolnir):
+class UnreleasedAgitoStr_LightAxe(Agito_Mjolnir):
     ele = ['light']
 
-class UnreleasedAgito_ShadowAxe(Agito_Mjolnir):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterAxe(Agito_Fangtian_Huaji):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindAxe(Agito_Fangtian_Huaji):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightAxe(Agito_Fangtian_Huaji):
+    ele = ['light']
 
 flame  = Agito_Mjolnir
 water  = HDT2_Mercys_Azure_Tide

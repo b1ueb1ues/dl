@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Crimson(WeaponBase):
     ele = ['flame']
@@ -141,34 +142,39 @@ class Agito_Nothung(WeaponBase):
     ele = ['flame']
     wt = 'sword'
     att = 1544
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Nothung(Agito_Nothung):
     att = 1001
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterSword(Agito_Nothung):
+class Agito_Yitian_Jian(WeaponBase):
+    ele = ['shadow']
+    wt = 'sword'
+    att = 1544
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Yitian_Jian(Agito_Yitian_Jian):
+    att = 1001
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterSword(Agito_Nothung):
     ele = ['water']
 
-class UnreleasedAgito_WindSword(Agito_Nothung):
+class UnreleasedAgitoStr_WindSword(Agito_Nothung):
     ele = ['wind']
 
-class UnreleasedAgito_LightSword(Agito_Nothung):
+class UnreleasedAgitoStr_LightSword(Agito_Nothung):
     ele = ['light']
 
-class UnreleasedAgito_ShadowSword(Agito_Nothung):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterSword(Agito_Yitian_Jian):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindSword(Agito_Yitian_Jian):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightSword(Agito_Yitian_Jian):
+    ele = ['light']
 
 flame = Agito_Nothung
 water = HDT2_Absolute_Aqua

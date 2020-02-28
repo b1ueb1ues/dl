@@ -14,7 +14,7 @@ class Marth(Adv):
     conf['slot.a'] = Mega_Friends()+Primal_Crisis()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s2,fsc
         `s1,fsc
         `fs, seq=2

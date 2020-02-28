@@ -12,7 +12,7 @@ class Gala_Sarisse(Adv):
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = Forest_Bonds()+Dear_Diary()
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff_on
+        `s3, fsc and not this.s3_buff
         `s1, cancel
         `s2, fsc
         `fs, seq=4

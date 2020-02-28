@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Muspelheim(WeaponBase):
     ele = ['flame']
@@ -141,34 +142,39 @@ class Agito_Brisingr(WeaponBase):
     ele = ['flame']
     wt = 'wand'
     att = 1590
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Brisingr(Agito_Brisingr):
     att = 1031
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterWand(Agito_Brisingr):
+class Agito_Jiu_Ci(WeaponBase):
+    ele = ['shadow']
+    wt = 'wand'
+    att = 1590
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Jiu_Ci(Agito_Jiu_Ci):
+    att = 1031
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterWand(Agito_Brisingr):
     ele = ['water']
 
-class UnreleasedAgito_WindWand(Agito_Brisingr):
+class UnreleasedAgitoStr_WindWand(Agito_Brisingr):
     ele = ['wind']
 
-class UnreleasedAgito_LightWand(Agito_Brisingr):
+class UnreleasedAgitoStr_LightWand(Agito_Brisingr):
     ele = ['light']
 
-class UnreleasedAgito_ShadowWand(Agito_Brisingr):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterWand(Agito_Jiu_Ci):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindWand(Agito_Jiu_Ci):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightWand(Agito_Jiu_Ci):
+    ele = ['light']
 
 flame = Agito_Brisingr
 water = HDT2_Aquatic_Spiral

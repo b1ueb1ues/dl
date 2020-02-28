@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Crimsonflame_Lance(WeaponBase):
     ele = ['flame']
@@ -141,34 +142,39 @@ class Agito_Gungnir(WeaponBase):
     ele = ['flame']
     wt = 'lance'
     att = 1575
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Gungnir(Agito_Gungnir):
     att = 1021
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterLance(Agito_Gungnir):
+class Agito_Qinglong_Yanyuedao(WeaponBase):
+    ele = ['shadow']
+    wt = 'lance'
+    att = 1575
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Qinglong_Yanyuedao(Agito_Qinglong_Yanyuedao):
+    att = 1021
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterLance(Agito_Gungnir):
     ele = ['water']
 
-class UnreleasedAgito_WindLance(Agito_Gungnir):
+class UnreleasedAgitoStr_WindLance(Agito_Gungnir):
     ele = ['wind']
 
-class UnreleasedAgito_LightLance(Agito_Gungnir):
+class UnreleasedAgitoStr_LightLance(Agito_Gungnir):
     ele = ['light']
 
-class UnreleasedAgito_ShadowLance(Agito_Gungnir):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterLance(Agito_Qinglong_Yanyuedao):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindLance(Agito_Qinglong_Yanyuedao):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightLance(Agito_Qinglong_Yanyuedao):
+    ele = ['light']
 
 flame = Agito_Gungnir
 water = HDT2_Limpid_Rush

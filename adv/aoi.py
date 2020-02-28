@@ -10,7 +10,7 @@ class Aoi(Adv):
     conf = {}
     conf['slot.a'] = RR()+EE()
     conf['acl'] = """
-        `s3, not this.s3_buff_on 
+        `s3, not this.s3_buff 
         `s1
         `s2
         """

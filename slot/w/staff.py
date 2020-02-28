@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Brightblaze(WeaponBase):
     ele = ['flame']
@@ -141,34 +142,39 @@ class Agito_Gjallarhorn(WeaponBase):
     ele = ['flame']
     wt = 'staff'
     att = 1467
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Gjallarhorn(Agito_Gjallarhorn):
     att = 951
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterStaff(Agito_Gjallarhorn):
+class Agito_Goosefoot_Staff(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Goosefoot_Staff(Agito_Goosefoot_Staff):
+    att = 951
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterStaff(Agito_Gjallarhorn):
     ele = ['water']
 
-class UnreleasedAgito_WindStaff(Agito_Gjallarhorn):
+class UnreleasedAgitoStr_WindStaff(Agito_Gjallarhorn):
     ele = ['wind']
 
-class UnreleasedAgito_LightStaff(Agito_Gjallarhorn):
+class UnreleasedAgitoStr_LightStaff(Agito_Gjallarhorn):
     ele = ['light']
 
-class UnreleasedAgito_ShadowStaff(Agito_Gjallarhorn):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterStaff(Agito_Goosefoot_Staff):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindStaff(Agito_Goosefoot_Staff):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightStaff(Agito_Goosefoot_Staff):
+    ele = ['light']
 
 flame = Agito_Gjallarhorn
 water = HDT2_Oceans_Embrace

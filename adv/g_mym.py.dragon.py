@@ -12,7 +12,7 @@ class Gala_Mym(adv.g_mym.Gala_Mym):
     conf['acl'] = """
         `dragon.act("c3 c3 s end"), not this.a1_buff.get()
         `dragon
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1
         `s2, fsc
         `fs, x=5

@@ -12,7 +12,7 @@ class Laxi(Adv):
     conf = {}
     conf['slot.a'] = HoH()+DD()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s2, not this.s2buff.get()
         `s1
         """
@@ -65,5 +65,6 @@ class Laxi(Adv):
         this.heal.getdoing().interrupt_by.append('heal')
         this.heal()
 if __name__ == '__main__':
+    conf = {}
     adv.adv_test.test(module(), conf)
 

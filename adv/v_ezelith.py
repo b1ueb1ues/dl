@@ -14,7 +14,7 @@ class Valentines_Ezelith(Adv):
     conf['slot.a'] = EE()+DD()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff_on
+        `s3, fsc and not this.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, seq=2

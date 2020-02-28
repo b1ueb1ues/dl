@@ -127,7 +127,7 @@ class Buff(object):
         'all_buffs': [],
         'time_func':0,
         })
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, toggle=False):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
         this.name = name
         this.__value = value
         this.duration = duration
@@ -140,7 +140,6 @@ class Buff(object):
                 this.mod_order = 'buff'
         else:
             this.mod_order = morder or '<null>' or 'passive' or 'ex' or 'buff' or 'punisher' #...
-        this.toggle = toggle
 
         if this.mod_order != 'buff':
             this.bufftime = this.nobufftime
@@ -222,10 +221,6 @@ class Buff(object):
 
 
     def on(this, duration=None):
-        if this.toggle:
-            for i in this._static.all_buffs:
-                if i.name == this.name:
-                    this = i
         if duration == None:
             d = this.duration * this.bufftime()
         else:
@@ -239,9 +234,6 @@ class Buff(object):
                 this.buff_end_timer.on(d)
             log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff start <%ds>'%d)
         else:
-            if this.toggle:
-                this.off()
-                return this
             if d >= 0:
                 this.buff_end_timer.on(d)
                 log('buff', this.name, '%s: %.2f'%(this.mod_type, this.value()), this.name+' buff refresh <%ds>'%d)
@@ -266,10 +258,13 @@ class Buff(object):
         this.buff_end_timer.off()
         return this
 
+    def __bool__(this):
+        return bool(this.get())
+
 
 class Selfbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
-        Buff.__init__(this,name,value,duration,mtype,morder,toggle)
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
+        Buff.__init__(this,name,value,duration,mtype,morder)
         this.bufftype = 'self'
         this.bufftime = this._bufftime
 
@@ -286,7 +281,7 @@ class Selfbuff(Buff):
 class SingleActionBuff(Buff):
     # this buff lasts until the action it is buffing is completed
     def __init__(this, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None):
-        super().__init__(name, value, -1, mtype, morder, False)
+        super().__init__(name, value, -1, mtype, morder)
         this.bufftype = 'self'
         this.casts = casts
         this.end_event = event if event is not None else mtype
@@ -308,8 +303,8 @@ class SingleActionBuff(Buff):
             return this
     
 class Teambuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,toggle=False):
-        Buff.__init__(this, name,value,duration,mtype,morder,toggle)
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
+        Buff.__init__(this, name,value,duration,mtype,morder)
         this.bufftype = 'team'
         this.bufftime = this._bufftime
 
@@ -350,10 +345,10 @@ class Teambuff(Buff):
 
 
 class Spdbuff(Buff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None,wide='self',toggle=False):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='self'):
         mtype = 'spd'
         morder = 'passive'
-        Buff.__init__(this, name,value,duration,mtype,morder,toggle)
+        Buff.__init__(this, name,value,duration,mtype,morder)
         this.bufftype = wide
         this.bufftime = this._bufftime
         Event('speed')()
@@ -399,7 +394,7 @@ class Spdbuff(Buff):
 
 
 class Debuff(Teambuff):
-    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None,toggle=False):
+    def __init__(this, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None):
         value = 0-value
         chance = float(chance)
         if chance!= 1:
@@ -407,7 +402,7 @@ class Debuff(Teambuff):
             bd = (bd-1)*chance+1
             value = 1-1.0/bd
             value = 0-value
-        Teambuff.__init__(this, name,value,duration,mtype,morder,toggle)
+        Teambuff.__init__(this, name,value,duration,mtype,morder)
         this.bufftype = 'debuff'
         this.bufftime = this.nobufftime
 
@@ -1080,7 +1075,8 @@ class Adv(object):
         this._log = []
         loginit(this._log)
 
-        this.s3_buff_on = False
+        this.s3_buff_list = []
+        this.s3_buff = None
 
         if not this.conf:
             this.conf = Conf()
@@ -1623,22 +1619,48 @@ class Adv(object):
 
         if 'buff' in this.conf[e.name] and this.conf[e.name+'.buff'] is not None:
             buffarg = this.conf[e.name+'.buff']
-            wide = buffarg[0]
-            buffarg = buffarg[1:]
-            buff = None
-            if wide == 'team':
-                buff = Teambuff(e.name, *buffarg).on()
-            elif wide == 'self':
-                buff = Selfbuff(e.name, *buffarg).on()
-            elif wide == 'debuff':
-                buff = Debuff(e.name, *buffarg).on()
+            if e.name == 's3':
+                if len(this.s3_buff_list) == 0:
+                    for ba in buffarg:
+                        if ba is not None:
+                            buff = this.do_buff(e, ba)
+                            this.s3_buff_list.append(buff)
+                        else:
+                            this.s3_buff_list.append(None)
+                    if this.s3_buff_list[0] is not None:
+                        this.s3_buff_list[0].on()
+                        this.s3_buff = this.s3_buff_list[0]
+                else:
+                    this.s3_buff = None
+                    for buff in this.s3_buff_list:
+                        if buff is not None:
+                            if buff.get():
+                                buff.off()
+                            else:
+                                buff.on()
+                                this.s3_buff = buff
             else:
-                buff = Buff(e.name, *buffarg).on()
-            if e.name == 's3' and buff.toggle:
-                this.s3_buff_on = buff.get()
+                this.do_buff(e, buffarg).on()
+        
         func = e.name + '_proc'
         getattr(this, func)(e)
 
+    @staticmethod
+    def do_buff(e, buffarg):
+        wide = buffarg[0]
+        buffarg = buffarg[1:]
+        buff = None
+        if wide == 'team':
+            buff = Teambuff(e.name, *buffarg)
+        elif wide == 'self':
+            buff = Selfbuff(e.name, *buffarg)
+        elif wide == 'debuff':
+            buff = Debuff(e.name, *buffarg)
+        elif wide == 'spd':
+            buff = Spdbuff(e.name, *buffarg)
+        else:
+            buff = Buff(e.name, *buffarg)
+        return buff
 
     def rotation(this):
         r = 0

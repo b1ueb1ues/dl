@@ -491,7 +491,7 @@ function weaponSelectChange() {
         $('#input-edit-acl').prop('checked', true);
         $('#input-acl').prop('disabled', false);
         const acl = $('#input-acl').val().split('\n');
-        let new_acl = '`s3, not this.s3_buff_on\n';
+        let new_acl = '`s3, not this.s3_buff\n';
         for (const line of acl) {
             if (!line.startsWith('`s3')) {
                 new_acl += line + '\n';

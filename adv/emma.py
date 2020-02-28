@@ -16,7 +16,7 @@ class Emma(Adv):
     conf['slot.a'] = Castle_Cheer_Corps()+FWHC()
     conf['acl'] = """
         `fs, this.fs_prep_c==3
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1, cancel
         `fs, x=5
         """

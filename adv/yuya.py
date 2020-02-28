@@ -7,7 +7,7 @@ def module():
 class Yuya(Adv):
     conf = {}
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1
         `fs, seq=4
         """

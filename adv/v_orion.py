@@ -11,7 +11,7 @@ class Valentines_Orion(Adv):
     conf = {}
 
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff_on
+        `s3, fsc and not this.s3_buff
         `s1, fsc
         `fs, seq=2 and cancel
         """

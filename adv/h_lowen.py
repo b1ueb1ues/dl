@@ -15,7 +15,7 @@ class Halloween_Lowen(Adv):
     conf['slots.a'] = From_Whence_He_Comes()+Castle_Cheer_Corps()
     conf['slots.d'] = PopStar_Siren()
     # conf['acl'] = """
-    #     `s3, not this.s3_buff_on
+    #     `s3, not this.s3_buff
     #     `s1, x=5
     #     `s2, pin='prep' or x=5 and this.hp_stack < 3
     #     `fs, s=3 and this.fs_prep_c > 0

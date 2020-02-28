@@ -304,7 +304,7 @@ if __name__ == '__main__':
                         prefix = 'HDT1'
                 else:
                     prefix = wep['Availability']
-                clean_name = prefix + get_clean_name(wep['WeaponName'])
+                clean_name = prefix + '_' + get_clean_name(wep['WeaponName'])
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
                 f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))

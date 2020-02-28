@@ -13,7 +13,7 @@ class Ramona(Adv):
     conf['slots.a'] = KFM()+VC()
     conf['slots.d'] = Sakuya()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1a
         `s2,seq=4
         """

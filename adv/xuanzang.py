@@ -13,7 +13,7 @@ class Xuan_Zang(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = RR()+Jewels_of_the_Sun()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1, fsc
         `s2, cancel
         `fs, seq=4

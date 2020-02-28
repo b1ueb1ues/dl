@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Conflagration(WeaponBase):
     ele = ['flame']
@@ -141,34 +142,39 @@ class Agito_Tyrfing(WeaponBase):
     ele = ['flame']
     wt = 'blade'
     att = 1636
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Tyrfing(Agito_Tyrfing):
     att = 1051
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterBlade(Agito_Tyrfing):
+class Agito_Qixing_Baodao(WeaponBase):
+    ele = ['shadow']
+    wt = 'blade'
+    att = 1636
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Qixing_Baodao(Agito_Qixing_Baodao):
+    att = 1061
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterBlade(Agito_Tyrfing):
     ele = ['water']
 
-class UnreleasedAgito_WindBlade(Agito_Tyrfing):
+class UnreleasedAgitoStr_WindBlade(Agito_Tyrfing):
     ele = ['wind']
 
-class UnreleasedAgito_LightBlade(Agito_Tyrfing):
+class UnreleasedAgitoStr_LightBlade(Agito_Tyrfing):
     ele = ['light']
 
-class UnreleasedAgito_ShadowBlade(Agito_Tyrfing):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterBlade(Agito_Qixing_Baodao):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindBlade(Agito_Qixing_Baodao):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightBlade(Agito_Qixing_Baodao):
+    ele = ['light']
 
 flame = Agito_Tyrfing
 water = HDT2_Ruinous_Torrent

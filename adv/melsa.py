@@ -11,7 +11,7 @@ class Melsa(Adv):
     conf['slot.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff_on
+        `s3, not this.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=2

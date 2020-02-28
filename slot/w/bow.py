@@ -1,4 +1,5 @@
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
 class HDT1_Valkyries_Blaze(WeaponBase):
     ele = ['flame']
@@ -140,34 +141,39 @@ class Agito_Ydalir(WeaponBase):
     ele = ['flame']
     wt = 'bow'
     att = 1482
-    s3 = {
-        "buff"     : ('self',0.20,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
-    a = []
+    s3 = agito_buffs['flame'][1]
 
 class Agito0UB_Ydalir(Agito_Ydalir):
     att = 961
-    s3 = {
-        "buff"     : ('self',0.10,-1,'att','buff',True),
-        "sp"       : 3000       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-    } # Megingjörð
+    s3 = agito_buffs['flame'][0]
 
-class UnreleasedAgito_WaterBow(Agito_Ydalir):
+class Agito_Longshe_Gong(WeaponBase):
+    ele = ['shadow']
+    wt = 'bow'
+    att = 1482
+    s3 = agito_buffs['shadow'][1]
+
+class Agito0UB_Longshe_Gong(Agito_Longshe_Gong):
+    att = 961
+    s3 = agito_buffs['shadow'][0]
+
+class UnreleasedAgitoStr_WaterBow(Agito_Ydalir):
     ele = ['water']
 
-class UnreleasedAgito_WindBow(Agito_Ydalir):
+class UnreleasedAgitoStr_WindBow(Agito_Ydalir):
     ele = ['wind']
 
-class UnreleasedAgito_LightBow(Agito_Ydalir):
+class UnreleasedAgitoStr_LightBow(Agito_Ydalir):
     ele = ['light']
 
-class UnreleasedAgito_ShadowBow(Agito_Ydalir):
-    ele = ['shadow']
+class UnreleasedAgitoSpd_WaterBow(Agito_Longshe_Gong):
+    ele = ['water']
+
+class UnreleasedAgitoSpd_WindBow(Agito_Longshe_Gong):
+    ele = ['wind']
+
+class UnreleasedAgitoSpd_LightBow(Agito_Longshe_Gong):
+    ele = ['light']
 
 flame = Agito_Ydalir
 water = HDT2_Azure_Mercurius
