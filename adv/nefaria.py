@@ -1,7 +1,7 @@
 import adv.adv_test
 from core.advbase import *
+from module.fsalt import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Nefaria
@@ -10,19 +10,26 @@ class Nefaria(Adv):
     a1 = ('k_poison',0.3)
     a3 = ('k_blind',0.4)
     conf = {}
-    conf['slot.d'] = Shinobi()
-    conf['slot.a'] = Dear_Diary()+The_Fires_of_Hate()
+    conf['slot.a'] = MF()+DD()
     conf['acl'] = """
-        `s1, fsc
-        `s2, fsc
+        `s2
+        `s1
         `s3, fsc
-        `fs, x=4
+        `fs, x=4 or s=2
         """
     conf['afflict_res.blind'] = 80
     conf['afflict_res.poison'] = 0
 
     def prerun(this):
-        this.s2fscharge = 0
+        this.fsacharge = -1
+        this.fsaconf = Conf()
+        this.fsaconf.fs = Conf(this.conf.fs)
+        this.fsaconf( {
+                'fs.dmg':19*0.53,
+                'fs.sp':2400,
+                })
+        this.fs_alt = Fs_alt(this, this.fsaconf)
+        
         if this.condition('hp100'):
             this.fullhp = 1
         else:
@@ -35,13 +42,16 @@ class Nefaria(Adv):
             this.dmg_make('s1',8*1.06)
 
     def s2_proc(this, e):
-        this.s2fscharge = 1
+        this.fsacharge = 1
+        this.fs_alt.on()
 
     def fs_proc(this, e):
-        if this.s2fscharge > 0:
-            this.s2fscharge -= 1
-            this.dmg_make('o_fs_boost', 0.48)
+        if this.fsacharge > 0:
+            this.fsacharge -= 1
             this.afflics.blind('s2_fs', 100+this.fullhp*60)
+            if this.fsacharge == 0:
+                this.fs_alt.off()
+                this.fsacharge = -1
 
 
 if __name__ == '__main__':
