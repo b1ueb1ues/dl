@@ -26,12 +26,12 @@ class Nobunaga(Adv):
     def s2_proc(this, e):
         if this.ba == 1:
             this.ba = 0
-            this.dmg_make('o_s1_boost',5.59)
+            this.dmg_make('o_s1_boost',11.18)
 
     def fs_proc(this, e):
         if this.ba == 1:
             this.ba = 0
-            this.dmg_make('o_s1_boost',5.59)
+            this.dmg_make('o_s1_boost',11.18)
 
 if __name__ == '__main__':
     conf = {}

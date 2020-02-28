@@ -318,7 +318,7 @@ class Afflics(object):
         this.poison = Afflic_dot('poison', duration=15, iv=2.99)
         this.burn = Afflic_dot('burn', duration=12, iv=3.99)
         this.paralysis = Afflic_dot('paralysis', duration=13, iv=3.99)
-        this.frostbite = Afflic_dot('frostbite', duration=13, iv=3.99)
+        this.frostbite = Afflic_dot('frostbite', duration=13, iv=2.99)
 
         this.blind = Afflic_scc('blind', duration=8)
         this.bog = Afflic_bog('bog', duration=8)

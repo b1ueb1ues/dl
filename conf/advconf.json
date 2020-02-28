@@ -1748,6 +1748,29 @@
             "hit": 0
         }
     },
+    "Pipple": {
+        "c": {
+            "att": 471,
+            "ele": "water",
+            "wt": "wand",
+            "stars": "4",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0,
+            "sp": 4800,
+            "hit": 0
+        },
+        "s2": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0,
+            "sp": 4900,
+            "hit": 0
+        }
+    },
     "Raemond": {
         "c": {
             "att": 477,
@@ -2249,19 +2272,19 @@
             "recovery": 3.0,
             "dmg": 9.2,
             "sp": 2450,
-            "hit": 4
+            "hit": 0
         },
         "s2": {
-            "startup": 0.25,
-            "recovery": 0.9,
+            "startup": 0.1,
+            "recovery": 1.4,
             "buff": [
                 "team",
                 0.2,
                 20.0
             ],
-            "dmg": 0.0,
+            "dmg": 7.62,
             "sp": 8534,
-            "hit": 0
+            "hit": 3
         }
     },
     "Xander": {
@@ -3439,7 +3462,7 @@
         "s1": {
             "startup": 0.1,
             "recovery": 1.4,
-            "dmg": 4.75,
+            "dmg": 7.13,
             "sp": 3300,
             "hit": 1
         },
