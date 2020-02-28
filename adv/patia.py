@@ -2,7 +2,6 @@ import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
-from slot.w import Agito_Qinglong_Yanyuedao
 
 def module():
     return Patia
@@ -12,7 +11,6 @@ class Patia(Adv):
     a3 = ('primed_crit_chance', 0.10, 5)
 
     conf = {}
-    conf['slots.w'] = Agito_Qinglong_Yanyuedao()
     conf['slots.a'] = VC()+Jewels_of_the_Sun()
     conf['acl'] = """
         `s1

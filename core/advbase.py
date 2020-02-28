@@ -304,7 +304,7 @@ class SingleActionBuff(Buff):
     
 class Teambuff(Buff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
-        Buff.__init__(this, name,value,duration,mtype,morder)
+        Buff.__init__(this,name,value,duration,mtype,morder)
         this.bufftype = 'team'
         this.bufftime = this._bufftime
 
@@ -1432,9 +1432,10 @@ class Adv(object):
         log('sim','end')
         
         for aff, up in this.afflics.get_uptimes().items():
-            if len(this.comment) > 0:
-                this.comment += '; '
-            this.comment += '{:.0%} {} uptime'.format(up, aff)
+            if up > 0.10:
+                if len(this.comment) > 0:
+                    this.comment += '; '
+                this.comment += '{:.0%} {} uptime'.format(up, aff)
 
         return end
 

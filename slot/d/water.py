@@ -24,18 +24,9 @@ class Leviathan(DragonBase):
         'dodge.startup': 39 / 60
     }
 
-    def oninit(self, adv):
-        super().oninit(adv)
-        from core.advbase import Teambuff
-        self.ds_buff = Teambuff('ds_bog',0.5,8,1,'att','bog')
-        self.ds_buff.bufftime = self.ds_buff.nobufftime
-
     def ds_proc(self):
         dmg = self.adv.dmg_make('d_ds',9.135,'s')
-        r = self.adv.afflics.bog('ds',180)
-        if r:
-            self.ds_buff.mod_value = 0.5*r
-            self.ds_buff.on()
+        self.adv.afflics.bog('ds',180)
         return dmg
 
 class Siren(DragonBase):

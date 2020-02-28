@@ -432,7 +432,7 @@ class Afflics(object):
     def get_uptimes(this):
         uptimes = {}
         # for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
-        for atype in ['poison', 'burn', 'paralysis', 'frostbite']:
+        for atype in AFFLICT_LIST:
             aff = this.__dict__[atype]
             rate, t = aff.c_uptime
             # last = aff.last_afflict

@@ -19,10 +19,11 @@ pipple_conf = {
 class Pipple(Adv):
     conf = pipple_conf.copy()
     conf['slot.a'] = Primal_Crisis()+FirstRate_Hospitality()
-    conf['slot.d'] = Leviathan()
+    conf['slot.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         `s1, x=5
         `s2, x=5
+        `s3, x=5
         """
             
     def init(this):
