@@ -14,13 +14,13 @@ class Ku_Hai(Adv):
     conf = {}
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
     # c2+fs_alt fs can init quicker than c1+fs_alt
-    conf['acl'] = """
+    conf['acl'] = '''
         `s1, fsc
         `s2
         `s3, fsc
         `fs, seq=2 and this.s2fsbuff.get()
         `fs, seq=3
-        """
+        '''
     conf['slots.a'] = slot.a.The_Lurker_in_the_Woods() + slot.a.RR()
     conf['slot.d'] = Zephyr()
 
@@ -73,12 +73,13 @@ class Ku_Hai(Adv):
         this.fsaconf({
                 'fs.dmg':0,
                 'fs.sp' :330,
-                "fs.startup":33/60.0,
-                "fs.recovery":33/60.0,
-                "x2fs.startup":18/60.0,
-                "x2fs.recovery":33/60.0,
-                "x3fs.startup":18/60.0,
-                "x3fs.recovery":33/60.0,
+                'fs.charge': 2/60.0, # needs confirm
+                'fs.startup':31/60.0,
+                'fs.recovery':33/60.0,
+                'x2fs.startup':16/60.0,
+                'x2fs.recovery':33/60.0,
+                'x3fs.startup':16/60.0,
+                'x3fs.recovery':33/60.0,
                 })
         this.fshit = 2
         this.s2fsbuff = Selfbuff('s2ss',1,10,'ss','ss')

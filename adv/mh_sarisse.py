@@ -25,15 +25,15 @@ class FS_Speedable(Action):
         this.fs_speed = 1.2
 
     def sync_config(this, c):
-        this._startup_c = c.startup
-        this._startup_h = 4 / 60
+        this._charge = c.charge
+        this._startup = 4 / 60
         this._recovery = 59 / 60
         this._active = c.active
 
     def getstartup(this):
         startup = this._startup_a
-        startup += this._startup_c / this.fs_speed
-        startup += this._startup_h / this.speed()
+        startup += this._charge / this.fs_speed
+        startup += this._startup / this.speed()
         return startup
 
     def __call__(this, before):
@@ -74,7 +74,7 @@ class Hunter_Sarisse(Adv):
             'fs1': {
                 'dmg': 0.74,
                 'sp': 500,
-                'startup': 29 / 60.0,
+                'charge': 29 / 60.0,
                 'recovery': 4 / 60.0,
                 'hit': 3,
                 'pierce': default_pierce
@@ -82,21 +82,21 @@ class Hunter_Sarisse(Adv):
             'fs2': {
                 'dmg': 0.84,
                 'sp': 710,
-                'startup': (29+43) / 60.0,
+                'charge': (29+43) / 60.0,
                 'hit': 3,
                 'pierce': default_pierce
             },
             'fs3': {
                 'dmg': 0.94,
                 'sp': 920,
-                'startup': (29+43*2) / 60.0,
+                'charge': (29+43*2) / 60.0,
                 'hit': 4,
                 'pierce': default_pierce
             },
             'fs4': {
                 'dmg': 1.29,
                 'sp': 1140,
-                'startup': (29+43*3) / 60.0,
+                'charge': (29+43*3) / 60.0,
                 'hit': 4,
                 'pierce': default_pierce
             }

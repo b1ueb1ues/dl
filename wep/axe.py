@@ -33,15 +33,14 @@ conf = {
 
     'fs.dmg': 192 / 100.0,
     'fs.sp': 300,
-    'fs.startup': 54 / 60.0,
+    'fs.charge': 26 / 60.0,
+    'fs.startup': 28 / 60.0,
     'fs.recovery': 34 / 60.0,
     'fs.hit': 1,
 
-    'x1fs.startup': 61 / 60.0, # 7 delay + fs
-    'x2fs.startup': 64 / 60.0, # 10 delay + fs
-    # 'x3fs.startup': 65 / 60.0,
-    # 'x4fs.startup': 67 / 60.0,
-    'x5fs.startup': 40 / 60.0, # need confirm
+    'x1fs.charge': 33 / 60.0, # 7 delay + fs
+    'x2fs.charge': 35 / 60.0, # 10 delay + fs
+    'x5fs.charge': 12 / 60.0, # can charge fs while in c5
 
     'fsf.startup': 0,
     'fsf.recovery': 34 / 60.0, # https://streamable.com/36bjj

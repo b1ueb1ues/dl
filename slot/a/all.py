@@ -424,6 +424,14 @@ class The_Fires_of_Hate(Amulet):
     att = 65
     a = [('k_poison', 0.2), ('a', 0.15, 'hp100')]
 
+class The_Queen_of_the_Knife(Amulet):
+    att = 52
+    a = [('cd', 0.13), ('cc', 0.1, 'hit15')]
+
+class Breakfast_at_Valerios(Amulet):
+    att = 65
+    a = [('cc', 0.08, 'hp70'), ('a', 0.2, 'hit15')]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

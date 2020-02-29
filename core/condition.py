@@ -1,19 +1,21 @@
 class Condition(dict):
     def __init__(self, cond):
         self.global_cond = True
+        self.base_cond = {}
+        super().__init__({})
         if cond is None or isinstance(cond, bool):
-            super().__init__({})
             if cond is not None:
                 self.global_cond = cond
         elif isinstance(cond, dict):
-            super().__init__(cond)
-        self.override = False
+            self.base_cond = cond
 
     def cond_str(self):
         return ' & '.join([k for k, v in self.items() if v])
         
     def cond_set(self, key, cond=True):
-        if self.override or key not in self:
+        if key in self.base_cond:
+            self[key] = self.base_cond[key]
+        elif key not in self:
             self[key] = cond
         return self[key] and self.global_cond
 

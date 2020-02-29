@@ -6,6 +6,22 @@ from slot.d import *
 def module():
     return Hunter_Vanessa
 
+class FS_MH(Action):
+    def __init__(this, name, conf, act=None):
+        Action.__init__(this, name, conf, act)
+        this.atype = 'fs'
+        this.interrupt_by = ['s']
+        this.cancel_by = ['s','dodge']
+
+    def sync_config(this, c):
+        this._charge = c.charge
+        this._startup = c.startup
+        this._recovery = c.recovery
+        this._active = c.active
+
+    def getstartup(this):
+        return this._charge + (this._startup / this.speed())
+
 class Hunter_Vanessa(Adv):
     a1 = ('fs', 0.30)
 
@@ -31,21 +47,21 @@ class Hunter_Vanessa(Adv):
             'fs1': {
                 'dmg': 143 / 100.0,
                 'sp': 100,
-                'startup': 41 / 60.0,
-                'recovery': 46 / 60.0,
-                # 'fs.gauge'       : 150
+                'charge': 24 / 60.0,
+                'startup': 17 / 60.0,
+                'recovery': 46 / 60.0
             },
             'fs2': {
                 'dmg': 370 / 100.0,
                 'sp': 300,
-                'startup': 89 / 60.0,
-                'recovery': 46 / 60.0,
-                # 'fs.gauge'       : 150
+                'charge': 72 / 60.0,
+                'startup': 17 / 60.0,
+                'recovery': 46 / 60.0
             }
         }
         for n, c in conf_alt_fs.items():
             this.conf[n] = Conf(c)
-            act = Action(n, this.conf[n])
+            act = FS_MH(n, this.conf[n])
             act.atype = 'fs'
             act.interrupt_by = ['s']
             act.cancel_by = ['s','dodge']

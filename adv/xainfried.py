@@ -20,7 +20,7 @@ class Xainfried(Adv):
     conf['afflict_res.frostbite'] = 0
 
     def s1_proc(this, e):
-        with Modifier("s1killer", "frostbite_killer", "hit", 0.3):
+        with Modifier('s1killer', 'frostbite_killer', 'hit', 0.3):
             this.dmg_make("s1", 2.30)
             this.hits += 1
             this.afflics.frostbite('s1',120,0.41)

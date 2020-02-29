@@ -43,11 +43,9 @@ class Gala_Cleo(Adv):
         this.fsaconf({
                 'fs.dmg':0,
                 'fs.sp' :0,
-
-                "fs.startup":43/60.0,
-                "x5fs.startup":57/60.0,
-
-                "fs.recovery":67/60.0,
+                'fs.charge': 30/60.0,
+                'fs.startup': 20/60.0,
+                'fs.recovery': 60/60.0,
                 })
         this.fs_alt = Fs_alt(this, this.fsaconf)
 

@@ -33,12 +33,13 @@ conf = {
 
     'fs.dmg': 0.31*8,
     'fs.sp': 460,
-    'fs.startup': 65 / 60.0, 
+    'fs.charge': 20 / 60.0,
+    'fs.startup': 45 / 60.0, 
     'fs.recovery': 43 / 60.0, 
     'fs.hit': 8,
 
-    'x1fs.startup': 67 / 60.0, # 2 delay + fs
-    'x2fs.startup': 50 / 60.0, # 7 delay + fs
+    'x1fs.charge': 22 / 60.0, # 2 delay + fs
+    'x2fs.charge': 27 / 60.0, # 7 delay + fs
 
     'fsf.startup': 0, 
     'fsf.recovery': 32 / 60.0, 

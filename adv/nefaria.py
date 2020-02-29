@@ -12,7 +12,7 @@ class Nefaria(Adv):
     a3 = ('k_blind',0.4)
     conf = {}
     conf['slot.d'] = Shinobi()
-    conf['slot.a'] = The_Fires_of_Hate()+DD()
+    conf['slot.a'] = The_Fires_of_Hate()+Dear_Diary()
     conf['acl'] = """
         `s2
         `s1

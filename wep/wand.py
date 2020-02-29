@@ -37,12 +37,13 @@ conf = {
 
     'fs.dmg': 0.9*2,
     'fs.sp': 400,
+    'fs.charge': 28 / 60.0,
     'fs.startup': 43 / 60.0, # 30f for 2nd hit not considered
     'fs.recovery': 46 / 60.0,
     'fs.hit': 2,
 
-    'x1fs.startup': 54 / 60.0, # 11 delay + fs
-    'x2fs.startup': 50 / 60.0, # 7 delay + fs
+    'x1fs.startup': 39 / 60.0, # 11 delay + FS
+    'x2fs.startup': 35 / 60.0, # 7 delay + FS
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,

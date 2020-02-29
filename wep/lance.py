@@ -33,16 +33,14 @@ conf = {
     # 'x5.recovery': 67 / 60.0,
     'x5.hit': 1,
 
-    'fs._startup': 0,
-    'fs._recovery': 35 / 60.0,
-
     'fs.dmg': 30*5 / 100.0,
     'fs.sp': 400,
-    'fs.startup': 35 / 60.0,
+    'fs.charge': 8 / 60.0,
+    'fs.startup': 27 / 60.0,
     'fs.recovery': 36 / 60.0,
     'fs.hit': 5,
 
-    'x1fs.startup': 51 / 60.0, # 16 delay + fs
+    'x1fs.charge': 24 / 60.0, # 16 delay + FS
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,

@@ -6,13 +6,29 @@ from slot.d import *
 def module():
     return Hunter_Berserker
 
+class FS_MH(Action):
+    def __init__(this, name, conf, act=None):
+        Action.__init__(this, name, conf, act)
+        this.atype = 'fs'
+        this.interrupt_by = ['s']
+        this.cancel_by = ['s','dodge']
+
+    def sync_config(this, c):
+        this._charge = c.charge
+        this._startup = c.startup
+        this._recovery = c.recovery
+        this._active = c.active
+
+    def getstartup(this):
+        return this._charge + (this._startup / this.speed())
+
+
 class Hunter_Berserker(Adv):
     a1 = ('fs', 0.30)
     conf ={}
     conf['slot.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        
         `s3, not this.s3_buff
         `s1, fsc
         `s2, fsc
@@ -26,28 +42,28 @@ class Hunter_Berserker(Adv):
             'fs1': {
                 'dmg': 296 / 100.0,
                 'sp': 600,
-                'startup': (24+39) / 60.0,
+                'charge': 24 / 60.0,
+                'startup': 50 / 60.0, # 40 + 10
                 'recovery': 40 / 60.0,
             },
             'fs2': {
                 'dmg': 424 / 100.0,
                 'sp': 960,
-                'startup': (48+40+10) / 60.0,
+                'charge': 48 / 60.0,
+                'startup': 50 / 60.0,
                 'recovery': 40 / 60.0,
             },
             'fs3': {
                 'dmg': 548 / 100.0,
                 'sp': 1400,
-                'startup': (72+40+10) / 60.0,
+                'charge': 72 / 60.0,
+                'startup': 50 / 60.0,
                 'recovery': 40 / 60.0,
             }
         }
         for n, c in conf_alt_fs.items():
             this.conf[n] = Conf(c)
-            act = Action(n, this.conf[n])
-            act.atype = 'fs'
-            act.interrupt_by = ['s']
-            act.cancel_by = ['s','dodge']
+            act = FS_MH(n, this.conf[n])
             this.__dict__['a_'+n] = act
 
         this.l_fs1 = Listener('fs1',this.l_fs1)

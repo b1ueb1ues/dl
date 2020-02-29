@@ -46,15 +46,16 @@ megaman_conf = {
     'fs.dmg': 0.9,
     'fs.sp': 400,
     'fs.ammo': 180,
-    'fs.startup': 45 / 60.0, # 30 charge 15 hit
+    'fs.charge': 30 / 60.0,
+    'fs.startup': 15 / 60.0, # 30 charge 15 hit
     'fs.recovery': 60 / 60.0,
     'fs.hit': 1,
 
-    'x1fs.startup': 60 / 60.0, # fs cannot cancel x recovery
-    'x2fs.startup': 60 / 60.0,
-    'x3fs.startup': 60 / 60.0,
-    'x4fs.startup': 60 / 60.0,
-    'x5fs.startup': 60 / 60.0,
+    'x1fs.charge': 45 / 60.0, # fs cannot cancel x recovery
+    'x2fs.charge': 45 / 60.0,
+    'x3fs.charge': 45 / 60.0,
+    'x4fs.charge': 45 / 60.0,
+    'x5fs.charge': 45 / 60.0,
 
     # s1 related
     's1.ammo': 2000,

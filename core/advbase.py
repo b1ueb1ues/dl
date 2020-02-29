@@ -722,6 +722,15 @@ class Fs(Action):
         this.interrupt_by = ['s']
         this.cancel_by = ['s','dodge']
 
+    def sync_config(this, c):
+        this._charge = c.charge
+        this._startup = c.startup
+        this._recovery = c.recovery
+        this._active = c.active
+
+    def getstartup(this):
+        return this._charge + (this._startup / this.speed())
+
     def realtime(this):
         this.act_event = Event('fs')
         this.act_event.name = this.name
@@ -1146,7 +1155,7 @@ class Adv(object):
         this.action._static.spd_func = this.speed
 
     def have_speed(this):
-        return min(this.mod('spd'), 1.30)
+        return min(this.mod('spd'), 1.40)
 
 
     def crit_mod(this):
