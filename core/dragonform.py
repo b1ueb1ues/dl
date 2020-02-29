@@ -45,7 +45,6 @@ class DragonForm(Action):
             return False
         combo = self.conf[self.dx_list[-1]].recovery / self.speed()
         dodge = self.conf.dodge.startup
-        print('dodge_cancel', combo, dodge)
         return combo > dodge
 
     def auto_gauge(self, t):
