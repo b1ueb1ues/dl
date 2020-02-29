@@ -420,7 +420,7 @@ function runAdvTest() {
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);
-                    const logs = ['dragon', 'action', 'timeline'].map(key => {
+                    const logs = ['dragon', 'skill_stat', 'action', 'timeline'].map(key => {
                         if (res.logs[key] !== undefined && res.logs[key] !== "") {
                             return res.logs[key];
                         } else {
