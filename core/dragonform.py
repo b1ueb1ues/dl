@@ -18,7 +18,6 @@ class DragonForm(Action):
         self.act_sum = []
 
         self.dx_list = ['dx{}'.format(i) for i in range(1, 6) if 'dmg' in self.conf['dx{}'.format(i)]]
-        self.dodge_cancel = len(self.dx_list) > 0 and self.conf[self.dx_list[-1]].recovery > self.conf.dodge.startup
 
         self.action_timer = None
 
@@ -40,6 +39,14 @@ class DragonForm(Action):
         self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
 
         self.shift_count = 0
+
+    def dodge_cancel(self):
+        if len(self.dx_list) <= 0:
+            return False
+        combo = self.conf[self.dx_list[-1]].recovery / self.speed()
+        dodge = self.conf.dodge.startup
+        print('dodge_cancel', combo, dodge)
+        return combo > dodge
 
     def auto_gauge(self, t):
         self.charge_gauge(self.conf.gauge_val)
@@ -76,7 +83,10 @@ class DragonForm(Action):
         self.idle_event()
 
     def act_timer(self, act, time, next_action=None):
-        self.action_timer = Timer(act, time / self.speed())
+        if self.c_act_name == 'dodge':
+            self.action_timer = Timer(act, time)
+        else:
+            self.action_timer = Timer(act, time / self.speed())
         self.action_timer.next_action = next_action
         return self.action_timer.on()
 
@@ -125,7 +135,7 @@ class DragonForm(Action):
                 if not nact in self.dx_list:
                     if self.skill_use > 0:
                         nact = 'ds'
-                    elif self.dodge_cancel:
+                    elif self.dodge_cancel():
                         nact = 'dodge'
                     else:
                         nact = 'dx1'
@@ -146,7 +156,7 @@ class DragonForm(Action):
                     dxseq = 'dx{}'.format(i)
                     if dxseq in self.dx_list:
                         self.act_list.append(dxseq)
-                if self.dodge_cancel or self.act_list[-1] != self.dx_list[-1]:
+                if self.dodge_cancel() or self.act_list[-1] != self.dx_list[-1]:
                     self.act_list.append('dodge')
             else:
                 if len(self.act_list) > 0 and self.act_list[-1] == 'dodge':

@@ -17,7 +17,7 @@ class Nefaria(Adv):
         `s2
         `s1
         `s3, fsc
-        `fs, x=4 or s=2
+        `fs, x=4 or this.fsacharge > 0
         """
     conf['afflict_res.blind'] = 80
     conf['afflict_res.poison'] = 0

@@ -781,7 +781,6 @@ class S(Action):
         this.act_event = Event('s')
         this.act_event.name = this.name
 
-
 class Dodge(Action):
     def __init__(this, name, conf, act=None):
         Action.__init__(this, name, conf, act)
@@ -791,6 +790,12 @@ class Dodge(Action):
     def realtime(this):
         this.act_event = Event('dodge')
         this.act_event.name = this.name
+
+    def getstartup(this):
+        return this._startup
+
+    def getrecovery(this):
+        return this._recovery
 
 class Adv(object):
     Timer = Timer
@@ -1155,7 +1160,7 @@ class Adv(object):
         this.action._static.spd_func = this.speed
 
     def have_speed(this):
-        return min(this.mod('spd'), 1.40)
+        return min(this.mod('spd'), 1.50)
 
 
     def crit_mod(this):
