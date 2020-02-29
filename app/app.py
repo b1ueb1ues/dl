@@ -138,11 +138,6 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=
             this.conf['slots.w'] = getattr(slot.w, wep)()
         if teamdps is not None:
             adv.adv_test.team_dps = teamdps
-            # assume team dps * 1.25 = raw skill dmg
-            adv.adv_test.energy_efficiency = (teamdps * 1.25) * 0.5 * 2 / 5 / adv.adv_test.sim_duration
-        else:
-            adv.adv_test.team_dps = 6000
-            adv.adv_test.energy_efficiency = 7500 * 0.5 * 2 / 5 / adv.adv_test.sim_duration
     def acl_injection(this):
         if acl is not None:
             this.conf['acl'] = acl

@@ -17,11 +17,14 @@ sim_duration = 180
 sim_times = 1000
 
 team_dps = 16000
-energy_efficiency = 7500 * 0.5 * 2 / 5 / sim_duration 
+energy_efficiency = (16000 * 1.25) * 0.5 * 2 / 5 / 180
 
 ex_str = '_'
 ex_set = {}
 ex_team_init = 0
+
+def energy_efficiency():
+    return (team_dps * 1.25) * 0.5 * 2 / 5 / sim_duration
 
 def set_ex(ex_string):
     global ex_set
@@ -68,7 +71,6 @@ dmin = 0
 
 def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=None, lines=None, special=False):
     global team_dps
-    global energy_efficiency
     global mname
     global displayed_str
     global base_str
@@ -317,9 +319,9 @@ def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
         'team_buff': r['buff_sum']*team_dps
     }
     if r['energy_sum']:
-        dmg_val = r['energy_sum']*energy_efficiency
+        dmg_val = r['energy_sum']*energy_efficiency()
         if dmg_val > 0:
-            dps_mappings['team_energy'] = r['energy_sum']*energy_efficiency
+            dps_mappings['team_energy'] = r['energy_sum']*energy_efficiency()
     for i in r['o_sum']:
         dmg_val = r['o_sum'][i]/real_duration
         if dmg_val > 0:
@@ -471,7 +473,7 @@ def sum_mass_dmg(rs, real_duration):
         case = 0
         case += i['dmg_sum']['total'] / real_duration
         case += i['buff_sum'] * team_dps
-        case += i['energy_sum'] * energy_efficiency
+        case += i['energy_sum'] * energy_efficiency()
     #    print case
         if not dmin:
             dmin = case
