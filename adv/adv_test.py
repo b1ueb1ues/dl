@@ -199,6 +199,9 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
         sum_ac()
     r['logs']['action'] = f.getvalue()
     f = io.StringIO()
+    dmg_sum, sdmg_sum, x_sum, o_sum, d_sum = summary(r)
+    r['logs']['skill_stat'] = str(sdmg_sum)
+    f = io.StringIO()
     with redirect_stdout(f):
         logcat()
     r['logs']['timeline'] = f.getvalue()
@@ -221,32 +224,13 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
                     base_str, displayed_str, amulets, '<%s>'%condition, comment ))
             print('-----------------------')
 
-        dmg_sum = {}
-        sdmg_sum = {}
-        o_sum = {}
-        d_sum = {}
-        for i in r['dmg_sum']:
-            dmg_sum[i] = int(r['dmg_sum'][i])
-        for i in r['sdmg_sum']:
-            v = r['sdmg_sum'][i]
-            if v['count'] :
-                sdmg_sum[i] = '%d *%d = %d'%(int(v['dmg']/v['count']), v['count'], int(v['dmg']))
-            else:
-                sdmg_sum[i] = '%d'%(int(v['dmg']))
-
-        for i in r['o_sum']:
-            o_sum[i] = int(r['o_sum'][i])
-
-        for i in r['dragon_sum']:
-            d_sum[i] = int(r['dragon_sum'][i])
-
-        print("dmgsum     | "+ str(dmg_sum))
-        print("skill_stat | "+ str(sdmg_sum))
-        print("x_stat     | "+ str(r['x_sum']))
-        if r['o_sum']:
-            print("others     | "+ str(o_sum))
-        if r['dragon_sum']:
-            print("dragon     | "+ str(d_sum))
+            print("dmgsum     | "+ str(dmg_sum))
+            print("skill_stat | "+ str(sdmg_sum))
+            print("x_stat     | "+ str(x_sum))
+            if r['o_sum']:
+                print("others     | "+ str(o_sum))
+            if r['dragon_sum']:
+                print("dragon     | "+ str(d_sum))
 
     elif loglevel == -1:
         if condition != '':
@@ -276,6 +260,28 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
     elif loglevel < 0 and not loglevel-1 & 8:
         print('-----------------------\nrun in %f'%(b-a))
     return r
+
+def summary(r):
+        dmg_sum = {}
+        sdmg_sum = {}
+        o_sum = {}
+        d_sum = {}
+        for i in r['dmg_sum']:
+            dmg_sum[i] = int(r['dmg_sum'][i])
+        for i in r['sdmg_sum']:
+            v = r['sdmg_sum'][i]
+            if v['count'] :
+                sdmg_sum[i] = '%d *%d = %d'%(int(v['dmg']/v['count']), v['count'], int(v['dmg']))
+            else:
+                sdmg_sum[i] = '%d'%(int(v['dmg']))
+
+        for i in r['o_sum']:
+            o_sum[i] = int(r['o_sum'][i])
+
+        for i in r['dragon_sum']:
+            d_sum[i] = int(r['dragon_sum'][i])
+
+        return dmg_sum, sdmg_sum, r['x_sum'], o_sum, d_sum
 
 def report_dps_k(name, value):
     return value * 1.10

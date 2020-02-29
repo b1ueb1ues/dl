@@ -14,8 +14,8 @@ class Nefaria(Adv):
     conf['slot.d'] = Shinobi()
     conf['slot.a'] = The_Fires_of_Hate()+Dear_Diary()
     conf['acl'] = """
-        `s2
         `s1
+        `s2
         `s3, fsc
         `fs, x=4 or this.fsacharge > 0
         """
