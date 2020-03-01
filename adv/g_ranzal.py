@@ -1,6 +1,6 @@
 import adv.adv_test
 from core.advbase import *
-from module.fsalt import *
+from module.x_alt import Fs_alt
 from slot.a import *
 
 def module():
@@ -36,45 +36,23 @@ class Gala_Ranzal(Adv):
                 'x':0,
                 'fs':0,
                 }
-        this.fsacharge = -1
-        this.fsa3conf = Conf()
-        this.fsa3conf.fs = Conf(this.conf.fs)
-        this.fsa3conf({
-                'fs.dmg':0.83*2+0.92,
-                'fs.sp' :330,
-                'fs.charge': 2/60.0, # needs confirm
-                'fs.startup':66/60.0,
-                'x1fs.startup':75/60.0,
-                'x2fs.startup':60/60.0,
-                'x3fs.startup':60/60.0,
+        this.conf.fs.gauge = 150
+        conf_fs_alt = {
+            'fs.dmg':0.83*2+0.92,
+            'fs.sp' :330,
+            'fs.gauge': 350,
+            'fs.charge': 2/60.0, # needs confirm
+            'fs.startup':66/60.0,
+            'x1fs.startup':75/60.0,
+            'x2fs.startup':60/60.0,
+            'x3fs.startup':60/60.0,
 
-                'fs.recovery':13/60.0,
-                'x1fs.recovery':13/60.0,
-                'x2fs.recovery':13/60.0,
-                'x3fs.recovery':13/60.0,
-                })
-        this.fsa1conf = Conf()
-        this.fsa1conf.fs = Conf(this.conf.fs)
-        this.fsa1conf({
-                'fs.dmg':0.83,
-                'fs.sp' :330,
-                'fs.charge': 2/60.0, # needs confirm
-                'fs.startup':31/60.0,
-                'x1fs.startup':45/60.0,
-                'x2fs.startup':30/60.0,
-                'x3fs.startup':30/60.0,
-
-                'fs.recovery':43/60.0,
-                'x1fs.recovery':43/60.0,
-                'x2fs.recovery':43/60.0,
-                'x3fs.recovery':43/60.0,
-                })
-        this.fs_alt3 = Fs_alt(this, this.fsa3conf)
-        this.fs_alt1 = Fs_alt(this, this.fsa1conf)
-        this.fs_alt = this.fs_alt3
-        #fs_alt_init(this, this.fsaconf)
-
-        this.now = core.timeline.now
+            'fs.recovery':13/60.0,
+            'x1fs.recovery':13/60.0,
+            'x2fs.recovery':13/60.0,
+            'x3fs.recovery':13/60.0,
+        }
+        this.fs_alt = Fs_alt(this, Conf(conf_fs_alt))
 
     def dmg_proc(this, name, amount):
         if name == 'x1':
@@ -88,18 +66,8 @@ class Gala_Ranzal(Adv):
         elif name == 'x5':
             this.gauges['x'] += 200
         elif name == 'fs':
-            this.gauges['fs'] += 150
-        elif name == 'o_fs_alt':
-            this.gauges['fs'] += 350
-        log('debug','gauges','%d, %d'%(this.gauges['x'],this.gauges['fs']), \
-            '%d, %d'%(this.gauges['x'],this.gauges['fs']))
-
-    def fs_proc(this, e):
-        if this.fsacharge > 0:
-            this.fsacharge -= 1
-            if this.fsacharge == 0:
-                this.fs_alt.off()
-                this.fsacharge = -1
+            this.gauges['fs'] += this.conf.fs.gauge
+        log('gauges', name, this.gauges['x'], this.gauges['fs'])
 
     def s1_proc(this, e):
         boost = 0
@@ -117,8 +85,7 @@ class Gala_Ranzal(Adv):
 
 
     def s2_proc(this, e):
-        this.fsacharge = 3
-        this.fs_alt.on()
+        this.fs_alt.on(3)
         this.ifs1ins2 = 0
         Event('defchain')()
 

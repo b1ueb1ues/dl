@@ -1,7 +1,7 @@
 import adv.adv_test
 from core.advbase import *
 import copy
-from module.fsalt import *
+from module.x_alt import Fs_alt
 from slot.a import *
 from slot.d import *
 
@@ -27,24 +27,26 @@ class Albert(Adv):
         if this.condition('big hitbox'):
             this.s1_proc = this.c_s1_proc
 
+    def fs_proc_alt(this, e):
+        this.afflics.paralysis('fs',100,0.803)
+
     def prerun(this):
-        this.fsaconf = Conf()
-        this.fsaconf.fs = Conf(this.conf.fs)
-        this.fsaconf( {
-                'fs.dmg':1.02,
-                'fs.sp':330,
-                'fs.recovery':26/60.0,
-                'x1fs.recovery':26/60.0,
-                })
+        conf_fs_alt = {
+            'fs.dmg':1.02,
+            'fs.sp':330,
+            'fs.recovery':26/60.0,
+        }
+        this.fs_alt = Fs_alt(this, Conf(conf_fs_alt), this.fs_proc_alt)
+
+
         this.s2timer = Timer(this.s2autocharge,1,1).on()
         this.s2buff = Selfbuff("s2_shapshift",1, 20,'ss','ss')
         this.a3 = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
-        this.fsalttimer = Timer(this.altend)
-        fs_alt_init(this, this.fsaconf)
+        this.fs_alt_timer = Timer(this.fs_alt_end)
 
-    def altend(this,t):
-        fs_back(this)
+    def fs_alt_end(this,t):
+        this.fs_alt.off()
 
     def s2autocharge(this, t):
         if not this.s2buff.get():
@@ -74,17 +76,12 @@ class Albert(Adv):
             this.a3.buff_end_timer.timing += 2.6
             this.s2timer.timing += 2.6
 
-
-    def fs_proc(this, e):
-        if this.s2buff.get():
-            this.afflics.paralysis('fs',100,0.803)
-
     def s2_proc(this, e):
         this.s2timer.on()
         this.s2buff.on()
         this.a3.on()
-        fs_alt(this)
-        this.fsalttimer(20)
+        this.fs_alt.on(-1)
+        this.fs_alt_timer(20)
 
 
 if __name__ == '__main__':

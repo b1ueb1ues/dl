@@ -1,6 +1,6 @@
 import adv.adv_test
 from core.advbase import *
-from module.fsalt import *
+from module.x_alt import Fs_alt
 import slot
 from slot.d import *
 
@@ -18,7 +18,7 @@ class Ku_Hai(Adv):
         `s1, fsc
         `s2
         `s3, fsc
-        `fs, seq=2 and this.s2fsbuff.get()
+        `fs, seq=2 and this.fs_alt.get()
         `fs, seq=3
         '''
     conf['slots.a'] = slot.a.The_Lurker_in_the_Woods() + slot.a.RR()
@@ -38,17 +38,7 @@ class Ku_Hai(Adv):
     def c_prerun(this):
         this.o_prerun()
         this.fshit = 3
-        this.fsaconf['fs.dmg'] = 0
-
-    def fs_proc(this, e):
-        if e.name != 'fs_alt' :
-            return
-        this.dmg_make('o_fs_alt_hit1',0.83)
-        if this.fshit >= 2:
-            this.dmg_make('o_fs_alt_hit2',0.83)
-        if this.fshit >= 3:
-            this.dmg_make('o_fs_alt_hit3',0.83)
-
+        this.fs_alt.conf_alt['fs.dmg'] = 0
 
     def missc1(this):
         pass
@@ -66,36 +56,37 @@ class Ku_Hai(Adv):
         this.conf['x1.dmg'] = this.x1dmgb
         this.conf['x1.sp'] = this.x1spb
 
+    def fs_proc_alt(this, e):
+        this.dmg_make('o_fs_alt_hit1',0.83)
+        if this.fshit >= 2:
+            this.dmg_make('o_fs_alt_hit2',0.83)
+        if this.fshit >= 3:
+            this.dmg_make('o_fs_alt_hit3',0.83)
 
     def prerun(this):
-        this.fsaconf = Conf()
-        this.fsaconf.fs = Conf(this.conf.fs)
-        this.fsaconf({
-                'fs.dmg':0,
-                'fs.sp' :330,
-                'fs.charge': 2/60.0, # needs confirm
-                'fs.startup':31/60.0,
-                'fs.recovery':33/60.0,
-                'x2fs.startup':16/60.0,
-                'x2fs.recovery':33/60.0,
-                'x3fs.startup':16/60.0,
-                'x3fs.recovery':33/60.0,
-                })
         this.fshit = 2
-        this.s2fsbuff = Selfbuff('s2ss',1,10,'ss','ss')
         this.alttimer = Timer(this.altend)
-        fs_alt_init(this, this.fsaconf)
+        conf_fs_alt = {
+            'fs.dmg':0,
+            'fs.sp' :330,
+            'fs.charge': 2/60.0, # needs confirm
+            'fs.startup':31/60.0,
+            'fs.recovery':33/60.0,
+            'x2fs.startup':16/60.0,
+            'x2fs.recovery':33/60.0,
+            'x3fs.startup':16/60.0,
+            'x3fs.recovery':33/60.0,
+        }
+        this.fs_alt = Fs_alt(this, Conf(conf_fs_alt), this.fs_proc_alt)
 
     def altend(this,t):
-        fs_back(this)
+        this.fs_alt.off()
         this.backc1()
 
     def s2_proc(this, e):
-        this.s2fsbuff.on()
-        fs_alt(this)
-        this.missc1()
+        this.fs_alt.on(-1)
         this.alttimer.on(10)
-
+        this.missc1()
 
 if __name__ == '__main__':
     conf = {}

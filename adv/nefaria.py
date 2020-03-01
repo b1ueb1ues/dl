@@ -1,6 +1,6 @@
 import adv.adv_test
 from core.advbase import *
-from module.fsalt import *
+from module.x_alt import Fs_alt
 from slot.a import *
 from slot.d import *
 
@@ -8,30 +8,31 @@ def module():
     return Nefaria
 
 class Nefaria(Adv):
+    comment = 's2 fs(precharge) s1 s1'
     a1 = ('k_poison',0.3)
     a3 = ('k_blind',0.4)
     conf = {}
     conf['slot.d'] = Shinobi()
-    conf['slot.a'] = The_Fires_of_Hate()+Dear_Diary()
+    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
+        `fs, this.fs_alt.uses > 0 and s1.check()
+        `s2, s1.check()
         `s1
-        `s2
-        `s3, fsc
-        `fs, x=4 or this.fsacharge > 0
+        `s3, x=4 or x=5
         """
     conf['afflict_res.blind'] = 80
     conf['afflict_res.poison'] = 0
 
+    def fs_proc_alt(this, e):
+        this.afflics.blind('s2_fs', 110+this.fullhp*60)
+    
     def prerun(this):
-        this.fsacharge = -1
-        this.fsaconf = Conf()
-        this.fsaconf.fs = Conf(this.conf.fs)
-        this.fsaconf( {
-                'fs.dmg':8.09,
-                'fs.hit':19,
-                'fs.sp':2400,
-                })
-        this.fs_alt = Fs_alt(this, this.fsaconf)
+        conf_fs_alt = {
+            'fs.dmg':8.09,
+            'fs.hit':19,
+            'fs.sp':2400,
+        }
+        this.fs_alt = Fs_alt(this, Conf(conf_fs_alt), this.fs_proc_alt)
         
         if this.condition('hp100'):
             this.fullhp = 1
@@ -49,16 +50,7 @@ class Nefaria(Adv):
 
     def s2_proc(this, e):
         this.fsacharge = 1
-        this.fs_alt.on()
-
-    def fs_proc(this, e):
-        if this.fsacharge > 0:
-            this.fsacharge -= 1
-            this.afflics.blind('s2_fs', 110+this.fullhp*60)
-            if this.fsacharge == 0:
-                this.fs_alt.off()
-                this.fsacharge = -1
-
+        this.fs_alt.on(1)
 
 if __name__ == '__main__':
     conf = {}
