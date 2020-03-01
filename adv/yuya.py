@@ -1,15 +1,16 @@
 import adv.adv_test
 from core.advbase import *
-
+from slot.d import Dreadking_Rathalos
 def module():
     return Yuya
 
 class Yuya(Adv):
     conf = {}
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff
-        `s1
-        `fs, seq=4
+        `s3, fsc and not this.s3_buff
+        `s1, fsc
+        `fs, seq=2
         """
 
     a3 = ('primed_crit_chance', 0.5,5)

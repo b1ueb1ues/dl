@@ -2,6 +2,7 @@ import adv.adv_test
 from core.advbase import *
 import adv.g_cleo
 from slot.a import Amulet
+from slot.w.wand import Agito_Jiu_Ci
 
 class King_of_the_Skies(Amulet):
     att = 39
@@ -14,14 +15,15 @@ def module():
     return Gala_Cleo
 
 class Gala_Cleo(adv.g_cleo.Gala_Cleo):
-    comment = '4 Gleo vs EHJP; simulated break & no team dps; s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 dragon end'
     conf = adv.g_cleo.Gala_Cleo.conf.copy()
     conf['slot.a'] = Candy_Couriers()+King_of_the_Skies()
     conf['slot.d'] = slot.d.Shinobi()
+    conf['slot.w'] = Agito_Jiu_Ci()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
-        s2 s1 c5 fs s3 c5 s1 c5 c5 c5 fs s2 s1 dragon end
+        s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d c5 fs s2 s1 dragon end
     """
+    comment = '4 Gleo vs EHJP; simulated break & no team dps; {}'.format(conf['rotation'].strip())
 
     def prerun(this):
         super().prerun()
@@ -32,6 +34,11 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         this.dmgsum = 0
         adv.adv_test.team_dps = 0
         this.broken_punisher = Selfbuff(name='candy_couriers', value=0.25, duration=-1, mtype='att', morder='bk')
+        this.a1_zones = []
+        for _ in range(4):
+            buff = Selfbuff('a1_str',0.25,10)
+            buff.bufftime = buff.nobufftime
+            this.a1_zones.append(buff)
 
     def dmg_proc(this, name, amount):
         this.dmgsum += int(amount) * 4
@@ -77,11 +84,12 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         Debuff('s2',0.10,20).on()
 
     def fs_proc(this, e):
-        if this.fsa_charge and this.a1_buffed:
-            Debuff('a1_str',-0.25,10,1,'att','buff').on()
-            Debuff('a1_str',-0.25,10,1,'att','buff').on()
-            Debuff('a1_str',-0.25,10,1,'att','buff').on()
-        super().fs_proc(e)
+        if this.fsa_charge:
+            this.fsa_charge = 0
+            this.fs_alt.off()
+            if this.a1_buffed:
+                for buff in this.a1_zones:
+                    buff.on()
 
 
 if __name__ == '__main__':

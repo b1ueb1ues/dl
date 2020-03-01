@@ -46,8 +46,7 @@ class lobject(object):
         elif l < 0 and i != '':
             this.__setattr__(i,v)
             return
-        print('can\' set item')
-        errrrrrrrrrrr()
+        raise ValueError('can\' set item')
         return
 
     def __delitem__(this, i):
@@ -130,8 +129,7 @@ class Conf(lobject):
 
     def __fromdict(this,dic):
         if type(dic) != dict:
-            print('err fromdict')
-            errrrrrrrrr()
+            raise ValueError('err fromdict')
         for k,v in dic.items():
             if type(v) == tuple and v[0] == '__realdict':
                 this[k] = v[1]
@@ -250,13 +248,11 @@ class Conf(lobject):
                             continue
                 this[k] = i
         else:
-            print('Conf can only update from Conf/dict')
-            errrrrrrrrrrrrrrrrrrrr()
+            raise ValueError('Conf can only update from Conf/dict')
 
     def __add__(this, a):
         if type(a) != Conf:
-            print('Conf can only add Conf')
-            errrrrrrrrrrrrrrrrrrrr()
+            raise ValueError('Conf can only add Conf')
             return
         merge = this.__new__(this.__class__)
         merge.__init__(this)

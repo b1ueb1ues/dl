@@ -33,9 +33,6 @@ conf = {
     'x5.recovery': 40/60.0,
     'x5.hit': 1,
 
-    'fsf._startup': 0,
-    'fsf._recovery': 40/60.0,
-
     'fs.dmg': 0.61*4,
     'fs.sp': 580,
     'fs.charge': 24 / 60.0,

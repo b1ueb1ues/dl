@@ -42,8 +42,7 @@ conf = {
     'x2fs.charge': 35 / 60.0, # 10 delay + fs
     'x5fs.charge': 12 / 60.0, # can charge fs while in c5
 
-    'fsf.startup': 0,
-    'fsf.recovery': 34 / 60.0, # https://streamable.com/36bjj
+    'fsf.charge': 34 / 60.0, # https://streamable.com/36bjj
 
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,

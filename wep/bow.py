@@ -41,8 +41,7 @@ conf = {
     'x1fs.charge': 22 / 60.0, # 2 delay + fs
     'x2fs.charge': 27 / 60.0, # 7 delay + fs
 
-    'fsf.startup': 0, 
-    'fsf.recovery': 32 / 60.0, 
+    'fsf.charge': 32 / 60.0,
 
     # 'dfs.startup': (86-36) / 60.0, # ???
     # 'dfs.recovery': 37 / 60.0,

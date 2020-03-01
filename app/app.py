@@ -52,7 +52,7 @@ SPECIAL_ADV = {
     },
     'g_cleo_ehjp': {
         'fn': 'g_cleo.py.ehjp.py',
-        'nc': ['wp', 'acl']
+        'nc': ['w', 'wp', 'acl']
     },
     'g_luca_maxstacks': {
         'fn': 'g_luca.py.maxstacks.py',

@@ -940,16 +940,16 @@ class Adv(object):
 
         # init actions
         # this.a_fs
-        fsconf = this.conf.fs
-        xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf,fsconf]
+        # fsconf = this.conf.fs
+        # xnfsconf = [fsconf,fsconf,fsconf,fsconf,fsconf,fsconf]
 
-        for i in range(5):
-            xnfs = 'x%dfs'%(i+1)
-            if xnfs in this.conf:
-                xnfsconf[i] += this.conf[xnfs]
+        # for i in range(5):
+        #     xnfs = 'x%dfs'%(i+1)
+        #     if xnfs in this.conf:
+        #         xnfsconf[i] += this.conf[xnfs]
 
-        if 'dfs' in this.conf:
-            xnfsconf[5] += this.conf.dfs
+        # if 'dfs' in this.conf:
+        #     xnfsconf[5] += this.conf.dfs
 
         this.a_x1 = X(('x1',1),this.conf.x1)
         this.a_x2 = X(('x2',2),this.conf.x2)

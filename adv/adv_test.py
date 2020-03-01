@@ -224,13 +224,13 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
                     base_str, displayed_str, amulets, '<%s>'%condition, comment ))
             print('-----------------------')
 
-            print("dmgsum     | "+ str(dmg_sum))
-            print("skill_stat | "+ str(sdmg_sum))
-            print("x_stat     | "+ str(x_sum))
-            if r['o_sum']:
-                print("others     | "+ str(o_sum))
-            if r['dragon_sum']:
-                print("dragon     | "+ str(d_sum))
+        print("dmgsum     | "+ str(dmg_sum))
+        print("skill_stat | "+ str(sdmg_sum))
+        print("x_stat     | "+ str(x_sum))
+        if r['o_sum']:
+            print("others     | "+ str(o_sum))
+        if r['dragon_sum']:
+            print("dragon     | "+ str(d_sum))
 
     elif loglevel == -1:
         if condition != '':

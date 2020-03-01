@@ -26,7 +26,7 @@ class Laxi(Adv):
         this.heal.conf.recovery = 5.0
 
         this.heal_initial = Timer(this.heal_proc,0).on()
-        this.s2buff = Selfbuff("s2",0.15,-1,toggle=True)
+        this.s2buff = Selfbuff("s2",0.15,-1)
         this.s2tick = Timer(this.s2_tick,2.9,1)
 
         this.a3buff = Selfbuff("a3",0.2,-1,"att","passive")
