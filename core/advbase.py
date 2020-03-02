@@ -19,7 +19,7 @@ conf = Conf()
 
 class Modifier(object):
     _static = Static({
-        'all_modifiers': [],
+        'all_modifiers': defaultdict(lambda: defaultdict(lambda: [])),
         'g_condition': None
         })
     mod_name = '<nop>'
@@ -42,13 +42,9 @@ class Modifier(object):
     def mod(cls, mtype, all_modifiers=None):
         if not all_modifiers:
             all_modifiers = cls._static.all_modifiers
-        m = {}
-        for i in all_modifiers:
-            if mtype == i.mod_type:
-                if i.mod_order in m:
-                    m[i.mod_order] += i.get()
-                else:
-                    m[i.mod_order] = 1 + i.get()
+        m = defaultdict(lambda: 1)
+        for order, modifiers in all_modifiers[mtype].items():
+            m[order] += sum([modifier.get() for modifier in modifiers])
         ret = 1.0
         for i in m:
             ret *= m[i]
@@ -71,7 +67,7 @@ class Modifier(object):
             if not this._static.g_condition(modifier.mod_condition):
                 return this
 
-        this._static.all_modifiers.append(modifier)
+        this._static.all_modifiers[this.mod_type][this.mod_order].append(modifier)
         this.__active = 1
         return this
 
@@ -82,14 +78,7 @@ class Modifier(object):
         this.__active = 0
         if modifier==None:
             modifier = this
-        idx = len(this._static.all_modifiers)
-        while 1:
-            idx -= 1
-            if idx < 0:
-                break
-            if this._static.all_modifiers[idx] == modifier:
-                this._static.all_modifiers.pop(idx)
-                break
+        this._static.all_modifiers[this.mod_type][this.mod_order].remove(this)
         return this
 
     def __enter__(this):
@@ -931,7 +920,7 @@ class Adv(object):
         this.buff._static.time_func = this.bufftime
         # set modifier
         this.modifier = Modifier(0,0,0,0)
-        this.all_modifiers = []
+        this.all_modifiers = defaultdict(lambda: defaultdict(lambda: []))
         this.modifier._static.all_modifiers = this.all_modifiers
         this.modifier._static.g_condition = this.condition
 
@@ -1143,17 +1132,16 @@ class Adv(object):
             return mod
 
     def mod(this, mtype):
-        m = {}
-        for i in this.all_modifiers:
-            if mtype == i.mod_type:
-                if i.mod_order in m:
-                    m[i.mod_order] += i.get()
-                else:
-                    m[i.mod_order] = 1 + i.get()
+        m = defaultdict(lambda: 0)
+        for order in this.all_modifiers[mtype].keys():
+            m[order] += this.sub_mod(mtype, order)
         ret = 1.0
-        for i in m:
-            ret *= m[i]
+        for v in m.values():
+            ret *= v
         return ret
+
+    def sub_mod(this, mtype, morder):
+        return 1 + sum([modifier.get() for modifier in this.all_modifiers[mtype][morder]])
 
     def l_have_speed(this, e):
         this.speed = this.have_speed
@@ -1168,13 +1156,12 @@ class Adv(object):
 
     def solid_crit_mod(this):
         m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
-        for i in this.all_modifiers:
-            if 'crit' == i.mod_type:
-                if i.mod_order in m:
-                    m[i.mod_order] += i.get()
+        for order, modifiers in this.all_modifiers['crit'].items():
+            for modifier in modifiers:
+                if order in m:
+                    m[order] += modifier.get()
                 else:
-                    print('err in crit_mod')
-                    errrrrrrrrrrrrr()
+                    raise ValueError(f"Invalid crit mod order {order}")
         chance = m['chance']+m['passive']+m['rate']
         if chance > 1:
             chance = 1
@@ -1184,13 +1171,12 @@ class Adv(object):
 
     def rand_crit_mod(this):
         m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
-        for i in this.all_modifiers:
-            if 'crit' == i.mod_type:
-                if i.mod_order in m:
-                    m[i.mod_order] += i.get()
+        for order, modifiers in this.all_modifiers['crit'].items():
+            for modifier in modifiers:
+                if order in m:
+                    m[order] += modifier.get()
                 else:
-                    print('err in crit_mod')
-                    errrrrrrrrrrrrr()
+                    raise ValueError(f"Invalid crit mod order {order}")
         chance = m['chance']+m['passive']+m['rate']
         if chance > 1:
             chance = 1
@@ -1200,7 +1186,6 @@ class Adv(object):
             return cdmg
         else:
             return 1
-
 
     def att_mod(this):
         att = this.mod('att')
@@ -1224,13 +1209,12 @@ class Adv(object):
 
     def sp_mod(this, name):
         sp_mod = 1
-        for m in this.all_modifiers:
-            if m.mod_type == 'sp':
-                if m.mod_order == 'fs':
-                    if name.startswith('fs'):
-                        sp_mod += m.get()
-                else:
-                    sp_mod += m.get()
+        for order, modifiers in this.all_modifiers['sp'].items():
+            if order == 'fs':
+                if name.startswith('fs'):
+                    sp_mod += sum([modifier.get() for modifier in modifiers])
+            else:
+                sp_mod += sum([modifier.get() for modifier in modifiers])
         return sp_mod
 
     def sp_val(this, param):

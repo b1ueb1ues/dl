@@ -29,14 +29,15 @@ class Gala_Luca(Adv):
         return len(set([b.name for b in this.all_buffs]))
 
     def custom_crit_mod(this):
-        base_rate = 0.0
-        crit_dmg = 0.7
-        for i in this.all_modifiers:
-            if 'crit' == i.mod_type:
-                if i.mod_order in ['passive', 'rate', 'chance']:
-                    base_rate += i.get()
-                if i.mod_order in ['dmg', 'damage']:
-                    crit_dmg += i.get()
+        m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
+        for order, modifiers in this.all_modifiers['crit'].items():
+            for modifier in modifiers:
+                if order in m:
+                    m[order] += modifier.get()
+                else:
+                    raise ValueError(f"Invalid crit mod order {order}")
+        base_rate = m['chance']+m['passive']+m['rate']
+        crit_dmg = m['dmg'] + m['damage'] + 0.7
         new_states = defaultdict(lambda: 0.0)
         t = now()
         base_icon_count = this.buff_icon_count()
