@@ -276,7 +276,9 @@ function loadAdvSlots() {
                 $('#input-acl').blur();
                 $('#input-edit-acl').prop('checked', false);
                 $('#input-acl').prop('disabled', true);
-                $('#input-acl').val(trimAcl(slots.adv.acl));
+                const acl = trimAcl(slots.adv.acl);
+                $('#input-acl').val(acl);
+                $('#input-acl').data('default_acl', acl);
                 if (slots.adv.afflict_res != undefined) {
                     for (const key in slots.adv.afflict_res) {
                         $('#input-afflict').prop('disabled', false);
@@ -439,7 +441,8 @@ function runAdvTest() {
     });
 }
 function editAcl() {
-    $('#input-acl').prop('disabled', !$(this).prop('checked'))
+    $('#input-acl').prop('disabled', !$(this).prop('checked'));
+    $('#input-acl').val($('#input-acl').data('default_acl'));
 }
 function debounce(func, interval) {
     var lastCall = -1;
@@ -498,6 +501,10 @@ function weaponSelectChange() {
             }
         }
         $('#input-acl').val(new_acl);
+    } else {
+        $('#input-edit-acl').prop('checked', false);
+        $('#input-acl').prop('disabled', true);
+        $('#input-acl').val($('#input-acl').data('default_acl'));
     }
 }
 function simAfflictSelectChange() {

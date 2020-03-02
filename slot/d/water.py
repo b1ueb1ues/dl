@@ -191,6 +191,11 @@ class Nimis(DragonBase):
         self.adv.dragonform.shift_end_timer.timing += 5
         return 0
 
+class Unreleased_WaterFrostbitePunish(DragonBase):
+    ele = 'water'
+    att = 127
+    a = [('k_frostbite', 0.2), ('a', 0.5)]
+
 class Unreleased_Water80Str(DragonBase):
     ele = 'water'
     att = 127
