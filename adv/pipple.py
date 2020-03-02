@@ -23,7 +23,6 @@ class Pipple(Adv):
     conf['acl'] = """
         `s1, x=5
         `s2, x=5
-        `s3, x=5
         """
             
     def init(this):
@@ -84,6 +83,9 @@ class Pipple(Adv):
             this.stance = 0
 
     def s2_proc(this, e):
+        Timer(this.a3change).on()
+
+    def s3_proc(this, e):
         Timer(this.a3change).on()
 
 if __name__ == '__main__':
