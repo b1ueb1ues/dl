@@ -1,5 +1,7 @@
+import operator
 import sys
 import random
+from functools import reduce
 
 from ability import Ability
 from core import *
@@ -290,7 +292,7 @@ class SingleActionBuff(Buff):
             return super().off()
         else:
             return this
-    
+
 class Teambuff(Buff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
         Buff.__init__(this,name,value,duration,mtype,morder)
@@ -443,7 +445,7 @@ class Skill(object):
         this.charged = min(this.sp, this.charged + sp)
         if this.charged >= this.sp:
             this.skill_charged()
-        #if this.charged > this.sp:  # should be 
+        #if this.charged > this.sp:  # should be
             #this.charged = this.sp
 
     def cb_silence_end(this, e):
@@ -1132,13 +1134,7 @@ class Adv(object):
             return mod
 
     def mod(this, mtype):
-        m = defaultdict(lambda: 0)
-        for order in this.all_modifiers[mtype].keys():
-            m[order] += this.sub_mod(mtype, order)
-        ret = 1.0
-        for v in m.values():
-            ret *= v
-        return ret
+        return reduce(operator.mul, [this.sub_mod(mtype, order) for order in this.all_modifiers[mtype].keys()], 1)
 
     def sub_mod(this, mtype, morder):
         return 1 + sum([modifier.get() for modifier in this.all_modifiers[mtype][morder]])
@@ -1428,7 +1424,7 @@ class Adv(object):
         this.debug()
         end = Timeline.run(d)
         log('sim','end')
-        
+
         for aff, up in this.afflics.get_uptimes().items():
             if up > 0.10:
                 if len(this.comment) > 0:
@@ -1640,7 +1636,7 @@ class Adv(object):
                                 this.s3_buff = buff
             else:
                 this.do_buff(e, buffarg).on()
-        
+
         func = e.name + '_proc'
         getattr(this, func)(e)
 
