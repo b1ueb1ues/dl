@@ -22,5 +22,5 @@ def test(adv, conf, duration=180):
                 this.conf['slots.a'] = i()+j()
                 this.conf['slot.a'] = this.conf['slots.a']
             adv.slot_backdoor = foo
-            adv.comment = str('(',type(i()).__name__, type(j()).__name__,')')
+            adv.comment = '(' + type(i()).__name__ + type(j()).__name__ + ')'
             adv_test.test(adv, conf, verbose=255, mass=0, duration=duration)
