@@ -48,7 +48,7 @@ const amulet_name_override = {
     Spirit_of_the_Season_No_HP100: 'Spirit_of_the_Season',
     The_Fires_of_Hate_No_HP100: 'The_Fires_of_Hate',
 }
-function slots_icon_fmt(adv, slots) {
+function slots_icon_fmt(adv, ele, wt, slots) {
     const img_urls = [];
     if (speshul.hasOwnProperty(adv) && Math.random() < 0.1) {
         img_urls.push('<img src="' + speshul[adv] + '" class="slot-icon character"/>');
@@ -69,6 +69,10 @@ function slots_icon_fmt(adv, slots) {
         img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon"/>');
     } else {
         img_urls.push('<img src="/dl-sim/pic/dragon/Unreleased.png" class="slot-icon"/>');
+    }
+    const weapon = slots_list[2];
+    if (weapon === 'HDT2' || (weapon === 'Agito')) {
+        img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon"/>');
     }
     return img_urls;
 }
@@ -406,7 +410,7 @@ function runAdvTest() {
                     const result = res.test_output.split('\n');
                     const cond_true = result[1].split(',');
                     const name = substitute_prefix(cond_true[1], 'adv');
-                    const icon_urls = slots_icon_fmt(cond_true[1], cond_true[6]);
+                    const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
                     if (exArr.length > 0) {
                         copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
