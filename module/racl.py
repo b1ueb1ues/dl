@@ -1,5 +1,5 @@
 import slot
-import adv.adv_test as adv_test
+from adv import adv_test
 
 t = 0
 
@@ -66,5 +66,5 @@ def test(adv, conf, duration=180):
 
     for i in acls:
         conf['acl'] = acls[i]
-        adv.comment = '(',i,')'
+        adv.comment = str('(',i,')')
         adv.adv_test.test(adv, conf, verbose=255, mass=0, duration=duration)
