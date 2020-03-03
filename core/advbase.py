@@ -21,13 +21,23 @@ from core.condition import Condition
 conf = Conf()
 
 
-def modifier_list():
-    return defaultdict(lambda: defaultdict(lambda: []))
+class ModifierDict(defaultdict):
+    def __init__(this, *args, **kwargs):
+        if args:
+            super().__init__(*args, **kwargs)
+        else:
+            super().__init__(lambda: defaultdict(lambda: []))
+
+    def append(this, modifier):
+        this[modifier.mod_type][modifier.mod_order].append(modifier)
+
+    def remove(this, modifier):
+        this[modifier.mod_type][modifier.mod_order].remove(modifier)
 
 
 class Modifier(object):
     _static = Static({
-        'all_modifiers': modifier_list(),
+        'all_modifiers': ModifierDict(),
         'g_condition': None
     })
     mod_name = '<nop>'
@@ -76,7 +86,7 @@ class Modifier(object):
             if not this._static.g_condition(modifier.mod_condition):
                 return this
 
-        this._static.all_modifiers[this.mod_type][this.mod_order].append(modifier)
+        this._static.all_modifiers.append(this)
         this._mod_active = 1
         return this
 
@@ -86,7 +96,7 @@ class Modifier(object):
         this._mod_active = 0
         if modifier == None:
             modifier = this
-        this._static.all_modifiers[this.mod_type][this.mod_order].remove(this)
+        this._static.all_modifiers.remove(this)
         return this
 
     def __enter__(this):
@@ -354,7 +364,7 @@ class Teambuff(Buff):
         this.count_team_buff()
 
     def count_team_buff(this):
-        this.dmg_test_event.modifiers = []
+        this.dmg_test_event.modifiers = ModifierDict()
         for i in this._static.all_buffs:
             if i.name == 'simulated_def':
                 this.dmg_test_event.modifiers.append(i.modifier)
@@ -399,7 +409,7 @@ class Spdbuff(Buff):
         this.count_team_buff()
 
     def count_team_buff(this):
-        this.dmg_test_event.modifiers = []
+        this.dmg_test_event.modifiers = ModifierDict()
         for i in this._static.all_buffs:
             if i.name == 'simulated_def':
                 this.dmg_test_event.modifiers.append(i.modifier)
@@ -979,7 +989,7 @@ class Adv(object):
         this.buff._static.time_func = this.bufftime
         # set modifier
         this.modifier = Modifier(0, 0, 0, 0)
-        this.all_modifiers = modifier_list()
+        this.all_modifiers = ModifierDict()
         this.modifier._static.all_modifiers = this.all_modifiers
         this.modifier._static.g_condition = this.condition
 
@@ -1293,7 +1303,7 @@ class Adv(object):
         elif isinstance(param, int) and 1 <= param <= 5:
             return sum([this.ceiling(
                 this.float_problem(this.conf['x{}.sp'.format(x)] * this.float_problem(this.sp_mod('x{}'.format(x)))))
-                        for x in range(1, param + 1)])
+                for x in range(1, param + 1)])
 
     def bufftime(this):
         return this.mod('buff')
