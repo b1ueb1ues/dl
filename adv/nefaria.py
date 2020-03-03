@@ -40,8 +40,7 @@ class Nefaria(Adv):
             this.fullhp = 0
 
     def s1_proc(this, e):
-        coef = min(1, this.afflics.poison.get() + this.afflics.blind.get())
-        with Modifier('s1killer', 'att', 'hit', 0.74*coef):
+        with KillerModifier('s1killer', 'hit', 0.74, ['blind', 'poison']):
             this.dmg_make('s1',1.06)
             this.hits += 1
             this.afflics.poison('s1', 70+this.fullhp*60, 0.582)

@@ -122,7 +122,7 @@ ability_dict['bk'] = Broken_Punisher
 class Overdrive_Punisher(Ability):
     EFFICIENCY = 0.35
     def __init__(self, name, value, cond=None):
-        super().__init__(name, [('att','killer',value*self.EFFICIENCY, cond)])
+        super().__init__(name, [('overdrive_killer','passive',value, cond)])
 
 ability_dict['od'] = Overdrive_Punisher
 
