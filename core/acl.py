@@ -78,28 +78,103 @@ def acl_str_but_it_cursed(acl):
     #g_line = line
     return line
 
+class Acl_Action:
+    INDENT = '    '
+    PREP = """    try:
+        {act} = this.{act}
+    except Exception:
+        raise AttributeError('{act} is not an action')"""
+    ACT = """{indent}if {act}{args}:
+{indent}    return '{act}'"""
+    NONE = '{indent}return 0'
+    dragon_act = re.compile(r'dragon(form)?.act\(("(c\d|x\d|s|ds|dodge|end)( (c\d|x\d|s|ds|dodge|end))+")\)')
+    def __init__(self, action):
+        self.arguments = '()'
+        if action.upper() == 'NONE':
+            self.action = None
+        elif action.startswith('dragon'):
+            self.action = 'dragonform'
+            res = self.dragon_act.match(action)
+            if res:
+                self.action = 'dragonform'
+                self.arguments = '.act({})'.format(res.group(2))
+        else:
+            self.action = action
+        self.depth = 0
 
-def eq_replace(s):
-    return s[1]+'=='+s[2]
+    def prepare(self):
+        if self.action is None:
+            return False
+        return self.PREP.format(act=self.action)
+
+    def act(self):
+        if self.action is None:
+            return self.NONE.format(indent=self.INDENT*self.depth)
+        return self.ACT.format(act=self.action, args=self.arguments, indent=self.INDENT*self.depth)
+
+class Acl_Condition:
+    INDENT = '    '
+    IF = """{indent}if {cond}:
+{block}"""
+    ELIF = """{indent}elif {cond}:
+{block}"""
+    ELSE = """{indent}else:
+{block}"""
+    banned = re.compile(r'(exec|eval|compile|__import__|setattr|delattr|memoryview|property|globals|locals|open|print)\(.*\)')
+    banned_repl = ''
+    assignment = re.compile(r'([^=><!])=([^=])')
+    assignment_repl = lambda s: s[1]+'=='+s[2]
+    @staticmethod
+    def sanitize_qwe_and_his_chunch_legs(condition):
+        condition = Acl_Condition.banned.sub(Acl_Condition.banned_repl, condition)
+        condition = Acl_Condition.assignment.sub(Acl_Condition.assignment_repl, condition)
+        return condition
+    
+    def __init__(self, condition, depth=0):
+        self.conditions = [(self.sanitize_qwe_and_his_chunch_legs(condition), [])]
+        self.depth = depth
+
+    def add_action(self, action):
+        action.depth = self.depth + 1
+        self.conditions[-1][-1].append(action)
+
+    def add_condition(self, condition):
+        self.conditions.append((self.sanitize_qwe_and_his_chunch_legs(condition), []))
+
+    def prepare(self):
+        prep_list = []
+        for _, acts in self.conditions:
+            prep_list.extend([a.prepare() for a in acts if a.prepare()])
+        return '\n'.join(prep_list)
+
+    def act(self):
+        act_list = []
+        for idx, value in enumerate(self.conditions):
+            cond, acts = value
+            if len(acts) == 0:
+                continue
+            if idx == 0:
+                pattern = self.IF
+            elif cond != 'else':
+                pattern = self.ELIF
+            else:
+                pattern = self.ELSE
+
+            block = [a.act() for a in acts]
+            if self.depth == 0:
+                act_list = block
+            else:
+                act_list.append(
+                    pattern.format(cond=cond, block='\n'.join(block), indent=self.INDENT*self.depth)
+                )
+        return '\n'.join(act_list)
 
 def acl_str(acl):
-    act_cond_list = []
-
-    for line in acl.split('\n'):
-        line = line.strip()
-        if len(line) > 0 and line[0] == '`':
-            parts = [l.strip() for l in line[1:].split(',')]
-            try:
-                act_cond_list.append((parts[0], parts[1] if len(parts[1]) > 0 else None))
-            except:
-                act_cond_list.append((parts[0], None))
-
-    act_cond_list = list(dict.fromkeys(act_cond_list).keys())
-    
     acl_base = """
-def do_act_list(this, e):
+def do_act_list(self, e):
+    this = self
     pin, dname, dstat, didx = e.pin, e.dname, e.dstat, e.didx
-    prev = this.action.getprev()
+    prev = self.action.getprev()
     seq = didx if dname[0] == 'x' else 0 if dstat == -2 else -1
     cancel = pin =='x' or pin == 'fs'
     x = didx if pin =='x' else 0
@@ -110,32 +185,36 @@ def do_act_list(this, e):
 {act_prep_block}
 {act_cond_block}
     return 0"""
-    acl_prep = """    try:
-        {act} = this.{act}
-    except Exception:
-        raise AttributeError('{act} is not an action')"""
-    acl_if_no_cond = """    if {act}{args}:
-        return '{act}'"""
-    acl_if_cond = """    if {cond}:
-        if {act}{args}:
-            return \'{act}\'"""
-    act_prep_block = set()
-    act_cond_block = []
-    for act, cond in act_cond_list:
-        if act.startswith('dragon'):
-            act_prep_block.add(acl_prep.format(act='dragonform'))
-            if act.startswith('dragon.act'):
-                args = act.replace('dragon', '')
+    root = Acl_Condition('True')
+    node_stack = [root]
+    for line in acl.split('\n'):
+        line = line.strip().replace('`', '')
+        upper = line.upper()
+        if len(line) > 0 and line[0] != '#':
+            if upper.startswith('IF '):
+                node = Acl_Condition(line[3:])
+                node_stack[-1].add_action(node)
+                node_stack.append(node)
+            elif upper.startswith('ELIF '):
+                node_stack[-1].add_condition(line[5:])
+            elif upper.startswith('ELSE'):
+                node_stack[-1].add_condition('else')
+            elif upper.startswith('END'):
+                node_stack.pop()
             else:
-                args = '()'
-            act = 'dragonform'
-        else:
-            act_prep_block.add(acl_prep.format(act=act))
-            args = '()'
-        if cond is None:
-            act_cond_block.append(acl_if_no_cond.format(act=act, args=args))
-        else:
-            cond = re.sub(r'([^=><!])=([^=])', eq_replace, cond)
-            act_cond_block.append(acl_if_cond.format(cond=cond, act=act, args=args))
-    acl_string = acl_base.format(act_prep_block='\n'.join(act_prep_block),act_cond_block='\n'.join(act_cond_block))
+                parts = [l.strip() for l in line.split(',')]
+                if len(parts) == 1 or len(parts[1]) == 0:
+                    action = parts[0]
+                    node = Acl_Action(action)
+                    node_stack[-1].add_action(node)
+                else:
+                    action = parts[0]
+                    condition = parts[1]
+                    node = Acl_Condition(condition)
+                    node_stack[-1].add_action(node)
+                    node.add_action(Acl_Action(action))
+    acl_string = acl_base.format(
+        act_prep_block=root.prepare(),
+        act_cond_block=root.act()
+    )
     return acl_string
