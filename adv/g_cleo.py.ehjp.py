@@ -1,5 +1,6 @@
 import adv.adv_test
 from core.advbase import *
+from module.x_alt import Fs_alt
 import adv.g_cleo
 from slot.a import Amulet
 from slot.w.wand import Agito_Jiu_Ci
@@ -23,10 +24,19 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
     conf['rotation'] = """
         s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d c5 fs s2 s1 dragon end
     """
-    comment = '4 Gleo vs EHJP; simulated break & no team dps; {}'.format(conf['rotation'].strip())
+    comment = '4 Gleo vs EHJP; simulated break & no team dps; {}'.format(conf['rotation'].replace(' d ', ' dodge ').strip())
 
     def prerun(this):
-        super().prerun()
+        this.s1p = 0
+        conf_fs_alt = {
+            'fs.dmg':0,
+            'fs.sp' :0,
+            'fs.charge': 30/60.0,
+            'fs.startup': 20/60.0,
+            'fs.recovery': 60/60.0,
+        }
+        this.fs_alt = Fs_alt(this, Conf(conf_fs_alt), this.fs_proc_alt)
+
         this.dragonform.dragon_gauge = 100
         this.dragonform.conf.act = 'c3 s c3 end'
         this.odbk = 991202+792960
@@ -83,13 +93,9 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         Debuff('s2',0.10,20).on()
         Debuff('s2',0.10,20).on()
 
-    def fs_proc(this, e):
-        if this.fsa_charge:
-            this.fsa_charge = 0
-            this.fs_alt.off()
-            if this.a1_buffed:
-                for buff in this.a1_zones:
-                    buff.on()
+    def fs_proc_alt(this, e):
+        for buff in this.a1_zones:
+            buff.on()
 
 
 if __name__ == '__main__':
