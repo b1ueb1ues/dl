@@ -44,10 +44,15 @@ class Lathna(Adv):
         return dmg + this.dmg_make('d_ds',3.64,'s')
 
     def prerun(this):
-        this.s1tmp = Conf(this.conf.s1)
         this.faceless_god = Selfbuff('faceless_god',2.00,-1,'poison_killer','passive')
         Event('dragon').listener(this.a1_on)
         Event('idle').listener(this.a1_off)
+
+        this.a_s1 = this.s1.ac
+        this.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 2.00}))
+        def recovery():
+            return this.a_s1a._recovery + this.a_s1.getrecovery()
+        this.a_s1a.getrecovery = recovery
 
     def a1_on(this, e):
         if not this.faceless_god.get():
@@ -58,19 +63,18 @@ class Lathna(Adv):
             this.faceless_god.off()
 
     def s1back(this, t):
-        this.conf.s1.recovery = this.s1tmp.recovery
-        this.conf.s1.dmg = this.s1tmp.dmg
+        this.s1.ac = this.a_s1
 
     def s1a(this):
         if this.s1.check():
             with Modifier("s1killer", "poison_killer", "hit", 0.5):
                 this.dmg_make("s1", 2.37*4)
-            this.conf.s1.recovery = 4.05
+            this.s1.ac = this.a_s1a
             Timer(this.s1back).on(this.conf.s1.startup+0.01)
             this.hits += 4
             return this.s1()
         else:
-            return 0 
+            return 0
     
     def s1_proc(this, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.5):

@@ -19,18 +19,21 @@ class Ramona(Adv):
         """
 
     def prerun(this):
-        this.s1tmp = Conf(this.conf.s1)
+        this.a_s1 = this.s1.ac
+        this.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 3.10}))
+        def recovery():
+            return this.a_s1a._recovery + this.a_s1.getrecovery()
+        this.a_s1a.getrecovery = recovery
 
     def s1back(this, t):
-        this.conf.s1.recovery = this.s1tmp.recovery
-        this.conf.s1.dmg = this.s1tmp.dmg
+        this.s1.ac = this.a_s1
 
     def s1a(this):
         if this.s1.check():
-            this.conf.s1.dmg += 2.93*6
-            this.conf.s1.recovery = 6.25
-            Timer(this.s1back).on(this.conf.s1.startup+0.01)
+            this.dmg_make('s1', 2.93*6)
             this.hits += 6
+            this.s1.ac = this.a_s1a
+            Timer(this.s1back).on(this.conf.s1.startup+0.01)
             return this.s1()
         else:
             return 0

@@ -718,8 +718,7 @@ class Action(object):
                 else:
                     return 0
             elif doing.status == 0:
-                print('err in action tap()')
-                errrrrrrrrrrrr()
+                raise Exception('err in action tap()')
             this._setprev()
         this.status = -1
         this.startup_start = now()
