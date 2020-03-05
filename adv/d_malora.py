@@ -14,7 +14,7 @@ class Dragonyule_Malora(Adv):
     conf['slot.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
-        `s2, this.mod('def')!=1
+        `s2, this.def_mod()!=1
         `fsf, x=4 and (s1.charged == this.sp_val(4))
         """
 
@@ -22,16 +22,16 @@ class Dragonyule_Malora(Adv):
         if this.condition('buff all team'):
             this.s1debuff = Debuff('s1',0.15,15)
         else:
-            this.s1debuff = False
+            this.s1debuff = None
 
     def s1_proc(this, e):
-        if this.s1debuff:
+        if this.s1debuff is not None:
             this.s1debuff.on()
         this.dmg_make('s1',4.67,'s')
         this.hits += 1
 
     def s2_proc(this, e):
-        if this.mod('def')!= 1:
+        if this.def_mod()!= 1:
             this.dmg_make('o_s2_boost',4.32*3*0.8)
 
 if __name__ == '__main__':

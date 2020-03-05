@@ -294,9 +294,6 @@ class Buff(object):
         this.buff_end_timer.off()
         return this
 
-    def __bool__(this):
-        return bool(this.get())
-
 
 class Selfbuff(Buff):
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):

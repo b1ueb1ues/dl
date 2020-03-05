@@ -180,9 +180,9 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
         print(adv._acl_str)
 
     if loglevel > 0 and loglevel & 4:
-        if adv.conf['x_type'] == 'melee':
+        if adv.conf['xtype'] == 'melee':
             logcat(['dmg','cancel','fs','cast','buff'])
-        if adv.conf['x_type'] == 'ranged':
+        if adv.conf['xtype'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
 
     dps = r['dmg_sum']['total']/real_duration
