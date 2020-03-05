@@ -285,15 +285,12 @@ function loadAdvSlots() {
                 $('#input-acl').data('default_acl', acl);
                 if (slots.adv.afflict_res != undefined) {
                     for (const key in slots.adv.afflict_res) {
-                        $('#input-afflict').prop('disabled', false);
-                        $('#input-afflict').data('affliction', key);
-                        $('#input-afflict').val(slots.adv.afflict_res[key]);
-                        break;
+                        $('#input-res-'+key).val(slots.adv.afflict_res[key]);
                     }
                 } else {
-                    $('#input-afflict').prop('disabled', true);
-                    $('#input-afflict').prop('data-affliction', 'None');
-                    $('#input-afflict').val('');
+                    for (const key in slots.adv.afflict_res) {
+                        $('#input-res-'+key).removeAttr('value');
+                    }
                 }
                 if (slots.adv.no_config != undefined) {
                     if (slots.adv.no_config.includes('wp')) {
@@ -330,7 +327,7 @@ function buildConditionList(conditions) {
 }
 function readConditionList() {
     let conditions = {};
-    const condCheckList = $('#input-conditions  > div > input[type="checkbox"]');
+    const condCheckList = $('#input-conditions > div > input[type="checkbox"]');
     if (condCheckList.length === 0) {
         return null;
     } else {
@@ -338,6 +335,22 @@ function readConditionList() {
             conditions[$(condCheck).data('cond')] = $(condCheck).prop('checked');
         });
         return conditions;
+    }
+}
+function readResistDict(){
+    let resists = {};
+    const resistList = $('#affliction-resist > div > input[type="text"]');
+    if (resistList.length === 0) {
+        return null;
+    } else {
+        resistList.each(function (idx, res) {
+            const resVal = parseInt($(res).val());
+            if (!isNaN(resVal)) {
+                const parts = $(res).attr('id').split('-');
+                resists[parts[parts.length - 1]] = resVal;
+            }
+        });
+        return resists;
     }
 }
 function runAdvTest() {
@@ -370,9 +383,9 @@ function runAdvTest() {
     if (!isNaN(parseInt(t))) {
         requestJson['t'] = t;
     }
-    const affliction = $('#input-afflict').data('affliction');
-    if (affliction != 'None' && !isNaN(parseInt($('#input-afflict').val()))) {
-        requestJson['afflict_res_' + affliction] = $('#input-afflict').val();
+    const afflict_res = readResistDict();
+    if (afflict_res != null) {
+        requestJson['afflict_res'] = afflict_res;
     }
     if (!isNaN(parseInt($('#input-teamdps').val()))) {
         requestJson['teamdps'] = $('#input-teamdps').val();
@@ -485,11 +498,14 @@ function clearResults() {
     $('#test-error').empty();
     $('#input-t').val(BASE_SIM_T);
     $('#input-teamdps').val(BASE_TEAM_DPS);
+    $('#input-latency').val(0);
+    const resistList = $('#affliction-resist > div > input[type="text"]');
+    resistList.each(function (idx, res) {$(res).val('')});
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
-    $('#input-sim-afflict-time').val('');
+    $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);
-    $('#input-sim-buff-str').val('');
-    $('#input-sim-buff-def').val('');
+    $('#input-sim-buff-str').removeAttr('value');
+    $('#input-sim-buff-def').removeAttr('value');
     $('#input-conditions').empty();
 }
 function weaponSelectChange() {
@@ -518,7 +534,7 @@ function simAfflictSelectChange() {
         $('#input-sim-afflict-time').val(BASE_AFFLICT_UPTIME[simAfflict]);
     } else {
         $('#input-sim-afflict-time').prop('disabled', true);
-        $('#input-sim-afflict-time').val('');
+        $('#input-sim-afflict-time').removeAttr('value');
     }
 }
 window.onload = function () {
