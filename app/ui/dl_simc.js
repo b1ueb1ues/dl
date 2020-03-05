@@ -390,6 +390,9 @@ function runAdvTest() {
     if (!isNaN(parseInt($('#input-teamdps').val()))) {
         requestJson['teamdps'] = $('#input-teamdps').val();
     }
+    if (!isNaN(parseInt($('#input-latency').val()))) {
+        requestJson['latency'] = $('#input-latency').val();
+    }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
