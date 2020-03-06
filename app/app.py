@@ -183,7 +183,8 @@ def simc_adv_test():
     t   = 180 if not 't' in params else abs(int(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
-    latency = 0 if 'latency' not in params else abs(float(params['latency']))
+    # latency = 0 if 'latency' not in params else abs(float(params['latency']))
+    missile = 0 if 'missile' not in params else abs(float(params['missile']))
     print(params)
 
     if adv_name in SPECIAL_ADV:
@@ -194,7 +195,9 @@ def simc_adv_test():
         if 'acl' in not_customizable:
             acl = None
 
-    conf = {'latency.default': latency}
+    conf = {}
+    if missile > 0:
+        conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
     for afflic in AFFLICT_LIST:
         try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)

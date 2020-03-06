@@ -9,6 +9,7 @@ EX_MAP = {
     'geuden': 'g'
 }
 AXE2_ADV = ['h_mym', 'v_melody']
+RANGED = ['wand', 'bow', 'staff']
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 16000
 BASE_AFFLICT_UPTIME = {
@@ -277,6 +278,11 @@ function loadAdvSlots() {
                     $('#ex-' + slots.adv.wt).prop('checked', true);
                     $('#ex-' + slots.adv.wt).prop('disabled', true);
                 }
+                if (RANGED.includes(slots.adv.wt)){
+                    $('#input-missile').prop('disabled', false);
+                } else {
+                    $('#input-missile').prop('disabled', true);
+                }
                 $('#input-acl').blur();
                 $('#input-edit-acl').prop('checked', false);
                 $('#input-acl').prop('disabled', true);
@@ -390,8 +396,8 @@ function runAdvTest() {
     if (!isNaN(parseInt($('#input-teamdps').val()))) {
         requestJson['teamdps'] = $('#input-teamdps').val();
     }
-    if (!isNaN(parseInt($('#input-latency').val()))) {
-        requestJson['latency'] = $('#input-latency').val();
+    if (!isNaN(parseInt($('#input-missile').val()))) {
+        requestJson['missile'] = $('#input-missile').val();
     }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
@@ -501,7 +507,7 @@ function clearResults() {
     $('#test-error').empty();
     $('#input-t').val(BASE_SIM_T);
     $('#input-teamdps').val(BASE_TEAM_DPS);
-    $('#input-latency').val(0);
+    $('#input-missile').val(0);
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) {$(res).val('')});
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
