@@ -40,7 +40,7 @@ class Fs_alt:
 
 class X_alt:
     def __init__(self, adv, name, conf, x_proc=None, no_fs=False):
-        conf = Conf(conf)
+        self.conf = Conf(conf)
         self.adv = adv
         self.name = name
         self.x_og = adv.x
@@ -54,8 +54,8 @@ class X_alt:
         self.fs_og = adv.fs
         self.xmax = 1
         n = 'x{}'.format(self.xmax)
-        while n in conf:
-            self.a_x_alt[n] = X(n, conf[n])
+        while n in self.conf:
+            self.a_x_alt[n] = X((n, self.xmax), self.conf[n])
             self.xmax += 1
             n = 'x{}'.format(self.xmax)
         self.xmax -= 1

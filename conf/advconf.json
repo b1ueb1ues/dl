@@ -2120,16 +2120,16 @@
         },
         "s1": {
             "startup": 0.1,
-            "recovery": 1.9,
-            "dmg": 11.4,
-            "sp": 3033,
-            "hit": 2
+            "recovery": 2.98,
+            "dmg": 0,
+            "sp": 2640,
+            "hit": 0
         },
         "s2": {
-            "startup": 0.25,
-            "recovery": 0.9,
+            "startup": 0.1,
+            "recovery": 1.5,
             "dmg": 0.0,
-            "sp": 6016,
+            "sp": 10595,
             "hit": 0
         }
     },
@@ -3421,6 +3421,29 @@
             "dmg": 8.86,
             "sp": 7634,
             "hit": 1
+        }
+    },
+    "Mitsuba": {
+        "c": {
+            "att": 474,
+            "ele": "water",
+            "wt": "dagger",
+            "stars": "5",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.1,
+            "recovery": 3.41,
+            "dmg": 0,
+            "sp": 2275,
+            "hit": 8
+        },
+        "s2": {
+            "startup": 0.1,
+            "recovery": 1.78,
+            "dmg": 0,
+            "sp": 10595,
+            "hit": 0
         }
     },
     "Mitsuhide": {

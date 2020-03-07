@@ -849,6 +849,9 @@ class Adv(object):
     def s3_proc(this, e):
         pass
 
+    def x_proc(this, e):
+        pass
+
     def fs_proc(this, e):
         pass
 
@@ -862,6 +865,9 @@ class Adv(object):
         pass
 
     def s3_before(this, e):
+        pass
+
+    def x_before(this, e):
         pass
 
     def fs_before(this, e):
@@ -1366,13 +1372,13 @@ class Adv(object):
             log('x', '%s' % xseq, 0, '-------------------------------------c5')
         else:
             log('x', '%s' % xseq, 0)
-
+        this.x_before(e)
         missile_timer = Timer(this.cb_missile, this.conf['missile_iv'][xseq])
         missile_timer.dname = '%s_missile' % xseq
         missile_timer.amount = dmg_coef
         missile_timer.samount = sp_gain
         missile_timer()
-
+        this.x_proc(e)
         this.think_pin('x')
 
     def cb_missile(this, t):
@@ -1388,8 +1394,10 @@ class Adv(object):
             log('x', '%s' % xseq, 0, '-------------------------------------c5')
         else:
             log('x', '%s' % xseq, 0)
+        this.x_before(e)
         this.update_hits(xseq)
         this.dmg_make('%s' % xseq, dmg_coef)
+        this.x_proc(e)
         this.think_pin('x')
         this.charge('%s' % xseq, sp)
 
