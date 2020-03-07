@@ -1,7 +1,6 @@
 import adv.adv_test
 from core.advbase import *
 from core.advbase import *
-from module import energy
 from slot.a import *
 from slot.d import *
 
@@ -17,76 +16,29 @@ pipple_conf = {
 }
 
 class Pipple(Adv):
+    a3 = ('epassive_att_crit', 7)
     conf = pipple_conf.copy()
-    conf['slot.a'] = Primal_Crisis()+FirstRate_Hospitality()
+    conf['slot.a'] = Primal_Crisis()+The_Prince_of_Dragonyule()
     conf['slot.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
-        `s1, x=5
         `s2, x=5
-        """
-            
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    """
 
-    def prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this,
-                self={} ,
-                team={} 
-                )
-        this.a1atk = Selfbuff('a1atk',0.00,-1,'att','passive').on()
-        this.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
+    def prerun(self):
+        self.stance = 0
 
-    def c_prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this,
-                self={'1':1,'s2':2},
-                team={'1':1,'s2':2}
-                )
-        this.a1atk = Selfbuff('a1atk',0.00,-1,'att','passive').on()
-        this.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
-
-
-    def a3change(this, t):
-        this.a1atk.off()
-        this.a1crit.off()
-        if this.energy() == 5:
-            this.a1atk.set(0.40)
-            this.a1crit.set(0.15)
-        elif this.energy() == 4:
-            this.a1atk.set(0.30)
-            this.a1crit.set(0.10)
-        elif this.energy() == 3:
-            this.a1atk.set(0.20)
-            this.a1crit.set(0.07)
-        elif this.energy() == 2:
-            this.a1atk.set(0.10)
-            this.a1crit.set(0.04)
-        elif this.energy() == 1:
-            this.a1atk.set(0.05)
-            this.a1crit.set(0.01)
-        elif this.energy() == 0:
-            this.a1atk.set(0)
-            this.a1crit.set(0)
-        this.a1atk.on()
-        this.a1crit.on()
-
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Teambuff('s1', 0.25, 15, 'defense').on()
-        if this.stance == 0:
-            this.stance = 1
-        elif this.stance == 1:
-            this.stance = 2
-        elif this.stance == 2:
-            Timer(this.a3change).on()
-            this.stance = 0
+        if self.stance == 0:
+            self.stance = 1
+        elif self.stance == 1:
+            self.stance = 2
+        elif self.stance == 2:
+            self.energy.add(1)
+            self.stance = 0
 
-    def s2_proc(this, e):
-        Timer(this.a3change).on()
-
-    def s3_proc(this, e):
-        Timer(this.a3change).on()
+    def s2_proc(self, e):
+        self.energy.add(2, team=True)
 
 if __name__ == '__main__':
     conf = {}

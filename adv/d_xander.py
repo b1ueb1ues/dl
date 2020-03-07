@@ -1,6 +1,5 @@
 import adv.adv_test
 from core.advbase import *
-from module import energy
 from slot.a import *
 
 def module():
@@ -21,23 +20,13 @@ class Dragonyule_Xander(Adv):
         """ 
     conf['acl'] = acl12
 
+    def prerun(self):
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    def s2_proc(self, e):
+        self.energy.add(1, team=self.condition('buff all team'))
+        self.buff_class('s2', 0.15, 10)
 
-
-    def prerun(this):
-        energy.Energy(this,
-                self={},
-                team={}
-                )
-
-    def c_prerun(this):
-        energy.Energy(this,
-                self={'s2':1},
-                team={'s2':1}
-                )
 
 
 if __name__ == '__main__':

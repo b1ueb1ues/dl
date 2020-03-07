@@ -13,6 +13,11 @@ class FS_MH(Action):
         this.interrupt_by = ['s']
         this.cancel_by = ['s','dodge']
 
+    def act(this, action):
+        this.act_event.name = 'fs'
+        this.act_event.idx = this.idx
+        this.act_event()
+
     def sync_config(this, c):
         this._charge = c.charge
         this._startup = c.startup
@@ -103,7 +108,7 @@ class Hunter_Berserker(Adv):
     def prerun(this):
         this.s1_debuff = Debuff('s1', 0.05, 10)
 
-        this.s2_fs_boost = SingleActionBuff('s1', 0.80, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
+        this.s2_fs_boost = SingleActionBuff('s2', 0.80, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
 
         this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
         this.a3_crit.get = this.a3_crit_get

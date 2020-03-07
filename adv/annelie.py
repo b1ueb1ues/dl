@@ -1,15 +1,21 @@
 import adv.adv_test
 from core.advbase import *
-from module import energy
 from slot.a import *
 
 def module():
     return Annelie
 
+        # `s1, s2.charged<=10000
+        # `s1, s=2
+        # `s2
+        # `s3
+        # `fs, seq=5 
 
 class Annelie(Adv):
     comment = '1121'
     a1 = ('s',0.35,'hp70')
+    a3 = ('energized_att', 0.20)
+    conf = {}
     conf['acl'] = """
         `s1, s2.charged<=10000
         `s1, s=2
@@ -17,62 +23,30 @@ class Annelie(Adv):
         `s3
         `fs, seq=5 
         """
+    conf['slot.a'] = RR()+BN()
 
-    conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = RR()+JotS()
-        else:
-            this.conf.slot.a = RR()+BN()
+    def prerun(self):
+        self.stance = 0
 
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    def s1_proc(self, e):
+        if self.stance == 0:
+            self.dmg_make('s1',0.1+8.14)
+            self.energy.add(1)
+            self.hits += 2
+            self.stance = 1
+        elif self.stance == 1:
+            self.dmg_make('s1',2*(0.1+4.07))
+            self.energy.add(2)
+            self.hits += 4
+            self.stance = 2
+        elif self.stance == 2:
+            self.dmg_make('s1',3*0.1)
+            self.dmg_make('s1',3*3.54)
+            self.hits += 6
+            self.stance = 0
 
-    def c_prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this, 
-                self={},
-                team={}
-                )
-
-    def c_prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this, 
-                self={'1':1,'2':2,'s2':2},
-                team={'s2':2}
-                )
-        Event('energized').listener(this.energy_doublebuff)
-
-    def prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this, 
-                self={},
-                team={}
-                )
-
-  #  def debug(this):
-  #      print this.slots.a.__class__.__name__
-  #      print this.slots.a.a2.__class__.__name__
-
-
-    def energy_doublebuff(this, e):
-        Selfbuff("double_buff", 0.2, 15).on()
-
-    def s1_proc(this, e):
-        if this.stance == 0:
-            this.dmg_make('s1_p1',0.1+8.14)
-            this.energy.add_energy('1')
-            this.stance = 1
-        elif this.stance == 1:
-            this.dmg_make('s1_p2',2*(0.1+4.07))
-            this.energy.add_energy('2')
-            this.stance = 2
-        elif this.stance == 2:
-            this.dmg_make('s1_p3',3*(0.1+3.54))
-            this.stance = 0
-
-
+    def s2_proc(self, e):
+        self.energy.add(2, team=True)
 
 if __name__ == '__main__':
     conf = {}

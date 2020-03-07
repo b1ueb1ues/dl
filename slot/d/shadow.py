@@ -72,19 +72,10 @@ class Shinobi(DragonBase):
         'dodge.startup': 33 / 60, # dodge frames
     }
 
-    def oninit(self, adv):
-        super().oninit(adv)
-        from module.energy import Energy
-        self.energy = Energy(adv, self={}, team={})
-
     def ds_proc(self):
-        self.energy.add_energy('team', 5)
-        if not self.energy.energized:
-            dmg = self.adv.dmg_make('d_ds',8.83,'s')
-            self.energy.add_energy('self', 5)
-            return dmg
-        else:
-            return self.adv.dmg_make('d_ds',8.83,'s')
+        count = self.adv.dmg_make('d_ds',8.83,'s')
+        self.adv.energy.add_energy(5, team=True)
+        return count
 
 class Fatalis(DragonBase):
     ele = 'shadow'

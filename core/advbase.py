@@ -38,7 +38,8 @@ class ModifierDict(defaultdict):
 class Modifier(object):
     _static = Static({
         'all_modifiers': ModifierDict(),
-        'g_condition': None
+        'g_condition': None,
+        'damage_sources': set()
     })
     mod_name = '<nop>'
     mod_type = '_nop' or 'att' or 'x' or 'fs' or 's'  # ....
@@ -162,7 +163,7 @@ class CrisisModifier(Modifier):
 class Buff(object):
     _static = Static({
         'all_buffs': [],
-        'time_func': 0,
+        'time_func': 0
     })
 
     def __init__(this, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
@@ -330,11 +331,12 @@ class SingleActionBuff(Buff):
         return super().on(-1)
 
     def l_off(this, e):
-        this.casts -= 1
-        if this.casts <= 0:
-            return super().off()
-        else:
-            return this
+        if e.name in this.modifier._static.damage_sources:
+            this.casts -= 1
+            if this.casts <= 0:
+                return super().off()
+            else:
+                return this
 
 
 class Teambuff(Buff):
@@ -1044,6 +1046,9 @@ class Adv(object):
         this.hits = 0
         this.dragonform = None
 
+        from module.tension import Energy
+        this.energy = Energy(this)
+
     def afflic_condition(this):
         if 'afflict_res' in this.conf:
             res_conf = this.conf.afflict_res
@@ -1143,6 +1148,9 @@ class Adv(object):
 
         this.s3_buff_list = []
         this.s3_buff = None
+
+        this.damage_sources = set()
+        this.Modifier._static.damage_sources = this.damage_sources
 
         if not this.conf:
             this.conf = Conf()
@@ -1604,6 +1612,7 @@ class Adv(object):
             this.dmg_make(e.dname, e.dmg_coef)
 
     def dmg_make(this, name, dmg_coef, dtype=None, fixed=False):
+        this.damage_sources.add(name)
         if dtype == None:
             dtype = name
         count = this.dmg_formula(dtype, dmg_coef) if not fixed else dmg_coef
@@ -1660,6 +1669,9 @@ class Adv(object):
         this.think_pin('fs')
 
     def l_s(this, e):
+        if e.name == 'd_ds':
+            return
+
         this.update_hits(e.name)
 
         prev, index, stat = this.getprev()

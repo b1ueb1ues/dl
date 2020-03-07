@@ -24,7 +24,7 @@ class Gala_Sarisse(Adv):
         this.s2stance = 0
 
     def dmg_proc(this, name, amount):
-        if this.condition('never lose combos'):
+        if this.condition('always connect hits'):
             if this.hits // 20 > this.ahits:
                 this.ahits = this.hits // 20
                 buff = Selfbuff('sylvan strength',0.02,15)

@@ -1,6 +1,6 @@
 import adv.adv_test
 from core.advbase import *
-from slot.a.all import The_Bridal_Dragon, From_Whence_He_Comes, Castle_Cheer_Corps
+from slot.a.all import The_Bridal_Dragon, From_Whence_He_Comes
 from slot.d import PopStar_Siren
 
 def module():
@@ -12,36 +12,28 @@ class Halloween_Lowen(Adv):
     a3 = ('prep','75%')
 
     conf = {}
-    conf['slots.a'] = From_Whence_He_Comes()+Castle_Cheer_Corps()
+    conf['slots.a'] = From_Whence_He_Comes()+The_Bridal_Dragon()
     conf['slots.d'] = PopStar_Siren()
-    # conf['acl'] = """
-    #     `s3, not this.s3_buff
-    #     `s1, x=5
-    #     `s2, pin='prep' or x=5 and this.hp_stack < 3
-    #     `fs, s=3 and this.fs_prep_c > 0
-    # """
-
     conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        `fs, x=5
+        `s3, not self.s3_buff
+        `s1, x=5
+        `s2, pin='prep' or x=5 and self.hp_stack < 3
+        `fs, s=3 and self.fs_prep_c > 0
     """
 
-
-    def init(this):
-        this.hp_stack = 0
-        # this.doublebuff = this.condition('doublebuff 3 other')
+    def init(self):
+        self.hp_stack = 0
+        # self.doublebuff = self.condition('doublebuff 3 other')
     
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Event('defchain')()
-        # if this.doublebuff:
-        #     this.Teambuff('defchain',0.10,15).on()
+        # if self.doublebuff:
+        #     self.Teambuff('defchain',0.10,15).on()
     
-    def s2_proc(this, e):
-        if this.hp_stack < 3:
-            this.hp_stack += 1
-        log('debug', 'HP {}0%'.format(this.hp_stack))
+    def s2_proc(self, e):
+        if self.hp_stack < 3:
+            self.hp_stack += 1
+        log('debug', 'HP {}0%'.format(self.hp_stack))
 
 if __name__ == '__main__':
     conf = {}

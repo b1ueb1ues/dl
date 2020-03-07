@@ -20,6 +20,13 @@ class Nefaria(Adv):
         `s1
         `s3, x=4 or x=5
         """
+    # conf['acl'] = """
+    #     `fs, this.fs_alt.uses > 0 and x=4
+    #     `s1, fsc or x=1 or not this.s3_buff
+    #     `s2
+    #     `s3, not this.s3_buff
+    #     """
+
     conf['afflict_res.blind'] = 80
     conf['afflict_res.poison'] = 0
 

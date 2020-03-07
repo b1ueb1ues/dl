@@ -159,6 +159,7 @@ class Kamuy(DragonBase):
     ele = 'water'
     att = 125
     a = [('primed_att', 0.15), ('a', 0.45)]
+
     dragonform = {
         'act': 'c3 s',
 
@@ -175,8 +176,8 @@ class Kamuy(DragonBase):
         'dx3.recovery': 73 / 60.0, # recovery
         'dx3.hit': 1,
 
-        'ds.dmg': 6.00,
-        'ds.recovery': 146 / 60, # skill frames
+        'ds.dmg': 0,
+        'ds.recovery': 164 / 60, # skill frames
         'ds.hit': 4,
     }
 
@@ -185,10 +186,36 @@ class Nimis(DragonBase):
     att = 125
     a = [('a', 0.45), ('cd', 0.55)]
 
+    dragonform = {
+        'act': 'c3 c3 s',
+
+        'dx1.dmg': 2.70,
+        'dx1.startup': 5 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.97,
+        'dx2.startup': 81 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 5.14,
+        'dx3.startup': 64 / 60.0, # c3 frames
+        'dx3.recovery': 35 / 60.0, # recovery
+        'dx3.hit': 1,
+
+        'ds.dmg': 0,
+        'ds.recovery': 146 / 60, # skill frames
+        'ds.hit': 0,
+
+        'dodge.startup': 41 / 60, # dodge frames
+    }
+
     def ds_proc(self):
-        self.adv.dragonform.charge_gauge(20)
-        # Shapeshift time cannot exceed the maximum permitted time. (?)
-        self.adv.dragonform.shift_end_timer.timing += 5
+        from core.timeline import now
+        self.adv.dragonform.dragon_gauge += 20
+        max_time = self.adv.dragonform.dtime() - self.adv.dragonform.conf.dshift.startup
+        cur_time = self.adv.dragonform.shift_end_timer.timing - now()
+        add_time = min(abs(max_time - cur_time), 5)
+        self.adv.dragonform.shift_end_timer.add(add_time)
         return 0
 
 class Unreleased_WaterFrostbitePunish(DragonBase):

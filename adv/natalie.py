@@ -1,10 +1,8 @@
 import adv.adv_test
 from core.advbase import *
-from module import energy
 from slot.d import *
 from slot.a import *
 import slot
-import random
 
 def module():
     return Natalie
@@ -27,47 +25,30 @@ class Natalie(Adv):
         `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
         """
 
-    def d_slots(this):
+    def d_slots(self):
         from adv.adv_test import sim_duration
         if sim_duration <= 60:
-            this.slots.a = TL()+The_Chocolatiers()
+            self.slots.a = TL()+The_Chocolatiers()
 
-    def init(this):
-        random.seed()
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    def prerun(self):
+        self.hp = 100
+        self.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
+        self.a3spd = Spdbuff('a3spd',0.10,-1)
 
-    def prerun(this):
-        this.hp = 100
-        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
-        this.a3spd = Spdbuff('a3spd',0.10,-1)
-        this.energy = energy.Energy(this,
-                self={} ,
-                team={}
-                )
+    def s1_proc(self, e):
+        with CrisisModifier('s1', 1, self.hp):
+            self.dmg_make('s1', 10.62)
 
-    def c_prerun(this):
-        this.hp = 100
-        this.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
-        this.a3spd = Spdbuff('a3spd',0.10,-1)
-        this.energy = energy.Energy(this,
-                self={'s1':1,'a1':1} ,
-                team={}
-                )
+        self.energy.add(1.8)
+        # self.energy.add(1)
+        # if random.random() < 0.8:
+        #     self.energy.add(1)
 
-
-    def s1_proc(this, e):
-        with CrisisModifier('s1', 1, this.hp):
-            this.dmg_make('s1', 10.62)
-
-        if random.random() < 0.8:
-            this.energy.add_energy('a1')
-
-    def s2_proc(this, e):
-        if this.hp > 30:
-            this.hp = 20
-            this.a3atk.on()
-            this.a3spd.on()
+    def s2_proc(self, e):
+        if self.hp > 30:
+            self.hp = 20
+            self.a3atk.on()
+            self.a3spd.on()
         else:
             Selfbuff('s2', 0.15, 10).on()
 

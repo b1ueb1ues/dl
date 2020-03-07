@@ -1,11 +1,11 @@
 import adv.adv_test
 from core.advbase import *
-from module import energy
 
 def module():
     return Lucretia
 
 class Lucretia(Adv):
+    a1 = ('energized_att', 0.20)
     a3 = ('bk',0.3)
     conf = {}
     conf['acl'] = """
@@ -15,30 +15,13 @@ class Lucretia(Adv):
         `s1, seq=5 and cancel
         """
 
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    def s1_proc(self, e):
+        self.energy.add(1, team=True)
 
-    def prerun(this):
-        energy.Energy(this,
-                self={} ,
-                team={}
-                )
-        Event('energized').listener(this.energy_doublebuff)
-
-    def c_prerun(this):
-        energy.Energy(this,
-                self={'s1':1,'s2':2} ,
-                team={'s1':1}
-                )
-        Event('energized').listener(this.energy_doublebuff)
-
-    def energy_doublebuff(this, e):
-        Selfbuff("double_buff", 0.2, 15).on()
+    def s2_proc(self, e):
+        self.energy.add(2)
 
 
-
-from slot.a import *
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)

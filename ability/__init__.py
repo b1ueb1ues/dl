@@ -187,10 +187,8 @@ class Doublebuff(BuffingAbility):
 
     def oninit(self, adv, afrom=None):
         if self.name == 'bc_energy':
-            from module.energy import Energy
-            self.energy = Energy(adv, {}, {})
             def defchain(e):
-                self.energy.add_energy('self', self.buff_args[1])
+                adv.energy.add(self.buff_args[1])
             adv.Event('defchain').listener(defchain)
         else:
             def defchain(e):
@@ -348,9 +346,7 @@ class Energy_Prep(Ability):
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
-        from module.energy import Energy
-        self.energy = Energy(adv, {}, {})
-        self.energy.add_energy('self', self.energy_count)
+        adv.energy.add(self.energy_count)
 
 ability_dict['eprep'] = Energy_Prep
 
@@ -378,3 +374,46 @@ class Force_Charge(Ability):
             adv.fs_prep_v = self.value
 
 ability_dict['fsprep'] = Force_Charge
+
+class Energized_Buff(BuffingAbility):
+    def __init__(self, name, value, duration=None):
+        super().__init__(name, value, duration or 15)
+
+    def oninit(self, adv, afrom=None):                            
+        def l_energized(e):
+            if e.stack >= 5:
+                adv.Buff(*self.buff_args).on()
+
+        adv.Event('energy').listener(l_energized)
+
+ability_dict['energized'] = Energized_Buff
+
+class Energy_StrCrit(Ability):
+    STR_LEVELS = {
+        3: (0.0, 0.04, 0.06, 0.08, 0.10, 0.20),
+        7: (0.0, 0.05, 0.10, 0.20, 0.30, 0.40)
+    }
+    CRIT_LEVELS = {
+        3: (0.0, 0.01, 0.02, 0.03, 0.04, 0.08),
+        7: (0.0, 0.01, 0.04, 0.07, 0.10, 0.15)
+    }
+    def __init__(self, name, value):
+        # self.atk_buff = Selfbuff('a1atk',0.00,-1,'att','passive').on()
+        # self.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
+        self.att_values = self.STR_LEVELS[value]
+        self.crit_values = self.CRIT_LEVELS[value]
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        self.att_buff = adv.Selfbuff('epassive_att', 0.00,-1,'att', 'passive').on()
+        self.crit_buff = adv.Selfbuff('epassive_crit', 0.00,-1,'crit', 'chance').on()
+        def l_energy(e):
+            self.att_buff.off()
+            self.crit_buff.off()
+            self.att_buff.set(self.att_values[e.stack])
+            self.crit_buff.set(self.crit_values[e.stack])
+            self.att_buff.on()
+            self.crit_buff.on()
+        adv.Event('energy').listener(l_energy)
+
+ability_dict['epassive'] = Energy_StrCrit

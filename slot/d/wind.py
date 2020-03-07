@@ -125,14 +125,8 @@ class Freyja(DragonBase):
         'dodge.startup': 39 / 60, # dodge frames
     }
 
-    def oninit(self, adv):
-        super().oninit(adv)
-        from module.energy import Energy
-        self.energy = Energy(adv, self={}, team={})
-
     def ds_proc(self):
-        self.energy.add_energy('team', 5)
-        self.energy.add_energy('self', 5)
+        self.adv.energy.add(5, team=True)
 
 class Vayu(DragonBase):
     ele = 'wind'

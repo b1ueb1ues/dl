@@ -8,7 +8,6 @@ def module():
 
 class Zace(Adv):
     a1 = ('s',0.2)
-    # a1 = ('prep_charge', 0.05)
     conf = {}
     conf['acl'] = """
         `s1

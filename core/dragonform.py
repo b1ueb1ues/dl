@@ -19,6 +19,9 @@ class DragonForm(Action):
 
         self.dx_list = ['dx{}'.format(i) for i in range(1, 6) if 'dmg' in self.conf['dx{}'.format(i)]]
 
+        self.ds_event = Event('s')
+        self.ds_event.name = 'd_ds'
+
         self.action_timer = None
 
         self.shift_start_time = 0
@@ -104,8 +107,9 @@ class DragonForm(Action):
     def d_act_do(self, t):
         if self.c_act_name == 'ds':
             self.skill_use -= 1
-            self.shift_end_timer.timing += self.conf.ds.startup+self.conf.ds.recovery
+            self.ds_event()
             self.shift_damage_sum += self.ds_proc()
+            self.shift_end_timer.add(self.conf.ds.startup+self.conf.ds.recovery)
             self.act_sum.append('s')
         elif self.c_act_name == 'end':
             self.d_shift_end(None)

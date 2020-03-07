@@ -24,12 +24,6 @@ class Natalie(adv.natalie.Natalie):
         this.a3atk.on()
         this.a3spd.on()
 
-    def c_prerun(this):
-        super().c_prerun()
-        this.hp = 0
-        this.a3atk.on()
-        this.a3spd.on()
-
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)

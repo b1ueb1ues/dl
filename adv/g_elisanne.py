@@ -2,7 +2,6 @@ import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
-from module import energy
 
 def module():
     return Gala_Elisanne
@@ -18,36 +17,19 @@ class Gala_Elisanne(Adv):
         `fs, seq=5
         """
 
-    def init(this):
-        if this.condition('buff all team'):
-            this.s1_proc = this.c_s1_proc
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
-        this.s2timer = Timer(this.s2autocharge,1,1).on()
+    def init(self):
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
+        self.s2timer = Timer(self.s2autocharge,1,1).on()
 
-    def c_prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this, 
-                self={},
-                team={}
-                )
-
-    def c_prerun(this):
-        this.stance = 0
-        this.energy = energy.Energy(this, 
-                self={'s2':3},
-                team={}
-                )
-
-    def s2autocharge(this, t):
-        this.s2.charge(38400.0*0.065)
+    def s2autocharge(self, t):
+        self.s2.charge(38400.0*0.065)
         log('sp','s1autocharge')
 
-    def c_s1_proc(this, e):
-        Teambuff('s2',0.3,15).on()
+    def s1_proc(self, e):
+        self.buff_class('s2',0.3,15).on()
 
-    def s1_proc(this, e):
-        Selfbuff('s2',0.3,15).on()
+    def s2_proc(self):
+        self.energy.add(3)
 
 
 if __name__ == '__main__':

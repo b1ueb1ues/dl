@@ -157,6 +157,9 @@ class Timer(object):
             this.timeline.rm(this)
         return this
 
+    def add(this, time=0):
+        this.timeout += time
+        this.timing += time
 
     #alias
     disable = off

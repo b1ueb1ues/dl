@@ -1,7 +1,6 @@
 import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from module import energy
 import slot.a
 import slot.w
 
@@ -18,27 +17,15 @@ class Beautician_Zardin(Adv):
         `s1
         `s3, seq=5
         """
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = RR()+BN()
-     
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = RR()+BN()
 
-    def prerun(this):
-        this.energy = energy.Energy(this,
-                self={} ,
-                team={}
-                )
+    def s1_proc(self, e):
+        self.energy.add(1)
 
-    def c_prerun(this):
-        this.energy = energy.Energy(this,
-                self={'s1':1,'s2':2} ,
-                team={}
-                )
-
-
+    def s2_proc(self, e):
+        self.energy.add(2)
 
 
 if __name__ == '__main__':

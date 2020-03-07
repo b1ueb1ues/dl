@@ -1,8 +1,6 @@
 victor.py
 s_cleo.py
-s_luca.py
 addis.py
 ezelith.py
 sazanka.py
-natalie.py
 megaman.py

@@ -55,18 +55,11 @@ class PopStar_Siren(DragonBase):
         'dodge.startup': 41 / 60, # dodge frames
     }
 
-    def oninit(self, adv):
-        super().oninit(adv)
-        from module.energy import Energy
-        self.energy = Energy(adv, self={}, team={})
-
     def ds_proc(self):
         from core.advbase import Teambuff
-        from core.timeline import Event
         Teambuff('d_att_buff',0.20,20).on()
-        Event('defchain')()
-        self.energy.add_energy('self', 3)
-        self.energy.add_energy('team', 3)
+        Teambuff('s1', 0.25, 15, 'defense').on()
+        self.adv.energy.add(3, team=True)
         return 0
 
 class Cupid(DragonBase):

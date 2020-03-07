@@ -17,6 +17,11 @@ class FS_Speedable(Action):
         this.l_fs_speed= Listener('fs_speed_buff', this.fs_speed_on)
         this._startup_a = 0
 
+    def act(this, action):
+        this.act_event.name = 'fs'
+        this.act_event.idx = this.idx
+        this.act_event()
+
     def fs_speed_on(this, e):
         this.fs_speed = 1.5
         this.t_fs_speed = this.t_fs_speed.on(30)

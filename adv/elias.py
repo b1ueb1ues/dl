@@ -1,6 +1,5 @@
 import adv.adv_test
 from core.advbase import *
-from module import energy
 
 def module():
     return Elias
@@ -14,15 +13,8 @@ class Elias(Adv):
     `fs, seq=4
     """
 
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
-
-    def c_prerun(this):
-        energy.Energy(this,{'s2':1},{'s2':1})
-
-    def prerun(this):
-        energy.Energy(this,{},{})
+    def s2_proc(self, e):
+        self.energy.add(1, team=True)
 
 if __name__ == '__main__':
     conf = {}
