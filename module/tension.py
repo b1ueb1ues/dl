@@ -19,7 +19,7 @@ class Tension:
         if n < 1:
             return
         if team:
-            log(self.name,'team', n)
+            log(self.name, 'team', n)
         # cannot add if max stacks
         if self.stack == self.MAX_STACK:
             return
@@ -27,9 +27,7 @@ class Tension:
         self.has_stack.on()
         if self.stack >= self.MAX_STACK:
             self.stack = self.MAX_STACK
-            log(self.name, 'stack <{}>'.format(self.stack), self.event.name)
-        else:
-            log(self.name, 'stack <{}>'.format(self.stack))
+        log(self.name, '+{}'.format(n), 'stack <{}>'.format(self.stack))
 
         self.event.stack = self.stack
         self.event.on()
@@ -55,7 +53,7 @@ class Tension:
         self.current_scope = None
         self.modifier.off()
         self.has_stack.off()
-        log(self.name, 'stack <{}>'.format(self.stack))
+        log(self.name, 'reset', 'stack <{}>'.format(self.stack))
 
         self.event.stack = self.stack
         self.event.on()
@@ -67,6 +65,10 @@ class Energy(Tension):
     def __init__(self, adv):
         super().__init__(
             adv, 'energy',
-            mod=Modifier('mod_energized','s','passive',0.50),
-            event=Event('energy')
-        )
+            mod=Modifier('mod_energized','s','passive',0.50))
+
+class Inspiration(Tension):
+    def __init__(self, adv):
+        super().__init__(
+            adv, 'inspiration',
+            mod=Modifier('mod_inspired','crit','chance',1.00))

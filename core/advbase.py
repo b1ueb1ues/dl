@@ -1046,8 +1046,9 @@ class Adv(object):
         this.hits = 0
         this.dragonform = None
 
-        from module.tension import Energy
+        from module.tension import Energy, Inspiration
         this.energy = Energy(this)
+        this.inspiration = Inspiration(this)
 
     def afflic_condition(this):
         if 'afflict_res' in this.conf:
