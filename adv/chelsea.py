@@ -106,7 +106,7 @@ class Chelsea(Adv):
         self.obsession = Selfbuff('s2').stack()
         self.a3.on()
 
-    def dmg_make(self, name, dmg_coef, dtype=None):
+    def dmg_make(self, name, dmg_coef, dtype=None, fixed=None):
         if dtype == None:
             dtype = name
         self.dmg_before(name)

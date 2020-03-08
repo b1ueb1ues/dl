@@ -3,7 +3,7 @@ import sys
 from importlib import import_module
 from importlib.util import spec_from_file_location, module_from_spec
 from contextlib import redirect_stdout
-from time import time
+from time import monotonic
 import adv
 
 ROOT_DIR = '.'
@@ -33,7 +33,7 @@ def load_adv_module_normal(adv_file):
     ).module()
 
 def sim_adv(adv_file, special=None, mass=None):
-    t_start = time()
+    t_start = monotonic()
 
     adv_file = os.path.basename(adv_file)
     output = open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '{}.csv'.format(adv_file)), 'w')
@@ -50,7 +50,7 @@ def sim_adv(adv_file, special=None, mass=None):
         for d in durations:
             for ex in SIMC_EX_LIST:
                 adv.adv_test.test(adv_module, {}, verbose=-5, duration=d, ex=ex, special=special, mass=1 if mass else 0)
-    print('{:.2f}s - sim:{}'.format(time() - t_start, adv_file), flush=True)
+    print('{:.4f}s - sim:{}'.format(monotonic() - t_start, adv_file), flush=True)
 
 def sim_adv_list(list_file):
     special = list_file.startswith('chara_sp')
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         print('USAGE python {} sim_targets [-c] [-sp]'.format(sys.argv[0]))
         exit(1)
-    t_start = time()
+    t_start = monotonic()
 
     arguments = sys.argv.copy()[1:]
     do_combine = False
@@ -128,4 +128,4 @@ if __name__ == '__main__':
     if do_combine:
         combine()
 
-    print('total: {:.2f}s'.format(time() - t_start))
+    print('total: {:.4f}s'.format(monotonic() - t_start))
