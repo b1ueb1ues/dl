@@ -1055,8 +1055,9 @@ class Adv(object):
         self.dragonform = None
 
         from module.tension import Energy, Inspiration
-        self.energy = Energy(self)
-        self.inspiration = Inspiration(self)
+        self.energy = Energy()
+        self.inspiration = Inspiration()
+        self.tension = [self.energy, self.inspiration]
 
     def afflic_condition(self):
         if 'afflict_res' in self.conf:
@@ -1198,14 +1199,20 @@ class Adv(object):
 
     def dmg_mod(self, name):
         mod = 1
-        if name[:2] == 'o_':
-            name = name[2:]
+        scope = name.split('_')
+        if scope[0] == 'o':
+            scope = scope[1]
+        else:
+            scope = scope[0]
+        
+        for t in self.tension:
+            t.check(scope)
 
-        if name[0] == 's':
+        if scope[0] == 's':
             return mod * self.mod('s')
-        elif name[0:2] == 'fs':
+        elif scope[0:2] == 'fs':
             return mod * self.mod('fs')
-        elif name[0] == 'x':
+        elif scope[0] == 'x':
             return mod * self.mod('x')
         else:
             return mod

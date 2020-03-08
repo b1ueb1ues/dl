@@ -118,8 +118,10 @@ def list_members(module, predicate, element=None):
 def set_teamdps_res(result, r, suffix=''):
     if r['buff_sum'] > 0:
         result['extra' + suffix]['team_buff'] = '+{}%'.format(round(r['buff_sum'] * 100))
-    if r['energy_sum'] > 0:
-        result['extra' + suffix]['team_energy'] = '{} stacks'.format(r['energy_sum'])
+    for tension in ('energy', 'inspiration'):
+        stack = r['{}_sum',format(tension)]
+        if stack > 0:
+            result['extra' + suffix]['team_{}'.format(tension)] = '{} stacks'.format(stack)
     return result
 
 def set_log_res(result, r, suffix=''):

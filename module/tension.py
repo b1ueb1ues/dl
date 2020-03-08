@@ -2,10 +2,10 @@ from core.advbase import *
 
 class Tension:
     MAX_STACK = 5
-    def __init__(self, adv, name, mod, event=None):
-        self.adv = adv
-        self.o_dmg_make = adv.dmg_make
-        self.adv.dmg_make = self.dmg_make
+    def __init__(self, name, mod, event=None):
+        # self.adv = adv
+        # self.o_dmg_make = adv.dmg_make
+        # self.adv.dmg_make = self.dmg_make
         self.name = name
         self.modifier = mod
         self.modifier.off()
@@ -32,21 +32,36 @@ class Tension:
         self.event.stack = self.stack
         self.event.on()
 
-    def dmg_make(self, name, dmg_coef, dtype=None, fixed=False):
-        if self.stack >= self.MAX_STACK and not fixed:
-            s = name.split('_')
-            if s[0] == 'o':
-                s = s[1]
-            else:
-                s = s[0]
-            if s in self.scope:
-                self.current_scope = s
-            if self.current_scope is not None:
-                if self.current_scope == s:
+    # def dmg_make(self, name, dmg_coef, dtype=None, fixed=False):
+    #     if self.stack >= self.MAX_STACK and not fixed:
+    #         s = name.split('_')
+    #         if s[0] == 'o':
+    #             s = s[1]
+    #         else:
+    #             s = s[0]
+    #         if s in self.scope:
+    #             self.current_scope = s
+    #         if self.current_scope is not None:
+    #             if self.current_scope == s:
+    #                 self.modifier.on()
+    #             else:
+    #                 self.reset()
+    #     return self.o_dmg_make(name, dmg_coef, dtype, fixed)
+
+    def check(self, scope):
+        if self.stack >= self.MAX_STACK:
+            if scope in self.scope:
+                if self.current_scope is None:
+                    # entering a new s1/s2/s3 block
+                    self.current_scope = scope
                     self.modifier.on()
-                else:
-                    self.reset()
-        return self.o_dmg_make(name, dmg_coef, dtype, fixed)
+                    return True
+                elif self.current_scope == scope:
+                    # staying in the same block
+                    return True
+            # leaving the block
+            self.reset()
+        return False
 
     def reset(self, t=None):
         self.stack = 0
@@ -62,13 +77,13 @@ class Tension:
         return self.stack
 
 class Energy(Tension):
-    def __init__(self, adv):
+    def __init__(self):
         super().__init__(
-            adv, 'energy',
+            'energy',
             mod=Modifier('mod_energized','s','passive',0.50))
 
 class Inspiration(Tension):
-    def __init__(self, adv):
+    def __init__(self):
         super().__init__(
-            adv, 'inspiration',
+            'inspiration',
             mod=Modifier('mod_inspired','crit','chance',1.00))

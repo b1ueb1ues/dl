@@ -17,14 +17,13 @@ sim_duration = 180
 sim_times = 1000
 
 team_dps = 16000
-energy_efficiency = (16000 * 1.25) * 0.5 * 2 / 5 / 180
 
 ex_str = '_'
 ex_set = {}
 ex_team_init = 0
 
-def energy_efficiency():
-    return (team_dps * 1.25) * 0.5 * 2 / 5 / sim_duration
+def skill_efficiency(mod):
+    return (team_dps * 1.25) * mod * 2 / 5 / sim_duration
 
 def set_ex(ex_string):
     global ex_set
@@ -187,7 +186,7 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
 
     dps = r['dmg_sum']['total']/real_duration
     bps = r['buff_sum'] #* team_dps
-    team_energy = r['energy_sum'] #* energy_efficiency
+    team_tension = r['tension_sum']
 
     r['logs'] = {}
     f = io.StringIO()
@@ -209,8 +208,8 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
     recount = "%d"%(dps)
     if bps:
         recount += '(%.2f)'%bps
-    if team_energy:
-        recount += '(team_energy:%d)'%team_energy
+    for tension, count in team_tension.items():
+        recount += '({}:{})'.format(tension, count)
 
     if loglevel >= 0 or loglevel == None:
         if g_condition != '' and condition == '':
@@ -324,10 +323,12 @@ def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
         'skill_3': r['sdmg_sum']['s3']['dmg']/real_duration,
         'team_buff': r['buff_sum']*team_dps
     }
-    if r['energy_sum']:
-        dmg_val = r['energy_sum']*energy_efficiency()
-        if dmg_val > 0:
-            dps_mappings['team_energy'] = r['energy_sum']*energy_efficiency()
+    for tension, efficiency in [('energy', 0.5), ('inspiration', 0.6)]:
+        rkey = '{}_sum'.format(tension)
+        if r[rkey]:
+            dmg_val = r[rkey]*skill_efficiency(efficiency)
+            if dmg_val > 0:
+                dps_mappings['team_{}'.format(rkey)] = dmg_val
     for i in r['o_sum']:
         dmg_val = r['o_sum'][i]/real_duration
         if dmg_val > 0:
@@ -452,7 +453,7 @@ def sum_mass_dmg(rs, real_duration):
     o_sum = {}
     dragon_sum = {}
     team_buff = 0
-    team_energy = 0
+    team_tension = {}
 
     dmax = 0
     dmin = 0
@@ -474,12 +475,14 @@ def sum_mass_dmg(rs, real_duration):
                 dragon_sum[j] = 0
             dragon_sum[j] += i['dragon_sum'][j] / sim_times
         team_buff += i['buff_sum'] / sim_times
-        team_energy += i['energy_sum']  / sim_times
         
         case = 0
         case += i['dmg_sum']['total'] / real_duration
         case += i['buff_sum'] * team_dps
-        case += i['energy_sum'] * energy_efficiency()
+
+        for tension in ('energy', 'inspiration'):
+            team_tension[tension] += i['tension_sum'][tension]  / sim_times
+            case += team_tension[tension] * skill_efficiency(0.5)
     #    print case
         if not dmin:
             dmin = case
@@ -497,7 +500,7 @@ def sum_mass_dmg(rs, real_duration):
     r['x_sum'] = x_sum 
     r['o_sum'] = o_sum 
     r['buff_sum'] = team_buff  
-    r['energy_sum'] = team_energy 
+    r['tension_sum'] = team_tension 
     r['dragon_sum'] = dragon_sum
     return r
 
@@ -656,7 +659,7 @@ def sum_dmg(real_duration):
     team_buff_powertime = 0
     team_buff_power = 0
     team_buff_start = 0
-    team_energy = 0
+    team_tension = {}
     o_sum = {}
     for i in l:
         if i[1] == 'dmg':
@@ -708,8 +711,11 @@ def sum_dmg(real_duration):
                 team_buff_powertime += team_buff_power*(i[0] - team_buff_start)
             team_buff_start = i[0]
             team_buff_power = i[3]
-        elif i[1] == 'energy' and i[2] == 'team':
-            team_energy += i[3]
+        elif i[1] in ('energy', 'inspiration') and i[2] == 'team':
+            try:
+                team_tension[i[1]] += i[3]
+            except KeyError:
+                team_tension[i[1]] = i[3]
     #print real_duration , team_buff_start, team_buff_power
     team_buff_powertime += (real_duration - team_buff_start)*team_buff_power
 
@@ -741,7 +747,7 @@ def sum_dmg(real_duration):
     r['x_sum'] = x_sum
     r['o_sum'] = o_sum
     r['buff_sum'] = team_buff_powertime/real_duration
-    r['energy_sum'] = team_energy
+    r['tension_sum'] = team_tension
     r['dragon_sum'] = dragon_sum
     return r
 
