@@ -24,6 +24,11 @@ ex_team_init = 0
 
 def skill_efficiency(mod):
     return (team_dps * 1.25) * mod * 2 / 5 / sim_duration
+tension_efficiency = {
+    'energy': 0.5,
+    'inspiration': 0.6
+}
+
 
 def set_ex(ex_string):
     global ex_set
@@ -323,12 +328,10 @@ def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
         'skill_3': r['sdmg_sum']['s3']['dmg']/real_duration,
         'team_buff': r['buff_sum']*team_dps
     }
-    for tension, efficiency in [('energy', 0.5), ('inspiration', 0.6)]:
-        rkey = '{}_sum'.format(tension)
-        if r[rkey]:
-            dmg_val = r[rkey]*skill_efficiency(efficiency)
-            if dmg_val > 0:
-                dps_mappings['team_{}'.format(rkey)] = dmg_val
+    for tension, count in r['tension_sum'].items():
+        dmg_val = count*skill_efficiency(tension_efficiency[tension])
+        if dmg_val > 0:
+            dps_mappings['team_{}'.format(tension)] = dmg_val
     for i in r['o_sum']:
         dmg_val = r['o_sum'][i]/real_duration
         if dmg_val > 0:
@@ -482,7 +485,7 @@ def sum_mass_dmg(rs, real_duration):
 
         for tension in ('energy', 'inspiration'):
             team_tension[tension] += i['tension_sum'][tension]  / sim_times
-            case += team_tension[tension] * skill_efficiency(0.5)
+            case += team_tension[tension] * skill_efficiency(tension_efficiency[tension])
     #    print case
         if not dmin:
             dmin = case
@@ -503,46 +506,6 @@ def sum_mass_dmg(rs, real_duration):
     r['tension_sum'] = team_tension 
     r['dragon_sum'] = dragon_sum
     return r
-
-
-
-def statis(data, mname):
-    total = 0
-    dmin = data[0][0]
-    dmax = data[0][0]
-    bmin = data[0][1]
-    bmax = data[0][1]
-    size = len(data)
-    buff_sum = 0
-    energy_sum = 0
-    for i in data:
-        total += i[0]
-        buff_sum += i[1]
-        energy_sum += i[2]
-        if i[0] < dmin:
-            dmin = i[0]
-        if i[0] > dmax:
-            dmax = i[0]
-        if i[1] < bmin:
-            bmin = i[1]
-        if i[1] > bmax:
-            bmax = i[1]
-    
-    global dps
-    global bps
-    global energy
-    global comment
-    dps = float(total)/size
-    bps = float(buff_sum)/size
-    energy = float(energy_sum)/size
-    if bps and bmin != bmax:
-        comment = '(%.0f~%.0f)(%.2f~%.2f) %s'%(dmin, dmax, bmin, bmax, comment)
-    else:
-        comment = '(%.0f~%.0f) %s'%(dmin, dmax, comment)
-    if energy:
-        comment += '(team_energy:%.0f)'%energy
-
-    #print("%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment))
 
 
 def sum_ac():
@@ -750,16 +713,3 @@ def sum_dmg(real_duration):
     r['tension_sum'] = team_tension
     r['dragon_sum'] = dragon_sum
     return r
-
-class Result(object):
-    dmg_sum = {}
-    sdmg_sum = {}
-    x_sum = {}
-    odmg_sum = {}
-    bdmg_sum = 0
-    energy_sum = 0
-
-
-
-
-
