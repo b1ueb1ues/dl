@@ -15,14 +15,14 @@ class Norwin(Adv):
         """
     conf['afflict_res.blind'] = 80
 
-    def s1_proc(this, e):
-        this.afflics.blind('s1',100)
-        Teambuff('a1',0.15*this.afflics.blind.get(),10).on()
+    def s1_proc(self, e):
+        self.afflics.blind('s1',100)
+        Teambuff('a1',0.15*self.afflics.blind.get(),10).on()
 
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         with Modifier("s1killer", "blind_killer", "hit", 0.44):
-            this.dmg_make('s1',3*2.45)
+            self.dmg_make('s1',3*2.45)
 
 
 

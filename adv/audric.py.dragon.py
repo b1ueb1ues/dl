@@ -19,21 +19,21 @@ class Audric(adv.audric.Audric):
         `s3, fsc
         `fs, seq=3
     """
-    def prerun(this):
-        this.cursed_blood = Selfbuff('cursed_blood',0.30,-1,'crit','chance')
-        Event('dragon').listener(this.a3_on)
-        Event('idle').listener(this.a3_off)
+    def prerun(self):
+        self.cursed_blood = Selfbuff('cursed_blood',0.30,-1,'crit','chance')
+        Event('dragon').listener(self.a3_on)
+        Event('idle').listener(self.a3_off)
 
-    def a3_on(this, e):
-        if not this.cursed_blood.get():
-            this.cursed_blood.on()
+    def a3_on(self, e):
+        if not self.cursed_blood.get():
+            self.cursed_blood.on()
 
-    def a3_off(this, e):
-        if this.cursed_blood.get():
-            this.cursed_blood.off()
+    def a3_off(self, e):
+        if self.cursed_blood.get():
+            self.cursed_blood.off()
 
-    def s1_proc(this, e):
-        this.dragonform.charge_gauge(3)
+    def s1_proc(self, e):
+        self.dragonform.charge_gauge(3)
 
 if __name__ == '__main__':
     conf = {}

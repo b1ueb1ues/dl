@@ -10,24 +10,24 @@ class Joe(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Mega_Friends()+Dear_Diary()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=3
         """
     conf['afflict_res.burn'] = 0
 
-    def prerun(this):
-        if this.condition('hp100'):
-            this.fullhp = 1
+    def prerun(self):
+        if self.condition('hp100'):
+            self.fullhp = 1
         else:
-            this.fullhp = 0
+            self.fullhp = 0
 
-    def s1_proc(this, e):
-        this.afflics.burn('s1',100+70*this.fullhp,0.803)
+    def s1_proc(self, e):
+        self.afflics.burn('s1',100+70*self.fullhp,0.803)
         
-    def s2_proc(this, e):
-        this.afflics.burn('s2',100+70*this.fullhp,0.803)
+    def s2_proc(self, e):
+        self.afflics.burn('s2',100+70*self.fullhp,0.803)
 
 if __name__ == '__main__':
     conf = {}

@@ -21,10 +21,10 @@ class Sylas(Adv):
     conf['slot.a'] = RR()+The_Fires_of_Hate()
     conf['afflict_res.poison'] = 0
 
-    def s1_proc(this, e):
-        this.afflics.poison('s1',120,0.582)
+    def s1_proc(self, e):
+        self.afflics.poison('s1',120,0.582)
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Selfbuff('s2_shaste',0.20,15,'sp','buff').on()
 
 

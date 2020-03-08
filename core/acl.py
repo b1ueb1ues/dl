@@ -52,7 +52,7 @@ def acl_str_but_it_cursed(acl):
 
     line = ""
 
-    line += "def do_act_list(this, e):\n"
+    line += "def do_act_list(self, e):\n"
 
     for i in prepare_list:
         line += "    %s\n"%(i.strip().replace('\n','\n    '))
@@ -81,7 +81,7 @@ def acl_str_but_it_cursed(acl):
 class Acl_Action:
     INDENT = '    '
     PREP = """    try:
-        {act} = this.{act}
+        {act} = self.{act}
     except Exception:
         raise AttributeError('{act} is not an action')"""
     ACT = """{indent}if {act}{args}:
@@ -172,7 +172,7 @@ class Acl_Condition:
 def acl_str(acl):
     acl_base = """
 def do_act_list(self, e):
-    this = self
+    self = self
     pin, dname, dstat, didx = e.pin, e.dname, e.dstat, e.didx
     prev = self.action.getprev()
     seq = didx if dname[0] == 'x' else 0 if dstat == -2 else -1

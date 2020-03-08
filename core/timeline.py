@@ -30,16 +30,16 @@ def get_event_trigger(eventname, trigger = []):
 
 
 class Event(object):
-    def __init__(this, name=None):
+    def __init__(self, name=None):
         if name :
-            this.name = name
-            this.__name = name
-            this._trigger = get_event_trigger(name)
+            self.name = name
+            self.__name = name
+            self._trigger = get_event_trigger(name)
         else:
-            this._trigger = []
+            self._trigger = []
 
 
-    def listener(this, cb, eventname = None):
+    def listener(self, cb, eventname = None):
         if eventname:
             if type(eventname) == list or type(eventname) == tuple:
                 for i in eventname:
@@ -47,18 +47,18 @@ class Event(object):
             else:
                 add_event_listener(eventname, cb)
         else:
-            add_event_listener(this.__name, cb)
+            add_event_listener(self.__name, cb)
 
 
-    def on(this, e=None):
-        for i in this._trigger:
-            i(this)
+    def on(self, e=None):
+        for i in self._trigger:
+            i(self)
 
-    def __call__(this, expand=None):
-        this.on(this)
+    def __call__(self, expand=None):
+        self.on(self)
 
-    def __str__(this):
-        return this.__name
+    def __str__(self):
+        return self.__name
 
 
     #__call__ = on
@@ -66,100 +66,100 @@ class Event(object):
 #} class Event
 
 class Listener(object):
-    def __init__(this, eventname, cb):
-        this.__cb = cb
-        this.__eventname = eventname
-        this.__online = 0
-        this.on()
+    def __init__(self, eventname, cb):
+        self.__cb = cb
+        self.__eventname = eventname
+        self.__online = 0
+        self.on()
 
-    def __call__(this, e):
-        this.__cb(e)
+    def __call__(self, e):
+        self.__cb(e)
 
-    def on(this, cb=None):
-        if this.__online :
+    def on(self, cb=None):
+        if self.__online :
             return 
         if cb :
-            this.__cb = cb
-        if type(this.__eventname) == list or type(this.__eventname) == tuple:
-            for i in this.__eventname:
-                add_event_listener(i, this.__cb)
+            self.__cb = cb
+        if type(self.__eventname) == list or type(self.__eventname) == tuple:
+            for i in self.__eventname:
+                add_event_listener(i, self.__cb)
         else:
-            add_event_listener(this.__eventname, this.__cb)
-        this.__online = 1
-        return this
+            add_event_listener(self.__eventname, self.__cb)
+        self.__online = 1
+        return self
 
-    def pop(this):
-        this.off()
-        return this.__cb
+    def pop(self):
+        self.off()
+        return self.__cb
 
 
-    def off(this):
-        if not this.__online:
+    def off(self):
+        if not self.__online:
             return 
-        if type(this.__eventname) == list or type(this.__eventname) == tuple:
-            for i in this.__eventname:
+        if type(self.__eventname) == list or type(self.__eventname) == tuple:
+            for i in self.__eventname:
                 els = get_event_trigger(i)
-                idx = els.index(this.__cb)
+                idx = els.index(self.__cb)
                 els.pop(idx)
         else:
-            els = get_event_trigger(this.__eventname)
-            idx = els.index(this.__cb)
+            els = get_event_trigger(self.__eventname)
+            idx = els.index(self.__cb)
             els.pop(idx)
-        this.__online = 0
-        return this
+        self.__online = 0
+        return self
 
 #} class Listener
 
 
 class Timer(object):
-    def __init__(this, proc=None, timeout=None, repeat=0, timeline=None):
+    def __init__(self, proc=None, timeout=None, repeat=0, timeline=None):
         if proc:
-            this.process = proc
+            self.process = proc
         else:
-            this.process = this._process
+            self.process = self._process
 
         if timeout :
-            this.timeout = timeout
+            self.timeout = timeout
         else:
-            this.timeout = 0
+            self.timeout = 0
 
         if repeat :
-            this.callback = this.callback_repeat
+            self.callback = self.callback_repeat
         else:
-            this.callback = this.callback_once
+            self.callback = self.callback_once
 
         if timeline:
-            this.timeline = timeline
+            self.timeline = timeline
         else:
-            this.timeline = _g_timeline
+            self.timeline = _g_timeline
 
-        this.timing = 0
-        this.online = 0
-        #this.on()
+        self.timing = 0
+        self.online = 0
+        #self.on()
 
 
-    def on(this, timeout = None):
+    def on(self, timeout = None):
         if timeout:
-            this.timeout = timeout
-            this.timing = _g_now + timeout
+            self.timeout = timeout
+            self.timing = _g_now + timeout
         else:
-            this.timing = _g_now + this.timeout
+            self.timing = _g_now + self.timeout
 
-        if this.online == 0:
-            this.online = 1
-            this.timeline.add(this)
-        return this
+        if self.online == 0:
+            self.online = 1
+            self.timeline.add(self)
+        return self
 
 
-    def off(this):
-        if this.online:
-            this.online = 0
-            this.timeline.rm(this)
-        return this
+    def off(self):
+        if self.online:
+            self.online = 0
+            self.timeline.rm(self)
+        return self
 
-    def add(this, time=0):
-        this.timeout += time
-        this.timing += time
+    def add(self, time=0):
+        self.timeout += time
+        self.timing += time
 
     #alias
     disable = off
@@ -167,72 +167,72 @@ class Timer(object):
     __call__ = on
 
 
-    def status(this):
-        return this.online
+    def status(self):
+        return self.online
 
-    def callback_repeat(this):
-        this.process(this)
-        if this.timing == _g_now :
-            this.timing += this.timeout
+    def callback_repeat(self):
+        self.process(self)
+        if self.timing == _g_now :
+            self.timing += self.timeout
 
-    def callback_once(this):
-        this.process(this)
-        if this.timing <= _g_now:
-            if this.online:
-                this.online = 0
-                this.timeline.rm(this)
+    def callback_once(self):
+        self.process(self)
+        if self.timing <= _g_now:
+            if self.online:
+                self.online = 0
+                self.timeline.rm(self)
 
-    def callback(this):
+    def callback(self):
         pass
 
 
-    def __str__(this):
-        return '%f: Timer:%s'%(this.timing,this.process)
+    def __str__(self):
+        return '%f: Timer:%s'%(self.timing,self.process)
 
-    def __repr__(this):
-        return '%f: Timer:%s'%(this.timing,this.process)
+    def __repr__(self):
+        return '%f: Timer:%s'%(self.timing,self.process)
 
-    def _process(this):
+    def _process(self):
         # sample plain _process
         print('-- plain timer ','@', t.timing)
         return 1
 
 
 class Timeline(object):
-    def __init__(this):
-        this._tlist = []
+    def __init__(self):
+        self._tlist = []
 
 
-    def add(this, t):
-        this._tlist.append(t)
+    def add(self, t):
+        self._tlist.append(t)
 
 
-    def rm(this, t):
-        i = this._tlist.index(t)
-        return this._tlist.pop(i)
+    def rm(self, t):
+        i = self._tlist.index(t)
+        return self._tlist.pop(i)
 
 
-    def process_head(this):
+    def process_head(self):
         global _g_now
-        tcount = len(this._tlist)
+        tcount = len(self._tlist)
         if tcount == 0:
             return -1
 
         if tcount == 1:
-            headtiming = this._tlist[0].timing  
+            headtiming = self._tlist[0].timing  
             headindex = 0                          
         else: #if tcount >= 2: 
-            headtiming = this._tlist[0].timing  
+            headtiming = self._tlist[0].timing  
             headindex = 0                          
             for i in range(1,tcount):
-                timing = this._tlist[i].timing
+                timing = self._tlist[i].timing
                 if timing < headtiming:
                     headtiming = timing
                     headindex = i
 
         if headtiming >= _g_now:
             _g_now = headtiming
-            headt = this._tlist[headindex]
+            headt = self._tlist[headindex]
             headt.callback()
         else:
             print('timeline time err')
@@ -249,18 +249,18 @@ class Timeline(object):
         global _g_timeline
         return _g_timeline._stop()
 
-    def _stop(this):
+    def _stop(self):
         global _g_stop
         _g_stop = 1
 
 
-    def _run(this, last = 100):
+    def _run(self, last = 100):
         last += _g_now
         while 1:
             if _g_now > last:
                 return _g_now
 
-            r = this.process_head()
+            r = self.process_head()
             if r == -1:
                 return _g_now
             
@@ -268,8 +268,8 @@ class Timeline(object):
                 return _g_now
 
 
-    def __str__(this):
-        return 'Timeline tlist: %s'%(str(this._tlist))
+    def __str__(self):
+        return 'Timeline tlist: %s'%(str(self._tlist))
 
 #} class Timeline
 
@@ -288,8 +288,8 @@ Ctx.register(globals(),{
 def main():
     class A():
         name = 'b'
-        def a3(this):
-            print('-3',this.name)
+        def a3(self):
+            print('-3',self.name)
     a = A()
 
     def a1():

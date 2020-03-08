@@ -12,10 +12,10 @@ class Student_Maribelle(Adv):
     conf = {}
     conf['slot.d'] = Sakuya()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1
         `s2
-        `fs, (s1.charged>=s1.sp-this.sp_val('fs')) or (s2.charged>=s2.sp-this.sp_val('fs'))
+        `fs, (s1.charged>=s1.sp-self.sp_val('fs')) or (s2.charged>=s2.sp-self.sp_val('fs'))
     """
 
 

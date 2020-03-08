@@ -12,20 +12,20 @@ class Victor(Adv):
     conf = {}
     conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
     conf['acl'] = """
-        `s1, this.bleed._static['stacks'] < 3
+        `s1, self.bleed._static['stacks'] < 3
         `s2, seq=5
         `s3, seq=5
         """
 
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = HoH()+JotS()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = HoH()+JotS()
 
-    def prerun(this):
+    def prerun(self):
         random.seed()
-        this.bleed = Bleed("g_bleed",0).reset()
+        self.bleed = Bleed("g_bleed",0).reset()
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         if random.random() < 0.8:
             Bleed("s1", 1.46).on()
 

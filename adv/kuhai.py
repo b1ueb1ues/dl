@@ -18,54 +18,54 @@ class Ku_Hai(Adv):
         `s1, fsc
         `s2
         `s3, fsc
-        `fs, seq=2 and this.fs_alt.get()
+        `fs, seq=2 and self.fs_alt.get()
         `fs, seq=3
         '''
     conf['slots.a'] = slot.a.The_Lurker_in_the_Woods() + slot.a.RR()
     conf['slot.d'] = Zephyr()
 
-    def init(this):
-        if this.condition('huge hitbox eneny'):
-            this.o_prerun = this.prerun
-            this.prerun = this.c_prerun
+    def init(self):
+        if self.condition('huge hitbox eneny'):
+            self.o_prerun = self.prerun
+            self.prerun = self.c_prerun
         else:
-            this.missc1 = this.c_missc1
-            this.backc1 = this.c_backc1
+            self.missc1 = self.c_missc1
+            self.backc1 = self.c_backc1
 
-    def pre2(this):
+    def pre2(self):
         pass
 
-    def c_prerun(this):
-        this.o_prerun()
-        this.fshit = 3
-        this.fs_alt.conf_alt['fs.dmg'] = 0
+    def c_prerun(self):
+        self.o_prerun()
+        self.fshit = 3
+        self.fs_alt.conf_alt['fs.dmg'] = 0
 
-    def missc1(this):
+    def missc1(self):
         pass
 
-    def backc1(this):
+    def backc1(self):
         pass
 
-    def c_missc1(this):
-        this.x1dmgb = this.conf['x1.dmg']
-        this.x1spb = this.conf['x1.sp']
-        this.conf['x1.dmg'] = 0
-        this.conf['x1.sp'] = 0
+    def c_missc1(self):
+        self.x1dmgb = self.conf['x1.dmg']
+        self.x1spb = self.conf['x1.sp']
+        self.conf['x1.dmg'] = 0
+        self.conf['x1.sp'] = 0
 
-    def c_backc1(this):
-        this.conf['x1.dmg'] = this.x1dmgb
-        this.conf['x1.sp'] = this.x1spb
+    def c_backc1(self):
+        self.conf['x1.dmg'] = self.x1dmgb
+        self.conf['x1.sp'] = self.x1spb
 
-    def fs_proc_alt(this, e):
-        this.dmg_make('o_fs_alt_hit1',0.83)
-        if this.fshit >= 2:
-            this.dmg_make('o_fs_alt_hit2',0.83)
-        if this.fshit >= 3:
-            this.dmg_make('o_fs_alt_hit3',0.83)
+    def fs_proc_alt(self, e):
+        self.dmg_make('o_fs_alt_hit1',0.83)
+        if self.fshit >= 2:
+            self.dmg_make('o_fs_alt_hit2',0.83)
+        if self.fshit >= 3:
+            self.dmg_make('o_fs_alt_hit3',0.83)
 
-    def prerun(this):
-        this.fshit = 2
-        this.alttimer = Timer(this.altend)
+    def prerun(self):
+        self.fshit = 2
+        self.alttimer = Timer(self.altend)
         conf_fs_alt = {
             'fs.dmg':0,
             'fs.sp' :330,
@@ -77,16 +77,16 @@ class Ku_Hai(Adv):
             'x3fs.startup':16/60.0,
             'x3fs.recovery':33/60.0,
         }
-        this.fs_alt = Fs_alt(this, Conf(conf_fs_alt), this.fs_proc_alt)
+        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
 
-    def altend(this,t):
-        this.fs_alt.off()
-        this.backc1()
+    def altend(self,t):
+        self.fs_alt.off()
+        self.backc1()
 
-    def s2_proc(this, e):
-        this.fs_alt.on(-1)
-        this.alttimer.on(10)
-        this.missc1()
+    def s2_proc(self, e):
+        self.fs_alt.on(-1)
+        self.alttimer.on(10)
+        self.missc1()
 
 if __name__ == '__main__':
     conf = {}

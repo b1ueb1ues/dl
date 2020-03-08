@@ -14,7 +14,7 @@ class Karl(Adv):
     conf['slot.a'] = The_Lurker_in_the_Woods()+Primal_Crisis()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s2, cancel
         `fs, seq=2
         """

@@ -19,21 +19,21 @@ class Cassandra(Adv):
     """
     conf['afflict_res.poison'] = 0
 
-    def prerun(this):
-        this.hp = 80
+    def prerun(self):
+        self.hp = 80
 
-        if this.condition('reflect 500 damage on every s2'):
-            this.s2reflect = 500
+        if self.condition('reflect 500 damage on every s2'):
+            self.s2reflect = 500
         else:
-            this.s2reflect = 0
+            self.s2reflect = 0
 
-    def s1_proc(this, e):
-        this.afflics.poison('s1',120,0.582)
+    def s1_proc(self, e):
+        self.afflics.poison('s1',120,0.582)
 
-    def s2_proc(this, e):
-        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
-        with CrisisModifier('s2', 1, this.hp):
-            this.dmg_make('s2',9.72)
+    def s2_proc(self, e):
+        self.dmg_make('o_s2_reflect', self.s2reflect * 11, fixed=True)
+        with CrisisModifier('s2', 1, self.hp):
+            self.dmg_make('s2',9.72)
 
 if __name__ == '__main__':
     conf = {}

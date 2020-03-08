@@ -19,36 +19,36 @@ class Yachiyo(Adv):
     conf['slots.a'] = MF()+SotS()
     conf['slots.d'] = Corsaint_Phoenix()
     conf['acl'] = """
-        `fs, this.fsa_charge and seq=5
+        `fs, self.fsa_charge and seq=5
         `s2
         `s1
         `s3
         """
     conf['afflict_res.paralysis'] = 0
 
-    def prerun(this):
-        this.fsa_charge = 0        
+    def prerun(self):
+        self.fsa_charge = 0        
 
-    def s1_proc(this, e):
-        this.dmg_make('s1',4.32)
-        this.afflics.paralysis('s1',100,0.66)
-        Selfbuff('a1',0.15*this.afflics.paralysis.get(),10).on()
-        this.dmg_make('s1',4.32)
+    def s1_proc(self, e):
+        self.dmg_make('s1',4.32)
+        self.afflics.paralysis('s1',100,0.66)
+        Selfbuff('a1',0.15*self.afflics.paralysis.get(),10).on()
+        self.dmg_make('s1',4.32)
 
 
-    def s2_proc(this, e):
-        # this.fso_dmg = this.conf.fs.dmg
-        this.fso_sp = this.conf.fs.sp
-        # this.conf.fs.dmg = 7.82
-        this.conf.fs.sp = 200
-        this.fsa_charge = 1
+    def s2_proc(self, e):
+        # self.fso_dmg = self.conf.fs.dmg
+        self.fso_sp = self.conf.fs.sp
+        # self.conf.fs.dmg = 7.82
+        self.conf.fs.sp = 200
+        self.fsa_charge = 1
 
-    def fs_proc(this, e):
-        if this.fsa_charge:
-            # this.conf.fs.dmg = this.fso_dmg
-            this.dmg_make("o_fs_boost",6.90)
-            this.conf.fs.sp = this.fso_sp
-            this.fsa_charge = 0
+    def fs_proc(self, e):
+        if self.fsa_charge:
+            # self.conf.fs.dmg = self.fso_dmg
+            self.dmg_make("o_fs_boost",6.90)
+            self.conf.fs.sp = self.fso_sp
+            self.fsa_charge = 0
 
 
 

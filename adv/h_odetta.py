@@ -22,14 +22,14 @@ class Halloween_Odetta(Adv):
     a1 = ('primed_defense', 0.10)
     a3 = ('bt',0.2)
 
-    def init(this):
-        if this.condition('buff all team'):
-            this.s2_proc = this.c_s2_proc
+    def init(self):
+        if self.condition('buff all team'):
+            self.s2_proc = self.c_s2_proc
 
-    def c_s2_proc(this, e):
+    def c_s2_proc(self, e):
         Teambuff('s2',0.2,15).on()
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Selfbuff('s2',0.2,15).on()
 
 if __name__ == '__main__':

@@ -11,7 +11,7 @@ class Yue(Adv):
     conf['slot.a'] = Kung_Fu_Masters()+Flower_in_the_Fray()
     conf['slot.d'] = Arctos()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1, cancel
         `s2, fsc
         `fs, x=5

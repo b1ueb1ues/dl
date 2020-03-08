@@ -10,7 +10,7 @@ class Gala_Luca(adv.g_luca.Gala_Luca):
     conf = adv.g_luca.Gala_Luca.conf.copy()
     conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
 
-    def buff_icon_count(this):
+    def buff_icon_count(self):
         return 7
 
 if __name__ == '__main__':

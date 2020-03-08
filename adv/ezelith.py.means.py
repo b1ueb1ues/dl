@@ -7,9 +7,9 @@ def module():
 
 class Ezelith(adv.ezelith.Ezelith):
 
-    def dmg_proc(this, name, amount):
-        if name[0] == 'x' and this.s2_buff.get():
-            Debuff('s2_ab', 0.05, 5, this.s2_chance()).on()
+    def dmg_proc(self, name, amount):
+        if name[0] == 'x' and self.s2_buff.get():
+            Debuff('s2_ab', 0.05, 5, self.s2_chance()).on()
 
 
 if __name__ == '__main__':

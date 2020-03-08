@@ -13,7 +13,7 @@ class Gala_Mym(Adv):
     conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
     conf['slot.d'] = Sakuya()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
         `fs, x=5
@@ -54,25 +54,25 @@ class Gala_Mym(Adv):
     }
     conf['dragonform'] = conf['dragonform1']
 
-    def ds_proc(this):
-        return this.dmg_make('d_ds',this.dragonform.conf.ds.dmg,'s')
+    def ds_proc(self):
+        return self.dmg_make('d_ds',self.dragonform.conf.ds.dmg,'s')
 
-    def prerun(this):
-        this.a1_buff = Selfbuff('flamewyrm', 0.15, -1, 'att', 'passive')
-        Event('dragon').listener(this.a1_on)
+    def prerun(self):
+        self.a1_buff = Selfbuff('flamewyrm', 0.15, -1, 'att', 'passive')
+        Event('dragon').listener(self.a1_on)
 
-    def a1_on(this, e):
-        if not this.a1_buff.get():
-            this.a1_buff.on()
+    def a1_on(self, e):
+        if not self.a1_buff.get():
+            self.a1_buff.on()
         else:
-            this.dragonform.conf += this.conf.dragonform2
+            self.dragonform.conf += self.conf.dragonform2
 
-    def s1_proc(this, e):
-        this.dragonform.charge_gauge(5)
+    def s1_proc(self, e):
+        self.dragonform.charge_gauge(5)
 
-    def s2_proc(this, e):
-        if this.a1_buff.get():
-            this.dmg_make('o_s2_boost', 4.16)
+    def s2_proc(self, e):
+        if self.a1_buff.get():
+            self.dmg_make('o_s2_boost', 4.16)
 
 if __name__ == '__main__':
     conf = {}

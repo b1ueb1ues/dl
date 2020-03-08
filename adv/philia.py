@@ -16,8 +16,8 @@ class Philia(Adv):
         """
     conf['afflict_res.paralysis'] = 0
 
-    def s2_proc(this, e):
-        this.afflics.paralysis('s2',90,0.60)
+    def s2_proc(self, e):
+        self.afflics.paralysis('s2',90,0.60)
 
 
 if __name__ == '__main__':

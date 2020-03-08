@@ -7,8 +7,8 @@ def module():
 
 class Dragonyule_Xainfried(d_xainfried.Dragonyule_Xainfried):
     conf = {}
-    def d_slots(this):
-        this.slots.d = slot.d.Freyja()
+    def d_slots(self):
+        self.slots.d = slot.d.Freyja()
 
 if __name__ == '__main__':
     conf = {}

@@ -18,8 +18,8 @@ class Luca(Adv):
         """
     conf['afflict_res.paralysis'] = 0
 
-    def s1_proc(this, e):
-        this.afflics.paralysis('s1',110,0.883)
+    def s1_proc(self, e):
+        self.afflics.paralysis('s1',110,0.883)
 
 if __name__ == '__main__':
     conf = {}

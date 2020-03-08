@@ -7,8 +7,8 @@ def module():
     return Naveed
 
 class Naveed(naveed.Naveed):
-    def prerun(this):
-        this.s1level = 5
+    def prerun(self):
+        self.s1level = 5
 
 if __name__ == '__main__':
     conf = {}

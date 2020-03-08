@@ -37,53 +37,53 @@ class Lathna(Adv):
 
         'dodge.startup': 41 / 60.0, # dodge frames
     }
-    def ds_proc(this):
-        dmg = this.dmg_make('d_ds', 3.64, 's')
-        this.afflics.poison('ds',120,0.291,30,dtype='s')
-        # this.afflics.poison('ds',120,3.00,30,dtype='s')
-        return dmg + this.dmg_make('d_ds',3.64,'s')
+    def ds_proc(self):
+        dmg = self.dmg_make('d_ds', 3.64, 's')
+        self.afflics.poison('ds',120,0.291,30,dtype='s')
+        # self.afflics.poison('ds',120,3.00,30,dtype='s')
+        return dmg + self.dmg_make('d_ds',3.64,'s')
 
-    def prerun(this):
-        this.faceless_god = Selfbuff('faceless_god',2.00,-1,'poison_killer','passive')
-        Event('dragon').listener(this.a1_on)
-        Event('idle').listener(this.a1_off)
+    def prerun(self):
+        self.faceless_god = Selfbuff('faceless_god',2.00,-1,'poison_killer','passive')
+        Event('dragon').listener(self.a1_on)
+        Event('idle').listener(self.a1_off)
 
-        this.a_s1 = this.s1.ac
-        this.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 2.00}))
+        self.a_s1 = self.s1.ac
+        self.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 2.00}))
         def recovery():
-            return this.a_s1a._recovery + this.a_s1.getrecovery()
-        this.a_s1a.getrecovery = recovery
+            return self.a_s1a._recovery + self.a_s1.getrecovery()
+        self.a_s1a.getrecovery = recovery
 
-    def a1_on(this, e):
-        if not this.faceless_god.get():
-            this.faceless_god.on()
+    def a1_on(self, e):
+        if not self.faceless_god.get():
+            self.faceless_god.on()
 
-    def a1_off(this, e):
-        if this.faceless_god.get():
-            this.faceless_god.off()
+    def a1_off(self, e):
+        if self.faceless_god.get():
+            self.faceless_god.off()
 
-    def s1back(this, t):
-        this.s1.ac = this.a_s1
+    def s1back(self, t):
+        self.s1.ac = self.a_s1
 
-    def s1a(this):
-        if this.s1.check():
+    def s1a(self):
+        if self.s1.check():
             with Modifier("s1killer", "poison_killer", "hit", 0.5):
-                this.dmg_make("s1", 2.37*4)
-            this.s1.ac = this.a_s1a
-            Timer(this.s1back).on(this.conf.s1.startup+0.01)
-            this.hits += 4
-            return this.s1()
+                self.dmg_make("s1", 2.37*4)
+            self.s1.ac = self.a_s1a
+            Timer(self.s1back).on(self.conf.s1.startup+0.01)
+            self.hits += 4
+            return self.s1()
         else:
             return 0
     
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.5):
-            this.dmg_make("s1", 2.37*3)
-            this.hits += 3
+            self.dmg_make("s1", 2.37*3)
+            self.hits += 3
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         with Modifier("s2killer", "poison_killer", "hit", 0.5):
-            this.dmg_make("s2", 17.26)
+            self.dmg_make("s2", 17.26)
 
 if __name__ == '__main__':
     conf = {}

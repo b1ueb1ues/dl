@@ -16,14 +16,14 @@ class Waike(Adv):
         """
     conf['afflict_res.bog'] = 100
 
-    def init(this):
-        this.fullhp = 0
-        if this.conf['afflict_res.bog'] < 100:
-            if this.condition('hp100'):
-                this.fullhp = 1
+    def init(self):
+        self.fullhp = 0
+        if self.conf['afflict_res.bog'] < 100:
+            if self.condition('hp100'):
+                self.fullhp = 1
 
-    def s2_proc(this, e):
-        this.afflics.bog.on('s2', 80+this.fullhp*40)
+    def s2_proc(self, e):
+        self.afflics.bog.on('s2', 80+self.fullhp*40)
 
 if __name__ == '__main__':
     conf = {}

@@ -21,13 +21,13 @@ class Curran(Adv):
         """
     conf['slot.a'] = KFM()+FitF()
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.6):
-            this.dmg_make("s1", 14.70)
+            self.dmg_make("s1", 14.70)
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         with Modifier("s2killer", "poison_killer", "hit", 1):
-            this.dmg_make("s2", 12.54)
+            self.dmg_make("s2", 12.54)
 
 if __name__ == '__main__':
     conf = {}

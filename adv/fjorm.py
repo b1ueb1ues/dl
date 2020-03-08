@@ -18,15 +18,15 @@ class Fjorm(Adv):
         `fs, seq=5
         """
 
-    def prerun(this):
+    def prerun(self):
         Teambuff('last bravery',0.3,15).on()
-        if this.condition('reflect 500 damage on every s2'):
-            this.s2reflect = 500
+        if self.condition('reflect 500 damage on every s2'):
+            self.s2reflect = 500
         else:
-            this.s2reflect = 0
+            self.s2reflect = 0
 
-    def s2_proc(this, e):
-        this.dmg_make('o_s2_reflect', this.s2reflect * 11, fixed=True)
+    def s2_proc(self, e):
+        self.dmg_make('o_s2_reflect', self.s2reflect * 11, fixed=True)
 
 if __name__ == '__main__':
     conf = {}

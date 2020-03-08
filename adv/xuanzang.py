@@ -13,21 +13,21 @@ class Xuan_Zang(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = RR()+Jewels_of_the_Sun()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1, fsc
         `s2, cancel
         `fs, seq=4
         """
 
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = RR()+JotS()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = RR()+JotS()
 
-    def s1_proc(this, e):
-        if this.mod('def')!= 1:
-            this.dmg_make('o_s1_boost',2.51*3*0.2*0.91)
+    def s1_proc(self, e):
+        if self.mod('def')!= 1:
+            self.dmg_make('o_s1_boost',2.51*3*0.2*0.91)
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Debuff('s2_defdown',0.1,20,0.7).on()
 
 

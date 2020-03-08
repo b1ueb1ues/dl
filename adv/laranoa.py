@@ -20,25 +20,25 @@ class Laranoa(Adv):
         """
     conf['slot.d'] = Siren()
     
-    def init(this):
-        if this.condition('buff all team'):
-            this.s2_proc = this.c_s2_proc
+    def init(self):
+        if self.condition('buff all team'):
+            self.s2_proc = self.c_s2_proc
 
-    def prerun(this):
-        this.ahits = 0
+    def prerun(self):
+        self.ahits = 0
 
     
-    def c_s2_proc(this, e):
+    def c_s2_proc(self, e):
         Teambuff('s2_str',0.10,10).on()
         Selfbuff('s2_sp',0.20,10,'sp','passive').on()
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Selfbuff('s2_str',0.10,10).on()
         Selfbuff('s2_sp',0.20,10,'sp','passive').on()
 
-    def dmg_proc(this, name, amount):
-        if this.hits // 20 > this.ahits:
-            this.ahits = this.hits // 20
+    def dmg_proc(self, name, amount):
+        if self.hits // 20 > self.ahits:
+            self.ahits = self.hits // 20
             Selfbuff('sylvan critdmg',0.10,20,'crit','damage').on()
 
 

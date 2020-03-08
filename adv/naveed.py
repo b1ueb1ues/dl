@@ -11,26 +11,26 @@ class Naveed(Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['acl'] = """
-        `s3, not this.s3_buff
-        `s2, this.s1level < 5
+        `s3, not self.s3_buff
+        `s2, self.s1level < 5
         `s1
         `fs, seq=3 and cancel
         """
     conf['slot.a'] = TSO()+Primal_Crisis()
             
-    def prerun(this):
-        this.s1level = 0
+    def prerun(self):
+        self.s1level = 0
 
-    def s1_proc(this, e):
-        for _ in range(this.s1level):
+    def s1_proc(self, e):
+        for _ in range(self.s1level):
             for _ in range(3):
-                this.dmg_make("o_s1_boost",0.7,'s')
-                this.hits += 1
+                self.dmg_make("o_s1_boost",0.7,'s')
+                self.hits += 1
 
-    def s2_proc(this, e):
-        this.s1level += 1
-        if this.s1level >= 5:
-            this.s1level = 5
+    def s2_proc(self, e):
+        self.s1level += 1
+        if self.s1level >= 5:
+            self.s1level = 5
         adv.Event('defchain')()
 
 if __name__ == '__main__':

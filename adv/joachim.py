@@ -21,30 +21,30 @@ class Joachim(Adv):
     """
     conf['afflict_res.poison'] = 0
 
-    def init(this):
-        this.s1_stance = 1
+    def init(self):
+        self.s1_stance = 1
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.8):
             coef = 2.2
-            this.dmg_make('s1', coef)
+            self.dmg_make('s1', coef)
 
-            if this.s1_stance == 1:
-                this.afflics.poison('s1',110, 0.53)
-                this.s1_stance = 2
-            elif this.s1_stance == 2:
-                this.afflics.poison('s1',160, 0.53)
-                this.s1_stance = 3
-            elif this.s1_stance == 3:
+            if self.s1_stance == 1:
+                self.afflics.poison('s1',110, 0.53)
+                self.s1_stance = 2
+            elif self.s1_stance == 2:
+                self.afflics.poison('s1',160, 0.53)
+                self.s1_stance = 3
+            elif self.s1_stance == 3:
                 Teambuff("s1atk",0.15,10).on()
-                this.afflics.poison('s1',160, 0.53)
-                this.s1_stance = 1
+                self.afflics.poison('s1',160, 0.53)
+                self.s1_stance = 1
 
-            this.dmg_make('s1', coef)
+            self.dmg_make('s1', coef)
 
 
-    def s2_proc(this, e):
-        this.s1.charge(this.s1.sp)
+    def s2_proc(self, e):
+        self.s1.charge(self.s1.sp)
 
 
 

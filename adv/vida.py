@@ -15,16 +15,16 @@ class Vida(Adv):
         `fs, seq=5
         """
 
-    def prerun(this):
-        this.s2charge = 0
+    def prerun(self):
+        self.s2charge = 0
 
-    def s2_proc(this, e):
-        this.s2charge = 3
+    def s2_proc(self, e):
+        self.s2charge = 3
 
-    def fs_proc(this, e):
-        if this.s2charge > 0:
-            this.s2charge -= 1
-            this.dmg_make("o_fs_boost",0.21*3)
+    def fs_proc(self, e):
+        if self.s2charge > 0:
+            self.s2charge -= 1
+            self.dmg_make("o_fs_boost",0.21*3)
 
 
 

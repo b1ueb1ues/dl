@@ -15,9 +15,9 @@ class Berserker(Adv):
         `fs, seq=2 and cancel
         """
 
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+JotS()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = TSO()+JotS()
 
 if __name__ == '__main__':
     conf = {}

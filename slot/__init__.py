@@ -12,25 +12,25 @@ class Slot(object):
     a = None
     mod = None
     conf = None
-    def __init__(this):
-        if not this.mod:
-            this.mod = []
-        if not this.conf:
-            this.conf = Conf()
-        if not this.a:
-            this.a = []
+    def __init__(self):
+        if not self.mod:
+            self.mod = []
+        if not self.conf:
+            self.conf = Conf()
+        if not self.a:
+            self.a = []
 
-    def setup(this, c):
-        if c.ele == this.ele :
-            this.onele = 1
-        if this.wt != 'none' and c.wt != this.wt:
-            raise ValueError('Wrong weapon type, expected {} but got {}'.format(this.wt, c.wt))
+    def setup(self, c):
+        if c.ele == self.ele :
+            self.onele = 1
+        if self.wt != 'none' and c.wt != self.wt:
+            raise ValueError('Wrong weapon type, expected {} but got {}'.format(self.wt, c.wt))
 
-    def oninit(this, adv):
-        adv.conf(this.conf)
+    def oninit(self, adv):
+        adv.conf(self.conf)
 
-        i = this.stype
-        j = this.mod
+        i = self.stype
+        j = self.mod
         if type(j) == tuple:
             adv.Modifier(i,*j)
         elif type(j) == list:
@@ -49,19 +49,19 @@ class CharacterBase(Slot):
     name = 'null'
     stars = 5
     ex = {}
-    def setup(this):
+    def setup(self):
         return
 
-    def oninit(this, adv):
-        Slot.oninit(this, adv)
-        j = this.ex
+    def oninit(self, adv):
+        Slot.oninit(self, adv)
+        j = self.ex
         if type(j) == tuple:
-            this.a.append(j)
+            self.a.append(j)
         elif type(j) == list:
-            this.a += j
+            self.a += j
         elif type(j) == dict:
             for i in j:
-                this.a.append(j[i])
+                self.a.append(j[i])
 
 
 
@@ -71,24 +71,24 @@ class WeaponBase(Slot):
     s3 = Conf()
     ele = [] # or ''
 
-    def setup(this, c):
-        super(WeaponBase, this).setup(c)
-        if type(this.ele) == list:
-            for i in this.ele:
+    def setup(self, c):
+        super(WeaponBase, self).setup(c)
+        if type(self.ele) == list:
+            for i in self.ele:
                 if c.ele == i :
-                    this.onele = 1
+                    self.onele = 1
                     break
 
-        if this.onele :
-            this.att *= 1.5
-            this.conf.s3 = Conf(this.s3)
-        elif 'all' in this.ele :
-            this.conf.s3 = Conf(this.s3)
+        if self.onele :
+            self.att *= 1.5
+            self.conf.s3 = Conf(self.s3)
+        elif 'all' in self.ele :
+            self.conf.s3 = Conf(self.s3)
 
-        if this.wt == 'axe':
-            this.mod.append(('crit','chance',0.04))
+        if self.wt == 'axe':
+            self.mod.append(('crit','chance',0.04))
         else :
-            this.mod.append(('crit','chance',0.02))
+            self.mod.append(('crit','chance',0.02))
 
 class DragonBase(Slot):
     stype = 'd'
@@ -124,12 +124,12 @@ class DragonBase(Slot):
     }
     dragonform = {}
 
-    def setup(this, c):
-        Slot.setup(this, c)
-        if this.onele:
-            this.att *= 1.5
+    def setup(self, c):
+        Slot.setup(self, c)
+        if self.onele:
+            self.att *= 1.5
         else:
-            this.a = []
+            self.a = []
 
     def ds_proc(self):
         try:
@@ -156,9 +156,9 @@ class DragonBase(Slot):
 
 class Amuletempty(object):
     stype = 'a2'
-    def oninit(this,adv):
+    def oninit(self,adv):
         return
-    def setup(this, c):
+    def setup(self, c):
         return
 
 
@@ -167,18 +167,18 @@ class AmuletBase(Slot):
     stype = 'a'
     a2 = None
 
-    def __add__(this, another):
-        if type(this) is type(another):
+    def __add__(self, another):
+        if type(self) is type(another):
             raise ValueError('Cannot equip two of the same wyrmprint')
-        this.a2 = another
-        this.a2.stype = 'a2'
-        return this
+        self.a2 = another
+        self.a2.stype = 'a2'
+        return self
 
-    def oninit(this, adv):
-        Slot.oninit(this, adv)
-        if this.a2:
-            this.a2.a2 = None
-            this.a2.oninit(adv)
+    def oninit(self, adv):
+        Slot.oninit(self, adv)
+        if self.a2:
+            self.a2.a2 = None
+            self.a2.oninit(adv)
 
 
 
@@ -192,41 +192,41 @@ class Slots(object):
     #a = AmuletBase()+AmuletBase()
     #c = CharacterBase()
     #a2 = AmuletBase()
-    def __str__(this):
-        r = str(this.c) + '\n'
-        r += str(this.d) + '\n'
-        r += str(this.w) + '\n'
-        r += str(this.a) + '\n'
-        r += str(this.a.a2) + '\n'
+    def __str__(self):
+        r = str(self.c) + '\n'
+        r += str(self.d) + '\n'
+        r += str(self.w) + '\n'
+        r += str(self.a) + '\n'
+        r += str(self.a.a2) + '\n'
         return r
 
 
-    def __init__(this):
-        this.c = CharacterBase()
-        #this.w = WeaponBase()
-        #this.d = DragonBase()
-        #this.a = AmuletBase()+AmuletBase()
-        this.w = None
-        this.d = None
-        this.a = None
+    def __init__(self):
+        self.c = CharacterBase()
+        #self.w = WeaponBase()
+        #self.d = DragonBase()
+        #self.a = AmuletBase()+AmuletBase()
+        self.w = None
+        self.d = None
+        self.a = None
 
-    def __setup(this):
-        this.c.setup()
-        this.w.setup(this.c)
-        this.d.setup(this.c)
-        this.a.setup(this.c)
+    def __setup(self):
+        self.c.setup()
+        self.w.setup(self.c)
+        self.d.setup(self.c)
+        self.a.setup(self.c)
 
 
-    def oninit(this, adv):
-        tmp = copy.deepcopy(this)
-        this.tmp = tmp
+    def oninit(self, adv):
+        tmp = copy.deepcopy(self)
+        self.tmp = tmp
         tmp.__setup()
         tmp.c.oninit(adv)
         tmp.w.oninit(adv)
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
-        this.abilities = a
+        self.abilities = a
 
         # for i in tmp.c.a:
         #     Ability(*i).oninit(adv,'c_')
@@ -247,9 +247,9 @@ class Slots(object):
                 ability_dict[acat](*ab).oninit(adv, afrom)
 
 
-    def att(this, forte=None):
-        tmp = copy.deepcopy(this)
-        this.tmp = tmp
+    def att(self, forte=None):
+        tmp = copy.deepcopy(self)
+        self.tmp = tmp
         tmp.__setup()
         if not forte:
             return tmp.c.att + tmp.d.att + tmp.w.att + tmp.a.att

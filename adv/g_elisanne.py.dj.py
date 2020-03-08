@@ -11,12 +11,12 @@ class Gala_Elisanne(g_elisanne.Gala_Elisanne):
 
     conf = {}
     
-    def d_slots(this):
-        this.slots.a = BB()+KFM()
-        this.slots.d = Leviathan()
+    def d_slots(self):
+        self.slots.a = BB()+KFM()
+        self.slots.d = Leviathan()
 
-    def d_acl(this):
-        this.conf['acl'] = """
+    def d_acl(self):
+        self.conf['acl'] = """
             `s1
             `s2, seq=4
             `fs, seq=5

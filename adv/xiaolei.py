@@ -14,7 +14,7 @@ class Xiao_Lei(Adv):
         `s3, seq=5 and cancel
         """
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Teambuff('s2cc',0.08,10,'crit','rate').on()
         Teambuff('s2cd',0.40,10,'crit','dmg').on()
 

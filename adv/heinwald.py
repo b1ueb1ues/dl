@@ -18,20 +18,20 @@ class Heinwald(Adv):
         `s3, cancel
         """
 
-    def init(this):
-        if this.condition("buff all teammates"):
-            this.s2_proc = this.c_s2_proc
+    def init(self):
+        if self.condition("buff all teammates"):
+            self.s2_proc = self.c_s2_proc
 
-    def prerun(this):
-        this.s2ssbuff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
+    def prerun(self):
+        self.s2ssbuff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         
-    def c_s2_proc(this, e):
-        this.s2ssbuff.on()
+    def c_s2_proc(self, e):
+        self.s2ssbuff.on()
         Teambuff('s2team',0.15,10).on()
         Selfbuff('s2self',0.10,10).on()
 
-    def s2_proc(this, e):
-        this.s2ssbuff.on()
+    def s2_proc(self, e):
+        self.s2ssbuff.on()
         Selfbuff('s2',0.25,10).on()
 
 if __name__ == '__main__':

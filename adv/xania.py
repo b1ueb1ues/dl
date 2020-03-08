@@ -11,18 +11,18 @@ class Xania(Adv):
     conf = {}
     conf['slot.d'] = Apollo()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1
         `s2
-        `fs, (s1.charged>=s1.sp-this.sp_val('fs')) or (s2.charged>=s2.sp-this.sp_val('fs'))
+        `fs, (s1.charged>=s1.sp-self.sp_val('fs')) or (s2.charged>=s2.sp-self.sp_val('fs'))
         """
     conf['afflict_res.burn'] = 0
 
-    def s1_proc(this, e):
-        this.afflics.burn('s1',100,0.803)
+    def s1_proc(self, e):
+        self.afflics.burn('s1',100,0.803)
 
-    def s2_proc(this, e):
-        this.afflics.burn('s2',100,0.803)
+    def s2_proc(self, e):
+        self.afflics.burn('s2',100,0.803)
 
 if __name__ == '__main__':
     conf = {}

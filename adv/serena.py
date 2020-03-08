@@ -13,46 +13,46 @@ class Serena(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Mega_Friends()+Primal_Crisis()
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff
+        `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, seq=2
         """
 
-    def s1_before(this, e):
+    def s1_before(self, e):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()
 
 
-    def init(this):
-        if this.condition('always connect hits'):
-            this.dmg_proc = this.c_dmg_proc
+    def init(self):
+        if self.condition('always connect hits'):
+            self.dmg_proc = self.c_dmg_proc
 
 
-    def prerun(this):
-        this.hits = 0
-        this.a1count = 0
-        this.a3count = 0
+    def prerun(self):
+        self.hits = 0
+        self.a1count = 0
+        self.a3count = 0
 
 
-    def c_dmg_proc(this, name, amount):
-        a1old = this.a1count
-        if this.hits > 60:
-            this.a1count = 3
-        elif this.hits > 40:
-            this.a1count = 2
-        elif this.hits > 20:
-            this.a1count = 1
-        if a1old != this.a1count:
+    def c_dmg_proc(self, name, amount):
+        a1old = self.a1count
+        if self.hits > 60:
+            self.a1count = 3
+        elif self.hits > 40:
+            self.a1count = 2
+        elif self.hits > 20:
+            self.a1count = 1
+        if a1old != self.a1count:
             Selfbuff('a1buff',0.06,-1,'crit','damage').on()
 
-        a3old = this.a3count
-        if this.hits > 90:
-            this.a3count = 3
-        elif this.hits > 60:
-            this.a3count = 2
-        elif this.hits > 30:
-            this.a3count = 1
-        if a3old != this.a3count:
+        a3old = self.a3count
+        if self.hits > 90:
+            self.a3count = 3
+        elif self.hits > 60:
+            self.a3count = 2
+        elif self.hits > 30:
+            self.a3count = 1
+        if a3old != self.a3count:
             Selfbuff('a3buff',0.03,-1,'crit','chance').on()
 
 

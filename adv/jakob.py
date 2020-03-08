@@ -17,10 +17,10 @@ class Jakob(Adv):
     conf['slot.d'] = DJ()
     conf['afflict_res.bog'] = 100
 
-    def s1_proc(this, e):
-        this.dmg_make('s1',2.27)
-        this.afflics.bog.on('s1', 90)
-        this.dmg_make('s1',4.54)
+    def s1_proc(self, e):
+        self.dmg_make('s1',2.27)
+        self.afflics.bog.on('s1', 90)
+        self.dmg_make('s1',4.54)
 
 if __name__ == '__main__':
     conf = {}

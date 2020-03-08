@@ -212,14 +212,14 @@ class AC011_Garland(DragonBase):
         'ds.hit': 1,
     }
 
-    def oninit(this, adv):
-        DragonBase.oninit(this, adv)
-        this.adv = adv
+    def oninit(self, adv):
+        DragonBase.oninit(self, adv)
+        self.adv = adv
         if adv.condition('maintain shield'):
-            adv.Timer(this.dauntless_rampart).on(15)
+            adv.Timer(self.dauntless_rampart).on(15)
 
-    def dauntless_rampart(this, t):
-        this.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
+    def dauntless_rampart(self, t):
+        self.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
 Garland = AC011_Garland
 
 class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):

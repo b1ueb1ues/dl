@@ -11,20 +11,20 @@ class Sinoa(Adv):
     conf = {}
     conf['slot.d'] = slot.d.Dreadking_Rathalos()
     conf['acl'] = '''
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1
         `s2
         `fs, seq=5
         '''
 
-    def prerun(this):
-        this.s1_buff_mode = 'means'
+    def prerun(self):
+        self.s1_buff_mode = 'means'
 
-    def s1_proc(this, e):
-        if this.s1_buff_mode == 'means':
+    def s1_proc(self, e):
+        if self.s1_buff_mode == 'means':
             Teambuff('s1_att',0.25/4,15,'att').on()
             Teambuff('s1_crit',0.25/4,10,'crit').on()
-        elif this.s1_buff_mode == 'random':
+        elif self.s1_buff_mode == 'random':
             r = random.random()
             if r<0.25  :
                 Teambuff('s1_att',0.25,15,'att').on()
@@ -34,9 +34,9 @@ class Sinoa(Adv):
                 Event('defchain')()
             else:
                 log('debug','s1 HP buff')
-        elif this.s1_buff_mode == 'att':
+        elif self.s1_buff_mode == 'att':
             adv.Teambuff('s1_att',0.25,15,'att').on()
-        elif this.s1_buff_mode == 'crit':
+        elif self.s1_buff_mode == 'crit':
             adv.Teambuff('s1_crit',0.25,10,'crit').on()
 
 if __name__ == '__main__':

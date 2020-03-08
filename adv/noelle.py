@@ -18,20 +18,20 @@ class Noelle(Adv):
 
     conf['acl'] = """
         `s1
-        `fs, this.fs_prep_c==3 and s1.charged>=s1.sp*1/2-this.sp_val('fs')
-        `fs, this.fs_prep_c==1 and s1.charged>=s1.sp*3/4-this.sp_val('fs')
+        `fs, self.fs_prep_c==3 and s1.charged>=s1.sp*1/2-self.sp_val('fs')
+        `fs, self.fs_prep_c==1 and s1.charged>=s1.sp*3/4-self.sp_val('fs')
         `s2, x=5
         `s3, x=5
         """
 
-    def init(this):
-        if this.condition('buff all team'):
-            this.s1_proc = this.c_s1_proc
+    def init(self):
+        if self.condition('buff all team'):
+            self.s1_proc = self.c_s1_proc
 
-    def c_s1_proc(this, e):
+    def c_s1_proc(self, e):
         Teambuff('s1',0.25,15).on()
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Selfbuff('s1',0.25,15).on()
 
 

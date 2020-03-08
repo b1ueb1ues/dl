@@ -13,13 +13,13 @@ class Elisanne(Adv):
     conf = {}
     conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf['acl'] = """
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf['acl'] = """
                         `s1
                         """
         else:
-            this.conf['acl'] = """
+            self.conf['acl'] = """
                         `s1
                         `fs, seq=5
                         """

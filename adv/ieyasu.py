@@ -14,34 +14,34 @@ class Ieyasu(Adv):
     conf['slots.a'] = RR()+JotS()
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
-        `s1, this.bleed._static['stacks']<3
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
+        `s1, self.bleed._static['stacks']<3
+        `s2, seq=5 and self.bleed._static['stacks'] > 0
         `s3, seq=4
         """
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = RR()+BN()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = RR()+BN()
 
-    def s2ifbleed(this):
-        if this.s2buff.get()!=0:
-            if this.bleed._static['stacks'] > 0:
+    def s2ifbleed(self):
+        if self.s2buff.get()!=0:
+            if self.bleed._static['stacks'] > 0:
                 return 0.20
         return 0
 
-    def prerun(this):
+    def prerun(self):
         random.seed()
-        this.s2buff = Selfbuff("s2",0.20,15,'crit')
-        this.s2buff.modifier.get = this.s2ifbleed
-        this.bleed = Bleed("g_bleed",0).reset()
-        this.s2charge = 0
+        self.s2buff = Selfbuff("s2",0.20,15,'crit')
+        self.s2buff.modifier.get = self.s2ifbleed
+        self.bleed = Bleed("g_bleed",0).reset()
+        self.s2charge = 0
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.2):
-            this.dmg_make("s1", 12.40)
+            self.dmg_make("s1", 12.40)
             Bleed("s1", 1.46).on()
 
-    def s2_proc(this, e):
-        this.s2buff.on()
+    def s2_proc(self, e):
+        self.s2buff.on()
 
 
 if __name__ == '__main__':

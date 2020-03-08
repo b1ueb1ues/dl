@@ -15,67 +15,67 @@ class Ctx(object):
             cls._active[0].__init__()
 
 
-    def __init__(this):
-        this.ctxdict_s = copy.deepcopy(this._vdict_s)
+    def __init__(self):
+        self.ctxdict_s = copy.deepcopy(self._vdict_s)
 
 
-    def __upload(this):
-        for i in range(len(this.ctxdict_s)):
-            gdict = this._gdict_s[i]
-            vdict = this.ctxdict_s[i]
+    def __upload(self):
+        for i in range(len(self.ctxdict_s)):
+            gdict = self._gdict_s[i]
+            vdict = self.ctxdict_s[i]
             for k in vdict:
                 gdict[k] = vdict[k]
-        return this
+        return self
 
 
-    def __download(this):
-        for i in range(len(this.ctxdict_s)):
-            gdict = this._gdict_s[i]
-            vdict = this.ctxdict_s[i]
+    def __download(self):
+        for i in range(len(self.ctxdict_s)):
+            gdict = self._gdict_s[i]
+            vdict = self.ctxdict_s[i]
             for k in vdict:
                 vdict[k] = gdict[k]
-        return this
+        return self
 
 
-    def on(this):
-        if this._active[0] == None:
-            this._active[0] = this
-            this.__upload()
+    def on(self):
+        if self._active[0] == None:
+            self._active[0] = self
+            self.__upload()
         else:
-            this._active[0].__download()
-            this.__upload()
-            this._active[0] = this
-        return this
+            self._active[0].__download()
+            self.__upload()
+            self._active[0] = self
+        return self
 
 
-    def off(this):
-        if this._active[0] != this:
+    def off(self):
+        if self._active[0] != self:
             print('try to turn off inactive ctx')
             errrrrrrrrrrrr()
-        for i in range(len(this.ctxdict_s)):
-            gdict = this._gdict_s[i]
-            vdict = this.ctxdict_s[i]
+        for i in range(len(self.ctxdict_s)):
+            gdict = self._gdict_s[i]
+            vdict = self.ctxdict_s[i]
             for k in vdict:
                 del(gdict[k])
-        this.__download()
-        this._active[0] = None
-        return this
+        self.__download()
+        self._active[0] = None
+        return self
 
 #} //class Ctx
 
 
 class Static(object):
-    def __init__(this, default):
-        Ctx.register(this, default)
+    def __init__(self, default):
+        Ctx.register(self, default)
 
-    def __getitem__(this, i):
-        return this.__getattribute__(i)
+    def __getitem__(self, i):
+        return self.__getattribute__(i)
 
-    def __setitem__(this, i, v):
-        this.__setattr__(i,v)
+    def __setitem__(self, i, v):
+        self.__setattr__(i,v)
 
-    def __delitem__(this, i):
-        v = this.__getattribute__(i)
+    def __delitem__(self, i):
+        v = self.__getattribute__(i)
         del(v)
 
 #} //class Static

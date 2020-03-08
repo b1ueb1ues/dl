@@ -13,17 +13,17 @@ class Renelle(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = TB()+EE()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=2
         """
 
-    def s1_proc(this, e):
-        this.afflics.burn('s1',100,0.803)
+    def s1_proc(self, e):
+        self.afflics.burn('s1',100,0.803)
     
-    def s2_proc(this, e):
-        this.afflics.burn('s2',100,0.803)
+    def s2_proc(self, e):
+        self.afflics.burn('s2',100,0.803)
 
 if __name__ == '__main__':
     conf = {}

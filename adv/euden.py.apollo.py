@@ -13,7 +13,7 @@ class Euden(adv.euden.Euden):
     conf['slot.d'] = Apollo()
     conf['acl'] = """
         `dragon
-        `s3, fsc and not this.s3_buff
+        `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=3

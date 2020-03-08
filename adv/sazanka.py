@@ -21,22 +21,22 @@ class Sazanka(Adv):
         """
     conf['afflict_res.sleep'] = 80
 
-    def prerun(this):
-        this.bleed = Bleed("g_bleed",0).reset()
-        this.s2fscharge = 0
+    def prerun(self):
+        self.bleed = Bleed("g_bleed",0).reset()
+        self.s2fscharge = 0
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         if random.random() < 0.8:
             Bleed("s1", 1.32).on()
 
-    def s2_proc(this, e):
-        this.s2fscharge = 3
+    def s2_proc(self, e):
+        self.s2fscharge = 3
 
-    def fs_proc(this, e):
-        if this.s2fscharge > 0:
-            this.s2fscharge -= 1
-            this.dmg_make("o_fs_boost",0.38)
-            this.afflics.sleep('s2_fs', 100, 4.5)
+    def fs_proc(self, e):
+        if self.s2fscharge > 0:
+            self.s2fscharge -= 1
+            self.dmg_make("o_fs_boost",0.38)
+            self.afflics.sleep('s2_fs', 100, 4.5)
 
 
 

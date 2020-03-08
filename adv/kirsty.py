@@ -16,13 +16,13 @@ class Kirsty(Adv):
         `s3, seq=5
         """
 
-    def prerun(this):
-        if this.condition('maintain Dauntless Strength'):
-            Timer(this.dauntless_strength).on(15)
-            Timer(this.dauntless_strength).on(30)
-            Timer(this.dauntless_strength).on(45)
+    def prerun(self):
+        if self.condition('maintain Dauntless Strength'):
+            Timer(self.dauntless_strength).on(15)
+            Timer(self.dauntless_strength).on(30)
+            Timer(self.dauntless_strength).on(45)
 
-    def dauntless_strength(this, t):
+    def dauntless_strength(self, t):
         Selfbuff('dauntless_strength',0.20,-1).on()
 
 if __name__ == '__main__':

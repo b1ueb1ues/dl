@@ -92,16 +92,16 @@ class Skill_Ammo(Skill):
 class Mega_Man(Adv):
     comment = '16 hits leaf shield (max 32 hits)'
 
-    a1 = ('od', 0.15) # this is the coab
+    a1 = ('od', 0.15) # self is the coab
     conf = megaman_conf.copy()
     conf['slot.d'] = Cerberus()
     conf['slot.a'] = Primal_Crisis()+Dear_Diary()
     conf['acl'] = """
         # check_s(n) means neither s1 or s2 are active, and s[n] has full ammo
-        `s3, not this.s3_buff
-        `s1, this.check_s(1) and this.bleed._static['stacks']<3
-        `s2, this.s1_x.active and this.bleed._static['stacks']>=3
-        `s1, this.s1_x.active and this.bleed._static['stacks']>=3
+        `s3, not self.s3_buff
+        `s1, self.check_s(1) and self.bleed._static['stacks']<3
+        `s2, self.s1_x.active and self.bleed._static['stacks']>=3
+        `s1, self.s1_x.active and self.bleed._static['stacks']>=3
     """
     conf['dragonform'] = {
         'act': 'c5 s',
@@ -165,12 +165,12 @@ class Mega_Man(Adv):
             self.bleed.true_dmg_event.dtype = 'x'
             self.bleed.on()
 
-    def charge_p(this, name, sp):
+    def charge_p(self, name, sp):
         percent = sp
-        this.s3.charge(this.ceiling(this.conf.s3.sp*percent))
+        self.s3.charge(self.ceiling(self.conf.s3.sp*percent))
         log('sp', name, '{:.0f}%   '.format(percent*100),'%d/%d, %d/%d, %d/%d'%(\
-            this.s1.charged, this.s1.sp, this.s2.charged, this.s2.sp, this.s3.charged, this.s3.sp) )
-        this.think_pin('prep')
+            self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp) )
+        self.think_pin('prep')
 
     def charge(self, name, sp):
         sp = int(sp) * self.float_problem(self.sp_mod(name))
@@ -226,7 +226,7 @@ class Mega_Man(Adv):
         else:
             self.s2_x.on()
 
-    # def l_range_x(this, e):
+    # def l_range_x(self, e):
     #     if e.name == 's1x' or e.name == 's2x':
     #         return
     #     super().l_range_x(e)

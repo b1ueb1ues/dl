@@ -18,9 +18,9 @@ def test(adv, conf, duration=180):
             j = ams[n]
             conf['slots.a'] = i() + j()
             conf['slot.a'] = conf['slots.a']
-            def foo(this):
-                this.conf['slots.a'] = i()+j()
-                this.conf['slot.a'] = this.conf['slots.a']
+            def foo(self):
+                self.conf['slots.a'] = i()+j()
+                self.conf['slot.a'] = self.conf['slots.a']
             adv.slot_backdoor = foo
             adv.comment = '(' + type(i()).__name__ + type(j()).__name__ + ')'
             adv_test.test(adv, conf, verbose=255, mass=0, duration=duration)

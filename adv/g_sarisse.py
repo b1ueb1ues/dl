@@ -12,21 +12,21 @@ class Gala_Sarisse(Adv):
     conf['slot.d'] = Sakuya()
     conf['slot.a'] = Forest_Bonds()+Dear_Diary()
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff
+        `s3, fsc and not self.s3_buff
         `s1, cancel
         `s2, fsc
         `fs, seq=4
     """
 
-    def prerun(this):
-        this.ahits = 0
-        this.bc = Selfbuff()
-        this.s2stance = 0
+    def prerun(self):
+        self.ahits = 0
+        self.bc = Selfbuff()
+        self.s2stance = 0
 
-    def dmg_proc(this, name, amount):
-        if this.condition('always connect hits'):
-            if this.hits // 20 > this.ahits:
-                this.ahits = this.hits // 20
+    def dmg_proc(self, name, amount):
+        if self.condition('always connect hits'):
+            if self.hits // 20 > self.ahits:
+                self.ahits = self.hits // 20
                 buff = Selfbuff('sylvan strength',0.02,15)
                 buff.bufftime = buff.nobufftime
                 buff.on()
@@ -34,18 +34,18 @@ class Gala_Sarisse(Adv):
                 buff.bufftime = buff.nobufftime
                 buff.on()
 
-    def s1_proc(this, e):
-        buffcount = min(this.bc.buffcount(), 7)
-        this.dmg_make('s1_missile*%d'%buffcount,0.95*buffcount)
-        this.hits += buffcount
+    def s1_proc(self, e):
+        buffcount = min(self.bc.buffcount(), 7)
+        self.dmg_make('s1_missile*%d'%buffcount,0.95*buffcount)
+        self.hits += buffcount
 
-    def s2_proc(this, e):
-        if this.s2stance == 0:
+    def s2_proc(self, e):
+        if self.s2stance == 0:
             Teambuff('s2str',0.20,10).on()
-            this.s2stance = 1
-        elif this.s2stance == 1:
+            self.s2stance = 1
+        elif self.s2stance == 1:
             Teambuff('s2def',0.20,15,'defense').on()
-            this.s2stance = 0
+            self.s2stance = 0
 
 
 if __name__ == '__main__':

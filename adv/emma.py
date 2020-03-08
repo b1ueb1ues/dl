@@ -15,24 +15,24 @@ class Emma(Adv):
     conf['slots.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Castle_Cheer_Corps()+FWHC()
     conf['acl'] = """
-        `fs, this.fs_prep_c==3
-        `s3, not this.s3_buff
+        `fs, self.fs_prep_c==3
+        `s3, not self.s3_buff
         `s1, cancel
         `fs, x=5
         """
 
-    def init(this):
-        if this.condition('buff all team'):
-            this.s1_proc = this.c_s1_proc
+    def init(self):
+        if self.condition('buff all team'):
+            self.s1_proc = self.c_s1_proc
 
 
-    def c_s1_proc(this, e):
+    def c_s1_proc(self, e):
         Teambuff('s2',0.25,15).on()
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Selfbuff('s2',0.25,15).on()
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Event('defchain')()
 
 if __name__ == '__main__':

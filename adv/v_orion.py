@@ -11,7 +11,7 @@ class Valentines_Orion(Adv):
     conf = {}
 
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff
+        `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, seq=2 and cancel
         """
@@ -19,15 +19,15 @@ class Valentines_Orion(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['afflict_res.burn'] = 0
 
-    def prerun(this):
-        this.dc_event = Event('defchain')
+    def prerun(self):
+        self.dc_event = Event('defchain')
 
-    def s1_proc(this, e):
-        this.afflics.burn('s1',100,0.803)
+    def s1_proc(self, e):
+        self.afflics.burn('s1',100,0.803)
 
 
-    def s2_proc(this, e):
-        this.dc_event()
+    def s2_proc(self, e):
+        self.dc_event()
 
 
 if __name__ == '__main__':

@@ -16,29 +16,29 @@ class Wedding_Aoi(Adv):
         """
     conf['afflict_res.sleep'] = 80
 
-    def init(this):
-        if this.condition('big hitbox'):
-            this.s1_addition = 4
+    def init(self):
+        if self.condition('big hitbox'):
+            self.s1_addition = 4
         else:
-            this.s1_addition = 1
+            self.s1_addition = 1
 
-    def s1_before(this, e):
-        this.dmg_make('o_s1_hit1',1.47)
-        this.afflics.sleep('s1',110,6.5)
-        Teambuff('a1',0.15*this.afflics.sleep.get(),10).on()
+    def s1_before(self, e):
+        self.dmg_make('o_s1_hit1',1.47)
+        self.afflics.sleep('s1',110,6.5)
+        Teambuff('a1',0.15*self.afflics.sleep.get(),10).on()
 
-    def s1_proc(this, e):
-        if this.s1_addition == 4:
-            this.dmg_make('o_s1_hit2',1.47)
-            this.dmg_make('o_s1_hit3',1.47)
-            this.dmg_make('o_s1_hit4',1.47)
-        elif this.s1_addition == 1:
+    def s1_proc(self, e):
+        if self.s1_addition == 4:
+            self.dmg_make('o_s1_hit2',1.47)
+            self.dmg_make('o_s1_hit3',1.47)
+            self.dmg_make('o_s1_hit4',1.47)
+        elif self.s1_addition == 1:
             pass
 
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         with Modifier("s1killer", "sleep_killer", "hit", 1):
-            this.dmg_make('s1',5*1.40)
+            self.dmg_make('s1',5*1.40)
 
 
 

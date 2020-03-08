@@ -19,17 +19,17 @@ class Eleonora(Adv):
     conf['slot.d'] = Vayu()
     conf['afflict_res.poison'] = 0
 
-    def prerun(this):
-        if this.condition('hp100'):
-            this.fullhp = 1
+    def prerun(self):
+        if self.condition('hp100'):
+            self.fullhp = 1
         else:
-            this.fullhp = 0
+            self.fullhp = 0
 
-    def s1_proc(this, e):
-        this.afflics.poison('s1',110+50*this.fullhp,0.53)
+    def s1_proc(self, e):
+        self.afflics.poison('s1',110+50*self.fullhp,0.53)
 
-    def s2_proc(this, e):
-        this.afflics.poison('s2',100+50*this.fullhp,0.396)
+    def s2_proc(self, e):
+        self.afflics.poison('s2',100+50*self.fullhp,0.396)
 
 
 if __name__ == '__main__':

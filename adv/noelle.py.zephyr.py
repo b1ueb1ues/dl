@@ -7,8 +7,8 @@ def module():
 
 class Noelle(noelle.Noelle):
 
-    def d_slots(this):
-        this.conf.slots.d = Zephyr()
+    def d_slots(self):
+        self.conf.slots.d = Zephyr()
 
 if __name__ == '__main__':
     conf = {}

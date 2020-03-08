@@ -18,20 +18,20 @@ class Summer_Ranzal(Adv):
         """
     conf['afflict_res.bog'] = 100
 
-    def init(this):
-        this.a3_iscding = 0
-        if this.condition('buff all team'):
-            this.s2_proc = this.c_s2_proc
+    def init(self):
+        self.a3_iscding = 0
+        if self.condition('buff all team'):
+            self.s2_proc = self.c_s2_proc
 
-    def s1_proc(this, e):
-        this.dmg_make('s1',2.16)
-        this.afflics.bog.on('s1', 100)
-        this.dmg_make('s1',6.48)
+    def s1_proc(self, e):
+        self.dmg_make('s1',2.16)
+        self.afflics.bog.on('s1', 100)
+        self.dmg_make('s1',6.48)
 
-    def c_s2_proc(this, e):
+    def c_s2_proc(self, e):
         Teambuff('s2',0.10,15).on()
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Selfbuff('s2',0.10,15).on()
 
 if __name__ == '__main__':

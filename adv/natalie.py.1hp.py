@@ -18,11 +18,11 @@ class Natalie(adv.natalie.Natalie):
         `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
     """
 
-    def prerun(this):
+    def prerun(self):
         super().prerun()
-        this.hp = 0
-        this.a3atk.on()
-        this.a3spd.on()
+        self.hp = 0
+        self.a3atk.on()
+        self.a3spd.on()
 
 if __name__ == '__main__':
     conf = {}

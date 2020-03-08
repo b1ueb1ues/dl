@@ -20,8 +20,8 @@ class Xander(Adv):
         `fs, seq=2 and cancel
         """
 
-    def s1_proc(this, e):
-        this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.05*len(this.all_buffs))
+    def s1_proc(self, e):
+        self.dmg_make('o_s1_boost',self.conf['s1.dmg']*0.05*len(self.all_buffs))
 
 if __name__ == '__main__':
     conf = {}

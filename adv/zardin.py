@@ -18,9 +18,9 @@ class Zardin(Adv):
         `fs, seq=3 and cancel
         """
 
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+BN()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = TSO()+BN()
 
 if __name__ == '__main__':
     conf = {}

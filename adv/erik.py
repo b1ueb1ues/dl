@@ -16,9 +16,9 @@ class Erik(Adv):
         `fs,seq=5
         """
     conf['slot.a'] = KFM()+CE()
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = KFM()+JotS()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = KFM()+JotS()
 
 if __name__ == '__main__':
     conf = {}

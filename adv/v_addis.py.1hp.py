@@ -16,11 +16,11 @@ class Valentines_Addis(adv.v_addis.Valentines_Addis):
         `s3
     """
 
-    def prerun(this):
+    def prerun(self):
         super().prerun()
-        this.hp = 0
-        this.a3atk.on()
-        this.a3spd.on()
+        self.hp = 0
+        self.a3atk.on()
+        self.a3spd.on()
 
 if __name__ == '__main__':
     conf = {}

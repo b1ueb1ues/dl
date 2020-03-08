@@ -13,8 +13,8 @@ class Laranoa(laranoa.Laranoa):
     conf = {}
     conf['slot.d'] = Siren()
 
-    def d_acl(this):
-        this.conf['acl'] = """
+    def d_acl(self):
+        self.conf['acl'] = """
             `s3,s1.charged>=s1.sp
             `s1,fsc
             `s2,fsc

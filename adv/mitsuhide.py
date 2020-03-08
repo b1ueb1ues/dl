@@ -21,28 +21,28 @@ class Mitsuhide(Adv):
     """
     conf['afflict_res.paralysis'] = 0
 
-    def init(this):
-        this.s1_stance = 1
+    def init(self):
+        self.s1_stance = 1
 
-    def s1_proc(this, e):
-        this.afflics.paralysis('s1',120, 0.97)
+    def s1_proc(self, e):
+        self.afflics.paralysis('s1',120, 0.97)
         for _ in range(11):
-            this.dmg_make('s1',0.61,'s')
-            this.hits += 1
+            self.dmg_make('s1',0.61,'s')
+            self.hits += 1
 
-    def s2_proc(this, e):
-        if(this.hits >= 5):
-            this.dmg_make('s2',0.4725,'s')
-        if(this.hits >= 10):
-            this.dmg_make('s2',0.4725,'s')
-        if(this.hits >= 15):
-            this.dmg_make('s2',0.945,'s')
-        if(this.hits >= 20):
-            this.dmg_make('s2',0.945,'s')
-        if(this.hits >= 25):
-            this.dmg_make('s2',0.945,'s')
-        if(this.hits >= 30):
-            this.dmg_make('s2',0.945,'s')
+    def s2_proc(self, e):
+        if(self.hits >= 5):
+            self.dmg_make('s2',0.4725,'s')
+        if(self.hits >= 10):
+            self.dmg_make('s2',0.4725,'s')
+        if(self.hits >= 15):
+            self.dmg_make('s2',0.945,'s')
+        if(self.hits >= 20):
+            self.dmg_make('s2',0.945,'s')
+        if(self.hits >= 25):
+            self.dmg_make('s2',0.945,'s')
+        if(self.hits >= 30):
+            self.dmg_make('s2',0.945,'s')
 
         Spdbuff('s2',0.1,10).on()
 

@@ -19,14 +19,14 @@ class Patia(Adv):
         `fs, x=5
         """
 
-    def prerun(this):
-        this.bleed = Bleed("g_bleed",0).reset()
+    def prerun(self):
+        self.bleed = Bleed("g_bleed",0).reset()
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Teambuff('s1', 0.25, 15, 'defense').on()
         #Teambuff('s1',0.10,9.375).on()
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Bleed("s2", 1.46).on()
 
 if __name__ == '__main__':

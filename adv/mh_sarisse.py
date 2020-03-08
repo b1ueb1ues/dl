@@ -7,56 +7,56 @@ def module():
     return Hunter_Sarisse
 
 class FS_Speedable(Action):
-    def __init__(this, name=None, conf=None, act=None):
+    def __init__(self, name=None, conf=None, act=None):
         super().__init__(name, conf, act)
-        this.atype = 'fs'
-        this.interrupt_by = ['s']
-        this.cancel_by = ['s','dodge']
-        this.fs_speed = 1.2
-        this.t_fs_speed = Timer(this.fs_speed_off)
-        this.l_fs_speed= Listener('fs_speed_buff', this.fs_speed_on)
-        this._startup_a = 0
+        self.atype = 'fs'
+        self.interrupt_by = ['s']
+        self.cancel_by = ['s','dodge']
+        self.fs_speed = 1.2
+        self.t_fs_speed = Timer(self.fs_speed_off)
+        self.l_fs_speed= Listener('fs_speed_buff', self.fs_speed_on)
+        self._startup_a = 0
 
-    def act(this, action):
-        this.act_event.name = 'fs'
-        this.act_event.idx = this.idx
-        this.act_event()
+    def act(self, action):
+        self.act_event.name = 'fs'
+        self.act_event.idx = self.idx
+        self.act_event()
 
-    def fs_speed_on(this, e):
-        this.fs_speed = 1.5
-        this.t_fs_speed = this.t_fs_speed.on(30)
+    def fs_speed_on(self, e):
+        self.fs_speed = 1.5
+        self.t_fs_speed = self.t_fs_speed.on(30)
 
-    def fs_speed_off(this, t):
-        this.fs_speed = 1.2
+    def fs_speed_off(self, t):
+        self.fs_speed = 1.2
 
-    def sync_config(this, c):
-        this._charge = c.charge
-        this._startup = 4 / 60
-        this._recovery = 59 / 60
-        this._active = c.active
+    def sync_config(self, c):
+        self._charge = c.charge
+        self._startup = 4 / 60
+        self._recovery = 59 / 60
+        self._active = c.active
 
-    def getstartup(this):
-        startup = this._startup_a
-        startup += this._charge / this.fs_speed
-        startup += this._startup / this.speed()
+    def getstartup(self):
+        startup = self._startup_a
+        startup += self._charge / self.fs_speed
+        startup += self._startup / self.speed()
         return startup
 
-    def __call__(this, before):
+    def __call__(self, before):
         if type(before).__name__ == 'FS_Speedable':
-            this._startup_a = 88 / 60
+            self._startup_a = 88 / 60
         elif type(before).__name__ == 'X':
             if now()-before.startup_start > 0:
-                if before.name == 'x1' and this.fs_speed == 1.2:
-                    this._startup_a = 3 / 60
+                if before.name == 'x1' and self.fs_speed == 1.2:
+                    self._startup_a = 3 / 60
                 else:
-                    this._startup_a = 0
+                    self._startup_a = 0
             else:
-                return this(before.getprev())
+                return self(before.getprev())
         elif type(before).__name__ == 'S':
-            this._startup_a = 0
+            self._startup_a = 0
         elif type(before).__name__ == 'Dodge':
-            this._startup_a = 14 / 60
-        return this.tap()
+            self._startup_a = 14 / 60
+        return self.tap()
 
 class Hunter_Sarisse(Adv):
     comment = 'fs hit count vary on distance and enemy size; extra hits do 70% less damage than previous hits'
@@ -73,8 +73,8 @@ class Hunter_Sarisse(Adv):
     conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
     conf['slot.d'] = Dragonyule_Jeanne()
 
-    def init(this):
-        default_pierce = 2 if this.condition('lance+ distance from HBH sized enemy') else 1
+    def init(self):
+        default_pierce = 2 if self.condition('lance+ distance from HBH sized enemy') else 1
         conf_alt_fs = {
             'fs1': {
                 'dmg': 0.74,
@@ -107,74 +107,74 @@ class Hunter_Sarisse(Adv):
             }
         }
         for n, c in conf_alt_fs.items():
-            this.conf[n] = Conf(c)
-            act = FS_Speedable(n, this.conf[n])
-            this.s2_spd_boost = act.t_fs_speed
-            this.__dict__['a_'+n] = act
+            self.conf[n] = Conf(c)
+            act = FS_Speedable(n, self.conf[n])
+            self.s2_spd_boost = act.t_fs_speed
+            self.__dict__['a_'+n] = act
 
-        this.l_fs1 = Listener('fs1',this.l_fs1)
-        this.l_fs2 = Listener('fs2',this.l_fs2)
-        this.l_fs3 = Listener('fs3',this.l_fs3)
-        this.l_fs4 = Listener('fs4',this.l_fs4)
-        this.fs = None
+        self.l_fs1 = Listener('fs1',self.l_fs1)
+        self.l_fs2 = Listener('fs2',self.l_fs2)
+        self.l_fs3 = Listener('fs3',self.l_fs3)
+        self.l_fs4 = Listener('fs4',self.l_fs4)
+        self.fs = None
 
-    def do_fs(this, e, name):
+    def do_fs(self, e, name):
         log('fs','succ')
-        this.__dict__['a_'+name].getdoing().cancel_by.append(name)
-        this.__dict__['a_'+name].getdoing().interrupt_by.append(name)
-        this.fs_before(e)
+        self.__dict__['a_'+name].getdoing().cancel_by.append(name)
+        self.__dict__['a_'+name].getdoing().interrupt_by.append(name)
+        self.fs_before(e)
         fs_hits = 0
-        for p in range(this.conf[name+'.pierce']):
-            coef = this.conf[name+'.dmg']*(0.3**p)
+        for p in range(self.conf[name+'.pierce']):
+            coef = self.conf[name+'.dmg']*(0.3**p)
             coef_name = 'fs' if p == 0 else 'o_fs_extra_{}'.format(p)
             if coef < 0.01:
                 break
-            for _ in range(this.conf[name+'.hit']):
-                this.dmg_make(coef_name, coef, 'fs')
+            for _ in range(self.conf[name+'.hit']):
+                self.dmg_make(coef_name, coef, 'fs')
                 fs_hits += 1
         if name == 'fs4':
-            this.hits = fs_hits
+            self.hits = fs_hits
         else:
-            this.hits += fs_hits
-        this.fs_proc(e)
-        this.think_pin('fs')
-        this.charge(name,this.conf[name+'.sp'])
+            self.hits += fs_hits
+        self.fs_proc(e)
+        self.think_pin('fs')
+        self.charge(name,self.conf[name+'.sp'])
 
-    def l_fs1(this, e):
-        this.do_fs(e, 'fs1')
+    def l_fs1(self, e):
+        self.do_fs(e, 'fs1')
 
-    def fs1(this):
-        doing = this.action.getdoing()
-        return this.a_fs1(doing)
+    def fs1(self):
+        doing = self.action.getdoing()
+        return self.a_fs1(doing)
 
-    def l_fs2(this, e):
-        this.do_fs(e, 'fs2')
+    def l_fs2(self, e):
+        self.do_fs(e, 'fs2')
 
-    def fs2(this):
-        doing = this.action.getdoing()
-        return this.a_fs2(doing)
+    def fs2(self):
+        doing = self.action.getdoing()
+        return self.a_fs2(doing)
 
-    def l_fs3(this, e):
-        this.do_fs(e, 'fs3')
+    def l_fs3(self, e):
+        self.do_fs(e, 'fs3')
 
-    def fs3(this):
-        doing = this.action.getdoing()
-        return this.a_fs3(doing)
+    def fs3(self):
+        doing = self.action.getdoing()
+        return self.a_fs3(doing)
 
-    def l_fs4(this, e):
-        this.do_fs(e, 'fs4')
+    def l_fs4(self, e):
+        self.do_fs(e, 'fs4')
 
-    def fs4(this):
-        doing = this.action.getdoing()
-        return this.a_fs4(doing)
+    def fs4(self):
+        doing = self.action.getdoing()
+        return self.a_fs4(doing)
 
-    def prerun(this):
-        this.s1_fs_boost = SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3','fs4'])
+    def prerun(self):
+        self.s1_fs_boost = SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3','fs4'])
 
-    def s1_proc(this, e):
-        this.s1_fs_boost.on()
+    def s1_proc(self, e):
+        self.s1_fs_boost.on()
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
         Event('fs_speed_buff')()
 
 if __name__ == '__main__':

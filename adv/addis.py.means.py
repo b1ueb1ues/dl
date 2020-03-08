@@ -8,22 +8,22 @@ def module():
     return Addis
 
 class Addis(addis.Addis):
-    def prerun(this):
-        this.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
-        this.s2str = Selfbuff("s2_str",0.25,10)
-        this.bleedpunisher = Modifier("bleed","att","killer",0.08)
-        this.bleedpunisher.get = this.getbleedpunisher
-        this.bleed = mBleed("g_bleed",0).reset()
+    def prerun(self):
+        self.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
+        self.s2str = Selfbuff("s2_str",0.25,10)
+        self.bleedpunisher = Modifier("bleed","att","killer",0.08)
+        self.bleedpunisher.get = self.getbleedpunisher
+        self.bleed = mBleed("g_bleed",0).reset()
 
 
-    def s1_proc(this, e):
-        if this.s2buff.get():
-            this.s2buff.buff_end_timer.timing += 2.5
-            this.s2str.buff_end_timer.timing += 2.5
+    def s1_proc(self, e):
+        if self.s2buff.get():
+            self.s2buff.buff_end_timer.timing += 2.5
+            self.s2str.buff_end_timer.timing += 2.5
             log('-special','s1_with_s2')
             mBleed("s1", 1.32).on()
         else:
-            this.afflics.poison('s1',100,0.53)
+            self.afflics.poison('s1',100,0.53)
 
 
 

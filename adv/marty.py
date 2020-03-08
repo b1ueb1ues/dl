@@ -11,7 +11,7 @@ class Marty(Adv):
     conf['slots.a'] = Mega_Friends()+BN()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, fsc and not this.s3_buff
+        `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, seq=2
         """

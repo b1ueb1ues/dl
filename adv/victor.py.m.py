@@ -9,12 +9,12 @@ def module():
     return Victor
 
 class Victor(victor.Victor):
-    def prerun(this):
+    def prerun(self):
         random.seed()
-        this.bleed = Bleed("g_bleed",0).reset()
+        self.bleed = Bleed("g_bleed",0).reset()
 
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Bleed("s1", 1.46).on()
 
 

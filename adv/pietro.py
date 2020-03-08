@@ -15,8 +15,8 @@ class Pietro(Adv):
         `fs,seq=5
         """
 
-    def d_slots(this):
-        this.conf.slots.d = Siren()
+    def d_slots(self):
+        self.conf.slots.d = Siren()
 
 
 if __name__ == '__main__':

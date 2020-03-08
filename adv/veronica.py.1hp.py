@@ -16,9 +16,9 @@ class Veronica(adv.veronica.Veronica):
         `fs, seq=5 and s1.charged >= 2500
     """
 
-    def prerun(this):
+    def prerun(self):
         super().prerun()
-        this.hp = 0
+        self.hp = 0
 
 
 if __name__ == '__main__':

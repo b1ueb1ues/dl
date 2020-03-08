@@ -12,7 +12,7 @@ class Lathna(adv.lathna.Lathna):
     conf['sim_afflict.type'] = 'poison'
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
-        # s1a = this.s1a
+        # s1a = self.s1a
         `dragon
         `s1a
         `s2, seq = 5

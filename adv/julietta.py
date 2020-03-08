@@ -8,7 +8,7 @@ def module():
 class Julietta(Adv):
     comment = 'no fs & no s2'
 
-    def s2_proc(this, e):
+    def s2_proc(self, e):
        adv.Event('defchain')()
 
     conf = {}

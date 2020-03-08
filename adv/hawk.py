@@ -16,25 +16,25 @@ class Hawk(Adv):
     """
     conf['slot.d'] = Garland()
     conf['afflict_res.stun'] = 80
-    def init(this):
-        this.s2fscharge = 0
-        if this.condition('hp100'):
-            this.fullhp = 1
+    def init(self):
+        self.s2fscharge = 0
+        if self.condition('hp100'):
+            self.fullhp = 1
         else:
-            this.fullhp = 0
+            self.fullhp = 0
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         with Modifier("s1killer", "stun_killer", "hit", 1.15):
-            this.dmg_make('s1',8.48)
+            self.dmg_make('s1',8.48)
 
-    def s2_proc(this, e):
-        this.s2fscharge = 3
+    def s2_proc(self, e):
+        self.s2fscharge = 3
 
-    def fs_proc(this, e):
-        if this.s2fscharge > 0:
-            this.s2fscharge -= 1
-            this.dmg_make("o_fs_boost",0.48)
-            this.afflics.stun('s2_fs', 100+this.fullhp*60, 5.5)
+    def fs_proc(self, e):
+        if self.s2fscharge > 0:
+            self.s2fscharge -= 1
+            self.dmg_make("o_fs_boost",0.48)
+            self.afflics.stun('s2_fs', 100+self.fullhp*60, 5.5)
 
 
 

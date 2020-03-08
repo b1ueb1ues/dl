@@ -7,20 +7,20 @@ def module():
     return Hunter_Vanessa
 
 class FS_MH(Action):
-    def __init__(this, name, conf, act=None):
-        Action.__init__(this, name, conf, act)
-        this.atype = 'fs'
-        this.interrupt_by = ['s']
-        this.cancel_by = ['s','dodge']
+    def __init__(self, name, conf, act=None):
+        Action.__init__(self, name, conf, act)
+        self.atype = 'fs'
+        self.interrupt_by = ['s']
+        self.cancel_by = ['s','dodge']
 
-    def sync_config(this, c):
-        this._charge = c.charge
-        this._startup = c.startup
-        this._recovery = c.recovery
-        this._active = c.active
+    def sync_config(self, c):
+        self._charge = c.charge
+        self._startup = c.startup
+        self._recovery = c.recovery
+        self._active = c.active
 
-    def getstartup(this):
-        return this._charge + (this._startup / this.speed())
+    def getstartup(self):
+        return self._charge + (self._startup / self.speed())
 
 class Hunter_Vanessa(Adv):
     a1 = ('fs', 0.30)
@@ -29,20 +29,20 @@ class Hunter_Vanessa(Adv):
     conf['slot.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['slot.d'] = Corsaint_Phoenix()
     conf['acl'] = """
-        `fs2, s1.charged>=s1.sp-this.sp_val('fs2')
+        `fs2, s1.charged>=s1.sp-self.sp_val('fs2')
         `s1, x=5 or fsc
-        `s2, not this.s2_att_boost.get()
+        `s2, not self.s2_att_boost.get()
         `s3, x=5 or fsc
     """
     conf['afflict_res.paralysis'] = 0
 
-    def d_slots(this):
+    def d_slots(self):
         from adv.adv_test import sim_duration
         if sim_duration <= 90:
-            this.slots.a = Resounding_Rendition()+The_Chocolatiers()
+            self.slots.a = Resounding_Rendition()+The_Chocolatiers()
 
-    def init(this):
-        this.conf.fs.hit = 1
+    def init(self):
+        self.conf.fs.hit = 1
         conf_alt_fs = {
             'fs1': {
                 'dmg': 143 / 100.0,
@@ -60,61 +60,61 @@ class Hunter_Vanessa(Adv):
             }
         }
         for n, c in conf_alt_fs.items():
-            this.conf[n] = Conf(c)
-            act = FS_MH(n, this.conf[n])
+            self.conf[n] = Conf(c)
+            act = FS_MH(n, self.conf[n])
             act.atype = 'fs'
             act.interrupt_by = ['s']
             act.cancel_by = ['s','dodge']
-            this.__dict__['a_'+n] = act
+            self.__dict__['a_'+n] = act
         
-        this.l_fs1 = Listener('fs1',this.l_fs1)
-        this.l_fs2 = Listener('fs2',this.l_fs2)
-        this.fs = None
+        self.l_fs1 = Listener('fs1',self.l_fs1)
+        self.l_fs2 = Listener('fs2',self.l_fs2)
+        self.fs = None
 
-    def do_fs(this, e, name):
+    def do_fs(self, e, name):
         log('fs','succ')
-        this.__dict__['a_'+name].getdoing().cancel_by.append(name)
-        this.__dict__['a_'+name].getdoing().interrupt_by.append(name)
-        this.fs_before(e)
-        this.update_hits('fs')
-        this.dmg_make('fs', this.conf[name+'.dmg'], 'fs')
-        this.fs_proc(e)
-        this.think_pin('fs')
-        this.charge(name,this.conf[name+'.sp'])
+        self.__dict__['a_'+name].getdoing().cancel_by.append(name)
+        self.__dict__['a_'+name].getdoing().interrupt_by.append(name)
+        self.fs_before(e)
+        self.update_hits('fs')
+        self.dmg_make('fs', self.conf[name+'.dmg'], 'fs')
+        self.fs_proc(e)
+        self.think_pin('fs')
+        self.charge(name,self.conf[name+'.sp'])
 
-    def l_fs1(this, e):
-        this.do_fs(e, 'fs1')
+    def l_fs1(self, e):
+        self.do_fs(e, 'fs1')
 
-    def fs1(this):
-        return this.a_fs1()
+    def fs1(self):
+        return self.a_fs1()
 
-    def l_fs2(this, e):
-        this.do_fs(e, 'fs2')
+    def l_fs2(self, e):
+        self.do_fs(e, 'fs2')
 
-    def fs2(this):
-        return this.a_fs2()
+    def fs2(self):
+        return self.a_fs2()
 
-    def prerun(this):
-        this.s2_att_boost = Selfbuff('s2', 0.30, 90, 'att', 'buff')
+    def prerun(self):
+        self.s2_att_boost = Selfbuff('s2', 0.30, 90, 'att', 'buff')
 
-        this.a3_crit = Modifier('a3', 'crit', 'chance', 0)
-        this.a3_crit.get = this.a3_crit_get
-        this.a3_crit.on()
+        self.a3_crit = Modifier('a3', 'crit', 'chance', 0)
+        self.a3_crit.get = self.a3_crit_get
+        self.a3_crit.on()
 
-        this.fs_debuff = Debuff('fs',0.05,15)
+        self.fs_debuff = Debuff('fs',0.05,15)
 
-    def a3_crit_get(this):
-        return (this.mod('def') != 1) * 0.20
+    def a3_crit_get(self):
+        return (self.mod('def') != 1) * 0.20
 
-    def s1_proc(this, e):
-        this.afflics.paralysis('s1',120, 0.97)
+    def s1_proc(self, e):
+        self.afflics.paralysis('s1',120, 0.97)
 
-    def s2_proc(this, e):
-        this.s2_att_boost.on()
+    def s2_proc(self, e):
+        self.s2_att_boost.on()
 
-    def fs_proc(this, e):
+    def fs_proc(self, e):
         if e.name == 'fs2':
-            this.fs_debuff.on()
+            self.fs_debuff.on()
 
 if __name__ == '__main__':
     conf = {}

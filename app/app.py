@@ -129,18 +129,18 @@ def set_log_res(result, r, suffix=''):
 def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
     adv.adv_test.set_ex(ex)
     adv_module = get_adv_module(adv_name)
-    def slot_injection(this):
+    def slot_injection(self):
         if wp1 is not None and wp2 is not None:
-            this.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+            self.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
         if dra is not None:
-            this.conf['slots.d'] = getattr(slot.d, dra)()
+            self.conf['slots.d'] = getattr(slot.d, dra)()
         if wep is not None:
-            this.conf['slots.w'] = getattr(slot.w, wep)()
+            self.conf['slots.w'] = getattr(slot.w, wep)()
         if teamdps is not None:
             adv.adv_test.team_dps = teamdps
-    def acl_injection(this):
+    def acl_injection(self):
         if acl is not None:
-            this.conf['acl'] = acl
+            self.conf['acl'] = acl
     adv_module.slot_backdoor = slot_injection
     adv_module.acl_backdoor = acl_injection
     if conf is None:

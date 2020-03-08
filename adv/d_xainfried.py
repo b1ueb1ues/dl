@@ -20,14 +20,14 @@ class Dragonyule_Xainfried(Adv):
         `fs, seq=5
         """
 
-    def init(this):
-        if this.condition('buff all team'):
-            this.s1_proc = this.c_s1_proc
+    def init(self):
+        if self.condition('buff all team'):
+            self.s1_proc = self.c_s1_proc
 
-    def c_s1_proc(this, e):
+    def c_s1_proc(self, e):
         Teambuff('s1',0.2,15,'crit','chance').on()
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         Selfbuff('s1',0.2,15,'crit','chance').on()
 
 if __name__ == '__main__':

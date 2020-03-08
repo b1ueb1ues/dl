@@ -17,11 +17,11 @@ class Alfonse(Adv):
         `s3,fsc
         `fs, seq=3
         """
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+JotS()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = TSO()+JotS()
 
-    def s1_before(this, e):
+    def s1_before(self, e):
         Selfbuff('s1buff',0.15,10).on()
 
 

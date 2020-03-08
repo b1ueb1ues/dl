@@ -14,12 +14,12 @@ class Melody(Adv):
     conf['slots.a'] = RR()+ADD()
     conf['slots.d'] = Garland()
 
-    def d_acl(this):
-        if 'bow' in this.ex:
-            this.conf.acl = """
+    def d_acl(self):
+        if 'bow' in self.ex:
+            self.conf.acl = """
                 `s1
                 `s3, seq=5 or fsc
-                `fs, this.s1.charged>=s1.sp-236
+                `fs, self.s1.charged>=s1.sp-236
                 """
 
 

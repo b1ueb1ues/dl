@@ -11,27 +11,27 @@ class Nobunaga(Adv):
     conf = {}
     conf['slot.a'] = RR()+Primal_Crisis()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s1
         `s2
         `fs, x=5
         """
 
-    def prerun(this):
-        this.ba = 0
+    def prerun(self):
+        self.ba = 0
     
-    def s1_proc(this, e):
-        this.ba = 1
+    def s1_proc(self, e):
+        self.ba = 1
 
-    def s2_proc(this, e):
-        if this.ba == 1:
-            this.ba = 0
-            this.dmg_make('o_s1_boost',11.18)
+    def s2_proc(self, e):
+        if self.ba == 1:
+            self.ba = 0
+            self.dmg_make('o_s1_boost',11.18)
 
-    def fs_proc(this, e):
-        if this.ba == 1:
-            this.ba = 0
-            this.dmg_make('o_s1_boost',11.18)
+    def fs_proc(self, e):
+        if self.ba == 1:
+            self.ba = 0
+            self.dmg_make('o_s1_boost',11.18)
 
 if __name__ == '__main__':
     conf = {}

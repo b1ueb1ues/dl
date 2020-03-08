@@ -66,7 +66,7 @@ def t7():
 
 
 class A():
-    def __init__(this):
+    def __init__(self):
         return
 
 def a():

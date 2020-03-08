@@ -14,24 +14,24 @@ class Marth(Adv):
     conf['slot.a'] = Mega_Friends()+Primal_Crisis()
     conf['slot.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `s3, not this.s3_buff
+        `s3, not self.s3_buff
         `s2,fsc
         `s1,fsc
         `fs, seq=2
         """
 
-    def init(this):
-        this.stance = 0
+    def init(self):
+        self.stance = 0
 
-    def s2_proc(this, e):
-        if this.stance == 0:
-            this.stance = 1
+    def s2_proc(self, e):
+        if self.stance == 0:
+            self.stance = 1
             Selfbuff('s21',0.1,10).on()
-        elif this.stance == 1:
-            this.stance = 2
+        elif self.stance == 1:
+            self.stance = 2
             Teambuff('s22',0.1,10).on()
-        elif this.stance == 2:
-            this.stance = 0
+        elif self.stance == 2:
+            self.stance = 0
             Teambuff('s23',0.1,10).on()
             Spdbuff('s23s',0.3,10, wide='team').on()
 

@@ -4,35 +4,35 @@ class Foo(object):
     pass
 
 class Fs_alt(object):
-    def on(this):
-        this._fs_alt_status = 1
-        this.adv.a_fs   = this.a_fs_alt
+    def on(self):
+        self._fs_alt_status = 1
+        self.adv.a_fs   = self.a_fs_alt
 
-    def off(this):
-        this._fs_alt_status = 0
-        this.adv.a_fs   = this.a_fs_origin
+    def off(self):
+        self._fs_alt_status = 0
+        self.adv.a_fs   = self.a_fs_origin
 
-    def act_fs_alt(this, e):
-        if this._fs_alt_status :
+    def act_fs_alt(self, e):
+        if self._fs_alt_status :
             log("fs_alt","succ")
-            dmg_coef = this.altconf["fs.dmg"]
-            this.adv.dmg_make("o_fs_alt", dmg_coef)
-            this.adv.fs_proc(e)
-            this.adv.think_pin("fs")
-            this.adv.charge("fs",this.altconf["fs.sp"])
+            dmg_coef = self.altconf["fs.dmg"]
+            self.adv.dmg_make("o_fs_alt", dmg_coef)
+            self.adv.fs_proc(e)
+            self.adv.think_pin("fs")
+            self.adv.charge("fs",self.altconf["fs.sp"])
         else:
-            this.adv.l_fs(e)
+            self.adv.l_fs(e)
 
-    def __call__(this):
-        doing = this.adv.action.getdoing()
-        return this.a_fs_alt(doing.name)
+    def __call__(self):
+        doing = self.adv.action.getdoing()
+        return self.a_fs_alt(doing.name)
 
-    def __init__(this, adv, altconf):
-        this.adv = adv
-        this.altconf = altconf
-        this.a_fs_alt = Fs_group('fs_alt', altconf, this.act_fs_alt)
-        this.a_fs_origin = adv.a_fs
-        this._fs_alt_status = 0
+    def __init__(self, adv, altconf):
+        self.adv = adv
+        self.altconf = altconf
+        self.a_fs_alt = Fs_group('fs_alt', altconf, self.act_fs_alt)
+        self.a_fs_origin = adv.a_fs
+        self._fs_alt_status = 0
 
         #adv.l_fs.off()
 

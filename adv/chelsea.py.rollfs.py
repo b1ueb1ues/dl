@@ -18,24 +18,24 @@ class Chelsea(adv.chelsea.Chelsea):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
     conf['acl'] = """
-        `s3,not this.s3_buff
+        `s3,not self.s3_buff
         `s2,fsc
-        `s1,fsc and this.hp < 30 and this.ro_charges > 0
+        `s1,fsc and self.hp < 30 and self.ro_charges > 0
         `dodge, fsc
         `fs
     """
 
-    def prerun(this):
+    def prerun(self):
         super().prerun()
-        this.ro_charges = 3
+        self.ro_charges = 3
 
-    def dmg_before(this, name):
-        hpold = this.hp
+    def dmg_before(self, name):
+        hpold = self.hp
         super().dmg_before(name)
-        if this.ro_charges > 0 and hpold > 30 and this.hp < 30:
+        if self.ro_charges > 0 and hpold > 30 and self.hp < 30:
             Selfbuff('resilient_offense',0.10, -1).on()
-            this.comment += ' {}s'.format(round(now()))
-            this.ro_charges -= 1
+            self.comment += ' {}s'.format(round(now()))
+            self.ro_charges -= 1
 
 if __name__ == '__main__':
     conf = {}

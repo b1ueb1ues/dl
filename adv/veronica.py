@@ -16,13 +16,13 @@ class Veronica(Adv):
         `fs, seq=5 and s1.charged >= 2500
         """
 
-    def prerun(this):
+    def prerun(self):
         Teambuff('last',2.28,1).on()
-        this.hp = 80
+        self.hp = 80
 
-    def s1_proc(this, e):
-        with CrisisModifier('s1', 1.25, this.hp):
-            this.dmg_make('s1', 10.84)
+    def s1_proc(self, e):
+        with CrisisModifier('s1', 1.25, self.hp):
+            self.dmg_make('s1', 10.84)
 
 if __name__ == '__main__':
     conf = {}

@@ -9,11 +9,11 @@ def module():
     return Sazanka
 
 class Sazanka(sazanka.Sazanka):
-    def prerun(this):
-        this.bleed = mBleed("g_bleed",0).reset()
-        this.s2fscharge = 0
+    def prerun(self):
+        self.bleed = mBleed("g_bleed",0).reset()
+        self.s2fscharge = 0
 
-    def s1_proc(this, e):
+    def s1_proc(self, e):
         mBleed("s1", 1.32).on()
 
 

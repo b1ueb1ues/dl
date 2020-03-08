@@ -132,10 +132,10 @@ class Valerio(Adv):
     #     `s3
     # """
     # conf['acl'] = """
-    #     if (s1.check() and not this.afflics.frostbite.get()) or self.stance='appetizer'
+    #     if (s1.check() and not self.afflics.frostbite.get()) or self.stance='appetizer'
     #     `appetizer
     #     `s1
-    #     elif s2.check() and this.inspiration()=2
+    #     elif s2.check() and self.inspiration()=2
     #     `entree
     #     `s2
     #     else

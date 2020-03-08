@@ -12,58 +12,58 @@ class Laxi(Adv):
     conf = {}
     conf['slot.a'] = HoH()+DD()
     conf['acl'] = """
-        `s3, not this.s3_buff
-        `s2, not this.s2buff.get()
+        `s3, not self.s3_buff
+        `s2, not self.s2buff.get()
         `s1
         """
 
-    def prerun(this):
-        this.hp = 0.0
+    def prerun(self):
+        self.hp = 0.0
         
-        this.healed = 0
-        this.heal = Action('heal')
-        this.heal.conf.startup = 0.1
-        this.heal.conf.recovery = 5.0
+        self.healed = 0
+        self.heal = Action('heal')
+        self.heal.conf.startup = 0.1
+        self.heal.conf.recovery = 5.0
 
-        this.heal_initial = Timer(this.heal_proc,0).on()
-        this.s2buff = Selfbuff("s2",0.15,-1)
-        this.s2tick = Timer(this.s2_tick,2.9,1)
+        self.heal_initial = Timer(self.heal_proc,0).on()
+        self.s2buff = Selfbuff("s2",0.15,-1)
+        self.s2tick = Timer(self.s2_tick,2.9,1)
 
-        this.a3buff = Selfbuff("a3",0.2,-1,"att","passive")
+        self.a3buff = Selfbuff("a3",0.2,-1,"att","passive")
 
-    def s1_proc(this, e):
-        if this.s2buff.get() != 0:
-            this.dmg_make("o_s1_boost",0.87*4)
+    def s1_proc(self, e):
+        if self.s2buff.get() != 0:
+            self.dmg_make("o_s1_boost",0.87*4)
 
-    def s2_proc(this, e):
-        # this.s2buff.on()
-        if not this.s2buff.get():
-            this.s2buff.on()
-            this.s2tick.on()
+    def s2_proc(self, e):
+        # self.s2buff.on()
+        if not self.s2buff.get():
+            self.s2buff.on()
+            self.s2tick.on()
         else:
-            this.s2buff.off()
-            this.s2tick.off()
+            self.s2buff.off()
+            self.s2tick.off()
 
-    def s2_tick(this, t):
-        if this.hp >= 4.0:
-            this.hp -= 3.5
-        if this.hp <= 30.0:
-            this.a3buff.on()
-            if this.healed == 0:
-                this.heal_proc(None)
+    def s2_tick(self, t):
+        if self.hp >= 4.0:
+            self.hp -= 3.5
+        if self.hp <= 30.0:
+            self.a3buff.on()
+            if self.healed == 0:
+                self.heal_proc(None)
         else:
-            this.a3buff.off()
+            self.a3buff.off()
 
-    def heal_proc(this, t):
-        this.healed = 1
-        this.hp = 100.0
-        this.s2buff.off()
-        this.s2tick.off()
-        this.a3buff.off()
+    def heal_proc(self, t):
+        self.healed = 1
+        self.hp = 100.0
+        self.s2buff.off()
+        self.s2tick.off()
+        self.a3buff.off()
 
-        this.heal.getdoing().cancel_by.append('heal')
-        this.heal.getdoing().interrupt_by.append('heal')
-        this.heal()
+        self.heal.getdoing().cancel_by.append('heal')
+        self.heal.getdoing().interrupt_by.append('heal')
+        self.heal()
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)

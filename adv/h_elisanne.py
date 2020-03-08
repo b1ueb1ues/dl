@@ -16,28 +16,28 @@ class Halloween_Elisanne(Adv):
         `fs, seq=5
         """
 
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = HoH()+JotS()
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.conf.slot.a = HoH()+JotS()
 
-    def prerun(this):
-        this.stance = 0
+    def prerun(self):
+        self.stance = 0
 
-    def s1latency(this, e):
+    def s1latency(self, e):
         Teambuff("s1_buff",0.1,15).on()
 
-    def s1_proc(this, e):
-        if this.stance == 0:
-            this.stance = 1
-        elif this.stance == 1:
-            Timer(this.s1latency).on(2.5)
-            this.stance = 2
-        elif this.stance == 2:
-            Timer(this.s1latency).on(2.5)
-            this.stance = 0
+    def s1_proc(self, e):
+        if self.stance == 0:
+            self.stance = 1
+        elif self.stance == 1:
+            Timer(self.s1latency).on(2.5)
+            self.stance = 2
+        elif self.stance == 2:
+            Timer(self.s1latency).on(2.5)
+            self.stance = 0
 
-    def s2_proc(this, e):
-        this.charge('s2',500)
+    def s2_proc(self, e):
+        self.charge('s2',500)
 
 
 
