@@ -131,16 +131,34 @@ class Valerio(Adv):
     #     `s2
     #     `s3
     # """
+    # conf['acl'] = """
+    #     if (s1.check() and not this.afflics.frostbite.get()) or self.stance='appetizer'
+    #     `appetizer
+    #     `s1
+    #     elif s2.check() and this.inspiration()=2
+    #     `entree
+    #     `s2
+    #     else
+    #     `dessert
+    #     `s1, self.inspiration()=5
+    #     `s2
+    #     `s3
+    #     end
+    # """
     conf['acl'] = """
-        if (s1.check() and not this.afflics.frostbite.get()) or self.stance='appetizer'
-        `appetizer
-        `s1
-        elif (s2.check() and this.inspiration()=2) or self.stance='entree'
+        # stances
+        if s2.check() and self.inspiration()=2
         `entree
-        `s2
+        elif s1.check() and not self.afflics.frostbite.get()
+        `appetizer
         else
         `dessert
-        `s1, self.inspiration()=5
+        end
+        # actions
+        if self.stance='entree'
+        `s2
+        else
+        `s1
         `s2
         `s3
         end
@@ -171,12 +189,15 @@ class Valerio(Adv):
         }
 
     def custom_crit_mod(self):
-        crit = self.rand_crit_mod()
-        if crit > 1 and not self.a1_cd:
-            Spdbuff('a1', 0.10, 20).on()
-            self.a1_cd = True
-            Timer(self.a1_cd_off).on(10)
-        return crit
+        if self.a1_cd:
+            return self.solid_crit_mod()
+        else:
+            crit = self.rand_crit_mod()
+            if crit > 1 and not self.a1_cd:
+                Spdbuff('a1', 0.10, 20).on()
+                self.a1_cd = True
+                Timer(self.a1_cd_off).on(10)
+            return crit
 
     def a1_cd_off(self, t):
         self.a1_cd = False
@@ -230,13 +251,11 @@ class Valerio(Adv):
         for _ in range(5):
             self.dmg_make('s1', self.s1_mod[self.stance])
             self.hits += 1
-        print('s2', self.stance)
 
     def s2_proc(self, e):
         buff, insp = self.s2_buff[self.stance]
         buff.on()
         self.inspiration.add(insp, team=True)
-        print('s2', self.stance, buff.modifier, insp)
 
 if __name__ == '__main__':
     conf = {}
