@@ -395,12 +395,14 @@ class Spdbuff(Buff):
 
     def on(this, duration=None):
         Buff.on(this, duration)
-        this.count_team_buff()
+        if this.bufftype == 'team':
+            this.count_team_buff()
         return this
 
     def off(this):
         Buff.off(this)
-        this.count_team_buff()
+        if this.bufftype == 'team':
+            this.count_team_buff()
         return this
 
     def buff_end_proc(this, e):
@@ -1224,7 +1226,7 @@ class Adv(object):
     def crit_mod(this):
         pass
 
-    def solid_crit_mod(this):
+    def solid_crit_mod(this, name=None):
         m = {'chance': 0, 'dmg': 0, 'damage': 0, 'passive': 0, 'rate': 0, }
         for order, modifiers in this.all_modifiers['crit'].items():
             for modifier in modifiers:
@@ -1239,7 +1241,7 @@ class Adv(object):
         average = chance * (cdmg - 1) + 1
         return average
 
-    def rand_crit_mod(this):
+    def rand_crit_mod(this, name=None):
         m = {'chance': 0, 'dmg': 0, 'damage': 0, 'passive': 0, 'rate': 0, }
         for order, modifiers in this.all_modifiers['crit'].items():
             for modifier in modifiers:
@@ -1257,13 +1259,13 @@ class Adv(object):
         else:
             return 1
 
-    def att_mod(this):
+    def att_mod(this, name=None):
         att = this.mod('att')
-        cc = this.crit_mod()
-        k = this.killer_mod()
+        cc = this.crit_mod(name)
+        k = this.killer_mod(name)
         return cc * att * k
 
-    def killer_mod(this):
+    def killer_mod(this, name=None):
         rates = {
             'overdrive': Overdrive_Punisher.EFFICIENCY
         }
@@ -1604,7 +1606,7 @@ class Adv(object):
         return
 
     def dmg_formula(this, name, dmg_coef):
-        att = 1.0 * this.att_mod() * this.base_att
+        att = 1.0 * this.att_mod(name) * this.base_att
         armor = 10 * this.def_mod()
         # return float(dmg_coef) * this.dmg_mod(name) * this.att_mod() / this.def_mod()
         # return float(dmg_coef) * this.dmg_mod(name) * this.def_mod()

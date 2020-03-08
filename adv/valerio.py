@@ -169,11 +169,12 @@ class Valerio(Adv):
         self.stance = 'appetizer'
         self.next_stance = None
         self.stance_dict = {
-            'appetizer': X_alt(self, 'appetizer', appetizer_conf, x_proc=self.l_valerio_x),
-            'entree': X_alt(self, 'entree', entree_conf, x_proc=self.l_valerio_x),
-            'dessert': X_alt(self, 'dessert', dessert_conf, x_proc=self.l_valerio_x),
+            'appetizer': X_alt(self, 'appetizer', appetizer_conf, x_proc=self.l_stance_x),
+            'entree': X_alt(self, 'entree', entree_conf, x_proc=self.l_stance_x),
+            'dessert': X_alt(self, 'dessert', dessert_conf, x_proc=self.l_stance_x),
         }
         self.stance_dict[self.stance].on()
+        self.update_stance()
         self.crit_mod = self.custom_crit_mod
         self.a1_cd = False
         self.s1_debuff = Debuff('s1', 0.05, 30)
@@ -188,11 +189,11 @@ class Valerio(Adv):
             'dessert': (Teambuff('s2', 0.08, 15), 2)
         }
 
-    def custom_crit_mod(self):
-        if self.a1_cd:
-            return self.solid_crit_mod()
+    def custom_crit_mod(self, name):
+        if self.a1_cd or name == 'test':
+            return self.solid_crit_mod(name)
         else:
-            crit = self.rand_crit_mod()
+            crit = self.rand_crit_mod(name)
             if crit > 1 and not self.a1_cd:
                 Spdbuff('a1', 0.10, 20).on()
                 self.a1_cd = True
@@ -203,14 +204,13 @@ class Valerio(Adv):
         self.a1_cd = False
 
     def queue_stance(self, stance):
-        # ignore queuing to simplify acl
+        # assume you can swap stance instantly instead of on next auto, to simplify acl
         if self.stance != stance and self.next_stance != stance:
             log('stance', stance, 'queued')
             self.next_stance = stance
             self.update_stance()
             return True
-        else:
-            return False
+        return False
 
     def update_stance(self):
         if self.hits >= 20 and self.next_stance is not None:
@@ -221,7 +221,7 @@ class Valerio(Adv):
             self.stance = self.next_stance
             self.next_stance = None
 
-    def l_valerio_x(self, e):
+    def l_stance_x(self, e):
         xalt = self.stance_dict[self.stance]
         xseq = e.name
         dmg_coef = xalt.conf[xseq].dmg
@@ -246,7 +246,7 @@ class Valerio(Adv):
         self.dmg_make('s1', self.s1_mod[self.stance])
         self.hits += 1
         if self.stance == 'appetizer':
-            self.afflics.frostbite('s1',120,1.00)
+            self.afflics.frostbite('s1',120,0.41)
             self.s1_debuff.on()
         for _ in range(5):
             self.dmg_make('s1', self.s1_mod[self.stance])

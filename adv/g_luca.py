@@ -28,7 +28,9 @@ class Gala_Luca(Adv):
         # not entirely accurate to game, but works fine in the scope of s2 + the 3 a1 buffs
         return len(set([b.name for b in this.all_buffs]))
 
-    def custom_crit_mod(this):
+    def custom_crit_mod(this, name):
+        if name == 'test':
+            return this.solid_crit_mod(name)
         m = {'chance':0, 'dmg':0, 'damage':0, 'passive':0, 'rate':0,}
         for order, modifiers in this.all_modifiers['crit'].items():
             for modifier in modifiers:
