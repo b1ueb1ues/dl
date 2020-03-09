@@ -28,7 +28,7 @@ class Dot(object):
         self.dotend_timer = Timer(self.dot_end_proc)
 
     def dot_end_proc(self, t):
-        log('dot', self.name, 'end\t')
+        log('dot', self.name, 'end')
         self.active = 0
         self.tick_timer.off()
         self.cb_end()
@@ -51,7 +51,7 @@ class Dot(object):
 
     def on(self):
         if self.active:
-            log('dot', self.name, 'failed\t')
+            log('dot', self.name, 'failed')
             return 0
         self.active = 1
         self.tick_timer.on(self.iv)
@@ -61,7 +61,7 @@ class Dot(object):
         self.quickshot_event.dtype = self.dtype if self.dtype else self.name
         self.quickshot_event()
         self.tick_dmg = self.quickshot_event.dmg
-        log('dot', self.name, 'start\t', '%f/%d' % (self.iv, self.duration))
+        log('dot', self.name, 'start', '%f/%d' % (self.iv, self.duration))
         return 1
 
     def off(self):

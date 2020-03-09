@@ -694,10 +694,10 @@ class Action(object):
 
         if doing.idle:
             if loglevel >= 2:
-                log('tap', self.name, self.atype + '\t', 'idle:%d' % doing.status)
+                log('tap', self.name, self.atype, 'idle:%d' % doing.status)
         else:
             if loglevel >= 2:
-                log('tap', self.name, self.atype + '\t', 'doing ' + doing.name + ':%d' % doing.status)
+                log('tap', self.name, self.atype, 'doing ' + doing.name + ':%d' % doing.status)
 
         if doing == self:  # self is doing
             return 0
@@ -708,14 +708,14 @@ class Action(object):
             if doing.status == -1:  # try to interrupt an action
                 if self.atype in doing.interrupt_by:  # can interrupt action
                     doing.startup_timer.off()
-                    log('interrupt', doing.name, 'by ' + self.name + '\t',
+                    log('interrupt', doing.name, 'by ' + self.name,
                         'after %.2fs' % (now() - doing.startup_start))
                 else:
                     return 0
             elif doing.status == 1:  # try to cancel an action
                 if self.atype in doing.cancel_by:  # can interrupt action
                     doing.recovery_timer.off()
-                    log('cancel', doing.name, 'by ' + self.name + '\t', 'after %.2fs' % (now() - doing.recover_start))
+                    log('cancel', doing.name, 'by ' + self.name, 'after %.2fs' % (now() - doing.recover_start))
                 else:
                     return 0
             elif doing.status == 0:
@@ -1146,15 +1146,14 @@ class Adv(object):
         self.Teambuff = Teambuff
         self.Modifier = Modifier
         self.Conf = Conf
-        self.log = log
 
         self.conf_init = conf
         self.ctx = Ctx().on()
         self.condition = Condition(cond)
         # self.m_condition = m_condition
         # self.m_condition.set(cond)
-        self._log = []
-        loginit(self._log)
+
+        logreset()
 
         self.s3_buff_list = []
         self.s3_buff = None
