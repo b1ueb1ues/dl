@@ -2,7 +2,6 @@ import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
-from module import energy
 
 
 def module():
