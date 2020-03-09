@@ -74,7 +74,7 @@ class Shinobi(DragonBase):
 
     def ds_proc(self):
         count = self.adv.dmg_make('d_ds',8.83,'s')
-        self.adv.energy.add_energy(5, team=True)
+        self.adv.energy.add(5, team=True)
         return count
 
 class Fatalis(DragonBase):
