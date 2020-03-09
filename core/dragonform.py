@@ -187,10 +187,10 @@ class DragonForm(Action):
                 return False
             if doing.status == -1:
                 doing.startup_timer.off()
-                log('interrupt', doing.name , 'by '+self.name+'\t', 'after {:.2f}s'.format(now()-doing.startup_start))
+                log('interrupt', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.startup_start))
             elif doing.status == 1:
                 doing.recovery_timer.off()
-                log('cancel', doing.name , 'by '+self.name+'\t', 'after {:.2f}s'.format(now()-doing.recover_start))
+                log('cancel', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.recover_start))
         log('dragon_start', self.name)
         self.shift_count += 1
         if len(self.act_list) == 0:
