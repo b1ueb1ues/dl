@@ -484,8 +484,19 @@ def sum_mass_dmg(rs, real_duration):
         case += i['buff_sum'] * team_dps
 
         for tension in ('energy', 'inspiration'):
-            team_tension[tension] += i['tension_sum'][tension]  / sim_times
-            case += team_tension[tension] * skill_efficiency(tension_efficiency[tension])
+            try:
+                team_tension[tension] += i['tension_sum'][tension]  / sim_times
+            except KeyError:
+                try:
+                    team_tension[tension] = i['tension_sum'][tension]  / sim_times
+                except KeyError:
+                    pass
+            if tension in i['tension_sum']:
+                if tension in team_tension:
+                    team_tension[tension] += i['tension_sum'][tension]  / sim_times
+                else:
+                    team_tension[tension] = i['tension_sum'][tension]  / sim_times
+                case += team_tension[tension] * skill_efficiency(tension_efficiency[tension])
     #    print case
         if not dmin:
             dmin = case
@@ -502,7 +513,7 @@ def sum_mass_dmg(rs, real_duration):
     r['sdmg_sum'] = sdmg_sum 
     r['x_sum'] = x_sum 
     r['o_sum'] = o_sum 
-    r['buff_sum'] = team_buff  
+    r['buff_sum'] = team_buff
     r['tension_sum'] = team_tension 
     r['dragon_sum'] = dragon_sum
     return r
