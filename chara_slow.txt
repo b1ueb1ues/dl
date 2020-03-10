@@ -4,3 +4,4 @@ addis.py
 ezelith.py
 sazanka.py
 megaman.py
+valerio.py
