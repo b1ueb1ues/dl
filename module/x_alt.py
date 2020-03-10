@@ -68,7 +68,6 @@ class X_alt:
             x_seq = x_prev.index+1
         else:
             x_seq = 1
-        log('doing', self.name, x_seq)
         return self.a_x_alt[x_seq]()
 
     def l_x(self, e):
