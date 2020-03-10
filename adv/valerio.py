@@ -254,8 +254,6 @@ class Valerio(Adv):
             'entree': X_alt(self, 'entree', entree_conf, x_proc=self.l_stance_x),
             'dessert': X_alt(self, 'dessert', dessert_conf, x_proc=self.l_stance_x),
         }
-        self.stance_dict[self.stance].on()
-        self.update_stance()
         self.crit_mod = self.custom_crit_mod
         self.a1_cd = False
         self.s1_debuff = Debuff('s1', 0.05, 30)
@@ -301,6 +299,9 @@ class Valerio(Adv):
             next_stance.on()
             self.stance = self.next_stance
             self.next_stance = None
+
+    def x_proc(self, e):
+        self.update_stance()
 
     def l_stance_x(self, e):
         xalt = self.stance_dict[self.stance]

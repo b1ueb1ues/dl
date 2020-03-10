@@ -63,7 +63,7 @@ class X_alt:
 
     def x_alt(self):
         x_prev = self.adv.action.getprev()
-        if x_prev.name in self.a_x_alt and x_prev.index < self.xmax:
+        if x_prev in self.a_x_alt.values() and x_prev.index < self.xmax:
             x_next = self.a_x_alt['x{}'.format(x_prev.index+1)]
         else:
             x_next = self.a_x_alt['x{}'.format(1)]
@@ -77,21 +77,23 @@ class X_alt:
         return False
     
     def on(self):
-        log('debug', '{} x_alt on'.format(self.name))
-        self.active = True
-        self.adv.x = self.x_alt
-        if self.l_x_alt:
-            self.adv.l_x.off()
-            self.l_x_alt.on()
-        if self.no_fs:
-            self.adv.fs = self.fs_off
+        if not self.active:
+            log('debug', '{} x_alt on'.format(self.name))
+            self.active = True
+            self.adv.x = self.x_alt
+            if self.l_x_alt:
+                self.adv.l_x.off()
+                self.l_x_alt.on()
+            if self.no_fs:
+                self.adv.fs = self.fs_off
     
     def off(self):
-        log('debug', '{} x_alt off'.format(self.name))
-        self.active = False
-        self.adv.x = self.x_og
-        if self.l_x_alt:
-            self.l_x_alt.off()
-            self.adv.l_x.on()
-        if self.no_fs:
-            self.adv.fs = self.fs_og
+        if self.active:
+            log('debug', '{} x_alt off'.format(self.name))
+            self.active = False
+            self.adv.x = self.x_og
+            if self.l_x_alt:
+                self.l_x_alt.off()
+                self.adv.l_x.on()
+            if self.no_fs:
+                self.adv.fs = self.fs_og

@@ -217,14 +217,14 @@ class Mitsuba(Adv):
         else
         `tempura
         end
-        `s1, x=2
+        `s1
         `s2, x=2
         `fsf, x=2
     """
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):
-        self.stance = 'tempura'
+        self.stance = 'sashimi'
         self.next_stance = None
         self.stance_dict = {
             'sashimi': X_alt(self, 'sashimi', sashimi_conf, x_proc=self.l_stance_x),
@@ -256,6 +256,9 @@ class Mitsuba(Adv):
             next_stance.on()
             self.stance = self.next_stance
             self.next_stance = None
+
+    def x_proc(self, e):
+        self.update_stance()
 
     def l_stance_x(self, e):
         xalt = self.stance_dict[self.stance]
