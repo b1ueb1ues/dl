@@ -3,6 +3,7 @@ from core.advbase import *
 from slot.a import *
 from slot.d import *
 from module.x_alt import X_alt
+import random
 
 def module():
     return Valerio
@@ -83,23 +84,50 @@ entree_conf = {
     # mC2 3 hits 162% 700SP  (1.0185s startup to cancel into mC3)
     # mc3 12 bullets 38% 780SP Attenuation rate 1.0 hitinterval 0.5, 0 Additional collisions (signaldata sent @1.6s forced cancel @2s)
 
+    # C1 A
     'x1.dmg': 195 / 100.0,
     'x1.sp': 350,
     'x1.startup': 29 / 60.0,
-    'x1.recovery': 103 / 60.0,
+    'x1.recovery': 0 / 60.0,
     'x1.hit': 1,
 
-    'x2.dmg': 486 / 100.0,
+    # C2 A B C
+    'x2.dmg': 162 / 100.0,
     'x2.sp': 700,
-    'x2.startup': 0 / 60.0,
-    'x2.recovery': 71 / 60.0,
-    'x2.hit': 3,
+    'x2.startup': 66 / 60.0,
+    'x2.recovery': 0 / 60.0,
+    'x2.hit': 1,
 
-    'x3.dmg': 456 / 100.0,
-    'x3.sp': 780,
-    'x3.startup': 0 / 60.0,
-    'x3.recovery': 66 / 60.0,
-    'x3.hit': 12,
+    'x3.dmg': 486 / 100.0,
+    'x3.sp': 0,
+    'x3.startup': 15 / 60.0,
+    'x3.recovery': 0 / 60.0,
+    'x3.hit': 1,
+
+    'x4.dmg': 486 / 100.0,
+    'x4.sp': 0,
+    'x4.startup': 22 / 60.0,
+    'x4.recovery': 0 / 60.0,
+    'x4.hit': 1,
+
+    # C3 A B C
+    'x5.dmg': 152 / 100.0,
+    'x5.sp': 780,
+    'x5.startup': 57 / 60.0,
+    'x5.recovery': 0 / 60.0,
+    'x5.hit': 4,
+
+    'x6.dmg': 152 / 100.0,
+    'x6.sp': 0,
+    'x6.startup': 8 / 60.0,
+    'x6.recovery': 0 / 60.0,
+    'x6.hit': 4,
+
+    'x7.dmg': 152 / 100.0,
+    'x7.sp': 0,
+    'x7.startup': 6 / 60.0,
+    'x7.recovery': 66 / 60.0,
+    'x7.hit': 4,
 }
 
 appetizer_conf = {
@@ -122,23 +150,74 @@ appetizer_conf = {
     # mC2 4 hit 129%  + 18 bullets 6% 680SP (1.0256s startup to cancel into mC3)
     # mC3 1 hit 143% (@0.4s) + 1 hit 143% (@2.067s) + 1 hit 143% (@2.13s) + 1 hit 143% (@2.2s) can end mC3 any time between 0.433333s and 2.067s by doing ANYTHING  1030SP (forced cancel at 2.267s)
 
+    # C1 A
     'x1.dmg': 195 / 100.0,
     'x1.sp': 350,
     'x1.startup': 29 / 60.0,
-    'x1.recovery': 68 / 60.0,
+    'x1.recovery': 0 / 60.0,
     'x1.hit': 1,
 
-    'x2.dmg': 624 / 100.0,
+    # C2 A B CDEF
+    'x2.dmg': 258 / 100.0,
     'x2.sp': 680,
-    'x2.startup': 0 / 60.0,
-    'x2.recovery': 153 / 60.0,
-    'x2.hit': 4,
+    'x2.startup': 56 / 60.0,
+    'x2.recovery': 0 / 60.0,
+    'x2.hit': 2,
 
-    'x3.dmg': 572 / 100.0,
-    'x3.sp': 1030,
-    'x3.startup': 0 / 60.0,
-    'x3.recovery': 9 / 60.0,
-    'x3.hit': 1,
+    'x3.dmg': 24 / 100.0,
+    'x3.sp': 0,
+    'x3.startup': 46 / 60.0,
+    'x3.recovery': 0 / 60.0,
+    'x3.hit': 4,
+
+    'x4.dmg': 24 / 100.0,
+    'x4.sp': 0,
+    'x4.startup': 6 / 60.0,
+    'x4.recovery': 0 / 60.0,
+    'x4.hit': 4,
+
+    'x5.dmg': 72 / 100.0,
+    'x5.sp': 0,
+    'x5.startup': 24 / 60.0,
+    'x5.recovery': 0 / 60.0,
+    'x5.hit': 4,
+
+    'x6.dmg': 24 / 100.0,
+    'x6.sp': 0,
+    'x6.startup': 6 / 60.0,
+    'x6.recovery': 0 / 60.0,
+    'x6.hit': 4,
+
+    'x7.dmg': 24 / 100.0,
+    'x7.sp': 0,
+    'x7.startup': 6 / 60.0,
+    'x7.recovery': 0 / 60.0,
+    'x7.hit': 4,
+
+    # C3 A B C D
+    'x8.dmg': 143 / 100.0,
+    'x8.sp': 1030,
+    'x8.startup': 46 / 60.0,
+    'x8.recovery': 0 / 60.0,
+    'x8.hit': 1,
+
+    'x9.dmg': 143 / 100.0,
+    'x9.sp': 0,
+    'x9.startup': 99 / 60.0,
+    'x9.recovery': 0 / 60.0,
+    'x9.hit': 1,
+
+    'x10.dmg': 143 / 100.0,
+    'x10.sp': 0,
+    'x10.startup': 4 / 60.0,
+    'x10.recovery': 0 / 60.0,
+    'x10.hit': 1,
+
+    'x11.dmg': 143 / 100.0,
+    'x11.sp': 0,
+    'x11.startup': 4 / 60.0,
+    'x11.recovery': 9 / 60.0,
+    'x11.hit': 1,
 }
 
 
@@ -146,26 +225,6 @@ class Valerio(Adv):
     conf = {}
     conf['slot.a'] = Resounding_Rendition()+Primal_Crisis()
     conf['slot.d'] = Siren()
-    # conf['acl'] = """
-    #     `entree
-    #     `s1
-    #     `s2
-    #     `s3
-    # """
-    # conf['acl'] = """
-    #     if (s1.check() and not self.afflics.frostbite.get()) or self.stance='appetizer'
-    #     `appetizer
-    #     `s1
-    #     elif s2.check() and self.inspiration()=2
-    #     `entree
-    #     `s2
-    #     else
-    #     `dessert
-    #     `s1, self.inspiration()=5
-    #     `s2
-    #     `s3
-    #     end
-    # """
     conf['acl'] = """
         # stances
         if s2.check() and self.inspiration()=2
@@ -187,6 +246,7 @@ class Valerio(Adv):
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):
+        random.seed()
         self.stance = 'appetizer'
         self.next_stance = None
         self.stance_dict = {

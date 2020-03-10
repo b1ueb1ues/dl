@@ -191,7 +191,7 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
 
     dps = r['dmg_sum']['total']/real_duration
     bps = r['buff_sum'] #* team_dps
-    team_tension = r['tension_sum']
+    team_tension = {k: round(v) for k, v in r['tension_sum'].items()}
 
     r['logs'] = {}
     f = io.StringIO()
@@ -487,13 +487,6 @@ def sum_mass_dmg(rs, real_duration):
         case += i['buff_sum'] * team_dps
 
         for tension in ('energy', 'inspiration'):
-            try:
-                team_tension[tension] += i['tension_sum'][tension]  / sim_times
-            except KeyError:
-                try:
-                    team_tension[tension] = i['tension_sum'][tension]  / sim_times
-                except KeyError:
-                    pass
             if tension in i['tension_sum']:
                 if tension in team_tension:
                     team_tension[tension] += i['tension_sum'][tension]  / sim_times

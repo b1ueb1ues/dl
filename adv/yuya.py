@@ -1,12 +1,15 @@
 import adv.adv_test
 from core.advbase import *
 from slot.d import Dreadking_Rathalos
+from slot.a import *
+
 def module():
     return Yuya
 
 class Yuya(Adv):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
     conf['acl'] = """
         `s3, fsc and not self.s3_buff
         `s1, fsc

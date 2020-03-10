@@ -304,7 +304,6 @@ class Primed(BuffingAbility):
     def oninit(self, adv, afrom=None):        
         def pm_cd_end(t):
             self.is_cd = False
-            adv.log('cd',self.name,'end')
                     
         def l_primed(e):
             if not self.is_cd:
