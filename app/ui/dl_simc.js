@@ -215,7 +215,7 @@ function sumDps(data) {
     return display;
 }
 function trimAcl(acl_str) {
-    return $.trim(acl_str.replace(new RegExp(/\s*([#`])/, 'g'), '\n$1'))
+    return $.trim(acl_str.replace(new RegExp(/[\n] +/, 'g'), '\n'));
 }
 function loadAdvWPList() {
     let selectedAdv = 'euden';
