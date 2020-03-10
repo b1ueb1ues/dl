@@ -25,23 +25,44 @@ dessert_conf = {
     # mC2 4 hits 47% 710SP (uses same Absorb effect as Axe C4, 1.73333s to cancel into mC3)
     # mc3 1 hit 453% 1590SP (cancelled @1.1573s)
 
+    # C1 A
     'x1.dmg': 195 / 100.0,
     'x1.sp': 350,
     'x1.startup': 29 / 60.0,
-    'x1.recovery': 114 / 60.0,
+    'x1.recovery': 0 / 60.0,
     'x1.hit': 1,
 
-    'x2.dmg': 188 / 100.0,
+    # C2 A B C D
+    'x2.dmg': 47 / 100.0,
     'x2.sp': 710,
-    'x2.startup': 0 / 60.0,
-    'x2.recovery': 62 / 60.0,
-    'x2.hit': 4,
+    'x2.startup': 86 / 60.0,
+    'x2.recovery': 0 / 60.0,
+    'x2.hit': 1,
 
-    'x3.dmg': 453 / 100.0,
-    'x3.sp': 1590,
-    'x3.startup': 0 / 60.0,
-    'x3.recovery': 69 / 60.0,
+    'x3.dmg': 47 / 100.0,
+    'x3.sp': 0,
+    'x3.startup': 16 / 60.0,
+    'x3.recovery': 0 / 60.0,
     'x3.hit': 1,
+
+    'x4.dmg': 47 / 100.0,
+    'x4.sp': 0,
+    'x4.startup': 8 / 60.0,
+    'x4.recovery': 0 / 60.0,
+    'x4.hit': 1,
+
+    'x5.dmg': 47 / 100.0,
+    'x5.sp': 0,
+    'x5.startup': 4 / 60.0,
+    'x5.recovery': 0 / 60.0,
+    'x5.hit': 1,
+
+    # C3 A
+    'x6.dmg': 453 / 100.0,
+    'x6.sp': 1590,
+    'x6.startup': 62 / 60.0,
+    'x6.recovery': 69 / 60.0,
+    'x6.hit': 1,
 }
 
 entree_conf = {

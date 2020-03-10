@@ -8,9 +8,10 @@ class Tension:
         # self.adv.dmg_make = self.dmg_make
         self.name = name
         self.modifier = mod
+        self.damage_sources = mod._static.damage_sources # need to account for healing skills bleh
         self.modifier.off()
         self.event = event or Event(name)
-        self.scope = set(('s1', 's2', 's3'))
+        self.scope = {'s1', 's2', 's3'}
         self.current_scope = None
         self.stack = 0
         self.has_stack = Buff('has_'+self.name, 1, -1, self.name, self.name)
@@ -32,35 +33,20 @@ class Tension:
         self.event.stack = self.stack
         self.event.on()
 
-    # def dmg_make(self, name, dmg_coef, dtype=None, fixed=False):
-    #     if self.stack >= self.MAX_STACK and not fixed:
-    #         s = name.split('_')
-    #         if s[0] == 'o':
-    #             s = s[1]
-    #         else:
-    #             s = s[0]
-    #         if s in self.scope:
-    #             self.current_scope = s
-    #         if self.current_scope is not None:
-    #             if self.current_scope == s:
-    #                 self.modifier.on()
-    #             else:
-    #                 self.reset()
-    #     return self.o_dmg_make(name, dmg_coef, dtype, fixed)
-
     def check(self, scope):
         if self.stack >= self.MAX_STACK:
-            if scope in self.scope:
-                if self.current_scope is None:
-                    # entering a new s1/s2/s3 block
+            if self.current_scope is None and scope in self.scope and scope in self.damage_sources:
+                # entering a new s1/s2/s3 block
+                if scope in self.scope:
                     self.current_scope = scope
                     self.modifier.on()
                     return True
-                elif self.current_scope == scope:
-                    # staying in the same block
-                    return True
-            # leaving the block
-            self.reset()
+            elif self.current_scope == scope:
+                # staying in the same block
+                return True
+            elif self.current_scope is not None:
+                # leaving the block
+                self.reset()
         return False
 
     def reset(self, t=None):

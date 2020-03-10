@@ -128,7 +128,7 @@ tempura_conf = {
 
     # C2 A B C D
     'x2.dmg': 102 / 100,
-    'x2.sp': 430,
+    'x2.sp': 995,
     'x2.startup': 16 / 60.0,
     'x2.recovery': 0 / 60.0,
     'x2.hit': 1,
@@ -202,7 +202,7 @@ tempura_conf = {
 fs_conf = {
     'x2fs.charge': 14 / 60,
     'fs.recovery': 34 / 60,
-    'fsf.startup': 22 / 60,
+    'fsf.startup': 14 / 60, # 22 - 8
 }
 
 class Mitsuba(Adv):
@@ -219,7 +219,6 @@ class Mitsuba(Adv):
         end
         `s1, x=2
         `s2, x=2
-        `s3, x=2
         `fsf, x=2
     """
     conf['afflict_res.frostbite'] = 0

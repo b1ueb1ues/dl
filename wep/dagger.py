@@ -39,7 +39,7 @@ conf = {
     'fs.hit': 3,
 
     'fsf.charge': 8 / 60.0,
-    'fsf.startup': 30 / 60.0,
+    'fsf.startup': 30 / 60.0, # need confirm
     'fsf.recovery': 0 / 60.0,
 
     'x1fs.charge': 20 / 60.0, # 12 delay + FS
