@@ -129,7 +129,7 @@ class Acl_Condition:
         condition = Acl_Condition.banned.sub(Acl_Condition.banned_repl, condition)
         condition = Acl_Condition.assignment.sub(Acl_Condition.assignment_repl, condition)
         return condition
-    
+
     def __init__(self, condition, depth=0):
         self.conditions = [(self.sanitize_qwe_and_his_chunch_legs(condition), [])]
         self.depth = depth
@@ -172,7 +172,7 @@ class Acl_Condition:
 def acl_str(acl):
     acl_base = """
 def do_act_list(self, e):
-    self = self
+    this = self
     pin, dname, dstat, didx = e.pin, e.dname, e.dstat, e.didx
     prev = self.action.getprev()
     seq = didx if dname[0] == 'x' else 0 if dstat == -2 else -1
