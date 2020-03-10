@@ -1,5 +1,5 @@
 from core.advbase import Fs_group, X
-from core.timeline import Listener
+from core.timeline import Listener, Timer
 from core.log import log
 from core.config import Conf
 
@@ -55,19 +55,21 @@ class X_alt:
         self.xmax = 1
         n = 'x{}'.format(self.xmax)
         while n in self.conf:
-            self.a_x_alt[n] = X((n, self.xmax), self.conf[n])
+            self.a_x_alt[self.xmax] = X((n, self.xmax), self.conf[n])
             self.xmax += 1
             n = 'x{}'.format(self.xmax)
         self.xmax -= 1
         self.active = False
+        self.xstart = None
 
     def x_alt(self):
         x_prev = self.adv.action.getprev()
         if x_prev in self.a_x_alt.values() and x_prev.index < self.xmax:
-            x_next = self.a_x_alt['x{}'.format(x_prev.index+1)]
+            x_seq = x_prev.index+1
         else:
-            x_next = self.a_x_alt['x{}'.format(1)]
-        return x_next()
+            x_seq = 1
+        log('doing', self.name, x_seq)
+        return self.a_x_alt[x_seq]()
 
     def l_x(self, e):
         self.x_proc(e)
@@ -78,6 +80,14 @@ class X_alt:
     
     def on(self):
         if not self.active:
+            act = self.a_x_alt[1]
+            doing = act._static.doing
+            if not doing.idle and doing.status == -1:
+                doing.startup_timer.off()
+                doing._setprev()
+                doing._static.doing = doing.nop
+                act()
+
             log('debug', '{} x_alt on'.format(self.name))
             self.active = True
             self.adv.x = self.x_alt
@@ -86,7 +96,7 @@ class X_alt:
                 self.l_x_alt.on()
             if self.no_fs:
                 self.adv.fs = self.fs_off
-    
+                
     def off(self):
         if self.active:
             log('debug', '{} x_alt off'.format(self.name))
