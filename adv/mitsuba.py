@@ -30,23 +30,68 @@ sashimi_conf = {
     # sC2 3x101%, 430SP
     # sC3 6x126%, 860SP
 
+    # C1 A
     'x1.dmg': 76 / 100.0,
     'x1.sp': 150,
     'x1.startup': 11 / 60.0,
-    'x1.recovery': 60 / 60.0,
+    'x1.recovery': 0 / 60.0,
     'x1.hit': 1,
 
-    'x2.dmg': 303 / 100.0,
+    # C2 A B C
+    'x2.dmg': 101 / 100,
     'x2.sp': 430,
-    'x2.startup': 0 / 60.0,
-    'x2.recovery': 131 / 60.0,
-    'x2.hit': 3,
+    'x2.startup': 20 / 60.0,
+    'x2.recovery': 0 / 60.0,
+    'x2.hit': 1,
 
-    'x3.dmg': 756 / 100.0,
-    'x3.sp': 860,
-    'x3.startup': 0 / 60.0,
-    'x3.recovery': 131 / 60.0,
-    'x3.hit': 6,
+    'x3.dmg': 101 / 100,
+    'x3.sp': 0,
+    'x3.startup': 20 / 60.0,
+    'x3.recovery': 0 / 60.0,
+    'x3.hit': 1,
+
+    'x4.dmg': 101 / 100,
+    'x4.sp': 0,
+    'x4.startup': 20 / 60.0,
+    'x4.recovery': 0 / 60.0,
+    'x4.hit': 1,
+
+    # C3 A B C D E F
+    'x5.dmg': 126 / 100,
+    'x5.sp': 860,
+    'x5.startup': 23 / 60.0,
+    'x5.recovery': 0 / 60.0,
+    'x5.hit': 1,
+
+    'x6.dmg': 126 / 100,
+    'x6.sp': 0,
+    'x6.startup': 17 / 60.0,
+    'x6.recovery': 0 / 60.0,
+    'x6.hit': 1,
+
+    'x7.dmg': 126 / 100,
+    'x7.sp': 0,
+    'x7.startup': 25 / 60.0,
+    'x7.recovery': 0 / 60.0,
+    'x7.hit': 1,
+
+    'x8.dmg': 126 / 100,
+    'x8.sp': 0,
+    'x8.startup': 16 / 60.0,
+    'x8.recovery': 0 / 60.0,
+    'x8.hit': 1,
+
+    'x9.dmg': 126 / 100,
+    'x9.sp': 0,
+    'x9.startup': 34 / 60.0,
+    'x9.recovery': 0 / 60.0,
+    'x9.hit': 1,
+
+    'x10.dmg': 126 / 100,
+    'x10.sp': 0,
+    'x10.startup': 16 / 60.0,
+    'x10.recovery': 23 / 60.0,
+    'x10.hit': 1,
 }
 
 tempura_conf = {
@@ -74,23 +119,80 @@ tempura_conf = {
     # tC2 4x102%, 995SP
     # tC3 7x117%, 1220SP
 
+    # C1 A
     'x1.dmg': 76 / 100.0,
     'x1.sp': 150,
     'x1.startup': 11 / 60.0,
-    'x1.recovery': 115 / 60.0,
+    'x1.recovery': 0 / 60.0,
     'x1.hit': 1,
 
-    'x2.dmg': 408 / 100.0,
-    'x2.sp': 995,
-    'x2.startup': 0 / 60.0,
-    'x2.recovery': 114 / 60.0,
-    'x2.hit': 4,
+    # C2 A B C D
+    'x2.dmg': 102 / 100,
+    'x2.sp': 430,
+    'x2.startup': 16 / 60.0,
+    'x2.recovery': 0 / 60.0,
+    'x2.hit': 1,
 
-    'x3.dmg': 819 / 100.0,
-    'x3.sp': 1220,
-    'x3.startup': 0 / 60.0,
-    'x3.recovery': 61 / 60.0,
-    'x3.hit': 7,
+    'x3.dmg': 102 / 100,
+    'x3.sp': 0,
+    'x3.startup': 32 / 60.0,
+    'x3.recovery': 0 / 60.0,
+    'x3.hit': 1,
+
+    'x4.dmg': 102 / 100,
+    'x4.sp': 0,
+    'x4.startup': 32 / 60.0,
+    'x4.recovery': 0 / 60.0,
+    'x4.hit': 1,
+
+    'x5.dmg': 102 / 100,
+    'x5.sp': 0,
+    'x5.startup': 35 / 60.0,
+    'x5.recovery': 0 / 60.0,
+    'x5.hit': 1,
+
+    # C3 A B C D E F
+    'x6.dmg': 117 / 100,
+    'x6.sp': 1220,
+    'x6.startup': 42 / 60.0,
+    'x6.recovery': 0 / 60.0,
+    'x6.hit': 1,
+
+    'x7.dmg': 117 / 100,
+    'x7.sp': 0,
+    'x7.startup': 26 / 60.0,
+    'x7.recovery': 0 / 60.0,
+    'x7.hit': 1,
+
+    'x8.dmg': 117 / 100,
+    'x8.sp': 0,
+    'x8.startup': 8 / 60.0,
+    'x8.recovery': 0 / 60.0,
+    'x8.hit': 1,
+
+    'x9.dmg': 117 / 100,
+    'x9.sp': 0,
+    'x9.startup': 6 / 60.0,
+    'x9.recovery': 0 / 60.0,
+    'x9.hit': 1,
+
+    'x10.dmg': 117 / 100,
+    'x10.sp': 0,
+    'x10.startup': 20 / 60.0,
+    'x10.recovery': 0 / 60.0,
+    'x10.hit': 1,
+
+    'x11.dmg': 117 / 100,
+    'x11.sp': 0,
+    'x11.startup': 6 / 60.0,
+    'x11.recovery': 0 / 60.0,
+    'x11.hit': 1,
+
+    'x12.dmg': 117 / 100,
+    'x12.sp': 0,
+    'x12.startup': 6 / 60.0,
+    'x12.recovery': 61 / 60.0,
+    'x12.hit': 1,
 }
 
 # Mitsuba's FS:
@@ -98,11 +200,13 @@ tempura_conf = {
 # C2A FS Delay: 6
 # FSF Recovery: 22
 fs_conf = {
-    'x2fs.charge': 14,
-    'fs.recovery': 34
+    'x2fs.charge': 14 / 60,
+    'fs.recovery': 34 / 60,
+    'fsf.startup': 22 / 60,
 }
 
 class Mitsuba(Adv):
+    a1 = ('a', 0.20, 'hit15')
     conf = fs_conf.copy()
     conf['slot.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
     conf['slot.d'] = Siren()
@@ -113,9 +217,10 @@ class Mitsuba(Adv):
         else
         `tempura
         end
-        `s1
-        `s2
-        `s3
+        `s1, x=2
+        `s2, x=2
+        `s3, x=2
+        `fsf, x=2
     """
     conf['afflict_res.frostbite'] = 0
 

@@ -345,6 +345,11 @@ class Teambuff(Buff):
         self.bufftype = 'team'
         self.bufftime = self._bufftime
 
+        self.base_cc_mod = []
+        for mod in self.modifier._static.all_modifiers['crit']['chance']:
+            if mod.mod_name.startswith('w_') or mod.mod_name.startswith('c_ex'):
+                self.base_cc_mod.append(mod)
+
     def _bufftime(self):
         return self._static.time_func()
 
@@ -364,6 +369,8 @@ class Teambuff(Buff):
 
     def count_team_buff(self):
         self.dmg_test_event.modifiers = ModifierDict()
+        for mod in self.base_cc_mod:
+            self.dmg_test_event.modifiers.append(mod)
         for i in self._static.all_buffs:
             if i.name == 'simulated_def':
                 self.dmg_test_event.modifiers.append(i.modifier)

@@ -468,7 +468,10 @@ def sum_mass_dmg(rs, real_duration):
             for k in i['sdmg_sum'][j]:
                 sdmg_sum[j][k] += i['sdmg_sum'][j][k] / sim_times
         for j in i['x_sum'] :
-            x_sum[j] += float(i['x_sum'][j]) / sim_times
+            try:
+                x_sum[j] += float(i['x_sum'][j]) / sim_times
+            except:
+                x_sum[j] = float(i['x_sum'][j]) / sim_times
         for j in i['o_sum'] :
             if j not in o_sum:
                 o_sum[j] = 0
@@ -679,7 +682,10 @@ def sum_dmg(real_duration):
             elif i[2] == 's3':
                 sdmg_sum['s3']['count'] += 1
         elif i[1] == 'x' :
-            x_sum[i[2]] += 1
+            try:
+                x_sum[i[2]] += 1
+            except:
+                x_sum[i[2]] = 1
         elif i[1] == 'buff' and i[2] == 'team':
             if team_buff_power != 0:
                 team_buff_powertime += team_buff_power*(i[0] - team_buff_start)
