@@ -227,16 +227,6 @@ class Slots(object):
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
         self.abilities = a
-
-        # for i in tmp.c.a:
-        #     Ability(*i).oninit(adv,'c_')
-        # for i in tmp.w.a:
-        #     Ability(*i).oninit(adv,'w_')
-        # for i in tmp.d.a:
-        #     Ability(*i).oninit(adv,'d_')
-        # for i in tmp.a.a:
-        #     Ability(*i).oninit(adv,'a_')
-
         for afrom, alist in [('c', tmp.c.a), ('w', tmp.w.a), ('d', tmp.d.a), ('a', tmp.a.a)]:
             for ab in alist:
                 name = ab[0]

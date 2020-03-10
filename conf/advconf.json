@@ -787,11 +787,11 @@
     },
     "Hawk": {
         "c": {
-            "att": 494,
+            "att": 592,
             "ele": "wind",
             "wt": "bow",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
@@ -1172,11 +1172,11 @@
     },
     "Lin_You": {
         "c": {
-            "att": 517,
+            "att": 568,
             "ele": "wind",
             "wt": "axe",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
@@ -1981,26 +1981,26 @@
     },
     "Su_Fang": {
         "c": {
-            "att": 474,
+            "att": 568,
             "ele": "wind",
             "wt": "dagger",
             "stars": "4",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
             "recovery": 2.1,
-            "dmg": 5.58,
+            "dmg": 0,
             "sp": 2462,
-            "hit": 1
+            "hit": 4
         },
         "s2": {
             "startup": 0.25,
             "recovery": 0.9,
             "buff": [
                 "self",
-                0.25,
-                10.0
+                0.30,
+                15.0
             ],
             "dmg": 0.0,
             "sp": 4877,

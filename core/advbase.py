@@ -1468,12 +1468,16 @@ class Adv(object):
                 self.slots.c.mod.append(v)
             if type(v) == list:
                 self.slots.c.mod += v
-        if self.a1:
-            self.slots.c.a.append(self.a1)
-        if self.a2:
-            self.slots.c.a.append(self.a2)
-        if self.a3:
-            self.slots.c.a.append(self.a3)
+
+        for i in range(1, 4):
+            try:
+                ab = self.__class__.__dict__['a{}'.format(i)]
+                if isinstance(ab, list):
+                    self.slots.c.a.extend(ab)
+                else:
+                    self.slots.c.a.append(ab)
+            except:
+                continue
 
         self.equip()
         self.setup()
