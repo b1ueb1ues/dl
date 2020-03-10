@@ -191,7 +191,8 @@ def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=
 
     dps = r['dmg_sum']['total']/real_duration
     bps = r['buff_sum'] #* team_dps
-    team_tension = {k: round(v) for k, v in r['tension_sum'].items()}
+    r['tension_sum'] = {k: round(v) for k, v in r['tension_sum'].items()}
+    team_tension = r['tension_sum']
 
     r['logs'] = {}
     f = io.StringIO()
