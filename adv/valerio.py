@@ -247,7 +247,7 @@ class Valerio(Adv):
 
     def prerun(self):
         random.seed()
-        self.stance = 'appetizer'
+        self.stance = 'dessert'
         self.next_stance = None
         self.stance_dict = {
             'appetizer': X_alt(self, 'appetizer', appetizer_conf, x_proc=self.l_stance_x),
@@ -296,8 +296,8 @@ class Valerio(Adv):
     def update_stance(self):
         if self.hits >= 20 and self.next_stance is not None:
             curr_stance = self.stance_dict[self.stance]
-            next_stance = self.stance_dict[self.next_stance]
             curr_stance.off()
+            next_stance = self.stance_dict[self.next_stance]
             next_stance.on()
             self.stance = self.next_stance
             self.next_stance = None

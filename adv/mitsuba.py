@@ -224,14 +224,12 @@ class Mitsuba(Adv):
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):
-        self.stance = 'sashimi'
+        self.stance = 'tempura'
         self.next_stance = None
         self.stance_dict = {
             'sashimi': X_alt(self, 'sashimi', sashimi_conf, x_proc=self.l_stance_x),
             'tempura': X_alt(self, 'tempura', tempura_conf, x_proc=self.l_stance_x)
         }
-        self.stance_dict[self.stance].on()
-        self.update_stance()
         self.s1_mod = {
             'sashimi': 0.92,
             'tempura': 1.03
@@ -253,8 +251,8 @@ class Mitsuba(Adv):
     def update_stance(self):
         if self.hits >= 20 and self.next_stance is not None:
             curr_stance = self.stance_dict[self.stance]
-            next_stance = self.stance_dict[self.next_stance]
             curr_stance.off()
+            next_stance = self.stance_dict[self.next_stance]
             next_stance.on()
             self.stance = self.next_stance
             self.next_stance = None
@@ -293,9 +291,10 @@ class Mitsuba(Adv):
                     self.hits += 1
 
     def s2_proc(self, e):
-        buff, insp = self.s2_buff[self.stance]
-        Teambuff(*buff).on()
-        self.inspiration.add(insp, team=True)
+        if self.stance is not None:
+            buff, insp = self.s2_buff[self.stance]
+            Teambuff(*buff).on()
+            self.inspiration.add(insp, team=True)
 
 if __name__ == '__main__':
     conf = {}
