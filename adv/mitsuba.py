@@ -291,10 +291,9 @@ class Mitsuba(Adv):
                     self.hits += 1
 
     def s2_proc(self, e):
-        if self.stance is not None:
-            buff, insp = self.s2_buff[self.stance]
-            Teambuff(*buff).on()
-            self.inspiration.add(insp, team=True)
+        buff, insp = self.s2_buff[self.stance]
+        Teambuff(*buff).on()
+        self.inspiration.add(insp, team=True)
 
 if __name__ == '__main__':
     conf = {}
