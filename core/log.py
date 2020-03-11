@@ -6,10 +6,9 @@ class Log(list):
         self.append([core.timeline.now(), *args])
 
     def filter_iter(self, log_filter):
-        filter_idx, filter_value = log_filter
         for entry in self:
             try:
-                if entry[filter_idx] == filter_value:
+                if entry[1] in log_filter:
                     yield entry
             except:
                 continue
