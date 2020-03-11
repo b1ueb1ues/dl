@@ -222,6 +222,32 @@ class AC011_Garland(DragonBase):
         self.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
 Garland = AC011_Garland
 
+class Ariel(DragonBase):
+    ele = 'wind'
+    att = 126
+    a = [('a', 0.5), ('sp', 0.35)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.60,
+        'dx1.startup': 20 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 1.76,
+        'dx2.startup': 26 / 60.0, # c2 frames
+        'dx2.hit': 2,
+
+        'dx3.dmg': 3.99,
+        'dx3.startup': 49 / 60.0, # c3 frames
+        'dx3.recovery': 45 / 60.0, # recovery
+        'dx3.hit': 1,
+
+        'ds.recovery': 105 / 60, # skill frames
+        'ds.hit': -1,
+
+        'dodge.startup': 39 / 60, # dodge frames
+    }
+
 class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):
     ele = 'wind'
     att = 127

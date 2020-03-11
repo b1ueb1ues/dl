@@ -3784,5 +3784,28 @@
             "sp": 6200,
             "hit": 0
         }
+    },
+    "Tobias": {
+        "c": {
+            "att": 494,
+            "ele": "wind",
+            "wt": "blade",
+            "stars": "5",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0.0,
+            "sp": 3817,
+            "hit": 0
+        },
+        "s2": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 10.89,
+            "sp": 38400,
+            "hit": 0
+        }
     }
 }
