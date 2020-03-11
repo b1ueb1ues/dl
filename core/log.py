@@ -47,7 +47,6 @@ class Log:
                 continue
 
     def write_logs(self, log_filter=None, output=None):
-        print(log_filter, output)
         if output is None:
             output = sys.stdout
         if log_filter is None:
