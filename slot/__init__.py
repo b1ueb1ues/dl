@@ -133,7 +133,7 @@ class DragonBase(Slot):
 
     def ds_proc(self):
         try:
-            return self.adv.dmg_make('d_ds',self.adv.dragonform.conf.ds.dmg,'s')
+            return self.adv.dmg_make('ds',self.adv.dragonform.conf.ds.dmg,'s')
         except:
             return 0
 

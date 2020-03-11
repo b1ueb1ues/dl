@@ -25,11 +25,6 @@ class Delphi(Adv):
         
         self.s1defdown = self.condition('s1 defdown for 10s')
 
-        if self.condition('reflect 500 damage on every s2'):
-            self.s2reflect = 500
-        else:
-            self.s2reflect = 0
-
         self.skilltimer = Timer(self.skillautocharge,1,1).on()
         self.s1fscharge = 0
 
@@ -44,7 +39,6 @@ class Delphi(Adv):
         self.s1fscharge = 1
     
     def s2_proc(self, e):
-        self.dmg_make('o_s2_reflect', self.s2reflect * 11, fixed=True)
         self.afflics.poison('s2',120+self.flurry_poison*(self.hits>=15),3.00,27)
 
     def fs_proc(self, e):

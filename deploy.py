@@ -2,9 +2,8 @@ import os
 import sys
 from importlib import import_module
 from importlib.util import spec_from_file_location, module_from_spec
-from contextlib import redirect_stdout
 from time import monotonic
-import adv
+import core.simulate
 
 ROOT_DIR = '.'
 ADV_DIR = 'adv'
@@ -45,11 +44,10 @@ def sim_adv(adv_file, special=None, mass=None):
     else:
         durations = DURATION_LIST
         load_adv_module = load_adv_module_normal
-    with redirect_stdout(output):
-        adv_module = load_adv_module(adv_file)
-        for d in durations:
-            for ex in SIMC_EX_LIST:
-                adv.adv_test.test(adv_module, {}, verbose=-5, duration=d, ex=ex, special=special, mass=1 if mass else 0)
+    adv_module = load_adv_module(adv_file)
+    for d in durations:
+        for ex in SIMC_EX_LIST:
+            core.simulate.test(adv_module, {}, ex=ex, duration=d, verbose=-5, mass=1000 if mass else None, special=special, output=output)
     print('{:.4f}s - sim:{}'.format(monotonic() - t_start, adv_file), flush=True)
 
 def sim_adv_list(list_file):

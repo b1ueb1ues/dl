@@ -15,7 +15,7 @@ def acl_func_str(acl):
     exec(s,globals())
     # return do_act_list, s
     do_act = do_act_list
-    return s
+    return s, do_act_list
 
 # def acl_func(acl):
 #     s = acl_str(acl)

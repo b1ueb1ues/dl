@@ -1160,8 +1160,6 @@ class Adv(object):
         # self.m_condition = m_condition
         # self.m_condition.set(cond)
 
-        self.logs = g_logs
-
         self.s3_buff_list = []
         self.s3_buff = None
 
@@ -1480,7 +1478,7 @@ class Adv(object):
             except:
                 continue
         if 'ex' in self.conf:
-            self.slots.c.ex.update(self.conf.ex)
+            self.slots.c.ex.update(dict(self.conf.ex.__dict__))
 
         self.equip()
         self.setup()
@@ -1500,9 +1498,7 @@ class Adv(object):
         self.acl_backdoor()
 
         if not self._acl:
-            self._acl_str = core.acl.acl_func_str(self.conf.acl)
-            from core.acl import do_act
-            self._acl = do_act
+            self._acl_str, self._acl = core.acl.acl_func_str(self.conf.acl)
 
         self.displayed_att = int(self.base_att * self.mod('att'))
 
@@ -1543,6 +1539,8 @@ class Adv(object):
                 if len(self.comment) > 0:
                     self.comment += '; '
                 self.comment += '{:.0%} {} uptime'.format(up, aff)
+
+        self.logs = copy.deepcopy(g_logs)
 
         return end
 
@@ -1676,7 +1674,7 @@ class Adv(object):
         self.dmg_proc(name, count)
 
     def l_melee_fs(self, e):
-        log('fs', 'succ')
+        log('cast', 'fs')
         dmg_coef = self.conf.fs.dmg
         self.fs_before(e)
         self.update_hits('fs')
@@ -1686,7 +1684,7 @@ class Adv(object):
         self.charge('fs', self.conf.fs.sp)
 
     def l_range_fs(self, e):
-        log('fs', 'succ')
+        log('cast', 'fs')
         self.fs_before(e)
         self.update_hits('fs')
         dmg_coef = self.conf['fs.dmg']
@@ -1701,7 +1699,7 @@ class Adv(object):
         self.think_pin('fs')
 
     def l_s(self, e):
-        if e.name == 'd_ds':
+        if e.name == 'ds':
             return
 
         self.update_hits(e.name)

@@ -2,7 +2,7 @@
 
 
 ## Running
-python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)] [time] [ex/co-abilities]
+python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)] [time] [ex/co-abilities] [mass]
 
 loglevel:
 - -4:  generate a acl recursive result
@@ -33,7 +33,15 @@ show result of Gala Sarisse for 180s with blade and dagger ex/co-abilities
 
 then you can use excel to open that csv and sort the result by dps to choose the best WP set.
 
-...
+## Alt Method
+python core/simulate.py [someone] [verbose(-5,0,1,2)] [time] [ex/co-abilities] [mass]
+
+loglevel:
+- -5: csv result with post run blade/wand coab applied
+- -2: csv result
+-  0: standard output
+-  1: verbose log
+-  2: acl str
 
 ## Folders
 - core: simulate engine

@@ -524,8 +524,6 @@ def sum_ac():
     ret = []
     lastc = 0
     for i in l:
-        if i[2] == 'succ':
-            i[2] = 'fs'
         if i[1] == 'x':
             if i[2] == 'x1':
                 if lastc != 0:
@@ -653,17 +651,16 @@ def sum_dmg(real_duration):
                 x_sum['fs'] += 1
             elif i[2][0] == 'd':
                 dmg_sum['dragon'] += i[3]
-                parts = i[2].split('_')
-                if parts[1][0:2] == 'dx':
+                if i[2][0:2] == 'dx':
                     dragon_sum['dx'] += i[3]
-                elif parts[1] == 'dshift':
+                elif i[2] == 'dshift':
                     x_sum['shift'] += 1
                     dragon_sum['dx'] += i[3]
                 else:
                     try:
-                        dragon_sum[parts[1]] += i[3]
+                        dragon_sum[i[2]] += i[3]
                     except:
-                        dragon_sum[parts[1]] = i[3]
+                        dragon_sum[i[2]] = i[3]
             elif i[2][0] == 'o':
                 dmg_sum['others'] += i[3]
                 if i[2][2:] in o_sum:

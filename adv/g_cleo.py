@@ -32,9 +32,10 @@ class Gala_Cleo(Adv):
             self.slots.a = CC()+Primal_Crisis()
 
     def fs_proc_alt(self, e):
-        buff = Teambuff('a1_str',0.25,10)
-        buff.bufftime = buff.nobufftime
-        buff.on()
+        if self.a1_buffed:
+            buff = Teambuff('a1_str',0.25,10)
+            buff.bufftime = buff.nobufftime
+            buff.on()
 
     def prerun(self):
         self.a1_buffed = self.condition('always in a1')

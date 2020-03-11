@@ -3,12 +3,7 @@ import sys
 
 class Log:
     def __init__(self):
-        self.record = []
-        self.damage = {'x':{},'s':{},'f':{},'d':{},'o':{}}
-        self.counts = {'x':{},'s':{},'f':{},'d':{},'o':{}}
-        self.team_buff = []
-        self.team_tension = {}
-        self.act_seq = []
+        self.reset()
 
     @staticmethod
     def update_dict(dict, name, value):
@@ -34,7 +29,10 @@ class Log:
                 self.update_dict(self.counts[name[0]], name, 1)
                 self.act_seq.append(name)
             elif category == 'buff' and name == 'team':
-                self.team_buff.append((time_now, float(args[2])))
+                if self.p_buff is not None:
+                    pt, pb = self.p_buff
+                    self.team_buff += (time_now - pt) * pb
+                self.p_buff = (time_now, float(args[2]))
             elif category in ('energy', 'inspiration') and name == 'team':
                 self.update_dict(self.team_tension, category, float(args[2]))
 
@@ -46,22 +44,22 @@ class Log:
             except:
                 continue
 
-    def write_logs(self, log_filter=None, fn=None):
-        if fn is None:
-            fn = sys.stdout
+    def write_logs(self, log_filter=None, output=None):
+        if output is None:
+            output = sys.stdout
         if log_filter is None:
             log_iter = self.record
         else:
             log_iter = self.filter_iter(log_filter)
         for entry in log_iter:
             time = entry[0]
-            fn.write('{:>8.3f}: '.format(time))
+            output.write('{:>8.3f}: '.format(time))
             for value in entry[1:]:
                 if isinstance(value, float):
-                    fn.write('{:<8.3f}'.format(value))
+                    output.write('{:<8.3f}'.format(value))
                 else:
-                    fn.write('{:<16},'.format(value))
-            fn.write('\n')
+                    output.write('{:<16},'.format(value))
+            output.write('\n')
 
     def get_log_list(self):
         return self.record
@@ -70,6 +68,10 @@ class Log:
         self.record = []
         self.damage = {'x':{},'s':{},'f':{},'d':{},'o':{}}
         self.counts = {'x':{},'s':{},'f':{},'d':{},'o':{}}
+        self.p_buff = None
+        self.team_buff = 0
+        self.team_tension = {}
+        self.act_seq = []
 
 loglevel = 0
 

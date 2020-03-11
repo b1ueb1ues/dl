@@ -146,9 +146,9 @@ class Corsaint_Phoenix(DragonBase):
     }
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',1.30,'s')
+        dmg = self.adv.dmg_make('ds',1.30,'s')
         self.adv.afflics.paralysis('ds',110,0.883,13,dtype='s')
-        return dmg + self.adv.dmg_make('d_ds',1.30*6,'s')
+        return dmg + self.adv.dmg_make('ds',1.30*6,'s')
 
 C_Phoenix = Corsaint_Phoenix
 
@@ -184,7 +184,7 @@ class Daikokuten(DragonBase):
 
     def ds_proc(self):
         self.ds_buff.on()
-        return self.adv.dmg_make('d_ds',7.00,'s')
+        return self.adv.dmg_make('ds',7.00,'s')
 
 class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'
