@@ -1160,8 +1160,6 @@ class Adv(object):
         # self.m_condition = m_condition
         # self.m_condition.set(cond)
 
-        self.logs = g_logs
-
         self.s3_buff_list = []
         self.s3_buff = None
 
@@ -1480,7 +1478,7 @@ class Adv(object):
             except:
                 continue
         if 'ex' in self.conf:
-            self.slots.c.ex.update(self.conf.ex)
+            self.slots.c.ex.update(dict(self.conf.ex.__dict__))
 
         self.equip()
         self.setup()
@@ -1541,6 +1539,8 @@ class Adv(object):
                 if len(self.comment) > 0:
                     self.comment += '; '
                 self.comment += '{:.0%} {} uptime'.format(up, aff)
+
+        self.logs = copy.deepcopy(g_logs)
 
         return end
 
