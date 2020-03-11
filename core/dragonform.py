@@ -20,7 +20,7 @@ class DragonForm(Action):
         self.dx_list = ['dx{}'.format(i) for i in range(1, 6) if 'dmg' in self.conf['dx{}'.format(i)]]
 
         self.ds_event = Event('s')
-        self.ds_event.name = 'd_ds'
+        self.ds_event.name = 'ds'
 
         self.action_timer = None
 
@@ -117,7 +117,7 @@ class DragonForm(Action):
             return
         elif self.c_act_name != 'dodge':
             # dname = self.c_act_name[:-1] if self.c_act_name != 'dshift' else self.c_act_name
-            self.shift_damage_sum += self.adv.dmg_make('d_'+self.c_act_name, self.c_act_conf.dmg)
+            self.shift_damage_sum += self.adv.dmg_make(self.c_act_name, self.c_act_conf.dmg)
             if self.c_act_name.startswith('dx'):
                 if len(self.act_sum) > 0 and self.act_sum[-1][0] == 'c' and int(self.act_sum[-1][1]) < int(self.c_act_name[-1]):
                     self.act_sum[-1] = 'c'+self.c_act_name[-1]
@@ -206,5 +206,6 @@ class DragonForm(Action):
         if self.off_ele_mod is not None:
             self.off_ele_mod.on()
         Event('dragon')()
+        log('cast', 'dshift')
         self.d_act_start('dshift')
         return True

@@ -59,10 +59,10 @@ class Pazuzu(DragonBase):
         self.ds_buff = Debuff('ds',0.05,10)
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',0.91,'s')
+        dmg = self.adv.dmg_make('ds',0.91,'s')
         self.ds_buff.on()
         self.adv.afflics.poison('ds',120,0.291,30,dtype='s')
-        return dmg + self.adv.dmg_make('d_ds',7*0.91,'s')
+        return dmg + self.adv.dmg_make('ds',7*0.91,'s')
 
 class Long_Long(DragonBase):
     ele = 'wind'
@@ -158,7 +158,7 @@ class Vayu(DragonBase):
         self.ds_buff = SingleActionBuff('d_sd_buff',0.40,1,'s','buff')
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',8.96,'s')
+        dmg = self.adv.dmg_make('ds',8.96,'s')
         self.ds_buff.on(1)
         return dmg
 
@@ -221,6 +221,11 @@ class AC011_Garland(DragonBase):
     def dauntless_rampart(self, t):
         self.adv.Buff('dauntless_rampart',0.30,-1,'att','passive').on()
 Garland = AC011_Garland
+
+class Ariel(DragonBase):
+    ele = 'wind'
+    att = 127
+    a = [('a', 0.50), ('sp',0.30)]
 
 class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):
     ele = 'wind'

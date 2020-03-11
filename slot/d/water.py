@@ -25,7 +25,7 @@ class Leviathan(DragonBase):
     }
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',9.135,'s')
+        dmg = self.adv.dmg_make('ds',9.135,'s')
         self.adv.afflics.bog('ds',180)
         return dmg
 
@@ -61,7 +61,7 @@ class Siren(DragonBase):
         self.ds_buff = SingleActionBuff('d_sd_buff',0.40,1,'s','buff')
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',5.00,'s')
+        dmg = self.adv.dmg_make('ds',5.00,'s')
         self.ds_buff.on(1)
         return dmg
 

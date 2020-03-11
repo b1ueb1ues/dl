@@ -58,10 +58,10 @@ class Cerberus(DragonBase):
         self.ds_buff = Debuff('ds',0.05,10)
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',1.10,'s')
+        dmg = self.adv.dmg_make('ds',1.10,'s')
         self.ds_buff.on()
         self.adv.afflics.burn('ds',120,0.97,12,dtype='s')
-        return dmg + self.adv.dmg_make('d_ds',1.10*6,'s')
+        return dmg + self.adv.dmg_make('ds',1.10*6,'s')
 
 class Arctos(DragonBase):
     ele = 'flame'
@@ -145,7 +145,7 @@ class Konohana_Sakuya(DragonBase):
         self.ds_buff = SingleActionBuff('d_sd_buff',0.40,1,'s','buff')
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',6.60,'s')
+        dmg = self.adv.dmg_make('ds',6.60,'s')
         self.ds_buff.on(1)
         return dmg
 Sakuya = Konohana_Sakuya
@@ -180,10 +180,10 @@ class Apollo(DragonBase):
         self.ds_buff = Debuff('ds',0.05,10)
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',1.80,'s')
+        dmg = self.adv.dmg_make('ds',1.80,'s')
         self.ds_buff.on()
         self.adv.afflics.burn('ds',120,0.311,30,dtype='s')
-        return dmg + self.adv.dmg_make('d_ds',4.20,'s')
+        return dmg + self.adv.dmg_make('ds',4.20,'s')
 
 class Kagutsuchi(DragonBase):
     ele = 'flame'
@@ -210,9 +210,9 @@ class Kagutsuchi(DragonBase):
     }
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',2.20,'s')
+        dmg = self.adv.dmg_make('ds',2.20,'s')
         self.adv.afflics.burn('ds',120,0.97,12,dtype='s')
-        return dmg + self.adv.dmg_make('d_ds',4.40,'s')
+        return dmg + self.adv.dmg_make('ds',4.40,'s')
 
 
 class Dreadking_Rathalos(DragonBase):
@@ -242,9 +242,9 @@ class Dreadking_Rathalos(DragonBase):
     }
 
     def ds_proc(self):
-        dmg = self.adv.dmg_make('d_ds',1.00,'s')
+        dmg = self.adv.dmg_make('ds',1.00,'s')
         self.adv.afflics.burn('ds',120,0.97,12,dtype='s')
-        return dmg + self.adv.dmg_make('d_ds',4.00,'s')
+        return dmg + self.adv.dmg_make('ds',4.00,'s')
 
 class Unreleased_FlameSkillHaste(DragonBase):
     ele = 'flame'

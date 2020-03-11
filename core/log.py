@@ -46,22 +46,23 @@ class Log:
             except:
                 continue
 
-    def write_logs(self, log_filter=None, fn=None):
-        if fn is None:
-            fn = sys.stdout
+    def write_logs(self, log_filter=None, output=None):
+        print(log_filter, output)
+        if output is None:
+            output = sys.stdout
         if log_filter is None:
             log_iter = self.record
         else:
             log_iter = self.filter_iter(log_filter)
         for entry in log_iter:
             time = entry[0]
-            fn.write('{:>8.3f}: '.format(time))
+            output.write('{:>8.3f}: '.format(time))
             for value in entry[1:]:
                 if isinstance(value, float):
-                    fn.write('{:<8.3f}'.format(value))
+                    output.write('{:<8.3f}'.format(value))
                 else:
-                    fn.write('{:<16},'.format(value))
-            fn.write('\n')
+                    output.write('{:<16},'.format(value))
+            output.write('\n')
 
     def get_log_list(self):
         return self.record

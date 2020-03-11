@@ -72,7 +72,7 @@ class Hunter_Vanessa(Adv):
         self.fs = None
 
     def do_fs(self, e, name):
-        log('fs','succ')
+        log('cast','fs')
         self.__dict__['a_'+name].getdoing().cancel_by.append(name)
         self.__dict__['a_'+name].getdoing().interrupt_by.append(name)
         self.fs_before(e)
