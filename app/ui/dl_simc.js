@@ -11,7 +11,7 @@ EX_MAP = {
 AXE2_ADV = ['h_mym', 'v_melody']
 RANGED = ['wand', 'bow', 'staff']
 BASE_SIM_T = 180
-BASE_TEAM_DPS = 16000
+BASE_TEAM_DPS = 20000
 BASE_AFFLICT_UPTIME = {
     'poison': 90,
     'burn': 75,
