@@ -1531,6 +1531,8 @@ class Adv(object):
 
         Event('idle')()
         self.debug()
+        global _g_timeline
+        _g_timeline = Timeline()
         end = Timeline.run(d)
         log('sim', 'end')
 

@@ -235,7 +235,7 @@ class Timeline(object):
             headt = self._tlist[headindex]
             headt.callback()
         else:
-            print('timeline time err')
+            print('timeline time err', headtiming, _g_now)
             exit()
         return 0
     

@@ -21,7 +21,10 @@ ex_mapping = {
 }
 
 def blade_mod(name, value):
-    return value * BLADE
+    if 'buff' in name:
+        return value
+    else:
+        return value * BLADE
 
 def wand_mod(name, value):
     if name[0] == 's' or name == 'ds':
@@ -70,6 +73,46 @@ def build_exp_mod_list(ex, ex_set, wt):
         ex_mod_func.append(('kr', None))
     return ex_mod_func, ex
 
+def run_once(classname, conf, duration, cond):
+    adv = classname(conf=conf,cond=cond)
+    real_d = adv.run(duration)
+    return adv, real_d
+
+# Using starmap
+import multiprocessing
+def run_once_mass(classname, conf, duration, cond, idx):
+    adv = classname(conf=conf,cond=cond)
+    real_d = adv.run(duration)
+    return adv.logs, real_d
+
+def sum_logs(log, other):
+    for k1 in log.damage:
+        for k2 in log.damage[k1]:
+            log.damage[k1][k2] += other.damage[k1][k2]
+    log.team_buff += other.team_buff
+    for k in log.team_tension:
+        log.team_tension[k] += other.team_tension[k]
+    return log
+
+def avg_logs(log, mass):
+    for k1 in log.damage:
+        for k2 in log.damage[k1]:
+            log.damage[k1][k2] /= mass
+    log.team_buff /= mass
+    for k in log.team_tension:
+        log.team_tension[k] /= mass
+    return log
+
+def run_mass(mass, base_log, base_d, classname, conf, duration, output, cond=True):
+    mass == 1000 if mass == 1 else mass
+    with multiprocessing.Pool(processes=8) as pool:
+        for log, real_d in pool.starmap(run_once_mass, [(classname, conf, duration, cond, idx) for idx in range(mass-1)]):
+            base_log = sum_logs(base_log, log)
+            base_d += real_d
+    base_log = avg_logs(base_log, mass)
+    base_d /= mass
+    return base_log, base_d
+
 def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, special=False, output=None):
     output = output or sys.stdout
     ex_set = parse_ex(ex)
@@ -78,8 +121,7 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, special
     else:
         ex = '_'
     run_results = []
-    adv = classname(conf=conf,cond=True)
-    real_d = adv.run(duration)
+    adv, real_d = run_once(classname, conf, duration, True)
     if verbose == 1:
         adv.logs.write_logs(output=output)
         act_sum(adv.logs.act_seq, output)
@@ -87,13 +129,24 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, special
     if verbose == 2:
         output.write(adv._acl_str)
         return
+
+    if mass:
+        mass_log, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration, output)
+        adv.logs = mass_log
+
     run_results.append((adv, real_d, True))
     no_cond_dps = None
     if adv.condition.exist():
-        adv_2 = classname(conf=conf,cond=False)
-        real_d_2 = adv_2.run(duration)
+        adv_2, real_d_2 = run_once(classname, conf, duration, False)
         run_results.append((adv_2, real_d_2, False))
-        no_cond_dps = round(dps_sum(real_d_2, adv_2.logs.damage)['dps'])
+        no_cond_dps = {
+            'dps': round(dps_sum(real_d_2, adv_2.logs.damage)['dps']),
+            'team_buff': adv_2.logs.team_buff / real_d,
+            'team_tension': adv_2.logs.team_tension
+        }
+        # if mass:
+        #     mass_log, real_d_2 = run_mass(mass, adv_2.logs, real_d, classname, conf, duration, output)
+        #     adv_2.logs = mass_log
 
     if verbose == -5:
         ex_mod_func, ex = build_exp_mod_list(ex, ex_set, adv.conf.c.wt)
@@ -105,6 +158,8 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, special
     else:
         for a, d, c in run_results:
             if verbose == -2:
+                if c:
+                    output.write('-,{},{}\n'.format(duration, ex))
                 report(d, a, output, cond=c)
             else:
                 summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)
@@ -199,32 +254,32 @@ def damage_counts(real_d, damage, counts, output, mod_func=None, res=None):
                 except:
                     output.write('{}: {:d}, '.format(k2, modded_value))
 
-def team(real_d, team_buff):
-    t_buff = 0
-    p_time, p_buff = 0, 0
-    for c_time, c_buff in team_buff:
-        t_buff += (c_time - p_time) * p_buff
-        p_time, p_buff = c_time, c_buff
-    return t_buff / real_d
-
 def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
     res = dps_sum(real_d, adv.logs.damage, mod_func)
     if cond:
         output.write('='*BR+'\n')
-        output.write('DPS: {}'.format(round(res['dps'])))
-        if no_cond_dps:
-            output.write(' | {}'.format(no_cond_dps))
-        t_buff = team(real_d, adv.logs.team_buff)
+        output.write('DPS - {}'.format(round(res['dps'])))
+        t_buff = adv.logs.team_buff / real_d
         if t_buff > 0:
             output.write(' (team: {:.2f})'.format(t_buff))
         for k, v in adv.logs.team_tension.items():
             output.write(' ({}: {})'.format(k, int(v)))
+        if no_cond_dps:
+            output.write(' | {}'.format(no_cond_dps['dps']))
+            if no_cond_dps['team_buff'] > 0:
+                output.write(' (team: {:.2f})'.format(no_cond_dps['team_buff']))
+            for k, v in no_cond_dps['team_tension']:
+                output.write(' ({}: {})'.format(k, int(v)))
 
-        output.write('\n{} (str: {}) {}'.format(
-            adv.__class__.__name__, 
-            adv.base_att,
-            amulets(adv)))
-                
+        output.write('\n')
+        output.write(adv.__class__.__name__)
+        output.write(' ')
+        if len(adv.slots.c.ex.keys()) > 0:
+            output.write('(')
+            output.write(' '.join(adv.slots.c.ex.keys()))
+            output.write(') ')
+        output.write(amulets(adv))
+
         output.write('\n<{}> {}\n'.format(
             adv.condition.cond_str(), 
             adv.comment))
@@ -233,13 +288,13 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
     if cond:
         output.write('\n')
 
-def report(real_d, adv, output, team_dps=16000, cond=True, mod_func=None):
+def report(real_d, adv, output, team_dps=20000, cond=True, mod_func=None):
     name = adv.__class__.__name__
     condition = '<{}>'.format(adv.condition.cond_str())
     dmg = adv.logs.damage
     res = dps_sum(real_d, dmg, mod_func)
-    buff = team(real_d, adv.logs.team_buff)
-    report_csv = [round(res['dps'])]
+    buff = adv.logs.team_buff / real_d
+    report_csv = [round(res['dps']+buff*team_dps)]
     report_csv.extend([
         name if cond else '_c_'+name,
         adv.conf['c.stars']+'*',
@@ -252,13 +307,16 @@ def report(real_d, adv, output, team_dps=16000, cond=True, mod_func=None):
     ])
     dps_mappings = {}
     dps_mappings['attack'] = dict_sum(dmg['x'], mod_func) / real_d
-    if 'fs' in dmg['f']:
-        dps_mappings['force_strike'] = dmg['f']['fs'] / real_d
-    for i, k in enumerate(('s1', 's2', 's3')):
-        try:
+    for k in dmg['f']:
+        if k == 'fs':
+            dps_mappings['force_strike'] = dmg['f']['fs'] / real_d
+        else:
+            dps_mappings[k] = dmg['f'][k] / real_d
+    for i, k in enumerate(dmg['s'].keys()):
+        if k in ('s1', 's2', 's3'):
             dps_mappings['skill_{}'.format(i+1)] = dmg['s'][k] / real_d
-        except:
-            continue
+        else:
+            dps_mappings[k] = dmg['s'][k] / real_d
     if buff > 0:
         dps_mappings['team_buff'] = buff*team_dps
     for tension, count in adv.logs.team_tension.items():
@@ -308,4 +366,4 @@ if __name__ == '__main__':
         mass = int(sys.argv[5])
     except:
         mass = 0
-    test(load_adv_module(name), verbose=verbose, duration=duration, ex=ex)
+    test(load_adv_module(name), verbose=verbose, duration=duration, ex=ex, mass=mass)

@@ -22,18 +22,8 @@ class Lea(Adv):
         """
     conf['afflict_res.burn'] = 0
     
-    def prerun(self):
-        if self.condition('reflect 500 damage on every s2'):
-            self.s2reflect = 500
-        else:
-            self.s2reflect = 0
-
     def s1_proc(self, e):
         self.afflics.burn('s1',120,0.97)
-
-    def s2_proc(self, e):
-        self.dmg_make('o_s2_reflect', self.s2reflect * 11, fixed=True)
-
 
 if __name__ == '__main__':
     conf = {}
