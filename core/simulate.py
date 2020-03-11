@@ -339,6 +339,7 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
             except:
                 dps_mappings[k] = dmg_val / real_d
 
+    report_csv[0] = round(report_csv[0])
     if callable(mod_func):
         report_csv.extend(['{}:{}'.format(k, int(mod_func(k, v))) for k, v in dps_mappings.items()])
     else:

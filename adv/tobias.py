@@ -19,23 +19,17 @@ class Tobias(Adv):
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
-        self.s1_timer = Timer(self.s1_autocharge,1,1)
-        self.s2_timer = Timer(self.s2_autocharge,1,1).on()
         del self.slots.c.ex['blade']
         self.slots.c.ex['tobias'] = ('ex', 'tobias')
 
     def prerun(self):
         self.s2_mode = 0
+        self.s1.autocharge_init(0)
+        self.s2.autocharge_init(1536).on()
         # self.s2_x_alt = X_alt(self, 'appetizer', appetizer_conf, x_proc=self.l_stance_x, no_fs=True, no_dodge=True)
 
-    def s1_autocharge(self, t):
-        self.s1.charge(self.conf.s1.sp*0.143)
-
-    def s2_autocharge(self, t):
-        self.s2.charge(self.conf.s2.sp*0.065)
-
     def s1_autocharge_off(self, t):
-        self.s1_timer.off()
+        self.s1.autocharge_timer.off()
 
     def s1_proc(self, e):
         self.buff_class('s1',0.3,15).on()
@@ -46,7 +40,7 @@ class Tobias(Adv):
             self.conf.s2.recovery = 1.9
             self.s2.charged = self.s2.sp
             # self.s2_x_alt.on()
-            self.s1_timer.on()
+            self.s1.autocharge_timer.on()
             Timer(self.s1_autocharge_off).on(7)
         else:
             self.dmg_make('s2',0)

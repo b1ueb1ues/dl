@@ -25,13 +25,9 @@ class Delphi(Adv):
         
         self.s1defdown = self.condition('s1 defdown for 10s')
 
-        self.skilltimer = Timer(self.skillautocharge,1,1).on()
+        self.s1.autocharge_init(80000).on()
+        self.s2.autocharge_init(50000).on()
         self.s1fscharge = 0
-
-    def skillautocharge(self, t):
-        self.s1.charge(999999.0*0.08)
-        self.s2.charge(999999.0*0.05)
-        log('sp','s1autocharge')
 
     def s1_proc(self, e):
         if self.s1defdown:

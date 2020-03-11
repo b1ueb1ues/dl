@@ -534,15 +534,18 @@ class Skill(object):
                 log('silence', 'start')
             return 1
 
-    def autocharge_init(self, sp, iv=1, autocharge=None):
-        if sp < 1:
-            sp = int(sp * self.sp)
-        if autocharge is None:
+    def autocharge_init(self, sp, iv=1):
+        if callable(sp):
+            self.autocharge_timer = Timer(sp, iv, 1)
+        else:
+            if sp < 1:
+                sp = int(sp * self.sp)
             def autocharge(t):
                 if self.charged < self.sp:
                     self.charge(sp)
                     log('sp', self.name+'_autocharge', int(sp))
-        self.autocharge_timer = Timer(autocharge, iv, 1).on()
+            self.autocharge_timer = Timer(autocharge, iv, 1)
+        return self.autocharge_timer
 
 #    def ac(self):
 #        #self.cast_event = Event(self.name+'_cast')

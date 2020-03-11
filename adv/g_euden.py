@@ -25,11 +25,10 @@ class Gala_Euden(Adv):
             self.s1on = 1
         else:
             self.s1on = 0
-        self.s2timer = Timer(self.s2autocharge,1,1).on()
+        self.s2.autocharge_init(15873).on()
         if self.condition('draconic charge'):
             self.dragonform.dragon_gauge += 50
         Modifier('a3','dt','hecc',1/0.7-1).on()
-
         self.dragonlight_spd = Spdbuff('dragonlight',0.1,-1,wide='self')
         Event('dragon').listener(self.a3_on)
         Event('idle').listener(self.a3_off)
@@ -45,10 +44,6 @@ class Gala_Euden(Adv):
     def init(self):
         del self.slots.c.ex['sword']
         self.slots.c.ex['geuden'] = ('ex', 'geuden')
-
-    def s2autocharge(self, t):
-        self.s2.charge(999999.0/63)
-        # log('sp','s2autocharge')
 
     def s1_proc(self, e):
         if self.s1on :

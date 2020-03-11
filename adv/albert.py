@@ -37,9 +37,7 @@ class Albert(Adv):
             'fs.recovery':26/60.0,
         }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
-
-
-        self.s2timer = Timer(self.s2autocharge,1,1).on()
+        self.s2.autocharge_init(self.s2autocharge).on()
         self.s2buff = Selfbuff("s2_shapshift",1, 20,'ss','ss')
         self.a3 = Selfbuff('a2_str_passive',0.25,20,'att','passive')
 
@@ -63,7 +61,6 @@ class Albert(Adv):
             self.dmg_make("o_s1_hit6", 0.83)
             self.s2buff.buff_end_timer.timing += 2.6
             self.a3.buff_end_timer.timing += 2.6
-            self.s2timer.timing += 2.6
 
 
     def s1_proc(self, e):
@@ -74,10 +71,8 @@ class Albert(Adv):
             self.dmg_make("o_s1_hit4", 0.83)
             self.s2buff.buff_end_timer.timing += 2.6
             self.a3.buff_end_timer.timing += 2.6
-            self.s2timer.timing += 2.6
 
     def s2_proc(self, e):
-        self.s2timer.on()
         self.s2buff.on()
         self.a3.on()
         self.fs_alt.on(-1)
