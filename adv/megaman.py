@@ -134,7 +134,7 @@ class Mega_Man(Adv):
         'dodge.startup': 45 / 60.0, # dodge frames
     }
     def ds_proc(self):
-        return self.dmg_make('d_ds',self.dragonform.conf.ds.dmg,'s')
+        return self.dmg_make('ds',self.dragonform.conf.ds.dmg,'s')
 
     def init(self):
         # self.conf += Conf(megaman_conf)

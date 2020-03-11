@@ -277,7 +277,7 @@ function loadAdvSlots() {
                     $('#ex-' + slots.adv.wt).prop('checked', true);
                     $('#ex-' + slots.adv.wt).prop('disabled', true);
                 }
-                if (RANGED.includes(slots.adv.wt)){
+                if (RANGED.includes(slots.adv.wt)) {
                     $('#input-missile').prop('disabled', false);
                 } else {
                     $('#input-missile').prop('disabled', true);
@@ -290,11 +290,11 @@ function loadAdvSlots() {
                 $('#input-acl').data('default_acl', acl);
                 if (slots.adv.afflict_res != undefined) {
                     for (const key in slots.adv.afflict_res) {
-                        $('#input-res-'+key).val(slots.adv.afflict_res[key]);
+                        $('#input-res-' + key).val(slots.adv.afflict_res[key]);
                     }
                 } else {
                     for (const key in slots.adv.afflict_res) {
-                        $('#input-res-'+key).removeAttr('value');
+                        $('#input-res-' + key).removeAttr('value');
                     }
                 }
                 if (slots.adv.no_config != undefined) {
@@ -342,7 +342,7 @@ function readConditionList() {
         return conditions;
     }
 }
-function readResistDict(){
+function readResistDict() {
     let resists = {};
     const resistList = $('#affliction-resist > div > input[type="text"]');
     if (resistList.length === 0) {
@@ -447,7 +447,7 @@ function runAdvTest() {
                         copyTxt += createDpsBar(newResultItem, cond_false, extra, cond_true[0]);
                     }
                     // createChart(res.log.dmg, name);
-                    const logs = ['dragon', 'skill_stat', 'action', 'timeline'].map(key => {
+                    const logs = ['dragon', 'summation', 'action', 'timeline'].map(key => {
                         if (res.logs[key] !== undefined && res.logs[key] !== "") {
                             return res.logs[key];
                         } else {
@@ -508,7 +508,7 @@ function clearResults() {
     $('#input-teamdps').val(BASE_TEAM_DPS);
     $('#input-missile').val(0);
     const resistList = $('#affliction-resist > div > input[type="text"]');
-    resistList.each(function (idx, res) {$(res).val('')});
+    resistList.each(function (idx, res) { $(res).empty() });
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);

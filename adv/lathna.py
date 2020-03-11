@@ -38,10 +38,10 @@ class Lathna(Adv):
         'dodge.startup': 41 / 60.0, # dodge frames
     }
     def ds_proc(self):
-        dmg = self.dmg_make('d_ds', 3.64, 's')
+        dmg = self.dmg_make('ds', 3.64, 's')
         self.afflics.poison('ds',120,0.291,30,dtype='s')
         # self.afflics.poison('ds',120,3.00,30,dtype='s')
-        return dmg + self.dmg_make('d_ds',3.64,'s')
+        return dmg + self.dmg_make('ds',3.64,'s')
 
     def prerun(self):
         self.faceless_god = Selfbuff('faceless_god',2.00,-1,'poison_killer','passive')

@@ -47,7 +47,6 @@ def sim_adv(adv_file, special=None, mass=None):
     adv_module = load_adv_module(adv_file)
     for d in durations:
         for ex in SIMC_EX_LIST:
-            # adv.adv_test.test(adv_module, {}, verbose=-5, duration=d, ex=ex, special=special, mass=1 if mass else 0)
             core.simulate.test(adv_module, {}, ex=ex, duration=d, verbose=-5, mass=1000 if mass else None, special=special, output=output)
     print('{:.4f}s - sim:{}'.format(monotonic() - t_start, adv_file), flush=True)
 

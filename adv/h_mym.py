@@ -39,7 +39,7 @@ class Halloween_Mym(Adv):
         'dodge.startup': 41 / 60.0, # dodge frames
     }
     def ds_proc(self):
-        return self.dmg_make('d_ds',self.dragonform.conf.ds.dmg,'s')
+        return self.dmg_make('ds',self.dragonform.conf.ds.dmg,'s')
 
     def init(self):
         del self.slots.c.ex['axe']
