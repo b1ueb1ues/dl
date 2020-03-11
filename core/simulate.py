@@ -17,7 +17,8 @@ ex_mapping = {
     'b': 'bow',
     'm': 'axe2',
     's': 'sword',
-    'g': 'geuden'
+    'g': 'geuden',
+    't': 'tobias'
 }
 
 def blade_mod(name, value):
