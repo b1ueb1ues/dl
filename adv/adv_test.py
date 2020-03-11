@@ -419,6 +419,8 @@ def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
 
 def do_mass_sim_stub(sim_id, classname, conf, cond, ex_set, sim_duration):
     adv = classname(conf=conf,cond=cond)
+    from core.acl import do_act
+    adv._acl = do_act
     adv.slots.c.ex.update(ex_set)
     sum_d = adv.run(sim_duration)
     dat = sum_dmg(sum_d)
