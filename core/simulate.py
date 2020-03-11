@@ -248,14 +248,19 @@ def damage_counts(real_d, damage, counts, output, mod_func=None, res=None):
     else:
         mod_func = lambda k, v: round(v)
     for k1, v1 in damage.items():
-        if len(v1) > 0:
-            output.write('\n{:>1} {:02.0f}%| '.format(k1, res[k1] * 100 / res['dps']))
-            for k2, v2 in v1.items():
-                modded_value = mod_func(k2, v2)
-                try:
-                    output.write('{}: {:d} [{}], '.format(k2, modded_value, counts[k1][k2]))
-                except:
-                    output.write('{}: {:d}, '.format(k2, modded_value))
+        found_count = set()
+        if len(v1) > 0 or len(counts[k1]) > 0:
+            output.write('\n{:>1} {:>3.0f}%| '.format(k1, res[k1] * 100 / res['dps']))
+        for k2, v2 in v1.items():
+            modded_value = mod_func(k2, v2)
+            try:
+                output.write('{}: {:d} [{}], '.format(k2, modded_value, counts[k1][k2]))
+                found_count.add(k2)
+            except:
+                output.write('{}: {:d}, '.format(k2, modded_value))
+        for k2, v2 in counts[k1].items():
+            if not k2 in found_count:
+                output.write('{}: 0 [{}], '.format(k2, counts[k1][k2]))
 
 def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
     res = dps_sum(real_d, adv.logs.damage, mod_func)
