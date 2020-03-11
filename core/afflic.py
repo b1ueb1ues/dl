@@ -28,7 +28,7 @@ class Dot(object):
         self.dotend_timer = Timer(self.dot_end_proc)
 
     def dot_end_proc(self, t):
-        log('dot', self.name, 'end')
+        log('dot', self.name, 'end\t')
         self.active = 0
         self.tick_timer.off()
         self.cb_end()
@@ -39,7 +39,7 @@ class Dot(object):
     def tick_proc(self, t):
         if self.active == 0:
             return
-        t.timing += self.iv
+        t.on(self.iv)
         self.true_dmg_event.count = self.tick_dmg
         self.true_dmg_event.on()
 
@@ -51,7 +51,7 @@ class Dot(object):
 
     def on(self):
         if self.active:
-            log('dot', self.name, 'failed')
+            log('dot', self.name, 'failed\t')
             return 0
         self.active = 1
         self.tick_timer.on(self.iv)
@@ -61,7 +61,7 @@ class Dot(object):
         self.quickshot_event.dtype = self.dtype if self.dtype else self.name
         self.quickshot_event()
         self.tick_dmg = self.quickshot_event.dmg
-        log('dot', self.name, 'start', '%f/%d' % (self.iv, self.duration))
+        log('dot', self.name, 'start\t', '%f/%d' % (self.iv, self.duration))
         return 1
 
     def off(self):
@@ -83,7 +83,6 @@ class AfflicUncapped(object):
 
         self.c_uptime = (0, 0)
         self.last_afflict = 0
-        Timer(self.uptime, repeat=1).on(1)
 
     def get_tolerance(self):
         if self.tolerance > 1:
@@ -107,6 +106,7 @@ class AfflicUncapped(object):
         return self._get
 
     def update(self):
+        self.uptime()
         nostack_p = 1.0
         for stack_p in self.stacks:
             nostack_p *= 1.0 - stack_p
@@ -146,7 +146,7 @@ class AfflicUncapped(object):
         self.update()
         return total_success_p
 
-    def uptime(self, t):
+    def uptime(self):
         next_r = self.get()
         next_t = now()
         if next_r == 0:
@@ -174,7 +174,6 @@ class AfflicCapped(object):
 
         self.c_uptime = (0, 0)
         self.last_afflict = 0
-        Timer(self.uptime, repeat=1).on(1)
 
     def get_tolerance(self):
         if self.tolerance > 1:
@@ -198,6 +197,7 @@ class AfflicCapped(object):
         return self._get
 
     def update(self):
+        self.uptime()
         total_p = 0.0
         states = defaultdict(lambda: 0.0)
         for state, state_p in self.states.items():
@@ -243,7 +243,7 @@ class AfflicCapped(object):
         self.update()
         return total_p
 
-    def uptime(self, t):
+    def uptime(self):
         next_r = self.get()
         next_t = now()
         if next_r == 0:
@@ -378,15 +378,15 @@ class Afflics(object):
         self.dot = tmp
 
     def refresh_cc(self):
-        tmp = {}
+        tmp = set()
         for i in self.cc:
             if self.cc[i].get():
-                tmp.append(i)
+                tmp.add(i)
         self.cc = tmp
 
     def add_dot(self, name, atype, rate, coef, duration, iv):
         if not iv:
-            errrrrr()
+            raise ValueError('DoT afflict require IV')
         if self.resist[atype] < 100:
             r = self.r()
             log('afflic', rate, self.resist[atype], r * 100)
@@ -434,6 +434,7 @@ class Afflics(object):
         # for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
         for atype in AFFLICT_LIST:
             aff = self.__dict__[atype]
+            aff.uptime()
             rate, t = aff.c_uptime
             # last = aff.last_afflict
             if rate > 0:
@@ -456,4 +457,3 @@ class Afflics(object):
         self.dot = []
         self.cc = {}
         self.luck = 1
-

@@ -15,7 +15,8 @@ BASE_TEAM_DPS = 16000
 BASE_AFFLICT_UPTIME = {
     'poison': 90,
     'burn': 75,
-    'paralysis': 80
+    'paralysis': 80,
+    'frostbite': 90
 }
 PREFIX_MAPS = {
     'adv': {
@@ -68,8 +69,6 @@ function slots_icon_fmt(adv, ele, wt, slots) {
     const dragon = slots_list[1];
     if (!dragon.startsWith('Unreleased')) {
         img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon"/>');
-    } else {
-        img_urls.push('<img src="/dl-sim/pic/dragon/Unreleased.png" class="slot-icon"/>');
     }
     const weapon = slots_list[2];
     if (weapon === 'HDT2' || (weapon === 'Agito')) {
@@ -513,6 +512,7 @@ function clearResults() {
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);
+    $('#input-sim-afflict-time').empty();
     $('#input-sim-buff-str').removeAttr('value');
     $('#input-sim-buff-def').removeAttr('value');
     $('#input-conditions').empty();

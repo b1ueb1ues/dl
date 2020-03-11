@@ -205,7 +205,7 @@ def simc_adv_test():
         except:
             pass
     try:
-        if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison']:
+        if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison', 'frostbite']:
             conf['sim_afflict.time'] = t * min(abs(int(params['sim_afflict_time'])), 100)/100
             conf['sim_afflict.type'] = params['sim_afflict_type']
     except:

@@ -225,7 +225,7 @@ class Mitsuba(Adv):
 
     def prerun(self):
         self.stance = 'sashimi'
-        self.next_stance = None
+        self.next_stance = 'sashimi'
         self.stance_dict = {
             'sashimi': X_alt(self, 'sashimi', sashimi_conf, x_proc=self.l_stance_x),
             'tempura': X_alt(self, 'tempura', tempura_conf, x_proc=self.l_stance_x)
