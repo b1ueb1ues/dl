@@ -1160,7 +1160,7 @@ class Adv(object):
         # self.m_condition = m_condition
         # self.m_condition.set(cond)
 
-        logreset()
+        self.logs = g_logs
 
         self.s3_buff_list = []
         self.s3_buff = None
@@ -1389,7 +1389,8 @@ class Adv(object):
             log('x', '%s' % xseq, 0)
         self.x_before(e)
         missile_timer = Timer(self.cb_missile, self.conf['missile_iv'][xseq])
-        missile_timer.dname = '%s_missile' % xseq
+        # missile_timer.dname = '%s_missile' % xseq
+        missile_timer.dname = xseq
         missile_timer.amount = dmg_coef
         missile_timer.samount = sp_gain
         missile_timer()
@@ -1443,8 +1444,8 @@ class Adv(object):
             loglevel = 0
 
         self.ctx.on()
-
         self.doconfig()
+        logreset()
 
         self.l_idle = Listener('idle', self.l_idle)
         self.l_x = Listener('x', self.l_x)
@@ -1468,12 +1469,18 @@ class Adv(object):
                 self.slots.c.mod.append(v)
             if type(v) == list:
                 self.slots.c.mod += v
-        if self.a1:
-            self.slots.c.a.append(self.a1)
-        if self.a2:
-            self.slots.c.a.append(self.a2)
-        if self.a3:
-            self.slots.c.a.append(self.a3)
+
+        for i in range(1, 4):
+            try:
+                ab = self.__class__.__dict__['a{}'.format(i)]
+                if isinstance(ab, list):
+                    self.slots.c.a.extend(ab)
+                else:
+                    self.slots.c.a.append(ab)
+            except:
+                continue
+        if 'ex' in self.conf:
+            self.slots.c.ex.update(self.conf.ex)
 
         self.equip()
         self.setup()
@@ -1685,7 +1692,8 @@ class Adv(object):
         dmg_coef = self.conf['fs.dmg']
         sp_gain = self.conf['fs.sp']
         missile_timer = Timer(self.cb_missile, self.conf['missile_iv']['fs'])
-        missile_timer.dname = 'fs_missile'
+        missile_timer.dname = 'fs'
+        # missile_timer.dname = 'fs_missile'
         missile_timer.amount = dmg_coef
         missile_timer.samount = sp_gain
         missile_timer()
@@ -1731,14 +1739,10 @@ class Adv(object):
                         self.s3_buff_list[0].on()
                         self.s3_buff = self.s3_buff_list[0]
                 else:
-                    self.s3_buff = None
+                    idx = (self.s3_buff_list.index(self.s3_buff) + 1) % len(self.s3_buff_list)
                     for buff in self.s3_buff_list:
-                        if buff is not None:
-                            if buff.get():
-                                buff.off()
-                            else:
-                                buff.on()
-                                self.s3_buff = buff
+                        buff.off()
+                    self.s3_buff_list[idx].on()
             else:
                 self.do_buff(e, buffarg).on()
 
