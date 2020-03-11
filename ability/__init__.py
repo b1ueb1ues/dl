@@ -151,7 +151,8 @@ class Co_Ability(Ability):
         'wand': [('s','ex',0.15)],
         'sword': [('dh','passive',0.15)],
         'axe2': [('crit','damage',0.30)],
-        'geuden': [('da','passive',0.10),('dt','passive',0.20)]
+        'geuden': [('da','passive',0.10),('dt','passive',0.20)],
+        'tobias': [('bt','passive',0.2)]
     }
     def __init__(self, name, value, cond=None):
         try:
