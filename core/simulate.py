@@ -196,12 +196,14 @@ def act_sum(actions, output):
             p_xseq = 0
             condensed = append_condensed(condensed, p_act+act)
         else:
+            if p_act[0] == 'x':
+                condensed = append_condensed(condensed, p_act)
             p_xseq = 0
             condensed = append_condensed(condensed, act)
         p_act = act
     if p_act[0] == 'x':
         condensed = append_condensed(condensed, p_act)
-    
+    output.write(str(condensed))
     p_type = None
     for act, cnt in condensed:
         if act[0] == 'x' or act == 'fs':
@@ -209,9 +211,10 @@ def act_sum(actions, output):
                 output.write('[  ] ')
             elif p_type != 'd':
                 output.write(' ')
-            output.write(act.replace('x', 'c'))
+            xstr = act.replace('x', 'c')
             if cnt > 1:
-                output.write('*{}'.format(cnt))
+                xstr += '*{}'.format(cnt)
+            output.write('{:<6}'.format(xstr))
             p_type = 'x'
         else:
             if act == 'dshift':
