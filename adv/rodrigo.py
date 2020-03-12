@@ -10,10 +10,10 @@ class Rodrigo(Adv):
     conf = {}
     conf['slot.a'] = TSO()+BN()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
-        `s3, fsc
-        `fs, seq=3 and cancel
+        `fs, x=3
         """
     def d_slots(self):
         if 'bow' in self.ex:

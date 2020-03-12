@@ -151,7 +151,8 @@ class Co_Ability(Ability):
         'wand': [('s','ex',0.15)],
         'sword': [('dh','passive',0.15)],
         'axe2': [('crit','damage',0.30)],
-        'geuden': [('da','passive',0.10),('dt','passive',0.20)]
+        'geuden': [('da','passive',0.10),('dt','passive',0.20)],
+        'tobias': [('buff','time',0.20)]
     }
     def __init__(self, name, value, cond=None):
         try:
@@ -244,7 +245,7 @@ class Resilient_Offense(Ability):
         self.value = value
         if name == 'ro':
             self.proc_chances = 3
-            self.interval = interval or 90
+            self.interval = interval or 180
         elif name == 'uo':
             self.proc_chances = 5
             self.interval = interval or 30

@@ -180,4 +180,4 @@ flame = Agito_Brisingr
 water = HDT2_Aquatic_Spiral
 wind = HDT2_Grand_Tempest
 light = HDT2_Primeval_Thunder
-shadow = HDT2_Darkbinder
+shadow = Agito_Jiu_Ci

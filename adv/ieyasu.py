@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
@@ -14,18 +13,17 @@ class Ieyasu(Adv):
     conf['slots.a'] = RR()+JotS()
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
-        `s1, self.bleed._static['stacks']<3
-        `s2, seq=5 and self.bleed._static['stacks'] > 0
-        `s3, seq=4
+        `s3, not self.s3_buff
+        `s1, x=4 and self.s3_buff
+        `s2, x=5
         """
     def d_slots(self):
         if 'bow' in self.ex:
             self.conf.slot.a = RR()+BN()
 
     def s2ifbleed(self):
-        if self.s2buff.get()!=0:
-            if self.bleed._static['stacks'] > 0:
-                return 0.20
+        if self.bleed._static['stacks'] > 0:
+            return self.s2buff.get()
         return 0
 
     def prerun(self):
@@ -45,5 +43,5 @@ class Ieyasu(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -787,18 +787,18 @@
     },
     "Hawk": {
         "c": {
-            "att": 494,
+            "att": 592,
             "ele": "wind",
             "wt": "bow",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
             "recovery": 2.0,
             "dmg": 0.0,
             "sp": 2723,
-            "hit": 1
+            "hit": 2
         },
         "s2": {
             "startup": 0.25,
@@ -1172,18 +1172,18 @@
     },
     "Lin_You": {
         "c": {
-            "att": 517,
+            "att": 568,
             "ele": "wind",
             "wt": "axe",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
             "recovery": 2.4,
-            "dmg": 11.16,
+            "dmg": 13.02,
             "sp": 2969,
-            "hit": 6
+            "hit": 7
         },
         "s2": {
             "startup": 0.25,
@@ -1981,27 +1981,22 @@
     },
     "Su_Fang": {
         "c": {
-            "att": 474,
+            "att": 568,
             "ele": "wind",
             "wt": "dagger",
             "stars": "4",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
             "recovery": 2.1,
-            "dmg": 5.58,
+            "dmg": 0,
             "sp": 2462,
-            "hit": 1
+            "hit": 4
         },
         "s2": {
             "startup": 0.25,
             "recovery": 0.9,
-            "buff": [
-                "self",
-                0.25,
-                10.0
-            ],
             "dmg": 0.0,
             "sp": 4877,
             "hit": 0
@@ -2056,6 +2051,52 @@
             "dmg": 7.9,
             "sp": 5259,
             "hit": 1
+        }
+    },
+    "Templar_Hope": {
+        "c": {
+            "att": 442,
+            "ele": "wind",
+            "wt": "sword",
+            "stars": "4",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0.0,
+            "sp": 3756,
+            "hit": 0
+        },
+        "s2": {
+            "startup": 0.1,
+            "recovery": 2.6,
+            "dmg": 6.76,
+            "sp": 4608,
+            "hit": 5
+        }
+    },
+    "Tobias": {
+        "c": {
+            "att": 494,
+            "ele": "wind",
+            "wt": "blade",
+            "stars": "5",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0.0,
+            "sp": 3840,
+            "hit": 0
+        },
+        "s2": {
+            "startup": 0.25,
+            "recovery": 1.45,
+            "dmg": 0.0,
+            "sp": 1,
+            "hit": 0
         }
     },
     "Valentines_Ezelith": {
@@ -3104,7 +3145,7 @@
             "recovery": 3.85,
             "dmg": 4.99,
             "sp": 999999,
-            "hit": -1
+            "hit": 1
         }
     },
     "Cassandra": {
@@ -3127,7 +3168,7 @@
             "recovery": 3.85,
             "dmg": 0.0,
             "sp": 4935,
-            "hit": -1
+            "hit": 5
         }
     },
     "Patia": {

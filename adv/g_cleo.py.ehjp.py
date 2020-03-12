@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from module.x_alt import Fs_alt
 import adv.g_cleo
@@ -22,7 +21,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
     conf['slot.w'] = Agito_Jiu_Ci()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
-        s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d c5 fs s2 s1 dragon end
+        s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d fs s2 s1 dragon end
     """
     comment = '4 Gleo vs EHJP; simulated break & no team dps; {}'.format(conf['rotation'].replace(' d ', ' dodge ').strip())
 
@@ -42,7 +41,6 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         self.odbk = 991202+792960
         self.ehjp = 4488479
         self.dmgsum = 0
-        adv.adv_test.team_dps = 0
         self.broken_punisher = Selfbuff(name='candy_couriers', value=0.25, duration=-1, mtype='att', morder='bk')
         self.a1_zones = []
         for _ in range(4):
@@ -68,9 +66,9 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         if self.broken_punisher.get():
             generic_name = name.split('_')[0]
             if generic_name[0] == 'x':
-                generic_name = 'attack'
-            if generic_name[0] == 'd':
-                generic_name = name.split('_')[1][0:2]
+                generic_name = 'x'
+            elif generic_name[0:2] == 'dx':
+                generic_name = 'dx'
             name = 'o_'+generic_name+'_on_bk'
         if dtype == None:
             dtype = name
@@ -88,10 +86,8 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         return 5.0/3 * dmg_coef * self.dmg_mod(name) * att/armor * 1.5   # true formula
 
     def s2_proc(self, e):
-        super().s2_proc(e)
-        Debuff('s2',0.10,20).on()
-        Debuff('s2',0.10,20).on()
-        Debuff('s2',0.10,20).on()
+        for _ in range(4):
+            Selfbuff('s2', -0.10, 20, mtype='def').on()
 
     def fs_proc_alt(self, e):
         for buff in self.a1_zones:
@@ -99,6 +95,5 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(Gala_Cleo, *sys.argv)

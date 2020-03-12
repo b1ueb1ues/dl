@@ -180,4 +180,4 @@ flame = Agito_Hrotti
 water = HDT2_Tiderulers_Maw
 wind = HDT2_Windrulers_Maw
 light = HDT2_Fulminators_Maw
-shadow = HDT2_Shaderulers_Maw
+shadow = Agito_Qinghong_Jian

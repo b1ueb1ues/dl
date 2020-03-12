@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -14,9 +13,9 @@ class Valentines_Addis(Adv):
     conf['slot.d'] = Shinobi()
     conf['slot.a'] = The_Plaguebringer()+Primal_Crisis()
     conf['acl'] = """
-        `s2, not self.a3atk.get()
+        `s3, not self.s3_buff
+        `s2, self.hp > 30
         `s1
-        `s3
     """
     conf['afflict_res.poison'] = 0
 
@@ -37,7 +36,5 @@ class Valentines_Addis(Adv):
             self.a3spd.on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

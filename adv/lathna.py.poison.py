@@ -1,6 +1,7 @@
 import adv.adv_test
 import adv.lathna
 from slot.a import *
+import sys
 
 def module():
     return Lathna
@@ -12,13 +13,12 @@ class Lathna(adv.lathna.Lathna):
     conf['sim_afflict.type'] = 'poison'
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
-        # s1a = self.s1a
+        `s3, not self.s3_buff
         `dragon
         `s1a
-        `s2, seq = 5
-        `s3, seq = 5
+        `s2, x=5
         """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

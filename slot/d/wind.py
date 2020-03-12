@@ -224,7 +224,7 @@ Garland = AC011_Garland
 
 class Ariel(DragonBase):
     ele = 'wind'
-    att = 127
+    att = 126
     a = [('a', 0.50), ('sp',0.30)]
 
 class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):

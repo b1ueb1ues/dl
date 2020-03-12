@@ -17,7 +17,8 @@ ex_mapping = {
     'b': 'bow',
     'm': 'axe2',
     's': 'sword',
-    'g': 'geuden'
+    'g': 'geuden',
+    't': 'tobias'
 }
 
 def blade_mod(name, value):
@@ -134,13 +135,14 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
         return
 
     if mass:
-        mass_log, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration)
-        adv.logs = mass_log
+        adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration)
 
     run_results.append((adv, real_d, True))
     no_cond_dps = None
     if adv.condition.exist():
         adv_2, real_d_2 = run_once(classname, conf, duration, False)
+        # if mass:
+        #     adv_2.logs, real_d_2 = run_mass(mass, adv_2.logs, real_d, classname, conf, duration)
         run_results.append((adv_2, real_d_2, False))
         no_cond_dps = {
             'dps': round(dps_sum(real_d_2, adv_2.logs.damage)['dps']),
@@ -195,12 +197,15 @@ def act_sum(actions, output):
             p_xseq = 0
             condensed = append_condensed(condensed, p_act+act)
         else:
+            if p_act[0] == 'x':
+                condensed = append_condensed(condensed, p_act)
             p_xseq = 0
             condensed = append_condensed(condensed, act)
         p_act = act
     if p_act[0] == 'x':
         condensed = append_condensed(condensed, p_act)
-    
+    output.write(str(condensed))
+    output.write('\n')
     p_type = None
     for act, cnt in condensed:
         if act[0] == 'x' or act == 'fs':
@@ -247,14 +252,19 @@ def damage_counts(real_d, damage, counts, output, mod_func=None, res=None):
     else:
         mod_func = lambda k, v: round(v)
     for k1, v1 in damage.items():
-        if len(v1) > 0:
-            output.write('\n{:>1} {:02.0f}%| '.format(k1, res[k1] * 100 / res['dps']))
-            for k2, v2 in v1.items():
-                modded_value = mod_func(k2, v2)
-                try:
-                    output.write('{}: {:d} [{}], '.format(k2, modded_value, counts[k1][k2]))
-                except:
-                    output.write('{}: {:d}, '.format(k2, modded_value))
+        found_count = set()
+        if len(v1) > 0 or len(counts[k1]) > 0:
+            output.write('\n{:>1} {:>3.0f}%| '.format(k1, res[k1] * 100 / res['dps']))
+        for k2, v2 in v1.items():
+            modded_value = mod_func(k2, v2)
+            try:
+                output.write('{}: {:d} [{}], '.format(k2, modded_value, counts[k1][k2]))
+                found_count.add(k2)
+            except:
+                output.write('{}: {:d}, '.format(k2, modded_value))
+        for k2, v2 in counts[k1].items():
+            if not k2 in found_count:
+                output.write('{}: 0 [{}], '.format(k2, counts[k1][k2]))
 
 def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
     res = dps_sum(real_d, adv.logs.damage, mod_func)
@@ -281,10 +291,15 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
             output.write(' '.join(adv.slots.c.ex.keys()))
             output.write(') ')
         output.write(amulets(adv))
-
-        output.write('\n<{}> {}\n'.format(
-            adv.condition.cond_str(), 
-            adv.comment))
+        output.write('\n')
+        cond_comment = []
+        if adv.condition.exist():
+            cond_comment.append('<{}>'.format(adv.condition.cond_str()))
+        if len(adv.comment) > 0:
+            cond_comment.append(adv.comment)
+        if len(cond_comment) > 0:
+            output.write(' '.join(cond_comment))
+            output.write('\n')
     output.write('-'*BR)
     damage_counts(real_d, adv.logs.damage, adv.logs.counts, output, mod_func=mod_func, res=res)
     if cond:
@@ -339,6 +354,7 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
             except:
                 dps_mappings[k] = dmg_val / real_d
 
+    report_csv[0] = round(report_csv[0])
     if callable(mod_func):
         report_csv.extend(['{}:{}'.format(k, int(mod_func(k, v))) for k, v in dps_mappings.items()])
     else:
@@ -354,25 +370,33 @@ def load_adv_module(adv_name):
         adv_name.lower()
     ).module()
 
-if __name__ == '__main__':
+def test_with_argv(*argv, conf={}):
+    if argv[0] is not None and not isinstance(argv[0], str):
+        module = argv[0]
+    else:
+        try:
+            name = os.path.basename(argv[1]).split('.')[0]
+            module = load_adv_module(name)
+        except:
+            name = 'euden'
+            module = load_adv_module(name)
     try:
-        name = os.path.basename(sys.argv[1]).split('.')[0]
-    except:
-        name = 'euden'
-    try:
-        verbose = int(sys.argv[2])
+        verbose = int(argv[2])
     except:
         verbose = 0
     try:
-        duration = int(sys.argv[3])
+        duration = int(argv[3])
     except:
         duration = 180
     try:
-        ex = sys.argv[4]
+        ex = argv[4]
     except:
         ex = '_'
     try:
-        mass = int(sys.argv[5])
+        mass = int(argv[5])
     except:
         mass = 0
-    test(load_adv_module(name), verbose=verbose, duration=duration, ex=ex, mass=mass)
+    test(module, conf=conf, verbose=verbose, duration=duration, ex=ex, mass=mass)
+
+if __name__ == '__main__':
+    test_with_argv(*sys.argv)

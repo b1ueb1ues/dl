@@ -37,7 +37,7 @@ class Bleed(Dot):
         else:
             print("err in bleed tick_proc")
             exit()
-        self.true_dmg_event.comment = "%d stacks"%stacks
+        self.true_dmg_event.comment = " stack <%d>"%stacks
         self.true_dmg_event.count = dmg
         self.true_dmg_event.on()
         #log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
@@ -54,7 +54,9 @@ class Bleed(Dot):
         if self._static['stacks'] == 0:
             self._static['tick_event'].off()
 
-
+    def get(self):
+        return self._static['stacks']
+    
     def on(self):
         if self._static['stacks'] == 3:
             log('resist','bleed')

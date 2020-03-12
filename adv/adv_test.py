@@ -43,7 +43,8 @@ def set_ex(ex_string):
         'b': 'bow',
         'm': 'axe2',
         's': 'sword',
-        'g': 'geuden'
+        'g': 'geuden',
+        't': 'tobias'
     }
 
     for e in ex_string:

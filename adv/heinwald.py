@@ -1,6 +1,5 @@
-import adv.adv_test
 from core.advbase import *
-from slot.a.all import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -12,10 +11,9 @@ class Heinwald(Adv):
 
     conf = {}
     conf['acl'] = """
-        `s2, pin='prep'
-        `s2, cancel
+        `s3, not self.s3_buff
+        `s2, s=3 or cancel
         `s1, cancel
-        `s3, cancel
         """
 
     def init(self):
@@ -35,6 +33,5 @@ class Heinwald(Adv):
         Selfbuff('s2',0.25,10).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

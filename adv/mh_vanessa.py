@@ -37,8 +37,7 @@ class Hunter_Vanessa(Adv):
     conf['afflict_res.paralysis'] = 0
 
     def d_slots(self):
-        from adv.adv_test import sim_duration
-        if sim_duration <= 90:
+        if self.duration <= 90:
             self.slots.a = Resounding_Rendition()+The_Chocolatiers()
 
     def init(self):

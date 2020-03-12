@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot import *
 from slot.w import *
@@ -20,11 +19,10 @@ class Gala_Cleo(Adv):
     conf['slot.a'] = CC()+JotS()  # wand c2*1.08 = 217
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
-        `s2, pin='prep'
+        `s3, pin='prep'
         `fs, s1.charged>=s1.sp and self.fs_alt.uses > 0
-        `s2, x=5 or x=4 or fsc
+        `s2, x=5 or x=4 or fsc or s=3
         `s1, s=2 or fsc
-        `s3, x=5 or fsc
         """
 
     def d_slots(self):
@@ -80,5 +78,5 @@ class Gala_Cleo(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

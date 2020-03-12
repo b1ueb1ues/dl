@@ -180,4 +180,4 @@ flame = Agito_Tyrfing
 water = HDT2_Ruinous_Torrent
 wind = HDT2_Endless_Horizon
 light = HDT2_Brilliant_Flash
-shadow = HDT2_True_Abyss
+shadow = Agito_Qixing_Baodao

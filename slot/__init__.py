@@ -140,18 +140,17 @@ class DragonBase(Slot):
     def oninit(self, adv):
         super().oninit(adv)
         from core.dragonform import DragonForm
-        from adv.adv_test import sim_duration
         self.adv = adv
         if 'dragonform' in adv.conf:
             name = type(adv).__name__
             dconf = Conf(self.default_dragonform)
             dconf += adv.conf.dragonform
-            dconf.gauge_iv = int(sim_duration/12)
+            dconf.gauge_iv = int(self.adv.duration/12)
             self.adv.dragonform = DragonForm(name, dconf, adv, adv.ds_proc)
         else:
             name = type(self).__name__
             dconf = Conf({**self.default_dragonform, **self.dragonform})
-            dconf.gauge_iv = int(sim_duration/12)
+            dconf.gauge_iv = int(self.adv.duration/12)
             self.adv.dragonform = DragonForm(name, dconf, adv, self.ds_proc)
 
 class Amuletempty(object):
@@ -227,16 +226,6 @@ class Slots(object):
         tmp.a.oninit(adv)
         a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
         self.abilities = a
-
-        # for i in tmp.c.a:
-        #     Ability(*i).oninit(adv,'c_')
-        # for i in tmp.w.a:
-        #     Ability(*i).oninit(adv,'w_')
-        # for i in tmp.d.a:
-        #     Ability(*i).oninit(adv,'d_')
-        # for i in tmp.a.a:
-        #     Ability(*i).oninit(adv,'a_')
-
         for afrom, alist in [('c', tmp.c.a), ('w', tmp.w.a), ('d', tmp.d.a), ('a', tmp.a.a)]:
             for ab in alist:
                 name = ab[0]

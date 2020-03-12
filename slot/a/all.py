@@ -318,13 +318,17 @@ class Dear_Diary(Amulet):
     a = [('ro', 0.10), ('cc',0.14,'bow')]
 DD = Dear_Diary
 
-class Dear_Diary_Fast_RO(Amulet):
+class Dear_Diary_RO_30(Amulet):
     att = 65
     a = [('ro', 0.1, 30), ('cc',0.14,'bow')]
 
-class Dear_Diary_Slow_RO(Amulet):
+class Dear_Diary_RO_60(Amulet):
     att = 65
-    a = [('ro', 0.1, 180), ('cc',0.14,'bow')]
+    a = [('ro', 0.1, 60), ('cc',0.14,'bow')]
+
+class Dear_Diary_RO_90(Amulet):
+    att = 65
+    a = [('ro', 0.1, 90), ('cc',0.14,'bow')]
 
 class Odd_Sparrows(Amulet):
     att = 51
@@ -431,6 +435,14 @@ class The_Queen_of_the_Knife(Amulet):
 class Breakfast_at_Valerios(Amulet):
     att = 65
     a = [('cc', 0.08, 'hp70'), ('a', 0.2, 'hit15')]
+
+class Brothers_in_Arms(Amulet):
+    att = 65
+    a = [('bc',0.13), ('bk', 0.25)]
+
+class A_Small_Courage(Amulet):
+    att = 52
+    a = [('bc',0.08), ('a', 0.13, 'hp100')]
 
 amulets = []
 for k in list(globals()):
