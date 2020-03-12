@@ -315,16 +315,20 @@ FWHC = From_Whence_He_Comes
 
 class Dear_Diary(Amulet):
     att = 65
-    a = [('ro', 0.10), ('cc',0.14,'bow')]
+    a = [('ro', 0.10, 180), ('cc',0.14,'bow')]
 DD = Dear_Diary
 
-class Dear_Diary_Fast_RO(Amulet):
+class Dear_Diary_RO_30(Amulet):
     att = 65
     a = [('ro', 0.1, 30), ('cc',0.14,'bow')]
 
-class Dear_Diary_Slow_RO(Amulet):
+class Dear_Diary_RO_60(Amulet):
     att = 65
-    a = [('ro', 0.1, 180), ('cc',0.14,'bow')]
+    a = [('ro', 0.1, 60), ('cc',0.14,'bow')]
+
+class Dear_Diary_RO_90(Amulet):
+    att = 65
+    a = [('ro', 0.1, 90), ('cc',0.14,'bow')]
 
 class Odd_Sparrows(Amulet):
     att = 51

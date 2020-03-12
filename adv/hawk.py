@@ -11,13 +11,13 @@ class Hawk(Adv):
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
     conf = {}
     conf['acl'] = """
-        `s1
-        `s2
-        `s3
         `fs, not self.afflics.poison.get() and self.fs_alt.uses > 0
+        `s2
+        `s1
+        `s3
     """
     conf['slot.d'] = Vayu()
-    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
+    conf['slot.a'] = Resounding_Rendition() + The_Fires_of_Hate()
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
 
