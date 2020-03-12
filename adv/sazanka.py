@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
 from slot.d import *
@@ -12,13 +11,13 @@ class Sazanka(Adv):
 
     conf = {}
     conf['slot.d'] = Shinobi()
-    conf['slot.a'] = KFM()+CE()
+    conf['slot.a'] = KFM()+Crystalian_Envoy()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s3, fsc
         `s2, fsc
         `fs, seq=5
-        """
+    """
     conf['afflict_res.sleep'] = 80
 
     def prerun(self):
@@ -38,8 +37,6 @@ class Sazanka(Adv):
             self.dmg_make("o_fs_boost",0.38)
             self.afflics.sleep('s2_fs', 100, 4.5)
 
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

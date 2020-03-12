@@ -135,13 +135,14 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
         return
 
     if mass:
-        mass_log, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration)
-        adv.logs = mass_log
+        adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration)
 
     run_results.append((adv, real_d, True))
     no_cond_dps = None
     if adv.condition.exist():
         adv_2, real_d_2 = run_once(classname, conf, duration, False)
+        # if mass:
+        #     adv_2.logs, real_d_2 = run_mass(mass, adv_2.logs, real_d, classname, conf, duration)
         run_results.append((adv_2, real_d_2, False))
         no_cond_dps = {
             'dps': round(dps_sum(real_d_2, adv_2.logs.damage)['dps']),
