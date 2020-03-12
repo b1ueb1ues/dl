@@ -798,7 +798,7 @@
             "recovery": 2.0,
             "dmg": 0.0,
             "sp": 2723,
-            "hit": 1
+            "hit": 2
         },
         "s2": {
             "startup": 0.25,
@@ -1181,9 +1181,9 @@
         "s1": {
             "startup": 0.1,
             "recovery": 2.4,
-            "dmg": 11.16,
+            "dmg": 13.02,
             "sp": 2969,
-            "hit": 6
+            "hit": 7
         },
         "s2": {
             "startup": 0.25,
@@ -2058,6 +2058,29 @@
             "hit": 1
         }
     },
+    "Templar_Hope": {
+        "c": {
+            "att": 442,
+            "ele": "wind",
+            "wt": "sword",
+            "stars": "4",
+            "lv2_autos": 0
+        },
+        "s1": {
+            "startup": 0.25,
+            "recovery": 0.9,
+            "dmg": 0.0,
+            "sp": 3756,
+            "hit": 0
+        },
+        "s2": {
+            "startup": 0.1,
+            "recovery": 2.6,
+            "dmg": 7.55,
+            "sp": 4608,
+            "hit": 5
+        }
+    },
     "Tobias": {
         "c": {
             "att": 494,
@@ -2076,8 +2099,8 @@
         "s2": {
             "startup": 0.25,
             "recovery": 0.9,
-            "dmg": 10.89,
-            "sp": 38400,
+            "dmg": 0.0,
+            "sp": 1,
             "hit": 0
         }
     },

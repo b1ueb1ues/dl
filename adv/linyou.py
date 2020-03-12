@@ -1,4 +1,4 @@
-import adv.adv_test
+from core.simulate import test_with_argv
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -13,29 +13,31 @@ class Lin_You(Adv):
     a3 = ('sp',0.08)
     conf = {}
     conf['slot.d'] = Long_Long()
+    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp-440 
+        `s2, s1.charged>=s1.sp-self.sp_val(2)
         `s1
-        `s2, seq=4
-        `s3, seq=5
+        `s3, x=5
         """
 
     def prerun(self):
-        conf_fs_alt = {REPLACE}
-        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), fs_proc=REPLACE?)
+        conf_fs_alt = {'fs.dmg': 2.42, 'fs.hit': 5}
+        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt))
         self.s2_buff = Spdbuff('s2_spd',0.20, 15)
 
     def s1_proc(self, e):
         if self.s2_buff.get():
-            self.dmg_make('o_s1_powerup', REPLACE*3)
+            self.dmg_make('o_s1_powerup', 1.86*3)
             self.s2_buff.buff_end_timer.add(2.4)
             self.hits += 3
+            self.afflics.sleep('s1', 150)
         self.fs_alt.on(3)
 
     def s2_proc(self, e):
-        self.s2_buff.on()
+        if self.s2_buff.get():
+            Spdbuff('s2_spd',0.20, 15)
+        else:
+            self.s2_buff.on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    test_with_argv('t_hope', *sys.argv)

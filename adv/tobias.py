@@ -1,4 +1,4 @@
-import adv.adv_test
+from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -25,11 +25,14 @@ class Tobias(Adv):
     def prerun(self):
         self.s2_mode = 0
         self.s1.autocharge_init(0)
-        self.s2.autocharge_init(1536).on()
+        self.s2.autocharge_init(1).on()
         # self.s2_x_alt = X_alt(self, 'appetizer', appetizer_conf, x_proc=self.l_stance_x, no_fs=True, no_dodge=True)
 
     def s1_autocharge_off(self, t):
         self.s1.autocharge_timer.off()
+
+    # def s2_x_alt_off(self, t):
+        # self.s2_x_alt.off()
 
     def s1_proc(self, e):
         self.buff_class('s1',0.3,15).on()
@@ -38,10 +41,10 @@ class Tobias(Adv):
         if self.s2_mode == 0:
             self.conf.s2.startup = 0.1
             self.conf.s2.recovery = 1.9
-            self.s2.charged = self.s2.sp
             # self.s2_x_alt.on()
             self.s1.autocharge_timer.on()
             Timer(self.s1_autocharge_off).on(7)
+            # Timer(self.s2_x_alt_off).on(10)
         else:
             self.dmg_make('s2',0)
             self.afflics.poison('s2', 120, 0.582)
@@ -51,6 +54,4 @@ class Tobias(Adv):
         self.s2_mode = (self.s2_mode + 1) % 2
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    test_with_argv('t_hope', *sys.argv)

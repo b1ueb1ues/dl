@@ -204,6 +204,7 @@ def act_sum(actions, output):
     if p_act[0] == 'x':
         condensed = append_condensed(condensed, p_act)
     output.write(str(condensed))
+    output.write('\n')
     p_type = None
     for act, cnt in condensed:
         if act[0] == 'x' or act == 'fs':
@@ -211,10 +212,9 @@ def act_sum(actions, output):
                 output.write('[  ] ')
             elif p_type != 'd':
                 output.write(' ')
-            xstr = act.replace('x', 'c')
+            output.write(act.replace('x', 'c'))
             if cnt > 1:
-                xstr += '*{}'.format(cnt)
-            output.write('{:<6}'.format(xstr))
+                output.write('*{}'.format(cnt))
             p_type = 'x'
         else:
             if act == 'dshift':
@@ -364,25 +364,28 @@ def load_adv_module(adv_name):
         adv_name.lower()
     ).module()
 
-if __name__ == '__main__':
+def test_with_argv(*argv, conf={}):
     try:
-        name = os.path.basename(sys.argv[1]).split('.')[0]
+        name = os.path.basename(argv[1]).split('.')[0]
     except:
         name = 'euden'
     try:
-        verbose = int(sys.argv[2])
+        verbose = int(argv[2])
     except:
         verbose = 0
     try:
-        duration = int(sys.argv[3])
+        duration = int(argv[3])
     except:
         duration = 180
     try:
-        ex = sys.argv[4]
+        ex = argv[4]
     except:
         ex = '_'
     try:
-        mass = int(sys.argv[5])
+        mass = int(argv[5])
     except:
         mass = 0
-    test(load_adv_module(name), verbose=verbose, duration=duration, ex=ex, mass=mass)
+    test(load_adv_module(name), conf=conf, verbose=verbose, duration=duration, ex=ex, mass=mass)
+
+if __name__ == '__main__':
+    test_with_argv(*sys.argv)

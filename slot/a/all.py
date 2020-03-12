@@ -432,6 +432,14 @@ class Breakfast_at_Valerios(Amulet):
     att = 65
     a = [('cc', 0.08, 'hp70'), ('a', 0.2, 'hit15')]
 
+class Brothers_in_Arms(Amulet):
+    att = 65
+    a = [('bc',0.13), ('bk', 0.25)]
+
+class A_Small_Courage(Amulet):
+    att = 52
+    a = [('bc',0.08), ('a', 0.13, 'hp100')]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

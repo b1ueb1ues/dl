@@ -1,4 +1,4 @@
-import adv.adv_test
+from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -22,27 +22,38 @@ class Hawk(Adv):
     conf['afflict_res.poison'] = 0
 
     def fs_proc_alt(self, e):
-        self.afflics.stun('s2_fs', REPLACE+50)
-        self.afflics.poison('s2_fs', REPLACE+50, 0.582)
+        self.afflics.stun('fs', 110+50)
+        self.afflics.poison('fs', 120+50, 0.582)
 
     def prerun(self):
-        conf_fs_alt = {REPLACE}
+        conf_fs_alt = {
+            'fs.dmg': 4.94,
+            'fs.hit':19,
+            'fs.sp':2400,
+        }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
         self.s2_mode = 0
+        self.a_s2 = self.s2.ac
+        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 2.5}))
 
     def s1_proc(self, e):
-        with KillerModifier('s1killer', 'hit', REPLACE, ['stun']), KillerModifier('s1killer', 'hit', REPLACE, ['poison']):
-            self.dmg_make('s1',REPLACE)
+        with KillerModifier('s1_stun_killer', 'hit', 3.3, ['stun']):
+            self.dmg_make('s1',4.74)
+        with KillerModifier('s1_poison_killer', 'hit', 2, ['poison']):
+            self.dmg_make('s1',4.74)
 
     def s2_proc(self, e):
         if self.s2_mode == 0:
             self.fs_alt.on(2)
+            self.s2.ac = self.a_s2a
         else:
-            with KillerModifier('skiller', 'hit', REPLACE, ['poison']):
-                self.dmg_make('s2',REPLACE)
+            with KillerModifier('s2_killer', 'hit', 1.5, ['poison']):
+                self.dmg_make('s2', 9.48)
+            self.conf.s2.startup = 0.25
+            self.conf.s2.recovery = 0.9
+            self.s2.ac = self.a_s2
         self.s2_mode = (self.s2_mode + 1) % 2
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    test_with_argv('t_hope', *sys.argv)

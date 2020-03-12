@@ -34,7 +34,7 @@ class Nefaria(Adv):
     
     def prerun(self):
         conf_fs_alt = {
-            'fs.dmg':8.09,
+            'fs.dmg':7.90,
             'fs.hit':19,
             'fs.sp':2400,
         }
