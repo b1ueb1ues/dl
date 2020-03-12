@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -10,9 +9,9 @@ class Berserker(Adv):
     a3 = ('lo',0.3)
     conf = {}
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s3, fsc
-        `fs, seq=2 and cancel
+        `fs, x=3
         """
 
     def d_slots(self):
@@ -20,6 +19,5 @@ class Berserker(Adv):
             self.conf.slot.a = TSO()+JotS()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

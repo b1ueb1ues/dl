@@ -2071,7 +2071,7 @@
         "s2": {
             "startup": 0.1,
             "recovery": 2.6,
-            "dmg": 7.55,
+            "dmg": 6.76,
             "sp": 4608,
             "hit": 5
         }
@@ -2093,7 +2093,7 @@
         },
         "s2": {
             "startup": 0.25,
-            "recovery": 0.9,
+            "recovery": 1.45,
             "dmg": 0.0,
             "sp": 1,
             "hit": 0
@@ -3145,7 +3145,7 @@
             "recovery": 3.85,
             "dmg": 4.99,
             "sp": 999999,
-            "hit": -1
+            "hit": 1
         }
     },
     "Cassandra": {
@@ -3168,7 +3168,7 @@
             "recovery": 3.85,
             "dmg": 0.0,
             "sp": 4935,
-            "hit": -1
+            "hit": 5
         }
     },
     "Patia": {

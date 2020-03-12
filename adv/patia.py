@@ -1,6 +1,6 @@
-import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
+from slot.d import *
 from slot.a import *
 
 def module():
@@ -11,13 +11,13 @@ class Patia(Adv):
     a3 = ('primed_crit_chance', 0.10, 5)
 
     conf = {}
-    conf['slots.a'] = VC()+Jewels_of_the_Sun()
+    conf['slot.d'] = Shinobi()
+    conf['slot.a'] = Valiant_Crown()+FirstRate_Hospitality()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3, x=5
-        `fs, x=5
-        """
+    """
 
     def prerun(self):
         self.bleed = Bleed("g_bleed",0).reset()
@@ -30,5 +30,5 @@ class Patia(Adv):
         Bleed("s2", 1.46).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

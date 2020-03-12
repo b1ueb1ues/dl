@@ -180,4 +180,4 @@ flame = Agito_Gjallarhorn
 water = HDT2_Oceans_Embrace
 wind = HDT2_Stormruler
 light = HDT2_Heavensneer
-shadow = HDT2_Dark_Hunger
+shadow = Agito_Goosefoot_Staff

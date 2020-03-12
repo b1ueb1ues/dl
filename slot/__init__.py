@@ -140,18 +140,17 @@ class DragonBase(Slot):
     def oninit(self, adv):
         super().oninit(adv)
         from core.dragonform import DragonForm
-        from adv.adv_test import sim_duration
         self.adv = adv
         if 'dragonform' in adv.conf:
             name = type(adv).__name__
             dconf = Conf(self.default_dragonform)
             dconf += adv.conf.dragonform
-            dconf.gauge_iv = int(sim_duration/12)
+            dconf.gauge_iv = int(self.adv.duration/12)
             self.adv.dragonform = DragonForm(name, dconf, adv, adv.ds_proc)
         else:
             name = type(self).__name__
             dconf = Conf({**self.default_dragonform, **self.dragonform})
-            dconf.gauge_iv = int(sim_duration/12)
+            dconf.gauge_iv = int(self.adv.duration/12)
             self.adv.dragonform = DragonForm(name, dconf, adv, self.ds_proc)
 
 class Amuletempty(object):

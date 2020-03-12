@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -13,59 +12,68 @@ def module():
 # C4: 2x 90% Damage + 226 SP
 # C5: 2x 97% Damage + 415 SP
 
-# Tobias combo (times are statup to when cancel into next combo starts)
-# sC1 0.2864581s
-# sC2 0.2777777s
-# sC3 0.2777777s
-# sC4 0.2777777s
-# sC5 0.4629627s to return to neutral
+# s2,88,,
+# s2,190,102,1.7
+# x1,210,20,0.333333333
+# x2,223,13,0.216666667
+# x2,237,14,0.233333333
+# x3,253,16,0.266666667
+# x3,267,14,0.233333333
+# x4,283,16,0.266666667
+# x4,298,15,0.25
+# x5,314,16,0.266666667
+# x5,328,14,0.233333333
+# x1,359,31,0.516666667
+# x2,374,15,0.25
+# x2,388,14,0.233333333
+# x3,404,16,0.266666667
+# x3,418,14,0.233333333
+# x4,435,17,0.283333333
+# x4,449,14,0.233333333
+# x5,464,15,0.25
+# x5,479,15,0.25
+# x1,509,30,0.5
+
 
 sacred_blade_conf = {
     'x1.dmg': 73 / 100.0,
     'x1.sp': 80,
-    # 'x1.startup': 0.2864581,
-    # 'x1.recovery': 0.2777777,
-    'x1.startup': 0.458333,
-    'x1.recovery': 0.5,
+    'x1.startup': 20 / 60.0,
+    'x1.recovery': 28 / 60.0,
     'x1.hit': 1,
 
     'x2.dmg': 164 / 100.0,
     'x2.sp': 80,
     'x2.startup': 0,
-    # 'x2.recovery': 0.2777777,
-    'x2.recovery': 0.5,
+    'x2.recovery': 30 / 60.0,
     'x2.hit': 2,
 
     'x3.dmg': 176 / 100.0,
     'x3.sp': 138,
     'x3.startup': 0,
-    # 'x3.recovery': 0.2777777,
-    'x3.recovery': 0.5,
+    'x3.recovery': 30 / 60.0,
     'x3.hit': 2,
 
     'x4.dmg': 180 / 100.0,
     'x4.sp': 226,
     'x4.startup': 0,
-    # 'x4.recovery': 0.2777777,
-    'x4.recovery': 0.5,
+    'x4.recovery': 30 / 60.0,
     'x4.hit': 2,
 
     'x5.dmg': 194 / 100.0,
     'x5.sp': 415,
     'x5.startup': 0,
-    # 'x5.recovery': 0.4629627,
-    'x5.recovery': 0.83333,
+    'x5.recovery': 10 / 60.0,
     'x5.hit': 2,
 }
 
 
 class Tobias(Adv):
-    comment = 's2 for alt combo only'
     a1 = ('bt',0.25)
     a3 = ('k_poison',0.3)
 
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+A_Dogs_Day()
+    conf['slots.a'] = The_Chocolatiers()+A_Dogs_Day()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
         `s1
@@ -124,4 +132,5 @@ class Tobias(Adv):
         self.s2_mode = (self.s2_mode + 1) % 2
 
 if __name__ == '__main__':
-    test_with_argv('t_hope', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -8,7 +7,7 @@ def module():
 
 class Templar_Hope(Adv):
     conf = {}
-    conf['slot.a'] = Valiant_Crown()+Beautiful_Nothingness()
+    conf['slot.a'] = Resounding_Rendition()+Brothers_in_Arms()
     conf['acl'] = """
         `s1
         `s2
@@ -20,4 +19,5 @@ class Templar_Hope(Adv):
         Teambuff('s1', 0.25, 15, 'defense').on()
 
 if __name__ == '__main__':
-    test_with_argv('t_hope', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

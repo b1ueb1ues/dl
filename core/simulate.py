@@ -290,10 +290,15 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
             output.write(' '.join(adv.slots.c.ex.keys()))
             output.write(') ')
         output.write(amulets(adv))
-
-        output.write('\n<{}> {}\n'.format(
-            adv.condition.cond_str(), 
-            adv.comment))
+        output.write('\n')
+        cond_comment = []
+        if adv.condition.exist():
+            cond_comment.append('<{}>'.format(adv.condition.cond_str()))
+        if len(adv.comment) > 0:
+            cond_comment.append(adv.comment)
+        if len(cond_comment) > 0:
+            output.write(' '.join(cond_comment))
+            output.write('\n')
     output.write('-'*BR)
     damage_counts(real_d, adv.logs.damage, adv.logs.counts, output, mod_func=mod_func, res=res)
     if cond:
@@ -365,10 +370,15 @@ def load_adv_module(adv_name):
     ).module()
 
 def test_with_argv(*argv, conf={}):
-    try:
-        name = os.path.basename(argv[1]).split('.')[0]
-    except:
-        name = 'euden'
+    if argv[0] is not None and not isinstance(argv[0], str):
+        module = argv[0]
+    else:
+        try:
+            name = os.path.basename(argv[1]).split('.')[0]
+            module = load_adv_module(name)
+        except:
+            name = 'euden'
+            module = load_adv_module(name)
     try:
         verbose = int(argv[2])
     except:
@@ -385,7 +395,7 @@ def test_with_argv(*argv, conf={}):
         mass = int(argv[5])
     except:
         mass = 0
-    test(load_adv_module(name), conf=conf, verbose=verbose, duration=duration, ex=ex, mass=mass)
+    test(module, conf=conf, verbose=verbose, duration=duration, ex=ex, mass=mass)
 
 if __name__ == '__main__':
     test_with_argv(*sys.argv)

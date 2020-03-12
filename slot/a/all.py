@@ -315,7 +315,7 @@ FWHC = From_Whence_He_Comes
 
 class Dear_Diary(Amulet):
     att = 65
-    a = [('ro', 0.10, 180), ('cc',0.14,'bow')]
+    a = [('ro', 0.10), ('cc',0.14,'bow')]
 DD = Dear_Diary
 
 class Dear_Diary_RO_30(Amulet):

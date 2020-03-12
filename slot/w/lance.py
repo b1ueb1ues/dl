@@ -180,4 +180,4 @@ flame = Agito_Gungnir
 water = HDT2_Limpid_Rush
 wind = HDT2_Guiding_Gale
 light = HDT2_Brilliant_Lightflash
-shadow = HDT2_Ebon_Scourge_Lance
+shadow = Agito_Qinglong_Yanyuedao

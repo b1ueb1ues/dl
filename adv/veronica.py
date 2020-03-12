@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 
@@ -10,10 +9,10 @@ class Veronica(Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
-        `fs, seq=5 and s1.charged >= 2500
+        `s2
+        `fs, (s1.charged>=s1.sp-self.sp_val('fs')) or (s2.charged>=s2.sp-self.sp_val('fs'))
         """
 
     def prerun(self):
@@ -25,6 +24,5 @@ class Veronica(Adv):
             self.dmg_make('s1', 10.84)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

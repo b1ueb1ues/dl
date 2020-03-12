@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -26,6 +25,5 @@ class Kirsty(Adv):
         Selfbuff('dauntless_strength',0.20,-1).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

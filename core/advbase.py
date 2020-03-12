@@ -1094,7 +1094,7 @@ class Adv(object):
             if t > 0:
                 # if self.condition('{} for {}s'.format(self.conf.sim_afflict.type, t)):
                 aff = vars(self.afflics)[self.conf.sim_afflict.type]
-                aff.on('simulated'.format(self.conf.sim_afflict.type), 200, 0, duration=t, iv=t)
+                aff.on('simulated'.format(self.conf.sim_afflict.type), 200, 0, duration=t * self.duration, iv=t)
                 aff.states = None
 
     def sim_buffbot(self):
@@ -1449,6 +1449,7 @@ class Adv(object):
             pass
 
     def run(self, d=300):
+        self.duration = d
         global loglevel
         if not loglevel:
             loglevel = 0
@@ -1480,15 +1481,12 @@ class Adv(object):
             if type(v) == list:
                 self.slots.c.mod += v
 
-        for i in range(1, 4):
-            try:
-                ab = self.__class__.__dict__['a{}'.format(i)]
+        for ab in (self.a1, self.a2, self.a3):
+            if ab:
                 if isinstance(ab, list):
                     self.slots.c.a.extend(ab)
                 else:
                     self.slots.c.a.append(ab)
-            except:
-                continue
         if 'ex' in self.conf:
             self.slots.c.ex.update(dict(self.conf.ex.__dict__))
 

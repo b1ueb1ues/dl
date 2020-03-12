@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -13,10 +12,10 @@ class Delphi(Adv):
     conf['slot.d'] = Fatalis()
     conf['slot.a'] = Mega_Friends()+The_Fires_of_Hate()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2, self.s1fscharge == 0 and (s1.charged <= ((s1.sp/13)*9))
-        `s3
-        `fs, x=2 and (self.s1fscharge == 0 or self.hits >= 15)
+        `fs, x=2
     """
     conf['afflict_res.poison'] = 0
 
@@ -44,5 +43,5 @@ class Delphi(Adv):
             self.afflics.poison('fs',120+self.flurry_poison*(self.hits>=15),3.00,27)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

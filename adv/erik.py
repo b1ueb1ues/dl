@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -10,17 +9,12 @@ class Erik(Adv):
     a1 = ('fs',0.30)
     conf = {}
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
-        `s3, fsc
-        `fs,seq=5
-        """
-    conf['slot.a'] = KFM()+CE()
-    def d_slots(self):
-        if 'bow' in self.ex:
-            self.conf.slot.a = KFM()+JotS()
+        `fs, x=5
+    """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

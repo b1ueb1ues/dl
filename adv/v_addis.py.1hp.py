@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import Forest_Bonds, Primal_Crisis
 import adv.v_addis
@@ -10,12 +9,6 @@ class Valentines_Addis(adv.v_addis.Valentines_Addis):
     comment = 'no s2'
 
     conf = adv.v_addis.Valentines_Addis.conf.copy()
-    conf['slot.a'] = Forest_Bonds()+Primal_Crisis()
-    conf['acl'] = """
-        `s1
-        `s3
-    """
-
     def prerun(self):
         super().prerun()
         self.hp = 0
@@ -23,7 +16,5 @@ class Valentines_Addis(adv.v_addis.Valentines_Addis):
         self.a3spd.on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(Valentines_Addis, *sys.argv)

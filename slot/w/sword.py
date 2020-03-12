@@ -180,4 +180,4 @@ flame = Agito_Nothung
 water = HDT2_Absolute_Aqua
 wind = HDT2_Absolute_Tempest
 light = HDT2_Absolute_Lightning
-shadow = HDT2_Absolute_Hex
+shadow = Agito_Yitian_Jian

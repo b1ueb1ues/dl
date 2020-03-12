@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -6,16 +5,15 @@ def module():
     return Cassandra
 
 class Cassandra(Adv):
-    comment = 'no counter damage; s2 drops combo'
     a1 = ('prep_charge',0.05)
     a3 = ('ro', 0.15)
 
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s2, seq=5
-        `s3
+        `s2
     """
     conf['afflict_res.poison'] = 0
 
@@ -30,6 +28,5 @@ class Cassandra(Adv):
             self.dmg_make('s2',9.72)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

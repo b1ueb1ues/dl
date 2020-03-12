@@ -245,7 +245,7 @@ class Resilient_Offense(Ability):
         self.value = value
         if name == 'ro':
             self.proc_chances = 3
-            self.interval = interval or 90
+            self.interval = interval or 180
         elif name == 'uo':
             self.proc_chances = 5
             self.interval = interval or 30

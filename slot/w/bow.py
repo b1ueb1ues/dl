@@ -179,4 +179,4 @@ flame = Agito_Ydalir
 water = HDT2_Azure_Mercurius
 wind = HDT2_Jormungands_Fury
 light = HDT2_Jupiters_Sky
-shadow = HDT2_Hellish_Prophecy
+shadow = Agito_Longshe_Gong
