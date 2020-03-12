@@ -266,7 +266,7 @@ class Mitsuba(Adv):
         dmg_coef = xalt.conf[xseq].dmg
         sp = xalt.conf[xseq].sp
         hit = xalt.conf[xseq].hit
-        log('x', xseq, 0)
+        log('x', xseq, self.stance)
         self.hits += hit
         self.dmg_make(xseq, dmg_coef)
         self.charge(xseq, sp)

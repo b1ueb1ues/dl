@@ -13,8 +13,8 @@ class Su_Fang(Adv):
     conf['slot.d'] = Garland()
     conf['slot.a'] = Twinfold_Bonds()+The_Plaguebringer()
     conf['acl'] = """
-        `s1
         `s2, fsc
+        `s1
         `s3, fsc
         `fs, x=4
         """
@@ -25,13 +25,17 @@ class Su_Fang(Adv):
     def prerun(self):
         conf_fs_alt = {'fs.dmg': 0.174, 'fs.hit': 6}
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
+        self.s2_buff = Selfbuff('s2', 0.30, 15)
 
     def s1_proc(self, e):
         with KillerModifier('skiller', 'hit', 0.50, ['poison']):
-            self.dmg_make('s1', 6.14)
+            self.dmg_make('s1', 5.58)
+            if self.s2_buff.get():
+                self.dmg_make('s1', 1.30)
 
     def s2_proc(self, e):
         self.fs_alt.on(1)
+        self.s2_buff = Selfbuff('s2', 0.30, 15).on()
 
 
 if __name__ == '__main__':

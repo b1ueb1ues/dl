@@ -2,6 +2,7 @@ from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
+from module.x_alt import X_alt
 
 def module():
     return Tobias
@@ -12,12 +13,59 @@ def module():
 # C4: 2x 90% Damage + 226 SP
 # C5: 2x 97% Damage + 415 SP
 
+# Tobias combo (times are statup to when cancel into next combo starts)
+# sC1 0.2864581s
+# sC2 0.2777777s
+# sC3 0.2777777s
+# sC4 0.2777777s
+# sC5 0.4629627s to return to neutral
+
+sacred_blade_conf = {
+    'x1.dmg': 73 / 100.0,
+    'x1.sp': 80,
+    # 'x1.startup': 0.2864581,
+    # 'x1.recovery': 0.2777777,
+    'x1.startup': 0.458333,
+    'x1.recovery': 0.5,
+    'x1.hit': 1,
+
+    'x2.dmg': 164 / 100.0,
+    'x2.sp': 80,
+    'x2.startup': 0,
+    # 'x2.recovery': 0.2777777,
+    'x2.recovery': 0.5,
+    'x2.hit': 2,
+
+    'x3.dmg': 176 / 100.0,
+    'x3.sp': 138,
+    'x3.startup': 0,
+    # 'x3.recovery': 0.2777777,
+    'x3.recovery': 0.5,
+    'x3.hit': 2,
+
+    'x4.dmg': 180 / 100.0,
+    'x4.sp': 226,
+    'x4.startup': 0,
+    # 'x4.recovery': 0.2777777,
+    'x4.recovery': 0.5,
+    'x4.hit': 2,
+
+    'x5.dmg': 194 / 100.0,
+    'x5.sp': 415,
+    'x5.startup': 0,
+    # 'x5.recovery': 0.4629627,
+    'x5.recovery': 0.83333,
+    'x5.hit': 2,
+}
+
+
 class Tobias(Adv):
+    comment = 's2 for alt combo only'
     a1 = ('bt',0.25)
     a3 = ('k_poison',0.3)
 
     conf = {}
-    conf['slots.a'] = Castle_Cheer_Corps()+A_Dogs_Day()
+    conf['slots.a'] = Primal_Crisis()+A_Dogs_Day()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
         `s1
@@ -32,22 +80,36 @@ class Tobias(Adv):
         self.s2_mode = 0
         self.s1.autocharge_init(85)
         self.s2.charge(1)
-        # self.s2_x_alt = X_alt(self, 'appetizer', appetizer_conf, x_proc=self.l_stance_x, no_fs=True, no_dodge=True)
+        self.s2_x_alt = X_alt(self, 'sacred_blade', sacred_blade_conf, x_proc=self.l_sacred_blade_x, no_fs=True, no_dodge=True)
+        self.a_s2 = self.s2.ac
+        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 1.9}))
+
+    def l_sacred_blade_x(self, e):
+        xseq = e.name
+        dmg_coef = self.s2_x_alt.conf[xseq].dmg
+        sp = self.s2_x_alt.conf[xseq].sp
+        hit = self.s2_x_alt.conf[xseq].hit
+        log('x', xseq, 'sacred_blade')
+        self.hits += hit
+        self.dmg_make(xseq, dmg_coef)
+        self.charge(xseq, sp)
 
     def s1_autocharge_off(self, t):
         self.s1.autocharge_timer.off()
 
     def s2_x_alt_off(self, t):
         self.s2_mode = 0
+        self.s2.ac = self.a_s2
+        self.s2.charged = 0
+        self.s2_x_alt.off()
 
     def s1_proc(self, e):
         self.buff_class('s1',0.3,15).on()
 
     def s2_proc(self, e):
         if self.s2_mode == 0:
-            self.conf.s2.startup = 0.1
-            self.conf.s2.recovery = 1.9
-            # self.s2_x_alt.on()
+            self.s2.ac = self.a_s2a
+            self.s2_x_alt.on()
             self.s1.autocharge_timer.on()
             Timer(self.s1_autocharge_off).on(7*self.mod('buff'))
             Timer(self.s2_x_alt_off).on(10*self.mod('buff'))
@@ -55,9 +117,9 @@ class Tobias(Adv):
             self.dmg_make('s2',1.04)
             self.hits += 8
             self.afflics.poison('s2', 120, 0.582)
-            self.conf.s2.startup = 0.25
-            self.conf.s2.recovery = 0.9
-            # self.s2_x_alt.off()
+            self.s2.ac = self.a_s2
+            self.s2_x_alt.on()
+            self.s1.autocharge_timer.off()
         self.s2.charge(1)
         self.s2_mode = (self.s2_mode + 1) % 2
 
