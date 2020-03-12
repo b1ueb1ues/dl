@@ -15,7 +15,7 @@ class Lin_You(Adv):
     conf['slot.d'] = Long_Long()
     conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp-self.sp_val(2)
+        `s2, s1.check()
         `s1
         `s3, x=5
         """
@@ -27,17 +27,14 @@ class Lin_You(Adv):
 
     def s1_proc(self, e):
         if self.s2_buff.get():
-            self.dmg_make('o_s1_powerup', 1.86*3)
-            self.s2_buff.buff_end_timer.add(2.4)
+            self.dmg_make('s1_powerup', 1.86*3)
+            self.s2_buff.buff_end_timer.add(self.s1.ac.getstartup()+self.s1.ac.getrecovery())
             self.hits += 3
             self.afflics.sleep('s1', 150)
         self.fs_alt.on(3)
 
     def s2_proc(self, e):
-        if self.s2_buff.get():
-            Spdbuff('s2_spd',0.20, 15)
-        else:
-            self.s2_buff.on()
+        self.s2_buff = Spdbuff('s2_spd',0.20,15).on()
 
 if __name__ == '__main__':
     test_with_argv('t_hope', *sys.argv)

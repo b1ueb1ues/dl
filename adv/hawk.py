@@ -11,9 +11,10 @@ class Hawk(Adv):
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
     conf = {}
     conf['acl'] = """
-        `fs, not self.afflics.poison.get() and self.fs_alt.uses > 0
+        `fs,self.fs_alt.uses=2 and s1.check()
+        `fs,self.fs_alt.uses=1 and not self.afflics.poison.get()
         `s2
-        `s1
+        `s1, cancel
         `s3
     """
     conf['slot.d'] = Vayu()
