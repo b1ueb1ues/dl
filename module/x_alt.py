@@ -39,7 +39,7 @@ class Fs_alt:
         return self.uses != 0
 
 class X_alt:
-    def __init__(self, adv, name, conf, x_proc=None, no_fs=False):
+    def __init__(self, adv, name, conf, x_proc=None, no_fs=False, no_dodge=False):
         self.conf = Conf(conf)
         self.adv = adv
         self.name = name
@@ -51,7 +51,9 @@ class X_alt:
         else:
             self.l_x_alt = None
         self.no_fs = no_fs
+        self.no_dodge = no_dodge
         self.fs_og = adv.fs
+        self.dodge_og = adv.dodge
         self.xmax = 1
         n = 'x{}'.format(self.xmax)
         while n in self.conf:
@@ -74,7 +76,7 @@ class X_alt:
         self.x_proc(e)
         self.adv.think_pin('x')
 
-    def fs_off(self):
+    def act_off(self):
         return False
     
     def on(self):
@@ -94,7 +96,9 @@ class X_alt:
                 self.adv.l_x.off()
                 self.l_x_alt.on()
             if self.no_fs:
-                self.adv.fs = self.fs_off
+                self.adv.fs = self.act_off
+            if self.no_dodge:
+                self.adv.dodge = self.act_off
                 
     def off(self):
         if self.active:
@@ -106,3 +110,5 @@ class X_alt:
                 self.adv.l_x.on()
             if self.no_fs:
                 self.adv.fs = self.fs_og
+            if self.no_dodge:
+                self.adv.dodge = self.dodge_og

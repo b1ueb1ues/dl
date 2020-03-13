@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -15,9 +14,9 @@ class Curran(Adv):
 
     conf = {}
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s2, seq=2
-        `s3, seq=5
+        `s2
         """
     conf['slot.a'] = KFM()+FitF()
 
@@ -30,5 +29,5 @@ class Curran(Adv):
             self.dmg_make("s2", 12.54)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

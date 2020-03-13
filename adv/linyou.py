@@ -1,47 +1,40 @@
-import adv.adv_test
+from core.simulate import test_with_argv
 from core.advbase import *
-from slot import *
+from slot.d import *
 from slot.a import *
+from module.x_alt import Fs_alt
 
 def module():
     return Lin_You
 
 class Lin_You(Adv):
     comment = '2in1 ' 
-    a1 = ('cc',0.10,'hp70')
+    a1 = [('cc',0.10,'hp70'), ('cc',0.20,'hit25'), ('cc',0.20,'hit50')]
     a3 = ('sp',0.08)
     conf = {}
+    conf['slot.d'] = Long_Long()
+    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
-        `s2, s1.charged>=s1.sp-440 
+        `s2, s1.check()
         `s1
-        `s2, seq=4
-        `s3, seq=5
+        `s3, x=5
         """
 
-    def d_slots(self):
-        if 'bow' in self.ex:
-            self.conf.slot.a = KFM()+JotS()
-        else:
-            self.conf.slot.a = KFM()+CE()
-
     def prerun(self):
-        self.s2ssbuff = Selfbuff("s2_s1",1, 10, 'ss','ss')
-        self.s2spdbuff = Spdbuff("s2_spd",0.2, 10)
-
+        conf_fs_alt = {'fs.dmg': 2.42, 'fs.hit': 5}
+        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt))
+        self.s2_buff = Spdbuff('s2_spd',0.20, 15)
 
     def s1_proc(self, e):
-        if self.s2ssbuff.get():
-            self.dmg_make('o_s1_powerup',1.86*3)
-            self.s2ssbuff.buff_end_timer.timing += 2.4
-            self.s2spdbuff.buff_end_timer.timing += 2.4
-
+        if self.s2_buff.get():
+            self.dmg_make('s1_powerup', 1.86*3)
+            self.s2_buff.buff_end_timer.add(self.s1.ac.getstartup()+self.s1.ac.getrecovery())
+            self.hits += 3
+            self.afflics.sleep('s1', 150)
+        self.fs_alt.on(3)
 
     def s2_proc(self, e):
-        self.s2ssbuff.on()
-        self.s2spdbuff.on()
-
+        self.s2_buff = Spdbuff('s2_spd',0.20,15).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    test_with_argv('t_hope', *sys.argv)

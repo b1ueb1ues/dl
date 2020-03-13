@@ -148,8 +148,7 @@ class Nyarlathotep(DragonBase):
         self.bloody_tongue(0)
         buff_rate = 90
         if adv.condition('low HP every {}s'.format(buff_rate)):
-            from adv.adv_test import sim_duration
-            buff_times = ceil(sim_duration/buff_rate)
+            buff_times = ceil(adv.duration/buff_rate)
             for i in range(1, buff_times):
                 adv.Timer(self.bloody_tongue).on(buff_rate*i)
 

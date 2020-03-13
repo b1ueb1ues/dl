@@ -8,21 +8,18 @@ def module():
     return Botan
 
 class Botan(Adv):
-#    comment = "RR+Jewels"
     a3 = ('prep_charge',0.05)
     conf = {}
-    conf['slots.a'] = RR() + BN()
+    conf['slots.a'] = RR() + Jewels_of_the_Sun()
     conf['slots.d'] = Shinobi()
     conf['acl'] = """
-        `s2, pin='prep' or fsc
-        `s1, (x=5 or fsc) and self.bleed._static['stacks']<3
-        `s3, x=5 or fsc
-        `fs, x=5
-        """
+        `s3, not self.s3_buff and pin='prep'
+        `s2
+        `s1, cancel
+    """
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
     
     def prerun(self):
         self.bleed = Bleed("g_bleed",0).reset()
@@ -30,14 +27,9 @@ class Botan(Adv):
     def s1_proc(self, e):
         Bleed("s1", 1.46).on()
 
-    def c_s2_proc(self, e):
-        Teambuff('s2',0.1,15,'crit','chance').on()
-
     def s2_proc(self, e):
-        Selfbuff('s2',0.1,15,'crit','chance').on()
+        self.buff_class('s2',0.1,15,'crit','chance').on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

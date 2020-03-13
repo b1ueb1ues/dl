@@ -19,11 +19,9 @@ class Gala_Elisanne(Adv):
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
-        self.s2timer = Timer(self.s2autocharge,1,1).on()
 
-    def s2autocharge(self, t):
-        self.s2.charge(38400.0*0.065)
-        log('sp','s1autocharge')
+    def prerun(self):
+        self.s2.autocharge_init(1536).on()
 
     def s1_proc(self, e):
         self.buff_class('s2',0.3,15).on()

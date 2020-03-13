@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -9,14 +8,12 @@ class Orion(Adv):
     a3 = ('prep', 0.50)
     conf = {}
     conf['acl'] = """
-    `s1, x=5
-    `s2, seq=4 and cancel or fsc
-    `s3, seq=4 and cancel or fsc
-    `fs, seq=4 and s1.charged <= s1.sp - 288
+        `s3, not self.s3_buff
+        `s1
+        `s2
+        `fs, x=5
     """
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

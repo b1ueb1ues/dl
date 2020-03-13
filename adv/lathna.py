@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -12,9 +11,9 @@ class Lathna(Adv):
     conf = {}
     conf['slot.d'] = slot.d.Shinobi()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1a
-        `s2, seq = 5
-        `s3, seq = 5
+        `s2, x=5
         """
     conf['dragonform'] = {
         'act': 'c3 s c3 c3 c2 c2 c2',
@@ -86,6 +85,5 @@ class Lathna(Adv):
             self.dmg_make("s2", 17.26)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

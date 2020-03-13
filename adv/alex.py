@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -12,9 +11,9 @@ class Alex(Adv):
 
     conf = {}
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3
         `fs, x=5
         """
     conf['afflict_res.poison'] = 0
@@ -24,7 +23,6 @@ class Alex(Adv):
         self.afflics.poison('s1',100,0.396)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
 

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -12,10 +11,10 @@ class Audric(Adv):
     conf = {}
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
-        `s3, fsc
-        `fs, seq=3
+        `fs, x=3
     """
     def prerun(self):
         self.cursed_blood = Selfbuff('cursed_blood',0.30,-1,'crit','chance')
@@ -34,6 +33,5 @@ class Audric(Adv):
         self.dragonform.charge_gauge(3)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-    # logcat([str(type(module().conf['slot.d']).__name__)])
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

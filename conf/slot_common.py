@@ -15,7 +15,7 @@ def set(slots):
     elif ele == 'water':
         slots.d = slot.d.water.Siren()
     elif ele == 'wind':
-        slots.d = slot.d.wind.Vayu()
+        slots.d = slot.d.wind.Garland()
     elif ele == 'light':
         if wt == 'dagger' or wt == 'bow' or wt == 'wand':
             slots.d = slot.d.light.Daikokuten()

@@ -180,4 +180,4 @@ flame  = Agito_Mjolnir
 water  = HDT2_Mercys_Azure_Tide
 wind   = HDT2_Glorystorms_Guide
 light  = HDT2_Mighty_Thundercrash
-shadow = HDT2_Shadowy_Darkbite_Axe
+shadow = Agito_Fangtian_Huaji

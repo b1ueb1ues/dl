@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -7,27 +6,18 @@ import slot
 def module():
     return Natalie
 
-class Dear_Diary(Dear_Diary_Slow_RO):
-    att = 65
-
 class Natalie(Adv):
-    comment = 's2 without str buff'
     conf = {}
     conf['slot.a'] = HoH() + Dear_Diary()
     conf['slot.d'] = Shinobi()
     conf['acl'] = """
-        `s2, pin='prep'
-        `s2, seq=5
+        `s3, not self.s3_buff
+        `s2, s=3 or x=5
         `s1
-        `s3, fsc
-        `s3, seq=5 and s1.charged < s1.sp-200
-        `fs, seq=5 and s1.sp-212<=s1.charged and s1.charged<=s1.sp
-        `fs, seq=5 and s1.sp > 3000 and s3.charged>=s3.sp
         """
 
     def d_slots(self):
-        from adv.adv_test import sim_duration
-        if sim_duration <= 60:
+        if self.duration <= 60:
             self.slots.a = TL()+The_Chocolatiers()
 
     def prerun(self):
@@ -53,7 +43,5 @@ class Natalie(Adv):
             Selfbuff('s2', 0.15, 10).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

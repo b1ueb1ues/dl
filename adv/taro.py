@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -7,13 +6,11 @@ def module():
 class Taro(Adv):
     conf = {}
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3
         """
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,7 +1,6 @@
 #from core.log import *
 import sys
 from core.timeline import now
-from adv.adv_test import sim_duration
 import imp
 import re
 
@@ -182,6 +181,7 @@ def do_act_list(self, e):
     s = int(pin[1]) if (pin[0] == 's' and pin[1] != 'p') or pin[-2:] == '-x' else 0
     sp = dname if pin == 'sp' else 0
     prep = pin == 'prep'
+    sim_duration = self.duration
 {act_prep_block}
 {act_cond_block}
     return 0"""

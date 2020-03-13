@@ -1,4 +1,3 @@
-import adv.adv_test
 import adv.veronica
 import slot
 from slot import *
@@ -11,17 +10,16 @@ class Veronica(adv.veronica.Veronica):
 
     conf = adv.veronica.Veronica.conf.copy()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s3, seq=5 and cancel
-        `fs, seq=5 and s1.charged >= 2500
+        `fs, (s1.charged>=s1.sp-self.sp_val('fs'))
     """
 
     def prerun(self):
         super().prerun()
         self.hp = 0
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    import sys
+    from core.simulate import test_with_argv
+    test_with_argv(Veronica, *sys.argv)
