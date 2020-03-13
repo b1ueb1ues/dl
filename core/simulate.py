@@ -356,12 +356,12 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
     ])
     dps_mappings = {}
     dps_mappings['attack'] = dict_sum(dmg['x'], mod_func) / real_d
-    for k in dmg['f']:
+    for k in sorted(dmg['f']):
         if k == 'fs':
             dps_mappings['force_strike'] = dmg['f']['fs'] / real_d
         else:
             dps_mappings[k] = dmg['f'][k] / real_d
-    for i, k in enumerate(dmg['s'].keys()):
+    for k in sorted(dmg['s']):
         if k in ('s1', 's2', 's3'):
             dps_mappings['skill_{}'.format(k[1])] = dmg['s'][k] / real_d
         else:
@@ -374,10 +374,12 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
         if dmg_val > 0:
             dps_mappings['team_{}'.format(tension)] = dmg_val
             report_csv[0] += dmg_val
-    for k, dmg_val in dmg['o'].items():
+    for k in sorted(dmg['o']):
+        dmg_val = dmg['o'][k]
         if dmg_val > 0:
             dps_mappings[k] = dmg_val / real_d
-    for k, dmg_val in dmg['d'].items():
+    for k in sorted(dmg['d'], reverse=True):
+        dmg_val = dmg['d'][k]
         if dmg_val > 0:
             if k.startswith('dx') or k == 'dshift':
                 k = 'dx'
