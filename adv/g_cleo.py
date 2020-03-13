@@ -76,6 +76,9 @@ class Gala_Cleo(Adv):
 
         self.fs_alt.on()
 
+    def s2_proc(self, e):
+        Debuff('s2', 0.10, 20).on()
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -12,7 +12,7 @@ g_mym.py.dragon.py
 xainfried.py.dragon.py
 euden.py.apollo.py
 euden.py.dkr.py
-g_cleo.py.ehjp.py
+g_cleo.py.stack.py
 g_luca.py.maxstacks.py
 h_lowen.py
 natalie.py.1hp.py
