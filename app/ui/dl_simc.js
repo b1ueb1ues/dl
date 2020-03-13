@@ -28,7 +28,8 @@ PREFIX_MAPS = {
         's_': 'summer_',
         'v_': 'valentines_',
         'w_': 'wedding_',
-        'mh_': 'hunter_'
+        'mh_': 'hunter_',
+        't_hope': 'templar_hope'
     },
 }
 function name_fmt(name) {
@@ -147,7 +148,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     } else {
         slots = '';
     }
-    resDiv.append($('<h6>DPS:' + total + name_fmt(slots) + cond_comment_str + '</h6>'));
+    resDiv.append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
     copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
     let resBar = $('<div></div>').attr({ class: 'result-bar' });
     let colorIdx = 0;

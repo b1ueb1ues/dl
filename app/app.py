@@ -175,7 +175,7 @@ def simc_adv_test():
     if not request.method == 'POST':
         return 'Wrong request method.'
     params = request.get_json(silent=True)
-    adv_name = 'euden' if not 'adv' in params else params['adv'].lower()
+    adv_name = 'euden' if not 'adv' in params or params['adv'] is None else params['adv'].lower()
     wp1 = params['wp1'] if 'wp1' in params else None
     wp2 = params['wp2'] if 'wp2' in params else None
     dra = params['dra'] if 'dra' in params else None
