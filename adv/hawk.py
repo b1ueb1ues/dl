@@ -16,8 +16,9 @@ class Hawk(Adv):
         `fs,self.fs_alt.uses=1 and s1.check() and not self.afflics.poison.get()
         `s2
         `s1, cancel
-        `s3
+        `s3, x=5
     """
+
     conf['slot.d'] = Vayu()
     conf['slot.a'] = Resounding_Rendition() + The_Fires_of_Hate()
     conf['afflict_res.stun'] = 80
@@ -49,13 +50,14 @@ class Hawk(Adv):
             self.fs_alt.on(2)
             self.s2.ac = self.a_s2a
         else:
-            with KillerModifier('s2_killer', 'hit', 1.5, ['poison']):
+            with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
                 self.dmg_make('s2', 9.48)
             self.conf.s2.startup = 0.25
             self.conf.s2.recovery = 0.9
             self.s2.ac = self.a_s2
+            self.hits += 3
         self.s2_mode = (self.s2_mode + 1) % 2
 
 
 if __name__ == '__main__':
-    test_with_argv('t_hope', *sys.argv)
+    test_with_argv('hawk', *sys.argv)
