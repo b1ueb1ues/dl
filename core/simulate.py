@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 
 BR = 64
 BLADE = 1.10
@@ -183,6 +184,29 @@ def append_condensed(condensed, act):
     condensed.append((act, 1))
     return condensed
 
+def act_repeats(condensed):
+    from collections import Counter
+    condensed = list(filter(lambda a: a[0] != 'dshift', condensed))
+    start = 0
+    maxlen = len(condensed)
+    bestest = condensed, 1, 0
+    for start in range(0, maxlen):
+        accumulator = Counter()
+        length = 1
+        c_slice = tuple(condensed[start:start+length])
+        while start+length*(accumulator[c_slice]+1) <= maxlen:
+            n_slice = tuple(condensed[start+length*accumulator[c_slice]:start+length*(accumulator[c_slice]+1)])
+            if n_slice == c_slice:
+                accumulator[c_slice] += 1
+            else:
+                length += 1
+                c_slice = tuple(condensed[start:start+length])
+                accumulator[c_slice] = 1
+        c_best = accumulator.most_common(1)
+        if len(c_best) > 0 and c_best[0][1] > bestest[1]:
+            bestest = (*c_best[0], start)
+    return bestest
+
 def act_sum(actions, output):
     p_act = '_'
     p_xseq = 0
@@ -204,30 +228,38 @@ def act_sum(actions, output):
         p_act = act
     if p_act[0] == 'x':
         condensed = append_condensed(condensed, p_act)
-    output.write(str(condensed))
-    output.write('\n')
+    seq, freq, start = act_repeats(condensed)
+    seqlen = len(seq)
+    if freq*seqlen < len(condensed) // 5:
+        seqlen = 24
+        freq = len(condensed) // seqlen
+        start = 0
     p_type = None
-    for act, cnt in condensed:
+    idx_offset = 0
+    for idx, ac in enumerate(condensed):
+        act, cnt = ac
+        idx = idx - idx_offset
+        if start > idx and idx % 24 == 0:
+            output.write('\n')
+        if freq >= 0 and start <= idx and (idx-start) % seqlen == 0:
+            output.write('\n')
+            freq -= 1
+        elif idx > 0:
+            output.write(' ')
         if act[0] == 'x' or act == 'fs':
-            if p_type is None:
-                output.write('[  ] ')
-            elif p_type != 'd':
-                output.write(' ')
             output.write(act.replace('x', 'c'))
             if cnt > 1:
                 output.write('*{}'.format(cnt))
             p_type = 'x'
         else:
             if act == 'dshift':
-                output.write('\n[-- dragon --]\n')
+                output.write('[--- dragon ---]')
                 p_type == 'd'
+                idx_offset += 1
             else:
-                if p_type == 'x':
-                    output.write('\n')
-                elif p_type == 's':
-                    output.write(' ')
                 output.write('['+act+']')
                 p_type = 's'
+        
 
 def dps_sum(real_d, damage, mod_func=None):
     res = {'dps':0}

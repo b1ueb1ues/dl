@@ -19,7 +19,7 @@ class Hawk(Adv):
         `s3
     """
     conf['slot.d'] = Vayu()
-    conf['slot.a'] = Resounding_Rendition() + The_Fires_of_Hate()
+    conf['slot.a'] = Forest_Bonds() + The_Fires_of_Hate()
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
 
