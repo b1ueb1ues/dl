@@ -144,7 +144,7 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=
 
     fn = io.StringIO()
     try:
-        run_res = core.simulate.test(adv_module, conf, ex, t, log, mass, output=fn, team_dps=teamdps)
+        run_res = core.simulate.test(adv_module, conf, ex, t, log, mass, output=fn, team_dps=teamdps, cond=cond)
         result['test_output'] = fn.getvalue()
     except Exception as e:
         result['error'] = str(e)
