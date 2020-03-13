@@ -16,7 +16,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         if self.a1_buffed:
             while len(self.a1_zones) > 0 and not self.a1_zones[0].get():
                 self.a1_zones.pop(0)
-            for _ in range(4):
+            for _ in range(self.gleo_count):
                 if self.wide == 'team':
                     buff = Teambuff('a1_str',0.25,10)
                 else:

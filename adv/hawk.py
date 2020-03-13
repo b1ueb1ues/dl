@@ -46,7 +46,7 @@ class Hawk(Adv):
             self.fs_alt.on(2)
             self.s2.ac = self.a_s2a
         else:
-            with KillerModifier('s2_killer', 'hit', 1.5, ['poison']):
+            with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
                 self.dmg_make('s2', 9.48)
             self.conf.s2.startup = 0.25
             self.conf.s2.recovery = 0.9
