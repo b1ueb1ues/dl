@@ -511,7 +511,7 @@ function clearResults() {
     $('#input-teamdps').val(BASE_TEAM_DPS);
     $('#input-missile').val(0);
     const resistList = $('#affliction-resist > div > input[type="text"]');
-    resistList.each(function (idx, res) { $(res).empty() });
+    resistList.each(function (idx, res) { $(res).val(''); });
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);
