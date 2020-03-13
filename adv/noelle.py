@@ -8,6 +8,7 @@ def module():
     return Noelle
 
 class Noelle(Adv):
+    comment = 'use Freyja & Castle Cheer Corps in 4DPS team'
     a1 = ('bt',0.25)
     a3 = ('primed_defense',0.08)
 

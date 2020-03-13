@@ -6,9 +6,11 @@ EX_MAP = {
     'dagger': 'd',
     'axe2': 'm',
     'sword': 's',
-    'geuden': 'g'
+    'g_euden': 'g',
+    'tobias': 't'
 }
 AXE2_ADV = ['h_mym', 'v_melody']
+UNIQUE_ADV = ['g_euden', 'tobias']
 RANGED = ['wand', 'bow', 'staff']
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 20000
@@ -271,9 +273,9 @@ function loadAdvSlots() {
                 if (AXE2_ADV.includes(adv_name)) {
                     $('#ex-axe2').prop('checked', true);
                     $('#ex-axe2').prop('disabled', true);
-                } else if (adv_name == 'g_euden') {
-                    $('#ex-geuden').prop('checked', true);
-                    $('#ex-geuden').prop('disabled', true);
+                } else if (UNIQUE_ADV.includes(adv_name)) {
+                    $('#ex-' + adv_name).prop('checked', true);
+                    $('#ex-' + adv_name).prop('disabled', true);
                 } else if (adv_name != 'megaman') {
                     $('#ex-' + slots.adv.wt).prop('checked', true);
                     $('#ex-' + slots.adv.wt).prop('disabled', true);

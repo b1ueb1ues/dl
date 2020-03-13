@@ -73,8 +73,8 @@ class Tobias(Adv):
     a3 = ('k_poison',0.3)
 
     conf = {}
-    conf['slots.a'] = The_Chocolatiers()+A_Dogs_Day()
-    conf['slots.d'] = Ariel()
+    conf['slots.a'] = Castle_Cheer_Corps()+A_Dogs_Day()
+    conf['slots.d'] = Freyja()
     conf['acl'] = """
         `s1
     """
