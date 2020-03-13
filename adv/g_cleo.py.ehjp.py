@@ -86,7 +86,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         return 5.0/3 * dmg_coef * self.dmg_mod(name) * att/armor * 1.5   # true formula
 
     def s2_proc(self, e):
-        for _ in range(3):
+        for _ in range(4):
             Selfbuff('s2', -0.10, 20, mtype='def').on()
 
     def fs_proc_alt(self, e):
