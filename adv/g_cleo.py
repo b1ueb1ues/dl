@@ -49,9 +49,9 @@ class Gala_Cleo(Adv):
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
 
     def s1_dmg(self, t):
-        self.dmg_make('s1_hit_single',0.88)
+        self.dmg_make('s1',0.88)
         self.hits += 1
-        self.dmg_make('s1_hit_aoe',2.65)
+        self.dmg_make('s1',2.65)
         self.hits += 1
 
     def s1_proc(self, e):
