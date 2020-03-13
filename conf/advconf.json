@@ -2070,7 +2070,7 @@
         },
         "s2": {
             "startup": 0.1,
-            "recovery": 2.6,
+            "recovery": 1.53,
             "dmg": 6.76,
             "sp": 4608,
             "hit": 5

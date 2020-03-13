@@ -106,7 +106,7 @@ def avg_logs(log, mass):
         log.team_tension[k] /= mass
     return log
 
-def run_mass(mass, base_log, base_d, classname, conf, duration, cond=True):
+def run_mass(mass, base_log, base_d, classname, conf, duration, cond):
     mass = 1000 if mass == 1 else mass
     with multiprocessing.Pool(processes=8) as pool:
         for log, real_d in pool.starmap(run_once_mass, [(classname, conf, duration, cond, idx) for idx in range(mass-1)]):
@@ -116,7 +116,7 @@ def run_mass(mass, base_log, base_d, classname, conf, duration, cond=True):
     base_d /= mass
     return base_log, base_d
 
-def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=None, team_dps=None, special=False):
+def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=None, team_dps=None, cond=True, special=False):
     team_dps = team_dps or 20000
     output = output or sys.stdout
     ex_set = parse_ex(ex)
@@ -125,7 +125,7 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
     else:
         ex = '_'
     run_results = []
-    adv, real_d = run_once(classname, conf, duration, True)
+    adv, real_d = run_once(classname, conf, duration, cond)
     if verbose == 1:
         adv.logs.write_logs(output=output)
         act_sum(adv.logs.act_seq, output)
@@ -135,14 +135,14 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
         return
 
     if mass:
-        adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration)
+        adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration, cond)
 
     run_results.append((adv, real_d, True))
     no_cond_dps = None
     if adv.condition.exist():
         adv_2, real_d_2 = run_once(classname, conf, duration, False)
         # if mass:
-        #     adv_2.logs, real_d_2 = run_mass(mass, adv_2.logs, real_d, classname, conf, duration)
+        #     adv_2.logs, real_d_2 = run_mass(mass, adv_2.logs, real_d, classname, conf, duration, False)
         run_results.append((adv_2, real_d_2, False))
         no_cond_dps = {
             'dps': round(dps_sum(real_d_2, adv_2.logs.damage)['dps']),
