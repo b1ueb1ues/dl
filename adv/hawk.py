@@ -11,8 +11,9 @@ class Hawk(Adv):
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
     conf = {}
     conf['acl'] = """
+        # do `fs,self.fs_alt.uses>0 and s1.check() if poison uptime not an issue
         `fs,self.fs_alt.uses=2 and s1.check()
-        `fs,self.fs_alt.uses=1 and not self.afflics.poison.get()
+        `fs,self.fs_alt.uses=1 and s1.check() and not self.afflics.poison.get()
         `s2
         `s1, cancel
         `s3

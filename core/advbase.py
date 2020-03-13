@@ -1089,13 +1089,12 @@ class Adv(object):
                         vars(self.afflics)[afflic].resist = 100
 
     def sim_affliction(self):
-        if 'sim_afflict' in self.conf:
-            t = int(self.conf.sim_afflict.time)
-            if t > 0:
-                # if self.condition('{} for {}s'.format(self.conf.sim_afflict.type, t)):
-                aff = vars(self.afflics)[self.conf.sim_afflict.type]
-                aff.on('simulated'.format(self.conf.sim_afflict.type), 200, 0, duration=t * self.duration, iv=t)
-                aff.states = None
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.time > 0:
+            # if self.condition('{} for {}s'.format(self.conf.sim_afflict.type, t)):
+            t = min(self.duration, int(float(self.conf.sim_afflict.time) * self.duration))
+            aff = vars(self.afflics)[self.conf.sim_afflict.type]
+            aff.on('simulated', 200, 0, duration=t, iv=t)
+            aff.states = None
 
     def sim_buffbot(self):
         if 'sim_buffbot' in self.conf:

@@ -9,7 +9,7 @@ class Curran(adv.curran.Curran):
     comment = ''
 
     conf = adv.curran.Curran.conf.copy()
-    conf['sim_afflict.time'] = 180
+    conf['sim_afflict.time'] = 1
     conf['sim_afflict.type'] = 'poison'
     conf['slots.a'] = KFM()+The_Fires_of_Hate()
     conf['slots.d'] = Shinobi()

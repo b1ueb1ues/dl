@@ -282,6 +282,7 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
                 output.write(' (team: {:.2f})'.format(no_cond_dps['team_buff']))
             for k, v in no_cond_dps['team_tension'].items():
                 output.write(' ({}: {})'.format(k, int(v)))
+        output.write(', duration {:.2f}s'.format(real_d))
 
         output.write('\n')
         output.write(adv.__class__.__name__)
