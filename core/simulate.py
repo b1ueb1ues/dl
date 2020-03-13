@@ -230,7 +230,7 @@ def act_sum(actions, output):
         condensed = append_condensed(condensed, p_act)
     seq, freq, start = act_repeats(condensed)
     seqlen = len(seq)
-    if freq < 1 or freq*seqlen < len(condensed) // 4:
+    if freq < 2 or freq*seqlen < len(condensed) // 4:
         seqlen = 24
         freq = len(condensed) // seqlen
         start = 0
