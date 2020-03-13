@@ -230,7 +230,7 @@ def act_sum(actions, output):
         condensed = append_condensed(condensed, p_act)
     seq, freq, start = act_repeats(condensed)
     seqlen = len(seq)
-    if freq*seqlen < len(condensed) // 5:
+    if freq < 1 or freq*seqlen < len(condensed) // 4:
         seqlen = 24
         freq = len(condensed) // seqlen
         start = 0
@@ -239,9 +239,9 @@ def act_sum(actions, output):
     for idx, ac in enumerate(condensed):
         act, cnt = ac
         idx = idx - idx_offset
-        if start > idx and idx % 24 == 0:
+        if start > idx > 0 and idx % 24 == 0:
             output.write('\n')
-        if freq >= 0 and start <= idx and (idx-start) % seqlen == 0:
+        elif freq >= 0 and start < idx and (idx-start) % seqlen == 0:
             output.write('\n')
             freq -= 1
         elif idx > 0:
