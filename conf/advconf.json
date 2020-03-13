@@ -787,18 +787,18 @@
     },
     "Hawk": {
         "c": {
-            "att": 494,
+            "att": 592,
             "ele": "wind",
             "wt": "bow",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
             "recovery": 2.0,
             "dmg": 0.0,
             "sp": 2723,
-            "hit": 1
+            "hit": 0
         },
         "s2": {
             "startup": 0.25,
@@ -1172,18 +1172,18 @@
     },
     "Lin_You": {
         "c": {
-            "att": 517,
+            "att": 619,
             "ele": "wind",
             "wt": "axe",
             "stars": "5",
-            "lv2_autos": 0
+            "lv2_autos": 1
         },
         "s1": {
             "startup": 0.1,
             "recovery": 2.4,
-            "dmg": 11.16,
+            "dmg": 13.02,
             "sp": 2969,
-            "hit": 6
+            "hit": 7
         },
         "s2": {
             "startup": 0.25,
