@@ -248,8 +248,6 @@ def act_sum(actions, output):
             output.write(' ')
         if act[0] == 'x' or act == 'fs':
             output.write(act.replace('x', 'c'))
-            if cnt > 1:
-                output.write('*{}'.format(cnt))
             p_type = 'x'
         else:
             if act == 'dshift':
@@ -259,7 +257,8 @@ def act_sum(actions, output):
             else:
                 output.write('['+act+']')
                 p_type = 's'
-        
+        if cnt > 1:
+            output.write('*{}'.format(cnt))
 
 def dps_sum(real_d, damage, mod_func=None):
     res = {'dps':0}
