@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -38,4 +37,5 @@ class Lin_You(Adv):
         self.s2_buff.on()
 
 if __name__ == '__main__':
-    test_with_argv('linyou', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -57,4 +56,5 @@ class Hawk(Adv):
 
 
 if __name__ == '__main__':
-    test_with_argv('hawk', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
