@@ -12,7 +12,8 @@ from core.afflic import *
 import core.acl
 import conf as globalconf
 import slot
-import core.floatsingle as floatsingle
+from ctypes import c_float
+from math import ceil
 
 # import core.condition
 # m_condition = core.condition
@@ -1334,11 +1335,9 @@ class Adv(object):
 
     def sp_val(self, param):
         if isinstance(param, str):
-            return self.ceiling(self.float_problem(self.conf[param + '.sp'] * self.float_problem(self.sp_mod(param))))
-        elif isinstance(param, int) and 1 <= param <= 5:
-            return sum([self.ceiling(
-                self.float_problem(self.conf['x{}.sp'.format(x)] * self.float_problem(self.sp_mod('x{}'.format(x)))))
-                for x in range(1, param + 1)])
+            return self.sp_convert(self.sp_mod(param), self.conf[param + '.sp'])
+        elif isinstance(param, int) and 0 < param:
+            return sum([self.sp_convert(self.sp_mod('x{}'.format(x)), self.conf['x{}.sp'.format(x)]) for x in range(1, param + 1)])
 
     def bufftime(self):
         return self.mod('buff')
@@ -1586,32 +1585,25 @@ class Adv(object):
         # if doing.name[0] == 's':
         #   no_deed_to_do_anythin
 
-    # implement single float of c in python
-    def float_problem(self, a):
-        return floatsingle.tofloat(a)
+    # DL uses C floats and round SP up, which leads to precision issues
+    @staticmethod
+    def sp_convert(haste, sp):
+        sp_hasted = c_float(c_float(haste).value * sp).value
+        sp_int = int(sp_hasted)
+        return sp_int if sp_int == sp_hasted else sp_int + 1
 
-    # self ceiling is the true ceiling
-    def ceiling(self, a):
-        b = int(a)
-        if b == a:
-            return b
-        else:
-            return b + 1
-
-    def charge_p(self, name, sp):
-        percent = sp
-        self.s1.charge(self.ceiling(self.conf.s1.sp * percent))
-        self.s2.charge(self.ceiling(self.conf.s2.sp * percent))
-        self.s3.charge(self.ceiling(self.conf.s3.sp * percent))
+    def charge_p(self, name, percent):
+        percent = percent / 100 if percent > 1 else percent
+        self.s1.charge(self.sp_convert(percent, self.conf.s2.sp))
+        self.s2.charge(self.sp_convert(percent, self.conf.s2.sp))
+        self.s3.charge(self.sp_convert(percent, self.conf.s2.sp))
         log('sp', name, '{:.0f}%   '.format(percent * 100), '%d/%d, %d/%d, %d/%d' % ( \
             self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
         self.think_pin('prep')
 
     def charge(self, name, sp):
         # sp should be integer
-        sp = int(sp) * self.float_problem(self.sp_mod(name))
-        sp = self.float_problem(sp)
-        sp = self.ceiling(sp)
+        sp = self.sp_convert(self.sp_mod(name), sp)
         self.s1.charge(sp)
         self.s2.charge(sp)
         self.s3.charge(sp)

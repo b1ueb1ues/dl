@@ -73,11 +73,16 @@ class Tobias(Adv):
     a3 = ('k_poison',0.3)
 
     conf = {}
-    conf['slots.a'] = Castle_Cheer_Corps()+A_Dogs_Day()
-    conf['slots.d'] = Freyja()
+    conf['slots.a'] = Primal_Crisis()+A_Dogs_Day()
+    conf['slots.d'] = Ariel()
     conf['acl'] = """
         `s1
     """
+
+    def d_slots(self):
+        if 'bow' in self.ex:
+            self.slots.a = Castle_Cheer_Corps()+A_Dogs_Day()
+            self.slots.d = Freyja()
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

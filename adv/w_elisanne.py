@@ -26,15 +26,12 @@ class Wedding_Elisanne(Adv):
             self.conf.slot.a = TSO()+FRH()
 
     def prerun(self):
-        self.s2debuff = Debuff('s2defdown',0.15,10,1)
-        if self.condition('s2 defdown for 10s'):
-            self.s2defdown = 1
-        else:
-            self.s2defdown = 1
+        self.s2_debuff = Debuff('s2defdown',0.15,10,1)
+        self.s2_defdown = self.condition('s2 defdown for 10s')
 
     def s2_proc(self, e):
-        if self.s2defdown :
-            self.s2debuff.on()
+        if self.s2_defdown:
+            self.s2_debuff = Debuff('s2defdown',0.15,10,1).on()
 
 
 if __name__ == '__main__':
