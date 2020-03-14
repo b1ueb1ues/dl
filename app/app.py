@@ -54,6 +54,10 @@ SPECIAL_ADV = {
         'fn': 'g_cleo.py.ehjp.py',
         'nc': ['w', 'wp', 'acl']
     },
+    'g_cleo_stack': {
+        'fn': 'g_cleo.py.stack.py',
+        'nc': []
+    },
     'g_luca_maxstacks': {
         'fn': 'g_luca.py.maxstacks.py',
         'nc': []
@@ -175,7 +179,7 @@ def simc_adv_test():
     if not request.method == 'POST':
         return 'Wrong request method.'
     params = request.get_json(silent=True)
-    adv_name = 'euden' if not 'adv' in params else params['adv'].lower()
+    adv_name = 'euden' if not 'adv' in params or params['adv'] is None else params['adv'].lower()
     wp1 = params['wp1'] if 'wp1' in params else None
     wp2 = params['wp2'] if 'wp2' in params else None
     dra = params['dra'] if 'dra' in params else None
@@ -184,7 +188,7 @@ def simc_adv_test():
     acl = params['acl'] if 'acl' in params else None
     cond = params['condition'] if 'condition' in params and params['condition'] != {} else None
     teamdps = None if not 'teamdps' in params else abs(float(params['teamdps']))
-    t   = 180 if not 't' in params else abs(int(params['t']))
+    t   = 180 if not 't' in params else abs(float(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
     # latency = 0 if 'latency' not in params else abs(float(params['latency']))
@@ -209,7 +213,7 @@ def simc_adv_test():
             pass
     try:
         if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison', 'frostbite']:
-            conf['sim_afflict.time'] = t
+            conf['sim_afflict.time'] = abs(float(params['sim_afflict_time'])) / 100
             conf['sim_afflict.type'] = params['sim_afflict_type']
     except:
         pass

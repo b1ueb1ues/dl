@@ -11,24 +11,19 @@ class Dragonyule_Xainfried(Adv):
     a3 = ('primed_att', 0.08)
 
     conf = {}
-    conf['slots.d'] = Long_Long()
+    conf['slots.d'] = Ariel()
     conf['slots.a'] = ADD()+Primal_Crisis()
     conf['acl'] = """
         `s1
-        `s2, seq=5
-        `s3, fsc
-        `fs, seq=5
+        `s2, x=5
+        `s3, x=5
         """
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s1_proc = self.c_s1_proc
-
-    def c_s1_proc(self, e):
-        Teambuff('s1',0.2,15,'crit','chance').on()
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s1_proc(self, e):
-        Selfbuff('s1',0.2,15,'crit','chance').on()
+        self.buff_class('s1',0.2,15,'crit','chance').on()
 
 if __name__ == '__main__':
     conf = {}

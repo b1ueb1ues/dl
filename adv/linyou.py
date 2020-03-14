@@ -35,7 +35,7 @@ class Lin_You(Adv):
         self.fs_alt.on(3)
 
     def s2_proc(self, e):
-        self.s2_buff = Spdbuff('s2_spd',0.20,15).on()
+        self.s2_buff.on()
 
 if __name__ == '__main__':
     test_with_argv('linyou', *sys.argv)

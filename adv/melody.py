@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -7,24 +6,16 @@ def module():
     return Melody
 
 class Melody(Adv):
-    comment = 'no s2'
     a1 = ('cc',0.08,'hp100')
 
     conf = {}
     conf['slots.a'] = RR()+ADD()
-    conf['slots.d'] = Garland()
-
-    def d_acl(self):
-        if 'bow' in self.ex:
-            self.conf.acl = """
-                `s1
-                `s3, seq=5 or fsc
-                `fs, self.s1.charged>=s1.sp-236
-                """
-
-
+    conf['slots.d'] = Ariel()
+    conf['acl'] = """
+        `s1
+        `s3, x=4 or x=5
+    """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

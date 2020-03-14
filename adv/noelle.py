@@ -8,6 +8,7 @@ def module():
     return Noelle
 
 class Noelle(Adv):
+    comment = 'use Freyja & Castle Cheer Corps in 4DPS team'
     a1 = ('bt',0.25)
     a3 = ('primed_defense',0.08)
 
@@ -22,14 +23,10 @@ class Noelle(Adv):
         """
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s1_proc = self.c_s1_proc
-
-    def c_s1_proc(self, e):
-        Teambuff('s1',0.25,15).on()
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s1_proc(self, e):
-        Selfbuff('s1',0.25,15).on()
+        self.buff_class('s1',0.25,15).on()
 
 
 if __name__ == '__main__':

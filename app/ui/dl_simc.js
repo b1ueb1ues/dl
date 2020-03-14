@@ -6,9 +6,11 @@ EX_MAP = {
     'dagger': 'd',
     'axe2': 'm',
     'sword': 's',
-    'geuden': 'g'
+    'g_euden': 'g',
+    'tobias': 't'
 }
 AXE2_ADV = ['h_mym', 'v_melody']
+UNIQUE_ADV = ['g_euden', 'tobias']
 RANGED = ['wand', 'bow', 'staff']
 BASE_SIM_T = 180
 BASE_TEAM_DPS = 20000
@@ -28,7 +30,8 @@ PREFIX_MAPS = {
         's_': 'summer_',
         'v_': 'valentines_',
         'w_': 'wedding_',
-        'mh_': 'hunter_'
+        'mh_': 'hunter_',
+        't_hope': 'templar_hope'
     },
 }
 function name_fmt(name) {
@@ -147,7 +150,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     } else {
         slots = '';
     }
-    resDiv.append($('<h6>DPS:' + total + name_fmt(slots) + cond_comment_str + '</h6>'));
+    resDiv.append($('<h6>DPS:' + total + slots + cond_comment_str + '</h6>'));
     copyTxt += slots + '```DPS: ' + total + cond_cpy_str + '\n';
     let resBar = $('<div></div>').attr({ class: 'result-bar' });
     let colorIdx = 0;
@@ -270,9 +273,9 @@ function loadAdvSlots() {
                 if (AXE2_ADV.includes(adv_name)) {
                     $('#ex-axe2').prop('checked', true);
                     $('#ex-axe2').prop('disabled', true);
-                } else if (adv_name == 'g_euden') {
-                    $('#ex-geuden').prop('checked', true);
-                    $('#ex-geuden').prop('disabled', true);
+                } else if (UNIQUE_ADV.includes(adv_name)) {
+                    $('#ex-' + adv_name).prop('checked', true);
+                    $('#ex-' + adv_name).prop('disabled', true);
                 } else if (adv_name != 'megaman') {
                     $('#ex-' + slots.adv.wt).prop('checked', true);
                     $('#ex-' + slots.adv.wt).prop('disabled', true);
@@ -508,7 +511,7 @@ function clearResults() {
     $('#input-teamdps').val(BASE_TEAM_DPS);
     $('#input-missile').val(0);
     const resistList = $('#affliction-resist > div > input[type="text"]');
-    resistList.each(function (idx, res) { $(res).empty() });
+    resistList.each(function (idx, res) { $(res).val(''); });
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);

@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 
 BR = 64
 BLADE = 1.10
@@ -117,7 +118,7 @@ def run_mass(mass, base_log, base_d, classname, conf, duration, cond):
     return base_log, base_d
 
 def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=None, team_dps=None, cond=True, special=False):
-    team_dps = team_dps or 20000
+    team_dps = team_dps if team_dps is not None else 20000
     output = output or sys.stdout
     ex_set = parse_ex(ex)
     if len(ex_set) > 0:
@@ -183,6 +184,29 @@ def append_condensed(condensed, act):
     condensed.append((act, 1))
     return condensed
 
+def act_repeats(condensed):
+    from collections import Counter
+    condensed = list(filter(lambda a: a[0] != 'dshift', condensed))
+    start = 0
+    maxlen = len(condensed)
+    bestest = condensed, 1, 0
+    for start in range(0, maxlen):
+        accumulator = Counter()
+        length = 1
+        c_slice = tuple(condensed[start:start+length])
+        while start+length*(accumulator[c_slice]+1) <= maxlen:
+            n_slice = tuple(condensed[start+length*accumulator[c_slice]:start+length*(accumulator[c_slice]+1)])
+            if n_slice == c_slice:
+                accumulator[c_slice] += 1
+            else:
+                length += 1
+                c_slice = tuple(condensed[start:start+length])
+                accumulator[c_slice] = 1
+        c_best = accumulator.most_common(1)
+        if len(c_best) > 0 and c_best[0][1] > bestest[1]:
+            bestest = (*c_best[0], start)
+    return bestest
+
 def act_sum(actions, output):
     p_act = '_'
     p_xseq = 0
@@ -204,30 +228,37 @@ def act_sum(actions, output):
         p_act = act
     if p_act[0] == 'x':
         condensed = append_condensed(condensed, p_act)
-    output.write(str(condensed))
-    output.write('\n')
+    seq, freq, start = act_repeats(condensed)
+    seqlen = len(seq)
+    if freq < 2 or freq*seqlen < len(condensed) // 4:
+        seqlen = 24
+        freq = len(condensed) // seqlen
+        start = 0
     p_type = None
-    for act, cnt in condensed:
+    idx_offset = 0
+    for idx, ac in enumerate(condensed):
+        act, cnt = ac
+        idx = idx - idx_offset
+        if start > idx > 0 and idx % 24 == 0:
+            output.write('\n')
+        elif freq >= 0 and start < idx and (idx-start) % seqlen == 0:
+            output.write('\n')
+            freq -= 1
+        elif idx > 0:
+            output.write(' ')
         if act[0] == 'x' or act == 'fs':
-            if p_type is None:
-                output.write('[  ] ')
-            elif p_type != 'd':
-                output.write(' ')
             output.write(act.replace('x', 'c'))
-            if cnt > 1:
-                output.write('*{}'.format(cnt))
             p_type = 'x'
         else:
             if act == 'dshift':
-                output.write('\n[-- dragon --]\n')
+                output.write('[--- dragon ---]')
                 p_type == 'd'
+                idx_offset += 1
             else:
-                if p_type == 'x':
-                    output.write('\n')
-                elif p_type == 's':
-                    output.write(' ')
                 output.write('['+act+']')
                 p_type = 's'
+        if cnt > 1:
+            output.write('*{}'.format(cnt))
 
 def dps_sum(real_d, damage, mod_func=None):
     res = {'dps':0}
@@ -325,14 +356,14 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
     ])
     dps_mappings = {}
     dps_mappings['attack'] = dict_sum(dmg['x'], mod_func) / real_d
-    for k in dmg['f']:
+    for k in sorted(dmg['f']):
         if k == 'fs':
             dps_mappings['force_strike'] = dmg['f']['fs'] / real_d
         else:
             dps_mappings[k] = dmg['f'][k] / real_d
-    for i, k in enumerate(dmg['s'].keys()):
+    for k in sorted(dmg['s']):
         if k in ('s1', 's2', 's3'):
-            dps_mappings['skill_{}'.format(i+1)] = dmg['s'][k] / real_d
+            dps_mappings['skill_{}'.format(k[1])] = dmg['s'][k] / real_d
         else:
             dps_mappings[k] = dmg['s'][k] / real_d
     if buff > 0:
@@ -343,10 +374,12 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
         if dmg_val > 0:
             dps_mappings['team_{}'.format(tension)] = dmg_val
             report_csv[0] += dmg_val
-    for k, dmg_val in dmg['o'].items():
+    for k in sorted(dmg['o']):
+        dmg_val = dmg['o'][k]
         if dmg_val > 0:
             dps_mappings[k] = dmg_val / real_d
-    for k, dmg_val in dmg['d'].items():
+    for k in sorted(dmg['d'], reverse=True):
+        dmg_val = dmg['d'][k]
         if dmg_val > 0:
             if k.startswith('dx') or k == 'dshift':
                 k = 'dx'

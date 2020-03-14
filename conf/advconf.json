@@ -2073,7 +2073,7 @@
             "recovery": 1.53,
             "dmg": 6.76,
             "sp": 4608,
-            "hit": 5
+            "hit": 2
         }
     },
     "Tobias": {
@@ -2092,8 +2092,8 @@
             "hit": 0
         },
         "s2": {
-            "startup": 0.25,
-            "recovery": 1.45,
+            "startup": 0.10,
+            "recovery": 1.70,
             "dmg": 0.0,
             "sp": 1,
             "hit": 0
@@ -2827,12 +2827,6 @@
         "s2": {
             "startup": 0.1,
             "recovery": 1.45,
-            "buff": [
-                "debuff",
-                0.1,
-                20.0,
-                "1"
-            ],
             "dmg": 4.6,
             "sp": 6000,
             "hit": 1

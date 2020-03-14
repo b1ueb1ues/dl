@@ -12,11 +12,11 @@ class Valentines_Melody(Adv):
 
     conf = {}
     conf['slots.a'] = KFM()+The_Fires_of_Hate()
-    conf['slot.d'] = Vayu()
+    conf['slot.d'] = Ariel()
     conf['acl'] = """
         `s1
         `s2
-        `s3, self.afflics.poison.get() and self.mod('def')!=1
+        `s3, cancel and self.mod('def')!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
     conf['afflict_res.poison'] = 0
