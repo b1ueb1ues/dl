@@ -10,11 +10,12 @@ def module():
 class Victor(Adv):
     a1 = ('a',0.13,'hp70')
     conf = {}
-    conf['slots.a'] = slot.a.RR()+slot.a.Jewels_of_the_Sun()
+    conf['slots.a'] = RR() + BN()
+    conf['slots.d'] = Vayu()
     conf['acl'] = """
         `s1, self.bleed._static['stacks'] < 3
-        `s2, seq=5
-        `s3, seq=5
+        `s2, x=5
+        `s3, x=5
         """
 
     def d_slots(self):
