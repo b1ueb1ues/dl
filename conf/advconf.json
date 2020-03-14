@@ -2092,8 +2092,8 @@
             "hit": 0
         },
         "s2": {
-            "startup": 0.25,
-            "recovery": 1.45,
+            "startup": 0.10,
+            "recovery": 1.70,
             "dmg": 0.0,
             "sp": 1,
             "hit": 0
