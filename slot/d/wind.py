@@ -246,8 +246,3 @@ class Ariel(DragonBase):
         'ds.recovery': 145 / 60, # skill frames
         'ds.hit': 1,
     }
-
-class Unreleased_DKR_Baby_dont_hurt_me(DragonBase):
-    ele = 'wind'
-    att = 127
-    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]

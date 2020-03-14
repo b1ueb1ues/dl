@@ -227,8 +227,3 @@ class Unreleased_Water80Str(DragonBase):
     ele = 'water'
     att = 127
     a = [('a', 0.8, 'some wacky condition')]
-
-class Unreleased_DKR_What_is_love(DragonBase):
-    ele = 'water'
-    att = 127
-    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]
