@@ -1,5 +1,5 @@
 class Ability:
-    COND_ELE = ('flame', 'water', 'wind', 'light', 'dark')
+    COND_ELE = ('flame', 'water', 'wind', 'light', 'shadow')
     COND_WT = ('axe', 'blade', 'bow', 'dagger', 'lance', 'staff', 'sword', 'wand')
     def __init__(self, name, mod=None):
         self.name = name

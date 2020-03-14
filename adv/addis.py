@@ -43,8 +43,6 @@ class Addis(Adv):
             log('-special','s1_with_s2')
             if random.random() < 0.8:
                 Bleed("s1", 1.32).on()
-            else:
-                log('-special','s1_failed')
         else:
             self.afflics.poison('s1',100,0.53)
 

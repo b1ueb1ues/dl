@@ -165,17 +165,14 @@ class Mega_Man(Adv):
             self.bleed.true_dmg_event.dtype = 'x'
             self.bleed.on()
 
-    def charge_p(self, name, sp):
-        percent = sp
-        self.s3.charge(self.ceiling(self.conf.s3.sp*percent))
+    def charge_p(self, name, percent):
+        percent = percent / 100 if percent > 1 else percent
         log('sp', name, '{:.0f}%   '.format(percent*100),'%d/%d, %d/%d, %d/%d'%(\
             self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp) )
         self.think_pin('prep')
 
     def charge(self, name, sp):
-        sp = int(sp) * self.float_problem(self.sp_mod(name))
-        sp = self.float_problem(sp)
-        sp = self.ceiling(sp)
+        sp = self.sp_convert(self.sp_mod(name), sp)
         self.s3.charge(sp)
         self.think_pin('sp')
 
