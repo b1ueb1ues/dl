@@ -1594,9 +1594,9 @@ class Adv(object):
 
     def charge_p(self, name, percent):
         percent = percent / 100 if percent > 1 else percent
-        self.s1.charge(self.sp_convert(percent, self.conf.s2.sp))
+        self.s1.charge(self.sp_convert(percent, self.conf.s1.sp))
         self.s2.charge(self.sp_convert(percent, self.conf.s2.sp))
-        self.s3.charge(self.sp_convert(percent, self.conf.s2.sp))
+        self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
         log('sp', name, '{:.0f}%   '.format(percent * 100), '%d/%d, %d/%d, %d/%d' % ( \
             self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
         self.think_pin('prep')
