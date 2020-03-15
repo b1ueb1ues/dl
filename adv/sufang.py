@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -39,4 +38,5 @@ class Su_Fang(Adv):
 
 
 if __name__ == '__main__':
-    test_with_argv('t_hope', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

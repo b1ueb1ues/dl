@@ -10,8 +10,8 @@ def module():
 class Victor(Adv):
     a1 = ('a',0.13,'hp70')
     conf = {}
-    conf['slots.a'] = RR() + BN()
     conf['slots.d'] = Vayu()
+    conf['slots.a'] = slot.a.RR()+slot.a.Beautiful_Nothingness()
     conf['acl'] = """
         `s1, self.bleed._static['stacks'] < 3
         `s2, x=5

@@ -92,10 +92,16 @@ def run_once_mass(classname, conf, duration, cond, idx):
 def sum_logs(log, other):
     for k1 in log.damage:
         for k2 in log.damage[k1]:
-            log.damage[k1][k2] += other.damage[k1][k2]
+            try:
+                log.damage[k1][k2] += other.damage[k1][k2]
+            except:
+                continue
     log.team_buff += other.team_buff
     for k in log.team_tension:
-        log.team_tension[k] += other.team_tension[k]
+        try:
+            log.team_tension[k] += other.team_tension[k]
+        except:
+            continue
     return log
 
 def avg_logs(log, mass):

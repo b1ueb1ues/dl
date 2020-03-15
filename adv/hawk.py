@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -15,6 +14,7 @@ class Hawk(Adv):
         `s2, s1.check()
         `s1, cancel
     """
+
     conf['slot.d'] = Vayu()
     conf['slot.a'] = Resounding_Rendition() + The_Fires_of_Hate()
     conf['afflict_res.stun'] = 80
@@ -51,8 +51,10 @@ class Hawk(Adv):
             self.conf.s2.startup = 0.25
             self.conf.s2.recovery = 0.9
             self.s2.ac = self.a_s2
+            self.hits += 3
         self.s2_mode = (self.s2_mode + 1) % 2
 
 
 if __name__ == '__main__':
-    test_with_argv('t_hope', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

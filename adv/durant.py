@@ -10,7 +10,7 @@ class Durant(Adv):
     a3 = ('cd',0.17,'hp100')
 
     conf = {}
-    conf['slot.a'] = Seaside_Princess()+FWHC()
+    conf['slot.a'] = Seaside_Princess()+Luck_of_the_Draw()
 
     conf['acl'] = """
         `s3, not self.s3_buff

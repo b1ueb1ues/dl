@@ -1,4 +1,3 @@
-from core.simulate import test_with_argv
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -18,10 +17,11 @@ class Lin_You(Adv):
         `s2, s1.check()
         `s1
         `s3, x=5
+        `fs, self.hits <= 44 and self.fs_alt.uses > 0 and x=4
         """
 
     def prerun(self):
-        conf_fs_alt = {'fs.dmg': 2.42, 'fs.hit': 5}
+        conf_fs_alt = {'fs.dmg': 2.59, 'fs.hit': 6}
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt))
         self.s2_buff = Spdbuff('s2_spd',0.20, 15)
 
@@ -34,7 +34,8 @@ class Lin_You(Adv):
         self.fs_alt.on(3)
 
     def s2_proc(self, e):
-        self.s2_buff = Spdbuff('s2_spd',0.20,15).on()
+        self.s2_buff.on()
 
 if __name__ == '__main__':
-    test_with_argv('t_hope', *sys.argv)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
