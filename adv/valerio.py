@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -223,24 +222,25 @@ appetizer_conf = {
 
 class Valerio(Adv):
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+Primal_Crisis()
-    conf['slot.d'] = Siren()
+    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slot.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         # stances
-        if s2.check() and self.inspiration()=2
-        `entree
-        elif s1.check() and not self.afflics.frostbite.get()
+        if s1.check() and not self.afflics.frostbite.get()
         `appetizer
         else
-        `dessert
+        `entree
         end
         # actions
-        if self.stance='entree'
-        `s2
-        else
         `s1
         `s2
         `s3
+        if self.stance='appetizer'
+        `fsf, x=11
+        elif self.stance='entree'
+        `fsf, x=7
+        else
+        `fsf, x=6
         end
     """
     conf['afflict_res.frostbite'] = 0
@@ -340,5 +340,5 @@ class Valerio(Adv):
         self.inspiration.add(insp, team=True)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
