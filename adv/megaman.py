@@ -230,7 +230,7 @@ class Mega_Man(Adv):
 
     def l_megaman_s1_x(self, e):
         self.hits += self.conf.s1.x1.hit
-        self.dmg_make('o_x_metal_blade', self.conf.s1.x1.dmg*self.conf.s1.x1.hit)
+        self.dmg_make('o_metal_blade', self.conf.s1.x1.dmg*self.conf.s1.x1.hit)
         self.proc_bleed()
         self.s1.current_ammo -= self.s1.cost
         log('sp', 'metal_blade', -self.s1.cost,'%d/%d, %d/%d, %d/%d'%(\
@@ -240,7 +240,7 @@ class Mega_Man(Adv):
 
     def l_megaman_s2_x(self, e):
         self.hits += self.conf.s2.x1.hit
-        self.dmg_make('o_x_leaf_shield', self.conf.s2.x1.dmg*self.conf.s2.x1.hit)
+        self.dmg_make('o_leaf_shield', self.conf.s2.x1.dmg*self.conf.s2.x1.hit)
         self.s2.current_ammo -= self.s2.cost
         log('sp', 'leaf_shield', -self.s2.cost,'%d/%d, %d/%d, %d/%d'%(\
             self.s1.current_ammo, self.s1.ammo, self.s2.current_ammo, self.s2.ammo, self.s3.charged, self.s3.sp))
