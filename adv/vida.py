@@ -10,7 +10,6 @@ class Vida(Adv):
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
-        `s2, fsc
         `fs, x=5
         """
 
