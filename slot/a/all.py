@@ -1,4 +1,4 @@
-from slot.a import *
+from slot.a import Amulet, Conf
 
 
 class Plunder_Pals(Amulet): #Plunder Pals or Hitting the Books

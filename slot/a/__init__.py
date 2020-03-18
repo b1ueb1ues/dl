@@ -28,12 +28,15 @@ class Amulet(AmuletBase):
                 'dc'     : 3,      # dragon claw
                 'prep'   : 100,    # skill prep
                 'resist' : 10000,  # resist
-                #'k_paralysis'      : 0.3,    # afflic killer
-                'dra'    : 0.18, # dragon damage
-                'drt'    : 0.20, # dragon time
+                'dra'    : 0.18,   # dragon damage
+                'drt'    : 0.20,   # dragon time
 
                 'eprep'  : 5, # energy prep
-                }
+            }
+        from core.afflic import AFFLICT_LIST
+        for afflic in AFFLICT_LIST:
+            self.mmax['k_'+afflic] = 0.25
+        self.mmax['k_burn'] = 0.30
 
 
  #   def oninit(self, adv):

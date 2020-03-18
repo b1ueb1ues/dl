@@ -131,6 +131,9 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
         conf['ex'] = ex_set
     else:
         ex = '_'
+    if verbose == -3:
+        brute_force_slots(classname, conf, output, team_dps, duration)
+        return
     run_results = []
     adv, real_d = run_once(classname, conf, duration, cond)
     if verbose == 1:
@@ -166,7 +169,7 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
                 report(d, a, output, team_dps, cond=c, mod_func=mod_func)
     else:
         for a, d, c in run_results:
-            if verbose == -2 or verbose == -3:
+            if verbose == -2:
                 if c:
                     output.write('-,{},{}\n'.format(duration, ex))
                 report(d, a, output, team_dps, cond=c)
@@ -174,6 +177,57 @@ def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=
                 summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)
 
     return run_results
+
+def brute_force_slots(classname, conf, output, team_dps, duration):
+    from app.app import is_amulet, is_dragon
+    import inspect
+    import io
+    import slot.a
+    import slot.d
+    adv = classname(conf)
+    exclude = ('Dear_Diary_RO_30', 'Dear_Diary_RO_60', 'Dear_Diary_RO_90')
+    amulets = list(set(c for _, c in inspect.getmembers(slot.a, is_amulet) if c.__qualname__ not in exclude))
+    alen = len(amulets)
+    adv_ele = adv.slots.c.ele.lower()
+    results = []
+    i = input('Try all dragons? (y/n)')
+    if i == 'y':
+        dragon = list(set(c for _, c in inspect.getmembers(getattr(slot.d, adv_ele), is_dragon) if not c.__qualname__.startswith('Unreleased')))
+        for dra in dragon:
+            dname = dra.__qualname__
+            for a1 in range(alen-1):
+                for a2 in range(a1+1, alen):
+                    aname = '+'.join(sorted([amulets[a1].__qualname__, amulets[a2].__qualname__]))
+                    def slot_injection(self):
+                        self.conf.slot.a = amulets[a1]()+amulets[a2]()
+                        self.conf.slot.d = dra()
+                    classname.slot_backdoor = slot_injection
+                    adv = classname(conf=conf)
+                    real_d = adv.run(duration)
+                    res = dps_sum(real_d, adv.logs.damage)
+                    dps = res['dps']
+                    dps += adv.logs.team_buff / real_d * team_dps
+                    for tension, count in adv.logs.team_tension.items():
+                        dps += count*skill_efficiency(real_d, team_dps, tension_efficiency[tension])
+                    results.append((dps, dname, aname))
+    else:
+        for a1 in range(alen-1):
+            for a2 in range(a1+1, alen):
+                aname = '+'.join(sorted([amulets[a1].__qualname__, amulets[a2].__qualname__]))
+                def slot_injection(self):
+                    self.conf.slot.a = amulets[a1]()+amulets[a2]()
+                classname.slot_backdoor = slot_injection
+                adv = classname(conf=conf)
+                real_d = adv.run(duration)
+                res = dps_sum(real_d, adv.logs.damage)
+                dps = res['dps']
+                dps += adv.logs.team_buff / real_d * team_dps
+                for tension, count in adv.logs.team_tension.items():
+                    dps += count*skill_efficiency(real_d, team_dps, tension_efficiency[tension])
+                results.append((dps, adv.slots.d.__class__.__name__, aname))
+    results.sort(key=lambda x: x[0])
+    for dps, dname, aname in results:
+        output.write('{},{},{}\n'.format(round(dps), dname, aname))
 
 def amulets(adv):
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
