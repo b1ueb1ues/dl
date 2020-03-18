@@ -187,35 +187,32 @@ def brute_force_slots(classname, conf, output, team_dps, duration):
     adv = classname(conf)
     exclude = ('Dear_Diary_RO_30', 'Dear_Diary_RO_60', 'Dear_Diary_RO_90')
     amulets = list(set(c for _, c in inspect.getmembers(slot.a, is_amulet) if c.__qualname__ not in exclude))
-    alen = len(amulets)
     adv_ele = adv.slots.c.ele.lower()
     results = []
-    i = input('Try all dragons? (y/n)')
-    if i == 'y':
+    all_dragons = input('Try all dragons? (y/n)\n') == 'y'
+    if all_dragons:
         dragon = list(set(c for _, c in inspect.getmembers(getattr(slot.d, adv_ele), is_dragon) if not c.__qualname__.startswith('Unreleased')))
-        for dra in dragon:
-            dname = dra.__qualname__
-            for a1 in range(alen-1):
-                for a2 in range(a1+1, alen):
-                    aname = '+'.join(sorted([amulets[a1].__qualname__, amulets[a2].__qualname__]))
-                    def slot_injection(self):
-                        self.conf.slot.a = amulets[a1]()+amulets[a2]()
-                        self.conf.slot.d = dra()
-                    classname.slot_backdoor = slot_injection
-                    adv = classname(conf=conf)
-                    real_d = adv.run(duration)
-                    res = dps_sum(real_d, adv.logs.damage)
-                    dps = res['dps']
-                    dps += adv.logs.team_buff / real_d * team_dps
-                    for tension, count in adv.logs.team_tension.items():
-                        dps += count*skill_efficiency(real_d, team_dps, tension_efficiency[tension])
-                    results.append((dps, dname, aname))
     else:
-        for a1 in range(alen-1):
-            for a2 in range(a1+1, alen):
-                aname = '+'.join(sorted([amulets[a1].__qualname__, amulets[a2].__qualname__]))
+        dragon = [None]
+    fixed_a1 = input('Specific WP? (name/n)\n')
+    if fixed_a1 and fixed_a1 != 'n':
+        try:
+            fixed_a1 = fixed_a1.replace(' ', '_').strip()
+            amulets_1 = [getattr(slot.a, fixed_a1)]
+        except:
+            raise ValueError(fixed_a1+' is not a WP')
+    else:
+        amulets_1 = amulets[:-1]
+    for dra in dragon:
+        for idx, a1 in enumerate(amulets_1):
+            for a2 in amulets[idx+1:]:
+                if a1 == a2:
+                    continue
+                aname = '+'.join([a1.__qualname__, a2.__qualname__])
                 def slot_injection(self):
-                    self.conf.slot.a = amulets[a1]()+amulets[a2]()
+                    self.conf.slot.a = a1()+a2()
+                    if dra is not None:
+                        self.conf.slot.d = dra()
                 classname.slot_backdoor = slot_injection
                 adv = classname(conf=conf)
                 real_d = adv.run(duration)
@@ -468,12 +465,8 @@ def test_with_argv(*argv, conf={}):
     if argv[0] is not None and not isinstance(argv[0], str):
         module = argv[0]
     else:
-        try:
-            name = os.path.basename(argv[1]).split('.')[0]
-            module = load_adv_module(name)
-        except:
-            name = 'euden'
-            module = load_adv_module(name)
+        name = os.path.basename(argv[1]).split('.')[0]
+        module = load_adv_module(name)
     try:
         verbose = int(argv[2])
     except:

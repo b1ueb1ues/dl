@@ -63,12 +63,6 @@ class Fresh_Perspective(Amulet):
 FP = Fresh_Perspective
 
 
-class Bellathorna(Amulet):
-    att = 25
-    a = [('bt',0.20)]
-BT = Bellathorna
-
-
 #class Together_We_Stand(Amulet):
 #    att = 52
 #    a = [('sts',0.05),
