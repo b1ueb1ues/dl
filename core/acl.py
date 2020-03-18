@@ -178,7 +178,7 @@ def do_act_list(self, e):
     cancel = pin =='x' or pin == 'fs'
     x = didx if pin =='x' else 0
     fsc = pin =='fs'
-    s = int(pin[1]) if (pin[0] == 's' and pin[1] != 'p') or pin[-2:] == '-x' else 0
+    s = int(pin[1]) if (pin[0] == 's' and pin[1] in ('1', '2', '3')) or pin[-2:] == '-x' else 0
     sp = dname if pin == 'sp' else 0
     prep = pin == 'prep'
     sim_duration = self.duration

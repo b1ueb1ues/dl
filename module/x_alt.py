@@ -63,6 +63,7 @@ class X_alt:
         self.xmax -= 1
         self.active = False
         self.xstart = None
+        self.zeroed = None
 
     def x_alt(self):
         x_prev = self.adv.action.getprev()
@@ -81,6 +82,10 @@ class X_alt:
     
     def on(self):
         if not self.active:
+            if self.zeroed is not None:
+                self.zeroed[0].index = self.zeroed[1]
+                self.zeroed = None
+
             act = self.a_x_alt[1]
             doing = act._static.doing
             if not doing.idle and doing.status == -1:
@@ -112,3 +117,7 @@ class X_alt:
                 self.adv.fs = self.fs_og
             if self.no_dodge:
                 self.adv.dodge = self.dodge_og
+
+            doing = self.a_x_alt[1]._static.doing
+            self.zeroed = (doing, doing.index)
+            doing.index = 0
