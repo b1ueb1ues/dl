@@ -108,7 +108,7 @@ class DragonForm(Action):
         if self.c_act_name == 'ds':
             self.skill_use -= 1
             self.ds_event()
-            self.shift_damage_sum += self.ds_proc()
+            self.shift_damage_sum += self.ds_proc() or 0
             self.shift_end_timer.add(self.conf.ds.startup+self.conf.ds.recovery)
             self.act_sum.append('s')
         elif self.c_act_name == 'end':
