@@ -1,18 +1,19 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
+from slot.a import *
 def module():
     return Chelsea
 
 class Chelsea(Adv):
     conf = {}
     conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = Mega_Friends()+Dear_Diary()
     conf['acl'] = """
-        `s3, not self.s3_buff
-        `s1
-        `s2
-        `fs, x=3
-        """
+        `s3, fsc and not self.s3_buff
+        `s1, fsc
+        `s2, fsc
+        `fs, x=1
+    """
 
     def prerun(self):
         self.hp = 100
@@ -116,5 +117,5 @@ class Chelsea(Adv):
         return count
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

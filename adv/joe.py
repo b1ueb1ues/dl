@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -10,10 +9,10 @@ class Joe(Adv):
     conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Mega_Friends()+Dear_Diary()
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc
-        `fs, x=3
+        `fs, x=1
         """
     conf['afflict_res.burn'] = 0
 
@@ -30,6 +29,5 @@ class Joe(Adv):
         self.afflics.burn('s2',100+70*self.fullhp,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

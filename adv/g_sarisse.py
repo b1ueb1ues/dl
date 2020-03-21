@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -9,13 +8,13 @@ def module():
 class Gala_Sarisse(Adv):
     a3 = ('bt',0.3)
     conf = {}
-    conf['slot.d'] = Sakuya()
+    conf['slot.d'] = Dreadking_Rathalos()
     conf['slot.a'] = Forest_Bonds()+Dear_Diary()
     conf['acl'] = """
         `s3, fsc and not self.s3_buff
-        `s1, cancel
+        `s1, fsc
         `s2, fsc
-        `fs, seq=4
+        `fs, x=1
     """
 
     def prerun(self):
@@ -49,5 +48,5 @@ class Gala_Sarisse(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

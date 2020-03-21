@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -14,8 +13,7 @@ class Xania(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
-        `fs, (s1.charged>=s1.sp-self.sp_val('fs')) or (s2.charged>=s2.sp-self.sp_val('fs'))
-        """
+    """
     conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):
@@ -25,5 +23,5 @@ class Xania(Adv):
         self.afflics.burn('s2',100,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

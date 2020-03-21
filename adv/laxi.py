@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -10,11 +9,13 @@ class Laxi(Adv):
     comment = "a1 proc at 0s"
     
     conf = {}
-    conf['slot.a'] = HoH()+DD()
+    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, not self.s2buff.get()
         `s1
+        `fs, x=2
         """
 
     def prerun(self):
@@ -64,7 +65,7 @@ class Laxi(Adv):
         self.heal.getdoing().cancel_by.append('heal')
         self.heal.getdoing().interrupt_by.append('heal')
         self.heal()
-if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
 
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
