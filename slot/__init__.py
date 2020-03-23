@@ -90,6 +90,9 @@ class WeaponBase(Slot):
         else :
             self.mod.append(('crit','chance',0.02))
 
+    def s3_proc(self, adv, e):
+        pass
+
 class DragonBase(Slot):
     stype = 'd'
     a = [('a', 0.60)]
