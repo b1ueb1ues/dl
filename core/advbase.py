@@ -1739,9 +1739,8 @@ class Adv(object):
                         self.s3_buff = self.s3_buff_list[0]
                 else:
                     idx = (self.s3_buff_list.index(self.s3_buff) + 1) % len(self.s3_buff_list)
-                    for buff in self.s3_buff_list:
-                        buff.off()
-                    self.s3_buff_list[idx].on()
+                    self.s3_buff.off()
+                    self.s3_buff = self.s3_buff_list[idx].on()
             else:
                 self.do_buff(e, buffarg).on()
 
