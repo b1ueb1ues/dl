@@ -34,7 +34,7 @@ def get(name):
     chain_dict = coability['all'] if name in all_ele_chain else coability[conf.c.ele]
     try:
         chain = chain_dict[name][0]
-        if chain and len(chain) < 3 or chain[2] != 'hp<30':
+        if chain and len(chain) < 3 or chain[2] != 'hp<40':
             conf.chain = Conf({name: chain})
     except:
         pass
