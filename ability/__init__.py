@@ -463,13 +463,13 @@ ability_dict['energy'] = Energy_Buff
 
 
 class Affliction_Selfbuff(Ability):
-    AFF_CD = 5
-    def __init__(self, name, value, duration=15):
+    def __init__(self, name, value, duration=15, cd=5):
         nameparts = name.split('_')
         self.atype = nameparts[1].strip()
         self.value = value
         self.duration = duration
         self.buff_args = nameparts[2:]
+        self.cd = cd
         self.is_cd = False
         super().__init__(name)
 
@@ -480,7 +480,7 @@ class Affliction_Selfbuff(Ability):
             if not self.is_cd:
                 adv.Buff(self.name, self.value * e.rate, self.duration, *self.buff_args).on()
                 self.is_cd = True
-                adv.Timer(cd_end).on(self.AFF_CD)
+                adv.Timer(cd_end).on(self.cd)
         adv.Event(self.atype).listener(l_afflict)
 
 ability_dict['affself'] = Affliction_Selfbuff
@@ -494,7 +494,7 @@ class Affliction_Teambuff(Affliction_Selfbuff):
             if not self.is_cd:
                 adv.Teambuff(self.name, self.value * e.rate, self.duration, *self.buff_args).on()
                 self.is_cd = True
-                adv.Timer(cd_end).on(self.AFF_CD)
+                adv.Timer(cd_end).on(self.cd)
         adv.Event(self.atype).listener(l_afflict)
 
 ability_dict['affteam'] = Affliction_Teambuff

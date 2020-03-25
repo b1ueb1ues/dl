@@ -8,7 +8,7 @@ def module():
 
 class Valentines_Melody(Adv):
     comment = 'c4fsf c5 c4 s1'
-    a1 = ('affteam_poison', 0.10, 10)
+    a1 = ('affteam_poison', 0.10, 10, 5)
     a3 = ('k_poison',0.3)
 
     conf = {}

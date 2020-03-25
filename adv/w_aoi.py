@@ -5,7 +5,7 @@ def module():
     return Wedding_Aoi
 
 class Wedding_Aoi(Adv):
-    a1 = ('affteam_sleep', 0.15, 10)
+    a1 = ('affteam_sleep', 0.15, 10, 5)
     a3 = ('sp',0.12,'fs')
     conf = {}
     conf['acl'] = """

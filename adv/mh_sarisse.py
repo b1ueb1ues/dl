@@ -59,7 +59,7 @@ class FS_Speedable(Action):
         return self.tap()
 
 class Hunter_Sarisse(Adv):
-    comment = 'fs hit count vary on distance and enemy size; combo = energy not implemented'
+    comment = 'fs hit count vary on distance and enemy size'
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)
 
@@ -132,10 +132,7 @@ class Hunter_Sarisse(Adv):
             for _ in range(self.conf[name+'.hit']):
                 self.dmg_make(coef_name, coef, 'fs')
                 fs_hits += 1
-        if name == 'fs4':
-            self.hits = fs_hits
-        else:
-            self.hits += fs_hits
+        self.hits += fs_hits
         self.fs_proc(e)
         self.think_pin('fs')
         self.charge(name,self.conf[name+'.sp'])
