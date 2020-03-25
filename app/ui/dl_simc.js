@@ -381,7 +381,7 @@ function buildCoab(coab, fullname, weapontype) {
             check.data('ex', kcoab[1]);
             check.change(checkCoabSelection);
             if (k == fullname) {
-                if (kcoab[0] && (kcoab[0].length < 3 || kcoab[0][2] != 'hp<30')) {
+                if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp<30')) {
                     check.prop('disabled', true);
                     check.prop('checked', true);
                 } else {
@@ -494,11 +494,9 @@ function runAdvTest() {
                     const name = substitute_prefix(cond_true[1], 'adv');
                     const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
-                    // if (exArr.length > 0) {
-                    //     copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
-                    // } else {
-                    //     copyTxt += '(co-ab: none)'
-                    // }
+                    if (coabilities) {
+                        copyTxt += '(ex: ' + Object.keys(coabilities).join(' ') + ')'
+                    }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);
