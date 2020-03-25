@@ -1,14 +1,4 @@
 APP_URL = 'https://wildshinobu.pythonanywhere.com/';
-EX_MAP = {
-    'blade': 'k',
-    'wand': 'r',
-    'bow': 'b',
-    'dagger': 'd',
-    'axe2': 'm',
-    'sword': 's',
-    'g_euden': 'g',
-    'tobias': 't'
-}
 AXE2_ADV = ['h_mym', 'v_melody']
 UNIQUE_ADV = ['g_euden', 'tobias']
 RANGED = ['wand', 'bow', 'staff']
@@ -268,18 +258,21 @@ function loadAdvSlots() {
                 $('#dra-' + slots.adv.pref_dra).prop('selected', true);
                 $('#wp1-' + slots.adv.pref_wp.wp1).prop('selected', true);
                 $('#wp2-' + slots.adv.pref_wp.wp2).prop('selected', true);
-                $('input[id^="ex-"]').prop('checked', false);
-                $('input[id^="ex-"]').prop('disabled', false);
-                if (AXE2_ADV.includes(adv_name)) {
-                    $('#ex-axe2').prop('checked', true);
-                    $('#ex-axe2').prop('disabled', true);
-                } else if (UNIQUE_ADV.includes(adv_name)) {
-                    $('#ex-' + adv_name).prop('checked', true);
-                    $('#ex-' + adv_name).prop('disabled', true);
-                } else if (adv_name != 'megaman') {
-                    $('#ex-' + slots.adv.wt).prop('checked', true);
-                    $('#ex-' + slots.adv.wt).prop('disabled', true);
-                }
+                // $('input[id^="ex-"]').prop('checked', false);
+                // $('input[id^="ex-"]').prop('disabled', false);
+                // if (AXE2_ADV.includes(adv_name)) {
+                //     $('#ex-axe2').prop('checked', true);
+                //     $('#ex-axe2').prop('disabled', true);
+                // } else if (UNIQUE_ADV.includes(adv_name)) {
+                //     $('#ex-' + adv_name).prop('checked', true);
+                //     $('#ex-' + adv_name).prop('disabled', true);
+                // } else if (adv_name != 'megaman') {
+                //     $('#ex-' + slots.adv.wt).prop('checked', true);
+                //     $('#ex-' + slots.adv.wt).prop('disabled', true);
+                // }
+
+                buildCoab(slots.coab, slots.adv.fullname);
+
                 if (RANGED.includes(slots.adv.wt)) {
                     $('#input-missile').prop('disabled', false);
                 } else {
@@ -361,6 +354,62 @@ function readResistDict() {
         return resists;
     }
 }
+function checkCoabSelection(e) {
+    const add = $(e.target).prop('checked') ? 1 : -1
+    const count = $('#input-coabs').data('selected') + add;
+    const max = $('#input-coabs').data('max');
+    if (count >= max) {
+        $('input:not(:checked).coab-check').prop('disabled', true);
+    } else {
+        $('.coab-check').prop('disabled', false);
+    }
+    $('#input-coabs').data('selected', count);
+}
+function buildCoab(coab, fullname) {
+    $('#input-coabs').empty();
+    $('#input-coabs').data('selected', 0);
+    $('#input-coabs').data('max', 4);
+    for (t of ['ele', 'all']) {
+        for (k in coab[t]) {
+            const cid = 'coab-' + t + '-' + k;
+            const kcoab = coab[t][k];
+            const wrap = $('<div></div>').addClass('custom-control custom-checkbox custom-control-inline');
+            const check = $('<input>').addClass('custom-control-input').prop('type', 'checkbox').prop('id', cid);
+            check.data('name', k);
+            check.data('chain', kcoab[0]);
+            check.data('ex', kcoab[1]);
+            check.change(checkCoabSelection);
+            if (k == fullname && kcoab[0] && (kcoab[0].length < 3 || kcoab[0][2] != 'hp<30')) {
+                check.prop('disabled', true);
+                check.prop('checked', true);
+                $('#input-coabs').data('max', 3);
+            } else {
+                check.addClass('coab-check');
+            }
+            const label = $('<label>' + name_fmt(k, 'adv') + '</label>').addClass('custom-control-label').prop('for', cid);
+            wrap.append(check);
+            wrap.append(label);
+            if (kcoab[0]) {
+                wrap.prop('title', kcoab[0].join('|') + ' - ' + kcoab[1]);
+            } else {
+                wrap.prop('title', kcoab[1]);
+            }
+            $('#input-coabs').append(wrap);
+        }
+    }
+}
+function readCoabDict() {
+    const coabList = $('input:checked.coab-check');
+    if (coabList.length === 0) {
+        return null;
+    } else {
+        coabilities = {};
+        coabList.each(function (idx, res) {
+            coabilities[$(res).data('name')] = [$(res).data('chain'), $(res).data('ex')];
+        });
+        return coabilities;
+    }
+}
 function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
@@ -376,16 +425,9 @@ function runAdvTest() {
         requestJson['wp1'] = $('#input-wp1').val();
         requestJson['wp2'] = $('#input-wp2').val();
     }
-    let exStr = '';
-    let exArr = [];
-    for (let ex of Object.keys(EX_MAP)) {
-        if ($('#ex-' + ex).prop('checked')) {
-            exStr += EX_MAP[ex];
-            exArr.push(ex);
-        }
-    }
-    if (exStr != '') {
-        requestJson['ex'] = exStr;
+    const coabilities = readCoabDict();
+    if (coabilities != null) {
+        requestJson['coab'] = coabilities;
     }
     const t = $('#input-t').val();
     if (!isNaN(parseInt(t))) {
@@ -436,11 +478,11 @@ function runAdvTest() {
                     const name = substitute_prefix(cond_true[1], 'adv');
                     const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
-                    if (exArr.length > 0) {
-                        copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
-                    } else {
-                        copyTxt += '(co-ab: none)'
-                    }
+                    // if (exArr.length > 0) {
+                    //     copyTxt += '(co-ab: ' + exArr.join(' ') + ')'
+                    // } else {
+                    //     copyTxt += '(co-ab: none)'
+                    // }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra);

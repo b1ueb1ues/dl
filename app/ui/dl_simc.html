@@ -36,8 +36,7 @@
             height: max-content;
         }
 
-        #run-test,
-        #display-mode {
+        .btn {
             margin: 0.5rem 0;
         }
 
@@ -115,6 +114,18 @@
         #affliction-resist>div>input {
             border: 1px solid black;
         }
+
+        #input-coabs {
+            display: inline-grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-column-gap: 0.25em;
+        }
+
+        @media only screen and (max-width: 500px) {
+            #input-coabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 
@@ -149,74 +160,45 @@
                     <label for="input-wp2">Wyrmprint 2</label><select id="input-wp2" class="form-control"></select>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row" id="coability">
                 <div class="col">
                     <label class="coab-label">Co-Abilities:</label>
-                    &nbsp;
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-blade" class="custom-control-input" type="checkbox" />
-                        <label for="ex-blade" class="custom-control-label" title="×10% Strength">Blade</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-wand" class="custom-control-input" type="checkbox" />
-                        <label for="ex-wand" class="custom-control-label" title="×15% Skill Damage">Wand</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-dagger" class="custom-control-input" type="checkbox" />
-                        <label for="ex-dagger" class="custom-control-label" title="+10% Crit Rate">Dagger</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-bow" class="custom-control-input" type="checkbox" />
-                        <label for="ex-bow" class="custom-control-label" title="+15% Skill Haste">Bow</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-axe2" class="custom-control-input" type="checkbox" />
-                        <label for="ex-axe2" class="custom-control-label" title="+30% Crit Damage">Axe(CD)</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-sword" class="custom-control-input" type="checkbox" />
-                        <label for="ex-sword" class="custom-control-label" title="+15% Dragon Haste">Sword</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-g_euden" class="custom-control-input" type="checkbox" />
-                        <label for="ex-g_euden" class="custom-control-label" title="+10% Dragon Damage, +20% Dragon Time">GEuden</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="ex-tobias" class="custom-control-input" type="checkbox" />
-                        <label for="ex-tobias" class="custom-control-label" title="+20% Buff Time">Tobias</label>
-                    </div>
+                    <br />
+                    <div id="input-coabs"></div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col-sm-3">
-                    <label for="input-sim-afflict-type">Simulate Affliction</label>
-                    <select id="input-sim-afflict-type" class="form-control">
-                        <option value="none">None</option>
-                        <option value="burn">Burn</option>
-                        <option value="paralysis">Paralysis</option>
-                        <option value="poison">Poison</option>
-                        <option value="frostbite">Frostbite</option>
-                    </select>
-                    <label for="input-sim-afflict-time">Uptime (%)</label><input id="input-sim-afflict-time" class="form-control" type="text" disabled />
-                    <label for="input-sim-buff-str">Simulate +Str%</label><input id="input-sim-buff-str" class="form-control" type="text" />
-                    <label for="input-sim-buff-def">Simulate -Def%</label><input id="input-sim-buff-def" class="form-control" type="text" />
-                </div>
-                <div class="col-sm-9">
-                    <label for="input-acl">ACL</label>
-                    &nbsp;
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input id="input-edit-acl" class="custom-control-input" type="checkbox" />
-                        <label for="input-edit-acl" class="custom-control-label">Edit</label>
+            <div class="collapse" id="advanced-inputs">
+                <div class="form-row">
+                    <div class="col-sm-3">
+                        <label for="input-sim-afflict-type">Simulate Affliction</label>
+                        <select id="input-sim-afflict-type" class="form-control">
+                            <option value="none">None</option>
+                            <option value="burn">Burn</option>
+                            <option value="paralysis">Paralysis</option>
+                            <option value="poison">Poison</option>
+                            <option value="frostbite">Frostbite</option>
+                        </select>
+                        <label for="input-sim-afflict-time">Uptime (%)</label><input id="input-sim-afflict-time" class="form-control" type="text" disabled />
+                        <label for="input-sim-buff-str">Simulate +Str%</label><input id="input-sim-buff-str" class="form-control" type="text" />
+                        <label for="input-sim-buff-def">Simulate -Def%</label><input id="input-sim-buff-def" class="form-control" type="text" />
                     </div>
-                    <textarea id="input-acl" class="form-control" disabled></textarea>
+                    <div class="col-sm-9">
+                        <label for="input-acl">ACL</label>
+                        &nbsp;
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input id="input-edit-acl" class="custom-control-input" type="checkbox" />
+                            <label for="input-edit-acl" class="custom-control-label">Edit</label>
+                        </div>
+                        <textarea id="input-acl" class="form-control" disabled></textarea>
+                    </div>
                 </div>
-                <div class="form-row collapse" id="advanced-inputs">
+                <div class="form-row" id="conditions">
                     <div class="col">
-                        <label class="condition-label">Conditions</label>
+                        <label>Conditions</label>
                         <div id="input-conditions"></div>
                     </div>
                 </div>
-                <div class="form-row collapse" id="affliction-resist">
+                <div class="form-row" id="affliction-resist">
                     <div class="col-sm col-4">
                         <label for="input-res-poison">Poison</label><input id="input-res-poison" class="form-control" type="text" placeholder="0" />
                     </div>
@@ -246,26 +228,31 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="col">
-                <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
-                <button type="button" id="toggle-advanced" class="btn btn-info" data-toggle="collapse" data-target="#advanced-inputs" aria-expanded="false" aria-controls="advanced-inputs">
+            <div class="form-row">
+                <div class="col">
+                    <button type="button" id="run-test" class="btn btn-primary">Run Test</button>
+                    <button type="button" id="toggle-coab" class="btn btn-info" data-toggle="collapse" data-target="#advanced-inputs" aria-expanded="false" aria-controls="advanced-inputs">
+                        Advanced
+                    </button>
+                    <!-- <button type="button" id="toggle-coab" class="btn btn-info" data-toggle="collapse" data-target="#coability" aria-expanded="false" aria-controls="coability">
+                    Co-Abilities
+                </button>
+                <button type="button" id="toggle-advanced" class="btn btn-info" data-toggle="collapse" data-target="#conditions" aria-expanded="false" aria-controls="conditions">
                     Conditions
                 </button>
                 <button type="button" id="toggle-resist" class="btn btn-info" data-toggle="collapse" data-target="#affliction-resist" aria-expanded="false" aria-controls="affliction-resist">
                     Resist
-                </button>
-                <button type="button" id="display-mode" class="btn btn-secondary"></button>
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#damageLogBox">Log</button>
-                <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
-                <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#aboutBox">About</button>
-                <a href="https://notte.moe/a-quick-guide-to-dragalia-dps-simulator/">
-                    <button type="button" class="btn btn-dark">Usage Guide</button>
-                </a>
+                </button> -->
+                    <button type="button" id="display-mode" class="btn btn-secondary"></button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#damageLogBox">Log</button>
+                    <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
+                    <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#aboutBox">About</button>
+                    <a href="https://notte.moe/a-quick-guide-to-dragalia-dps-simulator/">
+                        <button type="button" class="btn btn-dark">Usage Guide</button>
+                    </a>
+                </div>
             </div>
-        </div>
         </div>
         <div class="modal fade" id="aboutBox" tabindex="-1" role="dialog" aria-labelledby="aboutTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
