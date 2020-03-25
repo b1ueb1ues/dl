@@ -568,6 +568,7 @@ function clearResults() {
     $('#input-missile').val(0);
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
+    $('input:checked.coab-check').prop('check', false);
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);
@@ -614,7 +615,7 @@ window.onload = function () {
     setDisplay(localStorage.getItem('displayMode'));
     $('#display-mode').click(toggleDisplay);
     $('#clear-results').click(clearResults);
-    $('#reset-test').click(debounce(loadAdvSlots, 200));
+    $('#reset-test').click(loadAdvSlots);
     $('#input-edit-acl').change(editAcl);
     $('#input-wep').change(weaponSelectChange);
     $('#input-sim-afflict-type').change(simAfflictSelectChange);
