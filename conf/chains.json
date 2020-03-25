@@ -1,404 +1,693 @@
 {
     "flame": {
         "Yuya": [
-            "dh",
-            0.18
+            [
+                "dh",
+                0.18
+            ],
+            "dagger"
         ],
         "Halloween_Mym": [
-            "dh",
-            0.2
+            [
+                "dh",
+                0.2
+            ],
+            "axe2"
         ],
         "Verica": [
-            "dcc",
-            5
+            [
+                "dcc",
+                5
+            ],
+            "staff"
         ],
         "Gala_Mym": [
-            "dcc",
-            6
+            [
+                "dcc",
+                6
+            ],
+            "lance"
         ],
         "Alain": [
-            "achain",
-            0.12,
-            "hp<30"
+            [
+                "achain",
+                0.12,
+                "hp<30"
+            ],
+            "lance"
         ],
         "Yue": [
-            "achain",
-            0.14,
-            "hp<30"
+            [
+                "achain",
+                0.14,
+                "hp<30"
+            ],
+            "axe"
         ],
         "Emma": [
-            "achain",
-            0.14,
-            "hp<30"
+            [
+                "achain",
+                0.14,
+                "hp<30"
+            ],
+            "lance"
         ],
-        "Valentine's_Hildegarde": [
-            "achain",
-            0.15,
-            "hp<30"
+        "Valentines_Hildegarde": [
+            [
+                "achain",
+                0.15,
+                "hp<30"
+            ],
+            "staff"
         ],
-        "Valentine's_Orion": [
-            "affself_burn",
-            0.08
+        "Valentines_Orion": [
+            [
+                "affself_burn",
+                0.08
+            ],
+            "sword"
         ],
         "Joe": [
-            "edge_burn",
-            40
+            [
+                "edge_burn",
+                40
+            ],
+            "bow"
         ],
         "Aurien": [
-            "affself_burn_crit_rate",
-            0.09
+            [
+                "affself_burn_crit_rate",
+                0.09
+            ],
+            "staff"
         ],
         "Serena": [
-            "cc",
-            0.12,
-            "hit10"
+            [
+                "cc",
+                0.12,
+                "hit10"
+            ],
+            "sword"
         ],
         "Karl": [
-            "achain",
-            0.1,
-            "hit10"
+            [
+                "achain",
+                0.1,
+                "hit10"
+            ],
+            "sword"
         ],
         "Marth": [
-            "achain",
-            0.13,
-            "hit10"
+            [
+                "achain",
+                0.13,
+                "hit10"
+            ],
+            "sword"
         ],
         "Vanessa": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "axe"
         ],
         "Xuan_Zang": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "lance"
         ],
         "Halloween_Lowen": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "staff"
         ],
         "Naveed": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "sword"
         ],
         "Ramona": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "axe"
         ]
     },
     "water": {
         "Zardin": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "sword"
         ],
         "Rex": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "axe"
         ],
         "Karina": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "axe"
         ],
         "Summer_Julietta": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "axe"
         ],
         "Jakob": [
-            "affself_frostbite",
-            0.08
+            [
+                "affself_frostbite",
+                0.08
+            ],
+            "lance"
         ],
         "Halloween_Odetta": [
-            "affself_frostbite",
-            0.1
+            [
+                "affself_frostbite",
+                0.1
+            ],
+            "sword"
         ],
         "Fjorm": [
-            "affself_frostbite",
-            0.13
+            [
+                "affself_frostbite",
+                0.13
+            ],
+            "lance"
         ],
         "Pietro": [
-            "dh",
-            0.14
+            [
+                "dh",
+                0.14
+            ],
+            "axe"
         ],
         "Pipple": [
-            "dh",
-            0.18
+            [
+                "dh",
+                0.18
+            ],
+            "wand"
         ],
         "Nurse_Aeleen": [
-            "dh",
-            0.18
+            [
+                "dh",
+                0.18
+            ],
+            "staff"
         ],
         "Summer_Celliera": [
-            "dcc",
-            6
+            [
+                "dcc",
+                6
+            ],
+            "sword"
         ],
         "Xainfried": [
-            "dcc",
-            6
+            [
+                "dcc",
+                6
+            ],
+            "lance"
         ],
         "Cibella": [
-            "bt",
-            0.05
+            [
+                "bt",
+                0.05
+            ],
+            "lance"
         ],
         "Renee": [
-            "bt",
-            0.09
+            [
+                "bt",
+                0.09
+            ],
+            "dagger"
         ],
         "Summer_Estelle": [
-            "bt",
-            0.09
+            [
+                "bt",
+                0.09
+            ],
+            "wand"
         ],
         "Thaniel": [
-            "achain",
-            0.1,
-            "hit10"
+            [
+                "achain",
+                0.1,
+                "hit10"
+            ],
+            "staff"
         ],
         "Xander": [
-            "achain",
-            0.13,
-            "hit10"
+            [
+                "achain",
+                0.13,
+                "hit10"
+            ],
+            "sword"
         ]
     },
     "wind": {
         "Ku_Hai": [
-            "achain",
-            0.1,
-            "hit10"
+            [
+                "achain",
+                0.1,
+                "hit10"
+            ],
+            "sword"
         ],
         "Lin_You": [
-            "achain",
-            0.13,
-            "hit10"
+            [
+                "achain",
+                0.13,
+                "hit10"
+            ],
+            "axe"
         ],
         "Akasha": [
-            "cc",
-            0.13,
-            "hit10"
+            [
+                "cc",
+                0.13,
+                "hit10"
+            ],
+            "staff"
         ],
         "Johanna": [
-            "affself_poison",
-            0.08
+            [
+                "affself_poison",
+                0.08
+            ],
+            "axe"
         ],
         "Sylas": [
-            "affself_poison",
-            0.13
+            [
+                "affself_poison",
+                0.13
+            ],
+            "lance"
         ],
         "Sophie": [
-            "affself_poison_crit",
-            0.09
+            [
+                "affself_poison_crit",
+                0.09
+            ],
+            "staff"
         ],
         "Eleonora": [
-            "edge_poison",
-            45
+            [
+                "edge_poison",
+                45
+            ],
+            "bow"
         ],
         "Aeleen": [
-            "bcc",
-            0.09
+            [
+                "bcc",
+                0.09
+            ],
+            "lance"
         ],
         "Pia": [
-            "bcc",
-            0.09
+            [
+                "bcc",
+                0.09
+            ],
+            "lance"
         ],
         "Lowen": [
-            "bcc_crit",
-            0.09
+            [
+                "bcc_crit",
+                0.09
+            ],
+            "staff"
         ],
         "Gala_Ranzal": [
-            "bcc_crit",
-            0.1
+            [
+                "bcc_crit",
+                0.1
+            ],
+            "sword"
         ],
         "Templar_Hope": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "sword"
         ],
         "Wedding_Elisanne": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "sword"
         ],
         "Wedding_Xania": [
-            "cc",
-            0.07,
-            "hp60"
+            [
+                "cc",
+                0.07,
+                "hp60"
+            ],
+            "staff"
         ],
         "Kirsty": [
-            "cc",
-            0.08,
-            "hp60"
+            [
+                "cc",
+                0.08,
+                "hp60"
+            ],
+            "lance"
         ],
         "Dragonyule_Xainfried": [
-            "dcc",
-            5
+            [
+                "dcc",
+                5
+            ],
+            "wand"
         ]
     },
     "light": {
         "Linus": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "axe"
         ],
         "Odetta": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "sword"
         ],
         "Ryozen": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "lance"
         ],
         "Alfonse": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "sword"
         ],
         "Hildegarde": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "staff"
         ],
         "Raemond": [
-            "achain",
-            0.08,
-            "hit10"
+            [
+                "achain",
+                0.08,
+                "hit10"
+            ],
+            "sword"
         ],
         "Halloween_Elisanne": [
-            "achain",
-            0.13,
-            "hit10"
+            [
+                "achain",
+                0.13,
+                "hit10"
+            ],
+            "lance"
         ],
         "Hope": [
-            "cc",
-            0.09,
-            "hit10"
+            [
+                "cc",
+                0.09,
+                "hit10"
+            ],
+            "staff"
         ],
         "Malora": [
-            "edge_paralysis",
-            40
+            [
+                "edge_paralysis",
+                40
+            ],
+            "bow"
         ],
         "Dragonyule_Malora": [
-            "affself_paralysis",
-            0.13
+            [
+                "affself_paralysis",
+                0.13
+            ],
+            "axe"
         ],
         "Halloween_Althemia": [
-            "affself_paralysis_crit",
-            0.12
+            [
+                "affself_paralysis_crit",
+                0.12
+            ],
+            "staff"
         ],
         "Albert": [
-            "affself_paralysis_crit",
-            0.13
+            [
+                "affself_paralysis_crit",
+                0.13
+            ],
+            "sword"
         ],
         "Hunter_Vanessa": [
-            "affself_paralysis_crit",
-            0.13
+            [
+                "affself_paralysis_crit",
+                0.13
+            ],
+            "lance"
         ],
         "Summer_Luca": [
-            "energy_a",
-            0.09
+            [
+                "energy_a",
+                0.09
+            ],
+            "axe"
         ],
         "Vixel": [
-            "energy_a",
-            0.09
+            [
+                "energy_a",
+                0.09
+            ],
+            "staff"
         ],
         "Annelie": [
-            "energy_a",
-            0.1
+            [
+                "energy_a",
+                0.1
+            ],
+            "lance"
         ],
         "Lucretia": [
-            "energy_inspiration",
-            1
+            [
+                "energy_inspiration",
+                1
+            ],
+            "wand"
         ]
     },
     "shadow": {
         "Rodrigo": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "sword"
         ],
         "Edward": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "staff"
         ],
         "Patia": [
-            "achain",
-            0.05,
-            "hp60"
+            [
+                "achain",
+                0.05,
+                "hp60"
+            ],
+            "lance"
         ],
         "Yaten": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "sword"
         ],
         "Summer_Verica": [
-            "achain",
-            0.06,
-            "hp60"
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "staff"
         ],
         "Erik": [
-            "affself_poison",
-            0.08
+            [
+                "affself_poison",
+                0.08
+            ],
+            "axe"
         ],
         "Zace": [
-            "affself_poison",
-            0.08
+            [
+                "affself_poison",
+                0.08
+            ],
+            "lance"
         ],
         "Heinwald": [
-            "affself_poison",
-            0.13
+            [
+                "affself_poison",
+                0.13
+            ],
+            "staff"
         ],
         "Delphi": [
-            "edge_poison",
-            50
+            [
+                "edge_poison",
+                50
+            ],
+            "dagger"
         ],
         "Berserker": [
-            "achain",
-            0.14,
-            "hp<30"
+            [
+                "achain",
+                0.14,
+                "hp<30"
+            ],
+            "sword"
         ],
         "Curran": [
-            "achain",
-            0.15,
-            "hp<30"
+            [
+                "achain",
+                0.15,
+                "hp<30"
+            ],
+            "axe"
         ],
         "Audric": [
-            "dh",
-            0.18
+            [
+                "dh",
+                0.18
+            ],
+            "sword"
         ],
         "Ieyasu": [
-            "dh",
-            0.2
+            [
+                "dh",
+                0.2
+            ],
+            "blade"
         ],
         "Lathna": [
-            "dh",
-            0.2
+            [
+                "dh",
+                0.2
+            ],
+            "lance"
         ]
     },
     "all": {
         "Euden": [
-            "dh",
-            0.14
+            [
+                "dh",
+                0.14
+            ],
+            "sword"
         ],
         "Ranzal": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "axe"
         ],
         "Elisanne": [
-            "achain",
-            0.03,
-            "hp60"
+            [
+                "achain",
+                0.03,
+                "hp60"
+            ],
+            "lance"
         ],
         "Cleo": [
-            "dcc",
-            3
+            [
+                "dcc",
+                3
+            ],
+            "staff"
+        ],
+        "Blade": [
+            null,
+            "blade"
+        ],
+        "Wand": [
+            null,
+            "wand"
+        ],
+        "Bow": [
+            null,
+            "bow"
+        ],
+        "Dagger": [
+            null,
+            "dagger"
+        ],
+        "Axe2": [
+            null,
+            "axe2"
+        ],
+        "GEuden": [
+            null,
+            "g_euden"
+        ],
+        "Tobias": [
+            null,
+            "tobias"
         ]
     }
 }

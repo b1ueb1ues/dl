@@ -147,6 +147,13 @@ class Dragon_Time(Ability):
 ability_dict['dt'] = Dragon_Time
 
 
+class Dragon_Haste(Ability):
+    def __init__(self, name, value, cond=None):
+        super().__init__(name, [('dh','passive',value,cond)])
+
+ability_dict['dh'] = Dragon_Haste
+
+
 class Co_Ability(Ability):
     EX_MAP = {
         'blade': [('att','ex',0.10)],
@@ -275,6 +282,7 @@ class Dragon_Claw(Ability):
 
 ability_dict['dc'] = Dragon_Claw
 ability_dict['dm'] = Dragon_Claw
+ability_dict['dcc'] = Dragon_Claw
 
 
 class Resilient_Offense(Ability):
@@ -431,6 +439,7 @@ class Energy_Buff(BuffingAbility):
     E_CD = 15
     def __init__(self, name, value, duration=None):
         super().__init__(name, value, duration or 15)
+        self.is_cd = False
 
     def oninit(self, adv, afrom=None):
         def cd_end(t):

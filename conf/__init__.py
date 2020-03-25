@@ -20,21 +20,21 @@ def load_json(name):
     with open(fname, 'r') as f:
         return json.load(f, parse_float=float, parse_int=int)
 
-json_confs = load_json('advconf.json')
-json_chains = load_json('chains.json')
+advconfs = load_json('advconf.json')
+coability = load_json('chains.json')
 all_ele_chain = ['Euden', 'Ranzal', 'Elisanne', 'Luca', 'Cleo']
 
 def get(name):
     conf = Conf()
 
-    json_conf = Conf(json_confs.get(name))
+    json_conf = Conf(advconfs.get(name))
 
     conf += json_conf
 
-    chain_dict = json_chains['all'] if name in all_ele_chain else json_chains[conf.c.ele]
+    chain_dict = coability['all'] if name in all_ele_chain else coability[conf.c.ele]
     try:
-        chain = chain_dict[name]
-        if len(chain) < 3 or chain[2] != 'hp<30':
+        chain = chain_dict[name][0]
+        if chain and len(chain) < 3 or chain[2] != 'hp<30':
             conf.chain = Conf({name: chain})
     except:
         pass
