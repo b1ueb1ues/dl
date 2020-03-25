@@ -16,7 +16,7 @@
         }
 
         #input-acl {
-            height: 15.5em;
+            height: 85%;
         }
 
         #test-results>.test-result-item:not(:first-child),
@@ -118,7 +118,6 @@
         #input-coabs {
             display: inline-grid;
             grid-template-columns: auto auto;
-            column-gap: 0.20em;
         }
 
         #input-coabs-other {
@@ -127,9 +126,14 @@
         }
 
         #input-coabs>div {
-            margin-bottom: 0.5em;
+            padding-bottom: 0.5em;
             justify-content: center;
             border-top: 1px solid #ced4da;
+        }
+
+        #input-coabs>div:nth-child(even) {
+            border-left: 1px solid #ced4da;
+            padding-left: 0.2em;
         }
     </style>
 </head>
@@ -165,8 +169,17 @@
                     <label for="input-wp2">Wyrmprint 2</label><select id="input-wp2" class="form-control"></select>
                 </div>
             </div>
-            <div class="form-row" id="coability">
-                <div class="col">
+            <div class="form-row">
+                <div class="col-sm-3">
+                    <label for="input-acl">ACL</label>
+                    &nbsp;
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="input-edit-acl" class="custom-control-input" type="checkbox" />
+                        <label for="input-edit-acl" class="custom-control-label">Edit</label>
+                    </div>
+                    <textarea id="input-acl" class="form-control" disabled></textarea>
+                </div>
+                <div class="col-sm-9">
                     <label class="coab-label">Co-Abilities:</label>
                     <br />
                     <div id="input-coabs">
@@ -193,21 +206,18 @@
                             <option value="poison">Poison</option>
                             <option value="frostbite">Frostbite</option>
                         </select>
+                    </div>
+                    <div class="col-sm-3">
                         <label for="input-sim-afflict-time">Uptime (%)</label><input id="input-sim-afflict-time" class="form-control" type="text" disabled />
+                    </div>
+                    <div class="col-sm-3">
                         <label for="input-sim-buff-str">Simulate +Str%</label><input id="input-sim-buff-str" class="form-control" type="text" />
+                    </div>
+                    <div class="col-sm-3">
                         <label for="input-sim-buff-def">Simulate -Def%</label><input id="input-sim-buff-def" class="form-control" type="text" />
                     </div>
-                    <div class="col-sm-9">
-                        <label for="input-acl">ACL</label>
-                        &nbsp;
-                        <div class="custom-control custom-checkbox custom-control-inline">
-                            <input id="input-edit-acl" class="custom-control-input" type="checkbox" />
-                            <label for="input-edit-acl" class="custom-control-label">Edit</label>
-                        </div>
-                        <textarea id="input-acl" class="form-control" disabled></textarea>
-                    </div>
                 </div>
-                <div class="form-row" id="conditions">
+                <div class="form-row">
                     <div class="col">
                         <label>Conditions</label>
                         <div id="input-conditions"></div>
