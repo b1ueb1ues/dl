@@ -16,6 +16,7 @@ class Halloween_Mym(Adv):
         `s2, cancel
         `fs, x=5
     """
+    conf['chain'] = {'h_mym': ('dh', 0.20)}
     conf['dragonform'] = {
         'act': 'c3 s',
 

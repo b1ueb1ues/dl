@@ -5,7 +5,7 @@ def module():
     return Wedding_Aoi
 
 class Wedding_Aoi(Adv):
-    comment = ''
+    a1 = ('affteam_sleep', 0.15)
     a3 = ('sp',0.12,'fs')
     conf = {}
     conf['acl'] = """
@@ -25,7 +25,6 @@ class Wedding_Aoi(Adv):
     def s1_before(self, e):
         self.dmg_make('o_s1_hit1',1.47)
         self.afflics.sleep('s1',110,6.5)
-        Teambuff('a1',0.15*self.afflics.sleep.get(),10).on()
 
     def s1_proc(self, e):
         if self.s1_addition == 4:

@@ -4,6 +4,7 @@ def module():
     return Norwin
 
 class Norwin(Adv):
+    a1 = ('affteam_blind', 0.10)
     a3 = ('k_blind', 0.20)
     conf = {}
     conf['acl'] = """
@@ -14,9 +15,7 @@ class Norwin(Adv):
     conf['afflict_res.blind'] = 80
 
     def s1_proc(self, e):
-        r = self.afflics.blind('s1',100)
-        if r > 0:
-            Teambuff('a1',0.15*r,10).on()
+        self.afflics.blind('s1',100)
 
     def s2_proc(self, e):
         with Modifier("s1killer", "blind_killer", "hit", 0.44):

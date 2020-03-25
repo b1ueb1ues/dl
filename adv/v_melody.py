@@ -8,6 +8,7 @@ def module():
 
 class Valentines_Melody(Adv):
     comment = 'c4fsf c5 c4 s1'
+    a1 = ('affteam_poison', 0.10)
     a3 = ('k_poison',0.3)
 
     conf = {}
@@ -34,9 +35,6 @@ class Valentines_Melody(Adv):
     
     def s2_proc(self, e):
         self.afflics.poison('s2', 120, 0.582)
-        if self.afflics.poison.get():
-            # has 5s cd irl
-            Teambuff('a1',0.10*self.afflics.poison.get(),10).on()
 
 if __name__ == '__main__':
     conf = {}

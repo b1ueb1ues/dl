@@ -221,11 +221,18 @@ class Dragon_Claw(Ability):
     DM_LEVELS = {
         1: (0.10, 0.10)
     }
+    DCC_LEVELS = {
+        3: (0.07, 0.09, 0.15),
+        5: (0.09, 0.10, 0.15),
+        6: (0.10, 0.10, 0.15)
+    }
+    DC_TYPE_DICT = {
+        'dc': DC_LEVELS,
+        'dm': DM_LEVELS,
+        'dcc': DCC_LEVELS # chain coab dclaws
+    }
     def __init__(self, name, value):
-        if name == 'dc':
-            self.dc_values = self.DC_LEVELS[value]
-        elif name == 'dm':
-            self.dc_values = self.DM_LEVELS[value]
+        self.dc_values = self.DC_TYPE_DICT[name][value]
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
@@ -387,6 +394,45 @@ class Energized_Buff(BuffingAbility):
         adv.Event('energy').listener(l_energized)
 
 ability_dict['energized'] = Energized_Buff
+
+
+class Affliction_Selfbuff(Ability):
+    AFF_CD = 5
+    def __init__(self, name, value, duration=10):
+        nameparts = name.split('_')
+        self.atype = nameparts[1].strip()
+        self.value = value
+        self.duration = duration
+        self.buff_args = nameparts[2:]
+        self.is_cd = False
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        def cd_end(t):
+            self.is_cd = False
+        def l_afflict(e):
+            if not self.is_cd:
+                adv.Buff(self.name, self.value * e.rate, self.duration, *self.buff_args).on()
+                self.is_cd = True
+                adv.Timer(cd_end).on(self.AFF_CD)
+        adv.Event(self.atype).listener(l_afflict)
+
+ability_dict['affself'] = Affliction_Selfbuff
+
+
+class Affliction_Teambuff(Affliction_Selfbuff):
+    def oninit(self, adv, afrom=None):
+        def cd_end(t):
+            self.is_cd = False
+        def l_afflict(e):
+            if not self.is_cd:
+                adv.Teambuff(self.name, self.value * e.rate, self.duration, *self.buff_args).on()
+                self.is_cd = True
+                adv.Timer(cd_end).on(self.AFF_CD)
+        adv.Event(self.atype).listener(l_afflict)
+
+ability_dict['affteam'] = Affliction_Teambuff
+
 
 class Energy_StrCrit(Ability):
     STR_LEVELS = {

@@ -15,9 +15,7 @@ class Yuya(Adv):
         `s1, fsc
         `fs, seq=2
         """
-    conf['chain'] = {
-        'yuya': ('dh', 0.18)
-    }
+    conf['chain'] = {'yuya': ('dh', 0.18)}
 
     a3 = ('primed_crit_chance', 0.5,5)
 

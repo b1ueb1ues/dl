@@ -83,6 +83,7 @@ class AfflicUncapped(object):
 
         self.c_uptime = (0, 0)
         self.last_afflict = 0
+        self.event = Event(self.name)
 
     def get_tolerance(self):
         if self.tolerance > 1:
@@ -144,6 +145,10 @@ class AfflicUncapped(object):
         self.stacks.append(total_success_p)
         Timer(self.stack_end_fun(total_success_p), self.duration).on()
         self.update()
+        
+        self.event.rate = total_success_p
+        self.event()
+
         return total_success_p
 
     def uptime(self):
@@ -174,6 +179,7 @@ class AfflicCapped(object):
 
         self.c_uptime = (0, 0)
         self.last_afflict = 0
+        self.event = Event(self.name)
 
     def get_tolerance(self):
         if self.tolerance > 1:
@@ -241,6 +247,10 @@ class AfflicCapped(object):
                     states[start_state] += overall_fail_p
         self.states = states
         self.update()
+
+        self.event.rate = total_p
+        self.event()
+
         return total_p
 
     def uptime(self):
@@ -419,7 +429,6 @@ class Afflics(object):
                 cc = Dot('o_' + name + '_' + atype, 0, duration, duration + 0.01)
                 cc.on()
                 self.cc[atype] = cc
-
                 if atype == 'blind':
                     self.resist[atype] += 20  # 10
                 else:  # elif atype in ['freeze','stun','sleep','bog']:

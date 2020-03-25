@@ -14,6 +14,7 @@ def module():
     return Yachiyo
 
 class Yachiyo(Adv):
+    a1 = ('affself_paralysis', 0.15)
     a3 = ('k_paralysis', 0.2)
     conf = {}
     conf['slots.a'] = MF()+SotS()
@@ -32,7 +33,6 @@ class Yachiyo(Adv):
     def s1_proc(self, e):
         self.dmg_make('s1',4.32)
         self.afflics.paralysis('s1',100,0.66)
-        Selfbuff('a1',0.15*self.afflics.paralysis.get(),10).on()
         self.dmg_make('s1',4.32)
 
 

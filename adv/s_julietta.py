@@ -6,6 +6,7 @@ def module():
     return Summer_Julietta
 
 class Summer_Julietta(Adv):
+    a1 = ('affteam_bog', 0.10)
     a3 = ('primed_att',0.10)
 
     conf = {}
