@@ -1488,7 +1488,7 @@ class Adv(object):
         if 'ex' in self.conf:
             self.slots.c.ex.update(dict(self.conf.ex.__dict__))
         if 'chain' in self.conf:
-            self.slots.c.ex.update(dict(self.conf.chain.__dict__))
+            self.slots.c.chain.update(dict(self.conf.chain.__dict__))
 
         self.equip()
         self.setup()

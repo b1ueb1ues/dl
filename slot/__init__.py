@@ -50,6 +50,12 @@ class CharacterBase(Slot):
     stars = 5
     ex = {}
     chain = {}
+
+    def __init__(self):
+        super().__init__()
+        self.ex = {}
+        self.chain = {}
+
     def setup(self):
         return
 

@@ -128,7 +128,7 @@ def set_teamdps_res(result, logs, real_d, suffix=''):
             result['extra' + suffix]['team_{}'.format(tension)] = '{} stacks'.format(round(count))
     return result
 
-def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
+def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
     adv_module = get_adv_module(adv_name)
     def slot_injection(self):
         if wp1 is not None and wp2 is not None:
@@ -144,11 +144,12 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, ex=None, acl=
     adv_module.acl_backdoor = acl_injection
     if conf is None:
         conf = {}
+    
     result = {}
 
     fn = io.StringIO()
     try:
-        run_res = core.simulate.test(adv_module, conf, ex, t, log, mass, output=fn, team_dps=teamdps, cond=cond)
+        run_res = core.simulate.test(adv_module, conf, t, log, mass, output=fn, team_dps=teamdps, cond=cond)
         result['test_output'] = fn.getvalue()
     except Exception as e:
         result['error'] = str(e)
@@ -184,7 +185,7 @@ def simc_adv_test():
     wp2 = params['wp2'] if 'wp2' in params else None
     dra = params['dra'] if 'dra' in params else None
     wep = params['wep'] if 'wep' in params else None
-    ex  = params['ex'] if 'ex' in params else ''
+    # ex  = params['ex'] if 'ex' in params else ''
     acl = params['acl'] if 'acl' in params else None
     cond = params['condition'] if 'condition' in params and params['condition'] != {} else None
     teamdps = None if not 'teamdps' in params else abs(float(params['teamdps']))
@@ -192,8 +193,7 @@ def simc_adv_test():
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
     # latency = 0 if 'latency' not in params else abs(float(params['latency']))
-    missile = 0 if 'missile' not in params else abs(float(params['missile']))
-    print(params)
+    print(params, flush=True)
 
     if adv_name in SPECIAL_ADV:
         not_customizable = SPECIAL_ADV[adv_name]['nc']
@@ -204,8 +204,12 @@ def simc_adv_test():
             acl = None
 
     conf = {}
-    if missile > 0:
+    if 'missile' in params:
+        missile = abs(float(params['missile']))
         conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
+    if 'coab' in params:
+        conf['ex'] = {value[1]: ('ex', value[1]) for value in params['coab'].values()}
+        conf['chain'] = {name: value[0] for name, value in params['coab'].items() if value[0] is not None}
     for afflic in AFFLICT_LIST:
         try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)
@@ -226,7 +230,7 @@ def simc_adv_test():
     except:
         pass
 
-    result = run_adv_test(adv_name, wp1, wp2, dra, wep, ex, acl, conf, cond, teamdps, t=t, log=log, mass=mass)
+    result = run_adv_test(adv_name, wp1, wp2, dra, wep, acl, conf, cond, teamdps, t=t, log=log, mass=mass)
     return jsonify(result)
 
 @app.route('/simc_adv_slotlist', methods=['GET', 'POST'])
@@ -243,17 +247,18 @@ def get_adv_slotlist():
     adv_ele = None
     dragon_module = slot.d
     weap_module = slot.w
+    result['coab'] = {
+        'all': coability['all']
+    }
     if result['adv']['name'] is not None:
         adv_instance = get_adv_module(result['adv']['name'])()
         adv_ele = adv_instance.slots.c.ele.lower()
+        result['adv']['fullname'] = adv_instance.__class__.__name__
         result['adv']['ele'] = adv_ele
         dragon_module = getattr(slot.d, adv_ele)
         result['adv']['wt'] = adv_instance.slots.c.wt.lower()
         weap_module = getattr(slot.w, result['adv']['wt'])
-        result['adv']['coab'] = {
-            'ele': coability[adv_ele],
-            'all': coability['all']
-        }
+        result['coab']['ele'] = coability[adv_ele]
         result['adv']['pref_dra'] = type(adv_instance.slots.d).__qualname__
         result['adv']['pref_wep'] = type(adv_instance.slots.w).__qualname__
         result['adv']['pref_wp'] = {

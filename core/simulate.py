@@ -123,7 +123,7 @@ def run_mass(mass, base_log, base_d, classname, conf, duration, cond):
     base_d /= mass
     return base_log, base_d
 
-def test(classname, conf={}, ex='_', duration=180, verbose=0, mass=None, output=None, team_dps=None, cond=True, special=False):
+def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, team_dps=None, cond=True, special=False, ex='_'):
     team_dps = team_dps if team_dps is not None else 20000
     output = output or sys.stdout
     ex_set = parse_ex(ex)
