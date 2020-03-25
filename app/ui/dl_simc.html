@@ -91,7 +91,7 @@
         .test-result-slot-grid {
             display: inline-grid;
             grid-template-columns: auto auto;
-            grid-column-gap: 0.25em;
+            column-gap: 0.25em;
         }
 
         .test-result-slot-grid>div:first-child {
@@ -117,14 +117,19 @@
 
         #input-coabs {
             display: inline-grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-column-gap: 0.25em;
+            grid-template-columns: auto auto;
+            column-gap: 0.20em;
         }
 
-        @media only screen and (max-width: 500px) {
-            #input-coabs {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        #input-coabs-other {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+
+        #input-coabs>div {
+            margin-bottom: 0.5em;
+            justify-content: center;
+            border-top: 1px solid #ced4da;
         }
     </style>
 </head>
@@ -164,7 +169,17 @@
                 <div class="col">
                     <label class="coab-label">Co-Abilities:</label>
                     <br />
-                    <div id="input-coabs"></div>
+                    <div id="input-coabs">
+                        <div id="input-coabs-blade"></div>
+                        <div id="input-coabs-wand"></div>
+                        <div id="input-coabs-bow"></div>
+                        <div id="input-coabs-dagger"></div>
+                        <div id="input-coabs-sword"></div>
+                        <div id="input-coabs-axe"></div>
+                        <div id="input-coabs-lance"></div>
+                        <div id="input-coabs-staff"></div>
+                        <div id="input-coabs-other"></div>
+                    </div>
                 </div>
             </div>
             <div class="collapse" id="advanced-inputs">
