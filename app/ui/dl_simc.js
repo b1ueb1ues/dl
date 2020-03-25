@@ -381,7 +381,7 @@ function buildCoab(coab, fullname, weapontype) {
             check.data('ex', kcoab[1]);
             check.change(checkCoabSelection);
             if (k == fullname) {
-                if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp<30')) {
+                if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp<40')) {
                     check.prop('disabled', true);
                     check.prop('checked', true);
                 } else {
