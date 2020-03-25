@@ -934,6 +934,7 @@ class Adv(object):
     a1 = None
     a2 = None
     a3 = None
+    coab = set()
 
     conf_default = Conf()
 
@@ -1485,6 +1486,16 @@ class Adv(object):
                     self.slots.c.a.extend(ab)
                 else:
                     self.slots.c.a.append(ab)
+        
+        from conf import coability
+        for name in self.coab:
+            for v in (coability[self.slots.c.ele], coability['all']):
+                try:
+                    self.slots.c.chain[name] = v[name][0]
+                    self.slots.c.ex[v[name][1]] = ('ex', v[name][1])
+                except:
+                    continue
+        
         if 'ex' in self.conf:
             self.slots.c.ex.update(dict(self.conf.ex.__dict__))
         if 'chain' in self.conf:

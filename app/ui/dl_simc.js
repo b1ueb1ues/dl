@@ -1,15 +1,12 @@
 APP_URL = 'https://wildshinobu.pythonanywhere.com/';
-AXE2_ADV = ['h_mym', 'v_melody']
-UNIQUE_ADV = ['g_euden', 'tobias']
-RANGED = ['wand', 'bow', 'staff']
-BASE_SIM_T = 180
-BASE_TEAM_DPS = 20000
+BASE_SIM_T = 180;
+BASE_TEAM_DPS = 20000;
 BASE_AFFLICT_UPTIME = {
     'poison': 90,
     'burn': 75,
     'paralysis': 80,
     'frostbite': 90
-}
+};
 PREFIX_MAPS = {
     'adv': {
         'g_': 'gala_',
@@ -23,7 +20,10 @@ PREFIX_MAPS = {
         'mh_': 'hunter_',
         't_hope': 'templar_hope'
     },
-}
+};
+WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
+RANGED = ['wand', 'bow', 'staff'];
+AXE2_ADV = ['Halloween_Mym', 'Valentines_Melody']
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
@@ -366,7 +366,7 @@ function checkCoabSelection(e) {
     $('#input-coabs').data('selected', count);
 }
 function buildCoab(coab, fullname, weapontype) {
-    $('#input-coabs').empty();
+    $('#input-coabs > div').empty();
     $('#input-coabs').data('selected', 0);
     $('#input-coabs').data('max', 3);
     let found_fullname = false;
@@ -391,7 +391,7 @@ function buildCoab(coab, fullname, weapontype) {
             } else {
                 check.addClass('coab-check');
             }
-            const label = $('<label>' + name_fmt(k, 'adv') + '</label>').addClass('custom-control-label').prop('for', cid);
+            const label = $(`<label>${k}</label>`).addClass('custom-control-label').prop('for', cid);
             wrap.append(check);
             wrap.append(label);
             if (kcoab[0]) {
@@ -399,20 +399,22 @@ function buildCoab(coab, fullname, weapontype) {
             } else {
                 wrap.prop('title', kcoab[1]);
             }
-            $('#input-coabs').append(wrap);
+            if (WEAPON_TYPES.includes(kcoab[1])) {
+                $('#input-coabs-' + kcoab[1]).append(wrap);
+            } else {
+                $('#input-coabs-other').append(wrap);
+            }
         }
     }
-    if (!found_fullname) {
-        let check = null;
-        if (fullname == 'Valentines_Melody') {
-            check = $('#coab-all-axe2');
-        } else {
-            check = $('#coab-all-' + weapontype);
-        }
-        check.prop('disabled', true);
-        check.prop('checked', true);
-        check.removeClass('coab-check');
+    let check = null;
+    if (AXE2_ADV.includes(fullname)) {
+        check = $('#coab-all-axe2');
+    } else {
+        check = $('#coab-all-' + weapontype);
     }
+    check.prop('disabled', true);
+    check.prop('checked', true);
+    check.removeClass('coab-check');
 }
 function readCoabDict() {
     const coabList = $('input:checked.coab-check');
