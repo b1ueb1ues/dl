@@ -49,20 +49,14 @@ class CharacterBase(Slot):
     name = 'null'
     stars = 5
     ex = {}
+    chain = {}
     def setup(self):
         return
 
     def oninit(self, adv):
         Slot.oninit(self, adv)
-        j = self.ex
-        if type(j) == tuple:
-            self.a.append(j)
-        elif type(j) == list:
-            self.a += j
-        elif type(j) == dict:
-            for i in j:
-                self.a.append(j[i])
-
+        self.a.extend(self.ex.values())
+        self.a.extend(self.chain.values())
 
 
 class WeaponBase(Slot):

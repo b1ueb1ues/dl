@@ -526,7 +526,7 @@ class Skill(object):
         else:
             if not self.ac():
                 return 0
-            self.charged = 0
+            self.charged -= self.sp
             self._static.s_prev = self.name
             # Even if animation is shorter than 1.9, you can't cast next skill before 1.9
             self.silence_end_timer.on(self.silence_duration)
@@ -1487,6 +1487,8 @@ class Adv(object):
                     self.slots.c.a.append(ab)
         if 'ex' in self.conf:
             self.slots.c.ex.update(dict(self.conf.ex.__dict__))
+        if 'chain' in self.conf:
+            self.slots.c.ex.update(dict(self.conf.chain.__dict__))
 
         self.equip()
         self.setup()
