@@ -56,7 +56,8 @@ ability_dict['att'] = Strength
 
 class Strength_Chain(Ability):
     def __init__(self, name, value, cond=None):
-        super().__init__(name, [('att','chain',value, cond)])
+        # is buff bracket for some hecking reason
+        super().__init__(name, [('att','buff',value, cond)])
 ability_dict['achain'] = Strength_Chain
 
 
