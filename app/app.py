@@ -144,7 +144,7 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, con
     adv_module.acl_backdoor = acl_injection
     if conf is None:
         conf = {}
-    
+
     result = {}
 
     fn = io.StringIO()
@@ -206,7 +206,8 @@ def simc_adv_test():
     conf = {}
     if 'missile' in params:
         missile = abs(float(params['missile']))
-        conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
+        if missile > 0:
+            conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
     if 'coab' in params:
         conf['ex'] = {value[1]: ('ex', value[1]) for value in params['coab'].values()}
         conf['chain'] = {name: value[0] for name, value in params['coab'].items() if value[0] is not None}
