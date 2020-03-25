@@ -544,3 +544,21 @@ class Affliction_Edge(Ability):
             aff.edge += self.value
 
 ability_dict['edge'] = Affliction_Edge
+
+
+class Energy_Combo(Ability):
+    def __init__(self, name, value, cond=None):
+        self.threshold = value
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        self.dmg_proc_o = adv.dmg_proc
+        self.ehit = 0
+        def dmg_proc(name, amount):
+            if adv.condition('always connect hits') and adv.hits // self.threshold > self.ehit:
+                adv.energy.add(1)
+                self.ehit = adv.hits // self.threshold
+            self.dmg_proc_o(name, amount)
+        adv.dmg_proc = dmg_proc
+
+ability_dict['ecombo'] = Energy_Combo

@@ -8,6 +8,7 @@ def module():
     return Valentines_Ezelith
 
 class Valentines_Ezelith(Adv):
+    a1 = ('ecombo',35)
     a3 = ('bk',0.2)
     conf = {}
     conf['slot.a'] = EE()+DD()
@@ -19,15 +20,6 @@ class Valentines_Ezelith(Adv):
         `fs, seq=2
     """
     conf['afflict_res.burn'] = 0
-
-    def prerun(self):
-        self.ehit = 0
-        self.has_ehit = self.condition('always connect hits')
-
-    def dmg_proc(self, name, amount):
-        if self.has_ehit and self.hits // 35 > self.ehit:
-            self.energy.add(1)
-            self.ehit = self.hits // 35
 
     def s1_proc(self, e):
         self.afflics.burn('s1',110,0.883)

@@ -7,6 +7,7 @@ def module():
 
 class Dragonyule_Cleo(Adv):
     a1 = ('a',0.13,'hp70')
+    a3 = ('ecombo',30)
     conf = {}
     conf['acl'] = """
         `s1
@@ -16,15 +17,8 @@ class Dragonyule_Cleo(Adv):
         """
 
     def prerun(self):
-        self.has_ehit = self.condition('always connect hits')
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
         self.stance = 0
-        self.ehit = 0
-
-    def dmg_proc(self, name, amount):
-        if self.has_ehit and self.hits // 30 > self.ehit:
-            self.energy.add(1)
-            self.ehit = self.hits // 30
 
     def s1_proc(self, e): # buggy lvl3 s1
         self.energy.add(1, team=self.condition('buff all team'))
