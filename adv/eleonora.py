@@ -18,18 +18,13 @@ class Eleonora(Adv):
     conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
     conf['slot.d'] = Vayu()
     conf['afflict_res.poison'] = 0
-
-    def prerun(self):
-        if self.condition('hp100'):
-            self.fullhp = 1
-        else:
-            self.fullhp = 0
+    a1 = ('edge_poison', 50, 'hp100')
 
     def s1_proc(self, e):
-        self.afflics.poison('s1',110+50*self.fullhp,0.53)
+        self.afflics.poison('s1',110,0.53)
 
     def s2_proc(self, e):
-        self.afflics.poison('s2',100+50*self.fullhp,0.396)
+        self.afflics.poison('s2',100,0.396)
 
 
 if __name__ == '__main__':

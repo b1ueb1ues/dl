@@ -4,7 +4,7 @@ def module():
     return Norwin
 
 class Norwin(Adv):
-    a1 = ('affteam_blind', 0.10)
+    a1 = ('affteam_blind', 0.10, 10)
     a3 = ('k_blind', 0.20)
     conf = {}
     conf['acl'] = """

@@ -15,18 +15,13 @@ class Joe(Adv):
         `fs, x=1
         """
     conf['afflict_res.burn'] = 0
-
-    def prerun(self):
-        if self.condition('hp100'):
-            self.fullhp = 1
-        else:
-            self.fullhp = 0
+    a1 = ('edge_burn', 70, 'hp100')
 
     def s1_proc(self, e):
-        self.afflics.burn('s1',100+70*self.fullhp,0.803)
+        self.afflics.burn('s1',100,0.803)
         
     def s2_proc(self, e):
-        self.afflics.burn('s2',100+70*self.fullhp,0.803)
+        self.afflics.burn('s2',100,0.803)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

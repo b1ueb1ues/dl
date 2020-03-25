@@ -32,6 +32,7 @@ class Gala_Sarisse(Adv):
                 buff = Selfbuff('sylvan crit',0.01,15,'crit','chance')
                 buff.bufftime = buff.nobufftime
                 buff.on()
+                self.energy.add(1)
 
     def s1_proc(self, e):
         buffcount = min(self.bc.buffcount(), 7)

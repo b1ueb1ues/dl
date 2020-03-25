@@ -8,6 +8,7 @@ def module():
 
 class Nefaria(Adv):
     comment = 's2 fs(precharge) s1 s1'
+    a1 = [('edge_blind', 60, 'hp100'),('edge_poison', 60, 'hp100')]
     a3 = [('k_blind',0.4), ('k_poison',0.3)]
     conf = {}
     conf['slot.d'] = Shinobi()
@@ -23,7 +24,7 @@ class Nefaria(Adv):
     conf['afflict_res.poison'] = 0
 
     def fs_proc_alt(self, e):
-        self.afflics.blind('s2_fs', 110+self.fullhp*50)
+        self.afflics.blind('s2_fs', 110)
     
     def prerun(self):
         conf_fs_alt = {
@@ -33,16 +34,11 @@ class Nefaria(Adv):
         }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
         
-        if self.condition('hp100'):
-            self.fullhp = 1
-        else:
-            self.fullhp = 0
-
     def s1_proc(self, e):
         with KillerModifier('s1killer', 'hit', 0.74, ['blind', 'poison']):
             self.dmg_make('s1',1.06)
             self.hits += 1
-            self.afflics.poison('s1', 70+self.fullhp*60, 0.582)
+            self.afflics.poison('s1', 70, 0.582)
             self.dmg_make('s1',7*1.06)
             self.hits += 7
 

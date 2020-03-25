@@ -7,6 +7,7 @@ def module():
     return Hawk
 
 class Hawk(Adv):
+    a1 = [('edge_stun', 50), ('edge_poison', 50)]
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
     conf = {}
     conf['acl'] = """
@@ -21,8 +22,8 @@ class Hawk(Adv):
     conf['afflict_res.poison'] = 0
 
     def fs_proc_alt(self, e):
-        self.afflics.stun('fs', 110+50)
-        self.afflics.poison('fs', 120+50, 0.582)
+        self.afflics.stun('fs', 110)
+        self.afflics.poison('fs', 120, 0.582)
 
     def prerun(self):
         conf_fs_alt = {

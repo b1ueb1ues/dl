@@ -14,7 +14,7 @@ def module():
     return Yachiyo
 
 class Yachiyo(Adv):
-    a1 = ('affself_paralysis', 0.15)
+    a1 = ('affself_paralysis', 0.15, 10)
     a3 = ('k_paralysis', 0.2)
     conf = {}
     conf['slots.a'] = MF()+SotS()

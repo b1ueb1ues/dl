@@ -54,6 +54,12 @@ ability_dict['a'] = Strength
 ability_dict['att'] = Strength
 
 
+class Strength_Chain(Ability):
+    def __init__(self, name, value, cond=None):
+        super().__init__(name, [('att','chain',value, cond)])
+ability_dict['achain'] = Strength_Chain
+
+
 class Skill_Damage(Ability):
     def __init__(self, name, value, cond=None):
         super().__init__(name, [('s','passive',value, cond)])
@@ -128,7 +134,6 @@ ability_dict['od'] = Overdrive_Punisher
 
 
 class Dragon_Damage(Ability):
-    EFFICIENCY = 0.35
     def __init__(self, name, value, cond=None):
         super().__init__(name, [('da','passive',value,cond)])
 
@@ -136,7 +141,6 @@ ability_dict['da'] = Dragon_Damage
 
 
 class Dragon_Time(Ability):
-    EFFICIENCY = 0.35
     def __init__(self, name, value, cond=None):
         super().__init__(name, [('dt','passive',value,cond)])
 
@@ -197,6 +201,32 @@ class Doublebuff(BuffingAbility):
             adv.Event('defchain').listener(defchain)
 
 ability_dict['bc'] = Doublebuff
+
+
+class Doublebuff_CD(Doublebuff):
+    DB_CD = 15
+    def oninit(self, adv, afrom=None):
+        self.is_cd = False
+
+        def cd_end(t):
+            self.is_cd = False
+
+        if self.name == 'bcc_energy':
+            def defchain(e):
+                if not self.is_cd:
+                    adv.energy.add(self.buff_args[1])
+                    self.is_cd = True
+                    adv.Timer(cd_end).on(self.DB_CD)
+            adv.Event('defchain').listener(defchain)
+        else:
+            def defchain(e):
+                if not self.is_cd:
+                    adv.Buff(*self.buff_args).on()
+                    self.is_cd = True
+                    adv.Timer(cd_end).on(self.DB_CD)
+            adv.Event('defchain').listener(defchain)
+
+ability_dict['bcc'] = Doublebuff
 
 
 class Slayer_Strength(BuffingAbility):
@@ -382,6 +412,7 @@ class Force_Charge(Ability):
 
 ability_dict['fsprep'] = Force_Charge
 
+
 class Energized_Buff(BuffingAbility):
     def __init__(self, name, value, duration=None):
         super().__init__(name, value, duration or 15)
@@ -396,9 +427,35 @@ class Energized_Buff(BuffingAbility):
 ability_dict['energized'] = Energized_Buff
 
 
+class Energy_Buff(BuffingAbility):
+    E_CD = 15
+    def __init__(self, name, value, duration=None):
+        super().__init__(name, value, duration or 15)
+
+    def oninit(self, adv, afrom=None):
+        def cd_end(t):
+            self.is_cd = False
+        if self.name == 'energy_inspiration':
+            def l_energy(e):
+                if not self.is_cd:
+                    adv.inspiration.add(self.buff_args[1])
+                    self.is_cd = True
+                    adv.Timer(cd_end).on(self.E_CD)
+        else:
+            def l_energy(e):
+                if not self.is_cd:
+                    adv.Buff(*self.buff_args).on()
+                    self.is_cd = True
+                    adv.Timer(cd_end).on(self.E_CD)
+
+        adv.Event('energy').listener(l_energy)
+
+ability_dict['energy'] = Energy_Buff
+
+
 class Affliction_Selfbuff(Ability):
     AFF_CD = 5
-    def __init__(self, name, value, duration=10):
+    def __init__(self, name, value, duration=15):
         nameparts = name.split('_')
         self.atype = nameparts[1].strip()
         self.value = value
@@ -463,3 +520,18 @@ class Energy_StrCrit(Ability):
         adv.Event('energy').listener(l_energy)
 
 ability_dict['epassive'] = Energy_StrCrit
+
+
+class Affliction_Edge(Ability):
+    def __init__(self, name, value, cond=None):
+        self.atype = name.split('_')[1]
+        self.value = value
+        self.cond = cond
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        aff = adv.afflics.__dict__[self.atype]
+        if aff.resist < 100 and (not self.cond or adv.condition(self.cond)):
+            aff.edge += self.value
+
+ability_dict['edge'] = Affliction_Edge

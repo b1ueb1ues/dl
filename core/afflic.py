@@ -272,9 +272,10 @@ class Afflic_dot(AfflicUncapped):
         self.duration = duration
         self.default_iv = iv
         self.iv = iv
+        self.edge = 0
 
     def on(self, name, rate, coef, duration=None, iv=None, dtype=None):
-        self.rate = rate
+        self.rate = rate + self.edge
         self.coef = coef
         self.dtype = dtype
         self.duration = duration or self.default_duration
@@ -290,9 +291,10 @@ class Afflic_cc(AfflicCapped):
     def __init__(self, name=None, duration=6.5):
         super().__init__(name, duration)
         self.stack_cap = 1
+        self.edge = 0
 
     def on(self, name, rate, duration=None):
-        self.rate = rate
+        self.rate = rate + self.edge
         self.duration = duration or self.default_duration
         return super().on()
 
@@ -304,9 +306,10 @@ class Afflic_scc(AfflicCapped):
     def __init__(self, name=None, duration=8):
         super().__init__(name, duration)
         self.stack_cap = 1
+        self.edge = 0
 
     def on(self, name, rate, duration=None):
-        self.rate = rate
+        self.rate = rate + self.edge
         self.duration = duration or self.default_duration
         return super().on()
 

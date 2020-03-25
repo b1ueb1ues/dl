@@ -59,7 +59,7 @@ class FS_Speedable(Action):
         return self.tap()
 
 class Hunter_Sarisse(Adv):
-    comment = 'fs hit count vary on distance and enemy size; extra hits do 70% less damage than previous hits'
+    comment = 'fs hit count vary on distance and enemy size; combo = energy not implemented'
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)
 

@@ -7,6 +7,8 @@ def module():
 
 
 class Waike(Adv):
+    a1 = ('edge_bog', 40, 'hp100')
+
     conf = {}
     conf['acl'] = """
         `s1, fsc
@@ -16,14 +18,8 @@ class Waike(Adv):
         """
     conf['afflict_res.bog'] = 100
 
-    def init(self):
-        self.fullhp = 0
-        if self.conf['afflict_res.bog'] < 100:
-            if self.condition('hp100'):
-                self.fullhp = 1
-
     def s2_proc(self, e):
-        self.afflics.bog.on('s2', 80+self.fullhp*40)
+        self.afflics.bog.on('s2', 80)
 
 if __name__ == '__main__':
     conf = {}
