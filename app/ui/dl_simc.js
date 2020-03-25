@@ -271,7 +271,7 @@ function loadAdvSlots() {
                 //     $('#ex-' + slots.adv.wt).prop('disabled', true);
                 // }
 
-                buildCoab(slots.coab, slots.adv.fullname);
+                buildCoab(slots.coab, slots.adv.fullname, slots.adv.wt);
 
                 if (RANGED.includes(slots.adv.wt)) {
                     $('#input-missile').prop('disabled', false);
@@ -365,13 +365,14 @@ function checkCoabSelection(e) {
     }
     $('#input-coabs').data('selected', count);
 }
-function buildCoab(coab, fullname) {
+function buildCoab(coab, fullname, weapontype) {
     $('#input-coabs').empty();
     $('#input-coabs').data('selected', 0);
-    $('#input-coabs').data('max', 4);
+    $('#input-coabs').data('max', 3);
+    let found_fullname = false;
     for (t of ['ele', 'all']) {
         for (k in coab[t]) {
-            const cid = 'coab-' + t + '-' + k;
+            const cid = 'coab-' + t + '-' + k.toLowerCase();
             const kcoab = coab[t][k];
             const wrap = $('<div></div>').addClass('custom-control custom-checkbox custom-control-inline');
             const check = $('<input>').addClass('custom-control-input').prop('type', 'checkbox').prop('id', cid);
@@ -379,10 +380,14 @@ function buildCoab(coab, fullname) {
             check.data('chain', kcoab[0]);
             check.data('ex', kcoab[1]);
             check.change(checkCoabSelection);
-            if (k == fullname && kcoab[0] && (kcoab[0].length < 3 || kcoab[0][2] != 'hp<30')) {
-                check.prop('disabled', true);
-                check.prop('checked', true);
-                $('#input-coabs').data('max', 3);
+            if (k == fullname) {
+                if (kcoab[0] && (kcoab[0].length < 3 || kcoab[0][2] != 'hp<30')) {
+                    check.prop('disabled', true);
+                    check.prop('checked', true);
+                } else {
+                    $('#input-coabs').data('max', 4);
+                }
+                found_fullname = true;
             } else {
                 check.addClass('coab-check');
             }
@@ -396,6 +401,17 @@ function buildCoab(coab, fullname) {
             }
             $('#input-coabs').append(wrap);
         }
+    }
+    if (!found_fullname) {
+        let check = null;
+        if (fullname == 'Valentines_Melody') {
+            check = $('#coab-all-axe2');
+        } else {
+            check = $('#coab-all-' + weapontype);
+        }
+        check.prop('disabled', true);
+        check.prop('checked', true);
+        check.removeClass('coab-check');
     }
 }
 function readCoabDict() {
