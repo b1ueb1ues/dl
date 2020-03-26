@@ -92,7 +92,6 @@ class Skill_Ammo(Skill):
 class Mega_Man(Adv):
     comment = '16 hits leaf shield (max 32 hits)'
 
-    a1 = ('od', 0.15) # self is the coab
     conf = megaman_conf.copy()
     conf['slot.d'] = Cerberus()
     conf['slot.a'] = Primal_Crisis()+Dear_Diary()
@@ -139,6 +138,7 @@ class Mega_Man(Adv):
     def init(self):
         # self.conf += Conf(megaman_conf)
         del self.slots.c.ex['wand']
+        self.slots.c.ex['megaman'] = ('ex', 'megaman')
 
     def prerun(self):
         self.s1 = Skill_Ammo('s1', self.conf.s1)
