@@ -271,8 +271,8 @@ def brute_force_coabs(classname, conf, output, team_dps, duration):
                 backline1, backline2, backline3 = flat_coab[idx1], flat_coab[idx2], flat_coab[idx3]
                 adv = classname(conf)
                 adv.coab = sorted([backline1, backline2, backline3])
-                if 'dragon' not in adv.conf['acl']:
-                    adv.conf['acl'] = 'dragon\n' + adv.conf['acl']
+                # if 'dragon' not in adv.conf['acl']:
+                #     adv.conf['acl'] = 'dragon\n' + adv.conf['acl']
                 real_d = adv.run(duration)
                 res = dps_sum(real_d, adv.logs.damage)
                 dps = res['dps']

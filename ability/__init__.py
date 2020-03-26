@@ -465,7 +465,7 @@ ability_dict['energy'] = Energy_Buff
 
 
 class Affliction_Selfbuff(Ability):
-    def __init__(self, name, value, duration=15, cd=5):
+    def __init__(self, name, value, duration=15, cd=10):
         nameparts = name.split('_')
         self.atype = nameparts[1].strip()
         self.value = value
