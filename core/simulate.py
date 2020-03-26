@@ -134,6 +134,9 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
     if verbose == -3:
         brute_force_slots(classname, conf, output, team_dps, duration)
         return
+    if verbose == -4:
+        brute_force_coabs(classname, conf, output, team_dps, duration)
+        return
     run_results = []
     adv, real_d = run_once(classname, conf, duration, cond)
     if verbose == 1:
@@ -225,6 +228,63 @@ def brute_force_slots(classname, conf, output, team_dps, duration):
     results.sort(key=lambda x: x[0])
     for dps, dname, aname in results:
         output.write('{},{},{}\n'.format(round(dps), dname, aname))
+
+def brute_force_coabs(classname, conf, output, team_dps, duration):
+    from conf import coability
+    adv = classname(conf)
+    seen_coab = set()
+    seen_chain = {}
+    null_coabs = ['lance', 'axe', 'staff']
+    flat_coab = set()
+    adv_ele = adv.slots.c.ele.lower()
+    for t in [adv_ele, 'all']:
+        for k, v in coability[t].items():
+            chain, coab = v
+            if chain is not None:
+                chain_key = (chain[0]) if len(chain) < 3 else (chain[0], *chain[2:])
+                if coab in null_coabs:
+                    if chain_key in seen_chain:
+                        if seen_chain[chain_key][0] < chain[1]:
+                            seen_chain[chain_key] = (chain[1], k)
+                            seen_coab.add(coab)
+                    else:
+                        seen_chain[chain_key] = (chain[1], k)
+                        seen_coab.add(coab)
+                else:
+                    if chain_key not in seen_chain or seen_chain[chain_key][0] < chain[1]:
+                        seen_chain[chain_key] = (chain[1], k)
+                    seen_coab.add(coab)
+                    flat_coab.add(k)
+            elif coab not in seen_coab:
+                seen_coab.add(coab)
+                flat_coab.add(k)
+
+    for k, v in seen_chain.items():
+        flat_coab.add(v[1])
+    flat_coab = sorted(list(flat_coab))
+
+    results = []
+    flat_len = len(flat_coab)
+    for idx1 in range(0, flat_len-2):
+        for idx2 in range(idx1+1, flat_len-1):
+            for idx3 in range(idx2+1, flat_len):
+                backline1, backline2, backline3 = flat_coab[idx1], flat_coab[idx2], flat_coab[idx3]
+                adv = classname(conf)
+                adv.coab = sorted([backline1, backline2, backline3])
+                if 'dragon' not in adv.conf['acl']:
+                    adv.conf['acl'] = 'dragon\n' + adv.conf['acl']
+                real_d = adv.run(duration)
+                res = dps_sum(real_d, adv.logs.damage)
+                dps = res['dps']
+                dps += adv.logs.team_buff / real_d * team_dps
+                for tension, count in adv.logs.team_tension.items():
+                    dps += count*skill_efficiency(real_d, team_dps, tension_efficiency[tension])
+                results.append((dps, adv.coab))
+    results.sort(key=lambda x: x[0])
+    for dps, coab in results:
+        output.write('{},{},{},{}\n'.format(round(dps), *coab))
+    output.write('attempts: {}'.format(len(results)))
+
 
 def amulets(adv):
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'

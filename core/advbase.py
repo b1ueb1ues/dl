@@ -1491,7 +1491,8 @@ class Adv(object):
         for name in self.coab:
             for v in (coability[self.slots.c.ele], coability['all']):
                 try:
-                    self.slots.c.chain[name] = v[name][0]
+                    if v[name][0] is not None:
+                        self.slots.c.chain[name] = v[name][0]
                     self.slots.c.ex[v[name][1]] = ('ex', v[name][1])
                 except:
                     continue

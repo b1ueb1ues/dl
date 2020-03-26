@@ -112,6 +112,7 @@ class Fatalis(DragonBase):
             else:
                 adv.skill._static.silence = 1
                 adv.dragonform.disabled = True
+                from core.log import log
                 log('debug', 'permanent_curse')
         from core.timeline import Event
         Event('dragon').listener(permanent_curse)
