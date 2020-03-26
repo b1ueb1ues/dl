@@ -119,8 +119,8 @@ class Acl_Condition:
 {block}"""
     ELSE = """{indent}else:
 {block}"""
-    banned = re.compile(r'(exec|eval|compile|__import__|setattr|delattr|memoryview|property|globals|locals|open|print)\(.*\)')
-    banned_repl = ''
+    banned = re.compile(r'(exec|eval|compile|setattr|delattr|memoryview|property|globals|locals|open|print|__[a-zA-Z]+__).*')
+    banned_repl = 'True'
     assignment = re.compile(r'([^=><!])=([^=])')
     assignment_repl = lambda s: s[1]+'=='+s[2]
     @staticmethod
