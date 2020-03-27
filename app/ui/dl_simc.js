@@ -499,7 +499,6 @@ function runAdvTest() {
                     let coab_str = ''
                     if (coabilities) {
                         coab_str = '(ex: ' + Object.keys(coabilities).join(' ') + ') ';
-                        copyTxt += coab_str;
                     }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
