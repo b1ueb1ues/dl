@@ -38,7 +38,7 @@ class Marishiten(DragonBase):
     def oninit(self, adv):
         super().oninit(adv)
         from module.bleed import Bleed
-        self.bleed = Bleed('ds_bleed', 1.46).reset()
+        self.bleed = Bleed('ds', 1.46).reset()
 
     def ds_proc(self):
         dmg = self.adv.dmg_make('ds',1.04,'s')

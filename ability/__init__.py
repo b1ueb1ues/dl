@@ -100,7 +100,7 @@ ability_dict['bt'] = Buff_Time
 class Killer(Ability):
     def __init__(self, name, value, cond=None):
         if name == 'k':
-            super().__init__(name, [('att','killer',value, cond)])
+            super().__init__(name, [('killer','passive',value, cond)])
         else:
             afflict = name.split('_')[1]
             super().__init__(name, [('{}_killer'.format(afflict), 'passive', value, cond)])
@@ -129,7 +129,7 @@ ability_dict['bk'] = Broken_Punisher
 class Overdrive_Punisher(Ability):
     EFFICIENCY = 0.35
     def __init__(self, name, value, cond=None):
-        super().__init__(name, [('overdrive_killer','passive',value, cond)])
+        super().__init__(name, [('killer','passive',value*self.EFFICIENCY, cond)])
 
 ability_dict['od'] = Overdrive_Punisher
 

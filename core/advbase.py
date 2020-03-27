@@ -4,7 +4,7 @@ import random
 from functools import reduce
 from itertools import product
 
-from ability import Ability, Overdrive_Punisher
+from ability import Ability
 from core import *
 from core.timeline import *
 from core.log import *
@@ -1290,14 +1290,14 @@ class Adv(object):
         return cc * att * k
 
     def killer_mod(self, name=None):
-        rates = {
-            'overdrive': Overdrive_Punisher.EFFICIENCY
-        }
+        total = self.mod('killer') - 1
+        
+        rates = {}
         for afflic in AFFLICT_LIST:
             rate = vars(self.afflics)[afflic].get()
             if rate > 0:
                 rates[afflic] = rate
-        total = 0
+
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):
             p = 1.0
@@ -1313,8 +1313,7 @@ class Adv(object):
                             modifiers[order].add(mod)
                 else:
                     p *= 1 - cond_p
-            total += p * reduce(operator.mul, [1 + sum([mod.get() for mod in order]) for order in modifiers.values()],
-                                1.0)
+            total += p * reduce(operator.mul, [1 + sum([mod.get() for mod in order]) for order in modifiers.values()], 1.0)
         return total
 
     def def_mod(self):

@@ -642,6 +642,13 @@
                 0.2
             ],
             "lance"
+        ],
+        "Gala_Alex": [
+            [
+                "affself_poison",
+                0.13
+            ],
+            "sword"
         ]
     },
     "all": {
