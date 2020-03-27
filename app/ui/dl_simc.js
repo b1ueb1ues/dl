@@ -456,7 +456,9 @@ function runAdvTest() {
         requestJson['afflict_res'] = afflict_res;
     }
     if (!isNaN(parseInt($('#input-teamdps').val()))) {
-        requestJson['teamdps'] = $('#input-teamdps').val();
+        const dps = $('#input-teamdps').val();
+        requestJson['teamdps'] = dps;
+        localStorage.setItem('teamdps', dps);
     }
     if (!isNaN(parseInt($('#input-missile').val()))) {
         requestJson['missile'] = $('#input-missile').val();
@@ -567,7 +569,13 @@ function clearResults() {
     $('#copy-results').empty();
     $('#test-error').empty();
     $('#input-t').val(BASE_SIM_T);
-    $('#input-teamdps').val(BASE_TEAM_DPS);
+    if (localStorage.getItem('teamdps')) {
+        selectedAdv = localStorage.getItem('teamdps');
+        $('#input-teamdps').val(localStorage.getItem('teamdps'));
+    } else {
+        $('#input-teamdps').val(BASE_TEAM_DPS);
+        localStorage.setItem('teamdps', BASE_TEAM_DPS);
+    }
     $('#input-missile').val(0);
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
