@@ -77,7 +77,7 @@ class Gala_Alex(Adv):
     conf['acl'] = """
         `s3, not self.s3_buff
         if fsc
-        `s2, not self.slots.abilities['c']['affself_poison'].is_cd
+        `s2, not self.afflics.poison.get()
         `s1, not self.s1_debuff.get() or self.sr.count > 1
         end
         `fs, x=4
