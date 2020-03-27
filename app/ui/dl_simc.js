@@ -386,6 +386,7 @@ function buildCoab(coab, fullname, weapontype) {
                     check.prop('checked', true);
                 } else {
                     $('#input-coabs').data('max', 4);
+                    check.addClass('coab-check');
                 }
                 found_fullname = true;
             } else {
@@ -425,6 +426,7 @@ function readCoabDict() {
         coabList.each(function (idx, res) {
             coabilities[$(res).data('name')] = [$(res).data('chain'), $(res).data('ex')];
         });
+        console.log(coabilities);
         return coabilities;
     }
 }
