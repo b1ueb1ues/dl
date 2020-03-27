@@ -1,5 +1,4 @@
-import adv.adv_test
-from core.advbase import Selfbuff
+from core.advbase import Selfbuff, SingleActionBuff
 from core.timeline import now
 from slot.d import Dreadking_Rathalos
 from slot.a import Amulet, The_Lurker_in_the_Woods
@@ -24,10 +23,12 @@ class Chelsea(adv.chelsea.Chelsea):
         `dodge, fsc
         `fs
     """
+    # coab = ['Blade', 'Serena', 'Yuya']
 
     def prerun(self):
         super().prerun()
         self.ro_charges = 3
+        # self.zerk_chain = SingleActionBuff('zerk_chain', 0.20, 1, 'fs', 'buff')
 
     def dmg_before(self, name):
         hpold = self.hp
@@ -36,7 +37,10 @@ class Chelsea(adv.chelsea.Chelsea):
             Selfbuff('resilient_offense',0.10, -1).on()
             self.comment += ' {}s'.format(round(now()))
             self.ro_charges -= 1
+        # if self.hp < 100:
+        #     self.zerk_chain.on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    import sys
+    test_with_argv(Chelsea, *sys.argv)
