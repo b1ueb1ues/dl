@@ -78,7 +78,7 @@ class Gala_Alex(Adv):
         `s3, not self.s3_buff
         `s2, not self.afflics.poison.get()
         `s1, not self.s1_debuff.get() or self.sr.count > 1
-        `fs, x=2
+        `fs, x=4
     """
     conf['afflict_res.poison'] = 0
 
