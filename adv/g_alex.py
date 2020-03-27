@@ -113,16 +113,16 @@ class Gala_Alex(Adv):
         return (self.mod('def') != 1) * 0.30
 
     def s1_proc(self, e):
-        if self.sr.chain_status == 0:
-            self.dmg_make('s1', 2.02)
-            self.s1_debuff.on()
-            self.dmg_make('s1', 2.02*2)
-            self.hits += 3
-        elif self.sr.chain_status > 0:
+        if self.sr.chain_status == 1:
             k = 1 + (self.mod('def') != 1) * 0.1
             self.dmg_make('s1', 2.02*3*k)
             self.dmg_make('s1', 4.85*k)
             self.hits += 4
+        else:
+            self.dmg_make('s1', 2.02)
+            self.s1_debuff.on()
+            self.dmg_make('s1', 2.02*2)
+            self.hits += 3
         # elif self.sr.chain_status == 2:
         #     k = 1 + (self.mod('def') != 1) * 0.1
         #     self.dmg_make('s1', 2.02*3)
@@ -133,15 +133,15 @@ class Gala_Alex(Adv):
         self.sr.chain_on(1)
 
     def s2_proc(self, e):
-        if self.sr.chain_status == 0:
-            self.dmg_make('s2', 5.53)
-            self.afflics.poison('s2', 120, 0.582)
-            self.hits += 1
-        elif self.sr.chain_status > 0:
+        if self.sr.chain_status == 2:
             with Modifier('s2_killer', 'poison_killer', 'hit', 0.1):
                 self.dmg_make('s2', 5.53)
                 self.dmg_make('s2', 4.42)
                 self.hits += 2
+        else:
+            self.dmg_make('s2', 5.53)
+            self.afflics.poison('s2', 120, 0.582)
+            self.hits += 1
         # elif self.sr.chain_status == 2:
         #     self.dmg_make('s2', 5.53)
         #     with Modifier('s2_killer', 'poison_killer', 'hit', 0.1):
