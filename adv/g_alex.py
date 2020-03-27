@@ -76,8 +76,10 @@ class Gala_Alex(Adv):
     conf['slot.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
     conf['acl'] = """
         `s3, not self.s3_buff
-        `s2, not self.afflics.poison.get()
+        if fsc
+        `s2, not self.slots.abilities['c']['affself_poison'].is_cd
         `s1, not self.s1_debuff.get() or self.sr.count > 1
+        end
         `fs, x=4
     """
     conf['afflict_res.poison'] = 0

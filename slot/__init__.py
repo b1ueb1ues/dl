@@ -227,8 +227,7 @@ class Slots(object):
         tmp.w.oninit(adv)
         tmp.d.oninit(adv)
         tmp.a.oninit(adv)
-        a = tmp.c.a + tmp.w.a + tmp.d.a + tmp.a.a
-        self.abilities = a
+        self.abilities = {'c':{}, 'w':{}, 'd':{}, 'a':{}}
         for afrom, alist in [('c', tmp.c.a), ('w', tmp.w.a), ('d', tmp.d.a), ('a', tmp.a.a)]:
             for ab in alist:
                 name = ab[0]
@@ -236,8 +235,8 @@ class Slots(object):
                     acat = name.split('_')[0]
                 else:
                     acat = name
-                ability_dict[acat](*ab).oninit(adv, afrom)
-
+                self.abilities[afrom][name] = ability_dict[acat](*ab)
+                self.abilities[afrom][name].oninit(adv, afrom)
 
     def att(self, forte=None):
         tmp = copy.deepcopy(self)
