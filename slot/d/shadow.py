@@ -159,7 +159,7 @@ class Nyarlathotep(DragonBase):
 class Chthonius(DragonBase):
     ele = 'shadow'
     att = 128
-    a = [('a',0.55)]
+    a = [('a',0.55), ('dm', 1)]
     dragonform = {
         'act': 'c3 s',
 
@@ -181,16 +181,6 @@ class Chthonius(DragonBase):
 
         'dodge.startup': 41 / 60, # dodge frames
     }
-
-    def oninit(self, adv):
-        super().oninit(adv)
-        self.dm_count = 2
-        def dragon_might(t):
-            if self.dm_count > 0:
-                self.dm_count -= 1
-                self.adv.Buff('dc',0.10, -1).on()
-        from core.timeline import Event
-        Event('dragon').listener(dragon_might)
 
     def ds_proc(self):
         dmg = self.adv.dmg_make('ds',4.90,'s')

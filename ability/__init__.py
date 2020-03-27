@@ -249,43 +249,60 @@ class Slayer_Strength(BuffingAbility):
 ability_dict['sts'] = Slayer_Strength
 ability_dict['sls'] = Slayer_Strength
 
-
-class Dragon_Claw(Ability):
-    DC_LEVELS = {
-        1: (0.04,0.06,0.10),
-        2: (0.05,0.08,0.12),
-        3: (0.06,0.09,0.15),
-        4: (0.10,0.15,0.15)
-    }
-    DM_LEVELS = {
-        1: (0.10, 0.10)
-    }
-    DCC_LEVELS = {
-        3: (0.08, 0.09, 0.15),
-        5: (0.09, 0.10, 0.15),
-        6: (0.10, 0.10, 0.15)
-    }
-    DC_TYPE_DICT = {
-        'dc': DC_LEVELS,
-        'dm': DM_LEVELS,
-        'dcc': DCC_LEVELS # chain coab dclaws
-    }
-    def __init__(self, name, value):
-        self.dc_values = self.DC_TYPE_DICT[name][value]
+class Dragon_Buff(Ability):
+    def __init__(self, name, dc_values, buff_args=()):
+        self.dc_values = dc_values
+        self.buff_args = buff_args
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
         self.dc_level = 0
         def l_dc_buff(t):
             if self.dc_level < len(self.dc_values):
-                adv.Buff('dc', self.dc_values[self.dc_level], -1).on()
+                adv.Buff(self.name, self.dc_values[self.dc_level], -1, *self.buff_args).on()
                 self.dc_level += 1
         adv.Event('dragon').listener(l_dc_buff)
 
-ability_dict['dc'] = Dragon_Claw
-ability_dict['dm'] = Dragon_Claw
-ability_dict['dcc'] = Dragon_Claw
+class Dragon_Claw(Dragon_Buff):
+    DC_LEVELS = {
+        1: (0.04,0.06,0.10),
+        2: (0.05,0.08,0.12),
+        3: (0.06,0.09,0.15),
+        4: (0.10,0.15,0.15)
+    }
+    def __init__(self, name, value):
+        super().__init__(name, self.DC_LEVELS[value])
 
+ability_dict['dc'] = Dragon_Claw
+
+class Dragon_Might(Dragon_Buff):
+    DM_LEVELS = {
+        1: (0.10, 0.10)
+    }
+    def __init__(self, name, value):
+        super().__init__(name, self.DM_LEVELS[value])
+
+ability_dict['dm'] = Dragon_Might
+
+class Dragon_Claw_Chain(Dragon_Buff):
+    DCC_LEVELS = {
+        3: (0.08, 0.09, 0.15),
+        5: (0.09, 0.10, 0.15),
+        6: (0.10, 0.10, 0.15)
+    }
+    def __init__(self, name, value):
+        super().__init__(name, self.DCC_LEVELS[value])
+
+ability_dict['dcc'] = Dragon_Claw_Chain
+
+class Dragon_Skill(Dragon_Buff):
+    DS_LEVELS = {
+        3: (0.08, 0.08, 0.08)
+    }
+    def __init__(self, name, value):
+        super().__init__(name, self.DS_LEVELS[value], buff_args=('s','buff'))
+
+ability_dict['ds'] = Dragon_Skill
 
 class Resilient_Offense(Ability):
     def __init__(self, name, value, interval=None):
