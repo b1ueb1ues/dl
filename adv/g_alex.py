@@ -68,7 +68,7 @@ class Skill_Reservoir(Skill):
             self.chain_status = 0
 
 class Gala_Alex(Adv):
-    comment = 'no bk bonus in sim; s2 c4fs [s1 c4fs]*5, use s1/s2 only when charge>=2'
+    comment = 'no bk bonus in sim; s2 c4fs [s1 c4fs]*5 & use s1/s2 only when charge>=2'
     a3 = ('k_poison', 0.30)
 
     conf = galex_conf.copy()
