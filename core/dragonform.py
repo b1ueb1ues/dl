@@ -11,7 +11,9 @@ class DragonForm(Action):
         self.cancel_by = []
         self.interrupt_by = []
         self.disabled = False
-
+        self.shift_event = Event('dragon')
+        self.end_event = Event('dragon_end')
+        
         self.ds_proc = ds_proc
         self.skill_use = self.conf.skill_use
         self.act_list = []
@@ -82,6 +84,7 @@ class DragonForm(Action):
         self.status = -2
         self._setprev() # turn self from doing to prev
         self._static.doing = self.nop
+        self.end_event()
         self.idle_event()
 
     def act_timer(self, act, time, next_action=None):
@@ -205,7 +208,7 @@ class DragonForm(Action):
         self.dracolith_mod.on()
         if self.off_ele_mod is not None:
             self.off_ele_mod.on()
-        Event('dragon')()
+        self.shift_event()
         log('cast', 'dshift')
         self.d_act_start('dshift')
         return True
