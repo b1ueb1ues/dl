@@ -86,7 +86,7 @@ class Acl_Action:
     ACT = """{indent}if {act}{args}:
 {indent}    return '{act}'"""
     NONE = '{indent}return 0'
-    dragon_act = re.compile(r'dragon(form)?.act\(("(c\d|x\d|s|ds|dodge|end)( (c\d|x\d|s|ds|dodge|end))+")\)')
+    dragon_act = re.compile(r'dragon(form)?.act\(([\'"](c\d|x\d|s|ds|dodge|end)( (c\d|x\d|s|ds|dodge|end))+[\'"])\)')
     def __init__(self, action):
         self.arguments = '()'
         if action.upper() == 'NONE':
