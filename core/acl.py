@@ -213,7 +213,7 @@ def do_act_list(self, e):
     return 0"""
     root = Acl_Condition('True')
     node_stack = [root]
-    for line in re.findall(r'.*?[\n\;]', acl):
+    for line in re.findall(r'[\n\;]?.*', acl):
         line = line.strip().replace('`', '')
         upper = line.upper()
         if len(line) > 0 and line[0] != '#':
