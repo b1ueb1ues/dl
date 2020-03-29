@@ -64,7 +64,7 @@ class Skill_Reservoir(Skill):
         self.conf = self.conf_tpl[call]
         self.ac = self.ac_tpl[call]
         casted = self.cast()
-        if self.cast() and self.count == 0 and self.chain_timer.online:
+        if casted and self.count == 0 and self.chain_timer.online:
             self.chain_timer.off()
             self.chain_status = 0
         return casted
