@@ -63,9 +63,11 @@ class Skill_Reservoir(Skill):
     def __call__(self, call=0):
         self.conf = self.conf_tpl[call]
         self.ac = self.ac_tpl[call]
+        casted = self.cast()
         if self.cast() and self.count == 0 and self.chain_timer.online:
             self.chain_timer.off()
             self.chain_status = 0
+        return casted
 
 class Gala_Alex(Adv):
     comment = 'no bk bonus in sim; s2 c4fs [s1 c4fs]*5 & use s1/s2 only when charge>=2'
