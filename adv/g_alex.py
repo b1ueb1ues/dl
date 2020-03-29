@@ -43,16 +43,6 @@ class Skill_Reservoir(Skill):
         )
         self.chain_timer = Timer(self.chain_off)
         self.chain_status = 0
-        Event('dragon').listener(self.shift_pause)
-        Event('dragon_end').listener(self.shift_unpause)
-        self.pause_time = 0
-    
-    def shift_pause(self, t):
-        self.pause_time = self.chain_timer.timing - now()
-        self.chain_timer.off()
-
-    def shift_unpause(self, t):
-        self.chain_timer.on(self.pause_time)
 
     def chain_on(self, skill, timeout=3):
         self.chain_status = skill
