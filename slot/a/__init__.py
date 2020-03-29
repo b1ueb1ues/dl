@@ -29,8 +29,8 @@ class Amulet(AmuletBase):
                 'ds'     : 3,      # dragon's skill
                 'prep'   : 100,    # skill prep
                 'resist' : 10000,  # resist
-                'dra'    : 0.18,   # dragon damage
-                'drt'    : 0.20,   # dragon time
+                'da'    : 0.18,   # dragon damage
+                'dt'    : 0.20,   # dragon time
 
                 'eprep'  : 5, # energy prep
             }
