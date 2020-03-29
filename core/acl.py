@@ -86,6 +86,7 @@ class Acl_Action:
     ACT = """{indent}if {act}{args}:
 {indent}    return '{act}'"""
     NONE = '{indent}return 0'
+    QUEUE_ACT = """{indent}self.acl_queue.append(({act}, compile('{cond}', '<string>', 'eval')))"""
     dragon_act = re.compile(r'dragon(form)?.act\(([\'"](c\d|x\d|s|ds|dodge|end)( (c\d|x\d|s|ds|dodge|end))+[\'"])\)')
     def __init__(self, action):
         self.arguments = '()'
@@ -111,6 +112,11 @@ class Acl_Action:
             return self.NONE.format(indent=self.INDENT*self.depth)
         return self.ACT.format(act=self.action, args=self.arguments, indent=self.INDENT*self.depth)
 
+    def queue_act(self, cond, depth_mod=0):
+        if self.action is None:
+            raise ValueError('No actions queued')
+        return self.QUEUE_ACT.format(act=self.action, args=self.arguments, cond=cond, indent=self.INDENT*(self.depth+depth_mod))
+
 class Acl_Condition:
     INDENT = '    '
     IF = """{indent}if {cond}:
@@ -118,6 +124,8 @@ class Acl_Condition:
     ELIF = """{indent}elif {cond}:
 {block}"""
     ELSE = """{indent}else:
+{block}"""
+    QUEUE = """{indent}if len(self.acl_queue)==0 and {cond}:
 {block}"""
     banned = re.compile(r'(exec|eval|compile|setattr|delattr|memoryview|property|globals|locals|open|print|__[a-zA-Z]+__).*')
     banned_repl = 'True'
@@ -152,20 +160,33 @@ class Acl_Condition:
             cond, acts = value
             if len(acts) == 0:
                 continue
-            if idx == 0:
-                pattern = self.IF
-            elif cond != 'else':
-                pattern = self.ELIF
+            if cond.startswith('QUEUE'):
+                cond = 'True' if len(cond) < 9 else cond[9:]
+                pattern = self.QUEUE
+                block = [a.queue_act('True') for a in acts]
             else:
-                pattern = self.ELSE
-
-            block = [a.act() for a in acts]
+                if idx == 0:
+                    pattern = self.IF
+                elif cond != 'ELSE':
+                    pattern = self.ELIF
+                else:
+                    pattern = self.ELSE
+                block = [a.act() for a in acts]
             if self.depth == 0:
                 act_list = block
             else:
                 act_list.append(
                     pattern.format(cond=cond, block='\n'.join(block), indent=self.INDENT*self.depth)
                 )
+        return '\n'.join(act_list)
+
+    def queue_act(self, bolb):
+        act_list = []
+        for value in self.conditions:
+            cond, acts = value
+            if len(acts) == 0:
+                continue
+            act_list = [a.queue_act(cond, depth_mod=-1) for a in acts]
         return '\n'.join(act_list)
 
 def acl_str(acl):
@@ -183,11 +204,16 @@ def do_act_list(self, e):
     prep = pin == 'prep'
     sim_duration = self.duration
 {act_prep_block}
+    if len(self.acl_queue) > 0:
+        next_act, next_cond = self.acl_queue[0]
+        if eval(next_cond) and next_act():
+            self.acl_queue.pop(0)
+        return 'queue'
 {act_cond_block}
     return 0"""
     root = Acl_Condition('True')
     node_stack = [root]
-    for line in acl.split('\n'):
+    for line in re.findall(r'.*?[\n\;]', acl):
         line = line.strip().replace('`', '')
         upper = line.upper()
         if len(line) > 0 and line[0] != '#':
@@ -195,10 +221,14 @@ def do_act_list(self, e):
                 node = Acl_Condition(line[3:])
                 node_stack[-1].add_action(node)
                 node_stack.append(node)
+            elif upper.startswith('QUEUE'):
+                node = Acl_Condition('QUEUE'+line[5:])
+                node_stack[-1].add_action(node)
+                node_stack.append(node)
             elif upper.startswith('ELIF '):
                 node_stack[-1].add_condition(line[5:])
             elif upper.startswith('ELSE'):
-                node_stack[-1].add_condition('else')
+                node_stack[-1].add_condition('ELSE')
             elif upper.startswith('END'):
                 node_stack.pop()
             else:
