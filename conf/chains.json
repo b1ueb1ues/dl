@@ -510,21 +510,21 @@
         ],
         "Summer_Luca": [
             [
-                "energy_a",
+                "energy_att",
                 0.09
             ],
             "axe"
         ],
         "Vixel": [
             [
-                "energy_a",
+                "energy_att",
                 0.09
             ],
             "staff"
         ],
         "Annelie": [
             [
-                "energy_a",
+                "energy_att",
                 0.1
             ],
             "lance"
