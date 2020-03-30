@@ -44,6 +44,10 @@ class DragonForm(Action):
         self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
 
         self.shift_count = 0
+        self.shift_silence = False
+
+    def end_silence(self, t):
+        self.shift_silence = False
 
     def dodge_cancel(self):
         if len(self.dx_list) <= 0:
@@ -86,6 +90,8 @@ class DragonForm(Action):
         self._static.doing = self.nop
         self.end_event()
         self.idle_event()
+        self.shift_silence = True
+        Timer(self.end_silence).on(10)
 
     def act_timer(self, act, time, next_action=None):
         if self.c_act_name == 'dodge':
@@ -180,9 +186,7 @@ class DragonForm(Action):
         return self()
 
     def __call__(self):
-        if self.disabled:
-            return False
-        if self.dragon_gauge < 50:
+        if self.disabled or self.shift_silence or self.dragon_gauge < 50:
             return False
         doing = self.getdoing()
         if not doing.idle:

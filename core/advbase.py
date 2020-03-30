@@ -1517,9 +1517,9 @@ class Adv(object):
         self.d_acl()
         self.acl_backdoor()
 
+        self.acl_queue = []
         if not self._acl:
             self._acl_str, self._acl = core.acl.acl_func_str(self.conf.acl)
-            self.acl_queue = []
 
         self.displayed_att = int(self.base_att * self.mod('att'))
 
