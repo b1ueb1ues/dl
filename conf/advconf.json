@@ -145,21 +145,21 @@
     },
     "Althemia": {
         "c": {
-            "att": 465,
+            "att": 557,
             "ele": "shadow",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "3",
             "wt": "wand"
         },
         "s1": {
-            "dmg": 8.95,
+            "dmg": 14.84,
             "hit": 1,
             "recovery": 1.45,
             "sp": 2759,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 8.05,
+            "dmg": 0,
             "hit": 1,
             "recovery": 1.4,
             "sp": 5570,
@@ -782,21 +782,21 @@
     },
     "Erik": {
         "c": {
-            "att": 493,
+            "att": 590,
             "ele": "shadow",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "3",
             "wt": "axe"
         },
         "s1": {
-            "dmg": 10.36,
+            "dmg": 0,
             "hit": 2,
             "recovery": 1.85,
             "sp": 2868,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 9.33,
+            "dmg": 0,
             "hit": 1,
             "recovery": 1.9,
             "sp": 5883,
@@ -3442,21 +3442,21 @@
     },
     "Vice": {
         "c": {
-            "att": 453,
+            "att": 543,
             "ele": "shadow",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "3",
             "wt": "dagger"
         },
         "s1": {
-            "dmg": 6.76,
+            "dmg": 0,
             "hit": 4,
             "recovery": 2.15,
             "sp": 2257,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 5.76,
+            "dmg": 0,
             "hit": 2,
             "recovery": 1.85,
             "sp": 4892,
