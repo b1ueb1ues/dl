@@ -11,7 +11,9 @@ class DragonForm(Action):
         self.cancel_by = []
         self.interrupt_by = []
         self.disabled = False
-
+        self.shift_event = Event('dragon')
+        self.end_event = Event('dragon_end')
+        
         self.ds_proc = ds_proc
         self.skill_use = self.conf.skill_use
         self.act_list = []
@@ -42,6 +44,10 @@ class DragonForm(Action):
         self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
 
         self.shift_count = 0
+        self.shift_silence = False
+
+    def end_silence(self, t):
+        self.shift_silence = False
 
     def dodge_cancel(self):
         if len(self.dx_list) <= 0:
@@ -82,7 +88,10 @@ class DragonForm(Action):
         self.status = -2
         self._setprev() # turn self from doing to prev
         self._static.doing = self.nop
+        self.end_event()
         self.idle_event()
+        self.shift_silence = True
+        Timer(self.end_silence).on(10)
 
     def act_timer(self, act, time, next_action=None):
         if self.c_act_name == 'dodge':
@@ -177,9 +186,7 @@ class DragonForm(Action):
         return self()
 
     def __call__(self):
-        if self.disabled:
-            return False
-        if self.dragon_gauge < 50:
+        if self.disabled or self.shift_silence or self.dragon_gauge < 50:
             return False
         doing = self.getdoing()
         if not doing.idle:
@@ -205,7 +212,7 @@ class DragonForm(Action):
         self.dracolith_mod.on()
         if self.off_ele_mod is not None:
             self.off_ele_mod.on()
-        Event('dragon')()
+        self.shift_event()
         log('cast', 'dshift')
         self.d_act_start('dshift')
         return True

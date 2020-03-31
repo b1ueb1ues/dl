@@ -14,7 +14,6 @@ import conf as globalconf
 import slot
 from ctypes import c_float
 from math import ceil
-
 # import core.condition
 # m_condition = core.condition
 from core.condition import Condition
@@ -1518,6 +1517,7 @@ class Adv(object):
         self.d_acl()
         self.acl_backdoor()
 
+        self.acl_queue = []
         if not self._acl:
             self._acl_str, self._acl = core.acl.acl_func_str(self.conf.acl)
 

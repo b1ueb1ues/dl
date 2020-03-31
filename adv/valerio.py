@@ -235,12 +235,8 @@ class Valerio(Adv):
         `s1
         `s2
         `s3
-        if self.stance='appetizer'
-        `fsf, x=11
-        elif self.stance='entree'
+        if self.stance='entree'
         `fsf, x=7
-        else
-        `fsf, x=6
         end
     """
     conf['afflict_res.frostbite'] = 0

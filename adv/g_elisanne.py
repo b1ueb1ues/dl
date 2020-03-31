@@ -26,7 +26,7 @@ class Gala_Elisanne(Adv):
     def s1_proc(self, e):
         self.buff_class('s2',0.3,15).on()
 
-    def s2_proc(self):
+    def s2_proc(self, e):
         self.energy.add(3)
 
 

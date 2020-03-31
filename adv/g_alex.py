@@ -63,12 +63,14 @@ class Skill_Reservoir(Skill):
     def __call__(self, call=0):
         self.conf = self.conf_tpl[call]
         self.ac = self.ac_tpl[call]
-        if self.cast() and self.count == 0 and self.chain_timer.online:
+        casted = self.cast()
+        if casted and self.count == 0 and self.chain_timer.online:
             self.chain_timer.off()
             self.chain_status = 0
+        return casted
 
 class Gala_Alex(Adv):
-    comment = 'no bk bonus in sim'
+    comment = 'no bk bonus in sim; s2 c4fs [s1 c4fs]*5 & use s1/s2 only when charge>=2'
     a3 = ('k_poison', 0.30)
 
     conf = galex_conf.copy()
@@ -76,8 +78,11 @@ class Gala_Alex(Adv):
     conf['slot.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
     conf['acl'] = """
         `s3, not self.s3_buff
-        `s2, fsc and not self.afflics.poison.get()
-        `s1, fsc and self.sr.count > 1
+        if fsc
+        `s2, not self.afflics.poison.get()
+        `s2, self.sr.chain_status=1 and self.s1_debuff.buff_end_timer.timing-now()<5
+        `s1, not self.s1_debuff.get() or self.sr.count > 1
+        end
         `fs, x=4
     """
     conf['afflict_res.poison'] = 0

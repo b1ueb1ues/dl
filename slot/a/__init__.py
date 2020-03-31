@@ -25,11 +25,12 @@ class Amulet(AmuletBase):
                 'bc'     : 0.15,   # buffchain
                 'sts'    : 0.06,   # striker strength
                 'sls'    : 0.06,   # slayer stength
-                'dc'     : 3,      # dragon claw
+                'dc'     : 3,      # dragon's claw
+                'ds'     : 3,      # dragon's skill
                 'prep'   : 100,    # skill prep
                 'resist' : 10000,  # resist
-                'dra'    : 0.18,   # dragon damage
-                'drt'    : 0.20,   # dragon time
+                'da'    : 0.18,   # dragon damage
+                'dt'    : 0.20,   # dragon time
 
                 'eprep'  : 5, # energy prep
             }
