@@ -17,6 +17,7 @@ class Vice(Adv):
         `s2
         `fs, x=5
         """
+    conf['afflict_res.poison'] = 0
 
     def fs_proc_alt(self, e):
         self.afflics.poison('fs', 120, 0.582)

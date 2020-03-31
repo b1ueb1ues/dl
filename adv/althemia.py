@@ -1,6 +1,7 @@
 import adv.adv_test
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Althemia
@@ -9,11 +10,12 @@ class Althemia(Adv):
     a1 = ('s',0.45,'hp100')
     conf = {}
     conf['slot.a'] = Candy_Couriers()+The_Fires_of_Hate()
+    conf['slot.d'] = Fatalis()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3
-        """
+    """
     conf['afflict_res.poison'] = 0
 
     def s1_proc(self, e):
