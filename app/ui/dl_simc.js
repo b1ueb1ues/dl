@@ -388,7 +388,7 @@ function buildCoab(coab, fullname, weapontype) {
                     $('#input-coabs').data('max', 4);
                     check.addClass('coab-check');
                 }
-                found_fullname = true;
+                found_fullname = t;
             } else {
                 check.addClass('coab-check');
             }
@@ -407,15 +407,17 @@ function buildCoab(coab, fullname, weapontype) {
             }
         }
     }
-    let check = null;
-    if (AXE2_ADV.includes(fullname)) {
-        check = $('#coab-all-axe2');
-    } else {
-        check = $('#coab-all-' + weapontype);
+    if (found_fullname == 'ele'){
+        let check = null;
+        if (AXE2_ADV.includes(fullname)) {
+            check = $('#coab-all-axe2');
+        } else {
+            check = $('#coab-all-' + weapontype);
+        }
+        check.prop('disabled', true);
+        check.prop('checked', true);
+        check.removeClass('coab-check');
     }
-    check.prop('disabled', true);
-    check.prop('checked', true);
-    check.removeClass('coab-check');
 }
 function readCoabDict() {
     const coabList = $('input:checked.coab-check');
