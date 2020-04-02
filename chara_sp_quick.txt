@@ -6,6 +6,7 @@ chelsea.py.rollfs.py
 ieyasu.py.poison.py
 kirsty.py.poison.py
 curran.py.poison.py
+erik.py.poison.py
 lathna.py.poison.py
 audric.py.dragon.py
 g_mym.py.dragon.py
