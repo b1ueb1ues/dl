@@ -36,7 +36,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
 
-        self.dragonform.dragon_gauge = 100
+        self.dragonform.dragon_gauge = 1000
         self.dragonform.conf.act = 'c3 s c3 end'
         self.odbk = 991202+792960
         self.ehjp = 4488479

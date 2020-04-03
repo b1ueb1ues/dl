@@ -17,9 +17,10 @@ class Fs_alt:
     def fs_proc(self, e):
         if callable(self.fs_proc_alt):
             self.fs_proc_alt(e)
-        self.uses -= 1
-        if self.uses == 0:
-            self.off()
+        if self.uses != -1:
+            self.uses -= 1
+            if self.uses == 0:
+                self.off()
 
     def on(self, uses = 1):
         log('debug', 'fs_alt on', uses)

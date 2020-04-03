@@ -160,6 +160,8 @@ class Timer(object):
     def add(self, time=0):
         self.timeout += time
         self.timing += time
+        if self.timing + time < now():
+            self.off()
 
     #alias
     disable = off

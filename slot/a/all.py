@@ -223,11 +223,7 @@ class Summer_Paladyns(Amulet):
 
 class The_Shining_Overlord(Amulet):
     att = 65
-    a = [('dc', 3)]
-    def on(self, c):
-        if c.wt == 'sword':
-            self.a = [('dc', 3)]
-            self.a += [('s',0.40)]
+    a = [('dc', 3), ('s',0.40,'sword')]
 TSO = The_Shining_Overlord
 
 class Halidom_Grooms(Amulet):
@@ -291,14 +287,6 @@ class High_Dragon_WP(Amulet):
 class Candy_Couriers(Amulet):
     att = 65
     a = [('bk',0.25), ('s',0.40,'wand')]
-
-class Candy_Couriers(Amulet):
-    att = 65
-    a = [('bk',0.25)]
-    def on(self, c):
-        if c.wt == 'wand':
-            self.a = [('bk',0.25)]
-            self.a += [('s',0.40)]
 CC = Candy_Couriers
 
 class From_Whence_He_Comes(Amulet):

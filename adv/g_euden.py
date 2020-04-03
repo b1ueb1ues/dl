@@ -27,7 +27,7 @@ class Gala_Euden(Adv):
             self.s1on = 0
         self.s2.autocharge_init(15873).on()
         if self.condition('draconic charge'):
-            self.dragonform.dragon_gauge += 50
+            self.dragonform.dragon_gauge += 500
         Modifier('a3','dt','hecc',1/0.7-1).on()
         self.dragonlight_spd = Spdbuff('dragonlight',0.1,-1,wide='self')
         Event('dragon').listener(self.a3_on)

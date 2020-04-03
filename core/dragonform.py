@@ -42,9 +42,22 @@ class DragonForm(Action):
 
         self.dragon_gauge = 0
         self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
+        self.max_gauge = 1000
+        self.shift_cost = 500
 
         self.shift_count = 0
         self.shift_silence = False
+
+        self.is_dragondrive = False
+
+    def set_dragondrive(self, dd_buff):
+        self.is_dragondrive = True
+        self.shift_event = Event('dragondrive')
+        self.dragondrive_end_event = Event('dragondrive_end')
+        self.max_gauge = 3000
+        self.shift_cost = 1500 # does not deduct, but need to have this much pt to shift
+        self.dragondrive_buff = dd_buff
+        self.dragondrive_timer = Timer(self.d_dragondrive_end)
 
     def end_silence(self, t):
         self.shift_silence = False
@@ -59,13 +72,32 @@ class DragonForm(Action):
     def auto_gauge(self, t):
         self.charge_gauge(self.conf.gauge_val)
 
-    def charge_gauge(self, value):
+    def add_drive_gauge_time(self, delta):
+        duration = self.dragondrive_timer.timing - now()
+        max_add = 20 - duration
+        add_time = min((20*delta)/self.max_gauge, max_add)
+        self.dragondrive_timer.add(add_time)
+        duration = self.dragondrive_timer.timing - now()
+        if duration <= 0:
+            self.d_dragondrive_end(None)
+            self.dragon_gauge = 0
+        else:
+            self.dragon_gauge = (duration/20)*self.max_gauge
+            log('drive_time', f'{add_time:+2.4}', f'{duration:2.4}', '{:.2f}%'.format(self.dragon_gauge/self.max_gauge*100))
+
+    def charge_gauge(self, value, percent=True):
         # if self.status != -1:
         # ignore dragonform blocking gauge (as it would in game) to avoid break-pointy bullshit
-        value = ceil(value*self.adv.mod('dh')*10)/10
-        self.dragon_gauge += value
-        self.dragon_gauge = min(self.dragon_gauge, 100)
-        log('dragon_gauge', '+{:.2f}%'.format(value), '{:.2f}%'.format(self.dragon_gauge))
+        dh = 1 if self.is_dragondrive else self.adv.mod('dh')
+        if percent:
+            value *= 10
+        value = self.adv.sp_convert(dh, value)
+        delta = min(self.dragon_gauge+value, self.max_gauge) - self.dragon_gauge
+        if self.is_dragondrive and self.dragondrive_buff.get():
+            self.add_drive_gauge_time(delta)
+        elif delta > 0:
+            self.dragon_gauge += delta
+            log('dragon_gauge', '{:+.2f}%'.format(delta/self.max_gauge*100), '{:.2f}%'.format(self.dragon_gauge/self.max_gauge*100))
 
     def dtime(self):
         return self.conf.dshift.startup + self.conf.duration * self.adv.mod('dt') + self.conf.exhilaration * (self.off_ele_mod is None)
@@ -78,20 +110,30 @@ class DragonForm(Action):
             self.action_timer.off()
             self.action_timer = None
         duration = now()-self.shift_start_time
-        log(self.name, '{:.2f}dmg / {:.2f}s, {:.2f} dps'.format(self.shift_damage_sum, duration, self.shift_damage_sum/duration), ' '.join(self.act_sum))
         self.act_sum = []
         self.act_list = []
+        log(self.name, '{:.2f}dmg / {:.2f}s, {:.2f} dps'.format(self.shift_damage_sum, duration, self.shift_damage_sum/duration), ' '.join(self.act_sum))
         self.dracolith_mod.off()
         if self.off_ele_mod is not None:
-            self.off_ele_mod.on()
+            self.off_ele_mod.off()
         self.skill_use = self.conf.skill_use
+        self.shift_silence = True
+        Timer(self.end_silence).on(10)
         self.status = -2
         self._setprev() # turn self from doing to prev
         self._static.doing = self.nop
         self.end_event()
         self.idle_event()
-        self.shift_silence = True
+
+    def d_dragondrive_end(self, t):
+        log('dragondrive', 'end')
+        self.dragondrive_buff.off()
         Timer(self.end_silence).on(10)
+        self.status = -2
+        self._setprev() # turn self from doing to prev
+        self._static.doing = self.nop
+        self.dragondrive_end_event()
+        self.idle_event()
 
     def act_timer(self, act, time, next_action=None):
         if self.c_act_name == 'dodge':
@@ -158,7 +200,7 @@ class DragonForm(Action):
         else: # regular recovery
             self.act_timer(self.d_act_start_t, self.c_act_conf.recovery, nact)
 
-    def parse_act(self, act_str):
+    def parse_act(self, act_str):        
         self.act_list = []
         skill_usage = 0
 
@@ -186,7 +228,7 @@ class DragonForm(Action):
         return self()
 
     def __call__(self):
-        if self.disabled or self.shift_silence or self.dragon_gauge < 50:
+        if self.disabled or self.shift_silence or self.dragon_gauge < self.shift_cost:
             return False
         doing = self.getdoing()
         if not doing.idle:
@@ -198,21 +240,29 @@ class DragonForm(Action):
             elif doing.status == 1:
                 doing.recovery_timer.off()
                 log('cancel', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.recover_start))
-        log('dragon_start', self.name)
         self.shift_count += 1
-        if len(self.act_list) == 0:
-            self.parse_act(self.conf.act)
+        if self.is_dragondrive:
+            self.act_list = ['end']
+            if self.dragondrive_buff.get():
+                self.d_dragondrive_end(None)
+                return True
+            else:
+                self.dragondrive_timer.on(20)
+                self.dragondrive_buff.on()
+        else:
+            if len(self.act_list) == 0:
+                self.parse_act(self.conf.act)
+            self.dragon_gauge -= self.shift_cost
+            self.dracolith_mod.mod_value = self.ddamage()
+            self.dracolith_mod.on()
+            if self.off_ele_mod is not None:
+                self.off_ele_mod.on()
         self.shift_damage_sum = 0
-        self.dragon_gauge -= 50
         self.status = -1
         self._setdoing()
         self.shift_start_time = now()
         self.shift_end_timer.on(self.dtime())
-        self.dracolith_mod.mod_value = self.ddamage()
-        self.dracolith_mod.on()
-        if self.off_ele_mod is not None:
-            self.off_ele_mod.on()
         self.shift_event()
-        log('cast', 'dshift')
+        log('cast', 'dshift', self.name)
         self.d_act_start('dshift')
         return True

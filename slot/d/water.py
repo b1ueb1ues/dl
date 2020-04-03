@@ -211,7 +211,7 @@ class Nimis(DragonBase):
 
     def ds_proc(self):
         from core.timeline import now
-        self.adv.dragonform.dragon_gauge += 20
+        self.adv.dragonform.dragon_gauge += 200
         max_time = self.adv.dragonform.dtime() - self.adv.dragonform.conf.dshift.startup
         cur_time = self.adv.dragonform.shift_end_timer.timing - now()
         add_time = min(abs(max_time - cur_time), 5)

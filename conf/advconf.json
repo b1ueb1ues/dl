@@ -91,6 +91,29 @@
             "startup": 0.25
         }
     },
+    "Aldred": {
+        "c": {
+            "att": 495,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 4,
+            "recovery": 2.4,
+            "sp": 2537,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.35,
+            "sp": 7338,
+            "startup": 0.1
+        }
+    },
     "Alex": {
         "c": {
             "att": 476,
@@ -313,6 +336,29 @@
             "recovery": 1.75,
             "sp": 5000,
             "startup": 0.1
+        }
+    },
+    "Bellina": {
+        "c": {
+            "att": 501,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.6,
+            "sp": 2719,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.8,
+            "sp": 7338,
+            "startup": 0.10
         }
     },
     "Berserker": {

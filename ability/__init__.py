@@ -389,7 +389,7 @@ class Dragon_Prep(Ability):
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):        
-        adv.dragonform.dragon_gauge += self.value
+        adv.dragonform.dragon_gauge += self.value * 10
 
 ability_dict['dp'] = Dragon_Prep
 
