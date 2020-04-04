@@ -909,6 +909,9 @@ class Adv(object):
     def setup(self):
         pass
 
+    def d_coabs(self):
+        pass
+    
     def d_acl(self):
         pass
 
@@ -933,7 +936,7 @@ class Adv(object):
     a1 = None
     a2 = None
     a3 = None
-    coab = set()
+    coab = []
 
     conf_default = Conf()
 
@@ -1485,21 +1488,23 @@ class Adv(object):
                 else:
                     self.slots.c.a.append(ab)
         
-        from conf import coability
-        for name in self.coab:
-            for v in (coability[self.slots.c.ele], coability['all']):
-                try:
-                    if v[name][0] is not None:
-                        self.slots.c.chain[name] = v[name][0]
-                    self.slots.c.ex[v[name][1]] = ('ex', v[name][1])
-                except:
-                    continue
+        self.d_coabs()
+        if 'ex' in self.conf or 'chain' in self.conf:
+            if 'ex' in self.conf:
+                self.slots.c.ex.update(dict(self.conf.ex.__dict__))
+            if 'chain' in self.conf:
+                self.slots.c.chain.update(dict(self.conf.chain.__dict__))
+        else:
+            from conf import coability
+            for name in self.coab:
+                for v in (coability[self.slots.c.ele], coability['all']):
+                    try:
+                        if v[name][0] is not None:
+                            self.slots.c.chain[name] = v[name][0]
+                        self.slots.c.ex[v[name][1]] = ('ex', v[name][1])
+                    except:
+                        continue
         
-        if 'ex' in self.conf:
-            self.slots.c.ex.update(dict(self.conf.ex.__dict__))
-        if 'chain' in self.conf:
-            self.slots.c.chain.update(dict(self.conf.chain.__dict__))
-
         self.equip()
         self.setup()
 
