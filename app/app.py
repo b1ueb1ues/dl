@@ -73,6 +73,10 @@ SPECIAL_ADV = {
     'v_addis_1hp': {
         'fn': 'v_addis.py.1hp.py',
         'nc': []
+    },
+    'bellina_1hp': {
+        'fn': 'bellina.py.1hp.py',
+        'nc': []
     }
 }
 
