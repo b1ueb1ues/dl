@@ -50,7 +50,7 @@ class Bellina(Adv):
         `s2, sim_duration-now()<1.5
         `s3, not self.s3_buff
         if self.dragondrive_buff.get()
-        `s1, self.dragonform.dragon_gauge>850 and cancel
+        `s1, self.dragonform.dragon_gauge>850 and x=3
         else
         `s2
         `dragon
