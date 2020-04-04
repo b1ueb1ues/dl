@@ -1,6 +1,9 @@
 from core.advbase import *
 import adv.bellina
 
+def module():
+    return Bellina
+
 class Bellina(adv.bellina.Bellina):
 
     def prerun(self):
