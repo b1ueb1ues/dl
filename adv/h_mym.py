@@ -42,10 +42,6 @@ class Halloween_Mym(Adv):
     def ds_proc(self):
         return self.dmg_make('ds',self.dragonform.conf.ds.dmg,'s')
 
-    def init(self):
-        del self.slots.c.ex['axe']
-        self.slots.c.ex['axe2'] = ('ex', 'axe2')
-
     def prerun(self):
         if self.condition('s1 defdown for 10s'):
             self.s1defdown = 1

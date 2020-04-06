@@ -18,7 +18,7 @@ class Ieyasu(Adv):
         `s2, x=5
         """
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = RR()+BN()
 
     def s2ifbleed(self):

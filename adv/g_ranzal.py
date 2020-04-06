@@ -19,7 +19,7 @@ class Gala_Ranzal(Adv):
     '''
     conf['slots.a'] = JotS() + TSO()
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = TSO()+BN()
 
     a3 = ('s',0.3)

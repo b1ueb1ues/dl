@@ -80,14 +80,12 @@ class Tobias(Adv):
     """
 
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.slots.a = Castle_Cheer_Corps()+A_Dogs_Day()
             self.slots.d = Freyja()
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
-        del self.slots.c.ex['blade']
-        self.slots.c.ex['tobias'] = ('ex', 'tobias')
 
     def prerun(self):
         self.s2_mode = 0

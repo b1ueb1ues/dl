@@ -2,6 +2,7 @@
 import slot
 from slot.a import *
 import slot.w
+from conf import coability, all_ele_chain
 
 def set(slots):
     ele = slots.c.ele
@@ -50,12 +51,17 @@ def set(slots):
     if wt == 'staff':
         slots.a = RR()+BN()
 
-    slots.c.ex = {wt:('ex',wt)}
-    #slots.c.ex = [('ex', 'blade'), ('ex', 'wand')]
-    #if wt == 'dagger' :
-    #    slots.c.ex = [('ex', 'blade'), ('ex', 'wand'), ('ex', 'dagger')]
-    #elif wt == 'bow' :
-    #    slots.c.ex = [('ex', 'blade'), ('ex', 'wand'), ('ex', 'bow')]
+    chain_dict = {**coability['all'], **coability[ele]}
+    try:
+        chain, _ = chain_dict[name]
+        if chain is None or len(chain)<3 or chain[2] != 'hp<40':
+            slots.c.coabs[name] = chain_dict[name]
+    except:
+        try:
+            upper_wt = wt[0].upper() + wt[1:].lower()
+            slots.c.coabs[upper_wt] = chain_dict[upper_wt]
+        except:
+            pass
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)

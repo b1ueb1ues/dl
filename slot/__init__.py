@@ -1,6 +1,7 @@
 import copy
 from core import Conf
 from ability import Ability, ability_dict
+from itertools import islice
 
 class Slot(object):
     att = 0
@@ -48,22 +49,37 @@ class Slot(object):
 class CharacterBase(Slot):
     name = 'null'
     stars = 5
-    ex = {}
-    chain = {}
+    max_coab = 4
 
     def __init__(self):
         super().__init__()
-        self.ex = {}
-        self.chain = {}
+        self.coabs = {}
 
     def setup(self):
         return
 
     def oninit(self, adv):
         Slot.oninit(self, adv)
-        self.a.extend(self.ex.values())
-        self.a.extend(self.chain.values())
+        count = 0
+        ex_set = set()
+        coabs = list(islice(self.coabs.items(), self.max_coab))
+        self.coabs = {}
+        for key, coab in coabs:
+            self.coabs[key] = coab
+            chain, ex = coab
+            if ex:
+                ex_set.add(('ex', ex))
+            if chain:
+                self.a.append(tuple(chain))
+            count += 1
+        self.a.extend(ex_set)
 
+    def has_ex(self, ex):
+        for _, coab in self.coabs.items():
+            _, ex = coab
+            if ex == ex:
+                return True
+        return False
 
 class WeaponBase(Slot):
     stype = 'w'

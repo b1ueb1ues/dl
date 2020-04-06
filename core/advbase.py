@@ -1022,9 +1022,6 @@ class Adv(object):
         self.modifier._static.all_modifiers = self.all_modifiers
         self.modifier._static.g_condition = self.condition
 
-        # set ex
-        self.ex = self.slots.c.ex
-
         # init actions
         # self.a_fs
         # fsconf = self.conf.fs
@@ -1153,6 +1150,7 @@ class Adv(object):
         self.cmnslots.c.wt = self.conf.c.wt
         self.cmnslots.c.stars = self.conf.c.stars
         self.cmnslots.c.ele = self.conf.c.ele
+        self.cmnslots.c.name = self.name
         self.slot_common = slot_common.set
         self.slot_common(self.cmnslots)
         self.slots = self.cmnslots
@@ -1489,22 +1487,18 @@ class Adv(object):
                     self.slots.c.a.append(ab)
         
         self.d_coabs()
-        if 'ex' in self.conf or 'chain' in self.conf:
-            if 'ex' in self.conf:
-                self.slots.c.ex.update(dict(self.conf.ex.__dict__))
-            if 'chain' in self.conf:
-                self.slots.c.chain.update(dict(self.conf.chain.__dict__))
+        if 'coabs' in self.conf:
+            coab_list = self.conf['coabs']+self.coab
         else:
-            from conf import coability
-            for name in self.coab:
-                for v in (coability[self.slots.c.ele], coability['all']):
-                    try:
-                        if v[name][0] is not None:
-                            self.slots.c.chain[name] = v[name][0]
-                        self.slots.c.ex[v[name][1]] = ('ex', v[name][1])
-                    except:
-                        continue
-        
+            coab_list = self.coab
+        from conf import coability
+        for name in coab_list:
+            chain_dict = {**coability['all'], **coability[self.slots.c.ele]}
+            try:
+                self.slots.c.coabs[name] = chain_dict[name]
+            except:
+                pass
+
         self.equip()
         self.setup()
 

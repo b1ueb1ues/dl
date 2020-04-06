@@ -21,7 +21,7 @@ class Summer_Celliera(Adv):
     conf['afflict_res.bog'] = 100
 
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf['slot.a'] = TSO() + FRH()
 
     def init(self):

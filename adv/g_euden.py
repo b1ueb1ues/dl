@@ -41,10 +41,6 @@ class Gala_Euden(Adv):
         if self.dragonlight_spd.get():
             self.dragonlight_spd.off()
 
-    def init(self):
-        del self.slots.c.ex['sword']
-        self.slots.c.ex['geuden'] = ('ex', 'geuden')
-
     def s1_proc(self, e):
         if self.s1on :
             Debuff('s1str',-0.20,10,1,'att').on()

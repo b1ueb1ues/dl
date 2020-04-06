@@ -213,8 +213,9 @@ def simc_adv_test():
         if missile > 0:
             conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
     if 'coab' in params:
-        conf['ex'] = {value[1]: ('ex', value[1]) for value in params['coab'].values()}
-        conf['chain'] = {name: value[0] for name, value in params['coab'].items() if value[0] is not None}
+        # conf['ex'] = {value[1]: ('ex', value[1]) for value in params['coab'].values()}
+        # conf['chain'] = {name: value[0] for name, value in params['coab'].items() if value[0] is not None}
+        conf['coabs'] = list(params['coab'].keys())
     for afflic in AFFLICT_LIST:
         try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)

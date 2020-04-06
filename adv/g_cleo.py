@@ -26,7 +26,7 @@ class Gala_Cleo(Adv):
         """
 
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.slots.a = CC()+Primal_Crisis()
 
     def fs_proc_alt(self, e):

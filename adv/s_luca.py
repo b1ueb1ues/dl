@@ -17,7 +17,7 @@ class Summer_Luca(Adv):
         """
     conf['slot.a'] = KFM()+FitF()
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = KFM()+HoH()
 
     def s2_proc(self, e):

@@ -12,7 +12,7 @@ class Ieyasu(adv.ieyasu.Ieyasu):
     conf['sim_afflict.type'] = 'poison'
     conf['slots.a'] = Heralds_of_Hinomoto()+The_Fires_of_Hate()
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.slots.a = Resounding_Rendition()+The_Fires_of_Hate()
 
 if __name__ == '__main__':

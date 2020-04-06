@@ -18,7 +18,7 @@ class Alfonse(Adv):
         `fs, seq=3
         """
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = TSO()+JotS()
 
     def s1_before(self, e):

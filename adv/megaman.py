@@ -135,11 +135,6 @@ class Mega_Man(Adv):
     def ds_proc(self):
         return self.dmg_make('ds',self.dragonform.conf.ds.dmg,'s')
 
-    def init(self):
-        # self.conf += Conf(megaman_conf)
-        del self.slots.c.ex['wand']
-        self.slots.c.ex['megaman'] = ('ex', 'megaman')
-
     def prerun(self):
         self.s1 = Skill_Ammo('s1', self.conf.s1)
         self.s1_x = X_alt(self, 's1', self.conf.s1, x_proc=self.l_megaman_s1_x, no_fs=True)

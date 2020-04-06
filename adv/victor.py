@@ -19,7 +19,7 @@ class Victor(Adv):
         """
 
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = HoH()+JotS()
 
     def prerun(self):

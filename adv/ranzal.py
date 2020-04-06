@@ -17,7 +17,7 @@ class Ranzal(Adv):
         """
 
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = KFM()+CE()
 
 if __name__ == '__main__':

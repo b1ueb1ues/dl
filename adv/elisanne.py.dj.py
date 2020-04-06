@@ -14,7 +14,7 @@ class Elisanne(Adv):
     conf['slots.a'] = BB() + JotS()
     conf['slots.d'] = DJ()
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf['acl'] = """
                         `s1
                         """

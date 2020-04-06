@@ -20,7 +20,7 @@ class Xuan_Zang(Adv):
         """
 
     def d_slots(self):
-        if 'bow' in self.ex:
+        if self.slots.c.has_ex('bow'):
             self.conf.slot.a = RR()+JotS()
 
     def s1_proc(self, e):

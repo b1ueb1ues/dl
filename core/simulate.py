@@ -12,14 +12,14 @@ tension_efficiency = {
     'inspiration': 0.6
 }
 ex_mapping = {
-    'k': 'blade',
-    'r': 'wand',
-    'd': 'dagger',
-    'b': 'bow',
-    'm': 'axe2',
-    's': 'sword',
-    'g': 'geuden',
-    't': 'tobias'
+    'k': 'Blade',
+    'r': 'Wand',
+    'd': 'Dagger',
+    'b': 'Bow',
+    'm': 'Axe2',
+    's': 'Sword',
+    'g': 'Gala_Euden',
+    't': 'Tobias'
 }
 
 def blade_mod(name, value):
@@ -38,11 +38,11 @@ def blade_wand_mod(name, value):
     return blade_mod(name, wand_mod(name, value))
 
 def parse_ex(ex):
-    ex_set = {}
+    ex_set = []
     for e in ex:
         try:
             ex_name = ex_mapping[e]
-            ex_set[ex_name] = ('ex', ex_name)
+            ex_set.append(ex_name)
         except:
             continue
     return ex_set
@@ -53,13 +53,13 @@ def build_exp_mod_list(ex, ex_set, wt):
         ex_mod_func = [('_', None)]
     else:
         ex_mod_func = [('', None)]
-    if 'blade' not in ex_set and wt != 'blade':
+    if 'Blade' not in ex_set and wt != 'blade':
         ex_mod_func.append(('k', blade_mod))
         has_k = True
     else:
         ex_mod_func.append(('k', None))
         has_k = False
-    if 'wand' not in ex_set and wt != 'wand':
+    if 'Wand' not in ex_set and wt != 'wand':
         ex_mod_func.append(('r', wand_mod))
         has_r = True
     else:
@@ -128,7 +128,7 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
     output = output or sys.stdout
     ex_set = parse_ex(ex)
     if len(ex_set) > 0:
-        conf['ex'] = ex_set
+        conf['coabs'] = ex_set
     else:
         ex = '_'
     if verbose == -3:
@@ -270,7 +270,7 @@ def brute_force_coabs(classname, conf, output, team_dps, duration):
             for idx3 in range(idx2+1, flat_len):
                 backline1, backline2, backline3 = flat_coab[idx1], flat_coab[idx2], flat_coab[idx3]
                 adv = classname(conf)
-                adv.coab = sorted([backline1, backline2, backline3])
+                adv.conf['coabs'] = sorted([backline1, backline2, backline3])
                 # if 'dragon' not in adv.conf['acl']:
                 #     adv.conf['acl'] = 'dragon\n' + adv.conf['acl']
                 real_d = adv.run(duration)
@@ -279,7 +279,7 @@ def brute_force_coabs(classname, conf, output, team_dps, duration):
                 dps += adv.logs.team_buff / real_d * team_dps
                 for tension, count in adv.logs.team_tension.items():
                     dps += count*skill_efficiency(real_d, team_dps, tension_efficiency[tension])
-                results.append((dps, adv.coab))
+                results.append((dps, adv.conf['coabs']))
     results.sort(key=lambda x: x[0])
     for dps, coab in results:
         output.write('{},{},{},{}\n'.format(round(dps), *coab))
@@ -435,9 +435,9 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
         output.write('\n')
         output.write(adv.__class__.__name__)
         output.write(' ')
-        if len(adv.slots.c.ex.keys()) > 0:
+        if len(adv.slots.c.coabs.keys()) > 0:
             output.write('(')
-            output.write(' '.join(adv.slots.c.ex.keys()))
+            output.write(' '.join(list(adv.slots.c.coabs.keys())[:4])) # why
             output.write(') ')
         output.write(amulets(adv))
         output.write('\n')

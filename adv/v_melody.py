@@ -26,8 +26,7 @@ class Valentines_Melody(Adv):
         self.s1defdown = self.condition('s1 defdown for 10s')
 
     def init(self):
-        del self.slots.c.ex['axe']
-        self.slots.c.ex['axe2'] = ('ex', 'axe2')
+        self.slots.c.coabs['Axe2'] = [None, 'axe2']
 
     def s1_proc(self, e):
         if self.s1defdown:

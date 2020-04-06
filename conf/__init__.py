@@ -1,5 +1,4 @@
 import json
-import conf.slot_common
 from slot import Slots
 from core import Conf
 
@@ -30,14 +29,6 @@ def get(name):
     json_conf = Conf(advconfs.get(name))
 
     conf += json_conf
-
-    chain_dict = coability['all'] if name in all_ele_chain else coability[conf.c.ele]
-    try:
-        chain = chain_dict[name][0]
-        if chain and len(chain) < 3 or chain[2] != 'hp<40':
-            conf.chain = Conf({name: chain})
-    except:
-        pass
     
     import wep
     wt = conf.c.wt
