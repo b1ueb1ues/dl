@@ -26,7 +26,7 @@ dragondrive_auto_conf = {
     'x3.sp': 520,
     'x3.utp': 240,
     'x3.startup': 40 / 60.0,
-    'x3.recovery': 40 / 60.0, # might be able to fsf for minimum 25f
+    'x3.recovery': 40 / 60.0,
     'x3.hit': 1,
 }
 
@@ -40,6 +40,9 @@ dragondrive_fs_conf = {
     'fs.hit': -1,
 
     'x1fs.charge': 120 / 60.0,
+    'fsf.charge': 5 / 60.0,
+    'fsf.startup': 20 / 60.0, # unsure about this, might be lower
+    'fsf.recovery': 0 / 60.0
 }
 
 class Bellina(Adv):
@@ -51,6 +54,7 @@ class Bellina(Adv):
         `s3, not self.s3_buff
         if self.dragondrive_buff.get()
         `s1, self.dragonform.dragon_gauge>850 and x=3
+        `fsf, x=3
         else
         `s2
         `dragon
@@ -97,11 +101,14 @@ class Bellina(Adv):
         self.a_s2 = self.s2.ac
         self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 2.70}))
 
+        self.fsf_a = Fs('fsf', self.conf.fsf)
+
     def dragondrive_on(self, e):
         self.s1.ac = self.a_s1a
         self.s2.ac = self.a_s2a
         self.fs_alt.on(-1)
         self.dragondrive_x.on()
+        self.a_fsf = Fs('fsf', self.conf.fsf)
 
     def dragondrive_off(self, e):
         self.s1.ac = self.a_s1

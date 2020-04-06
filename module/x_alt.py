@@ -1,4 +1,4 @@
-from core.advbase import Fs_group, X
+from core.advbase import Fs_group, Fs, X, Event
 from core.timeline import Listener, Timer
 from core.log import log
 from core.config import Conf
@@ -13,6 +13,12 @@ class Fs_alt:
         self.a_fs_alt = Fs_group('fs_alt', self.conf_alt)
         self.fs_proc_alt = fs_proc
         self.uses = 0
+        self.has_fsf = False
+        if 'fsf' in conf:
+            self.a_fsf_og = adv.a_fsf
+            self.a_fsf_alt = Fs('fsf', conf.fsf)
+            self.a_fsf_alt.act_event = Event('none')
+            self.has_fsf = True
 
     def fs_proc(self, e):
         if callable(self.fs_proc_alt):
@@ -28,6 +34,8 @@ class Fs_alt:
         self.adv.a_fs = self.a_fs_alt
         self.adv.conf = self.conf_alt
         self.adv.fs_proc = self.fs_proc
+        if self.has_fsf:
+            self.adv.fsf = self.a_fsf_alt
 
     def off(self):
         log('debug', 'fs_alt off', 0)
@@ -35,6 +43,8 @@ class Fs_alt:
         self.adv.a_fs = self.a_fs_og
         self.adv.conf = self.conf_og
         self.adv.fs_proc = self.fs_proc_og
+        if self.has_fsf:
+            self.adv.fsf = self.a_fsf_og
 
     def get(self):
         return self.uses != 0
