@@ -165,7 +165,8 @@ class Co_Ability(Ability):
         'axe2': [('crit','damage',0.30)],
         'geuden': [('da','passive',0.10),('dt','passive',0.20)],
         'megaman': [('overdrive_killer','passive',0.15)],
-        'tobias': [('buff','time',0.20)]
+        'tobias': [('buff','time',0.20)],
+        'grace': [('fs','ex',0.20)]
     }
     def __init__(self, name, value, cond=None):
         try:
@@ -366,10 +367,10 @@ class Primed(BuffingAbility):
         self.is_cd = False
         super().__init__(name, value, duration or 10)
 
-    def oninit(self, adv, afrom=None):        
+    def oninit(self, adv, afrom=None):
         def pm_cd_end(t):
             self.is_cd = False
-                    
+
         def l_primed(e):
             if not self.is_cd:
                 buff = adv.Buff(*self.buff_args)
@@ -388,7 +389,7 @@ class Dragon_Prep(Ability):
         self.value = value
         super().__init__(name)
 
-    def oninit(self, adv, afrom=None):        
+    def oninit(self, adv, afrom=None):
         adv.dragonform.dragon_gauge += self.value * 10
 
 ability_dict['dp'] = Dragon_Prep
@@ -399,7 +400,7 @@ class Affliction_Guard(Ability):
         self.value = value
         super().__init__(name)
 
-    def oninit(self, adv, afrom=None):        
+    def oninit(self, adv, afrom=None):
         adv.afflict_guard = self.value
 
 ability_dict['ag'] = Affliction_Guard
@@ -444,7 +445,7 @@ class Energized_Buff(BuffingAbility):
     def __init__(self, name, value, duration=None):
         super().__init__(name, value, duration or 15)
 
-    def oninit(self, adv, afrom=None):                            
+    def oninit(self, adv, afrom=None):
         def l_energized(e):
             if e.stack >= 5:
                 adv.Buff(*self.buff_args).on()
