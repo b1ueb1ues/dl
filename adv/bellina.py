@@ -146,11 +146,10 @@ class Bellina(Adv):
             # 1212 mod, 3x crisis
         else:
             self.dragonform.charge_gauge(1200, percent=False)
-            # gauge gain supposibly scales with hp loss, not sure how it works
-            # looks like 50 gauge from full hp -> 30%
+            # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
             if self.hp > 30:
+                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, percent=False)
                 self.hp = 30
-                self.dragonform.charge_gauge(1500, percent=False)
                 self.a3_str.on()
                 self.a3_spd.on()
             # regular buff duration (?)

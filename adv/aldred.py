@@ -68,11 +68,10 @@ class Aldred(Adv):
             self.dragonform.charge_gauge(3000, percent=False)
         else:
             self.dragonform.charge_gauge(1200, percent=False)
-            # gauge gain supposibly scales with hp loss, not sure how it works
-            # looks like 50 gauge from full hp -> 30%
+            # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
             if self.hp > 30:
+                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, percent=False)
                 self.hp = 30
-                self.dragonform.charge_gauge(1500, percent=False)
         # +1200 dd points
         # 1.3333333730697632s
 
