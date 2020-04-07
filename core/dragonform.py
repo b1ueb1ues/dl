@@ -195,7 +195,7 @@ class DragonForm(Action):
                         nact = 'dx1'
             else:
                 nact = 'dx1'
-        if nact == 'ds' or nact == 'dodge': # cancel
+        if nact == 'ds' or nact == 'dodge' or nact == 'end': # cancel
             self.act_timer(self.d_act_start_t, self.conf.latency, nact)
         else: # regular recovery
             self.act_timer(self.d_act_start_t, self.c_act_conf.recovery, nact)
