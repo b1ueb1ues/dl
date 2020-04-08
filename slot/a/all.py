@@ -428,7 +428,7 @@ class A_Small_Courage(Amulet):
 
 class The_Red_Impulse(Amulet):
     att = 65
-    a = [('ds', 3), ('dc', 3)]
+    a = [('dcs', 3), ('dc', 3)]
 
 amulets = []
 for k in list(globals()):

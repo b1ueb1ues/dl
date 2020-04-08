@@ -303,7 +303,7 @@ class Dragon_Skill(Dragon_Buff):
     def __init__(self, name, value):
         super().__init__(name, self.DS_LEVELS[value], buff_args=('s','buff'))
 
-ability_dict['ds'] = Dragon_Skill
+ability_dict['dcs'] = Dragon_Skill
 
 class Resilient_Offense(Ability):
     def __init__(self, name, value, interval=None):
