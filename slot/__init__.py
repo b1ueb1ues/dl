@@ -76,8 +76,7 @@ class CharacterBase(Slot):
 
     def has_ex(self, ex):
         for _, coab in self.coabs.items():
-            _, ex = coab
-            if ex == ex:
+            if ex == coab[1]:
                 return True
         return False
 
