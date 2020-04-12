@@ -1604,11 +1604,15 @@ class Adv(object):
         sp_int = int(sp_hasted)
         return sp_int if sp_int == sp_hasted else sp_int + 1
 
-    def charge_p(self, name, percent):
+    def charge_p(self, name, percent, target=None):
         percent = percent / 100 if percent > 1 else percent
-        self.s1.charge(self.sp_convert(percent, self.conf.s1.sp))
-        self.s2.charge(self.sp_convert(percent, self.conf.s2.sp))
-        self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
+        if not target:
+            self.s1.charge(self.sp_convert(percent, self.conf.s1.sp))
+            self.s2.charge(self.sp_convert(percent, self.conf.s2.sp))
+            self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
+        else:
+            skill = self.__dict__[target]
+            skill.charge(self.sp_convert(percent, skill.sp))
         log('sp', name, '{:.0f}%   '.format(percent * 100), '%d/%d, %d/%d, %d/%d' % ( \
             self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
         self.think_pin('prep')

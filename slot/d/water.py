@@ -218,6 +218,11 @@ class Nimis(DragonBase):
         self.adv.dragonform.shift_end_timer.add(add_time)
         return 0
 
+class Gaibhne_and_Creidhne(DragonBase):
+    ele = 'water'
+    att = 125
+    a = [('scharge', 0.35), ('a', 0.45)]
+
 class Unreleased_WaterFrostbitePunish(DragonBase):
     ele = 'water'
     att = 127

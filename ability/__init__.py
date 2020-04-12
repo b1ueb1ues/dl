@@ -329,23 +329,15 @@ ability_dict['uo'] = Resilient_Offense
 
 class Skill_Prep(Ability):
     def __init__(self, name, value):
-        if name == 'prep_charge':
-            self.value = 1
-            self.charge = value
-        else:
-            self.value = value
-            if isinstance(self.value, str):
-                self.value = float(value.replace('%', ''))
-            if self.value > 1:
-                self.value /= 100
+        self.value = value
+        if isinstance(self.value, str):
+            self.value = float(value.replace('%', ''))
+        if self.value > 1:
+            self.value /= 100
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
         adv.charge_p('skill prep',self.value)
-        if self.name == 'prep_charge':
-            def l_skill_charge(e):
-                adv.charge_p('skill_charge',self.charge)
-            adv.Event('s').listener(l_skill_charge)
 
 ability_dict['prep'] = Skill_Prep
 
@@ -582,3 +574,21 @@ class Energy_Combo(Ability):
         adv.dmg_proc = dmg_proc
 
 ability_dict['ecombo'] = Energy_Combo
+
+
+class Skill_Recharge(Ability):
+    def __init__(self, name, value):
+        self.all = name == 'scharge_all'
+        self.value = value
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        if self.all:
+            def l_skill_charge(e):
+                adv.charge_p('skill_charge',self.value)
+        else:
+            def l_skill_charge(e):
+                adv.charge_p(f'skill_charge_{e.name}',self.value,target=e.name)
+        adv.Event('s').listener(l_skill_charge)
+
+ability_dict['scharge'] = Skill_Recharge

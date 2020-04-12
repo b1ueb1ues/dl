@@ -11,7 +11,7 @@ class Gala_Elisanne(Adv):
 
     conf = {}
     conf['slots.a'] = BB()+FWHC()
-    conf['slots.d'] = Halloween_Maritimus()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
         `fs, seq=5

@@ -8,7 +8,7 @@ def module():
     return Botan
 
 class Botan(Adv):
-    a3 = ('prep_charge',0.05)
+    a3 = [('prep',1.00), ('scharge_all', 0.05)]
     conf = {}
     conf['slots.a'] = RR() + Jewels_of_the_Sun()
     conf['slots.d'] = Shinobi()
