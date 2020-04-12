@@ -1206,6 +1206,29 @@
             "startup": 0.25
         }
     },
+    "Grace": {
+        "c": {
+            "att": 470,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "staff"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 2.3,
+            "sp": 5916,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.8,
+            "sp": 8534,
+            "startup": 0.1
+        }
+    },
     "Halloween_Edward": {
         "c": {
             "att": 491,
