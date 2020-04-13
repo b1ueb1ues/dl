@@ -9,10 +9,10 @@ class Lazry(Adv):
     a1 = ('k_frostbite', 0.30)
     a3 = ('s', 0.35, 'hp70')
     conf = {}
-    conf['slot.a'] = Kung_Fu_Masters()+His_Clever_Brother()
+    conf['slot.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
     conf['slot.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        if s1.check() and self.afflics.frostbite.timeleft()<3
+        if s1.check() and self.afflics.frostbite.timeleft()<7
         `low_power
         elif s2.check()
         `low_power
@@ -21,6 +21,7 @@ class Lazry(Adv):
         end
         `s1
         `s2
+        `fs, x=5
     """
     conf['afflict_res.frostbite'] = 0
 
