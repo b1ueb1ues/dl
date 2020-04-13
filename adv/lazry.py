@@ -80,7 +80,7 @@ class Lazry(Adv):
             # 2.4700000286102295 + 9.359999656677246
             # 2.5
             # recover s1 sp
-            self.dmg_make('s2',11.83)
+            self.dmg_make('s2_high',11.83)
             self.hits += 2
             self.s1.charge(self.s1.sp)
 
