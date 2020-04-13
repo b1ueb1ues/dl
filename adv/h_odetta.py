@@ -1,8 +1,6 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
-from slot.w import *
 
 def module():
     return Halloween_Odetta
@@ -10,28 +8,24 @@ def module():
 class Halloween_Odetta(Adv):
 
     conf = {}
-    conf['slot.a'] = MF() + FRH()
-    conf['slot.d'] = DJ()
+    conf['slot.a'] = Mega_Friends() + Beach_Battle()
+    conf['slot.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `s2, fsc
+        `s2, cancel
         `s1, fsc
         `s3, fsc
-        `fs, seq=2
+        `fs, x=2
         """
 
     a1 = ('primed_defense', 0.10)
     a3 = ('bt',0.2)
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
-
-    def c_s2_proc(self, e):
-        Teambuff('s2',0.2,15).on()
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s2_proc(self, e):
-        Selfbuff('s2',0.2,15).on()
+        self.buff_class('s2',0.2,15).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

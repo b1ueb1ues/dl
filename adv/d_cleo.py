@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 
@@ -9,6 +8,7 @@ class Dragonyule_Cleo(Adv):
     a1 = ('a',0.13,'hp70')
     a3 = ('ecombo',30)
     conf = {}
+    conf['slot.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
         `s2, seq=5 and cancel or fsc
@@ -33,8 +33,6 @@ class Dragonyule_Cleo(Adv):
             self.buff_class('s1c',0.08,10,'crit','chance').on()
 
 
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

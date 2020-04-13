@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -14,8 +13,7 @@ class Gala_Elisanne(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
-        `fs, seq=5
-        """
+    """
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
@@ -31,6 +29,5 @@ class Gala_Elisanne(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -11,12 +10,13 @@ class Elisanne(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slots.a'] = BB() + FWHC()
-    conf['slots.d'] = Halloween_Maritimus()
+    conf['slots.a'] = BB()+Jewels_of_the_Sun()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
+        `fs, x=5
     """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
