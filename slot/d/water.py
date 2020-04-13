@@ -222,6 +222,38 @@ class Gaibhne_and_Creidhne(DragonBase):
     ele = 'water'
     att = 125
     a = [('scharge', 0.35), ('a', 0.45)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.40,
+        'dx1.startup': 20 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.64,
+        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 4.32,
+        'dx3.startup': 43 / 60.0, # c3 frames
+        'dx3.recovery': 72 / 60.0, # recovery
+        'dx3.hit': 2,
+
+        'ds.dmg': 0,
+        'ds.recovery': 150 / 60, # skill frames
+        'ds.hit': 0,
+
+        'dodge.startup': 40 / 60, # dodge frames
+    }
+
+    def ds_proc(self):
+        from core.timeline import Timer
+        def autocharge(t):
+            self.adv.charge_p('ds', 0.091)
+        charge = Timer(autocharge, 0.9, True).on()
+        def autocharge_off(t):
+            charge.off()
+        Timer(autocharge_off, 10, True).on()
+        return 0
 
 class Unreleased_WaterFrostbitePunish(DragonBase):
     ele = 'water'
