@@ -87,7 +87,7 @@ class Acl_Action:
 {indent}    return '{act}'"""
     NONE = '{indent}return 0'
     QUEUE_ACT = """{indent}self.acl_queue.append(({act}, compile('{cond}', '<string>', 'eval')))"""
-    dragon_act = re.compile(r'dragon(form)?.act\(([A-Za-z "\'\*\d]+)\)')
+    dragon_act = re.compile(r'dragon(form)?.act\(([A-Za-z "\'\*\+\d]+)\)')
     def __init__(self, action):
         self.arguments = '()'
         if action.upper() == 'NONE':
