@@ -208,7 +208,7 @@ fs_conf = {
 class Mitsuba(Adv):
     a1 = ('a', 0.20, 'hit15')
     conf = fs_conf.copy()
-    conf['slot.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
+    conf['slot.a'] = Twinfold_Bonds()+His_Clever_Brother()
     conf['slot.d'] = Siren()
     # tc2afsf tc2a- s1
     conf['acl'] = """

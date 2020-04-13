@@ -8,14 +8,15 @@ def module():
 
 class Xainfried(adv.xainfried.Xainfried):
     conf = adv.xainfried.Xainfried.conf.copy()
-    conf['slot.a'] = Resounding_Rendition()+An_Ancient_Oath()
-    conf['slot.d'] = Leviathan()
+    conf['slot.a'] = Resounding_Rendition()+His_Clever_Brother()
+    conf['slot.d'] = Siren()
     conf['acl'] = """
-        `dragon
+        `dragon.act('c3 s end')
         `s1
         `s2
+        `fs, x=5
         """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(Xainfried, *sys.argv)
