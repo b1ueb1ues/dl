@@ -9,7 +9,7 @@ class Xainfried(Adv):
     a1 = ('dc', 4)
     a3 = ('dt', 0.25)
     conf = {}
-    conf['slot.a'] = RR()+His_Clever_Brother()
+    conf['slot.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
     conf['slot.d'] = Siren()
     conf['acl'] = """
         `s1
