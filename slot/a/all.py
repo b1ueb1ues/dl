@@ -430,6 +430,14 @@ class The_Red_Impulse(Amulet):
     att = 65
     a = [('dcs', 3), ('dc', 3)]
 
+class Proper_Maintenance(Amulet):
+    att = 64
+    a = [('a', 0.15, 'hp100'),('bt',0.20)]
+
+class His_Clever_Brother(Amulet):
+    att = 51
+    a = [('k_frostbite',0.20),('sp',0.05)]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

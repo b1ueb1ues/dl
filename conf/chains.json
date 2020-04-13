@@ -285,6 +285,13 @@
                 20
             ],
             "bow"
+        ],
+        "Gauld": [
+            [
+                "affself_frostbite",
+                0.10
+            ],
+            "lance"
         ]
     },
     "wind": {

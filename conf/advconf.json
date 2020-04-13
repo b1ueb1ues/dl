@@ -1206,6 +1206,29 @@
             "startup": 0.25
         }
     },
+    "Gauld": {
+        "c": {
+            "att": 492,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 2.667,
+            "sp": 3051,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5158,
+            "startup": 0.25
+        }
+    },
     "Grace": {
         "c": {
             "att": 470,
