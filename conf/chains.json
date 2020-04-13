@@ -292,6 +292,13 @@
                 0.10
             ],
             "lance"
+        ],
+        "Gauld": [
+            [
+                "affself_frostbite",
+                0.13
+            ],
+            "axe"
         ]
     },
     "wind": {

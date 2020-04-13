@@ -1906,6 +1906,29 @@
             "startup": 0.25
         }
     },
+    "Lazry": {
+        "c": {
+            "att": 505,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 2.0667,
+            "sp": 3194,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.6667,
+            "sp": 7475,
+            "startup": 0.1
+        }
+    },
     "Lea": {
         "c": {
             "att": 505,

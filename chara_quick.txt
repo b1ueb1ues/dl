@@ -151,3 +151,4 @@ g_alex.py
 aldred.py
 bellina.py
 gauld.py
+lazry.py

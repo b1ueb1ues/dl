@@ -273,6 +273,7 @@ class Afflic_dot(AfflicUncapped):
         self.default_iv = iv
         self.iv = iv
         self.edge = 0
+        self.dot = None
 
     def on(self, name, rate, coef, duration=None, iv=None, dtype=None):
         self.rate = rate + self.edge
@@ -280,11 +281,17 @@ class Afflic_dot(AfflicUncapped):
         self.dtype = dtype
         self.duration = duration or self.default_duration
         self.iv = iv or self.default_iv
-        dot = Dot('o_%s_%s' % (name, self.name), coef, self.duration, self.iv, self.dtype)
-        dot.on()
+        self.dot = Dot('o_%s_%s' % (name, self.name), coef, self.duration, self.iv, self.dtype)
+        self.dot.on()
         r = super().on()
-        dot.tick_dmg *= r
+        self.dot.tick_dmg *= r
         return r
+
+    def timeleft(self):
+        if self.dot:
+            return self.dot.dotend_timer.timing-now()
+        else:
+            return 0
 
 
 class Afflic_cc(AfflicCapped):
