@@ -1612,6 +1612,8 @@ class Adv(object):
             self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
         else:
             skill = self.__dict__[target]
+            if hasattr(skill, 'autocharge_timer'):
+                return
             skill.charge(self.sp_convert(percent, skill.sp))
         log('sp', name, '{:.0f}%   '.format(percent * 100), '%d/%d, %d/%d, %d/%d' % ( \
             self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
