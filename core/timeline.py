@@ -57,8 +57,8 @@ class Event(object):
     def __call__(self, expand=None):
         self.on(self)
 
-    def __str__(self):
-        return self.__name
+    # def __str__(self):
+    #     return self.__name
 
 
     #__call__ = on

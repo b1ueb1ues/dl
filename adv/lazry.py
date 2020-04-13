@@ -48,6 +48,7 @@ class Lazry(Adv):
         self.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 1.5667}))
         self.a_s2 = self.s2.ac
         self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 2.5}))
+        self.a_s2a.act_event.damage = True # dude trust me:tm:
         self.s1_buff = SingleActionBuff('s1',0.20,1,'s','buff')
 
     def s1_proc(self, e):

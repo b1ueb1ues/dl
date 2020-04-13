@@ -331,7 +331,7 @@ class SingleActionBuff(Buff):
         return super().on(-1)
 
     def l_off(self, e):
-        if e.name in self.modifier._static.damage_sources:
+        if e.name in self.modifier._static.damage_sources or (hasattr(e, 'damage') and e.damage):
             self.casts -= 1
             if self.casts <= 0:
                 return super().off()
