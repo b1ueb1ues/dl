@@ -200,7 +200,8 @@ class DragonForm(Action):
         else: # regular recovery
             self.act_timer(self.d_act_start_t, self.c_act_conf.recovery, nact)
 
-    def parse_act(self, act_str):        
+    def parse_act(self, act_str):
+        act_str = act_str.strip()      
         self.act_list = []
         skill_usage = 0
 
