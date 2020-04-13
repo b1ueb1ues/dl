@@ -55,7 +55,7 @@ class DragonForm(Action):
         self.shift_event = Event('dragondrive')
         self.dragondrive_end_event = Event('dragondrive_end')
         self.max_gauge = 3000
-        self.shift_cost = 1500 # does not deduct, but need to have this much pt to shift
+        self.shift_cost = 1200 # does not deduct, but need to have this much pt to shift
         self.dragondrive_buff = dd_buff
         self.dragondrive_timer = Timer(self.d_dragondrive_end)
 
