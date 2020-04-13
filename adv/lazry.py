@@ -12,7 +12,7 @@ class Lazry(Adv):
     conf['slot.a'] = Kung_Fu_Masters()+His_Clever_Brother()
     conf['slot.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        if s1.check() and self.afflics.frostbite.timeleft()<7
+        if s1.check() and self.afflics.frostbite.timeleft()<3
         `low_power
         elif s2.check()
         `low_power
@@ -21,7 +21,6 @@ class Lazry(Adv):
         end
         `s1
         `s2
-        `s3
     """
     conf['afflict_res.frostbite'] = 0
 
@@ -80,7 +79,7 @@ class Lazry(Adv):
             # 2.4700000286102295 + 9.359999656677246
             # 2.5
             # recover s1 sp
-            self.dmg_make('s1',11.83)
+            self.dmg_make('s2',11.83)
             self.hits += 2
             self.s1.charge(self.s1.sp)
 
