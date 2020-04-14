@@ -224,6 +224,7 @@ function loadAdvSlots() {
     if ($('#input-adv').val() == '') {
         return false;
     }
+    history.replaceState && history.replaceState(null, '', location.pathname);
     const adv_name = $('#input-adv').val();
     localStorage.setItem('selectedAdv', $('#input-adv').val());
     $.ajax({
