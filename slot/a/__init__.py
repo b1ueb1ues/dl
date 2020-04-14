@@ -55,7 +55,7 @@ class Amulet(AmuletBase):
                 max_value = self.mmax[name]
                 for ab in sorted(ab_list, key=lambda x: '' if len(x) < 3 else x[2]):
                     if len(ab) > 2 and ab[2] not in ('flame', 'water', 'wind', 'light', 'shadow'):
-                        new_ab = (ab[0], min(ab[1], max_value))
+                        new_ab = (ab[0], min(ab[1], max_value), *ab[2:])
                     else:
                         new_ab = (ab[0], min(ab[1], max_value))
                     self.a.append(new_ab)
@@ -64,6 +64,7 @@ class Amulet(AmuletBase):
                         break
             else:
                 self.a.extend(ab_list)
+        print(self.a)
 
  #   def oninit(self, adv):
  #       super(Amulet, self).oninit(adv)
