@@ -193,7 +193,7 @@ function loadAdvWPList() {
     let selectedAdv = 'euden';
     let urlVars = getUrlVars();
     if (urlVars.adv_name) {
-        selectedAdv = urlVars.adv_name;
+        selectedAdv = urlVars.adv_name.toLowerCase();
     } else if (localStorage.getItem('selectedAdv')) {
         selectedAdv = localStorage.getItem('selectedAdv');
     }
