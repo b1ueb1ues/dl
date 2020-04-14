@@ -10,7 +10,7 @@ class Elisanne(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    conf['slots.a'] = BB()+Jewels_of_the_Sun()
+    conf['slots.a'] = Beach_Battle()+Castle_Cheer_Corps()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
