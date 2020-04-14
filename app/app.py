@@ -38,27 +38,20 @@ with open(os.path.join(ROOT_DIR, 'chara_slow.txt')) as f:
     for l in f:
         MASS_SIM_ADV.append(l.strip().replace('.py', ''))
 
-# ???
-# audric.py.dragon.py
-# g_mym.py.dragon.py
-# euden.py.dragon.py
-# euden.py.dragon.sakuya.py
-# lathna.py.dragon.py
-
 SPECIAL_ADV = {
     'chelsea_rollfs': {
         'fn': 'chelsea.py.rollfs.py',
         'nc': ['wp']
     },
-    'g_cleo_ehjp': {
+    'gala_cleo_ehjp': {
         'fn': 'g_cleo.py.ehjp.py',
         'nc': ['w', 'wp', 'acl']
     },
-    'g_cleo_stack': {
+    'gala_cleo_stack': {
         'fn': 'g_cleo.py.stack.py',
         'nc': []
     },
-    'g_luca_maxstacks': {
+    'gala_luca_maxstacks': {
         'fn': 'g_luca.py.maxstacks.py',
         'nc': []
     },
@@ -70,7 +63,7 @@ SPECIAL_ADV = {
         'fn': 'natalie.py.1hp.py',
         'nc': []
     },
-    'v_addis_1hp': {
+    'valentines_addis_1hp': {
         'fn': 'v_addis.py.1hp.py',
         'nc': []
     },
@@ -98,6 +91,14 @@ def get_adv_module(adv_name):
             adv_name.lower()
         ).module()
 
+ADV_MODULES = {}
+for adv in NORMAL_ADV+MASS_SIM_ADV:
+    module = get_adv_module(adv)
+    name = module.__name__
+    ADV_MODULES[name.lower()] = module
+for name, info in SPECIAL_ADV.items():
+    module = get_adv_module(name)
+    ADV_MODULES[name.lower()] = module
 
 def is_amulet(obj):
     return (inspect.isclass(obj) and issubclass(obj, slot.a.Amulet)
@@ -133,7 +134,7 @@ def set_teamdps_res(result, logs, real_d, suffix=''):
     return result
 
 def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
-    adv_module = get_adv_module(adv_name)
+    adv_module = ADV_MODULES[adv_name.lower()]
     def slot_injection(self):
         if wp1 is not None and wp2 is not None:
             self.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
@@ -257,7 +258,7 @@ def get_adv_slotlist():
         'all': coability['all']
     }
     if result['adv']['name'] is not None:
-        adv_instance = get_adv_module(result['adv']['name'])()
+        adv_instance = ADV_MODULES[result['adv']['name'].lower()]()
         adv_ele = adv_instance.slots.c.ele.lower()
         result['adv']['fullname'] = adv_instance.__class__.__name__
         result['adv']['ele'] = adv_ele
@@ -294,5 +295,5 @@ def get_adv_wp_list():
         return 'Wrong request method.'
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
-    result['adv'] = NORMAL_ADV+MASS_SIM_ADV+list(SPECIAL_ADV.keys())
+    result['adv'] = list(ADV_MODULES.keys())
     return jsonify(result)

@@ -7,20 +7,6 @@ BASE_AFFLICT_UPTIME = {
     'paralysis': 80,
     'frostbite': 90
 };
-PREFIX_MAPS = {
-    'adv': {
-        'g_': 'gala_',
-        'b_zardin': 'beautician_zardin',
-        'd_': 'dragonyule_',
-        'h_': 'halloween_',
-        's_maribelle': 'student_maribelle',
-        's_': 'summer_',
-        'v_': 'valentines_',
-        'w_': 'wedding_',
-        'mh_': 'hunter_',
-        't_hope': 'templar_hope'
-    },
-};
 WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
 RANGED = ['wand', 'bow', 'staff'];
 AXE2_ADV = ['Halloween_Mym', 'Valentines_Melody']
@@ -69,24 +55,11 @@ function slots_icon_fmt(adv, ele, wt, slots) {
     }
     return img_urls;
 }
-function substitute_prefix(name, t) {
-    if (PREFIX_MAPS.hasOwnProperty(t)) {
-        prefix_map = PREFIX_MAPS[t];
-        name = name.toLowerCase();
-        for (let pre in prefix_map) {
-            if (name.startsWith(pre)) {
-                name = name.replace(pre, prefix_map[pre]);
-                break;
-            }
-        }
-    }
-    return name_fmt(name);
-}
 function populateSelect(id, data) {
     const t = id.split('-')[1];
     let options = [];
     for (let d of data) {
-        options.push($('<option>' + substitute_prefix(d, t) + '</option>')
+        options.push($('<option>' + name_fmt(d) + '</option>')
             .attr({ id: t + '-' + d, value: d }))
     }
     options.sort((a, b) => {
@@ -209,9 +182,19 @@ function sumDps(data) {
 function trimAcl(acl_str) {
     return $.trim(acl_str.replace(new RegExp(/[\n] +/, 'g'), '\n'));
 }
+function getUrlVars() {
+    var vars = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 function loadAdvWPList() {
     let selectedAdv = 'euden';
-    if (localStorage.getItem('selectedAdv')) {
+    let urlVars = getUrlVars();
+    if (urlVars.adv_name) {
+        selectedAdv = urlVars.adv_name;
+    } else if (localStorage.getItem('selectedAdv')) {
         selectedAdv = localStorage.getItem('selectedAdv');
     }
     $.ajax({
@@ -407,7 +390,7 @@ function buildCoab(coab, fullname, weapontype) {
             }
         }
     }
-    if (found_fullname == 'ele'){
+    if (found_fullname == 'ele') {
         let check = null;
         if (AXE2_ADV.includes(fullname)) {
             check = $('#coab-all-axe2');
@@ -499,7 +482,7 @@ function runAdvTest() {
                     buildConditionList(res.condition);
                     const result = res.test_output.split('\n');
                     const cond_true = result[1].split(',');
-                    const name = substitute_prefix(cond_true[1], 'adv');
+                    const name = name_fmt(cond_true[1]);
                     const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
                     let coab_str = ''
