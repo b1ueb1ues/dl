@@ -110,9 +110,9 @@ class DragonForm(Action):
             self.action_timer.off()
             self.action_timer = None
         duration = now()-self.shift_start_time
+        log(self.name, '{:.2f}dmg / {:.2f}s, {:.2f} dps'.format(self.shift_damage_sum, duration, self.shift_damage_sum/duration), ' '.join(self.act_sum))
         self.act_sum = []
         self.act_list = []
-        log(self.name, '{:.2f}dmg / {:.2f}s, {:.2f} dps'.format(self.shift_damage_sum, duration, self.shift_damage_sum/duration), ' '.join(self.act_sum))
         self.dracolith_mod.off()
         if self.off_ele_mod is not None:
             self.off_ele_mod.off()
