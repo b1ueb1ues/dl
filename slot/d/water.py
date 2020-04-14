@@ -234,8 +234,8 @@ class Gaibhne_and_Creidhne(DragonBase):
         'dx2.hit': 1,
 
         'dx3.dmg': 4.32,
-        'dx3.startup': 43 / 60.0, # c3 frames
-        'dx3.recovery': 72 / 60.0, # recovery
+        'dx3.startup': 58 / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
         'dx3.hit': 2,
 
         'ds.dmg': 0,
