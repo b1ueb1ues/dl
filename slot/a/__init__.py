@@ -64,7 +64,6 @@ class Amulet(AmuletBase):
                         break
             else:
                 self.a.extend(ab_list)
-        print(self.a)
 
  #   def oninit(self, adv):
  #       super(Amulet, self).oninit(adv)
