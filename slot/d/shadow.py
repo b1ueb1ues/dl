@@ -79,7 +79,7 @@ class Shinobi(DragonBase):
 
 class Fatalis(DragonBase):
     ele = 'shadow'
-    att = 121
+    att = 128
     a = [('a', 0.8)]
     dragonform = {
         'act': 'c3 s',
