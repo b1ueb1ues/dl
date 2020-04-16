@@ -1176,7 +1176,7 @@ class Adv(object):
         self.s3_buff_list = []
         self.s3_buff = None
 
-        self.damage_sources = set()
+        self.damage_sources = {'s'}
         self.Modifier._static.damage_sources = self.damage_sources
 
         if not self.conf:
