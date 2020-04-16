@@ -235,8 +235,8 @@ class Andromeda(DragonBase):
         'dx2.hit': 1,
 
         'dx3.dmg': 3.24,
-        'dx3.startup': 63 / 60.0, # c3 frames, suspected dodge timing at 42f
-        'dx3.recovery': 46 / 60.0, # recovery
+        'dx3.startup': 44 / 60.0, # c3 frames
+        'dx3.recovery': 65 / 60.0, # recovery
         'dx3.hit': 3,
 
         'ds.recovery': 110 / 60, # skill frames
