@@ -218,6 +218,40 @@ class Epimetheus(DragonBase):
         self.adv.afflics.poison('ds',120,0.291,30,dtype='s')
         return dmg
 
+
+class Andromeda(DragonBase):
+    ele = 'shadow'
+    att = 128
+    a = [('a', 0.4), ('a', 0.4, 'hp<30')]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.90,
+        'dx1.startup': 20 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.09,
+        'dx2.startup': 40 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.24,
+        'dx3.startup': 58 / 60.0, # c3 frames, suspected dodge timing at 42f
+        'dx3.recovery': 46 / 60.0, # recovery
+        'dx3.hit': 3,
+
+        'ds.recovery': 110 / 60, # skill frames
+        'ds.hit': 1,
+
+        'dodge.startup': 33 / 60, # dodge frames
+    }
+
+    def ds_proc(self):
+        from core.advbase import Teambuff
+        dmg = self.adv.dmg_make('ds',6.60,'s')
+        Teambuff('ds', 0.30, 15, 'defense').on()
+        return dmg
+
+
 class Unreleased_ShadowSkillHaste(DragonBase):
     ele = 'shadow'
     att = 120
