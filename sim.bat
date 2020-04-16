@@ -1,5 +1,5 @@
 @echo off
 setlocal
 set PYTHONPATH=%cd%
-python core/simulate.py %1
+python core/simulate.py %*
 endlocal

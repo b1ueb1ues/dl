@@ -1488,7 +1488,7 @@ class Adv(object):
         
         self.d_coabs()
         if 'coabs' in self.conf:
-            coab_list = self.conf['coabs']+self.coab
+            coab_list = self.conf['coabs']
         else:
             coab_list = self.coab
         from conf import coability
