@@ -10,7 +10,7 @@ tension_efficiency = {
     'inspiration': 0.6
 }
 
-ele_afflict_map = {
+ele_afflict = {
     'flame': 'burn',
     'water': 'frostbite',
     'wind': 'poison',
@@ -107,7 +107,7 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
         }
 
     if verbose == -5:
-        aff_name = ele_afflict_map[adv.slots.c.ele]
+        aff_name = ele_afflict[adv.slots.c.ele]
         conf['sim_afflict.efficiency'] = 1
         conf['sim_afflict.type'] = aff_name
         adv, real_d = run_once(classname, conf, duration, cond)

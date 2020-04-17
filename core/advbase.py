@@ -1091,9 +1091,9 @@ class Adv(object):
             if self.conf.sim_afflict.type in self.conf.slots:
                 afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
                 if 'a' in afflic_slots:
-                    self.conf.slots.a = afflic_slots.a
+                    self.slots.a = afflic_slots.a
                 if 'd' in afflic_slots:
-                    self.conf.slots.d = afflic_slots.d
+                    self.slots.d = afflic_slots.d
 
     def sim_buffbot(self):
         if 'sim_buffbot' in self.conf:
@@ -1150,7 +1150,7 @@ class Adv(object):
         self.cmnslots.c.ele = self.conf.c.ele
         self.cmnslots.c.name = self.name
         self.slot_common = slot_common.set
-        self.slot_common(self.cmnslots)
+        self.slot_common(self.cmnslots, self.conf)
         self.slots = self.cmnslots
         # print self.cmnslots
 

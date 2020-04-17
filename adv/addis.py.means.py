@@ -27,4 +27,4 @@ class Addis(addis.Addis):
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
-    test_with_argv(addis, *sys.argv)
+    test_with_argv(Addis, *sys.argv)
