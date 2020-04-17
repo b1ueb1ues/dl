@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 from module.x_alt import Fs_alt
 
 def module():
@@ -10,14 +9,14 @@ class Hawk(Adv):
     a1 = [('edge_stun', 50), ('edge_poison', 50)]
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
     conf = {}
+    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `fs, s=2
         `s2, s1.check()
         `s1, cancel
     """
-
-    conf['slot.d'] = Vayu()
-    conf['slot.a'] = Resounding_Rendition() + The_Fires_of_Hate()
+    coab = ['Blade','Dragonyule_Xainfried','Sylas']
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
 

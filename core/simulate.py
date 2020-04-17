@@ -3,77 +3,20 @@ import os
 import re
 
 BR = 64
-BLADE = 1.10
-WAND = 1.15
 def skill_efficiency(real_d, team_dps, mod):
     return (team_dps * 1.25) * mod * 2 / 5 / real_d
 tension_efficiency = {
     'energy': 0.5,
     'inspiration': 0.6
 }
-ex_mapping = {
-    'k': 'Blade',
-    'r': 'Wand',
-    'd': 'Dagger',
-    'b': 'Bow',
-    'm': 'Axe2',
-    's': 'Sword',
-    'g': 'Gala_Euden',
-    't': 'Tobias'
+
+ele_afflict = {
+    'flame': 'burn',
+    'water': 'frostbite',
+    'wind': 'poison',
+    'light': 'paralysis',
+    'shadow': 'poison'
 }
-
-def blade_mod(name, value):
-    if 'team' in name:
-        return value
-    else:
-        return value * BLADE
-
-def wand_mod(name, value):
-    if name[0] == 's' or name == 'ds':
-        return value * WAND
-    else:
-        return value
-
-def blade_wand_mod(name, value):
-    return blade_mod(name, wand_mod(name, value))
-
-def parse_ex(ex):
-    ex_set = []
-    for e in ex:
-        try:
-            ex_name = ex_mapping[e]
-            ex_set.append(ex_name)
-        except:
-            continue
-    return ex_set
-
-def build_exp_mod_list(ex, ex_set, wt):
-    if ex == '_':
-        ex = ''
-        ex_mod_func = [('_', None)]
-    else:
-        ex_mod_func = [('', None)]
-    if 'Blade' not in ex_set and wt != 'blade':
-        ex_mod_func.append(('k', blade_mod))
-        has_k = True
-    else:
-        ex_mod_func.append(('k', None))
-        has_k = False
-    if 'Wand' not in ex_set and wt != 'wand':
-        ex_mod_func.append(('r', wand_mod))
-        has_r = True
-    else:
-        ex_mod_func.append(('r', None))
-        has_r = False
-    if has_k and has_r:
-        ex_mod_func.append(('kr', blade_wand_mod))
-    elif has_k:
-        ex_mod_func.append(('kr', blade_mod))
-    elif has_r:
-        ex_mod_func.append(('kr', wand_mod))
-    else:
-        ex_mod_func.append(('kr', None))
-    return ex_mod_func, ex
 
 def run_once(classname, conf, duration, cond):
     adv = classname(conf=conf,cond=cond)
@@ -123,14 +66,14 @@ def run_mass(mass, base_log, base_d, classname, conf, duration, cond):
     base_d /= mass
     return base_log, base_d
 
-def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, team_dps=None, cond=True, special=False, ex='_'):
+def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, team_dps=None, cond=True, special=False):
     team_dps = team_dps if team_dps is not None else 20000
     output = output or sys.stdout
-    ex_set = parse_ex(ex)
-    if len(ex_set) > 0:
-        conf['coabs'] = ex_set
-    else:
-        ex = '_'
+    # ex_set = parse_ex(ex)
+    # if len(ex_set) > 0:
+    #     conf['coabs'] = ex_set
+    # else:
+    #     ex = '_'
     if verbose == -3:
         brute_force_slots(classname, conf, output, team_dps, duration)
         return
@@ -164,20 +107,22 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
         }
 
     if verbose == -5:
-        ex_mod_func, ex = build_exp_mod_list(ex, ex_set, adv.conf.c.wt)
-        page = 'sp' if special else str(duration)
-        for ex_str, mod_func in ex_mod_func:
-            output.write('-,{},{}{}\n'.format(page, ex_str, ex))
-            for a, d, c in run_results:
-                report(d, a, output, team_dps, cond=c, mod_func=mod_func)
-    else:
-        for a, d, c in run_results:
-            if verbose == -2:
-                if c:
-                    output.write('-,{},{}\n'.format(duration, ex))
-                report(d, a, output, team_dps, cond=c)
-            else:
-                summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)
+        aff_name = ele_afflict[adv.slots.c.ele]
+        conf['sim_afflict.efficiency'] = 1
+        conf['sim_afflict.type'] = aff_name
+        adv, real_d = run_once(classname, conf, duration, cond)
+        run_results.append((adv, real_d, 'affliction'))
+        if adv.condition.exist():
+            adv, real_d = run_once(classname, conf, duration, False)
+            run_results.append((adv, real_d, False))
+
+    for a, d, c in run_results:
+        if verbose == -2 or verbose == -5:
+            if c:
+                output.write('-,{},{}\n'.format(duration, c if isinstance(c, str) else '_'))
+            report(d, a, output, team_dps, cond=c)
+        else:
+            summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)
 
     return run_results
 
@@ -286,11 +231,12 @@ def brute_force_coabs(classname, conf, output, team_dps, duration):
     output.write('attempts: {}'.format(len(results)))
 
 
-def amulets(adv):
-    amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
-    amulets += '['+adv.slots.d.__class__.__name__+']'
-    amulets += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
-    return amulets
+def slots(adv):
+    slots = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
+    slots += '['+adv.slots.d.__class__.__name__+']'
+    slots += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
+    slots += '['+'|'.join(adv.coab)+']'
+    return slots
 
 def append_condensed(condensed, act):
     if len(condensed) > 0:
@@ -439,7 +385,7 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
             output.write('(')
             output.write(' '.join(list(adv.slots.c.coabs.keys())[:4])) # why
             output.write(') ')
-        output.write(amulets(adv))
+        output.write(slots(adv))
         output.write('\n')
         cond_comment = []
         if adv.condition.exist():
@@ -467,7 +413,7 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
         adv.conf['c.ele'],
         adv.conf['c.wt'],
         adv.displayed_att,
-        amulets(adv),
+        slots(adv),
         condition if cond else '!' + condition,
         adv.comment
     ])
@@ -535,15 +481,15 @@ def test_with_argv(*argv, conf={}):
         duration = int(argv[3])
     except:
         duration = 180
+    # try:
+    #     ex = argv[4]
+    # except:
+    #     ex = '_'
     try:
-        ex = argv[4]
-    except:
-        ex = '_'
-    try:
-        mass = int(argv[5])
+        mass = int(argv[4])
     except:
         mass = 0
-    test(module, conf=conf, verbose=verbose, duration=duration, ex=ex, mass=mass)
+    test(module, conf=conf, verbose=verbose, duration=duration, mass=mass)
 
 if __name__ == '__main__':
     test_with_argv(*sys.argv)

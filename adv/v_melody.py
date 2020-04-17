@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -12,7 +11,7 @@ class Valentines_Melody(Adv):
     a3 = ('k_poison',0.3)
 
     conf = {}
-    conf['slots.a'] = KFM()+The_Fires_of_Hate()
+    conf['slots.a'] = Kung_Fu_Masters()+The_Fires_of_Hate()
     conf['slot.d'] = Ariel()
     conf['acl'] = """
         `s1
@@ -20,6 +19,7 @@ class Valentines_Melody(Adv):
         `s3, cancel and self.mod('def')!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
+    coab = ['Blade','Eleonora','Sylas']
     conf['afflict_res.poison'] = 0
 
     def prerun(self):
@@ -35,6 +35,7 @@ class Valentines_Melody(Adv):
     def s2_proc(self, e):
         self.afflics.poison('s2', 120, 0.582)
 
+
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

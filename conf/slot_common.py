@@ -1,55 +1,69 @@
 #unused now
 import slot
 from slot.a import *
+from slot.d import *
 import slot.w
 from conf import coability, all_ele_chain
 
-def set(slots):
+ele_dragon = {
+    'flame': Sakuya,
+    'water': Siren,
+    'wind': Vayu,
+    'light': Daikokuten,
+    'shadow': Fatalis
+}
+
+wp_ct = lambda wp1, wp2, wpc: (wp1, {
+        'flame': wpc,
+        'water': wpc,
+        'light': wpc,
+        'all': wp2
+    })
+
+wt_prints = {
+    'sword': wp_ct(The_Shining_Overlord, Beautiful_Nothingness, Primal_Crisis),
+    'blade': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios),
+    'dagger': (Twinfold_Bonds, {
+        'water': The_Prince_of_Dragonyule,
+        'shadow': Howling_to_the_Heavens,
+        'all': Levins_Champion
+    }),
+    'axe': wp_ct(Kung_Fu_Masters, Flower_in_the_Fray, Breakfast_at_Valerios),
+    'lance': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios),
+    'wand': (Candy_Couriers, Primal_Crisis),
+    'bow': (Forest_Bonds, Dear_Diary),
+    'staff': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios)
+}
+
+ele_punisher = {
+    'flame': ('burn', Elegant_Escort),
+    'water': ('frostbite', His_Clever_Brother),
+    'wind': ('poison', The_Fires_of_Hate),
+    'light': ('paralysis', Spirit_of_the_Season),
+    'shadow': ('poison', The_Fires_of_Hate)
+}
+
+def set(slots, conf):
     ele = slots.c.ele
     wt = slots.c.wt
-    stars = slots.c.stars
+    # stars = slots.c.stars
     name = slots.c.name
 
+    slots.d = ele_dragon[ele]()
+    wp1, wp2 = wt_prints[wt]
+    if isinstance(wp2, dict):
+        try:
+            wp2 = wp2[ele]
+        except KeyError:
+            wp2 = wp2['all']
 
-    if ele == 'flame':
-        slots.d = slot.d.flame.Sakuya()
-    elif ele == 'water':
-        slots.d = slot.d.water.Siren()
-    elif ele == 'wind':
-        slots.d = slot.d.wind.Garland()
-    elif ele == 'light':
-        if wt == 'dagger' or wt == 'bow' or wt == 'wand':
-            slots.d = slot.d.light.Daikokuten()
-        else:
-            slots.d = slot.d.light.Cupid()
-    elif ele == 'shadow':
-        slots.d = slot.d.shadow.Fatalis()
+    if 'sim_afflict' in conf and conf.sim_afflict.efficiency > 0:
+        _, wpa = ele_punisher[ele]
+        if 'slots' in conf and 'a' in conf['slots']:
+            wp1 = conf['slots.a'].__class__
+        wp2 = wpa
 
-
-    slots.a = RR()+BN()
-
-    if wt == 'sword':
-        slots.a = TSO()+BN()
-    if wt == 'blade':
-        slots.a = RR()+BN()
-    if wt == 'dagger':
-        if ele == 'water':
-            slots.a = TB()+The_Prince_of_Dragonyule()
-        elif ele == 'shadow':
-            slots.a = TB()+HttH()
-        else:
-            slots.a = TB()+LC()
-    if wt == 'axe':
-        slots.a = KFM()+FitF()
-    if wt == 'lance': 
-        slots.a = RR()+BN()
-        #slots.a = LC()+Dragon_and_Tamer()
-    if wt == 'wand': 
-        slots.a = CC()+Primal_Crisis()
-    if wt == 'bow':
-        slots.a = FB()+DD()
-    if wt == 'staff':
-        slots.a = RR()+BN()
+    slots.a = wp1()+wp2()
 
     chain_dict = {**coability['all'], **coability[ele]}
     try:

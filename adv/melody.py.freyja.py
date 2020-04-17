@@ -1,5 +1,5 @@
-import adv_test
 from core.advbase import *
+import melody
 from slot.a import *
 from slot.d import *
 
@@ -11,15 +11,10 @@ class Melody(Adv):
     a1 = ('cc',0.08,'hp100')
 
     conf = {}
-    conf['slots.a'] = HG()+FWHC()
+    conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
     conf['slots.d'] = Freyja()
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1
-        """
-    
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(Melody, *sys.argv)

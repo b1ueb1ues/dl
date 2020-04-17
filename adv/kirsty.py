@@ -8,12 +8,13 @@ class Kirsty(Adv):
 
     comment = 'no poison'
     conf = {}
-    conf['slot.d'] = slot.d.Garland()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s1
         `s2, seq=5
         `s3, seq=5
         """
+    coab = ['Blade','Dragonyule_Xainfried','Akasha']
 
     def prerun(self):
         if self.condition('maintain Dauntless Strength'):
@@ -23,6 +24,7 @@ class Kirsty(Adv):
 
     def dauntless_strength(self, t):
         Selfbuff('dauntless_strength',0.20,-1).on()
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

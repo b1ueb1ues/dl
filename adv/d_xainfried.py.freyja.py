@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 import d_xainfried
 
@@ -10,6 +9,7 @@ class Dragonyule_Xainfried(d_xainfried.Dragonyule_Xainfried):
     def d_slots(self):
         self.slots.d = slot.d.Freyja()
 
+
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(d_xainfried, *sys.argv)

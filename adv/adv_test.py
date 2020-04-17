@@ -576,7 +576,7 @@ def sum_ac():
                 prin += i+'\n'
             prev = 's'
         elif i[0] == 'c':
-            if (prev == 's' or prev == 'd') and prin[-1] is not '\n':
+            if (prev == 's' or prev == 'd') and prin[-1] != '\n':
                 row = 0
                 prin += '\n'
             # elif prev == 'fs':

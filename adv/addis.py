@@ -1,11 +1,8 @@
-import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
-from slot.a import *
 
 def module():
     return Addis
-
 
 class Addis(Adv):
     comment = 's2 c2 s1 c5fsf c4fs s1; hold s2s1 until bleed under 3'
@@ -13,11 +10,13 @@ class Addis(Adv):
     a3 = ('bk',0.20)
     conf = {}
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s2, s1.charged>=s1.sp-260 and seq=5 and self.bleed._static['stacks'] != 3
         `s1, s2.charged<s2.sp and self.bleed._static['stacks'] != 3
         `s3, seq=5 and not self.s2buff.get()
         `fs, self.s2buff.get() and seq=4 and self.s1.charged>=s1.sp-200
         """
+    coab = ['Akasha','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
 
     def getbleedpunisher(self):
@@ -53,6 +52,5 @@ class Addis(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
