@@ -10,14 +10,15 @@ class Fjorm(Adv):
     # comment = 'do not calc damage counter'
     a3 = ('prep', 100)
     conf = {}
-    #conf['slot.d'] = DJ()
+    conf['slot.a'] = RR()+Breakfast_at_Valerios()
+    conf['slot.d'] = Leviathan()
     conf['acl'] = """
+        `dragon
         `s1
-        `s2
         `s3, seq=5
         `fs, seq=5
         """
-
+    coab = ['Blade', 'Xander', 'Dagger']
     def prerun(self):
         Teambuff('last bravery',0.3,15).on()
 

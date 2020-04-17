@@ -16,6 +16,7 @@ class Summer_Julietta(Adv):
         `s1
         `s3
         """
+    coab = ['Blade', 'Bow', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
 
     def init(self):

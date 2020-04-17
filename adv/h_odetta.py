@@ -8,15 +8,15 @@ def module():
 class Halloween_Odetta(Adv):
 
     conf = {}
-    conf['slot.a'] = Mega_Friends() + Beach_Battle()
-    conf['slot.d'] = Gaibhne_and_Creidhne()
+    conf['slot.a'] = Mega_Friends() + Primal_Crisis()
+    conf['slot.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         `s2, cancel
         `s1, fsc
         `s3, fsc
         `fs, x=2
         """
-
+    coab = ['Axe2', 'Xander', 'Dagger']
     a1 = ('primed_defense', 0.10)
     a3 = ('bt',0.2)
 

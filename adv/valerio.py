@@ -239,6 +239,7 @@ class Valerio(Adv):
         `fsf, x=7
         end
     """
+    coab = ['Axe2', 'Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

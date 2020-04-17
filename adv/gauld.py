@@ -9,14 +9,16 @@ class Gauld(Adv):
     a1 = ('a', 0.10, 'hp70')
     a3 = ('k_frostbite', 0.20)
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+His_Clever_Brother()
+    conf['slot.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slot.d'] = Siren()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s1
         `s2, s=1
         `s3, x=5 or fsc
         `fs, x=5
     """
+    coab = ['Dagger', 'Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

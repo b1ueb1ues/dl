@@ -18,6 +18,7 @@ class Summer_Celliera(Adv):
         `s3, fsc
         `fs, seq=2
         """
+    coab = ['Blade', 'Renee', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
 
     def d_slots(self):

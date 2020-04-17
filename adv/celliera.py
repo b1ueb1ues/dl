@@ -11,19 +11,15 @@ class Celliera(Adv):
     a3 = ('a',0.08,'hp70')
 
     conf = {}
-    conf['slots.a'] = RR()+JotS()
-    #conf['slots.d'] = DJ()
+    conf['slots.a'] = RR()+Breakfast_at_Valerios()
+    conf['slots.d'] = Siren()
     acl12 = """
+        `dragon.act('c3 s end')
         `s1
         `s2, seq=5
         `s3
         """
-    acl21 = """
-        `s2, seq=5
-        `s1
-        `s3
-        """
-    conf['acl'] = acl21
+    coab = ['Dagger', 'Xander', 'Summer_Estelle']
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
             self.conf.slot.a = RR()+BN()

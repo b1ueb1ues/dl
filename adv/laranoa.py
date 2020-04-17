@@ -11,14 +11,15 @@ class Laranoa(Adv):
 
     a3 = ('s',0.3)
     conf = {}
-    #conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
+    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
         `s1
         `s2,fsc
         `s3,fsc
         `fs, seq=4
         """
-    conf['slot.d'] = Siren()
+    coab = ['Renee', 'Xander', 'Summer_Estelle']
+    conf['slot.d'] = Dragonyule_Jeanne()
     
     def init(self):
         if self.condition('buff all team'):

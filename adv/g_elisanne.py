@@ -12,8 +12,8 @@ class Gala_Elisanne(Adv):
     conf['slots.a'] = BB()+FWHC()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `dragon.act('c1 s end')
         `s1
+        `fsf, x=4
     """
     coab = ['Bow', 'Tobias', 'Renee']
     def init(self):

@@ -12,10 +12,12 @@ class Xainfried(Adv):
     conf['slot.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
     conf['slot.d'] = Siren()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s1
         `s2
         `fs, x=5
         """
+    coab = ['Summer_Celliera', 'Pipple', 'Bow']
     conf['afflict_res.frostbite'] = 0
 
     def s1_proc(self, e):
