@@ -13,19 +13,26 @@ ele_dragon = {
     'shadow': Fatalis
 }
 
+wp_ct = lambda wp1, wp2, wpc: (wp1, {
+        'flame': wpc,
+        'water': wpc,
+        'light': wpc,
+        'all': wp2
+    })
+
 wt_prints = {
-    'sword': (The_Shining_Overlord, Beautiful_Nothingness),
-    'blade': (Resounding_Rendition, Beautiful_Nothingness),
+    'sword': wp_ct(The_Shining_Overlord, Beautiful_Nothingness, Primal_Crisis),
+    'blade': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios),
     'dagger': (Twinfold_Bonds, {
         'water': The_Prince_of_Dragonyule,
         'shadow': Howling_to_the_Heavens,
         'all': Levins_Champion
     }),
-    'axe': (Kung_Fu_Masters, Flower_in_the_Fray),
-    'lance': (Resounding_Rendition, Beautiful_Nothingness),
+    'axe': wp_ct(Kung_Fu_Masters, Flower_in_the_Fray, Breakfast_at_Valerios),
+    'lance': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios),
     'wand': (Candy_Couriers, Primal_Crisis),
     'bow': (Forest_Bonds, Dear_Diary),
-    'staff': (Resounding_Rendition, Beautiful_Nothingness)
+    'staff': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios)
 }
 
 ele_punisher = {
