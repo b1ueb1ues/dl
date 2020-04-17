@@ -11,14 +11,14 @@ class Laranoa(Adv):
 
     a3 = ('s',0.3)
     conf = {}
-    #conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
+    #conf['slots.a'] = FB()+The_Prince_of_Dragonyule()
     conf['acl'] = """
         `s1
         `s2,fsc
         `s3,fsc
         `fs, seq=4
         """
-    conf['slot.d'] = Siren()
+    conf['slots.d'] = Siren()
     
     def init(self):
         if self.condition('buff all team'):

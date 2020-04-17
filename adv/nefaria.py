@@ -11,8 +11,8 @@ class Nefaria(Adv):
     a1 = [('edge_blind', 60, 'hp100'),('edge_poison', 60, 'hp100')]
     a3 = [('k_blind',0.4), ('k_poison',0.3)]
     conf = {}
-    conf['slot.d'] = Shinobi()
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `s3, not self.s3_buff
         `fs, self.fs_alt.uses > 0 and x=4

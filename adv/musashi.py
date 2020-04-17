@@ -8,7 +8,7 @@ class Musashi(Adv):
     a1 = ('lo',0.40)
     a3 = ('od',0.08)
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s2, seq=5

@@ -16,7 +16,7 @@ class Naveed(Adv):
         `s1
         `fs, seq=3 and cancel
         """
-    conf['slot.a'] = TSO()+Primal_Crisis()
+    conf['slots.a'] = TSO()+Primal_Crisis()
             
     def prerun(self):
         self.s1level = 0

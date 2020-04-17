@@ -12,7 +12,7 @@ class Valentines_Melody(Adv):
 
     conf = {}
     conf['slots.a'] = Kung_Fu_Masters()+The_Fires_of_Hate()
-    conf['slot.d'] = Ariel()
+    conf['slots.d'] = Ariel()
     conf['acl'] = """
         `s1
         `s2

@@ -12,7 +12,7 @@ class Julietta(Adv):
        adv.Event('defchain')()
 
     conf = {}
-    conf['slot.a'] = KFM()+FitF()
+    conf['slots.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
         `s3,seq=5

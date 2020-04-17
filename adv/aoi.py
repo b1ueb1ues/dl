@@ -8,7 +8,7 @@ def module():
 class Aoi(Adv):
     a1 = ('od',0.15)
     conf = {}
-    conf['slot.a'] = RR()+EE()
+    conf['slots.a'] = RR()+EE()
     conf['acl'] = """
         `s3, not self.s3_buff 
         `s1

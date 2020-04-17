@@ -8,7 +8,7 @@ def module():
 class Philia(Adv):
     a1 = ('a',0.1,'hp100')
     conf = {}
-    conf['slot.a'] = Forest_Bonds()+Primal_Crisis()
+    conf['slots.a'] = Forest_Bonds()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1, seq=5 or fsc

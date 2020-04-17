@@ -9,7 +9,7 @@ class Yaten(Adv):
     a1 = ('epassive_att_crit', 3)
     a3 = ('energized_att', 0.20)
     conf = {}
-    conf['slot.a'] = The_Shining_Overlord()+JotS()
+    conf['slots.a'] = The_Shining_Overlord()+JotS()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

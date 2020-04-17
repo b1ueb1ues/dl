@@ -12,8 +12,8 @@ class Rena(Adv):
     a1 = ('primed_defense',0.08)
 
     conf = {}
-    conf['slot.d'] = Sakuya()
-    conf['slot.a'] = RR()+Elegant_Escort()
+    conf['slots.d'] = Sakuya()
+    conf['slots.a'] = RR()+Elegant_Escort()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

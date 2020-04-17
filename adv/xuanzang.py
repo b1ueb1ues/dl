@@ -10,8 +10,8 @@ def module():
 class Xuan_Zang(Adv):
     a3 = ('cc',0.06,'hp70')
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = RR()+Jewels_of_the_Sun()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = RR()+Jewels_of_the_Sun()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc

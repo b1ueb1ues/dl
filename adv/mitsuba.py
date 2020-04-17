@@ -208,8 +208,8 @@ fs_conf = {
 class Mitsuba(Adv):
     a1 = ('a', 0.20, 'hit15')
     conf = fs_conf.copy()
-    conf['slot.a'] = Twinfold_Bonds()+His_Clever_Brother()
-    conf['slot.d'] = Siren()
+    conf['slots.a'] = Twinfold_Bonds()+His_Clever_Brother()
+    conf['slots.d'] = Siren()
     # tc2afsf tc2a- s1
     conf['acl'] = """
         if s1.check() and not self.afflics.frostbite.get()

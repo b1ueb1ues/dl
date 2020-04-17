@@ -10,7 +10,7 @@ class Fjorm(Adv):
     # comment = 'do not calc damage counter'
     a3 = ('prep', 100)
     conf = {}
-    #conf['slot.d'] = DJ()
+    #conf['slots.d'] = DJ()
     conf['acl'] = """
         `s1
         `s2

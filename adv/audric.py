@@ -9,7 +9,7 @@ class Audric(Adv):
     a1 = ('dp', 10)
     
     conf = {}
-    conf['slot.d'] = Shinobi()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

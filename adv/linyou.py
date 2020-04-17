@@ -10,7 +10,7 @@ class Lin_You(Adv):
     a1 = [('cc',0.10,'hp70'), ('cc',0.20,'hit25'), ('cc',0.20,'hit50')]
     a3 = ('sp',0.08)
     conf = {}
-    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s2, s1.check()

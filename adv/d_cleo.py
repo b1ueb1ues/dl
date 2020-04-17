@@ -8,7 +8,7 @@ class Dragonyule_Cleo(Adv):
     a1 = ('a',0.13,'hp70')
     a3 = ('ecombo',30)
     conf = {}
-    conf['slot.d'] = Gaibhne_and_Creidhne()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
         `s2, seq=5 and cancel or fsc

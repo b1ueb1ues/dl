@@ -35,6 +35,7 @@ wt_prints = {
     'staff': wp_ct(Resounding_Rendition, Beautiful_Nothingness, Breakfast_at_Valerios)
 }
 
+# used in advbase
 ele_punisher = {
     'flame': ('burn', Elegant_Escort),
     'water': ('frostbite', His_Clever_Brother),
@@ -43,7 +44,7 @@ ele_punisher = {
     'shadow': ('poison', The_Fires_of_Hate)
 }
 
-def set(slots, conf):
+def set(slots):
     ele = slots.c.ele
     wt = slots.c.wt
     # stars = slots.c.stars
@@ -56,12 +57,6 @@ def set(slots, conf):
             wp2 = wp2[ele]
         except KeyError:
             wp2 = wp2['all']
-
-    if 'sim_afflict' in conf and conf.sim_afflict.efficiency > 0:
-        _, wpa = ele_punisher[ele]
-        if 'slots' in conf and 'a' in conf['slots']:
-            wp1 = conf['slots.a'].__class__
-        wp2 = wpa
 
     slots.a = wp1()+wp2()
 

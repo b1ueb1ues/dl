@@ -9,7 +9,7 @@ class Sylas(Adv):
 
     comment = 'not consider skill haste for team'
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1

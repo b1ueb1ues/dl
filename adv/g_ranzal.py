@@ -11,7 +11,7 @@ class Gala_Ranzal(Adv):
 
     conf = {}
     conf['slots.a'] = The_Shining_Overlord()+United_by_One_Vision()
-    conf['slot.d'] = AC011_Garland()
+    conf['slots.d'] = AC011_Garland()
     conf['acl'] = '''
         `dragon.act("c3 s end")
         `s1, fsc

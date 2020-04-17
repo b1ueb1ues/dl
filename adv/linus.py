@@ -8,7 +8,7 @@ def module():
 class Linus(Adv):
     # comment = 'do not use weapon skill'
     conf = {}
-    conf['slot.a'] = KFM()+FitF()
+    conf['slots.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1 
         `s2

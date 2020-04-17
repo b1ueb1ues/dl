@@ -14,7 +14,7 @@ class Jakob(Adv):
         `s3,fsc
         `fs,seq=5
         """
-    conf['slot.d'] = DJ()
+    conf['slots.d'] = DJ()
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):

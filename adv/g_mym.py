@@ -10,8 +10,8 @@ class Gala_Mym(Adv):
     a3 = ('dt', 0.20)
 
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
-    conf['slot.d'] = Sakuya()
+    conf['slots.a'] = Resounding_Rendition()+Beautiful_Nothingness()
+    conf['slots.d'] = Sakuya()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

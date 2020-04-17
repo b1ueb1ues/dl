@@ -10,8 +10,8 @@ class Summer_Celliera(Adv):
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}
-    conf['slot.a'] = VC() + JotS()
-    conf['slot.d'] = Siren()
+    conf['slots.a'] = VC() + JotS()
+    conf['slots.d'] = Siren()
     conf['acl'] = """
         `s2
         `s1
@@ -22,7 +22,7 @@ class Summer_Celliera(Adv):
 
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
-            self.conf['slot.a'] = TSO() + FRH()
+            self.conf['slots.a'] = TSO() + FRH()
 
     def init(self):
         self.s2_stance = 1

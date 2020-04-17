@@ -8,7 +8,7 @@ def module():
 class Su_Fang(Adv):
     a3 = ('s',0.35)
     conf = {}
-    conf['slot.a'] = Twinfold_Bonds()+The_Fires_of_Hate()
+    conf['slots.a'] = Twinfold_Bonds()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s2, fsc

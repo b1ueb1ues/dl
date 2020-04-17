@@ -10,8 +10,8 @@ class Sazanka(Adv):
     a3 = ('k_sleep', 0.20)
 
     conf = {}
-    conf['slot.d'] = Shinobi()
-    conf['slot.a'] = KFM()+Crystalian_Envoy()
+    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = KFM()+Crystalian_Envoy()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

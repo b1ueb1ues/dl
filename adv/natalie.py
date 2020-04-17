@@ -8,8 +8,8 @@ def module():
 
 class Natalie(Adv):
     conf = {}
-    conf['slot.a'] = HoH() + Dear_Diary()
-    conf['slot.d'] = Shinobi()
+    conf['slots.a'] = HoH() + Dear_Diary()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, s=3 or x=5

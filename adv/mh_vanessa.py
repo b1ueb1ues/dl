@@ -26,8 +26,8 @@ class Hunter_Vanessa(Adv):
     a1 = ('fs', 0.30)
 
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+Spirit_of_the_Season()
-    conf['slot.d'] = Corsaint_Phoenix()
+    conf['slots.a'] = Resounding_Rendition()+Spirit_of_the_Season()
+    conf['slots.d'] = Corsaint_Phoenix()
     conf['acl'] = """
         `fs2, s1.charged>=s1.sp-self.sp_val('fs2')
         `s1, x=5 or fsc

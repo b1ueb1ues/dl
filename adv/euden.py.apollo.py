@@ -10,7 +10,7 @@ class Euden(adv.euden.Euden):
     comment = 'DKR > Apollo if more than 1 burn user'
     a1 = ('dc', 4)
     conf = adv.euden.Euden.conf.copy()
-    conf['slot.d'] = Apollo()
+    conf['slots.d'] = Apollo()
     conf['acl'] = """
         `dragon
         `s3, fsc and not self.s3_buff

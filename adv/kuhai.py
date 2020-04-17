@@ -15,7 +15,7 @@ class Ku_Hai(Adv):
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
     # c2+fs_alt fs can init quicker than c1+fs_alt
     conf['slots.a'] = The_Lurker_in_the_Woods()+The_Shining_Overlord()
-    conf['slot.d'] = AC011_Garland()
+    conf['slots.d'] = AC011_Garland()
     conf['acl'] = '''
         `dragon.act("c3 s c1 end")
         `s1, fsc

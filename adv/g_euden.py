@@ -10,8 +10,8 @@ def module():
 class Gala_Euden(Adv):
     comment = 'c2+fs'
     conf = {}
-    conf['slot.a'] = The_Shining_Overlord()+SDO()
-    conf['slot.d'] = Cupid()
+    conf['slots.a'] = The_Shining_Overlord()+SDO()
+    conf['slots.d'] = Cupid()
     conf['acl'] = """
         `s1,fsc or s=2
         `s2,fsc

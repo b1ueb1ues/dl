@@ -10,7 +10,7 @@ class Alfonse(Adv):
     a3 = ('sp',0.08)
 
     conf = {}
-    conf['slot.a'] = TSO()+BN()
+    conf['slots.a'] = TSO()+BN()
     conf['acl'] = """
         `s1
         `s2,fsc

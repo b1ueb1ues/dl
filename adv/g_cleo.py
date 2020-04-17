@@ -16,8 +16,8 @@ class Gala_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
     conf = {}
-    conf['slot.a'] = CC()+JotS()  # wand c2*1.08 = 217
-    conf['slot.d'] = Shinobi()
+    conf['slots.a'] = CC()+JotS()  # wand c2*1.08 = 217
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s3, pin='prep'
         `fs, s1.charged>=s1.sp and self.fs_alt.uses > 0

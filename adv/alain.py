@@ -7,7 +7,7 @@ def module():
 
 class Alain(Adv):
     conf = {}
-    conf['slot.a'] = RR()+EE()
+    conf['slots.a'] = RR()+EE()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

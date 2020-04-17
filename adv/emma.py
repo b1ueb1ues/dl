@@ -13,7 +13,7 @@ class Emma(Adv):
 
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = Castle_Cheer_Corps()+FWHC()
+    conf['slots.a'] = Castle_Cheer_Corps()+FWHC()
     conf['acl'] = """
         `fs, self.fs_prep_c==3
         `s3, not self.s3_buff

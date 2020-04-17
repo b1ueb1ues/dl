@@ -15,8 +15,8 @@ class Valentines_Orion(Adv):
         `s1, fsc
         `fs, seq=2 and cancel
         """
-    conf['slot.a'] = Mega_Friends()+EE()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Mega_Friends()+EE()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['afflict_res.burn'] = 0
 
     def prerun(self):

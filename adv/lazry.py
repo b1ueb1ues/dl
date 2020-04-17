@@ -9,8 +9,8 @@ class Lazry(Adv):
     a1 = ('k_frostbite', 0.30)
     a3 = ('s', 0.35, 'hp70')
     conf = {}
-    conf['slot.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
-    conf['slot.d'] = Gaibhne_and_Creidhne()
+    conf['slots.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         if s1.check() and self.afflics.frostbite.timeleft()<7
         `low_power

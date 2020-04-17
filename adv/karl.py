@@ -11,8 +11,8 @@ class Karl(Adv):
     a3 = ('a',0.15,'hp70')
 
     conf = {}
-    conf['slot.a'] = The_Lurker_in_the_Woods()+Primal_Crisis()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = The_Lurker_in_the_Woods()+Primal_Crisis()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, cancel

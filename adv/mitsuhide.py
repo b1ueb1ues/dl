@@ -11,8 +11,8 @@ class Mitsuhide(Adv):
     a3 = ('k_paralysis',0.3)
 
     conf = {}
-    conf['slot.d'] = Daikokuten()
-    conf['slot.a'] = TB()+Spirit_of_the_Season()
+    conf['slots.d'] = Daikokuten()
+    conf['slots.a'] = TB()+Spirit_of_the_Season()
     conf['acl'] = """
         `s1
         `s2

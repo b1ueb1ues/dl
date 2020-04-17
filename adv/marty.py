@@ -7,7 +7,7 @@ def module():
 class Marty(Adv):
     a1 = ('sp',0.05)
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
     conf['acl'] = """
         `s3, fsc and not self.s3_buff

@@ -8,8 +8,8 @@ def module():
 class Melsa(Adv):
     a3 = ('cc',0.08,'hit15')
     conf = {}
-    conf['slot.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc

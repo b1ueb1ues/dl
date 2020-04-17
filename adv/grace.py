@@ -9,7 +9,7 @@ class Grace(Adv):
     a1 = ('fs',0.30)
 
     conf = {}
-    conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
+    conf['slots.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
     conf['acl'] = """
         `s1
         `s2

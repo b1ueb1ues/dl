@@ -18,8 +18,8 @@ pipple_conf = {
 class Pipple(Adv):
     a3 = ('epassive_att_crit', 7)
     conf = pipple_conf.copy()
-    conf['slot.a'] = Primal_Crisis()+The_Prince_of_Dragonyule()
-    conf['slot.d'] = Dragonyule_Jeanne()
+    conf['slots.a'] = Primal_Crisis()+The_Prince_of_Dragonyule()
+    conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         `s2, x=5
     """

@@ -16,9 +16,9 @@ def module():
 
 class Gala_Cleo(adv.g_cleo.Gala_Cleo):
     conf = adv.g_cleo.Gala_Cleo.conf.copy()
-    conf['slot.a'] = Candy_Couriers()+King_of_the_Skies()
-    conf['slot.d'] = slot.d.Shinobi()
-    conf['slot.w'] = Agito_Jiu_Ci()
+    conf['slots.a'] = Candy_Couriers()+King_of_the_Skies()
+    conf['slots.d'] = slot.d.Shinobi()
+    conf['slots.w'] = Agito_Jiu_Ci()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
         s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d fs s2 s1 dragon end

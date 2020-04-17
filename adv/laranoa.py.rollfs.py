@@ -11,7 +11,7 @@ class Laranoa(laranoa.Laranoa):
     comment = 'doesn\'t count spbuff for teammates; roll fs'
 
     conf = {}
-    conf['slot.d'] = Siren()
+    conf['slots.d'] = Siren()
 
     def d_acl(self):
         self.conf['acl'] = """

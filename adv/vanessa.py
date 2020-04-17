@@ -10,8 +10,8 @@ class Vanessa(Adv):
     a1 = ('fs',0.4)
     a3 = ('lo',0.3)
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = KFM()+Mega_Friends()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = KFM()+Mega_Friends()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, cancel

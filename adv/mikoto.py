@@ -11,7 +11,7 @@ class Mikoto(Adv):
     a3 = ('cc',0.08)
     
     conf = {}
-    conf['slot.d'] = Arctos()
+    conf['slots.d'] = Arctos()
     conf['acl'] = """
         `s3, x=5 and not self.s3_buff
         `s1, x=5

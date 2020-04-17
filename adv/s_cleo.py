@@ -9,7 +9,7 @@ def module():
 class Summer_Cleo(Adv):
     a3 = ('k_paralysis',0.3)
     conf = {}
-    conf['slot.d'] = Corsaint_Phoenix()
+    conf['slots.d'] = Corsaint_Phoenix()
     comment = 'nofs'
     conf['afflict_res.paralysis'] = 0
     conf['acl'] = """

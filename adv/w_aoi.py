@@ -8,7 +8,7 @@ class Wedding_Aoi(Adv):
     a1 = ('affteam_sleep', 0.15, 10, 5)
     a3 = ('sp',0.12,'fs')
     conf = {}
-    conf['slot.a'] = Twinfold_Bonds()+Primal_Crisis()
+    conf['slots.a'] = Twinfold_Bonds()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1, seq=5 or fsc

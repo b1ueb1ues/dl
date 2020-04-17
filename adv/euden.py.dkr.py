@@ -10,7 +10,7 @@ class Euden(adv.euden.Euden):
     comment = 'c3fs c2fs c2fs s1; DKR > Apollo if more than 1 burn user'
     a1 = ('dc', 4)
     conf = adv.euden.Euden.conf.copy()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

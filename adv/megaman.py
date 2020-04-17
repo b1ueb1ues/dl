@@ -93,8 +93,8 @@ class Mega_Man(Adv):
     comment = '16 hits leaf shield (max 32 hits)'
 
     conf = megaman_conf.copy()
-    conf['slot.d'] = Cerberus()
-    conf['slot.a'] = Primal_Crisis()+Dear_Diary()
+    conf['slots.d'] = Cerberus()
+    conf['slots.a'] = Primal_Crisis()+Dear_Diary()
     conf['acl'] = """
         # check_s(n) means neither s1 or s2 are active, and s[n] has full ammo
         `s3, not self.s3_buff

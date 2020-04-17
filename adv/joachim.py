@@ -10,7 +10,7 @@ class Joachim(Adv):
     a3 = ('k_poison',0.2)
     
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s2, s=1

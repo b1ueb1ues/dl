@@ -9,8 +9,8 @@ class Aldred(Adv):
     comment = 'maintain dragondrive'
 
     conf = {}
-    conf['slot.a'] = Heralds_of_Hinomoto()+Primal_Crisis()
-    conf['slot.d'] = Shinobi()
+    conf['slots.a'] = Heralds_of_Hinomoto()+Primal_Crisis()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2

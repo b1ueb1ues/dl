@@ -11,7 +11,7 @@ class Dragonyule_Malora(Adv):
     a1 = ('od',0.13)
 
     conf = {}
-    conf['slot.a'] = KFM()+FitF()
+    conf['slots.a'] = KFM()+FitF()
     conf['acl'] = """
         `s1
         `s2, self.def_mod()!=1

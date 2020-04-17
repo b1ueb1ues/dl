@@ -19,8 +19,8 @@ class Albert(Adv):
         `s3, fsc
         `fs, seq=2
         """
-    conf['slot.a'] = TSO()+SDO()
-    conf['slot.d'] = C_Phoenix()
+    conf['slots.a'] = TSO()+SDO()
+    conf['slots.d'] = C_Phoenix()
     conf['afflict_res.paralysis'] = 0
 
     def init(self):

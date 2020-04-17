@@ -10,7 +10,7 @@ class Summer_Julietta(Adv):
     a3 = ('primed_att',0.10)
 
     conf = {}
-    conf['slot.a'] = KFM() + JotS()
+    conf['slots.a'] = KFM() + JotS()
     conf['acl'] = """
         `s2
         `s1

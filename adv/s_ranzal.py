@@ -10,7 +10,7 @@ class Summer_Ranzal(Adv):
     a3 = ('primed_defense', 0.08)
 
     conf = {}
-    conf['slot.a'] = RR() + FRH()
+    conf['slots.a'] = RR() + FRH()
     conf['acl'] = """
         `s1, x=5
         `s2, x=5

@@ -9,8 +9,8 @@ class Renelle(Adv):
     a1 = ('cc',0.15,'hit15')
     conf = {}
     conf['afflict_res.burn'] = 0
-    conf['slot.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = TB()+EE()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = TB()+EE()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc

@@ -15,7 +15,7 @@ class Summer_Luca(Adv):
         `s3,seq=4
         `fs, x=5
         """
-    conf['slot.a'] = KFM()+FitF()
+    conf['slots.a'] = KFM()+FitF()
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
             self.conf.slot.a = KFM()+HoH()

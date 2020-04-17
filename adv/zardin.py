@@ -10,7 +10,7 @@ class Zardin(Adv):
     a1 = ('a',0.10,'hp100')
     
     conf = {}
-    conf['slot.a'] = TSO()+JotS()
+    conf['slots.a'] = TSO()+JotS()
     conf['acl'] = """
         `s1, fsc
         `s2, fsc

@@ -17,7 +17,7 @@ class Alex(Adv):
         `fs, x=5
         """
     conf['afflict_res.poison'] = 0
-    conf['slot.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
 
     def s1_proc(self, e):
         self.afflics.poison('s1',100,0.396)

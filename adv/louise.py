@@ -8,7 +8,7 @@ class Louise(Adv):
     a1 = ('od',0.13)
     comment = 'no fs'
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1

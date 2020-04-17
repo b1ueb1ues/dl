@@ -7,7 +7,7 @@ def module():
 class Francesca(Adv):
     a1 = ('fs',0.30)
     conf = {}
-    conf['slot.a'] = TB()+PC()
+    conf['slots.a'] = TB()+PC()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1

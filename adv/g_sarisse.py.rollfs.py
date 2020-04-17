@@ -9,7 +9,7 @@ def module():
 class Gala_Sarisse(adv.g_sarisse.Gala_Sarisse):
     comment = 'roll fs'
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, fsc and not self.s3_buff
         `s1, fsc

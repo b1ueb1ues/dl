@@ -7,7 +7,7 @@ def module():
 
 class Natalie(adv.natalie.Natalie):
     conf = adv.natalie.Natalie.conf.copy()
-    conf['slot.a'] = HoH()+Primal_Crisis()
+    conf['slots.a'] = HoH()+Primal_Crisis()
 
     def prerun(self):
         super().prerun()

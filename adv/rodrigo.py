@@ -8,7 +8,7 @@ def module():
 class Rodrigo(Adv):
     a1 = ('a',0.08,'hp70')
     conf = {}
-    conf['slot.a'] = TSO()+BN()
+    conf['slots.a'] = TSO()+BN()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

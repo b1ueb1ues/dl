@@ -222,8 +222,8 @@ appetizer_conf = {
 
 class Valerio(Adv):
     conf = {}
-    conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
-    conf['slot.d'] = Dragonyule_Jeanne()
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         # stances
         if s1.check() and not self.afflics.frostbite.get()

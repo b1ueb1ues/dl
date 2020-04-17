@@ -9,7 +9,7 @@ class Hawk(Adv):
     a1 = [('edge_stun', 50), ('edge_poison', 50)]
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `fs, s=2

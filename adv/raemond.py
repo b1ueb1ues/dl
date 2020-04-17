@@ -7,7 +7,7 @@ def module():
 
 class Raemond(Adv):
     conf = {}
-    conf['slot.a'] = TSO()+BN()
+    conf['slots.a'] = TSO()+BN()
     conf['acl'] = """
         `s1, fsc
         `s2, fsc

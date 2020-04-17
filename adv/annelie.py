@@ -23,7 +23,7 @@ class Annelie(Adv):
         `s3
         `fs, seq=5 
         """
-    conf['slot.a'] = RR()+BN()
+    conf['slots.a'] = RR()+BN()
 
     def prerun(self):
         self.stance = 0

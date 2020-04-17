@@ -11,8 +11,8 @@ class Marth(Adv):
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')
     conf = {}
-    conf['slot.a'] = Mega_Friends()+Primal_Crisis()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Mega_Friends()+Primal_Crisis()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2,fsc

@@ -9,8 +9,8 @@ def module():
 class Euden(Adv):
     a1 = ('dc', 4)
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
 
     conf['acl'] = """
         `s3, not self.s3_buff
@@ -28,4 +28,4 @@ class Euden(Adv):
 if __name__ == '__main__':
     conf = {}
     adv.adv_test.test(module(), conf)
-    # logcat([str(type(Euden.conf['slot.d']).__name__)])
+    # logcat([str(type(Euden.conf['slots.d']).__name__)])

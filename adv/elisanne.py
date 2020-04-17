@@ -11,7 +11,6 @@ class Elisanne(Adv):
 
     conf = {}
     conf['slots.a'] = Beach_Battle()+Castle_Cheer_Corps()
-    conf['slots.frostbite.a'] = Beach_Battle()+His_Clever_Brother()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1

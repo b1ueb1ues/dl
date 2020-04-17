@@ -10,7 +10,7 @@ class Audric(adv.audric.Audric):
     a1 = ('dp', 10)
     
     conf = adv.audric.Audric.conf.copy()
-    conf['slot.d'] = Shinobi()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

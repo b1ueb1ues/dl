@@ -10,7 +10,7 @@ class Lily(Adv):
     a3 = ('prep','100%')
 
     conf = {}
-    conf['slot.a'] = CC()+Seaside_Princess()
+    conf['slots.a'] = CC()+Seaside_Princess()
     conf['acl'] = """
         `s2, seq=5 and cancel
         `s1, seq=5 and cancel

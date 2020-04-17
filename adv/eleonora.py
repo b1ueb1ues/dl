@@ -7,7 +7,7 @@ def module():
 class Eleonora(Adv):
     a3 = ('prep','50%')
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1, fsc

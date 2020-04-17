@@ -9,8 +9,8 @@ class Laxi(Adv):
     comment = "a1 proc at 0s"
     
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = Resounding_Rendition()+Beautiful_Nothingness()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Resounding_Rendition()+Beautiful_Nothingness()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, not self.s2buff.get()

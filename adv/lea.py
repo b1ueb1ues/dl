@@ -12,8 +12,8 @@ class Lea(Adv):
     a3 = ('sp', 0.12, 'fs')
         
     conf = {}
-    conf['slot.a'] = TSO()+EE()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = TSO()+EE()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc

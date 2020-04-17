@@ -9,7 +9,7 @@ def module():
 class Halloween_Mym(Adv):
     conf = {}
     conf['slots.a'] = KFM()+Jewels_of_the_Sun()
-    conf['slot.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc

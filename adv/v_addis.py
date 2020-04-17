@@ -10,8 +10,8 @@ class Valentines_Addis(Adv):
 
     a1 = ('k_poison',0.3)
     conf = {}
-    conf['slot.d'] = Shinobi()
-    conf['slot.a'] = The_Plaguebringer()+Primal_Crisis()
+    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = The_Plaguebringer()+Primal_Crisis()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, self.hp > 30

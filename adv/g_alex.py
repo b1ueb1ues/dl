@@ -74,8 +74,8 @@ class Gala_Alex(Adv):
     a3 = ('k_poison', 0.30)
 
     conf = galex_conf.copy()
-    conf['slot.d'] = Shinobi()
-    conf['slot.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
+    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
     conf['acl'] = """
         `s3, not self.s3_buff
         if fsc

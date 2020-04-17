@@ -7,8 +7,8 @@ def module():
 
 class Templar_Hope(Adv):
     conf = {}
-    conf['slot.a'] = The_Shining_Overlord()+Beautiful_Nothingness()
-    conf['slot.d'] = AC011_Garland
+    conf['slots.a'] = The_Shining_Overlord()+Beautiful_Nothingness()
+    conf['slots.d'] = AC011_Garland
     conf['acl'] = """
         `dragon
         `s2

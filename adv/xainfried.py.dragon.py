@@ -8,8 +8,8 @@ def module():
 
 class Xainfried(adv.xainfried.Xainfried):
     conf = adv.xainfried.Xainfried.conf.copy()
-    conf['slot.a'] = Resounding_Rendition()+His_Clever_Brother()
-    conf['slot.d'] = Siren()
+    conf['slots.a'] = Resounding_Rendition()+His_Clever_Brother()
+    conf['slots.d'] = Siren()
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s1

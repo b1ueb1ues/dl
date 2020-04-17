@@ -9,7 +9,7 @@ class Ezelith(Adv):
     comment = ''
     a3 = ('bk',0.35)
     conf = {}
-    conf['slot.d'] = Arctos()
+    conf['slots.d'] = Arctos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

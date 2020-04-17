@@ -7,7 +7,7 @@ def module():
 class Veronica(Adv):
     a3 = ('prep','100%')
     conf = {}
-    conf['slot.d'] = Shinobi()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

@@ -6,7 +6,7 @@ def module():
 
 class Pia(Adv):
     conf = {}
-    conf['slot.d'] = AC011_Garland()
+    conf['slots.d'] = AC011_Garland()
     conf['acl'] = """
         `dragon
         `s1

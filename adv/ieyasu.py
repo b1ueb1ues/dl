@@ -11,7 +11,7 @@ class Ieyasu(Adv):
 
     conf = {}
     conf['slots.a'] = RR()+JotS()
-    conf['slot.d'] = slot.d.Shinobi()
+    conf['slots.d'] = slot.d.Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, x=4 and self.s3_buff

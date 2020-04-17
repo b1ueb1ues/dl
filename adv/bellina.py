@@ -47,8 +47,8 @@ dragondrive_fs_conf = {
 
 class Bellina(Adv):
     conf = {}
-    conf['slot.a'] = Twinfold_Bonds()+Howling_to_the_Heavens()
-    conf['slot.d'] = Fatalis()
+    conf['slots.a'] = Twinfold_Bonds()+Howling_to_the_Heavens()
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s2, sim_duration-now()<1.5
         `s3, not self.s3_buff

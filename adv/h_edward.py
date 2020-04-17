@@ -9,7 +9,7 @@ class Halloween_Edward(Adv):
     a1 = ('a',0.1,'hp100')
 
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+Seaside_Princess()
+    conf['slots.a'] = Resounding_Rendition()+Seaside_Princess()
     conf['acl'] = """
         `s1
         `s2, seq=5 

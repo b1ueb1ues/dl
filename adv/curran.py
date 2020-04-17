@@ -18,7 +18,7 @@ class Curran(Adv):
         `s1
         `s2
         """
-    conf['slot.a'] = KFM()+FitF()
+    conf['slots.a'] = KFM()+FitF()
 
     def s1_proc(self, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.6):

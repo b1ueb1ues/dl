@@ -8,8 +8,8 @@ def module():
 class Halloween_Odetta(Adv):
 
     conf = {}
-    conf['slot.a'] = Mega_Friends() + Beach_Battle()
-    conf['slot.d'] = Gaibhne_and_Creidhne()
+    conf['slots.a'] = Mega_Friends() + Beach_Battle()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s2, cancel
         `s1, fsc

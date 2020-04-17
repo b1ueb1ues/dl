@@ -1088,13 +1088,6 @@ class Adv(object):
             aff = vars(self.afflics)[self.conf.sim_afflict.type]
             aff.get_override = min(self.conf.sim_afflict.efficiency, 1)
 
-            if self.conf.sim_afflict.type in self.conf.slots:
-                afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
-                if 'a' in afflic_slots:
-                    self.slots.a = afflic_slots.a
-                if 'd' in afflic_slots:
-                    self.slots.d = afflic_slots.d
-
     def sim_buffbot(self):
         if 'sim_buffbot' in self.conf:
             if 'debuff' in self.conf.sim_buffbot:
@@ -1106,31 +1099,34 @@ class Adv(object):
                 if self.condition('team str {:+.0%}'.format(self.conf.sim_buffbot.buff)):
                     self.Selfbuff('simulated_att', self.conf.sim_buffbot.buff, -1).on()
 
-    def sync_slot(self, conf_slots):
+    def sync_slot(self, conf):
         # self.cmnslots(conf)
         # self.slots = slot.Slots()
         if now():
-            print('cannot change slots after run')
-            errrrrrrrrrrrr()
-        if 'c' in conf_slots:
-            self.slots.c = conf_slots.c
-        elif not self.slots.c:
-            self.slots.c = self.cmnslots.c
+            raise RuntimeError('cannot change slots after run')
+        if 'slots' not in conf:
+            return
+        conf_slots = conf.slots
 
-        if 'd' in conf_slots:
-            self.slots.d = conf_slots.d
-        elif not self.slots.d:
-            self.slots.d = self.cmnslots.d
+        for s in ('c', 'd', 'w', 'a'):
+            if s in conf_slots:
+                self.slots.__dict__[s] = conf_slots[s]
+            else:
+                self.slots.__dict__[s] = self.cmnslots.__dict__[s]
 
-        if 'w' in conf_slots:
-            self.slots.w = conf_slots.w
-        elif not self.slots.w:
-            self.slots.w = self.cmnslots.w
+        from conf.slot_common import ele_punisher
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            aff, wpa = ele_punisher[self.slots.c.ele]
+            if aff in self.conf.slots:
+                afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
+                for s in ('d', 'w', 'a'):
+                    if s in afflic_slots:
+                        self.slots.__dict__[s] = conf_slots[s]
+            else:
+                wp1 = self.slots.a.__class__
+                wp2 = wpa
+                self.slots.a = wp1()+wp2()
 
-        if 'a' in conf_slots:
-            self.slots.a = conf_slots.a
-        elif not self.slots.a:
-            self.slots.a = self.cmnslots.a
         # print self.slots
 
     def pre_conf(self):
@@ -1150,7 +1146,7 @@ class Adv(object):
         self.cmnslots.c.ele = self.conf.c.ele
         self.cmnslots.c.name = self.name
         self.slot_common = slot_common.set
-        self.slot_common(self.cmnslots, self.conf)
+        self.slot_common(self.cmnslots)
         self.slots = self.cmnslots
         # print self.cmnslots
 
@@ -1188,8 +1184,7 @@ class Adv(object):
         #     pass
         # self.slot_backdoor = slot_backdoor
 
-        self.conf.slot.sync_slot = self.sync_slot
-        self.conf.slots.sync_slot = self.sync_slot
+        self.conf.sync_slot = self.sync_slot
 
         if 1:
             self.crit_mod = self.solid_crit_mod
@@ -1499,12 +1494,13 @@ class Adv(object):
 
         self.d_slots()
         self.slot_backdoor()
-        self.base_att = int(self.slots.att(globalconf.forte))
+        self.base_att = 0
 
         self.afflic_condition()
         self.sim_affliction()
         self.sim_buffbot()
 
+        self.base_att = int(self.slots.att(globalconf.forte))
         self.slots.oninit(self)
 
         self.prerun()

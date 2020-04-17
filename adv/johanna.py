@@ -6,7 +6,7 @@ def module():
 
 class Johanna(Adv):
     conf = {}
-    conf['slot.a'] = Kung_Fu_Masters()+Crystalian_Envoy()
+    conf['slots.a'] = Kung_Fu_Masters()+Crystalian_Envoy()
     conf['acl'] = """
         `dragon.act("c3 s c2 end")
         `s1 

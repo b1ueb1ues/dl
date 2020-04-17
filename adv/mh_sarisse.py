@@ -70,8 +70,8 @@ class Hunter_Sarisse(Adv):
         `dodge, fsc
         `fs4
     """
-    conf['slot.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
-    conf['slot.d'] = Dragonyule_Jeanne()
+    conf['slots.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
+    conf['slots.d'] = Dragonyule_Jeanne()
 
     def init(self):
         default_pierce = 2 if self.condition('lance+ distance from HBH sized enemy') else 1

@@ -8,8 +8,8 @@ def module():
 class Althemia(Adv):
     a1 = ('s',0.45,'hp100')
     conf = {}
-    conf['slot.a'] = Candy_Couriers()+The_Fires_of_Hate()
-    conf['slot.d'] = Fatalis()
+    conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

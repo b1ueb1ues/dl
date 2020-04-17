@@ -9,8 +9,8 @@ class Delphi(Adv):
     a1 = ('a',-0.55)
 
     conf = {}
-    conf['slot.d'] = Fatalis()
-    conf['slot.a'] = Mega_Friends()+The_Fires_of_Hate()
+    conf['slots.d'] = Fatalis()
+    conf['slots.a'] = Mega_Friends()+The_Fires_of_Hate()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

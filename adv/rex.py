@@ -7,7 +7,7 @@ def module():
 
 class Rex(Adv):
     conf = {}
-    conf['slot.a'] = KFM()+CE()
+    conf['slots.a'] = KFM()+CE()
     conf['acl'] = """
         `s1 
         `s2,seq=4

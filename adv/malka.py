@@ -15,7 +15,7 @@ class Malka(Adv):
         `s3
         `fs, seq=5
         """
-    conf['slot.a'] = RR()+BN()
+    conf['slots.a'] = RR()+BN()
 
     def d_slots(self):
         if self.slots.c.has_ex('bow'):

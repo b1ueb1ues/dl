@@ -11,7 +11,7 @@ class Wedding_Elisanne(Adv):
     a3 = ('bc',0.13)
 
     conf = {}
-    conf['slot.a'] = The_Shining_Overlord()+United_by_One_Vision()
+    conf['slots.a'] = The_Shining_Overlord()+United_by_One_Vision()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1,fsc and s2.charged<s2.sp-749

@@ -8,8 +8,8 @@ def module():
 
 class Yuya(Adv):
     conf = {}
-    conf['slot.d'] = Dreadking_Rathalos()
-    conf['slot.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
     conf['acl'] = """
         `s3, fsc and not self.s3_buff
         `s1, fsc

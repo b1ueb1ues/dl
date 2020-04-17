@@ -8,7 +8,7 @@ def module():
 
 class Hanabusa(Adv):
     conf = {}
-    conf['slot.a'] = RR()+JotS()
+    conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
         `s1
         `s2, seq=5 and cancel

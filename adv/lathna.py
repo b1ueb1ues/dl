@@ -9,7 +9,7 @@ class Lathna(Adv):
     a3 = ('dt', 0.25)
     
     conf = {}
-    conf['slot.d'] = slot.d.Shinobi()
+    conf['slots.d'] = slot.d.Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1a

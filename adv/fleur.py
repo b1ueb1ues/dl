@@ -12,7 +12,7 @@ class Fleur(Adv):
     a3 = ('k_paralysis',0.2)
 
     conf = {}
-    conf['slot.a'] = TB()+SotS()
+    conf['slots.a'] = TB()+SotS()
     conf['acl'] = """
         `s2, s=1
         `s1

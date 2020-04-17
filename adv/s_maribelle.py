@@ -9,7 +9,7 @@ class Student_Maribelle(Adv):
     a1 = ('s', 0.4, 'hp100')
     a3 = ('bk',0.3)
     conf = {}
-    conf['slot.d'] = Sakuya()
+    conf['slots.d'] = Sakuya()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

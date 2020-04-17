@@ -17,8 +17,8 @@ class Gala_Mym(adv.g_mym.Gala_Mym):
         `s2, fsc
         `fs, x=5
     """
-    conf['slot.d'] = Sakuya()
-    conf['slot.a'] = Resounding_Rendition()+An_Ancient_Oath()
+    conf['slots.d'] = Sakuya()
+    conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
 
 if __name__ == '__main__':
     conf = {}

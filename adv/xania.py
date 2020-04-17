@@ -8,7 +8,7 @@ def module():
 class Xania(Adv):
     a1 = ('s',0.35)
     conf = {}
-    conf['slot.d'] = Apollo()
+    conf['slots.d'] = Apollo()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
