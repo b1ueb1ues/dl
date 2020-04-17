@@ -11,6 +11,7 @@ class Zardin(Adv):
     
     conf = {}
     conf['slot.a'] = TSO()+Primal_Crisis()
+    conf['slot.frostbite.a'] = conf['slot.a']
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s1, fsc

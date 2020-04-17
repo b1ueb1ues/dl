@@ -13,6 +13,7 @@ class Xander(Adv):
     conf = {}
     conf['slots.a'] = TSO()+Primal_Crisis()
     conf['slots.d'] = Siren()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s1,fsc

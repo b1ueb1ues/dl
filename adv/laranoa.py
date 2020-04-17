@@ -12,6 +12,7 @@ class Laranoa(Adv):
     a3 = ('s',0.3)
     conf = {}
     conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slot.frostbite.a'] = conf['slot.a']
     conf['acl'] = """
         `s1
         `s2,fsc

@@ -10,6 +10,7 @@ class Halloween_Odetta(Adv):
     conf = {}
     conf['slot.a'] = Mega_Friends() + Primal_Crisis()
     conf['slot.d'] = Dragonyule_Jeanne()
+    conf['slots.frostbite.a'] = conf['slot.a']
     conf['acl'] = """
         `s2, cancel
         `s1, fsc
