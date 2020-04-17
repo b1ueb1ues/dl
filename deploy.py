@@ -7,7 +7,7 @@ import core.simulate
 
 ROOT_DIR = '.'
 ADV_DIR = 'adv'
-OUTPUT_DIR = 'www/dl-sim'
+OUTPUT_DIR = 'wwwsrc/public/dl-sim'
 DURATION_LIST = [60, 120, 180]
 QUICK_LIST_FILES = ['chara_quick.txt', 'chara_sp_quick.txt']
 SLOW_LIST_FILES = ['chara_slow.txt', 'chara_sp_slow.txt']
@@ -44,7 +44,7 @@ def sim_adv(adv_file, special=None, mass=None):
         load_adv_module = load_adv_module_normal
     adv_module = load_adv_module(adv_file)
     for d in durations:
-        core.simulate.test(adv_module, {}, duration=d, verbose=-2, mass=1000 if mass else None, special=special, output=output)
+        core.simulate.test(adv_module, {}, duration=d, verbose=-5, mass=1000 if mass else None, special=special, output=output)
     print('{:.4f}s - sim:{}'.format(monotonic() - t_start, adv_file), flush=True)
 
 def sim_adv_list(list_file):
@@ -57,27 +57,33 @@ def sim_adv_list(list_file):
 def combine():
     dst_dict = {}
     pages = [str(d) for d in DURATION_LIST] + ['sp']
+    aff = ['_', 'affliction']
     for p in pages:
-        dst_dict[p] = open(os.path.join(ROOT_DIR, OUTPUT_DIR, '{}.csv'.format(p)), 'w')
+        dst_dict[p] = {}
+        for a in aff:
+            dst_dict[p][a] = open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'page/{}_{}.csv'.format(p, a)), 'w')
 
     for list_file in ADV_LIST_FILES:
         with open(os.path.join(ROOT_DIR, list_file)) as src:
-            c_page = '60'
+            c_page, c_aff = '60', '_'
             for adv_file in src:
                 adv_file = adv_file.strip()
-                if not os.path.exists(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '{}.csv'.format(adv_file))):
+                src = os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '{}.csv'.format(adv_file))
+                if not os.path.exists(src):
                     continue
-                with open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '{}.csv'.format(adv_file)), 'r') as chara:
+                with open(src, 'r') as chara:
                     for line in chara:
                         if line[0] == '-':
-                            _, c_page = line.strip().split(',')
+                            _, c_page, c_aff = line.strip().split(',')
                         else:
-                            dst_dict[c_page].write(line.strip())
-                            dst_dict[c_page].write('\n')
+                            dst_dict[c_page][c_aff].write(line.strip())
+                            dst_dict[c_page][c_aff].write('\n')
             print('cmb:{}'.format(list_file), flush=True)
 
     for p in pages:
-        dst_dict[p].close()
+        for a in aff:
+            dst_dict[p][a].close()
+            dst_dict[p][a].close()
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:

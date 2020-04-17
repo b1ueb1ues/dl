@@ -10,6 +10,14 @@ tension_efficiency = {
     'inspiration': 0.6
 }
 
+ele_afflict_map = {
+    'flame': 'burn',
+    'water': 'frostbite',
+    'wind': 'poison',
+    'light': 'paralysis',
+    'shadow': 'poison'
+}
+
 def run_once(classname, conf, duration, cond):
     adv = classname(conf=conf,cond=cond)
     real_d = adv.run(duration)
@@ -98,18 +106,20 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
             'team_tension': adv_2.logs.team_tension
         }
 
-    # if verbose == -5:
-    #     ex_mod_func, ex = build_exp_mod_list(ex, ex_set, adv.conf.c.wt)
-    #     page = 'sp' if special else str(duration)
-    #     for ex_str, mod_func in ex_mod_func:
-    #         output.write('-,{},{}{}\n'.format(page, ex_str, ex))
-    #         for a, d, c in run_results:
-    #             report(d, a, output, team_dps, cond=c, mod_func=mod_func)
-    # else:
+    if verbose == -5:
+        aff_name = ele_afflict_map[adv.slots.c.ele]
+        conf['sim_afflict.efficiency'] = 1
+        conf['sim_afflict.type'] = aff_name
+        adv, real_d = run_once(classname, conf, duration, cond)
+        run_results.append((adv, real_d, 'affliction'))
+        if adv.condition.exist():
+            adv, real_d = run_once(classname, conf, duration, False)
+            run_results.append((adv, real_d, False))
+
     for a, d, c in run_results:
-        if verbose == -2:
+        if verbose == -2 or verbose == -5:
             if c:
-                output.write('-,{}\n'.format(duration))
+                output.write('-,{},{}\n'.format(duration, c if isinstance(c, str) else '_'))
             report(d, a, output, team_dps, cond=c)
         else:
             summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)

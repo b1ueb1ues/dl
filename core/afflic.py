@@ -85,6 +85,8 @@ class AfflicUncapped(object):
         self.last_afflict = 0
         self.event = Event(self.name)
 
+        self.get_override = 0
+
     def get_tolerance(self):
         if self.tolerance > 1:
             return float(self.tolerance) / 100.0
@@ -104,7 +106,7 @@ class AfflicUncapped(object):
             return self.resist
 
     def get(self):
-        return self._get
+        return self.get_override or self._get
 
     def update(self):
         self.uptime()
@@ -181,6 +183,8 @@ class AfflicCapped(object):
         self.last_afflict = 0
         self.event = Event(self.name)
 
+        self.get_override = 0
+
     def get_tolerance(self):
         if self.tolerance > 1:
             return float(self.tolerance) / 100.0
@@ -200,7 +204,7 @@ class AfflicCapped(object):
             return self.resist
 
     def get(self):
-        return self._get
+        return self.get_override or self._get
 
     def update(self):
         self.uptime()
@@ -453,13 +457,14 @@ class Afflics(object):
         # for atype in ['poison', 'burn', 'paralysis', 'blind', 'freeze', 'stun', 'sleep', 'bog']:
         for atype in AFFLICT_LIST:
             aff = self.__dict__[atype]
-            aff.uptime()
-            rate, t = aff.c_uptime
-            # last = aff.last_afflict
-            if rate > 0:
-                # print('{}_uptime'.format(atype), '{:.2f}/{:.2f}'.format(rate, t), '{:.2%}'.format(rate/t))
-                # print('last_{}: {:.2f}s'.format(atype, last))
-                uptimes[atype] = rate/t
+            if aff.get_override == 0:
+                aff.uptime()
+                rate, t = aff.c_uptime
+                # last = aff.last_afflict
+                if rate > 0:
+                    # print('{}_uptime'.format(atype), '{:.2f}/{:.2f}'.format(rate, t), '{:.2%}'.format(rate/t))
+                    # print('last_{}: {:.2f}s'.format(atype, last))
+                    uptimes[atype] = rate/t
         return uptimes
 
     def rinit(self):

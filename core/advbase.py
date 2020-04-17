@@ -903,12 +903,6 @@ class Adv(object):
     def init(self):
         pass
 
-    def equip(self):
-        pass
-
-    def setup(self):
-        pass
-
     def d_coabs(self):
         pass
     
@@ -1090,12 +1084,16 @@ class Adv(object):
                         vars(self.afflics)[afflic].resist = 100
 
     def sim_affliction(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.time > 0:
-            # if self.condition('{} for {}s'.format(self.conf.sim_afflict.type, t)):
-            t = min(self.duration, int(float(self.conf.sim_afflict.time) * self.duration))
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             aff = vars(self.afflics)[self.conf.sim_afflict.type]
-            aff.on('simulated', 200, 0, duration=t, iv=t)
-            aff.states = None
+            aff.get_override = min(self.conf.sim_afflict.efficiency, 1)
+
+            if self.conf.sim_afflict.type in self.conf.slots:
+                afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
+                if 'a' in afflic_slots:
+                    self.conf.slots.a = afflic_slots.a
+                if 'd' in afflic_slots:
+                    self.conf.slots.d = afflic_slots.d
 
     def sim_buffbot(self):
         if 'sim_buffbot' in self.conf:
@@ -1499,19 +1497,17 @@ class Adv(object):
             except:
                 pass
 
-        self.equip()
-        self.setup()
-
         self.d_slots()
         self.slot_backdoor()
-        # print self.slots
         self.base_att = int(self.slots.att(globalconf.forte))
-        self.slots.oninit(self)
 
-        self.prerun()
         self.afflic_condition()
         self.sim_affliction()
         self.sim_buffbot()
+
+        self.slots.oninit(self)
+
+        self.prerun()
 
         self.d_acl()
         self.acl_backdoor()
