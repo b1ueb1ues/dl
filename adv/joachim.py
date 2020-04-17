@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Joachim
@@ -12,13 +10,14 @@ class Joachim(Adv):
     a3 = ('k_poison',0.2)
     
     conf = {}
-    conf['slot.a'] = Dear_Diary() + The_Fires_of_Hate()
-    conf['slot.d'] = Vayu()
+    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s2, s=1
         `s1
         `s3
     """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
 
     def init(self):
@@ -47,11 +46,6 @@ class Joachim(Adv):
         self.s1.charge(self.s1.sp)
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

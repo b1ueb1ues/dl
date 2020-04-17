@@ -7,13 +7,15 @@ def module():
 
 class Templar_Hope(Adv):
     conf = {}
-    conf['slot.a'] = Resounding_Rendition()+Brothers_in_Arms()
+    conf['slot.a'] = The_Shining_Overlord()+Beautiful_Nothingness()
+    conf['slot.d'] = AC011_Garland
     conf['acl'] = """
-        `s1
+        `dragon
         `s2
         `s3
         `fs, x=2
         """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     
     def s1_proc(self, e):
         Teambuff('s1', 0.25, 15, 'defense').on()

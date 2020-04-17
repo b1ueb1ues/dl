@@ -1,8 +1,6 @@
-import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
-from slot.d import *
 
 def module():
     return Victor
@@ -10,17 +8,13 @@ def module():
 class Victor(Adv):
     a1 = ('a',0.13,'hp70')
     conf = {}
-    conf['slots.d'] = Vayu()
-    conf['slots.a'] = slot.a.RR()+slot.a.Beautiful_Nothingness()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s1, self.bleed._static['stacks'] < 3
         `s2, x=5
         `s3, x=5
         """
-
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = HoH()+JotS()
+    coab = ['Akasha','Dragonyule_Xainfried','Lin_You']
 
     def prerun(self):
         random.seed()
@@ -32,6 +26,5 @@ class Victor(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

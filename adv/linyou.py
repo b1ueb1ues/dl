@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
 from module.x_alt import Fs_alt
 
@@ -11,14 +10,15 @@ class Lin_You(Adv):
     a1 = [('cc',0.10,'hp70'), ('cc',0.20,'hit25'), ('cc',0.20,'hit50')]
     a3 = ('sp',0.08)
     conf = {}
-    conf['slot.d'] = Long_Long()
     conf['slot.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s2, s1.check()
         `s1
         `s3, x=5
         `fs, self.hits <= 44 and self.fs_alt.uses > 0 and x=4
         """
+    coab = ['Blade','Dragonyule_Xainfried','Axe2']
 
     def prerun(self):
         conf_fs_alt = {'fs.dmg': 2.59, 'fs.hit': 6}
@@ -35,6 +35,7 @@ class Lin_You(Adv):
 
     def s2_proc(self, e):
         self.s2_buff.on()
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -73,16 +73,12 @@ class Tobias(Adv):
     a3 = ('k_poison',0.3)
 
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+A_Dogs_Day()
-    conf['slots.d'] = Ariel()
+    conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
+    conf['slots.d'] = Freyja()
     conf['acl'] = """
         `s1
     """
-
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.slots.a = Castle_Cheer_Corps()+A_Dogs_Day()
-            self.slots.d = Freyja()
+    coab = ['Bow','Blade','Lin_You']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
@@ -133,6 +129,7 @@ class Tobias(Adv):
             self.s1.autocharge_timer.off()
         self.s2.charge(1)
         self.s2_mode = (self.s2_mode + 1) % 2
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -1,23 +1,26 @@
-import adv.adv_test
 from core.advbase import *
 from module.x_alt import Fs_alt
 from slot.a import *
+from slot.d import *
 
 def module():
     return Gala_Ranzal
-
 
 class Gala_Ranzal(Adv):
     comment = 'no s2'
 
     conf = {}
+    conf['slots.a'] = The_Shining_Overlord()+United_by_One_Vision()
+    conf['slot.d'] = AC011_Garland()
     conf['acl'] = '''
+        `dragon.act("c3 s end")
         `s1, fsc
         `s3, fsc
         `fs, seq=2 and self.gauges['x'] <= 500
         `fs, seq=3
     '''
-    conf['slots.a'] = JotS() + TSO()
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
             self.conf.slot.a = TSO()+BN()
@@ -91,5 +94,5 @@ class Gala_Ranzal(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

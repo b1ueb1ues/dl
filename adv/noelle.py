@@ -1,8 +1,7 @@
-import adv.adv_test
+
 from core.advbase import *
 from slot.d import *
 from slot.a import *
-
 
 def module():
     return Noelle
@@ -13,14 +12,14 @@ class Noelle(Adv):
     a3 = ('primed_defense',0.08)
 
     conf = {}
+    conf['slots.a'] = A_Dogs_Day()+Primal_Crisis()
     conf['slots.d'] = Ariel()
-    conf['slots.a'] = Candy_Couriers()+A_Dogs_Day()
-
     conf['acl'] = """
         `s1
         `s2, x=5
         `s3, x=5
         """
+    coab = ['Blade','Tobias','Bow']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
@@ -30,6 +29,6 @@ class Noelle(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
 
