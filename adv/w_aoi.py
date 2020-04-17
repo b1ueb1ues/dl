@@ -1,5 +1,5 @@
-import adv.adv_test
 from core.advbase import *
+from slot.a import *
 
 def module():
     return Wedding_Aoi
@@ -8,12 +8,15 @@ class Wedding_Aoi(Adv):
     a1 = ('affteam_sleep', 0.15, 10, 5)
     a3 = ('sp',0.12,'fs')
     conf = {}
+    conf['slot.a'] = Twinfold_Bonds()+Primal_Crisis()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc
         `s3, seq=5 or fsc
         `fs, seq=5
         """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.sleep'] = 80
 
     def init(self):
@@ -34,15 +37,11 @@ class Wedding_Aoi(Adv):
         elif self.s1_addition == 1:
             pass
 
-
     def s2_proc(self, e):
         with Modifier("s1killer", "sleep_killer", "hit", 1):
             self.dmg_make('s1',5*1.40)
 
 
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

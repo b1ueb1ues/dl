@@ -1,4 +1,3 @@
-import adv_test
 import noelle
 from slot.d import Zephyr
 
@@ -11,6 +10,5 @@ class Noelle(noelle.Noelle):
         self.conf.slots.d = Zephyr()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(Noelle, *sys.argv)

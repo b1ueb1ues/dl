@@ -1,25 +1,25 @@
-import adv.adv_test
 from core.advbase import *
+from slot.d import *
 
 def module():
     return Pia
 
 class Pia(Adv):
     conf = {}
+    conf['slot.d'] = AC011_Garland()
     conf['acl'] = """
+        `dragon
         `s1
         `s2, fsc
-        `s3, seq=5
-        `fs, seq=5
+        `s3
+        `fs, x=5
         """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
 
     def s2_proc(self, e):
         self.energy.add(1, team=True)
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,5 +1,5 @@
-import adv.adv_test
 from core.advbase import *
+from slot.a import *
 
 def module():
     return Francesca
@@ -7,20 +7,17 @@ def module():
 class Francesca(Adv):
     a1 = ('fs',0.30)
     conf = {}
+    conf['slot.a'] = TB()+PC()
     conf['acl'] = """
-        `rotation
+        `dragon.act("c3 s end")
+        `s1
+        `s2
+        `s3
+        `fs, x=4
         """
-    conf['rotation_init'] = """
-        C4FS C4FS C1- 
-    """
-    conf['rotation'] = """
-        S1 C4FS C4FS C1- S1 C1- S2 C4FS C5- S1 C1- S3 
-        C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 c4fs c5
-    """
-
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Wedding_Elisanne
@@ -13,17 +11,16 @@ class Wedding_Elisanne(Adv):
     a3 = ('bc',0.13)
 
     conf = {}
+    conf['slot.a'] = The_Shining_Overlord()+United_by_One_Vision()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s1,fsc and s2.charged<s2.sp-749
         `s2
         `s3,fsc and not self.s2_debuff.get()
         `fs,seq=2 and cancel and ((s1.charged>=909 and not self.s2_debuff.get()) or s3.charged>=s3.sp)
         `fs,seq=3 and cancel
     """
-    conf['slot.a'] = TSO()+JotS()
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = TSO()+FRH()
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
 
     def prerun(self):
         self.s2_debuff = Debuff('s2defdown',0.15,10,1)
@@ -35,5 +32,5 @@ class Wedding_Elisanne(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

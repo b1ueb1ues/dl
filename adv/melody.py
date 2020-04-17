@@ -9,12 +9,14 @@ class Melody(Adv):
     a1 = ('cc',0.08,'hp100')
 
     conf = {}
-    conf['slots.a'] = ADD() + FWHC()
+    conf['slots.a'] = A_Dogs_Day()+From_Whence_He_Comes()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
         `s1
         `fs, x = 5
     """
+    coab = ['Bow','Tobias','Lin_You']
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

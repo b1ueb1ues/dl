@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
 from module.x_alt import Fs_alt
 
@@ -9,14 +8,15 @@ def module():
 class Su_Fang(Adv):
     a3 = ('s',0.35)
     conf = {}
-    conf['slot.d'] = Garland()
-    conf['slot.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    conf['slot.a'] = Twinfold_Bonds()+The_Fires_of_Hate()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s2, fsc
         `s1
         `s3, fsc
         `fs, x=4
         """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
 
     def fs_proc_alt(self, e):
         self.afflics.poison('fs', 120, 0.582)

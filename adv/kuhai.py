@@ -1,7 +1,7 @@
-import adv.adv_test
 from core.advbase import *
 from module.x_alt import Fs_alt
 import slot
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -14,15 +14,17 @@ class Ku_Hai(Adv):
     conf = {}
     # c1+fs_alt has higher dps and sp rate than c2+fs_alt with or without stellar show  (x)
     # c2+fs_alt fs can init quicker than c1+fs_alt
+    conf['slots.a'] = The_Lurker_in_the_Woods()+The_Shining_Overlord()
+    conf['slot.d'] = AC011_Garland()
     conf['acl'] = '''
+        `dragon.act("c3 s c1 end")
         `s1, fsc
         `s2
         `s3, fsc
         `fs, seq=2 and self.fs_alt.get()
         `fs, seq=3
         '''
-    conf['slots.a'] = slot.a.The_Lurker_in_the_Woods() + slot.a.RR()
-    conf['slot.d'] = Zephyr()
+    coab = ['Blade','Dragonyule_Xainfried','Akasha']
 
     def init(self):
         if self.condition('huge hitbox eneny'):
@@ -89,6 +91,5 @@ class Ku_Hai(Adv):
         self.missc1()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

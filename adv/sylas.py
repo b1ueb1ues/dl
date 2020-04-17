@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Sylas
@@ -11,14 +9,16 @@ class Sylas(Adv):
 
     comment = 'not consider skill haste for team'
     conf = {}
+    conf['slot.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s1
         `s2
         `s3, seq=5
         `fs, seq=5
         """
-    conf['slot.d'] = Vayu()
-    conf['slot.a'] = RR()+The_Fires_of_Hate()
+    coab = ['Eleonora','Dragonyule_Xainfried','Lin_You']
+
     conf['afflict_res.poison'] = 0
 
     def s1_proc(self, e):
@@ -28,8 +28,6 @@ class Sylas(Adv):
         Selfbuff('s2_shaste',0.20,15,'sp','buff').on()
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
