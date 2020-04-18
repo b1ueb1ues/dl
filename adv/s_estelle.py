@@ -8,16 +8,13 @@ def module():
 class Summer_Estelle(Adv):
     a3 = ('bt',0.2)
     conf = {}
+    conf['slot.frostbite.a'] = conf['slot.a']
     acl12 = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel 
         `s3, seq=5 and cancel
         """
-    acl21 = """
-        `s2, seq=5 and cancel
-        `s1, seq=5 and cancel
-        `s3, seq=5
-        """ 
+    coab = ['Blade', 'Renee', 'Xander']
     conf['acl'] = acl12
 
     def init(self):

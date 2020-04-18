@@ -1,7 +1,7 @@
 import adv.adv_test
 from core.advbase import *
 from slot.a import *
-
+from slot.d import*
 def module():
     return Summer_Ranzal
 
@@ -10,12 +10,15 @@ class Summer_Ranzal(Adv):
     a3 = ('primed_defense', 0.08)
 
     conf = {}
-    conf['slots.a'] = RR() + FRH()
+    conf['slots.a'] = RR() + Breakfast_at_Valerios()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
+        `dragon
         `s1, x=5
         `s2, x=5
         `s3, x=5
         """
+    coab = ['Xander', 'Dagger', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
 
     def init(self):

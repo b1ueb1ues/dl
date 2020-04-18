@@ -10,13 +10,14 @@ def module():
 class Cibella(Adv):
     conf = {}
     conf['acl'] = """
+        `dragon
         `s2
         `s3, seq=5
         `fs, seq=5
         """
-    #conf['slots.a'] = RR() + Saintly_Delivery()
-    #comment = 'reach 100 resist with Saintly Delivery'
-    conf['slots.d'] = DJ()
+    coab = ['Blade', 'Xander', 'Dagger']
+    conf['slots.a'] = RR() + Breakfast_at_Valerios()
+    conf['slots.d'] = Leviathan()
 
 
 if __name__ == '__main__':

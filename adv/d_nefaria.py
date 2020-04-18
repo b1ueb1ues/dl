@@ -1,5 +1,6 @@
 import adv.adv_test
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -8,12 +9,15 @@ def module():
 class Dragonyule_Nefaria(Adv):
     a1 = ('s',0.25)
     conf = {}
+    conf['slot.a'] = Mega_Friends()+Primal_Crisis()
     conf['acl'] = """
+        `dragon
         `s1, fsc
         `s3, fsc
         `fs, seq=4
         """
-    conf['slots.d'] = DJ()
+    coab = ['Blade', 'Xander', 'Thaniel']
+    conf['slots.d'] = Leviathan()
 
 if __name__ == '__main__':
     conf = {}

@@ -1,23 +1,27 @@
 import adv.adv_test
 from core.advbase import *
 from slot.a import *
-
+from slot.d import *
 def module():
     return Dragonyule_Xander
 
 class Dragonyule_Xander(Adv):
     a3 = ('sp',0.05)
     conf = {}
+    conf['solts.a'] = Candy_Couriers()+Primal_Crisis()
+    conf['slot.d'] = Leviathan()
     acl12 = """
+        `dragon
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel or s
         `s3, seq=5 and cancel
         """
-    acl21 = """
-        `s2, seq=5 and cancel
+    ac121 = """
         `s1, seq=5 and cancel
-        `s3, seq=5
-        """ 
+        `s2, seq=5 and cancel or s
+        `s3, seq=5 and cancel
+        """
+    coab = ['Summer_Celliera', 'Blade', 'Thaniel']
     conf['acl'] = acl12
 
     def prerun(self):

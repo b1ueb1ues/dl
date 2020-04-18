@@ -70,7 +70,8 @@ class Hunter_Sarisse(Adv):
         `dodge, fsc
         `fs4
     """
-    conf['slots.a'] = The_Lurker_in_the_Woods()+Dear_Diary()
+    coab = ['Dagger', 'Xander', 'Grace']
+    conf['slots.a'] = Stellar_Show()+Primal_Crisis()
     conf['slots.d'] = Dragonyule_Jeanne()
 
     def init(self):

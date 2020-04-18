@@ -18,12 +18,13 @@ pipple_conf = {
 class Pipple(Adv):
     a3 = ('epassive_att_crit', 7)
     conf = pipple_conf.copy()
-    conf['slots.a'] = Primal_Crisis()+The_Prince_of_Dragonyule()
+    conf['slots.a'] = Primal_Crisis()+Brothers_in_Arms()
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
+        `s1
         `s2, x=5
     """
-
+    coab = ['Blade', 'Xander', 'Axe2']
     def prerun(self):
         self.stance = 0
 
