@@ -1121,7 +1121,7 @@ class Adv(object):
                 afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
                 for s in ('d', 'w', 'a'):
                     if s in afflic_slots:
-                        self.slots.__dict__[s] = conf_slots[s]
+                        self.slots.__dict__[s] = afflic_slots[s]
             else:
                 wp1 = self.slots.a.__class__
                 wp2 = wpa
