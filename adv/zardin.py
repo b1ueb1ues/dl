@@ -10,17 +10,16 @@ class Zardin(Adv):
     a1 = ('a',0.10,'hp100')
     
     conf = {}
-    conf['slots.a'] = TSO()+JotS()
+    conf['slots.a'] = TSO()+Primal_Crisis()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s1, fsc
         `s2, fsc
         `s3, fsc
         `fs, seq=3 and cancel
         """
-
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = TSO()+BN()
+    coab = ['Xander', 'Dagger', 'Summer_Estelle']
 
 if __name__ == '__main__':
     conf = {}

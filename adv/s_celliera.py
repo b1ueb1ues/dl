@@ -12,17 +12,15 @@ class Summer_Celliera(Adv):
     conf = {}
     conf['slots.a'] = VC() + JotS()
     conf['slots.d'] = Siren()
+    conf['slots.frostbite.a'] = ['slots.a']
     conf['acl'] = """
         `s2
         `s1
         `s3, fsc
         `fs, seq=2
         """
+    coab = ['Blade', 'Renee', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
-
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf['slots.a'] = TSO() + FRH()
 
     def init(self):
         self.s2_stance = 1

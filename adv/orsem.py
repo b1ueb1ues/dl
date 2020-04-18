@@ -1,7 +1,7 @@
 import adv.adv_test
 from core.advbase import *
 from slot.a import *
-
+from slot.d import *
 def module():
     return Orsem
 
@@ -9,14 +9,15 @@ class Orsem(Adv):
     a1 = ('cc',0.10,'hit15')
     a3 = ('cc',0.06,'hp70')
     conf = {}
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
-        `rotation
-        """
-    conf['rotation'] = """
-        C4FS C4FS C2- S1 C4FS C5- S2 C1- S1 C4FS C5- S3 C1- S1 C4FS C5-
-        S2 C1- S1 C4FS C4FS C1- S1 C4FS C5- S3 C1- S2 C1- S1
+        `dragon
+        `s1
+        `s2, fsc
+        `s3, fsc
+        `fs, x=4
     """
-
+    coab = ['Blade', 'Xander', 'Wand']
 
 if __name__ == '__main__':
     conf = {}

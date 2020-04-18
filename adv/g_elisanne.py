@@ -13,8 +13,9 @@ class Gala_Elisanne(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
+        `fsf, x=4
     """
-
+    coab = ['Bow', 'Tobias', 'Renee']
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 

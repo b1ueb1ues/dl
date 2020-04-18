@@ -1480,12 +1480,11 @@ class Adv(object):
                     self.slots.c.a.append(ab)
         
         self.d_coabs()
+        self.coab_list = self.coab
         if 'coabs' in self.conf:
-            coab_list = self.conf['coabs']
-        else:
-            coab_list = self.coab
+            self.coab_list = self.conf['coabs']
         from conf import coability
-        for name in coab_list:
+        for name in self.coab_list:
             chain_dict = {**coability['all'], **coability[self.slots.c.ele]}
             try:
                 self.slots.c.coabs[name] = chain_dict[name]

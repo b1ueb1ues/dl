@@ -23,6 +23,7 @@ class Lazry(Adv):
         `s2
         `fs, x=5
     """
+    coab = ['Blade', 'Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def low_power(self):

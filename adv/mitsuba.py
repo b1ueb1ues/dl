@@ -221,6 +221,7 @@ class Mitsuba(Adv):
         `s2, x=2
         `fsf, x=2
     """
+    coab = ['Blade', 'Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

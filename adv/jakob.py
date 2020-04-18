@@ -1,5 +1,6 @@
 import adv.adv_test
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -9,12 +10,15 @@ class Jakob(Adv):
     a1 = ('prep','50%')
 
     conf = {}
+    conf['slots.a'] = RR()+Breakfast_at_Valerios()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
+        `dragon
         `s1
         `s3,fsc
         `fs,seq=5
         """
-    conf['slots.d'] = DJ()
+    coab = ['Blade', 'Xander', 'Dagger']
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):

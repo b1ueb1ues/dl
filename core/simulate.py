@@ -235,7 +235,7 @@ def slots(adv):
     slots = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
     slots += '['+adv.slots.d.__class__.__name__+']'
     slots += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
-    slots += '['+'|'.join(adv.coab)+']'
+    slots += '['+'|'.join(adv.coab_list)+']'
     return slots
 
 def append_condensed(condensed, act):
