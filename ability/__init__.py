@@ -185,8 +185,8 @@ class BuffingAbility(Ability):
         super().__init__(name)
 
 class Last_Offense(BuffingAbility):
-    def __init__(self, name, value):
-        super().__init__(name, value, 15)
+    def __init__(self, name, value, duration=15):
+        super().__init__(name, value, duration)
 
     def oninit(self, adv, afrom=None):
         if adv.condition('last offense'):

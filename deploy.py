@@ -7,7 +7,7 @@ import core.simulate
 
 ROOT_DIR = '.'
 ADV_DIR = 'adv'
-OUTPUT_DIR = 'wwwsrc/public/dl-sim'
+OUTPUT_DIR = 'www/dl-sim'
 DURATION_LIST = [60, 120, 180]
 QUICK_LIST_FILES = ['chara_quick.txt', 'chara_sp_quick.txt']
 SLOW_LIST_FILES = ['chara_slow.txt', 'chara_sp_slow.txt']

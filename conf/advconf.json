@@ -145,23 +145,23 @@
     },
     "Alfonse": {
         "c": {
-            "att": 487,
+            "att": 584,
             "ele": "light",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "sword"
         },
         "s1": {
-            "dmg": 6.7,
+            "dmg": 6.96,
             "hit": 2,
-            "recovery": 1.75,
+            "recovery": 1.6333,
             "sp": 3500,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 7.02,
+            "dmg": 0,
             "hit": 2,
-            "recovery": 1.65,
+            "recovery": 1.5333,
             "sp": 4983,
             "startup": 0.1
         }
@@ -903,23 +903,23 @@
     },
     "Fjorm": {
         "c": {
-            "att": 508,
+            "att": 608,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "lance"
         },
         "s1": {
-            "dmg": 8.22,
+            "dmg": 9.86,
             "hit": 2,
-            "recovery": 2.05,
+            "recovery": 1.9667,
             "sp": 2738,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 8.29,
-            "hit": -1,
-            "recovery": 3.85,
+            "dmg": 15.41,
+            "hit": 1,
+            "recovery": 3.7667,
             "sp": 4548,
             "startup": 0.1
         }
@@ -2212,23 +2212,23 @@
     },
     "Marth": {
         "c": {
-            "att": 505,
+            "att": 605,
             "ele": "flame",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "sword"
         },
         "s1": {
-            "dmg": 8.24,
-            "hit": 8,
-            "recovery": 2.5,
+            "dmg": 10.95,
+            "hit": 7,
+            "recovery": 2.3667,
             "sp": 2875,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 6.85,
+            "dmg": 0,
             "hit": 1,
-            "recovery": 1.85,
+            "recovery": 1.7667,
             "sp": 5700,
             "startup": 0.1
         }
@@ -3534,23 +3534,23 @@
     },
     "Veronica": {
         "c": {
-            "att": 514,
+            "att": 616,
             "ele": "shadow",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "wand"
         },
         "s1": {
             "dmg": 0.0,
-            "hit": 1,
-            "recovery": 1.45,
+            "hit": 4,
+            "recovery": 1.30,
             "sp": 3291,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 9.21,
+            "dmg": 13.20,
             "hit": 3,
-            "recovery": 1.55,
+            "recovery": 1.4667,
             "sp": 6186,
             "startup": 0.1
         }

@@ -145,12 +145,10 @@ class CrisisModifier(Modifier):
         super().__init__('mod_{}_crisis'.format(name), 'att', 'hit', 0)
         self.hp_scale = scale
         self.hp_lost = 100 - hp
-        if hp == 0:
-            self.hp_cond = self._static.g_condition('hp=1')
-        elif hp < 100:
-            self.hp_cond = self._static.g_condition('hp={}%'.format(hp))
+        if hp < 100:
+            self.hp_cond = self._static.g_condition.hp_cond_set(hp)
         else:
-            self.hp_cond = 0
+            self.hp_cond = False
 
     def get(self):
         if self.hp_cond:

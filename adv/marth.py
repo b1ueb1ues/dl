@@ -6,12 +6,15 @@ def module():
     return Marth
 
 class Marth(Adv):
+    comment = 'last boost once at start (team DPS not considered)'
     a1 = ('prep',100)
-    a3 = ('cc',0.13,'hit15')
+    a3 = ('cc',0.13,'hit10')
+    
     conf = {}
-    conf['slots.a'] = Mega_Friends()+Primal_Crisis()
+    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
+        `dragon
         `s3, not self.s3_buff
         `s2, fsc
         `s1, fsc
@@ -22,7 +25,13 @@ class Marth(Adv):
     def init(self):
         self.stance = 0
 
+    def s1_proc(self, e):
+        self.afflics.burn('s1',120,0.97)
+
+
     def s2_proc(self, e):
+        with KillerModifier('s2_killer', 'hit', 1.0, ['burn']):
+            self.dmg_make("s2", 8.99)
         if self.stance == 0:
             self.stance = 1
             Selfbuff('s21',0.1,10).on()
