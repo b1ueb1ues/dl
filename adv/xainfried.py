@@ -10,7 +10,7 @@ class Xainfried(Adv):
     a3 = ('dt', 0.25)
     conf = {}
     conf['slots.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
-    conf['slots.d'] = Siren()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s1

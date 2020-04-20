@@ -17,7 +17,7 @@ class Marth(Adv):
         `s3, not self.s3_buff
         `s2, fsc
         `s1, fsc
-        `fs, x=2
+        `fs, x=3
         """
     coab = ['Blade', 'Wand', 'Joe']
 
