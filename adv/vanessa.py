@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -11,15 +10,15 @@ class Vanessa(Adv):
     a3 = ('lo',0.3)
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = KFM()+Mega_Friends()
+    conf['slots.a'] = Kung_Fu_Masters()+Mega_Friends()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, cancel
         `s2, fsc
         `fs, x=4
     """
+    coab = ['Blade', 'Serena', 'Marth']
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

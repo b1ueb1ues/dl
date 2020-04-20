@@ -1,5 +1,3 @@
-import adv.adv_test
-from core.advbase import *
 from core.advbase import *
 from core.log import *
 from slot.d import *
@@ -11,13 +9,15 @@ def module():
 class Serena(Adv):
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Mega_Friends()+Primal_Crisis()
+    conf['slots.a'] = Primal_Crisis()+Mega_Friends()
     conf['acl'] = """
+        `dragon, fsc
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, seq=2
         """
+    coab = ['Blade', 'Halloween_Mym', 'Marth']
 
     def s1_before(self, e):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()
@@ -56,9 +56,6 @@ class Serena(Adv):
             Selfbuff('a3buff',0.03,-1,'crit','chance').on()
 
 
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

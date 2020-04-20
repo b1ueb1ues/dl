@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -13,7 +12,7 @@ class Rena(Adv):
 
     conf = {}
     conf['slots.d'] = Sakuya()
-    conf['slots.a'] = RR()+Elegant_Escort()
+    conf['slots.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
@@ -21,6 +20,7 @@ class Rena(Adv):
         `fs, seq=5 and (s1.charged=1500 or s1.charged=3200)
         """
     conf['afflict_res.burn'] = 0
+    coab = ['Wand', 'Serena', 'Marth']
 
     def prerun(self):
         self.stance = 0
@@ -58,6 +58,5 @@ class Rena(Adv):
         self.s1.charge(self.s1.sp)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-    #logcat(['cd'])
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

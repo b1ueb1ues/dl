@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from core.advbase import *
 from slot.a import *
@@ -13,10 +12,11 @@ class Naveed(Adv):
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, self.s1level < 5
-        `s1
-        `fs, seq=3 and cancel
+        `s1, cancel
+        `fs, x=3 and cancel
         """
-    conf['slots.a'] = TSO()+Primal_Crisis()
+    conf['slots.a'] = Primal_Crisis()+The_Shining_Overlord()
+    coab = ['Blade', 'Wand', 'Gala_Sarisse']
             
     def prerun(self):
         self.s1level = 0
@@ -34,6 +34,5 @@ class Naveed(Adv):
         adv.Event('defchain')()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

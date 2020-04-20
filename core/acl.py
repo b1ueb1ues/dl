@@ -161,9 +161,10 @@ class Acl_Condition:
             if len(acts) == 0:
                 continue
             if cond.startswith('QUEUE'):
-                cond = 'True' if len(cond) < 9 else cond[9:]
+                cond = 'True' if len(cond) < 6 else cond[6:]
                 pattern = self.QUEUE
                 block = [a.queue_act('True') for a in acts]
+                block.append("{indent}    return 'queued'".format(indent=self.INDENT*self.depth))
             else:
                 if idx == 0:
                     pattern = self.IF

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 #from slot.d import *
@@ -11,13 +10,15 @@ class Nobunaga(Adv):
 
     a1 = ('a',0.2,'hit15')
     conf = {}
-    conf['slots.a'] = RR()+Primal_Crisis()
+    conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
+    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
         `s2
         `fs, x=5 and self.s2.charged<self.s2.sp-self.sp_val(5)
         """
+    coab = ['Wand', 'Marth', 'Serena']
 
     def prerun(self):
         self.ba = 0
@@ -37,5 +38,5 @@ class Nobunaga(Adv):
             self.dmg_make('o_s1_boost',11.18)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

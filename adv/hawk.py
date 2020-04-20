@@ -11,7 +11,7 @@ class Hawk(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
-        queue if prep and self.duration <= 60 and self.afflics.stun.resist < 100
+        queue (prep and self.duration <= 60 and self.afflics.stun.resist < 100)
         `s2
         `fs
         `s1, fsc

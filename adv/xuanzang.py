@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-import random
 from slot.d import *
 
 def module():
@@ -11,17 +9,14 @@ class Xuan_Zang(Adv):
     a3 = ('cc',0.06,'hp70')
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = RR()+Jewels_of_the_Sun()
+    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc
         `s2, cancel
-        `fs, seq=4
+        `fs, x=4
         """
-
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = RR()+JotS()
+    coab = ['Blade', 'Wand', 'Marth']
 
     def s1_proc(self, e):
         if self.mod('def')!= 1:
@@ -31,10 +26,6 @@ class Xuan_Zang(Adv):
         Debuff('s2_defdown',0.1,20,0.7).on()
 
 
-
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

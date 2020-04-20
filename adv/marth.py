@@ -17,7 +17,7 @@ class Marth(Adv):
         `s1, fsc
         `fs, x=2
         """
-    coab = ['Blade', 'Gala_Sarisse', 'Serena']
+    coab = ['Blade', 'Serena', 'Gala_Sarisse']
 
     def init(self):
         self.stance = 0

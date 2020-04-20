@@ -1,6 +1,4 @@
-import adv.adv_test
 from core.advbase import *
-from core.log import *
 from slot.a import *
 from slot.d import *
 
@@ -11,6 +9,7 @@ class Valentines_Orion(Adv):
     conf = {}
 
     conf['acl'] = """
+        `dragon
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, seq=2 and cancel
@@ -18,6 +17,7 @@ class Valentines_Orion(Adv):
     conf['slots.a'] = Mega_Friends()+EE()
     conf['slots.d'] = Dreadking_Rathalos()
     conf['afflict_res.burn'] = 0
+    coab = ['Blade', 'Serena', 'Marth']
 
     def prerun(self):
         self.dc_event = Event('defchain')
@@ -25,12 +25,9 @@ class Valentines_Orion(Adv):
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)
 
-
     def s2_proc(self, e):
         self.dc_event()
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

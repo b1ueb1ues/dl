@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -10,13 +9,15 @@ class Ramona(Adv):
     a1 = ('primed_att',0.10)
     a3 = ('bc',0.13)
     conf = {}
-    conf['slots.a'] = KFM()+VC()
+    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['slots.d'] = Sakuya()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s1a
-        `s2,seq=4
+        `s2,x=4
         """
+    coab = ['Blade', 'Wand', 'Marth']
 
     def prerun(self):
         self.a_s1 = self.s1.ac
@@ -44,6 +45,5 @@ class Ramona(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

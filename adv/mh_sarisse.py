@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -59,7 +58,7 @@ class FS_Speedable(Action):
         return self.tap()
 
 class Hunter_Sarisse(Adv):
-    comment = 'fs hit count vary on distance and enemy size'
+    comment = 'fs hit count vary on distance and enemy size; needs combo time from chain coability to keep combo'
     a1 = ('fs', 0.30)
     a3 = ('fs', 0.25)
 
@@ -176,5 +175,5 @@ class Hunter_Sarisse(Adv):
         Event('fs_speed_buff')()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

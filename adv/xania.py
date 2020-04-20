@@ -15,6 +15,7 @@ class Xania(Adv):
         `s2
     """
     conf['afflict_res.burn'] = 0
+    coab = ['Blade', 'Marth', 'Joe']
 
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import Dreadking_Rathalos
 from slot.a import *
@@ -11,11 +10,12 @@ class Yuya(Adv):
     conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
     conf['acl'] = """
+        `dragon
         `s3, fsc and not self.s3_buff
         `s1, fsc
-        `fs, seq=2
+        `fs, x=2
         """
-    conf['chain'] = {'yuya': ('dh', 0.18)}
+    coab = ['Blade', 'Wand', 'Marth']
 
     a3 = ('primed_crit_chance', 0.5,5)
 
@@ -29,6 +29,5 @@ class Yuya(Adv):
         Spdbuff("s2",0.2, 10)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

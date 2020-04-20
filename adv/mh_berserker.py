@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -29,20 +28,25 @@ class FS_MH(Action):
 
 
 class Hunter_Berserker(Adv):
+    comment = 'needs combo time from chain coability to keep combo & do c1 after s2'
     a1 = ('fs', 0.30)
     conf ={}
-    conf['slots.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
+    conf['slots.a'] = The_Lurker_in_the_Woods()+Primal_Crisis()
     conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc
-        `s2, fsc
+        queue self.s2.check()
+        `s2
+        `fs3, x=1
+        end
         `dodge, fsc
         `fs3
         """
+    coab = ['Blade', 'Grace', 'Halloween_Mym']
 
     def init(self):
-        self.conf.fs.hit = -1
+        self.conf.fs.hit = 1
         conf_alt_fs = {
             'fs1': {
                 'dmg': 296 / 100.0,
@@ -125,6 +129,5 @@ class Hunter_Berserker(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

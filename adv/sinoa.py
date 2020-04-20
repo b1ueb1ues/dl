@@ -1,6 +1,6 @@
-import adv.adv_test
 from core.advbase import *
-from core.advbase import *
+from slot.d import *
+from slot.a import *
 
 def module():
     return Sinoa
@@ -9,13 +9,16 @@ class Sinoa(Adv):
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)
     conf = {}
-    conf['slots.d'] = slot.d.Dreadking_Rathalos()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Primal_Crisis()+Candy_Couriers()
     conf['acl'] = '''
+        `dragon
         `s3, not self.s3_buff
         `s1
         `s2
         `fs, seq=5
         '''
+    coab = ['Blade', 'Serena', 'Marth']
 
     def prerun(self):
         self.s1_buff_mode = 'means'
@@ -40,8 +43,5 @@ class Sinoa(Adv):
             adv.Teambuff('s1_crit',0.25,10,'crit').on()
 
 if __name__ == '__main__':
-    conf = {}
-    module().comment = ''
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
