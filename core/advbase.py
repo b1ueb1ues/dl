@@ -257,6 +257,28 @@ class Buff(object):
             log('buff', self.name, '%s: %.2f' % (self.mod_type, value), self.name + ' buff stack <%d>' % stack)
         self.modifier.off()
 
+    def count_team_buff(self):
+        self.dmg_test_event.modifiers = ModifierDict()
+        for i in self._static.all_buffs:
+            if i.name == 'simulated_def':
+                self.dmg_test_event.modifiers.append(i.modifier)
+        self.dmg_test_event()
+        no_team_buff_dmg = self.dmg_test_event.dmg
+        sd_mods = 1
+        spd = 0
+        for i in self._static.all_buffs:
+            if i.bufftype == 'team' or i.bufftype == 'debuff':
+                if i.modifier.mod_type == 's':
+                    sd_mods += i.get() * 1 / 2
+                elif i.modifier.mod_type == 'speed' and i.modifier.mod_order == 'team':
+                    spd += i.get()
+                else:
+                    self.dmg_test_event.modifiers.append(i.modifier)
+        self.dmg_test_event()
+        team_buff_dmg = self.dmg_test_event.dmg * sd_mods
+        team_buff_dmg += team_buff_dmg * spd
+        log('buff', 'team', team_buff_dmg / no_team_buff_dmg - 1)
+
     def on(self, duration=None):
         if duration == None:
             d = self.duration * self.bufftime()
@@ -367,33 +389,14 @@ class Teambuff(Buff):
         Buff.buff_end_proc(self, e)
         self.count_team_buff()
 
-    def count_team_buff(self):
-        self.dmg_test_event.modifiers = ModifierDict()
-        for mod in self.base_cc_mod:
-            self.dmg_test_event.modifiers.append(mod)
-        for i in self._static.all_buffs:
-            if i.name == 'simulated_def':
-                self.dmg_test_event.modifiers.append(i.modifier)
-        self.dmg_test_event()
-        no_team_buff_dmg = self.dmg_test_event.dmg
-        sd_mods = 1
-        for i in self._static.all_buffs:
-            if i.bufftype == 'team' or i.bufftype == 'debuff':
-                if i.modifier.mod_type == 's':
-                    sd_mods = 1 + i.get() * 1 / 2
-                else:
-                    self.dmg_test_event.modifiers.append(i.modifier)
-        self.dmg_test_event()
-        team_buff_dmg = self.dmg_test_event.dmg * sd_mods
-        log('buff', 'team', team_buff_dmg / no_team_buff_dmg - 1)
-
-
 class Spdbuff(Buff):
     def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='self'):
         mtype = 'spd'
         morder = 'passive'
         Buff.__init__(self, name, value, duration, mtype, morder)
-        self.bufftype = wide
+        if wide == 'team':
+            Teambuff(f'{name}_team', value, duration, 'speed', 'team').on()
+        self.bufftype = 'self'
         self.bufftime = self._bufftime
         Event('speed')()
 
@@ -414,29 +417,8 @@ class Spdbuff(Buff):
 
     def buff_end_proc(self, e):
         Buff.buff_end_proc(self, e)
-        self.count_team_buff()
-
-    def count_team_buff(self):
-        self.dmg_test_event.modifiers = ModifierDict()
-        for i in self._static.all_buffs:
-            if i.name == 'simulated_def':
-                self.dmg_test_event.modifiers.append(i.modifier)
-        self.dmg_test_event()
-        no_team_buff_dmg = self.dmg_test_event.dmg
-        sd_mods = 1
-        for i in self._static.all_buffs:
-            if i.bufftype == 'team' or i.bufftype == 'debuff':
-                if i.modifier.mod_type == 's':
-                    sd_mods = 1 + i.get() * 1 / 2
-                else:
-                    self.dmg_test_event.modifiers.append(i.modifier)
-        self.dmg_test_event()
-        team_buff_dmg = self.dmg_test_event.dmg * sd_mods
-        spd = self.stack() * self.value()
-        if self.bufftype == 'team' or self.bufftype == 'debuff':
-            team_buff_dmg += team_buff_dmg * spd
-        log('buff', 'team', team_buff_dmg / no_team_buff_dmg - 1)
-
+        if self.bufftype == 'team':
+            self.count_team_buff()
 
 class Debuff(Teambuff):
     def __init__(self, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None):
@@ -1117,15 +1099,14 @@ class Adv(object):
         from conf.slot_common import ele_punisher
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             aff, wpa = ele_punisher[self.slots.c.ele]
+            wp1 = self.slots.a.__class__
+            wp2 = wpa
+            self.slots.a = wp1()+wp2()
             if aff in self.conf.slots:
                 afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
                 for s in ('d', 'w', 'a'):
                     if s in afflic_slots:
                         self.slots.__dict__[s] = afflic_slots[s]
-            else:
-                wp1 = self.slots.a.__class__
-                wp2 = wpa
-                self.slots.a = wp1()+wp2()
 
         # print self.slots
 

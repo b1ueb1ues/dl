@@ -17,13 +17,15 @@ class Durant(Adv):
     conf['slots.poison.d'] = Epimetheus()
     
     conf['acl'] = """
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.slots.d.name != 'Fatalis'
         `dragon, s=1
         end
         `s3, not self.s3_buff
         `s1
         `s2, x=5
-        """    
+        """
+
+    coab = ['Dagger', 'Tobias', 'Axe2']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -8,13 +7,15 @@ def module():
 class Aoi(Adv):
     a1 = ('od',0.15)
     conf = {}
-    conf['slots.a'] = RR()+EE()
+    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['acl'] = """
-        `s3, not self.s3_buff 
+        `dragon.act('s end'), s
+        `s3, not self.s3_buff
         `s1
         `s2
         """
     conf['afflict_res.burn'] = 0
+    coab = ['Wand', 'Marth', 'Joe']
 
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)
@@ -23,6 +24,5 @@ class Aoi(Adv):
         self.afflics.burn('s2',100,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

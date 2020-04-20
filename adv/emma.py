@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -13,29 +12,25 @@ class Emma(Adv):
 
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Castle_Cheer_Corps()+FWHC()
+    conf['slots.a'] = Castle_Cheer_Corps()+From_Whence_He_Comes()
+    conf['slots.burn.a'] = conf['slots.a']
     conf['acl'] = """
         `fs, self.fs_prep_c==3
         `s3, not self.s3_buff
         `s1, cancel
         `fs, x=5
         """
+    coab = ['Tobias', 'Blade', 'Marth']
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s1_proc = self.c_s1_proc
-
-
-    def c_s1_proc(self, e):
-        Teambuff('s2',0.25,15).on()
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s1_proc(self, e):
-        Selfbuff('s2',0.25,15).on()
+        self.buff_class('s2',0.25,15).on()
 
     def s2_proc(self, e):
         Event('defchain')()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

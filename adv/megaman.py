@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -94,14 +93,18 @@ class Mega_Man(Adv):
 
     conf = megaman_conf.copy()
     conf['slots.d'] = Cerberus()
+    conf['slots.burn.d'] = Apollo()
     conf['slots.a'] = Primal_Crisis()+Dear_Diary()
     conf['acl'] = """
         # check_s(n) means neither s1 or s2 are active, and s[n] has full ammo
+        `dragon
         `s3, not self.s3_buff
         `s1, self.check_s(1) and self.bleed._static['stacks']<3
         `s2, self.s1_x.active and self.bleed._static['stacks']>=3
         `s1, self.s1_x.active and self.bleed._static['stacks']>=3
     """
+    coab = ['Blade', 'Yuya', 'Marth']
+
     conf['dragonform'] = {
         'act': 'c5 s',
 
@@ -178,28 +181,6 @@ class Mega_Man(Adv):
         log('sp', name, sp,'%d/%d, %d/%d, %d/%d'%(\
             self.s1.current_ammo, self.s1.ammo, self.s2.current_ammo, self.s2.ammo, self.s3.charged, self.s3.sp))
 
-    # def alt_x_on(self, s, alt_l_x, alt_a_x):
-    #     self.l_x.off()
-    #     alt_l_x.on()
-    #     self.fs = self.fs_off
-    #     self.x1 = alt_a_x
-    #     self.x2 = alt_a_x
-    #     self.x3 = alt_a_x
-    #     self.x4 = alt_a_x
-    #     self.x5 = alt_a_x
-    #     s.is_active = True
-
-    # def alt_x_off(self, s, alt_l_x):
-    #     alt_l_x.off()
-    #     self.l_x.on()
-    #     self.fs = self.fs_normal
-    #     self.x1 = self.a_x1
-    #     self.x2 = self.a_x2
-    #     self.x3 = self.a_x3
-    #     self.x4 = self.a_x4
-    #     self.x5 = self.a_x5
-    #     s.is_active = False
-
     def s1_proc(self, e):
         if self.s2_x.active:
             self.s2_x.off()
@@ -249,5 +230,5 @@ class Mega_Man(Adv):
             return self.s2.current_ammo >= self.s2.ammo and not self.s1_x.active and not self.s2_x.active
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -10,13 +10,15 @@ class Laxi(Adv):
     
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Resounding_Rendition()+Beautiful_Nothingness()
+    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['acl'] = """
+        `dragon
         `s3, not self.s3_buff
         `s2, not self.s2buff.get()
         `s1
         `fs, x=2
         """
+    coab = ['Yuya', 'Marth', 'Wand']
 
     def prerun(self):
         self.hp = 0.0

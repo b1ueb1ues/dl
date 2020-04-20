@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a.all import *
 from slot.d.flame import *
@@ -12,15 +11,18 @@ class Aurien(Adv):
 
     conf = {}
     conf['slots.d'] = Apollo()
+    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['acl'] = """
+        `dragon
         `s3, not self.s3_buff
         `s2, x=5
     """
     conf['afflict_res.burn'] = 0
+    coab = ['Blade', 'Yuya', 'Marth']
 
     def s2_proc(self, e):
         self.afflics.burn('s2',100,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -11,16 +10,16 @@ class Karl(Adv):
     a3 = ('a',0.15,'hp70')
 
     conf = {}
-    conf['slots.a'] = The_Lurker_in_the_Woods()+Primal_Crisis()
+    conf['slots.a'] = Primal_Crisis()+The_Lurker_in_the_Woods()
     conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
+        `dragon, s=2
         `s3, not self.s3_buff
         `s2, cancel
-        `fs, seq=2
+        `fs, x=2
         """
-
+    coab = ['Blade', 'Yuya', 'Tobias']
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

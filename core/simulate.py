@@ -111,6 +111,8 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
         conf['sim_afflict.efficiency'] = 1
         conf['sim_afflict.type'] = aff_name
         adv, real_d = run_once(classname, conf, duration, cond)
+        if mass:
+            adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration, cond)
         run_results.append((adv, real_d, 'affliction'))
         if adv.condition.exist():
             adv, real_d = run_once(classname, conf, duration, False)

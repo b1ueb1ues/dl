@@ -14,31 +14,20 @@ class Curran(Adv):
 
     conf = {}
     conf['slots.a'] = KFM()+FitF()
-    conf['slots.d'] = Fatalis
+    conf['slots.d'] = Fatalis()
 
-    conf['slots.poison.a'] = KFM()+The_Plaguebringer()
     conf['slots.poison.d'] = Shinobi()
     
     conf['acl'] = """
+        if self.slots.d.name != 'Fatalis'
+        `dragon.act("c3 s end")
+        end
         `s3, not self.s3_buff
         `s1
         `s2
         """
-    coab = ['Blade','Bow','Curran','Berserker']
+    coab = ['Blade','Wand','Bow']
 
-    def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Wand','Bow','Curran','Berserker']
-
-    def d_acl(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.conf['acl'] = """
-                `dragon.act("c3 s end")
-                `s3, not self.s3_buff
-                `s1
-                `s2
-                """
-                
     def s1_proc(self, e):
         with Modifier("s1killer", "poison_killer", "hit", 0.6):
             self.dmg_make("s1", 14.70)

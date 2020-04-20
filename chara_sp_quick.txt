@@ -3,17 +3,6 @@ veronica.py.1hp.py
 v_addis.py.1hp.py
 g_sarisse.py.rollfs.py
 chelsea.py.rollfs.py
-ieyasu.py.poison.py
-kirsty.py.poison.py
-curran.py.poison.py
-erik.py.poison.py
-lathna.py.poison.py
-audric.py.dragon.py
-g_mym.py.dragon.py
-xainfried.py.dragon.py
-euden.py.apollo.py
-euden.py.dkr.py
-g_cleo.py.stack.py
 g_luca.py.maxstacks.py
 h_lowen.py
 natalie.py.1hp.py

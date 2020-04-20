@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 
@@ -11,15 +10,15 @@ class Ezelith(Adv):
     conf = {}
     conf['slots.d'] = Arctos()
     conf['acl'] = """
+        `dragon, s=1
         `s3, not self.s3_buff
         `s1
-        `s2, seq=4
-        `fs, seq=5
+        `s2, cancel
+        `fs, x=5
         """
-
+    coab = ['Halloween_Mym', 'Blade', 'Marth']
 
     def prerun(self):
-        random.seed()
         self.s2_buff = Selfbuff('s2',0.2,15)
         self.s1_hit_frames = [13, 13, 20, 28, 10, 19, 26, 10, 16, 24, 44]
         self.a1_hits = 0
@@ -52,13 +51,16 @@ class Ezelith(Adv):
     def s2_proc(self, e):
         self.s2_buff.on()
 
-    def dmg_proc(self, name, amount):    
-        if name[0] == 'x' and self.s2_buff.get():
-            r = random.random()
-            if r < self.s2_chance():
-                Debuff("s2_ab",0.05,5,1).on()
+    # def dmg_proc(self, name, amount):    
+    #     if name[0] == 'x' and self.s2_buff.get():
+    #         r = random.random()
+    #         if r < self.s2_chance():
+    #             Debuff("s2_ab",0.05,5,1).on()
 
+    def dmg_proc(self, name, amount):
+        if name[0] == 'x' and self.s2_buff.get():
+            Debuff('s2_ab', 0.05, 5, self.s2_chance()).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -23,12 +23,15 @@ class Chelsea(adv.chelsea.Chelsea):
         `dodge, fsc
         `fs
     """
-    # coab = ['Blade', 'Serena', 'Yuya']
+    coab = ['Blade', 'Grace', 'Hunter_Berserker']
 
     def prerun(self):
         super().prerun()
-        self.ro_charges = 3
-        # self.zerk_chain = SingleActionBuff('zerk_chain', 0.20, 1, 'fs', 'buff')
+        self.ro_charges = 3 if isinstance(self.slots.a.a2, Dear_Diary) else 0
+
+        self.zerk_chain = None
+        if 'Hunter_Berserker' in self.coab_list:
+            self.zerk_chain = SingleActionBuff('zerk_chain', 0.20, 1, 'fs', 'buff')
 
     def dmg_before(self, name):
         hpold = self.hp
@@ -37,8 +40,8 @@ class Chelsea(adv.chelsea.Chelsea):
             Selfbuff('resilient_offense',0.10, -1).on()
             self.comment += ' {}s'.format(round(now()))
             self.ro_charges -= 1
-        # if self.hp < 100:
-        #     self.zerk_chain.on()
+        if self.hp < 100 and self.zerk_chain is not None:
+            self.zerk_chain.on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

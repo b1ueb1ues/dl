@@ -152,3 +152,4 @@ aldred.py
 bellina.py
 gauld.py
 lazry.py
+ezelith.py

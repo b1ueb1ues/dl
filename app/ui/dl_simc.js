@@ -285,6 +285,9 @@ function loadAdvSlots() {
                     if (slots.adv.no_config.includes('acl')) {
                         $('#input-edit-acl').prop('disabled', true);
                     }
+                    if (slots.adv.no_config.includes('coab')) {
+                        $('input.coab-check').prop('disabled', true);
+                    }
                 } else {
                     $('#input-wp1').prop('disabled', false);
                     $('#input-wp2').prop('disabled', false);
@@ -391,17 +394,13 @@ function buildCoab(coab, fullname, weapontype) {
             }
         }
     }
-    if (found_fullname == 'ele') {
-        let check = null;
-        if (AXE2_ADV.includes(fullname)) {
-            check = $('#coab-all-axe2');
-        } else {
-            check = $('#coab-all-' + weapontype);
-        }
-        check.prop('disabled', true);
-        check.prop('checked', true);
-        check.removeClass('coab-check');
+    let check = $('#coab-all-' + weapontype);
+    if (found_fullname == 'ele' && AXE2_ADV.includes(fullname)) {
+        check = $('#coab-all-axe2');
     }
+    check.prop('disabled', true);
+    check.prop('checked', true);
+    check.removeClass('coab-check');
 }
 function readCoabDict() {
     const coabList = $('input:checked.coab-check');

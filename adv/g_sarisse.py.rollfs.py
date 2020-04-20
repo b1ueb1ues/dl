@@ -1,4 +1,3 @@
-import adv.adv_test
 from slot.a import *
 from slot.d import *
 import adv.g_sarisse
@@ -19,6 +18,5 @@ class Gala_Sarisse(adv.g_sarisse.Gala_Sarisse):
     """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(Gala_Sarisse, *sys.argv)

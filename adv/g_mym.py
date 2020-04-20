@@ -10,14 +10,25 @@ class Gala_Mym(Adv):
     a3 = ('dt', 0.20)
 
     conf = {}
-    conf['slots.a'] = Resounding_Rendition()+Beautiful_Nothingness()
+    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['slots.d'] = Sakuya()
+    conf['slots.burn.d'] = Apollo()
     conf['acl'] = """
+        if self.afflics.burn.get()
+        `dragon
+        else
+        `dragon.act('c3 s end')
+        end
         `s3, not self.s3_buff
         `s1
         `s2, fsc
         `fs, x=5
     """
+    coab = ['Blade', 'Verica', 'Wand']
+    def d_coabs(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.coab = ['Blade', 'Verica', 'Yuya']
+    
     conf['dragonform1'] = {
         'act': 'c3 s',
 

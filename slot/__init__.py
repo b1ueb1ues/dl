@@ -20,6 +20,7 @@ class Slot(object):
             self.conf = Conf()
         if not self.a:
             self.a = []
+        self.name = type(self).__name__
 
     def setup(self, c):
         if c.ele == self.ele :

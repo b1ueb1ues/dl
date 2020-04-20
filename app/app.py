@@ -23,8 +23,7 @@ ADV_DIR = 'adv'
 MEANS_ADV = {
     'addis': 'addis.py.means.py',
     'sazanka': 'sazanka.py.means.py',
-    'victor': 'victor.py.m.py',
-    'ezelith': 'ezelith.py.means.py',
+    'victor': 'victor.py.m.py'
 }
 
 NORMAL_ADV = ['h_lowen']
@@ -41,7 +40,7 @@ with open(os.path.join(ROOT_DIR, 'chara_slow.txt')) as f:
 SPECIAL_ADV = {
     'chelsea_rollfs': {
         'fn': 'chelsea.py.rollfs.py',
-        'nc': ['wp']
+        'nc': ['wp', 'coab']
     },
     'gala_cleo_ehjp': {
         'fn': 'g_cleo.py.ehjp.py',
@@ -197,6 +196,7 @@ def simc_adv_test():
     t   = 180 if not 't' in params else abs(float(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
+    coab = None if not 'coab' in params else list(params['coab'].keys())
     # latency = 0 if 'latency' not in params else abs(float(params['latency']))
     print(params, flush=True)
 
@@ -207,16 +207,16 @@ def simc_adv_test():
             wp2 = None
         if 'acl' in not_customizable:
             acl = None
+        if 'coab' in not_customizable:
+            coab = None
 
     conf = {}
     if 'missile' in params:
         missile = abs(float(params['missile']))
         if missile > 0:
             conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
-    if 'coab' in params:
-        # conf['ex'] = {value[1]: ('ex', value[1]) for value in params['coab'].values()}
-        # conf['chain'] = {name: value[0] for name, value in params['coab'].items() if value[0] is not None}
-        conf['coabs'] = list(params['coab'].keys())
+    if coab is not None:
+        conf['coabs'] = coab
     for afflic in AFFLICT_LIST:
         try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)

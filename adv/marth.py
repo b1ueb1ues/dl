@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.d import *
 from slot.a import *
@@ -7,7 +6,6 @@ def module():
     return Marth
 
 class Marth(Adv):
-    comment = 'c2fs'
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit15')
     conf = {}
@@ -15,10 +13,11 @@ class Marth(Adv):
     conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `s3, not self.s3_buff
-        `s2,fsc
-        `s1,fsc
-        `fs, seq=2
+        `s2, fsc
+        `s1, fsc
+        `fs, x=2
         """
+    coab = ['Blade', 'Gala_Sarisse', 'Serena']
 
     def init(self):
         self.stance = 0
@@ -36,8 +35,6 @@ class Marth(Adv):
             Spdbuff('s23s',0.3,10, wide='team').on()
 
 
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

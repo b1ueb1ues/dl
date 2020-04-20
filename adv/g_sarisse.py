@@ -11,11 +11,13 @@ class Gala_Sarisse(Adv):
     conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Forest_Bonds()+Dear_Diary()
     conf['acl'] = """
+        `dragon, s=1
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=1
     """
+    coab = ['Blade', 'Wand', 'Marth']
 
     def prerun(self):
         self.ahits = 0

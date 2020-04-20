@@ -14,6 +14,7 @@ class Chelsea(Adv):
         `s2, fsc
         `fs, x=1
     """
+    coab = ['Blade', 'Grace', 'Serena']
 
     def prerun(self):
         self.hp = 100

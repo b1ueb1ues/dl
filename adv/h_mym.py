@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -8,15 +7,18 @@ def module():
 
 class Halloween_Mym(Adv):
     conf = {}
-    conf['slots.a'] = KFM()+Jewels_of_the_Sun()
+    conf['slots.a'] = Kung_Fu_Masters()+Jewels_of_the_Sun()
     conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.burn.d'] = Apollo()
     conf['acl'] = """
+        `dragon, s=2
         `s3, not self.s3_buff
         `s1, fsc
         `s2, cancel
         `fs, x=5
     """
-    conf['chain'] = {'h_mym': ('dh', 0.20)}
+    coab = ['Blade', 'Yuya', 'Serena']
+
     conf['dragonform'] = {
         'act': 'c3 s',
 
@@ -79,5 +81,5 @@ class Halloween_Mym(Adv):
         self.s2_da.on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
