@@ -88,12 +88,20 @@ colorList = ['MediumSlateBlue', 'CornflowerBlue', 'CadetBlue', 'LightSeaGreen']
 //     'force_strike': '&#9671;',
 //     'team_buff': '&#9672;'
 // }
-function createDpsBar(resDiv, arr, extra, total_dps = undefined, coab_str = '') {
+function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     let copyTxt = '';
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
-    let slots = ' ' + coab_str + arr[6];
+    let slots = ' ' + arr[6];
+
+    let coabs = arr[6].split('][')[3].replace(']','').split('|');
+    for (const c of coabs){
+        console.log(c);
+        const check = $("input[id$='" + c.toLowerCase() + "']");
+        check.prop('checked', true);
+    }
+
     const cond = (arr[7] != undefined && arr[7] != '<>' && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
     const comment = (arr[8] != undefined) ? arr[8] : '';
     let cond_comment = [];
@@ -485,13 +493,9 @@ function runAdvTest() {
                     const name = name_fmt(cond_true[1]);
                     const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
-                    let coab_str = ''
-                    if (coabilities) {
-                        coab_str = '(ex: ' + Object.keys(coabilities).join(' ') + ') ';
-                    }
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
-                    copyTxt += createDpsBar(newResultItem, cond_true, res.extra, undefined, coab_str);
+                    copyTxt += createDpsBar(newResultItem, cond_true, res.extra, undefined);
                     if (result.length > 2 && result[2].includes(',')) {
                         cond_false = result[2].split(',');
                         extra = Object.keys(res.extra_no_cond).length > 0 ? res.extra_no_cond : res.extra
