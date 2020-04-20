@@ -11,16 +11,15 @@ class Marth(Adv):
     a3 = ('cc',0.13,'hit10')
     
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.d'] = Sakuya()
     conf['acl'] = """
-        `dragon
         `s3, not self.s3_buff
         `s2, fsc
         `s1, fsc
         `fs, x=2
         """
-    coab = ['Blade', 'Serena', 'Gala_Sarisse']
+    coab = ['Blade', 'Wand', 'Joe']
 
     def init(self):
         self.stance = 0

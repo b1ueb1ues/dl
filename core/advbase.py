@@ -1471,13 +1471,13 @@ class Adv(object):
                 pass
 
         self.d_slots()
-        self.slot_backdoor()
         self.base_att = 0
 
         self.afflic_condition()
         self.sim_affliction()
         self.sim_buffbot()
 
+        self.slot_backdoor()
         self.base_att = int(self.slots.att(globalconf.forte))
         self.slots.oninit(self)
 

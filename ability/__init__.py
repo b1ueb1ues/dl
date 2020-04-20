@@ -164,7 +164,7 @@ class Co_Ability(Ability):
         'sword': [('dh','passive',0.15)],
         'axe2': [('crit','damage',0.30)],
         'geuden': [('da','passive',0.10),('dt','passive',0.20)],
-        'megaman': [('overdrive_killer','passive',0.15)],
+        'megaman': [('killer','passive',0.15*Overdrive_Punisher.EFFICIENCY)],
         'tobias': [('buff','time',0.20)],
         'grace': [('fs','ex',0.20)]
     }
