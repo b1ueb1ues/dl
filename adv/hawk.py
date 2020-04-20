@@ -11,15 +11,29 @@ class Hawk(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
-        `dragon.act("c3 s end")
-        `fs, s=2
+        queue if prep and self.duration <= 60 and self.afflics.stun.resist < 100
+        `s2
+        `fs
+        `s1, fsc
+        `fs
+        `s1, fsc
+        `s1, cancel
+        `s2, cancel
+        else
+        `dragon.act("c3 s end"), self.duration > 120
+        `fs, s=2 and self.fs_alt.uses>0
         `s2, s1.check()
         `s1, cancel
+        end
     """
     coab = ['Blade','Dragonyule_Xainfried','Sylas']
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
-
+    
+    def d_slots(self):
+        if self.duration <= 60:
+            self.conf['slots.a'] = The_Chocolatiers()+The_Fires_of_Hate()
+    
     def fs_proc_alt(self, e):
         self.afflics.stun('fs', 110)
         self.afflics.poison('fs', 120, 0.582)

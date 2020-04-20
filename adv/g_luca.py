@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Gala_Luca
@@ -11,12 +9,13 @@ class Gala_Luca(Adv):
 
     conf = {}
     conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
-    conf['slots.d'] = Daikokuten()
     conf['acl'] = """
+        `dragon
         `s1
         `s2
         `s3, x=5
         """
+    coab = ['Axe2','Dagger','Halloween_Elisanne']
 
     def init(self):
         self.crit_mod = self.custom_crit_mod
@@ -84,5 +83,5 @@ class Gala_Luca(Adv):
         self.in_s1 = False
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

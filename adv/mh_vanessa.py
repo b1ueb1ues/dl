@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Hunter_Vanessa
@@ -27,13 +25,14 @@ class Hunter_Vanessa(Adv):
 
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+Spirit_of_the_Season()
-    conf['slots.d'] = Corsaint_Phoenix()
     conf['acl'] = """
+        `dragon, fsc
         `fs2, s1.charged>=s1.sp-self.sp_val('fs2')
         `s1, x=5 or fsc
         `s2, not self.s2_att_boost.get()
         `s3, x=5 or fsc
     """
+    coab = ['Blade','Dagger','Halloween_Elisanne']
     conf['afflict_res.paralysis'] = 0
 
     def d_slots(self):
@@ -116,5 +115,5 @@ class Hunter_Vanessa(Adv):
             self.fs_debuff.on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

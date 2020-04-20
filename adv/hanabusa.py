@@ -1,19 +1,17 @@
-import adv.adv_test
 from core.advbase import *
-from slot.a import *
-from slot.d import *
 
 def module():
     return Hanabusa
 
 class Hanabusa(Adv):
     conf = {}
-    conf['slots.a'] = RR()+JotS()
     conf['acl'] = """
+        `dragon
         `s1
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel
+        `s2
+        `s3
         """
+    coab = ['Wand','Dagger','Halloween_Elisanne']
 
     def prerun(self):
         self.stance = 0
@@ -45,6 +43,5 @@ class Hanabusa(Adv):
         self.stance = 0
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

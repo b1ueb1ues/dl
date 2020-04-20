@@ -1,8 +1,6 @@
-import adv.adv_test
 from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
-from slot.d import *
 
 def module():
     return Botan
@@ -11,12 +9,16 @@ class Botan(Adv):
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
     conf = {}
     conf['slots.a'] = RR() + Jewels_of_the_Sun()
-    conf['slots.d'] = Shinobi()
     conf['acl'] = """
-        `s3, not self.s3_buff and pin='prep'
+        `s3, not self.s3_buff and prep
         `s2
         `s1, cancel
     """
+    coab = ['Blade','Wand','Dagger']
+
+    def d_coabs(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.coab = ['Blade','Wand','Bow']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

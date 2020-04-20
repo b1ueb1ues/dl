@@ -1,6 +1,4 @@
-import adv.adv_test
 from core.advbase import *
-from slot.a import *
 
 def module():
     return Malka
@@ -10,18 +8,18 @@ class Malka(Adv):
 
     conf = {}
     conf['acl'] = """
+        `dragon
         `s1
         `s2
         `s3
         `fs, seq=5
         """
-    conf['slots.a'] = RR()+BN()
+    coab = ['Blade','Dagger','Halloween_Elisanne']
 
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
             self.conf.slot.a = RR()+JotS()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

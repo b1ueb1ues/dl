@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 from slot.w import *
 
 class w530(WeaponBase):
@@ -16,15 +14,17 @@ def module():
 class Yachiyo(Adv):
     a1 = ('affself_paralysis', 0.15, 10, 5)
     a3 = ('k_paralysis', 0.2)
+
     conf = {}
     conf['slots.a'] = MF()+SotS()
-    conf['slots.d'] = Corsaint_Phoenix()
     conf['acl'] = """
+        `dragon
         `fs, self.fsa_charge and seq=5
         `s2
         `s1
-        `s3
+        `s3, fsc
         """
+    coab = ['Malora','Dagger','Halloween_Elisanne']
     conf['afflict_res.paralysis'] = 0
 
     def prerun(self):
@@ -51,8 +51,6 @@ class Yachiyo(Adv):
             self.fsa_charge = 0
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

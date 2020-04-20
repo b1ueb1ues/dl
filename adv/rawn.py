@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -7,12 +6,14 @@ def module():
 class Rawn(Adv):
     conf = {}
     conf['acl'] = """
-        `s1, cancel
-        `s2, cancel
-        `s3, cancel
+        `dragon, fsc
+        `s1
+        `s2
+        `s3
         `fs, x=4
-    """
+        """
+    coab = ['Blade','Wand','Halloween_Elisanne']
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

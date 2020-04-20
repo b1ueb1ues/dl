@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Aldred
@@ -9,14 +8,15 @@ class Aldred(Adv):
     comment = 'maintain dragondrive'
 
     conf = {}
-    conf['slots.a'] = Heralds_of_Hinomoto()+Primal_Crisis()
-    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = Heralds_of_Hinomoto()+Dear_Diary()
+    conf['slots.poison.a'] = Heralds_of_Hinomoto()+The_Plaguebringer()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2
         `dragon, not self.dragondrive_buff.get()
         `s1, x=5
     """
+    coab = ['Wand','Berserker','Curran']
 
     def prerun(self):
         self.dragondrive_buff = Selfbuff('dragondrive', 0.30, -1, 's', 'passive')
@@ -37,7 +37,8 @@ class Aldred(Adv):
 
     def d_slots(self):
         if self.duration <= 60:
-            self.slots.a = TL()+The_Chocolatiers()
+            self.conf['slots.a'] = The_Chocolatiers()+TL()
+            self.conf['slots.poison.a'] = The_Chocolatiers()+The_Plaguebringer()
 
     def x_proc(self, e):
         if self.dragondrive_buff.get():

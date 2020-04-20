@@ -1,6 +1,4 @@
-import adv.adv_test
 from core.advbase import *
-from slot.a import *
 
 def module():
     return Annelie
@@ -17,13 +15,14 @@ class Annelie(Adv):
     a3 = ('energized_att', 0.20)
     conf = {}
     conf['acl'] = """
+        `dragon
         `s1, s2.charged<=10000
         `s1, s=2
         `s2
         `s3
         `fs, seq=5 
         """
-    conf['slots.a'] = RR()+BN()
+    coab = ['Lucretia','Dagger','Halloween_Elisanne']
 
     def prerun(self):
         self.stance = 0
@@ -49,6 +48,5 @@ class Annelie(Adv):
         self.energy.add(2, team=True)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

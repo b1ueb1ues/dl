@@ -18,7 +18,7 @@ class Dragonyule_Xainfried(Adv):
         `s2, x=5
         `s3, x=5
         """
-    coab = ['Blade','Bow','Lin_You']
+    coab = ['Blade','Bow','Tobias']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

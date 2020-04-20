@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -9,11 +8,12 @@ class Lucretia(Adv):
     a3 = ('bk',0.3)
     conf = {}
     conf['acl'] = """
-        `s2, seq=5 and cancel
-        `s3, s=2
-        `s1, s=3
-        `s1, seq=5 and cancel
+        `dragon, s=2
+        `s2, x=5
+        `s1
+        `s3
         """
+    coab = ['Blade','Dagger','Halloween_Elisanne']
 
     def s1_proc(self, e):
         self.energy.add(1, team=True)
@@ -23,8 +23,8 @@ class Lucretia(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
 
 
 

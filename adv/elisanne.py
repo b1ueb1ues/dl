@@ -11,12 +11,15 @@ class Elisanne(Adv):
 
     conf = {}
     conf['slots.a'] = Beach_Battle()+Castle_Cheer_Corps()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
         `fs, x=5
     """
     coab = ['Tobias', 'Renee', 'Bow']
+
+    
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

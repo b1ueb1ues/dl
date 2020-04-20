@@ -4,8 +4,9 @@ import adv.g_cleo
 from slot.a import Amulet
 from slot.w.wand import Agito_Jiu_Ci
 
-class King_of_the_Skies(Amulet):
-    att = 39
+class Wily_Warriors_Air_and_Crash(Amulet):
+    att = 49
+    a = [('a', 0.2, 'hit15')]
 
 class Candy_Couriers(Amulet):
     att = 65
@@ -16,13 +17,14 @@ def module():
 
 class Gala_Cleo(adv.g_cleo.Gala_Cleo):
     conf = adv.g_cleo.Gala_Cleo.conf.copy()
-    conf['slots.a'] = Candy_Couriers()+King_of_the_Skies()
+    conf['slots.a'] = Candy_Couriers()+Wily_Warriors_Air_and_Crash()
     conf['slots.d'] = slot.d.Shinobi()
     conf['slots.w'] = Agito_Jiu_Ci()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
         s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d fs s2 s1 dragon end
     """
+    coab = ['Blade','Bow','Curran']
     comment = '4 Gleo vs EHJP; simulated break & no team dps; {}'.format(conf['rotation'].replace(' d ', ' dodge ').strip())
 
     def prerun(self):

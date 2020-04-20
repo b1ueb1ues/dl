@@ -1,4 +1,4 @@
-import adv.adv_test
+from core.advbase import *
 from slot.a import The_Wyrmclan_Duo, Primal_Crisis
 import adv.g_luca
 
@@ -13,6 +13,7 @@ class Gala_Luca(adv.g_luca.Gala_Luca):
     def buff_icon_count(self):
         return 7
 
+
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(Gala_Luca, *sys.argv)

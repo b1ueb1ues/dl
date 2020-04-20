@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 galex_conf = {
     'x1.dmg': 82 / 100.0,
@@ -74,9 +73,9 @@ class Gala_Alex(Adv):
     a3 = ('k_poison', 0.30)
 
     conf = galex_conf.copy()
-    conf['slots.d'] = Shinobi()
     conf['slots.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         if fsc
         `s2, not self.afflics.poison.get()
@@ -85,8 +84,12 @@ class Gala_Alex(Adv):
         end
         `fs, x=4
     """
+    coab = ['Blade','Wand','Delphi']
     conf['afflict_res.poison'] = 0
 
+    def d_coabs(self):
+        if self.duration <= 120:
+            self.coab = ['Blade','Wand','Heinwald']
     def prerun(self):
         self.s1_debuff = Debuff('s1', 0.05, 15)
 

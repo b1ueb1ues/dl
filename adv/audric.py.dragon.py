@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 import adv.audric
 
 def module():
@@ -10,7 +9,6 @@ class Audric(adv.audric.Audric):
     a1 = ('dp', 10)
     
     conf = adv.audric.Audric.conf.copy()
-    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
@@ -21,4 +19,4 @@ class Audric(adv.audric.Audric):
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
-    test_with_argv(None, *sys.argv)
+    test_with_argv(Audric, *sys.argv)

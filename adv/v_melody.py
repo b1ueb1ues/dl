@@ -19,7 +19,7 @@ class Valentines_Melody(Adv):
         `s3, cancel and self.mod('def')!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
-    coab = ['Blade','Eleonora','Sylas']
+    coab = ['Blade','Eleonora','Lin_You']
     conf['afflict_res.poison'] = 0
 
     def prerun(self):

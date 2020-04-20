@@ -10,6 +10,7 @@ class Gala_Elisanne(Adv):
 
     conf = {}
     conf['slots.a'] = BB()+FWHC()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1

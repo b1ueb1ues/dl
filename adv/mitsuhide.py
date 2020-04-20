@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Mitsuhide
@@ -11,15 +9,20 @@ class Mitsuhide(Adv):
     a3 = ('k_paralysis',0.3)
 
     conf = {}
-    conf['slots.d'] = Daikokuten()
     conf['slots.a'] = TB()+Spirit_of_the_Season()
     conf['acl'] = """
+        `dragon
         `s1
         `s2
         `s3
         `fs, seq=4
     """
+    coab = ['Blade','Malora','Halloween_Elisanne']
     conf['afflict_res.paralysis'] = 0
+
+    def d_coabs(self):
+        if self.duration <= 60:
+            self.coab = ['Blade','Dragonyule_Malora',"Halloween_Elisanne"]
 
     def init(self):
         self.s1_stance = 1
@@ -47,9 +50,5 @@ class Mitsuhide(Adv):
         Spdbuff('s2',0.1,10).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

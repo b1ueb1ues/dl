@@ -1,5 +1,5 @@
-import adv.adv_test
 from core.advbase import *
+from slot.a import *
 
 def module():
     return Elias
@@ -7,15 +7,20 @@ def module():
 class Elias(Adv):
     a3 = ('lo',0.4)
     conf = {}
+    conf['slots.paralysis.a'] = RR()+Spirit_of_the_Season()
     conf['acl'] = """
-    `s1, fsc
-    `s3, fsc
-    `fs, seq=4
-    """
+        `dragon
+        `s1, fsc
+        `s3, fsc
+        `s2, fsc
+        `fs, x=4
+        """
+    coab = ['Blade','Lucretia','Halloween_Elisanne']
 
     def s2_proc(self, e):
         self.energy.add(1, team=True)
 
+
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

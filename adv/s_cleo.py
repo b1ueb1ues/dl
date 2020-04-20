@@ -1,22 +1,25 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Summer_Cleo
 
 class Summer_Cleo(Adv):
-    a3 = ('k_paralysis',0.3)
-    conf = {}
-    conf['slots.d'] = Corsaint_Phoenix()
     comment = 'nofs'
-    conf['afflict_res.paralysis'] = 0
+
+    a3 = ('k_paralysis',0.3)
+
+    conf = {}
+    conf['slots.a'] = RR()+Spirit_of_the_Season()
     conf['acl'] = """
+            `dragon
             `s2
             `s1
             `s3
             """
+    coab = ['Blade','Wand','Halloween_Elisanne']
+    conf['afflict_res.paralysis'] = 0
+
     def init(self):
         random.seed()
         self.bc = Selfbuff()
@@ -61,6 +64,5 @@ class Summer_Cleo(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

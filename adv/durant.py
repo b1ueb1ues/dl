@@ -11,12 +11,26 @@ class Durant(Adv):
 
     conf = {}
     conf['slots.a'] = Proper_Maintenance()+Howling_to_the_Heavens()
+    conf['slots.d'] = Fatalis()
 
+    conf['slots.poison.a'] = Proper_Maintenance()+The_Plaguebringer()
+    conf['slots.poison.d'] = Epimetheus()
+    
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
         `s2, x=5
         """
+    
+    def d_acl(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.conf['acl'] = """
+                `dragon, s=1
+                `s3, not self.s3_buff
+                `s1
+                `s2, x=5
+                """
+    
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

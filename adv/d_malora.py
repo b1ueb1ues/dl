@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Dragonyule_Malora
@@ -11,12 +9,15 @@ class Dragonyule_Malora(Adv):
     a1 = ('od',0.13)
 
     conf = {}
-    conf['slots.a'] = KFM()+FitF()
+    conf['slots.a'] = The_Wyrmclan_Duo() + Primal_Crisis()
+    conf['slots.paralysis.a'] = Resounding_Rendition() + Spirit_of_the_Season()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s1
         `s2, self.def_mod()!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
         """
+    coab = ['Blade','Dagger','Halloween_Elisanne']
 
     def prerun(self):
         if self.condition('buff all team'):
@@ -35,6 +36,5 @@ class Dragonyule_Malora(Adv):
             self.dmg_make('o_s2_boost',4.32*3*0.8)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

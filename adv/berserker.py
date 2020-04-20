@@ -8,11 +8,16 @@ def module():
 class Berserker(Adv):
     a3 = ('lo',0.3)
     conf = {}
+    conf['slots.a'] = The_Shining_Overlord()+Dear_Diary()
+    conf['slots.poison.a'] = The_Shining_Overlord()+The_Plaguebringer()
+    conf['slots.d'] = Andromeda()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
         `fs, x=3
         """
+    coab = ['Ieyasu','Wand','Berserker','Curran']
 
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
