@@ -15,7 +15,7 @@ class Veronica(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
-        `s2, x=5
+        `s2, x=5 and self.a1_buff.get() and self.hp<50
         """
     coab = ['Ieyasu','Curran','Berserker']
 
@@ -32,12 +32,7 @@ class Veronica(Adv):
             self.charge_p('s1_hpcut', 0.20, target='s1')
             # assume you take bit more damage at and proc last destruction at some point
             if self.hp <= 50:
-                self.hp = 40
                 self.a1_buff.on()
-
-    def s2_proc(self, e):
-        self.hp += 23
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
