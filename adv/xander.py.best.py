@@ -1,4 +1,3 @@
-import adv.adv_test
 import adv.xander
 from slot.a import *
 from slot.d import *
@@ -18,12 +17,14 @@ class Xander(adv.xander.Xander):
     conf = {}
     conf['slots.a'] = Wily_Warriors_Metal_and_Quick() + RR()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s1
         `s2, fsc
         `s3, fsc
-        `fs, seq=2 and cancel
+        `fs, x=2 and cancel
         """
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(Xander, *sys.argv)
+

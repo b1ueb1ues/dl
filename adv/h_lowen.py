@@ -13,13 +13,16 @@ class Halloween_Lowen(Adv):
 
     conf = {}
     conf['slots.a'] = From_Whence_He_Comes()+The_Bridal_Dragon()
+    conf['slots.burn.a'] = conf['slots.a']
     conf['slots.d'] = PopStar_Siren()
     conf['acl'] = """
+        `dragon.act('s c3 c2 s end')
         `s3, not self.s3_buff
         `s1, x=5
         `s2, pin='prep' or x=5 and self.hp_stack < 3
         `fs, s=3 and self.fs_prep_c > 0
     """
+    coab = ['Bow', 'Euden', 'Yuya']
 
     def init(self):
         self.hp_stack = 0
