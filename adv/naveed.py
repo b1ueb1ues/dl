@@ -1,5 +1,4 @@
 from core.advbase import *
-from core.advbase import *
 from slot.a import *
 
 def module():
@@ -31,7 +30,7 @@ class Naveed(Adv):
         self.s1level += 1
         if self.s1level >= 5:
             self.s1level = 5
-        adv.Event('defchain')()
+        Event('defchain')()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

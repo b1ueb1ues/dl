@@ -120,8 +120,9 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
 
     for a, d, c in run_results:
         if verbose == -2 or verbose == -5:
+            page = 'sp' if special else duration
             if c:
-                output.write('-,{},{}\n'.format(duration, c if isinstance(c, str) else '_'))
+                output.write('-,{},{}\n'.format(page, c if isinstance(c, str) else '_'))
             report(d, a, output, team_dps, cond=c)
         else:
             summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)

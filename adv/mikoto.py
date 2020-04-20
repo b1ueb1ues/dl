@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -13,10 +12,12 @@ class Mikoto(Adv):
     conf = {}
     conf['slots.d'] = Arctos()
     conf['acl'] = """
+        `dragon
         `s3, x=5 and not self.s3_buff
         `s1, x=5
         `s2, x=5
         """
+    coab = ['Yuya', 'Halloween_Mym', 'Marth']
 
     def prerun(self):
         self.s1buff = Selfbuff("s1",0.0, 20)
@@ -56,8 +57,6 @@ class Mikoto(Adv):
     def s2_proc(self, e):
         self.s2buff.on()
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

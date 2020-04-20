@@ -13,7 +13,7 @@ class Alex(Adv):
     conf = {}
     conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
     conf['slots.poison.a'] = conf['slots.a']
-    con['slots.d'] = Fatalis()
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

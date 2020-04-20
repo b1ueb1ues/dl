@@ -1,5 +1,5 @@
 from core.advbase import *
-import slot
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -11,10 +11,12 @@ class Student_Maribelle(Adv):
     conf = {}
     conf['slots.d'] = Sakuya()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s1
         `s2
     """
+    coab = ['Blade', 'Marth', 'Serena']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -8,7 +8,8 @@ def module():
 class Summer_Estelle(Adv):
     a3 = ('bt',0.2)
     conf = {}
-    conf['slot.frostbite.a'] = conf['slot.a']
+    conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
+    conf['slots.frostbite.a'] = conf['slots.a']
     acl12 = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel 

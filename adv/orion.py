@@ -15,7 +15,7 @@ class Orion(Adv):
         `s2
         `fs, x=5
     """
-    coab = ['Ieysau','Wand','Axe2']
+    coab = ['Ieyasu','Wand','Axe2']
 
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:

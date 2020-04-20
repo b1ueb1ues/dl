@@ -11,7 +11,7 @@ class Taro(Adv):
         `s1
         `s2
         """
-coab = ['Wand','Dagger','Cleo']
+    coab = ['Wand','Dagger','Cleo']
 
 
 if __name__ == '__main__':

@@ -10,10 +10,12 @@ class Marty(Adv):
     conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
     conf['acl'] = """
+        `dragon, s=2
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, x=2
         """
+    coab = ['Blade', 'Serena', 'Marth']
 
 
 if __name__ == '__main__':

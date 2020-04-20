@@ -11,7 +11,7 @@ class Lathna(Adv):
     a3 = ('dt', 0.25)
     
     conf = {}
-    conf['slots.a'] = RR()+An_Ancient_Oath()
+    conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
     conf['slots.d'] = Chthonius()
     conf['acl'] = """
         `dragon

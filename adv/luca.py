@@ -8,8 +8,7 @@ class Luca(Adv):
     a1 = ('a',0.13,'hp100')
 
     conf = {}
-    conf[]
-    conf['slots.paralysis.a'] = RR()+Spirit_of_the_Season()
+    conf['slots.paralysis.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon
         `s1

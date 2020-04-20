@@ -12,7 +12,7 @@ class Summer_Celliera(Adv):
     conf = {}
     conf['slots.a'] = VC() + JotS()
     conf['slots.d'] = Siren()
-    conf['slots.frostbite.a'] = ['slots.a']
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `s2
         `s1

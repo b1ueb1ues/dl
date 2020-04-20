@@ -15,7 +15,7 @@ class Dragonyule_Cleo(Adv):
         `s3, fsc
         `fs, seq=5
         """
-    coab = ['MH_Sarisse', 'Xander', 'Summer_Estelle']
+    coab = ['Hunter_Sarisse', 'Xander', 'Summer_Estelle']
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
         self.stance = 0

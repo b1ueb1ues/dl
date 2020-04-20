@@ -5,6 +5,8 @@ def module():
     return Joe
 
 class Joe(Adv):
+    a1 = ('edge_burn', 70, 'hp100')
+
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Mega_Friends()+Dear_Diary()
@@ -15,7 +17,7 @@ class Joe(Adv):
         `fs, x=1
         """
     conf['afflict_res.burn'] = 0
-    a1 = ('edge_burn', 70, 'hp100')
+    coab = ['Blade', 'Wand', 'Marth']
 
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)
