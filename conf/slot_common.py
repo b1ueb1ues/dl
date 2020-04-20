@@ -10,7 +10,7 @@ ele_dragon = {
     'water': Siren,
     'wind': Vayu,
     'light': Daikokuten,
-    'shadow': Fatalis
+    'shadow': Shinobi
 }
 
 wp_ct = lambda wp1, wp2, wpc: (wp1, {

@@ -1,7 +1,7 @@
 from core.advbase import *
 from module.bleed import Bleed
-from slot.d import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Patia
@@ -11,13 +11,14 @@ class Patia(Adv):
     a3 = ('primed_crit_chance', 0.10, 5)
 
     conf = {}
+    conf['slots.a'] = Brothers_in_Arms()+RR()
     conf['slots.d'] = Fatalis()
-    conf['slots.a'] = Resounding_Rendition()+Brothers_in_Arms()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
         `s2
     """
+    coab = ['Blade','Bow','Tobias']
 
     def prerun(self):
         self.bleed = Bleed("g_bleed",0).reset()

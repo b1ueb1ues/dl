@@ -1,5 +1,6 @@
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Alex
@@ -10,14 +11,17 @@ class Alex(Adv):
     a3 = ('sp',0.05)
 
     conf = {}
+    conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    conf['slots.poison.a'] = conf['slots.a']
+    con['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
         `s2
         `fs, x=5
         """
-    conf['afflict_res.poison'] = 0
-    conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    coab = ['Blade','Wand','Gala_Alex']
+    conf['afflict_res.poison'] = 0    
 
     def s1_proc(self, e):
         self.afflics.poison('s1',100,0.396)
@@ -25,4 +29,3 @@ class Alex(Adv):
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)
-

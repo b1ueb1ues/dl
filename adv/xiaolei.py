@@ -1,5 +1,3 @@
-import adv.adv_test
-from core.advbase import *
 from core.advbase import *
 
 def module():
@@ -7,12 +5,15 @@ def module():
 
 class Xiao_Lei(Adv):
     a1 = ('s',0.2)
+    
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel 
-        `s3, seq=5 and cancel
+        `dragon
+        `s1
+        `s2
+        `s3
         """
+    coab = ['Blade','Dagger','Halloween_Elisanne']
 
     def s2_proc(self, e):
         Teambuff('s2cc',0.08,10,'crit','rate').on()
@@ -21,5 +22,5 @@ class Xiao_Lei(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

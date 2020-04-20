@@ -48,6 +48,7 @@ dragondrive_fs_conf = {
 class Bellina(Adv):
     conf = {}
     conf['slots.a'] = Twinfold_Bonds()+Howling_to_the_Heavens()
+    conf['slots.poison.a'] = Twinfold_Bonds()+The_Plaguebringer()
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s2, sim_duration-now()<1.5
@@ -61,6 +62,7 @@ class Bellina(Adv):
         `fs, x=4
         end
     """
+    coab = ['Ieyasu','Curran','Berserker']
 
     def fs_proc_alt(self, e):
         with CrisisModifier('s1', 1.00, self.hp):

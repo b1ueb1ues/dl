@@ -1,4 +1,6 @@
 from core.advbase import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Lathna
@@ -9,12 +11,16 @@ class Lathna(Adv):
     a3 = ('dt', 0.25)
     
     conf = {}
-    conf['slots.d'] = slot.d.Shinobi()
+    conf['slots.a'] = RR()+An_Ancient_Oath()
+    conf['slots.d'] = Chthonius()
     conf['acl'] = """
+        `dragon
         `s3, not self.s3_buff
         `s1a
         `s2, x=5
         """
+    coab = ['Ieyasu','Gala_Alex','Cleo']
+    
     conf['dragonform'] = {
         'act': 'c3 s c3 c3 c2 c2 c2',
 

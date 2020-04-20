@@ -8,15 +8,16 @@ class Ryozen(Adv):
     a3 = ('od',0.08)
     conf = {}
     conf['acl'] = """
+        `dragon, cancel
         `s2
         `s3
-        `fs, seq=5
+        `fs, x=5
         """
+    coab = ['Blade','Dagger','Halloween_Elisanne']
     
     def s1_proc(self, e):
         Teambuff('s1', 0.25, 15, 'defense').on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

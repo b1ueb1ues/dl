@@ -2,12 +2,10 @@ from core.advbase import *
 from slot import *
 from slot.w import *
 from slot.a import *
-from slot.d import *
 from module.x_alt import Fs_alt
 
 import random
 random.seed()
-
 
 def module():
     return Gala_Cleo
@@ -16,18 +14,14 @@ class Gala_Cleo(Adv):
     comment = '(the true cleo is here)'
     a3 = ('prep','100%')
     conf = {}
-    conf['slots.a'] = CC()+JotS()  # wand c2*1.08 = 217
-    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = CC()+PC()  # wand c2*1.08 = 217
     conf['acl'] = """
-        `s3, pin='prep'
+        `s3, prep
         `fs, s1.charged>=s1.sp and self.fs_alt.uses > 0
         `s2, x=5 or x=4 or fsc or s=3
         `s1, s=2 or fsc
         """
-
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.slots.a = CC()+Primal_Crisis()
+    coab = ['Blade','Bow','Dagger']
 
     def fs_proc_alt(self, e):
         if self.a1_buffed:

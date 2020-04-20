@@ -1,7 +1,6 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
-import slot
+from slot.d import *
 
 def module():
     return Natalie
@@ -9,16 +8,19 @@ def module():
 class Natalie(Adv):
     conf = {}
     conf['slots.a'] = HoH() + Dear_Diary()
-    conf['slots.d'] = Shinobi()
+    conf['slots.poison.a'] = HoH() + The_Plaguebringer()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s2, s=3 or x=5
         `s1
         """
+    coab = ['Wand','Curran','Berserker']
 
     def d_slots(self):
         if self.duration <= 60:
-            self.slots.a = TL()+The_Chocolatiers()
+            self.conf['slots.a'] = The_Chocolatiers()+TL()
+            self.conf['slots.poison.a'] = The_Chocolatiers()+The_Plaguebringer()
 
     def prerun(self):
         self.hp = 100

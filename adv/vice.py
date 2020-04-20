@@ -9,14 +9,15 @@ def module():
 class Vice(Adv):
     a1 = ('bk',0.35)
     conf = {}
-    conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
-    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = Twinfold_Bonds()+The_Fires_of_Hate()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
         `s2
         `fs, x=5
         """
+    coab = ['Wand','Galex','Heinwald']
     conf['afflict_res.poison'] = 0
 
     def fs_proc_alt(self, e):

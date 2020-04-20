@@ -74,6 +74,7 @@ class Tobias(Adv):
 
     conf = {}
     conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
+    conf['slots.poison.a'] = conf['slots.a']
     conf['slots.d'] = Freyja()
     conf['acl'] = """
         `s1

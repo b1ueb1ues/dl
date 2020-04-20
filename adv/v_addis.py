@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
 
 def module():
@@ -10,13 +9,14 @@ class Valentines_Addis(Adv):
 
     a1 = ('k_poison',0.3)
     conf = {}
-    conf['slots.d'] = Shinobi()
     conf['slots.a'] = The_Plaguebringer()+Primal_Crisis()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s2, self.hp > 30
         `s1
     """
+    coab = ['Wand','Curran','Berserker']
     conf['afflict_res.poison'] = 0
 
     def prerun(self):

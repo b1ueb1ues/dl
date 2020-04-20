@@ -10,14 +10,16 @@ class Sazanka(Adv):
     a3 = ('k_sleep', 0.20)
 
     conf = {}
-    conf['slots.d'] = Shinobi()
     conf['slots.a'] = KFM()+Crystalian_Envoy()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
         `s2, fsc
         `fs, seq=5
     """
+    coab = ['Blade','Wand','Dagger']
     conf['afflict_res.sleep'] = 80
 
     def prerun(self):

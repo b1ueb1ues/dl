@@ -9,14 +9,15 @@ class Delphi(Adv):
     a1 = ('a',-0.55)
 
     conf = {}
-    conf['slots.d'] = Fatalis()
     conf['slots.a'] = Mega_Friends()+The_Fires_of_Hate()
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
         `s2, self.s1fscharge == 0 and (s1.charged <= ((s1.sp/13)*9))
         `fs, x=2
     """
+    coab = ['Blade','Gala_Alex','Heinwald']
     conf['afflict_res.poison'] = 0
 
     def prerun(self):

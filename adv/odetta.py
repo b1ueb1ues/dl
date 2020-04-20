@@ -1,6 +1,4 @@
-import adv.adv_test
 from core.advbase import *
-from slot.a import *
 
 def module():
     return Odetta
@@ -9,13 +7,14 @@ class Odetta(Adv):
     comment = 'c2+fs'
 
     conf = {}
-    conf['slots.a'] = RR() + The_Lurker_in_the_Woods()
     conf['acl'] = """
+        `dragon
         `s2, fsc
         `s1, fsc
         `s3, fsc
         `fs, seq=2
         """
+    coab = ['Blade','Dagger','Halloween_Elisanne']
 
     a1 = ('a',0.1,'hp70')
     a3 = ('bt',0.2)
@@ -32,5 +31,5 @@ class Odetta(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

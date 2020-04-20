@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Audric
@@ -9,13 +8,15 @@ class Audric(Adv):
     a1 = ('dp', 10)
     
     conf = {}
-    conf['slots.d'] = Shinobi()
     conf['acl'] = """
+        `dragon
         `s3, not self.s3_buff
-        `s1
+        `s1, fsc
         `s2, fsc
         `fs, x=3
     """
+    coab = ['Ieyasu','Wand','Cleo']
+
     def prerun(self):
         self.cursed_blood = Selfbuff('cursed_blood',0.30,-1,'crit','chance')
         Event('dragon').listener(self.a3_on)

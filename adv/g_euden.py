@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Gala_Euden
@@ -10,14 +8,14 @@ def module():
 class Gala_Euden(Adv):
     comment = 'c2+fs'
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+SDO()
-    conf['slots.d'] = Cupid()
     conf['acl'] = """
+        `dragon, s=1
         `s1,fsc or s=2
         `s2,fsc
         `s3,fsc
         `fs,seq=2 and cancel
     """
+    coab = ['Blade','Dagger','Cleo']
     conf['afflict_res.paralysis'] = 0
 
     def prerun(self):
@@ -51,5 +49,5 @@ class Gala_Euden(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

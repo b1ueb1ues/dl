@@ -10,12 +10,14 @@ class Heinwald(Adv):
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
 
     conf = {}
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, s=3 or cancel
         `s1, cancel
         """
-
+    coab = ['Blade','Wand','Dagger']
+    
     def init(self):
         if self.condition("buff all teammates"):
             self.s2_proc = self.c_s2_proc

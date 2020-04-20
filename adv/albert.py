@@ -1,26 +1,22 @@
-import adv.adv_test
 from core.advbase import *
 import copy
 from module.x_alt import Fs_alt
-from slot.a import *
-from slot.d import *
 
 def module():
     return Albert
-
 
 class Albert(Adv):
     a1 = ('fs',0.5)
     conf = {}
     conf['acl'] = """
+        `dragon, fsc
         `s2, s1.charged>=s1.sp-330
         `fs, s=2 and not self.afflics.paralysis.get()
         `s1, fsc
         `s3, fsc
         `fs, seq=2
         """
-    conf['slots.a'] = TSO()+SDO()
-    conf['slots.d'] = C_Phoenix()
+    coab = ['Blade','Dagger','Halloween_Elisanne']
     conf['afflict_res.paralysis'] = 0
 
     def init(self):
@@ -80,6 +76,5 @@ class Albert(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

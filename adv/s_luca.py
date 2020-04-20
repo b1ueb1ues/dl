@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -9,13 +8,16 @@ class Summer_Luca(Adv):
     a1 = ('a',0.1,'hp70')
 
     conf = {}
+    conf['slots.a'] = RR()+Breakfast_at_Valerios()
     conf['acl'] = """
+        `dragon, cancel
         `s1
         `s2
         `s3,seq=4
         `fs, x=5
         """
-    conf['slots.a'] = KFM()+FitF()
+    coab = ['Blade','Dagger','Halloween_Elisanne']
+
     def d_slots(self):
         if self.slots.c.has_ex('bow'):
             self.conf.slot.a = KFM()+HoH()
@@ -26,5 +28,5 @@ class Summer_Luca(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 
 def module():
@@ -7,11 +6,12 @@ def module():
 class Fritz(Adv):
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
+        `s1, x=5 and cancel or fsc
         `s2
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `s3
+        `fs, x=5
         """
+    coab = ['Blade','Wand','Halloween_Elisanne']
 
     def prerun(self):
         self.stance = 0
@@ -26,7 +26,6 @@ class Fritz(Adv):
             self.dmg_make("o_fs_boost",0.57*3+0.29)
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
