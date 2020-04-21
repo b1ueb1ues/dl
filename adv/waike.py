@@ -10,8 +10,8 @@ class Waike(Adv):
     a1 = ('edge_bog', 40, 'hp100')
 
     conf = {}
-    conf['slot.a'] = Primal_Crisis()+Mega_Friends()
-    conf['slot.d'] = Leviathan()
+    conf['slots.a'] = Primal_Crisis()+Mega_Friends()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1, fsc

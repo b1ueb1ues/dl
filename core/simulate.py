@@ -384,10 +384,6 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
         output.write('\n')
         output.write(adv.__class__.__name__)
         output.write(' ')
-        if len(adv.slots.c.coabs.keys()) > 0:
-            output.write('(')
-            output.write(' '.join(list(adv.slots.c.coabs.keys())[:4])) # why
-            output.write(') ')
         output.write(slots(adv))
         output.write('\n')
         cond_comment = []
