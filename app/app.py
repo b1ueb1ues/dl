@@ -193,7 +193,13 @@ def simc_adv_test():
     t   = 180 if not 't' in params else abs(float(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
-    coab = None if not 'coab' in params else list(params['coab'].keys())
+    if 'coab' not in params:
+        coab = None
+    else:
+        try:
+            coab = list(params['coab'].keys())
+        except:
+            coab = []
     # latency = 0 if 'latency' not in params else abs(float(params['latency']))
     print(params, flush=True)
 
@@ -269,6 +275,7 @@ def get_adv_slotlist():
             'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
+        result['adv']['pref_coab'] = adv_instance.coab
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res

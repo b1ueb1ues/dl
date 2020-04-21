@@ -94,14 +94,6 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
     let slots = ' ' + arr[6];
-
-    let coabs = arr[6].split('][')[3].replace(']','').split('|');
-    for (const c of coabs){
-        console.log(c);
-        const check = $("input[id$='" + c.toLowerCase() + "']");
-        check.prop('checked', true);
-    }
-
     const cond = (arr[7] != undefined && arr[7] != '<>' && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
     const comment = (arr[8] != undefined) ? arr[8] : '';
     let cond_comment = [];
@@ -250,20 +242,12 @@ function loadAdvSlots() {
                 $('#dra-' + slots.adv.pref_dra).prop('selected', true);
                 $('#wp1-' + slots.adv.pref_wp.wp1).prop('selected', true);
                 $('#wp2-' + slots.adv.pref_wp.wp2).prop('selected', true);
-                // $('input[id^="ex-"]').prop('checked', false);
-                // $('input[id^="ex-"]').prop('disabled', false);
-                // if (AXE2_ADV.includes(adv_name)) {
-                //     $('#ex-axe2').prop('checked', true);
-                //     $('#ex-axe2').prop('disabled', true);
-                // } else if (UNIQUE_ADV.includes(adv_name)) {
-                //     $('#ex-' + adv_name).prop('checked', true);
-                //     $('#ex-' + adv_name).prop('disabled', true);
-                // } else if (adv_name != 'megaman') {
-                //     $('#ex-' + slots.adv.wt).prop('checked', true);
-                //     $('#ex-' + slots.adv.wt).prop('disabled', true);
-                // }
 
                 buildCoab(slots.coab, slots.adv.fullname, slots.adv.wt);
+                for (const c of slots.adv.pref_coab){
+                    const check = $("input[id$='" + c.toLowerCase() + "']");
+                    check.prop('checked', true);
+                }
 
                 if (RANGED.includes(slots.adv.wt)) {
                     $('#input-missile').prop('disabled', false);
@@ -438,10 +422,7 @@ function runAdvTest() {
         requestJson['wp1'] = $('#input-wp1').val();
         requestJson['wp2'] = $('#input-wp2').val();
     }
-    const coabilities = readCoabDict();
-    if (coabilities != null) {
-        requestJson['coab'] = coabilities;
-    }
+    requestJson['coab'] = readCoabDict();
     const t = $('#input-t').val();
     if (!isNaN(parseInt(t))) {
         requestJson['t'] = t;
