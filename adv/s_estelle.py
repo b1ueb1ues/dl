@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -10,18 +9,16 @@ class Summer_Estelle(Adv):
     conf = {}
     conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
     conf['slots.frostbite.a'] = conf['slots.a']
-    acl12 = """
+    conf['acl'] = """
         `s1, seq=5 and cancel
         `s2, seq=5 and cancel 
         `s3, seq=5 and cancel
         """
     coab = ['Blade', 'Renee', 'Xander']
-    conf['acl'] = acl12
 
     def init(self):
         if self.condition('buff all team'):
             self.s2_proc = self.c_s2_proc
-
 
     def c_s2_proc(self, e):
         Teambuff('s2',0.15,15).on()
@@ -30,9 +27,6 @@ class Summer_Estelle(Adv):
         Selfbuff('s2',0.15,15).on()
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

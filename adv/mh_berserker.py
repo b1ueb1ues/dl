@@ -42,7 +42,7 @@ class Hunter_Berserker(Adv):
         end
         `dodge, fsc
         `fs3
-        """
+    """
     coab = ['Blade', 'Grace', 'Halloween_Mym']
 
     def init(self):

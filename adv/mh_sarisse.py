@@ -63,15 +63,16 @@ class Hunter_Sarisse(Adv):
     a3 = ('fs', 0.25)
 
     conf = {}
+    conf['slots.a'] = Stellar_Show()+Primal_Crisis()
+    conf['slots.frostbite.a'] = conf['slots.a']
+    conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         `s1, fsc
         `s2, fsc
         `dodge, fsc
         `fs4
     """
-    coab = ['Dagger', 'Xander', 'Grace']
-    conf['slots.a'] = Stellar_Show()+Primal_Crisis()
-    conf['slots.d'] = Dragonyule_Jeanne()
+    coab = ['Dagger'.'Xander', 'Grace']
 
     def init(self):
         default_pierce = 2 if self.condition('lance+ distance from HBH sized enemy') else 1

@@ -331,8 +331,12 @@ class Afflic_bog(Afflic_scc):
     def on(self, name, rate, duration=None):
         p = super().on(name, rate, duration)
         if p:
-            from core.advbase import Debuff
-            Debuff('{}_bog'.format(name),-0.5*p,self.duration,1,'att','bog').on()
+            # from core.advbase import Debuff
+            # Debuff('{}_bog'.format(name),-0.5*p,self.duration,1,'att','bog').on()
+            from core.advbase import Selfbuff
+            buff = Selfbuff('{}_bog'.format(name),0.5*p,self.duration,'att','bog')
+            buff.bufftime = buff.nobufftime
+            buff.on()
         return p
 
 class Afflics(object):

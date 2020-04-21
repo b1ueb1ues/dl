@@ -1094,6 +1094,9 @@ class Adv(object):
             else:
                 self.slots.__dict__[s] = self.cmnslots.__dict__[s]
 
+        if 'forced' in conf_slots and conf_slots.forced:
+            return
+
         from conf.slot_common import ele_punisher
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             aff, wpa = ele_punisher[self.slots.c.ele]
@@ -1105,8 +1108,6 @@ class Adv(object):
                 for s in ('d', 'w', 'a'):
                     if s in afflic_slots:
                         self.slots.__dict__[s] = afflic_slots[s]
-
-        self.slot_backdoor()
 
     def pre_conf(self):
         tmpconf = Conf()
@@ -1477,6 +1478,7 @@ class Adv(object):
         self.sim_affliction()
         self.sim_buffbot()
 
+        self.slot_backdoor()
         self.base_att = int(self.slots.att(globalconf.forte))
         self.slots.oninit(self)
 

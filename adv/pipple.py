@@ -1,5 +1,3 @@
-import adv.adv_test
-from core.advbase import *
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -17,6 +15,7 @@ pipple_conf = {
 
 class Pipple(Adv):
     a3 = ('epassive_att_crit', 7)
+
     conf = pipple_conf.copy()
     conf['slots.a'] = Primal_Crisis()+Brothers_in_Arms()
     conf['slots.d'] = Dragonyule_Jeanne()
@@ -25,6 +24,13 @@ class Pipple(Adv):
         `s2, x=5
     """
     coab = ['Blade', 'Xander', 'Axe2']
+
+    def d_acl(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.conf['acl'] = """
+            `s2, x=5
+        """
+
     def prerun(self):
         self.stance = 0
 
@@ -42,7 +48,5 @@ class Pipple(Adv):
         self.energy.add(2, team=True)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

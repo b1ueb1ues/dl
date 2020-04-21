@@ -10,7 +10,7 @@ class Gala_Mym(Adv):
     a3 = ('dt', 0.20)
 
     conf = {}
-    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
+    conf['slots.a'] = Primal_Crisis()+The_Red_Impulse()
     conf['slots.d'] = Sakuya()
     conf['slots.burn.d'] = Apollo()
     conf['acl'] = """

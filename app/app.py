@@ -134,20 +134,17 @@ def set_teamdps_res(result, logs, real_d, suffix=''):
 
 def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
     adv_module = ADV_MODULES[adv_name.lower()]
-    def slot_injection(self):
-        if wp1 is not None and wp2 is not None:
-            self.slots.a = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
-        if dra is not None:
-            self.slots.d = getattr(slot.d, dra)()
-        if wep is not None:
-            self.slots.w = getattr(slot.w, wep)()
     def acl_injection(self):
         if acl is not None:
             self.conf['acl'] = acl
-    adv_module.slot_backdoor = slot_injection
     adv_module.acl_backdoor = acl_injection
     if conf is None:
         conf = {}
+
+    conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+    conf['slots.d'] = getattr(slot.d, dra)()
+    conf['slots.w'] = getattr(slot.w, wep)()
+    conf['slots.forced'] = True
 
     result = {}
 

@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Summer_Celliera
@@ -10,8 +8,7 @@ class Summer_Celliera(Adv):
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}
-    conf['slots.a'] = VC() + JotS()
-    conf['slots.d'] = Siren()
+    conf['slots.a'] = VC() + United_by_One_Vision()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `s2
@@ -19,7 +16,7 @@ class Summer_Celliera(Adv):
         `s3, fsc
         `fs, seq=2
         """
-    coab = ['Blade', 'Renee', 'Summer_Estelle']
+    coab = ['Blade','Renee','Summer_Estelle']
     conf['afflict_res.bog'] = 100
 
     def init(self):
@@ -47,5 +44,5 @@ class Summer_Celliera(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

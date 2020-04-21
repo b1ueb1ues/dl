@@ -16,7 +16,8 @@ class Gala_Elisanne(Adv):
         `s1
         `fsf, x=4
     """
-    coab = ['Bow', 'Tobias', 'Renee']
+    coab = ['Bow','Tobias', 'Renee']
+    
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
