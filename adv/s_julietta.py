@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 
@@ -10,7 +9,7 @@ class Summer_Julietta(Adv):
     a3 = ('primed_att',0.10)
 
     conf = {}
-    conf['slots.a'] = KFM() + JotS()
+    conf['slots.a'] = KFM() + United_by_One_Vision()
     conf['acl'] = """
         `s2
         `s1
@@ -57,5 +56,5 @@ class Summer_Julietta(Adv):
             self.s2_stance = 1
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

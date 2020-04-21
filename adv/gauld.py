@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
 
 def module():
@@ -8,9 +7,9 @@ def module():
 class Gauld(Adv):
     a1 = ('a', 0.10, 'hp70')
     a3 = ('k_frostbite', 0.20)
+
     conf = {}
     conf['slots.a'] = Primal_Crisis()+His_Clever_Brother()
-    conf['slots.d'] = Siren()
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s1

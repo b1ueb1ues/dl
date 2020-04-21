@@ -1,6 +1,4 @@
-import adv.adv_test
 from core.advbase import *
-from slot.a import *
 from slot.d import *
 
 def module():
@@ -10,14 +8,13 @@ class Jakob(Adv):
     a1 = ('prep','50%')
 
     conf = {}
-    conf['slots.a'] = RR()+Breakfast_at_Valerios()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1
         `s3,fsc
         `fs,seq=5
-        """
+    """
     coab = ['Blade', 'Xander', 'Dagger']
     conf['afflict_res.bog'] = 100
 
@@ -27,6 +24,5 @@ class Jakob(Adv):
         self.dmg_make('s1',4.54)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

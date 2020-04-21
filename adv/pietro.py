@@ -1,15 +1,18 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
+
 def module():
     return Pietro
 
 class Pietro(Adv):
-    a1 = ('cd',0.13)
 #    comment = 'unsuitable resist'
+    
+    a1 = ('cd',0.13)
+
     conf = {}
     conf['slot.a'] = RR()+Breakfast_at_Valerios()
+    conf['slots.frostbite.a'] = KFM()+His_Clever_Brother()
     conf['slot.d'] = Leviathan()
     conf['acl'] = """
         `dragon
@@ -18,8 +21,8 @@ class Pietro(Adv):
         `fs,seq=5
         """
     coab = ['Blade', 'Xander', 'Dagger']
+    
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

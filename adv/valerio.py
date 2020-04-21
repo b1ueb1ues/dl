@@ -223,6 +223,7 @@ appetizer_conf = {
 class Valerio(Adv):
     conf = {}
     conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         # stances
@@ -239,7 +240,7 @@ class Valerio(Adv):
         `fsf, x=7
         end
     """
-    coab = ['Axe2', 'Xander', 'Summer_Estelle']
+    coab = ['Axe2','Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

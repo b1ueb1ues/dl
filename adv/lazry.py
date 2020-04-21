@@ -1,6 +1,6 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Lazry
@@ -8,6 +8,7 @@ def module():
 class Lazry(Adv):
     a1 = ('k_frostbite', 0.30)
     a3 = ('s', 0.35, 'hp70')
+
     conf = {}
     conf['slots.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
     conf['slots.d'] = Gaibhne_and_Creidhne()
@@ -23,7 +24,7 @@ class Lazry(Adv):
         `s2
         `fs, x=5
     """
-    coab = ['Blade', 'Xander', 'Summer_Estelle']
+    coab = ['Blade','Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def low_power(self):

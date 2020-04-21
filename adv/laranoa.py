@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -10,18 +9,19 @@ class Laranoa(Adv):
     comment = 'doesn\'t count spbuff for teammates'
 
     a3 = ('s',0.3)
+    
     conf = {}
     conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.d'] = Dragonyule_Jeanne()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `s1
         `s2,fsc
         `s3,fsc
         `fs, seq=4
-        """
+    """
     coab = ['Renee', 'Xander', 'Summer_Estelle']
-    conf['slots.d'] = Dragonyule_Jeanne()
-    
+
     def init(self):
         if self.condition('buff all team'):
             self.s2_proc = self.c_s2_proc
@@ -46,7 +46,5 @@ class Laranoa(Adv):
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

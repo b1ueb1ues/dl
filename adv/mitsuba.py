@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 from module.x_alt import X_alt
 
 def module():
@@ -207,9 +205,9 @@ fs_conf = {
 
 class Mitsuba(Adv):
     a1 = ('a', 0.20, 'hit15')
+
     conf = fs_conf.copy()
     conf['slots.a'] = Twinfold_Bonds()+His_Clever_Brother()
-    conf['slots.d'] = Siren()
     # tc2afsf tc2a- s1
     conf['acl'] = """
         if s1.check() and not self.afflics.frostbite.get()
@@ -221,7 +219,7 @@ class Mitsuba(Adv):
         `s2, x=2
         `fsf, x=2
     """
-    coab = ['Blade', 'Xander', 'Summer_Estelle']
+    coab = ['Blade','Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):
@@ -300,5 +298,5 @@ class Mitsuba(Adv):
         self.inspiration.add(insp, team=True)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

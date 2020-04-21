@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -11,7 +10,7 @@ class Waike(Adv):
     a1 = ('edge_bog', 40, 'hp100')
 
     conf = {}
-    conf['slot.a'] = Mega_Friends()+Primal_Crisis()
+    conf['slot.a'] = Primal_Crisis()+Mega_Friends()
     conf['slot.d'] = Leviathan()
     conf['acl'] = """
         `dragon
@@ -27,6 +26,5 @@ class Waike(Adv):
         self.afflics.bog.on('s2', 80)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
