@@ -72,7 +72,7 @@ class Hunter_Sarisse(Adv):
         `dodge, fsc
         `fs4
     """
-    coab = ['Dagger'.'Xander', 'Grace']
+    coab = ['Dagger', 'Xander', 'Grace']
 
     def init(self):
         default_pierce = 2 if self.condition('lance+ distance from HBH sized enemy') else 1
