@@ -8,27 +8,13 @@ class Halloween_Elisanne(Adv):
 
     conf = {}
     conf['acl'] = """
-        `dragon, cancel
+        `dragon, fsc
         `s1
-        `s2
+        `s2, x=5
         `s3
         `fs, x=5
         """
-    coab = ['Blade','Dagger','Bow']
-
-    def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Blade','Dagger','Wand']
-    
-    def d_acl(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.conf['acl'] = """
-                `dragon, fsc
-                `s1
-                `s2, x=5
-                `s3
-                `fs, x=5
-                """
+    coab = ['Blade','Dagger','Wand']
 
     def prerun(self):
         self.stance = 0

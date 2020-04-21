@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 
 def module():
     return Dragonyule_Cleo
@@ -7,15 +6,16 @@ def module():
 class Dragonyule_Cleo(Adv):
     a1 = ('a',0.13,'hp70')
     a3 = ('ecombo',30)
+    
     conf = {}
-    conf['slots.d'] = Siren()
     conf['acl'] = """
         `s1
         `s2, seq=5 and cancel or fsc
         `s3, fsc
         `fs, seq=5
-        """
+    """
     coab = ['Hunter_Sarisse', 'Xander', 'Summer_Estelle']
+
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
         self.stance = 0

@@ -1,7 +1,4 @@
-import adv.adv_test
 from core.advbase import *
-import slot.a 
-from slot.a import *
 from slot.d import *
 
 def module():
@@ -9,6 +6,7 @@ def module():
 
 class Cibella(Adv):
     conf = {}
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s2
@@ -16,10 +14,8 @@ class Cibella(Adv):
         `fs, seq=5
         """
     coab = ['Blade', 'Xander', 'Dagger']
-    conf['slots.a'] = RR() + Breakfast_at_Valerios()
-    conf['slots.d'] = Leviathan()
 
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

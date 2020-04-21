@@ -1,7 +1,5 @@
 from core.advbase import *
-from slot.a import *
 from slot.d import *
-
 
 def module():
     return Curran
@@ -13,11 +11,8 @@ class Curran(Adv):
     a3 = ('lo',0.6)
 
     conf = {}
-    conf['slots.a'] = KFM()+FitF()
     conf['slots.d'] = Fatalis()
-
     conf['slots.poison.d'] = Shinobi()
-    
     conf['acl'] = """
         if self.slots.d.name != 'Fatalis'
         `dragon.act("c3 s end")

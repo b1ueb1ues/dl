@@ -1,8 +1,5 @@
-import adv.adv_test
 from core.advbase import *
-from slot.d import *
 from slot.a import *
-
 
 def module():
     return Celliera
@@ -12,20 +9,17 @@ class Celliera(Adv):
 
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
-    conf['slots.d'] = Siren()
-    acl12 = """
+    conf['acl'] = """
         `dragon.act('c3 s end')
         `s1
         `s2, seq=5
         `s3
-        """
+    """
     coab = ['Dagger', 'Xander', 'Summer_Estelle']
 
     def prerun(self):
         self.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
         self.s2str = Selfbuff("s2_str",0.25,10)
-
-
 
     def s1_proc(self, e):
         if self.s2buff.get():
@@ -37,9 +31,6 @@ class Celliera(Adv):
         self.s2str.on()
 
 
-
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

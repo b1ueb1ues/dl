@@ -11,23 +11,25 @@ class Marth(Adv):
     a3 = ('cc',0.13,'hit10')
     
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.d'] = Konohana_Sakuya()
     conf['acl'] = """
-        `dragon
         `s3, not self.s3_buff
         `s2, fsc
         `s1, fsc
-        `fs, x=2
-        """
-    coab = ['Blade', 'Serena', 'Gala_Sarisse']
+        `fs, x=3
+    """
+    coab = ['Blade', 'Wand', 'Joe']
+
+    def d_coabs(self):
+        if self.duration <= 60:
+            self.coab = ['Blade','Wand',"Gala_Sarisse"]
 
     def init(self):
         self.stance = 0
 
     def s1_proc(self, e):
         self.afflics.burn('s1',120,0.97)
-
 
     def s2_proc(self, e):
         with KillerModifier('s2_killer', 'hit', 1.0, ['burn']):

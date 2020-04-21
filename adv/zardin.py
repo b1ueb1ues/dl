@@ -1,7 +1,5 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Zardin
@@ -21,7 +19,7 @@ class Zardin(Adv):
         """
     coab = ['Xander', 'Dagger', 'Summer_Estelle']
 
-if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
 
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

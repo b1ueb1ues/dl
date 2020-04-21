@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Alfonse
@@ -17,7 +16,7 @@ class Alfonse(Adv):
         `s2,fsc
         `s3,fsc
         `fs, x=3
-        """
+    """
     coab = ['Blade','Dagger','Halloween_Elisanne']
 
     def prerun(self):
