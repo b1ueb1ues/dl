@@ -7,15 +7,14 @@ def module():
 
 class Halloween_Mym(Adv):
     conf = {}
-    conf['slots.a'] = Kung_Fu_Masters()+Jewels_of_the_Sun()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Primal_Crisis()+An_Ancient_Oath()
+    conf['slots.d'] = Arctos()
     conf['slots.burn.d'] = Apollo()
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff
-        `s1, fsc
+        `s1
         `s2, cancel
-        `fs, x=5
     """
     coab = ['Blade', 'Yuya', 'Serena']
 
@@ -41,6 +40,7 @@ class Halloween_Mym(Adv):
 
         'dodge.startup': 41 / 60.0, # dodge frames
     }
+
     def ds_proc(self):
         return self.dmg_make('ds',self.dragonform.conf.ds.dmg,'s')
 
@@ -79,6 +79,7 @@ class Halloween_Mym(Adv):
         Selfbuff('s2',0.20,15).on()
         Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
         self.s2_da.on()
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

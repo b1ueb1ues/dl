@@ -6,7 +6,7 @@ def module():
 
 class Alain(Adv):
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+Dragon_and_Tamer()
+    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
     conf['acl'] = """
         `dragon.act('s end')
         `s3, not self.s3_buff

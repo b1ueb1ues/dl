@@ -136,11 +136,11 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, con
     adv_module = ADV_MODULES[adv_name.lower()]
     def slot_injection(self):
         if wp1 is not None and wp2 is not None:
-            self.conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+            self.slots.a = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
         if dra is not None:
-            self.conf['slots.d'] = getattr(slot.d, dra)()
+            self.slots.d = getattr(slot.d, dra)()
         if wep is not None:
-            self.conf['slots.w'] = getattr(slot.w, wep)()
+            self.slots.w = getattr(slot.w, wep)()
     def acl_injection(self):
         if acl is not None:
             self.conf['acl'] = acl
@@ -224,7 +224,7 @@ def simc_adv_test():
             pass
     try:
         if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison', 'frostbite']:
-            conf['sim_afflict.time'] = abs(float(params['sim_afflict_time'])) / 100
+            conf['sim_afflict.efficiency'] = abs(float(params['sim_afflict_time'])) / 100
             conf['sim_afflict.type'] = params['sim_afflict_type']
     except:
         pass

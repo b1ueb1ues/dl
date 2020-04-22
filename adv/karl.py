@@ -17,8 +17,8 @@ class Karl(Adv):
         `s3, not self.s3_buff
         `s2, cancel
         `fs, x=2
-        """
-    coab = ['Blade', 'Dagger', 'Tobias']
+    """
+    coab = ['Blade', 'Grace', 'Tobias']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -7,17 +7,16 @@ def module():
 
 class Valentines_Orion(Adv):
     conf = {}
-
+    conf['slots.a'] = Primal_Crisis()+EE()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, seq=2 and cancel
-        """
-    conf['slots.a'] = Mega_Friends()+EE()
-    conf['slots.d'] = Dreadking_Rathalos()
-    conf['afflict_res.burn'] = 0
+    """
     coab = ['Blade', 'Serena', 'Marth']
+    conf['afflict_res.burn'] = 0
 
     def prerun(self):
         self.dc_event = Event('defchain')

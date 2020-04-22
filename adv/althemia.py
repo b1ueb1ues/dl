@@ -6,6 +6,7 @@ def module():
 
 class Althemia(Adv):
     a1 = ('s',0.45,'hp100')
+    
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
     conf['acl'] = """
@@ -16,6 +17,10 @@ class Althemia(Adv):
     """
     coab = ['Blade','Delphi','Gala_Alex']
     conf['afflict_res.poison'] = 0
+
+    def d_coabs(self):
+        if self.duration <= 60:
+            self.coab = ['Blade','Bow',"Gala_Alex"]
 
     def s1_proc(self, e):
         self.afflics.poison('s1',100,0.482)

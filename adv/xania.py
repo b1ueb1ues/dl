@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.a import *
 from slot.d import *
 
 def module():
@@ -7,15 +6,21 @@ def module():
 
 class Xania(Adv):
     a1 = ('s',0.35)
+
     conf = {}
     conf['slots.d'] = Apollo()
     conf['acl'] = """
+        `dragon
         `s3, not self.s3_buff
         `s1
         `s2
     """
-    conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Marth', 'Joe']
+    conf['afflict_res.burn'] = 0
+
+    def d_coabs(self):
+        if self.duration <= 60:
+            self.coab = ['Blade','Marth',"Gala_Sarisse"]
 
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)

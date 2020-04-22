@@ -1106,7 +1106,7 @@ class Adv(object):
                     if s in afflic_slots:
                         self.slots.__dict__[s] = afflic_slots[s]
 
-        # print self.slots
+        self.slot_backdoor()
 
     def pre_conf(self):
         tmpconf = Conf()
@@ -1471,7 +1471,6 @@ class Adv(object):
                 pass
 
         self.d_slots()
-        self.slot_backdoor()
         self.base_att = 0
 
         self.afflic_condition()

@@ -1,8 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
-from slot.w import *
-
 
 def module():
     return Rena
@@ -11,16 +8,15 @@ class Rena(Adv):
     a1 = ('primed_defense',0.08)
 
     conf = {}
-    conf['slots.d'] = Sakuya()
-    conf['slots.a'] = Resounding_Rendition()+Elegant_Escort()
+    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
         `s2, s=1
         `fs, seq=5 and (s1.charged=1500 or s1.charged=3200)
-        """
+    """
+    coab = ['Wand', 'Dagger', 'Marth']    
     conf['afflict_res.burn'] = 0
-    coab = ['Wand', 'Serena', 'Marth']
 
     def prerun(self):
         self.stance = 0
@@ -52,7 +48,6 @@ class Rena(Adv):
                 self.dmg_make("s1", 8.81)
                 self.hits += 4
             Selfbuff('s1crit',0.1,15,'crit','chance').on()
-
 
     def s2_proc(self, e):
         self.s1.charge(self.s1.sp)

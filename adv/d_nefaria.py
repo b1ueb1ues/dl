@@ -9,7 +9,7 @@ class Dragonyule_Nefaria(Adv):
     a1 = ('s',0.25)
     
     conf = {}
-    conf['slot.a'] = Primal_Crisis()+Mega_Friends()
+    conf['slots.a'] = Primal_Crisis()+Mega_Friends()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon

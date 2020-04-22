@@ -1,6 +1,4 @@
 from core.advbase import *
-from slot.a import *
-from slot.d import *
 
 def module():
     return Student_Maribelle
@@ -8,8 +6,8 @@ def module():
 class Student_Maribelle(Adv):
     a1 = ('s', 0.4, 'hp100')
     a3 = ('bk',0.3)
+    
     conf = {}
-    conf['slots.d'] = Sakuya()
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s3, not self.s3_buff

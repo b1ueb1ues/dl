@@ -7,7 +7,7 @@ def module():
 class Chelsea(Adv):
     conf = {}
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Mega_Friends()+Dear_Diary()
+    conf['slots.a'] = Mega_Friends()+Primal_Crisis()
     conf['acl'] = """
         `s3, fsc and not self.s3_buff
         `s1, fsc
