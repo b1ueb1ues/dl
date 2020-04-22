@@ -190,8 +190,9 @@ class Last_Offense(BuffingAbility):
 
     def oninit(self, adv, afrom=None):
         if adv.condition('last offense'):
-            adv.Buff(*self.buff_args).on()
-        # super().oninit(adv, afrom)
+            buff = adv.Buff(*self.buff_args)
+            buff.bufftime = buff.nobufftime
+            buff.on()
 
 ability_dict['lo'] = Last_Offense
 

@@ -134,20 +134,17 @@ def set_teamdps_res(result, logs, real_d, suffix=''):
 
 def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, conf=None, cond=None, teamdps=None, t=180, log=-2, mass=0):
     adv_module = ADV_MODULES[adv_name.lower()]
-    def slot_injection(self):
-        if wp1 is not None and wp2 is not None:
-            self.slots.a = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
-        if dra is not None:
-            self.slots.d = getattr(slot.d, dra)()
-        if wep is not None:
-            self.slots.w = getattr(slot.w, wep)()
     def acl_injection(self):
         if acl is not None:
             self.conf['acl'] = acl
-    adv_module.slot_backdoor = slot_injection
     adv_module.acl_backdoor = acl_injection
     if conf is None:
         conf = {}
+
+    conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+    conf['slots.d'] = getattr(slot.d, dra)()
+    conf['slots.w'] = getattr(slot.w, wep)()
+    conf['slots.forced'] = True
 
     result = {}
 
@@ -196,7 +193,13 @@ def simc_adv_test():
     t   = 180 if not 't' in params else abs(float(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
-    coab = None if not 'coab' in params else list(params['coab'].keys())
+    if 'coab' not in params:
+        coab = None
+    else:
+        try:
+            coab = list(params['coab'].keys())
+        except:
+            coab = []
     # latency = 0 if 'latency' not in params else abs(float(params['latency']))
     print(params, flush=True)
 
@@ -272,6 +275,7 @@ def get_adv_slotlist():
             'wp1': type(adv_instance.slots.a).__qualname__,
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
+        result['adv']['pref_coab'] = adv_instance.coab
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res

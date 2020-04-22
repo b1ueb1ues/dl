@@ -1,6 +1,6 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Xainfried
@@ -17,7 +17,7 @@ class Xainfried(Adv):
         `s2
         `fs, x=5
         """
-    coab = ['Summer_Celliera', 'Pipple', 'Bow']
+    coab = ['Xander', 'Pipple', 'Bow']
     conf['afflict_res.frostbite'] = 0
 
     def s1_proc(self, e):
@@ -34,4 +34,3 @@ class Xainfried(Adv):
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)
-

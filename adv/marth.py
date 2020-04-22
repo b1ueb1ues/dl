@@ -12,6 +12,7 @@ class Marth(Adv):
     
     conf = {}
     conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.d'] = Konohana_Sakuya()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, fsc
