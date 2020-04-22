@@ -12,13 +12,13 @@ class Renelle(Adv):
     conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Twinfold_Bonds()+Elegant_Escort()
     conf['acl'] = """
-        `dragon
+        `dragon, fsc
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=2
         """
-    coab = ['Blade', 'Wand', 'Marth']
+    coab = ['Blade', 'Serena', 'Marth']
 
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)

@@ -18,8 +18,11 @@ class Sylas(Adv):
         `fs, seq=5
         """
     coab = ['Eleonora','Dragonyule_Xainfried','Lin_You']
-
     conf['afflict_res.poison'] = 0
+
+    def d_coabs(self):
+        if self.duration <= 60:
+            self.coab = ['Blade','Dragonyule_Xainfried','Lin_You']
 
     def s1_proc(self, e):
         self.afflics.poison('s1',120,0.582)

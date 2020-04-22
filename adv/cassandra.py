@@ -21,6 +21,10 @@ class Cassandra(Adv):
     coab = ['Curran','Berserker','Delphi']
     conf['afflict_res.poison'] = 0
 
+    def d_coabs(self):
+        if self.duration <= 120:
+            self.coab = ['Curran','Berserker',"Blade"]
+
     def prerun(self):
         self.hp = 80
 

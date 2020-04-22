@@ -8,8 +8,10 @@ class Valentines_Addis(Adv):
     comment = 'use s2 once'
 
     a1 = ('k_poison',0.3)
+    
     conf = {}
     conf['slots.a'] = The_Plaguebringer()+Primal_Crisis()
+    conf['slots.poison.a'] = conf['slots.a']
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff

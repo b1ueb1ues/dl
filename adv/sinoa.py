@@ -8,17 +8,18 @@ def module():
 class Sinoa(Adv):
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)
+
     conf = {}
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Primal_Crisis()+Candy_Couriers()
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.burn.d'] = Apollo()
     conf['acl'] = '''
         `dragon
         `s3, not self.s3_buff
         `s1
         `s2
-        `fs, seq=5
-        '''
-    coab = ['Blade', 'Serena', 'Marth']
+    '''
+    coab = ['Blade', 'Gala_Sarisse', 'Marth']
 
     def prerun(self):
         self.s1_buff_mode = 'means'

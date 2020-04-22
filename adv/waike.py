@@ -5,7 +5,6 @@ from slot.d import *
 def module():
     return Waike
 
-
 class Waike(Adv):
     a1 = ('edge_bog', 40, 'hp100')
 

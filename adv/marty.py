@@ -1,14 +1,17 @@
 from core.advbase import *
 from slot.a import *
 from slot.d import *
+
 def module():
     return Marty
 
 class Marty(Adv):
     a1 = ('sp',0.05)
+
     conf = {}
+    conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
+    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Resounding_Rendition()+The_Lurker_in_the_Woods()
     conf['acl'] = """
         `dragon, s=2
         `s3, fsc and not self.s3_buff
@@ -16,7 +19,6 @@ class Marty(Adv):
         `fs, x=2
         """
     coab = ['Blade', 'Serena', 'Marth']
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

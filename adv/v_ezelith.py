@@ -8,8 +8,9 @@ def module():
 class Valentines_Ezelith(Adv):
     a1 = ('ecombo',35)
     a3 = ('bk',0.2)
+
     conf = {}
-    conf['slots.a'] = Dear_Diary()+Elegant_Escort()
+    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
     conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon
@@ -18,8 +19,8 @@ class Valentines_Ezelith(Adv):
         `s2, fsc
         `fs, seq=2
     """
-    conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Serena', 'Marth']
+    conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):
         self.afflics.burn('s1',110,0.883)

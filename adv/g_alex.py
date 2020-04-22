@@ -90,6 +90,7 @@ class Gala_Alex(Adv):
     def d_coabs(self):
         if self.duration <= 120:
             self.coab = ['Blade','Wand','Heinwald']
+    
     def prerun(self):
         self.s1_debuff = Debuff('s1', 0.05, 15)
 

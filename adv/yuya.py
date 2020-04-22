@@ -1,23 +1,23 @@
 from core.advbase import *
-from slot.d import Dreadking_Rathalos
 from slot.a import *
+from slot.d import *
 
 def module():
     return Yuya
 
 class Yuya(Adv):
+    a3 = ('primed_crit_chance', 0.5,5)
+    
     conf = {}
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Twinfold_Bonds()+The_Lurker_in_the_Woods()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, x=2
         """
-    coab = ['Blade', 'Wand', 'Marth']
-
-    a3 = ('primed_crit_chance', 0.5,5)
+    coab = ['Blade', 'Serena', 'Marth']
 
     def prerun(self):
         if self.condition('hp60'):

@@ -42,6 +42,11 @@ class Lathna(Adv):
 
         'dodge.startup': 41 / 60.0, # dodge frames
     }
+
+    def d_slots(self):
+        if self.duration <= 120:
+            self.conf['slots.poison.a'] = An_Ancient_Oath()+The_Fires_of_Hate()
+
     def ds_proc(self):
         dmg = self.dmg_make('ds', 3.64, 's')
         self.afflics.poison('ds',120,0.291,30,dtype='s')

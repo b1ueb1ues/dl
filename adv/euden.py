@@ -7,18 +7,19 @@ def module():
 
 class Euden(Adv):
     a1 = ('dc', 4)
+    
     conf = {}
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
         `fs, x=2
-        """
-    conf['afflict_res.burn'] = 0
+    """
     coab = ['Blade', 'Joe', 'Yuya']
+    conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):
         self.afflics.burn('s1',110,0.883)

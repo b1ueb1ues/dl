@@ -7,9 +7,10 @@ def module():
 
 class Xuan_Zang(Adv):
     a3 = ('cc',0.06,'hp70')
+    
     conf = {}
+    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc
@@ -24,7 +25,6 @@ class Xuan_Zang(Adv):
 
     def s2_proc(self, e):
         Debuff('s2_defdown',0.1,20,0.7).on()
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -8,10 +8,9 @@ def module():
 class Gala_Sarisse(Adv):
     a3 = ('bt',0.3)
     conf = {}
+    conf['slots.a'] = Forest_Bonds()+Primal_Crisis()
     conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Forest_Bonds()+Dear_Diary()
     conf['acl'] = """
-        `dragon, s=1
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc

@@ -23,8 +23,7 @@ class Durant(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, x=5
-        """
-
+    """
     coab = ['Dagger', 'Tobias', 'Axe2']
 
 if __name__ == '__main__':

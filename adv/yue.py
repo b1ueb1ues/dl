@@ -16,7 +16,7 @@ class Yue(Adv):
         `s1, cancel
         `s2, fsc
         `fs, x=4
-        """
+    """
     coab = ['Blade', 'Marth', 'Halloween_Mym']
 
 

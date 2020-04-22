@@ -9,7 +9,8 @@ class Ramona(Adv):
     a1 = ('primed_att',0.10)
     a3 = ('bc',0.13)
     conf = {}
-    conf['slots.a'] = Breakfast_at_Valerios()+Resounding_Rendition()
+    conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
+    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['slots.d'] = Sakuya()
     conf['acl'] = """
         `dragon.act('c3 s end')
@@ -41,7 +42,6 @@ class Ramona(Adv):
 
     def s2_proc(self, e):
        Event('defchain')()
-
 
 
 if __name__ == '__main__':

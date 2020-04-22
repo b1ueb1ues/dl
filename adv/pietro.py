@@ -11,9 +11,9 @@ class Pietro(Adv):
     a1 = ('cd',0.13)
 
     conf = {}
-    conf['slot.a'] = RR()+Breakfast_at_Valerios()
+    conf['slots.a'] = RR()+Breakfast_at_Valerios()
     conf['slots.frostbite.a'] = KFM()+His_Clever_Brother()
-    conf['slot.d'] = Leviathan()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1

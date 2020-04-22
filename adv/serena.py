@@ -1,15 +1,15 @@
 from core.advbase import *
 from core.log import *
-from slot.d import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Serena
 
 class Serena(Adv):
     conf = {}
-    conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.a'] = Primal_Crisis()+Mega_Friends()
+    conf['slots.a'] = Primal_Crisis()+The_Shining_Overlord()
+    conf['slots.d'] = Arctos()
     conf['acl'] = """
         `dragon, fsc
         `s3, fsc and not self.s3_buff
@@ -17,22 +17,19 @@ class Serena(Adv):
         `s2, fsc
         `fs, seq=2
         """
-    coab = ['Blade', 'Halloween_Mym', 'Marth']
+    coab = ['Blade', 'Yuya', 'Marth']
 
     def s1_before(self, e):
         Selfbuff('s1buff',0.1,5,'crit','rate').on()
-
 
     def init(self):
         if self.condition('always connect hits'):
             self.dmg_proc = self.c_dmg_proc
 
-
     def prerun(self):
         self.hits = 0
         self.a1count = 0
         self.a3count = 0
-
 
     def c_dmg_proc(self, name, amount):
         a1old = self.a1count
@@ -54,7 +51,6 @@ class Serena(Adv):
             self.a3count = 1
         if a3old != self.a3count:
             Selfbuff('a3buff',0.03,-1,'crit','chance').on()
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

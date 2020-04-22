@@ -1,4 +1,3 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import *
@@ -25,6 +24,7 @@ class Gala_Mym(Adv):
         `fs, x=5
     """
     coab = ['Blade', 'Serena', 'Wand']
+
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             self.coab = ['Blade', 'Verica', 'Yuya']
@@ -86,5 +86,5 @@ class Gala_Mym(Adv):
             self.dmg_make('o_s2_boost', 4.16)
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
