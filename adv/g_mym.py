@@ -24,7 +24,7 @@ class Gala_Mym(Adv):
         `s2, fsc
         `fs, x=5
     """
-    coab = ['Blade', 'Verica', 'Wand']
+    coab = ['Blade', 'Serena', 'Wand']
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             self.coab = ['Blade', 'Verica', 'Yuya']
