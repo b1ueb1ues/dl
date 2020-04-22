@@ -3,8 +3,8 @@ BASE_SIM_T = 180;
 BASE_TEAM_DPS = 20000;
 BASE_AFFLICT_UPTIME = {
     'poison': 90,
-    'burn': 75,
-    'paralysis': 80,
+    'burn': 85,
+    'paralysis': 85,
     'frostbite': 90
 };
 WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
@@ -247,6 +247,7 @@ function loadAdvSlots() {
                 for (const c of slots.adv.pref_coab){
                     const check = $("input[id$='" + c.toLowerCase() + "']");
                     check.prop('checked', true);
+                    coabSelection(1);
                 }
 
                 if (RANGED.includes(slots.adv.wt)) {
@@ -335,6 +336,9 @@ function readResistDict() {
 }
 function checkCoabSelection(e) {
     const add = $(e.target).prop('checked') ? 1 : -1
+    coabSelection(add);
+}
+function coabSelection(add){
     const count = $('#input-coabs').data('selected') + add;
     const max = $('#input-coabs').data('max');
     if (count >= max) {
@@ -344,6 +348,7 @@ function checkCoabSelection(e) {
     }
     $('#input-coabs').data('selected', count);
 }
+
 function buildCoab(coab, fullname, weapontype) {
     $('#input-coabs > div').empty();
     $('#input-coabs').data('selected', 0);
@@ -403,7 +408,6 @@ function readCoabDict() {
         coabList.each(function (idx, res) {
             coabilities[$(res).data('name')] = [$(res).data('chain'), $(res).data('ex')];
         });
-        console.log(coabilities);
         return coabilities;
     }
 }

@@ -26,6 +26,7 @@
 
         #input-acl {
             height: 85%;
+            min-height: 150px;
         }
 
         #test-results>.test-result-item:not(:first-child),
@@ -143,6 +144,10 @@
         #input-coabs>div:nth-child(even) {
             border-left: 1px solid #ced4da;
             padding-left: 0.2em;
+        }
+
+        .leftpad-code {
+         margin-left: 40px;
         }
     </style>
 </head>
@@ -282,6 +287,7 @@
                     <button type="button" id="clear-results" class="btn btn-secondary">Clear</button>
                     <button type="button" id="reset-test" class="btn btn-secondary">Reset</button>
                     <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#aboutBox">About</button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#aclBox">ACL Guide</button>
                     <a href="https://notte.moe/a-quick-guide-to-dragalia-dps-simulator/">
                         <button type="button" class="btn btn-dark">Usage Guide</button>
                     </a>
@@ -305,7 +311,7 @@
                         <h5>How do I enter ACL?</h5>
                         <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
                         <h5>How does simulated afflictions work?</h5>
-                        <p>The affliction is active for the first [uptime]% * [sim time] seconds. Default uptimes are burn 75% (Rena), paralysis 75% (Mitsuhide), poison 90% (Delphi). Adventurers that already have affliction in their kit will not get more uptime from this.</p>
+                        <p>The affliction is considered [uptime]% effective for the duration. Default uptimes are burn 85% (Euden), paralysis 85% (Mitsuhide), poison 90% (Delphi), frostbite 90% (Xainfried). Adventurers that already have affliction in their kit will not get more uptime from this.</p>
                         <h5>How does simulated buff/debuff work?</h5>
                         <p>1 stack of the entered buff/debuff is active for the entire duration of the simulation.</p>
                         <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
@@ -331,6 +337,67 @@
             </div>
         </div>
 
+        <div class="modal fade" id="aclBox" tabindex="-1" role="dialog" aria-labelledby="aclTitle" aria-hidden="true">-->
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="aclTitle">ACL Syntax</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Each consists of an action, optionally followed by a comma and condition, e.g. <code>s1, x=5</code></li>
+                            <li>Lines starting with # is considered comment and not evaluated</li>
+                            <li>` is a decorator that is removed from each line, this behavior exists due to historical reasons.</li>
+                            <li>During the simulation, the ACL is read from top to bottom. When the action is available (e.g. skill is filled) and any specified condition is met, the action is executed. When none of the specified actions are used, the sim will perform the next auto attack (c1 c2 c3 c4 c5 then back to c1)</li>
+                            <li>You can specify the same action multiple times, to cover different conditions.</li>
+                            <li>It's also possible to specify blocks of actions+subconditions under one condition, using python-like if/elif/else syntax:<br/>
+                        <pre class="leftpad-code"><code>if &lt;condition&gt;
+...
+elif &lt;condition&gt;
+...
+else
+...
+end</code></pre>Unlike python, <code>end</code> is required and indentation does not matter.
+                            </li>
+                        <li>You can use <code>queue</code> to enforce a certain sequence of actions, for example:
+                        <pre class="leftpad-code"><code>queue
+`s1
+`s1
+`s2
+end</code></pre>This forces 2 s1 uses before an s2 use, even if s2 was fully charged before the second s1 is cast.<br>
+                        Queue can be used with a condition like <code>queue &lt;condition&gt;</code> such that the actions in that block are only queued when the condition is true.
+                        </li>
+                        <li>The built in actions include skills (s1, s2, s3), force strike (fs), a dodge roll (dodge), and shapeshift (dragon). Force strike fail (fsf) is an action too, but it is assumed to be performed for c5 hit of blade, wand, and lance.</li>
+                        <li>Some adventurers have extra actions implemented, for example Ramona has s1a for using all hits on her s1.</li>
+                        <li>The dragon action assumes you are doing the normal full duration optimal combo, but you can change that by using <code>dragon.act(act string)</code>. The act string syntax is:
+                        <li>Each action is separated by a space, e.g. <code>dragon.act('c3 s c3 end')</code></li>
+                        <li><code>cX</code> (e.g. <code>c3</code>) means do c1 to cX of the dragon combo chain. Most dragons go up to 3 combos, some have 5 combos.</li>
+                        <li><code>s</code> means use skill (if they have usage left)</li>
+                        <li><code>dodge</code> means do a dodge. Dodge is implicitly added after <code>cX</code> if dodge is faster than recovery or if the <code>cX</code> is not the final combo.</li>
+                        <li><code>end</code> means preemptively stop the transform, used to represent dragon tanking.</li>
+                        <li>The conditions are essentially python code that is evaluated so they can be just about anything, but the most commonly used ones are:
+                        <ul>
+                        <li><code>x=n</code> or <code>seq=n</code>: the previous action was combo #n in the attack chain.</li>
+                        <li><code>fsc</code>: the previous action was force strike</li>
+                        <li><code>cancel</code>: the previous action was a combo or a force strike, equivalent to <code>x=1 or x=2 or x=3 or x=4 or x=5 or fsc</code>.</li>
+                        <li><code>s=n</code>: the previous action was skill #n</li>
+                        <li><code>s</code>: the previous action was a skill</li>
+                        <li><code>pin='prep'</code>: at the start of the fight if the adventurer has skill prep</li>
+                        <li><code>s1.charged</code> is the amount of sp charged on s1, you can combine it with <code>s1.sp</code> and <code>this.sp_val</code> to make conditions like <code>s1.charged&gt;=s1.sp-this.sp_val('fs')</code>, aka "do this action when S1 is one FS away from being fully charged. This can be used with s2 and s3 as well.</li>
+                        <li>``this.have_buff(buffname)` checks for presence of buff on certain character. The name of buffs is poorly documented with inconsistent naming scheme, but you can look at logs to figure out the specifics for your adventurer.</li>
+                        <li>You can use any python logical operators in the condition, such as <code>and</code> to combine 2 conditions</li>
+                        <li>For Agito weapons, <code>s3, not this.s3_buff</code> means only use S3 if the buff is not on, you can also check for what type of buff is currently active, e.g. <code>s3, this.s3_buff and this.s3_buff.mod_type = 'defense'</code></li>
+                        <li>Special conditions are implemented for some adventurers but unfortunately most aren't well documented nor universal. You most likely have to look at the source code to tell.</li>
+                        </ul>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
     <div id="test-error"></div>
     <div id="test-results"></div>
