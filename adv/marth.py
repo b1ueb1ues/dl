@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
 
 def module():
@@ -7,12 +6,12 @@ def module():
 
 class Marth(Adv):
     comment = 'last boost once at start (team DPS not considered)'
+
     a1 = ('prep',100)
     a3 = ('cc',0.13,'hit10')
     
     conf = {}
     conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Konohana_Sakuya()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s2, fsc
@@ -44,7 +43,6 @@ class Marth(Adv):
             self.stance = 0
             Teambuff('s23',0.1,10).on()
             Spdbuff('s23s',0.3,10, wide='team').on()
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
