@@ -15,7 +15,7 @@ class DragonForm(Action):
         self.end_event = Event('dragon_end')
         
         self.ds_proc = ds_proc
-        self.skill_use = self.conf.skill_use
+        self.ds_reset()
         self.act_list = []
         self.act_sum = []
 
@@ -105,6 +105,14 @@ class DragonForm(Action):
     def ddamage(self):
         return self.conf.dracolith + self.adv.mod('da') - 1
 
+    def ds_check(self):
+        return self.skill_use > 0 and self.skill_spc >= self.skill_sp
+
+    def ds_reset(self):
+        self.skill_use = self.conf.skill_use
+        self.skill_sp = 0 if self.conf.skill_use == 1 else 30
+        self.skill_spc = self.skill_sp
+
     def d_shift_end(self, t):
         if self.action_timer is not None:
             self.action_timer.off()
@@ -116,7 +124,7 @@ class DragonForm(Action):
         self.dracolith_mod.off()
         if self.off_ele_mod is not None:
             self.off_ele_mod.off()
-        self.skill_use = self.conf.skill_use
+        self.ds_reset()
         self.shift_silence = True
         Timer(self.end_silence).on(10)
         self.status = -2
@@ -158,6 +166,7 @@ class DragonForm(Action):
     def d_act_do(self, t):
         if self.c_act_name == 'ds':
             self.skill_use -= 1
+            self.skill_spc = 0
             self.ds_event()
             self.shift_damage_sum += self.ds_proc() or 0
             self.shift_end_timer.add(self.conf.ds.startup+self.conf.ds.recovery)
@@ -174,6 +183,11 @@ class DragonForm(Action):
                     self.act_sum[-1] = 'c'+self.c_act_name[-1]
                 else:
                     self.act_sum.append('c'+self.c_act_name[-1])
+                if self.skill_sp > 0 and self.skill_spc < self.skill_sp:
+                    self.skill_spc += self.adv.sp_convert(self.adv.sp_mod('x'), 5)
+                    if self.skill_spc > self.skill_sp:
+                        self.skill_spc = self.skill_sp
+                    log(self.c_act_name, 'sp', f'{self.skill_spc}/{self.skill_sp}')
         if self.c_act_conf.hit > -1:
             self.adv.hits += self.c_act_conf.hit
         else:
@@ -181,13 +195,15 @@ class DragonForm(Action):
         self.d_act_next()
 
     def d_act_next(self):
+        nact = None
         if len(self.act_list) > 0:
-            nact = self.act_list.pop(0)
-        else:
+            if self.act_list[0] != 'ds' or self.ds_check():
+                nact = self.act_list.pop(0)
+        if nact is None:
             if self.c_act_name[0:2] == 'dx':
                 nact = 'dx{}'.format(int(self.c_act_name[2])+1)
                 if not nact in self.dx_list:
-                    if self.skill_use > 0:
+                    if self.ds_check():
                         nact = 'ds'
                     elif self.dodge_cancel():
                         nact = 'dodge'

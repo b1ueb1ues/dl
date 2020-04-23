@@ -16,7 +16,7 @@ class Halloween_Lowen(Adv):
     conf['slots.burn.a'] = conf['slots.a']
     conf['slots.d'] = PopStar_Siren()
     conf['acl'] = """
-        `dragon.act('s c3 c2 s end')
+        `dragon
         `s3, not self.s3_buff
         `s1, x=5
         `s2, pin='prep' or x=5 and self.hp_stack < 3

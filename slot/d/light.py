@@ -34,7 +34,7 @@ class PopStar_Siren(DragonBase):
     dragonform = {
         'exhilaration': 3.0,
         'skill_use': 2,
-        'act': 's c3 c3 s end',
+        'act': 's s end',
 
         'dx1.dmg': 0.80,
         'dx1.startup': 17 / 60.0, # c1 frames

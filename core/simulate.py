@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+from slot.a import *
 
 BR = 64
 def skill_efficiency(real_d, team_dps, mod):
@@ -133,11 +134,40 @@ def brute_force_slots(classname, conf, output, team_dps, duration):
     from app.app import is_amulet, is_dragon
     import inspect
     import io
-    import slot.a
     import slot.d
     adv = classname(conf)
     exclude = ('Dear_Diary_RO_30', 'Dear_Diary_RO_60', 'Dear_Diary_RO_90')
-    amulets = list(set(c for _, c in inspect.getmembers(slot.a, is_amulet) if c.__qualname__ not in exclude))
+    # amulets = list(set(c for _, c in inspect.getmembers(slot.a, is_amulet) if c.__qualname__ not in exclude))
+    amulets = [
+        Resounding_Rendition,
+        Valiant_Crown,
+        FirstRate_Hospitality,
+        Jewels_of_the_Sun,
+        Heralds_of_Hinomoto,
+        The_Prince_of_Dragonyule,
+        Howling_to_the_Heavens,
+        Kung_Fu_Masters,
+        Forest_Bonds,
+        Dragon_and_Tamer,
+        The_Shining_Overlord,
+        Summer_Paladyns,
+        Sisters_Day_Out,
+        Elegant_Escort,
+        Beautiful_Nothingness,
+        Dear_Diary,
+        Mega_Friends,
+        An_Ancient_Oath,
+        The_Fires_of_Hate,
+        Breakfast_at_Valerios,
+        Primal_Crisis,
+        The_Red_Impulse,
+        Proper_Maintenance,
+        Spirit_of_the_Season,
+        His_Clever_Brother,
+        The_Lurker_in_the_Woods,
+        Stellar_Show,
+        Candy_Couriers
+    ]
     adv_ele = adv.slots.c.ele.lower()
     results = []
     all_dragons = input('Try all dragons? (y/n)\n') == 'y'
@@ -155,16 +185,15 @@ def brute_force_slots(classname, conf, output, team_dps, duration):
     else:
         amulets_1 = amulets[:-1]
     for dra in dragon:
+        conf['slots.forced'] = True
+        if dra is not None:
+            conf['slots.d'] = dra()
         for idx, a1 in enumerate(amulets_1):
             for a2 in amulets[idx+1:]:
                 if a1 == a2:
                     continue
                 aname = '+'.join([a1.__qualname__, a2.__qualname__])
-                def slot_injection(self):
-                    self.conf.slot.a = a1()+a2()
-                    if dra is not None:
-                        self.conf.slot.d = dra()
-                classname.slot_backdoor = slot_injection
+                conf['slots.a'] = a1()+a2()
                 adv = classname(conf=conf)
                 real_d = adv.run(duration)
                 res = dps_sum(real_d, adv.logs.damage)
