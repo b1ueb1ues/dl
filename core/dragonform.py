@@ -244,19 +244,25 @@ class DragonForm(Action):
         self.parse_act(act_str)
         return self()
 
-    def __call__(self):
+    def check(self, dryrun=True):
         if self.disabled or self.shift_silence or self.dragon_gauge < self.shift_cost:
             return False
         doing = self.getdoing()
         if not doing.idle:
             if isinstance(doing, S) or isinstance(doing, DragonForm):
                 return False
-            if doing.status == -1:
-                doing.startup_timer.off()
-                log('interrupt', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.startup_start))
-            elif doing.status == 1:
-                doing.recovery_timer.off()
-                log('cancel', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.recover_start))
+            if not dryrun:
+                if doing.status == -1:
+                    doing.startup_timer.off()
+                    log('interrupt', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.startup_start))
+                elif doing.status == 1:
+                    doing.recovery_timer.off()
+                    log('cancel', doing.name , 'by '+self.name, 'after {:.2f}s'.format(now()-doing.recover_start))
+        return True
+
+    def __call__(self):
+        if not self.check(dryrun=False):
+            return False
         self.shift_count += 1
         if self.is_dragondrive:
             self.act_list = ['end']
