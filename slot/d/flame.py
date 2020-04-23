@@ -246,12 +246,46 @@ class Dreadking_Rathalos(DragonBase):
         self.adv.afflics.burn('ds',120,0.97,12,dtype='s')
         return dmg + self.adv.dmg_make('ds',4.00,'s')
 
+class Gala_Mars(DragonBase):
+    ele = 'flame'
+    att = 127
+    a = [('a', 0.7), ('a', 0.2, 'hp50')]
+    dragonform = {
+        'skill_use': 2,
+        'act': 'c3 s c3 c3 s', # "c3 c2 s c2 c2 c2 c2 c2 c2"
+
+        'dx1.dmg': 2.00,
+        'dx1.startup': 12 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 1.40,
+        'dx2.startup': 26 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 1.40*2,
+        'dx3.startup': (41+15) / 60.0, # c3 frames
+        'dx3.recovery': 38 / 60.0, # recovery
+        'dx3.hit': 2,
+
+        'ds.recovery': 270 / 60, # skill frames
+        'ds.hit': 7,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from core.advbase import Event
+        Event('dragon_end').listener(self.shift_end_prep)
+
+    def shift_end_prep(self, e):
+        self.adv.charge_p('shift_end',100)
+
+    def ds_proc(self):
+        from core.advbase import Selfbuff
+        dmg = self.adv.dmg_make('ds',1.10*7,'s')
+        Selfbuff('ds',0.20,20,'att','buff').on()
+        return dmg
+
 class Unreleased_FlameSkillHaste(DragonBase):
     ele = 'flame'
     att = 120
     a = [('sp', 0.35)]
-
-class Unreleased_Flame80Str(DragonBase):
-    ele = 'flame'
-    att = 127
-    a = [('a', 0.8, 'some wacky condition')]
