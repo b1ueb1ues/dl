@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Vanessa
@@ -10,16 +9,16 @@ class Vanessa(Adv):
     a3 = ('lo',0.3)
     
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+The_Wyrmclan_Duo()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
         `s1, cancel
-        `s2, fsc
-        `fs, x=4
+        `s2, x=4
+        `fs, x=5
     """
-    coab = ['Blade', 'Serena', 'Marth']
+    coab = ['Blade', 'Marth', 'Serena']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

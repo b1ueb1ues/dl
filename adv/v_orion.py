@@ -1,21 +1,19 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Valentines_Orion
 
 class Valentines_Orion(Adv):
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+EE()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['acl'] = """
         `dragon
         `s3, fsc and not self.s3_buff
-        `s1, fsc
-        `fs, seq=2 and cancel
+        `s1
+        `fs, x=3
     """
-    coab = ['Blade', 'Serena', 'Marth']
+    coab = ['Blade', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
 
     def prerun(self):

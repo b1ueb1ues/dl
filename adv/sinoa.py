@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.d import *
 from slot.a import *
 
 def module():
@@ -10,11 +9,8 @@ class Sinoa(Adv):
     a3 = ('bt',0.2)
 
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+Candy_Couriers()
-    conf['slots.d'] = Dreadking_Rathalos()
-    conf['slots.burn.d'] = Apollo()
     conf['acl'] = '''
-        `dragon
+        `dragon, s=1
         `s3, not self.s3_buff
         `s1
         `s2
