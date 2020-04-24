@@ -1,7 +1,6 @@
 xander.py.best.py
 veronica.py.1hp.py
 v_addis.py.1hp.py
-g_sarisse.py.rollfs.py
 chelsea.py.rollfs.py
 g_luca.py.maxstacks.py
 h_lowen.py
