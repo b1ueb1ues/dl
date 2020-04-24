@@ -41,7 +41,8 @@ class DragonForm(Action):
             self.off_ele_mod.off()
 
         self.dragon_gauge = 0
-        self.dragon_gauge_timer = Timer(self.auto_gauge, repeat=1).on(max(1, self.conf.gauge_iv))
+        self.dragon_gauge_timer = Timer(self.auto_gauge, timeout=max(1, self.conf.gauge_iv), repeat=1).on()
+        self.dragon_gauge_timer_diff = 0
         self.max_gauge = 1000
         self.shift_cost = 500
 
@@ -72,6 +73,14 @@ class DragonForm(Action):
 
     def auto_gauge(self, t):
         self.charge_gauge(self.conf.gauge_val)
+
+    def pause_auto_gauge(self):
+        self.dragon_gauge_timer_diff = self.dragon_gauge_timer.timing - now()
+        self.dragon_gauge_timer.off()
+
+    def resume_auto_gauge(self, t):
+        self.auto_gauge(t)
+        self.dragon_gauge_timer.on()
 
     def add_drive_gauge_time(self, delta):
         duration = self.dragondrive_timer.timing - now()
@@ -128,6 +137,7 @@ class DragonForm(Action):
         self.ds_reset()
         self.shift_silence = True
         Timer(self.end_silence).on(10)
+        Timer(self.resume_auto_gauge).on(self.dragon_gauge_timer_diff)
         self.status = -2
         self._setprev() # turn self from doing to prev
         self._static.doing = self.nop
@@ -138,6 +148,7 @@ class DragonForm(Action):
         log('dragondrive', 'end')
         self.dragondrive_buff.off()
         Timer(self.end_silence).on(10)
+        Timer(self.resume_auto_gauge).on(self.dragon_gauge_timer_diff)
         self.status = -2
         self._setprev() # turn self from doing to prev
         self._static.doing = self.nop
@@ -284,6 +295,7 @@ class DragonForm(Action):
         self.shift_damage_sum = 0
         self.status = -1
         self._setdoing()
+        self.pause_auto_gauge()
         self.shift_start_time = now()
         self.shift_end_timer.on(self.dtime())
         self.shift_event()

@@ -15,7 +15,7 @@ class Gala_Euden(Adv):
         `s3,fsc
         `fs,seq=2 and cancel
     """
-    coab = ['Blade','Dagger','Cleo']
+    coab = ['Blade','Dagger','Halloween_Elisanne']
     conf['afflict_res.paralysis'] = 0
 
     def prerun(self):
