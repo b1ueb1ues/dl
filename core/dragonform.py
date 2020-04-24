@@ -13,7 +13,7 @@ class DragonForm(Action):
         self.disabled = False
         self.shift_event = Event('dragon')
         self.end_event = Event('dragon_end')
-        
+
         self.ds_proc = ds_proc
         self.ds_reset()
         self.act_list = []
@@ -51,6 +51,7 @@ class DragonForm(Action):
         self.is_dragondrive = False
 
     def set_dragondrive(self, dd_buff):
+        self.disabled = False
         self.is_dragondrive = True
         self.shift_event = Event('dragondrive')
         self.dragondrive_end_event = Event('dragondrive_end')
@@ -217,7 +218,7 @@ class DragonForm(Action):
             self.act_timer(self.d_act_start_t, self.c_act_conf.recovery, nact)
 
     def parse_act(self, act_str):
-        act_str = act_str.strip()      
+        act_str = act_str.strip()
         self.act_list = []
         skill_usage = 0
 

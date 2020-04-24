@@ -252,23 +252,23 @@ class Gala_Mars(DragonBase):
     a = [('a', 0.7), ('a', 0.2, 'hp50')]
     dragonform = {
         'skill_use': 2,
-        'act': 'c3 s c3 c3 s', # "c3 c2 s c2 c2 c2 c2 c2 c2"
+        'act': 'c3 s s',
 
-        'dx1.dmg': 2.00,
-        'dx1.startup': 28 / 60.0, # c1 frames
-        'dx2.startup': 48 / 60.0, # c2 frames
+        'dx1.dmg': 2.70,
+        'dx1.startup': 15 / 60.0, # c1 frames
         'dx1.hit': 1,
 
-        'dx2.dmg': 2.40,
-        'dx3.startup': 63 / 60.0, # c3 frames
+        'dx2.dmg': 2.97,
+        'dx2.startup': 60 / 60.0, # c2 frames
         'dx2.hit': 1,
 
-        'dx3.dmg': 5.80,
-        'dx3.recovery': 64 / 60.0, # recovery
-        'dx3.hit': 2,
+        'dx3.dmg': 4.86,
+        'dx3.startup': 81 / 60.0, # c3 frames
+        'dx3.recovery': 35 / 60.0, # recovery
+        'dx3.hit': 3,
 
         'ds.recovery': 141 / 60, # skill frames
-        'ds.hit': 2,
+        'ds.hit': 3,
     }
 
     def oninit(self, adv):
@@ -281,7 +281,7 @@ class Gala_Mars(DragonBase):
 
     def ds_proc(self):
         from core.advbase import Selfbuff
-        dmg = self.adv.dmg_make('ds',6.60,'s')
+        dmg = self.adv.dmg_make('ds',7.50,'s')
         Selfbuff('ds',0.20,20,'att','buff').on()
         return dmg
 

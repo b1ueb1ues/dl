@@ -141,10 +141,13 @@ def run_adv_test(adv_name, wp1=None, wp2=None, dra=None, wep=None, acl=None, con
     if conf is None:
         conf = {}
 
-    conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
-    conf['slots.d'] = getattr(slot.d, dra)()
-    conf['slots.w'] = getattr(slot.w, wep)()
     conf['slots.forced'] = True
+    if wp1 is not None and wp2 is not None:
+        conf['slots.a'] = getattr(slot.a, wp1)() + getattr(slot.a, wp2)()
+    if dra is not None:
+        conf['slots.d'] = getattr(slot.d, dra)()
+    if wep is not None:
+        conf['slots.w'] = getattr(slot.w, wep)()
 
     result = {}
 

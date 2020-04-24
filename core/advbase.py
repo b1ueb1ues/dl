@@ -883,7 +883,7 @@ class Adv(object):
 
     def d_coabs(self):
         pass
-    
+
     def d_acl(self):
         pass
 
@@ -1192,7 +1192,7 @@ class Adv(object):
             scope = scope[1]
         else:
             scope = scope[0]
-        
+
         for t in self.tension:
             t.check(scope)
 
@@ -1262,7 +1262,7 @@ class Adv(object):
 
     def killer_mod(self, name=None):
         total = self.mod('killer') - 1
-        
+
         rates = {}
         for afflic in AFFLICT_LIST:
             rate = vars(self.afflics)[afflic].get()
@@ -1456,7 +1456,7 @@ class Adv(object):
                     self.slots.c.a.extend(ab)
                 else:
                     self.slots.c.a.append(ab)
-        
+
         self.d_coabs()
         self.coab_list = self.coab
         if 'coabs' in self.conf:
@@ -1729,8 +1729,11 @@ class Adv(object):
                         self.s3_buff = self.s3_buff_list[0]
                 else:
                     idx = (self.s3_buff_list.index(self.s3_buff) + 1) % len(self.s3_buff_list)
-                    self.s3_buff.off()
-                    self.s3_buff = self.s3_buff_list[idx].on()
+                    try:
+                        self.s3_buff.off()
+                        self.s3_buff = self.s3_buff_list[idx].on()
+                    except:
+                        self.s3_buff = None
             else:
                 self.do_buff(e, buffarg).on()
 
