@@ -267,7 +267,7 @@ class Gala_Mars(DragonBase):
         'dx3.recovery': 35 / 60.0, # recovery
         'dx3.hit': 3,
 
-        'ds.recovery': 141 / 60, # skill frames
+        'ds.recovery': 140 / 60, # skill frames
         'ds.hit': 3,
     }
 
