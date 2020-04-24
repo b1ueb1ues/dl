@@ -9,7 +9,7 @@ class Halloween_Mym(Adv):
     conf = {}
     conf['slots.a'] = Primal_Crisis()+An_Ancient_Oath()
     conf['acl'] = """
-        `dragon, s=2
+        `dragon, s=1
         `s3, not self.s3_buff
         `s1
         `s2, cancel

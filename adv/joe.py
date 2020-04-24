@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Joe
@@ -9,7 +8,7 @@ class Joe(Adv):
     a1 = ('edge_burn', 70, 'hp100')
 
     conf = {}
-    conf['slots.a'] = Forest_Bonds()+Primal_Crisis()
+    conf['slots.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `dragon, s=1
         `s3, fsc and not self.s3_buff
