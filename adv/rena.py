@@ -8,12 +8,13 @@ class Rena(Adv):
     a1 = ('primed_defense',0.08)
 
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
+        `dragon, s=1
         `s3, not self.s3_buff
         `s1
         `s2, s=1
-        `fs, seq=5 and (s1.charged=1500 or s1.charged=3200)
+        `fs, x=5 and (s1.charged=1500 or s1.charged=3200)
     """
     coab = ['Wand', 'Dagger', 'Marth']    
     conf['afflict_res.burn'] = 0

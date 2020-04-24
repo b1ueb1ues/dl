@@ -10,10 +10,8 @@ class Marty(Adv):
 
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
-    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
-        `dragon, s=2
+        `dragon, s
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `fs, x=2

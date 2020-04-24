@@ -10,10 +10,9 @@ class Ramona(Adv):
     a3 = ('bc',0.13)
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
-    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Sakuya()
+    conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
-        `dragon.act('c3 s end')
+        `dragon, s=1
         `s3, not self.s3_buff
         `s1a
         `s2,x=4

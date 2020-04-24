@@ -8,8 +8,7 @@ def module():
 
 class Serena(Adv):
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+The_Shining_Overlord()
-    conf['slots.d'] = Arctos()
+    conf['slots.a'] = The_Shining_Overlord()+Primal_Crisis()
     conf['acl'] = """
         `dragon, fsc
         `s3, fsc and not self.s3_buff

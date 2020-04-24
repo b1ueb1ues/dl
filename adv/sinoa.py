@@ -35,9 +35,9 @@ class Sinoa(Adv):
             else:
                 log('debug','s1 HP buff')
         elif self.s1_buff_mode == 'att':
-            adv.Teambuff('s1_att',0.25,15,'att').on()
+            Teambuff('s1_att',0.25,15,'att').on()
         elif self.s1_buff_mode == 'crit':
-            adv.Teambuff('s1_crit',0.25,10,'crit').on()
+            Teambuff('s1_crit',0.25,10,'crit').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

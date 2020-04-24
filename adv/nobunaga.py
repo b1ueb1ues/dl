@@ -11,14 +11,14 @@ class Nobunaga(Adv):
     a1 = ('a',0.2,'hit15')
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
-    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['acl'] = """
+        `dragon, s=2
         `s3, not self.s3_buff
         `s1
         `s2
         `fs, x=5 and self.s2.charged<self.s2.sp-self.sp_val(5)
         """
-    coab = ['Wand', 'Marth', 'Serena']
+    coab = ['Wand','Marth','Serena']
 
     def prerun(self):
         self.ba = 0

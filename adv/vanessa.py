@@ -10,7 +10,7 @@ class Vanessa(Adv):
     
     conf = {}
     conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
-    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

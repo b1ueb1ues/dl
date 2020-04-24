@@ -9,12 +9,13 @@ class Naveed(Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['acl'] = """
+        `dragon, s
         `s3, not self.s3_buff
         `s2, self.s1level < 5
         `s1, cancel
         `fs, x=3 and cancel
         """
-    conf['slots.a'] = Primal_Crisis()+The_Shining_Overlord()
+    conf['slots.a'] = The_Shining_Overlord()+Primal_Crisis()
     coab = ['Blade', 'Wand', 'Gala_Sarisse']
             
     def prerun(self):

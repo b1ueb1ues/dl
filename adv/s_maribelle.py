@@ -9,12 +9,12 @@ class Student_Maribelle(Adv):
     
     conf = {}
     conf['acl'] = """
-        `dragon
+        `dragon, s
         `s3, not self.s3_buff
         `s1
         `s2
     """
-    coab = ['Yuya', 'Marth', 'Halloween_Mym']
+    coab = ['Blade', 'Marth', 'Serena']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

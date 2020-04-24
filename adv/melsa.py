@@ -10,7 +10,6 @@ class Melsa(Adv):
 
     conf = {}
     conf['slots.a'] = Twinfold_Bonds()+Stellar_Show()
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

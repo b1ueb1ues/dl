@@ -43,11 +43,7 @@ class Hunter_Berserker(Adv):
         `dodge, fsc
         `fs3
     """
-    coab = ['Blade', 'Grace', 'Halloween_Mym']
-
-    def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Blade','Grace','Dagger']
+    coab = ['Blade','Grace','Marth']
 
     def init(self):
         self.conf.fs.hit = 1

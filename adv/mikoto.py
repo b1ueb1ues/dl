@@ -6,22 +6,18 @@ def module():
     return Mikoto
 
 class Mikoto(Adv):
-# Unsafe flurry - this unit does not have a combotime coab but uses BaV in non affliction setup @chu
-
     a1 = ('cc',0.10,'hp70')
     a3 = ('cc',0.08)
     
     conf = {}
-#   better burn setup if unsafe flurry is acceptable on chart:
-#    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Arctos()
+    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
     conf['acl'] = """
         `dragon, s=2
         `s3, x=5 and not self.s3_buff
         `s1, x=5
         `s2, x=5
         """
-    coab = ['Yuya', 'Halloween_Mym', 'Marth']
+    coab = ['Dagger', 'Halloween_Mym', 'Marth']
 
     def prerun(self):
         self.s1buff = Selfbuff("s1",0.0, 20)

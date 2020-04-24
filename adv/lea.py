@@ -11,7 +11,6 @@ class Lea(Adv):
         
     conf = {}
     conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
         `dragon, fsc
         `s3, not self.s3_buff

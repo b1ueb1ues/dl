@@ -12,11 +12,11 @@ class Marth(Adv):
     a3 = ('cc',0.13,'hit10')
     
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Konohana_Sakuya()
+    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
     conf['acl'] = """
+        `dragon, s=2
         `s3, not self.s3_buff
-        `s2, fsc
+        `s2
         `s1, fsc
         `fs, x=3
     """
@@ -24,7 +24,7 @@ class Marth(Adv):
 
     def d_coabs(self):
         if self.duration <= 60:
-            self.coab = ['Blade','Wand',"Gala_Sarisse"]
+            self.coab = ['Blade','Wand','Gala_Sarisse']
 
     def init(self):
         self.stance = 0

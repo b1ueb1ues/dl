@@ -12,9 +12,9 @@ class Renelle(Adv):
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
-        `s1
-        `s2
-        `fs, x=4
+        `s1, fsc
+        `s2, fsc
+        `fs, x=5
         """
     conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Marth', 'Serena']
