@@ -10,13 +10,13 @@ class Laxi(Adv):
     
     conf = {}
     conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Gala_Mars()
     conf['acl'] = """
-        `dragon, fsc
+        `dragon, s
         `s3, not self.s3_buff
         `s2, not self.s2buff.get()
         `s1
-        `fs, x=2
+        `fs, x=5
         """
     coab = ['Dagger', 'Marth', 'Serena']
 

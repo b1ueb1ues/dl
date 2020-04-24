@@ -8,7 +8,7 @@ class Ezelith(Adv):
     comment = ''
     a3 = ('bk',0.35)
     conf = {}
-    conf['slots.d'] = Arctos()
+    conf['slots.d'] = Gala_Mars()
     conf['acl'] = """
         `dragon, s=1
         `s3, not self.s3_buff

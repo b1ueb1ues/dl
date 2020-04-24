@@ -11,14 +11,14 @@ class Karl(Adv):
 
     conf = {}
     conf['slots.a'] = Primal_Crisis()+The_Lurker_in_the_Woods()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Gala_Mars()
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff
         `s2, cancel
         `fs, x=2
     """
-    coab = ['Blade', 'Grace', 'Tobias']
+    coab = ['Blade', 'Marth', 'Bow']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

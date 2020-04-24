@@ -8,13 +8,12 @@ def module():
 class Halloween_Mym(Adv):
     conf = {}
     conf['slots.a'] = Primal_Crisis()+An_Ancient_Oath()
-    conf['slots.d'] = Arctos()
-    conf['slots.burn.d'] = Apollo()
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff
         `s1
         `s2, cancel
+        `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
     coab = ['Blade', 'Yuya', 'Serena']
 
@@ -49,8 +48,7 @@ class Halloween_Mym(Adv):
             self.s1defdown = 1
         else:
             self.s1defdown = 0
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
         self.s2_da = Selfbuff('a3_dreamboost',0.20,15,'da','buff')
 
@@ -70,13 +68,8 @@ class Halloween_Mym(Adv):
         if self.s1defdown :
             Debuff('s1defdown',0.15,10,1).on()
     
-    def c_s2_proc(self, e):
-        Teambuff('s2',0.20,15).on()
-        Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
-        self.s2_da.on()
-
     def s2_proc(self, e):
-        Selfbuff('s2',0.20,15).on()
+        self.buff_class('s2',0.20,15).on()
         Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
         self.s2_da.on()
 

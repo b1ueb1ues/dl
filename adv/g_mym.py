@@ -9,14 +9,12 @@ class Gala_Mym(Adv):
     a3 = ('dt', 0.20)
 
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+The_Red_Impulse()
-    conf['slots.d'] = Sakuya()
-    conf['slots.burn.d'] = Apollo()
+    conf['slots.a'] = Resounding_Rendition()+The_Red_Impulse()
+    conf['slots.d'] = Gala_Mars()
     conf['acl'] = """
-        if self.afflics.burn.get()
+        if s
+        `dragon.act('c3 s end'), self.dragonform.shift_count<1
         `dragon
-        else
-        `dragon.act('c3 s end')
         end
         `s3, not self.s3_buff
         `s1

@@ -9,13 +9,13 @@ class Joe(Adv):
     a1 = ('edge_burn', 70, 'hp100')
 
     conf = {}
-    conf['slots.a'] = Mega_Friends()+Primal_Crisis()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Forest_Bonds()+Primal_Crisis()
     conf['acl'] = """
+        `dragon, s=1
         `s3, fsc and not self.s3_buff
-        `s1, fsc
-        `s2, fsc
-        `fs, x=1
+        `s1
+        `s2
+        `fs, x=4
     """
     coab = ['Blade', 'Wand', 'Marth']
     conf['afflict_res.burn'] = 0
