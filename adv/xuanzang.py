@@ -1,6 +1,5 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Xuan_Zang
@@ -10,14 +9,14 @@ class Xuan_Zang(Adv):
     
     conf = {}
     conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['acl'] = """
+        `dragon, s=2
         `s3, not self.s3_buff
-        `s1, fsc
-        `s2, cancel
-        `fs, x=4
+        `s1
+        `s2
+        `fs, x=5
         """
-    coab = ['Blade', 'Wand', 'Marth']
+    coab = ['Blade', 'Marth', 'Serena']
 
     def s1_proc(self, e):
         if self.mod('def')!= 1:

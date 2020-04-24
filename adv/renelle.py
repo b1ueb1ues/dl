@@ -1,24 +1,23 @@
 from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Renelle
 
 class Renelle(Adv):
     a1 = ('cc',0.15,'hit15')
+    
     conf = {}
-    conf['afflict_res.burn'] = 0
-    conf['slots.d'] = Dreadking_Rathalos()
     conf['slots.a'] = Twinfold_Bonds()+Elegant_Escort()
     conf['acl'] = """
-        `dragon, fsc
+        `dragon
         `s3, not self.s3_buff
-        `s1, fsc
-        `s2, fsc
-        `fs, x=2
+        `s1
+        `s2
+        `fs, x=4
         """
-    coab = ['Blade', 'Serena', 'Marth']
+    conf['afflict_res.burn'] = 0
+    coab = ['Blade', 'Marth', 'Serena']
 
     def s1_proc(self, e):
         self.afflics.burn('s1',100,0.803)
