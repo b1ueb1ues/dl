@@ -11,7 +11,6 @@ class Aurien(Adv):
 
     conf = {}
     conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
-    conf['slots.d'] = Apollo()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

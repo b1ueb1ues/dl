@@ -10,13 +10,13 @@ class Euden(Adv):
     
     conf = {}
     conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Gala_Mars()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
-        `fs, x=2
+        `fs, x=3
     """
     coab = ['Blade', 'Joe', 'Yuya']
     conf['afflict_res.burn'] = 0

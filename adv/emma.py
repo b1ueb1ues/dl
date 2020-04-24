@@ -11,16 +11,17 @@ class Emma(Adv):
     a3 = ('primed_att', 0.05)
 
     conf = {}
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.d'] = Gala_Mars()
     conf['slots.a'] = Castle_Cheer_Corps()+From_Whence_He_Comes()
     conf['slots.burn.a'] = conf['slots.a']
     conf['acl'] = """
+        `dragon.act('c1 s s end'), s=1
         `fs, self.fs_prep_c==3
         `s3, not self.s3_buff
         `s1, cancel
         `fs, x=5
         """
-    coab = ['Tobias', 'Blade', 'Marth']
+    coab = ['Tobias', 'Blade', 'Bow']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

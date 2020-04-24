@@ -252,7 +252,7 @@ class Gala_Mars(DragonBase):
     a = [('a', 0.7), ('a', 0.2, 'hp50')]
     dragonform = {
         'skill_use': 2,
-        'act': 'c3 s s',
+        'act': 'c1 s s',
 
         'dx1.dmg': 2.70,
         'dx1.startup': 15 / 60.0, # c1 frames

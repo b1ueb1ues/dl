@@ -5,18 +5,16 @@ def module():
     return Aoi
 
 class Aoi(Adv):
-# Unsafe flurry - this unit does not have a combotime coab but uses BaV in non affliction setup @chu
-
     a1 = ('od',0.15)
     
     conf = {}
     conf['acl'] = """
-        `dragon.act('s end'), s
+        `dragon, s=2
         `s3, not self.s3_buff
         `s1
         `s2
     """
-    coab = ['Wand', 'Marth', 'Joe']
+    coab = ['Wand', 'Marth', 'Dagger']
     conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):

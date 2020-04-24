@@ -6,9 +6,9 @@ def module():
 
 class Alain(Adv):
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
-        `dragon.act('s end')
+        `dragon, s=2
         `s3, not self.s3_buff
         `s1, cancel
         `s2, cancel

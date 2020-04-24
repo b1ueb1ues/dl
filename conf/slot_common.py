@@ -6,7 +6,7 @@ import slot.w
 from conf import coability, all_ele_chain
 
 ele_dragon = {
-    'flame': Sakuya,
+    'flame': Gala_Mars,
     'water': Siren,
     'wind': Vayu,
     'light': Daikokuten,

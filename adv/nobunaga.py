@@ -24,18 +24,18 @@ class Nobunaga(Adv):
         self.ba = 0
     
     def s1_proc(self, e):
-        self.ba = 1
+        self.ba = self.dmg_formula('s', 11.18)
 
     def s2_proc(self, e):
-        if self.ba == 1:
+        if self.ba > 0:
+            self.dmg_make('o_s1_boost', self.ba, fixed=True)
             self.ba = 0
-            self.dmg_make('o_s1_boost',11.18)
             self.dmg_make('o_s2_boost',self.conf.s2.dmg*0.3)
 
     def fs_proc(self, e):
-        if self.ba == 1:
+        if self.ba > 0:
+            self.dmg_make('o_s1_boost', self.ba, fixed=True)
             self.ba = 0
-            self.dmg_make('o_s1_boost',11.18)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
