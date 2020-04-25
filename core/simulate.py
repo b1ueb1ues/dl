@@ -170,7 +170,8 @@ def brute_force_slots(classname, conf, output, team_dps, duration):
         His_Clever_Brother,
         The_Lurker_in_the_Woods,
         Stellar_Show,
-        Candy_Couriers
+        Candy_Couriers,
+        Twinfold_Bonds
     ]
     adv_ele = adv.slots.c.ele.lower()
     results = []
