@@ -15,7 +15,7 @@ class Aoi(Adv):
         `s1
         `s2
     """
-    coab = ['Wand', 'Marth', 'Yuya']
+    coab = ['Wand', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):
