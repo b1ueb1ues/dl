@@ -131,10 +131,14 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
     return run_results
 
 def brute_force_slots(classname, conf, output, team_dps, duration):
-    from app.app import is_amulet, is_dragon
+    #from app.app import is_amulet, is_dragon
     import inspect
     import io
     import slot.d
+    def is_dragon(obj):
+        return (inspect.isclass(obj) and issubclass(obj, slot.d.DragonBase)
+                and obj.__module__ != 'slot.d'
+                and obj.__module__ != 'slot')
     adv = classname(conf)
     exclude = ('Dear_Diary_RO_30', 'Dear_Diary_RO_60', 'Dear_Diary_RO_90')
     # amulets = list(set(c for _, c in inspect.getmembers(slot.a, is_amulet) if c.__qualname__ not in exclude))
