@@ -6,7 +6,6 @@ def module():
     return Lathna
 
 class Lathna(Adv):
-    comment = 'no poison'
     a1 = ('k_poison',0.15)
     a3 = ('dt', 0.25)
     

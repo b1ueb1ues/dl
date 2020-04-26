@@ -6,7 +6,6 @@ def module():
 class Kirsty(Adv):
     a3 = ('k_poison',0.3)
 
-    comment = 'no poison'
     conf = {}
     conf['acl'] = """
         `dragon.act("c3 s end")
