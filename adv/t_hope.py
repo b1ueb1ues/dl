@@ -11,8 +11,8 @@ class Templar_Hope(Adv):
     conf['slots.d'] = AC011_Garland()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s2
-        `s3
         `fs, x=2
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

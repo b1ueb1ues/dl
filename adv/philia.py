@@ -11,9 +11,9 @@ class Philia(Adv):
     conf['slots.a'] = Forest_Bonds()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.paralysis'] = 0

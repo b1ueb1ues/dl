@@ -11,9 +11,9 @@ class Su_Fang(Adv):
     conf['slots.a'] = Twinfold_Bonds()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s2, fsc
         `s1
-        `s3, fsc
         `fs, x=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

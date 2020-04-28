@@ -14,9 +14,9 @@ class Wedding_Elisanne(Adv):
     conf['slots.a'] = The_Shining_Overlord()+United_by_One_Vision()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1,fsc and s2.charged<s2.sp-749
         `s2
-        `s3,fsc and not self.s2_debuff.get()
         `fs,seq=2 and cancel and ((s1.charged>=909 and not self.s2_debuff.get()) or s3.charged>=s3.sp)
         `fs,seq=3 and cancel
     """

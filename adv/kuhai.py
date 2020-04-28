@@ -18,9 +18,9 @@ class Ku_Hai(Adv):
     conf['slots.d'] = AC011_Garland()
     conf['acl'] = '''
         `dragon.act("c3 s c1 end")
+        `s3, not self.s3_buff
         `s1, fsc
         `s2
-        `s3, fsc
         `fs, seq=2 and self.fs_alt.get()
         `fs, seq=3
         '''

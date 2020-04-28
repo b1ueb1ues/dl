@@ -15,9 +15,8 @@ class Noelle(Adv):
     conf['slots.a'] = A_Dogs_Day()+Primal_Crisis()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s2, x=5
-        `s3, x=5
         """
     coab = ['Blade','Tobias','Bow']
 

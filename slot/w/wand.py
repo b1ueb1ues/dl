@@ -182,6 +182,6 @@ class UnreleasedAgitoSpd_LightWand(Agito_Jiu_Ci):
 
 flame = Agito_Brisingr
 water = HDT2_Aquatic_Spiral
-wind = HDT2_Grand_Tempest
+wind = Agito_Camelot
 light = HDT2_Primeval_Thunder
 shadow = Agito_Jiu_Ci

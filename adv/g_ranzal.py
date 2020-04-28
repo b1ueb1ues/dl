@@ -14,8 +14,8 @@ class Gala_Ranzal(Adv):
     conf['slots.d'] = AC011_Garland()
     conf['acl'] = '''
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1, fsc
-        `s3, fsc
         `fs, seq=2 and self.gauges['x'] <= 500
         `fs, seq=3
     '''

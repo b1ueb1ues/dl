@@ -180,8 +180,8 @@ class UnreleasedAgitoSpd_WaterAxe(Agito_Fangtian_Huaji):
 class UnreleasedAgitoSpd_LightAxe(Agito_Fangtian_Huaji):
     ele = ['light']
 
-flame  = Agito_Mjolnir
-water  = HDT2_Mercys_Azure_Tide
-wind   = Agito_Marmyadose
-light  = HDT2_Mighty_Thundercrash
+flame = Agito_Mjolnir
+water = HDT2_Mercys_Azure_Tide
+wind = Agito_Marmyadose
+light = HDT2_Mighty_Thundercrash
 shadow = Agito_Fangtian_Huaji

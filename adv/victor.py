@@ -10,9 +10,9 @@ class Victor(Adv):
     conf = {}
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1, self.bleed._static['stacks'] < 3
         `s2, x=5
-        `s3, x=5
         """
     coab = ['Akasha','Dragonyule_Xainfried','Lin_You']
 

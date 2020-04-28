@@ -11,9 +11,9 @@ class Louise(Adv):
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3, seq=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0

@@ -11,6 +11,7 @@ class Hawk(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
+        `s3, not self.s3_buff
         queue (prep and self.duration <= 60 and self.afflics.stun.resist < 100)
         `s2
         `fs

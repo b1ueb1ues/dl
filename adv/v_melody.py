@@ -13,10 +13,11 @@ class Valentines_Melody(Adv):
     conf = {}
     conf['slots.a'] = Kung_Fu_Masters()+The_Fires_of_Hate()
     conf['slots.d'] = Ariel()
+    conf['slots.poison.d'] = AC011_Garland()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3, cancel and self.mod('def')!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
     coab = ['Blade','Eleonora','Lin_You']

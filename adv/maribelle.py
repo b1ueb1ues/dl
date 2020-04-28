@@ -11,9 +11,9 @@ class Maribelle(Adv):
     conf['slots.d'] = AC011_Garland()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1
         `s2, seq=5 and cancel
-        `s3
         """
     coab = ['Blade','Akasha','Lin_You']
 

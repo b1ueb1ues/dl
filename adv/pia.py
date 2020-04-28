@@ -9,9 +9,9 @@ class Pia(Adv):
     conf['slots.d'] = AC011_Garland()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
-        `s3
         `fs, x=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

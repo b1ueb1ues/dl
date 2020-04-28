@@ -11,9 +11,9 @@ class Wedding_Aoi(Adv):
     conf['slots.a'] = Twinfold_Bonds()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1, seq=5 or fsc
         `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
         `fs, seq=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

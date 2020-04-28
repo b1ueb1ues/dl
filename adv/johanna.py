@@ -9,9 +9,9 @@ class Johanna(Adv):
     conf['slots.a'] = Kung_Fu_Masters()+Crystalian_Envoy()
     conf['acl'] = """
         `dragon.act("c3 s c2 end")
+        `s3, not self.s3_buff
         `s1 
         `s2 
-        `s3
         `fs,seq=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

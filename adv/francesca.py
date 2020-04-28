@@ -7,12 +7,12 @@ def module():
 class Francesca(Adv):
     a1 = ('fs',0.30)
     conf = {}
-    conf['slots.a'] = TB()+PC()
+    conf['slots.a'] = Twinfold_Bonds()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3
         `fs, x=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

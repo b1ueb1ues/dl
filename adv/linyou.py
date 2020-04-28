@@ -13,9 +13,9 @@ class Lin_You(Adv):
     conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s2, s1.check()
         `s1
-        `s3, x=5
         `fs, self.hits <= 44 and self.fs_alt.uses > 0 and x=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Axe2']

@@ -10,9 +10,9 @@ class Eleonora(Adv):
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `fs, seq=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']

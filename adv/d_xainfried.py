@@ -14,9 +14,9 @@ class Dragonyule_Xainfried(Adv):
     conf['slots.d'] = Ariel()
     conf['acl'] = """
         `dragon.act("s end")
+        `s3, not self.s3_buff
         `s1
         `s2, x=5
-        `s3, x=5
         """
     coab = ['Blade','Bow','Tobias']
 
