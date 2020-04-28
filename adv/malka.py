@@ -16,10 +16,6 @@ class Malka(Adv):
         """
     coab = ['Blade','Dagger','Halloween_Elisanne']
 
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = RR()+JotS()
-
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

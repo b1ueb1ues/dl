@@ -251,7 +251,7 @@ if __name__ == '__main__':
     # Dragons
     os.mkdir(DRAGON_DIR)
     tables = 'Dragons'
-    fields = 'BaseId,Id,Name,FullName,NameJP,Title,TitleJP,Obtain,Rarity,ElementalType,ElementalTypeId,VariationId,IsPlayable,MinHp,MaxHp,MinAtk,MaxAtk,Skill1,SkillName,SkillDescription,Abilities11,Abilities12,Abilities21,Abilities22,ProfileText,FavoriteType,JapaneseCV,EnglishCV,SellCoin,SellDewPoint,MoveSpeed,DashSpeedRatio,TurnSpeed,IsTurnToDamageDir,MoveType,IsLongRange,ReleaseDate,Availability'
+    fields = 'BaseId,Id,Name,FullName,NameJP,Title,TitleJP,Obtain,Rarity,ElementalType,ElementalTypeId,VariationId,IsPlayable,MinHp,MaxHp,MinAtk,MaxAtk,Abilities11,Abilities12,Abilities21,Abilities22,ProfileText,FavoriteType,JapaneseCV,EnglishCV,SellCoin,SellDewPoint,MoveSpeed,DashSpeedRatio,TurnSpeed,IsTurnToDamageDir,MoveType,IsLongRange,ReleaseDate,Availability'
     for ele in ELEMENT_TYPE:
         where = 'Rarity >= 5 AND ElementalType = "{}"'.format(ele)
         dragon_data = get_data(tables=tables, fields=fields, where=where)
@@ -309,13 +309,18 @@ if __name__ == '__main__':
                 f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
                 f.write('    att = {}\n'.format(wep_atk[1]))
-                f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
-                f.write('    a = ' + ab + '\n')
+                if prefix == 'Agito':
+                    f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][1]\n')
+                else:
+                    f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
+                    f.write('    a = ' + ab + '\n')
                 f.write('\n')
 
                 clean_name_0ub = prefix +'0UB_' + get_clean_name(wep['WeaponName'])
                 f.write('class {}({}):\n'.format(clean_name_0ub, clean_name))
                 f.write('    att = {}\n'.format(wep_atk[0]))
+                if prefix == 'Agito':
+                    f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][0]\n')
                 f.write('\n')
 
                 if set_pref:

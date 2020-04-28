@@ -158,11 +158,18 @@ class Agito0UB_Fangtian_Huaji(Agito_Fangtian_Huaji):
     att = 1051
     s3 = agito_buffs['shadow'][0]
 
+class Agito_Marmyadose(WeaponBase):
+    ele = ['wind']
+    wt = 'axe'
+    att = 1621
+    s3 = agito_buffs['wind'][1]
+
+class Agito0UB_Marmyadose(Agito_Marmyadose):
+    att = 1051
+    s3 = agito_buffs['wind'][0]
+
 class UnreleasedAgitoStr_WaterAxe(Agito_Mjolnir):
     ele = ['water']
-
-class UnreleasedAgitoStr_WindAxe(Agito_Mjolnir):
-    ele = ['wind']
 
 class UnreleasedAgitoStr_LightAxe(Agito_Mjolnir):
     ele = ['light']
@@ -170,14 +177,11 @@ class UnreleasedAgitoStr_LightAxe(Agito_Mjolnir):
 class UnreleasedAgitoSpd_WaterAxe(Agito_Fangtian_Huaji):
     ele = ['water']
 
-class UnreleasedAgitoSpd_WindAxe(Agito_Fangtian_Huaji):
-    ele = ['wind']
-
 class UnreleasedAgitoSpd_LightAxe(Agito_Fangtian_Huaji):
     ele = ['light']
 
 flame  = Agito_Mjolnir
 water  = HDT2_Mercys_Azure_Tide
-wind   = HDT2_Glorystorms_Guide
+wind   = Agito_Marmyadose
 light  = HDT2_Mighty_Thundercrash
 shadow = Agito_Fangtian_Huaji

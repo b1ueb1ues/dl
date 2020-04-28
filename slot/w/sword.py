@@ -158,11 +158,18 @@ class Agito0UB_Yitian_Jian(Agito_Yitian_Jian):
     att = 1001
     s3 = agito_buffs['shadow'][0]
 
+class Agito_Excalibur(WeaponBase):
+    ele = ['wind']
+    wt = 'sword'
+    att = 1544
+    s3 = agito_buffs['wind'][1]
+
+class Agito0UB_Excalibur(Agito_Excalibur):
+    att = 1001
+    s3 = agito_buffs['wind'][0]
+
 class UnreleasedAgitoStr_WaterSword(Agito_Nothung):
     ele = ['water']
-
-class UnreleasedAgitoStr_WindSword(Agito_Nothung):
-    ele = ['wind']
 
 class UnreleasedAgitoStr_LightSword(Agito_Nothung):
     ele = ['light']
@@ -170,14 +177,11 @@ class UnreleasedAgitoStr_LightSword(Agito_Nothung):
 class UnreleasedAgitoSpd_WaterSword(Agito_Yitian_Jian):
     ele = ['water']
 
-class UnreleasedAgitoSpd_WindSword(Agito_Yitian_Jian):
-    ele = ['wind']
-
 class UnreleasedAgitoSpd_LightSword(Agito_Yitian_Jian):
     ele = ['light']
 
 flame = Agito_Nothung
 water = HDT2_Absolute_Aqua
-wind = HDT2_Absolute_Tempest
+wind = Agito_Excalibur
 light = HDT2_Absolute_Lightning
 shadow = Agito_Yitian_Jian

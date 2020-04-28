@@ -21,10 +21,6 @@ class Gala_Ranzal(Adv):
     '''
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = TSO()+BN()
-
     a3 = ('s',0.3)
 
     #c3 770

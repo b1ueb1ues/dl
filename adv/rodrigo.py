@@ -5,8 +5,9 @@ def module():
     return Rodrigo
 
 class Rodrigo(Adv):
-    a1 = ('a',0.08,'hp70')
+    a1 = ('a',0.15,'hp70')
     conf = {}
+    conf['slots.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
@@ -16,10 +17,11 @@ class Rodrigo(Adv):
         """
     coab = ['Ieyasu','Wand','Cleo']
 
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = TSO()+JotS()
+    def s1_proc(self, e):
+        self.afflics.poison('s1',120,0.582)
 
+    def s2_proc(self, e):
+        self.afflics.poison('s1',120,0.582)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

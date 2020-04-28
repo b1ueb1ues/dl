@@ -158,11 +158,18 @@ class Agito0UB_Qinglong_Yanyuedao(Agito_Qinglong_Yanyuedao):
     att = 1021
     s3 = agito_buffs['shadow'][0]
 
+class Agito_Rhongomyniad(WeaponBase):
+    ele = ['wind']
+    wt = 'lance'
+    att = 1575
+    s3 = agito_buffs['wind'][1]
+
+class Agito0UB_Rhongomyniad(Agito_Rhongomyniad):
+    att = 1021
+    s3 = agito_buffs['wind'][0]
+
 class UnreleasedAgitoStr_WaterLance(Agito_Gungnir):
     ele = ['water']
-
-class UnreleasedAgitoStr_WindLance(Agito_Gungnir):
-    ele = ['wind']
 
 class UnreleasedAgitoStr_LightLance(Agito_Gungnir):
     ele = ['light']
@@ -170,14 +177,11 @@ class UnreleasedAgitoStr_LightLance(Agito_Gungnir):
 class UnreleasedAgitoSpd_WaterLance(Agito_Qinglong_Yanyuedao):
     ele = ['water']
 
-class UnreleasedAgitoSpd_WindLance(Agito_Qinglong_Yanyuedao):
-    ele = ['wind']
-
 class UnreleasedAgitoSpd_LightLance(Agito_Qinglong_Yanyuedao):
     ele = ['light']
 
 flame = Agito_Gungnir
 water = HDT2_Limpid_Rush
-wind = HDT2_Guiding_Gale
+wind = Agito_Rhongomyniad
 light = HDT2_Brilliant_Lightflash
 shadow = Agito_Qinglong_Yanyuedao

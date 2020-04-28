@@ -157,11 +157,18 @@ class Agito0UB_Longshe_Gong(Agito_Longshe_Gong):
     att = 961
     s3 = agito_buffs['shadow'][0]
 
+class Agito_Failnaught(WeaponBase):
+    ele = ['wind']
+    wt = 'bow'
+    att = 1482
+    s3 = agito_buffs['wind'][1]
+
+class Agito0UB_Failnaught(Agito_Failnaught):
+    att = 961
+    s3 = agito_buffs['wind'][0]
+
 class UnreleasedAgitoStr_WaterBow(Agito_Ydalir):
     ele = ['water']
-
-class UnreleasedAgitoStr_WindBow(Agito_Ydalir):
-    ele = ['wind']
 
 class UnreleasedAgitoStr_LightBow(Agito_Ydalir):
     ele = ['light']
@@ -169,14 +176,11 @@ class UnreleasedAgitoStr_LightBow(Agito_Ydalir):
 class UnreleasedAgitoSpd_WaterBow(Agito_Longshe_Gong):
     ele = ['water']
 
-class UnreleasedAgitoSpd_WindBow(Agito_Longshe_Gong):
-    ele = ['wind']
-
 class UnreleasedAgitoSpd_LightBow(Agito_Longshe_Gong):
     ele = ['light']
 
 flame = Agito_Ydalir
 water = HDT2_Azure_Mercurius
-wind = HDT2_Jormungands_Fury
+wind = Agito_Failnaught
 light = HDT2_Jupiters_Sky
 shadow = Agito_Longshe_Gong

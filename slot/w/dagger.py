@@ -158,11 +158,18 @@ class Agito0UB_Qinghong_Jian(Agito_Qinghong_Jian):
     att = 981
     s3 = agito_buffs['shadow'][0]
 
+class Agito_Carnwennan(WeaponBase):
+    ele = ['wind']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['wind'][1]
+
+class Agito0UB_Carnwennan(Agito_Carnwennan):
+    att = 981
+    s3 = agito_buffs['wind'][0]
+
 class UnreleasedAgitoStr_WaterDagger(Agito_Hrotti):
     ele = ['water']
-
-class UnreleasedAgitoStr_WindDagger(Agito_Hrotti):
-    ele = ['wind']
 
 class UnreleasedAgitoStr_LightDagger(Agito_Hrotti):
     ele = ['light']
@@ -170,14 +177,11 @@ class UnreleasedAgitoStr_LightDagger(Agito_Hrotti):
 class UnreleasedAgitoSpd_WaterDagger(Agito_Qinghong_Jian):
     ele = ['water']
 
-class UnreleasedAgitoSpd_WindDagger(Agito_Qinghong_Jian):
-    ele = ['wind']
-
 class UnreleasedAgitoSpd_LightDagger(Agito_Qinghong_Jian):
     ele = ['light']
 
 flame = Agito_Hrotti
 water = HDT2_Tiderulers_Maw
-wind = HDT2_Windrulers_Maw
+wind = Agito_Carnwennan
 light = HDT2_Fulminators_Maw
 shadow = Agito_Qinghong_Jian
