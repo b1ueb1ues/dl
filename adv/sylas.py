@@ -18,7 +18,7 @@ class Sylas(Adv):
         `s2
         `fs, x=5
         """
-    coab = ['Eleonora','Dragonyule_Xainfried','Lin_You']
+    coab = ['Eleonora','Dragonyule_Xainfried','Blade']
     conf['afflict_res.poison'] = 0
 
     def d_coabs(self):

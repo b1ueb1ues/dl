@@ -153,3 +153,4 @@ bellina.py
 gauld.py
 lazry.py
 ezelith.py
+sophie.py

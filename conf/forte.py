@@ -1,5 +1,5 @@
 fac_ele = {
-    'altar': (0.09, 0.09),
+    'altar': (0.115, 0.115),
     'slime': 0.04,
     'flame': {
         'tree': 0.16,
@@ -10,6 +10,7 @@ fac_ele = {
         'dragonata': 0.07
     },
     'wind': {
+        'tree': 0.16,
         'shrine': 0.07
     },
     'light': {
@@ -17,6 +18,7 @@ fac_ele = {
         'circus': 0.07
     },
     'shadow': {
+        'tree': 0.16,
         'library': 0.07
     }
 }
