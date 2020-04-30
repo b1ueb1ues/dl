@@ -9,36 +9,35 @@ class Kleimann(Adv):
     a3 = ('s',0.35)
  
     conf = {}
-    conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
-    conf['slots.d'] = Shinobi()
+    conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
         `s2
-        #`fs, not self.madness_status and self.madness > 0
+        `fs, self.madness_status<5 and self.madness>0
         """
     coab = ['Ieyasu','Bow','Dagger']
 
     def madness_autocharge(self, t):
         for s in (self.s1, self.s2, self.s3):
             if s.charged < s.sp:
-                sp = 100
+                sp = self.madness_status * 100
                 s.charge(sp)
                 log('sp', s.name+'_autocharge', int(sp))
 
     def prerun(self):
         self.madness = 0
-        self.madness_status = False
+        self.madness_status = 0
         self.madness_timer = Timer(self.madness_autocharge, 2.9, 1)
 
     def fs_proc(self, e):
-        if not self.madness_status:
-            self.madness_status = True
-            self.madness_timer.on()
-        else:
-            self.madness_status = False
-            self.madness_timer.off()
+        if self.madness_status < 5:
+            self.madness_status += 1
+            self.madness -= 1
+            if self.madness_status == 1:
+                self.madness_timer.on()
 
     def s1_proc(self, e):
         self.afflics.poison('s1',120,0.582)

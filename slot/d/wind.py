@@ -48,7 +48,7 @@ class Pazuzu(DragonBase):
         'dx3.hit': 3,
 
         'ds.recovery': 146 / 60, # skill frames
-        'ds.hit': 8,
+        'ds.hit': 5,
 
         'dodge.startup': 39 / 60, # dodge frames
     }
@@ -62,7 +62,7 @@ class Pazuzu(DragonBase):
         dmg = self.adv.dmg_make('ds',0.91,'s')
         self.ds_buff.on()
         self.adv.afflics.poison('ds',120,0.291,30,dtype='s')
-        return dmg + self.adv.dmg_make('ds',7*0.91,'s')
+        return dmg + self.adv.dmg_make('ds',4*0.91,'s')
 
 class Long_Long(DragonBase):
     ele = 'wind'
