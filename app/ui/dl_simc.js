@@ -245,7 +245,7 @@ function loadAdvSlots() {
 
                 buildCoab(slots.coab, slots.adv.fullname, slots.adv.wt);
                 for (const c of slots.adv.pref_coab){
-                    const check = $("input[id$='" + c.toLowerCase() + "']");
+                    const check = $("input[id$='-" + c.toLowerCase() + "']");
                     check.prop('checked', true);
                     coabSelection(1);
                 }
@@ -351,9 +351,9 @@ function coabSelection(add){
 
 function buildCoab(coab, fullname, weapontype) {
     $('#input-coabs > div').empty();
-    $('#input-coabs').data('selected', 0);
     $('#input-coabs').data('max', 3);
-    let found_fullname = false;
+    let found_fullname = null;
+    $('#input-coabs').data('selected', 0);
     for (t of ['ele', 'all']) {
         for (k in coab[t]) {
             const cid = 'coab-' + t + '-' + k.toLowerCase();
@@ -372,7 +372,7 @@ function buildCoab(coab, fullname, weapontype) {
                     $('#input-coabs').data('max', 4);
                     check.addClass('coab-check');
                 }
-                found_fullname = t;
+                found_fullname = kcoab[1];
             } else {
                 check.addClass('coab-check');
             }
@@ -392,8 +392,8 @@ function buildCoab(coab, fullname, weapontype) {
         }
     }
     let check = $('#coab-all-' + weapontype);
-    if (found_fullname == 'ele' && AXE2_ADV.includes(fullname)) {
-        check = $('#coab-all-axe2');
+    if (found_fullname){
+        check = $('#coab-all-' + found_fullname);
     }
     check.prop('disabled', true);
     check.prop('checked', true);
