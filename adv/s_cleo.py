@@ -17,7 +17,7 @@ class Summer_Cleo(Adv):
             `s1
             `s3
             """
-    coab = ['Blade','Wand','Halloween_Elisanne']
+    coab = ['Blade','Sharena','Peony']
     conf['afflict_res.paralysis'] = 0
 
     def init(self):

@@ -13,7 +13,7 @@ class Lucretia(Adv):
         `s1
         `s3
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
     def s1_proc(self, e):
         self.energy.add(1, team=True)

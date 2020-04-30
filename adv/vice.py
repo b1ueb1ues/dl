@@ -29,12 +29,12 @@ class Vice(Adv):
 
     def s1_proc(self, e):
         with KillerModifier('s1_killer', 'hit', 0.5, ['poison']):
-            self.dmg_make("s1", 15.84)
+            self.dmg_make('s1', 15.84)
 
     def s2_proc(self, e):
         self.fs_alt.on(1)
         with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
-            self.dmg_make("s2", 16.77)
+            self.dmg_make('s2', 16.77)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

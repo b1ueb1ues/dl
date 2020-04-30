@@ -12,7 +12,7 @@ class Irfan(Adv):
         `s3
         `fs, seq=5
         """
-    coab = ['Blade','Wand','Halloween_Elisanne']
+    coab = ['Blade','Wand','Peony']
 
 
 if __name__ == '__main__':

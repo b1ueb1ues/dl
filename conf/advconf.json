@@ -504,6 +504,29 @@
             "startup": 0.25
         }
     },
+    "Chrom": {
+        "c": {
+            "att": 505,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 2.81,
+            "hit": 0,
+            "recovery": 1.3,
+            "sp": 2304,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 2.96,
+            "sp": 2650,
+            "startup": 0.1
+        }
+    },
     "Cibella": {
         "c": {
             "att": 437,
@@ -2685,6 +2708,29 @@
             "startup": 0.1
         }
     },
+    "Peony": {
+        "c": {
+            "att": 485,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 4.17,
+            "hit": 1,
+            "recovery": 1.3333,
+            "sp": 2810,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 3,
+            "recovery": 1.8,
+            "sp": 6500,
+            "startup": 0.1
+        }
+    },
     "Philia": {
         "c": {
             "att": 469,
@@ -3062,6 +3108,29 @@
             "dmg": 6.76,
             "hit": 4,
             "recovery": 2.2,
+            "sp": 4593,
+            "startup": 0.1
+        }
+    },
+    "Sharena": {
+        "c": {
+            "att": 459,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 4.39,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 2412,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 11.05,
+            "hit": 2,
+            "recovery": 1.6667,
             "sp": 4593,
             "startup": 0.1
         }

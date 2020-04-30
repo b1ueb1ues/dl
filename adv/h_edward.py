@@ -13,7 +13,7 @@ class Halloween_Edward(Adv):
         `s2, x=5
         `s3
         """
-    coab = ['Wand','Dagger','Halloween_Elisanne']
+    coab = ['Wand','Dagger','Peony']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

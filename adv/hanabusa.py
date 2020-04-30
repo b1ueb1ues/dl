@@ -11,7 +11,7 @@ class Hanabusa(Adv):
         `s2
         `s3
         """
-    coab = ['Wand','Dagger','Halloween_Elisanne']
+    coab = ['Wand','Dagger','Peony']
 
     def prerun(self):
         self.stance = 0

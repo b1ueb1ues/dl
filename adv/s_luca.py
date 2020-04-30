@@ -16,7 +16,7 @@ class Summer_Luca(Adv):
         `s3,seq=4
         `fs, x=5
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
     def d_slots(self):
         if self.slots.c.has_ex('bow'):

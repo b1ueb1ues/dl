@@ -154,3 +154,6 @@ gauld.py
 lazry.py
 ezelith.py
 sophie.py
+sharena.py
+peony.py
+chrom.py

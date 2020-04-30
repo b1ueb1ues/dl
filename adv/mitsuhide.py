@@ -17,12 +17,8 @@ class Mitsuhide(Adv):
         `s3
         `fs, seq=4
     """
-    coab = ['Blade','Malora','Halloween_Elisanne']
+    coab = ['Blade','Sharena','Peony']
     conf['afflict_res.paralysis'] = 0
-
-    def d_coabs(self):
-        if self.duration <= 60:
-            self.coab = ['Blade','Dragonyule_Malora',"Halloween_Elisanne"]
 
     def init(self):
         self.s1_stance = 1

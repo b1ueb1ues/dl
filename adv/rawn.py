@@ -12,7 +12,7 @@ class Rawn(Adv):
         `s3
         `fs, x=4
         """
-    coab = ['Blade','Wand','Halloween_Elisanne']
+    coab = ['Blade','Wand','Peony']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

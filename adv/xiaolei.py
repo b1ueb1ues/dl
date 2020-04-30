@@ -13,7 +13,7 @@ class Xiao_Lei(Adv):
         `s2
         `s3
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
     def s2_proc(self, e):
         Teambuff('s2cc',0.08,10,'crit','rate').on()

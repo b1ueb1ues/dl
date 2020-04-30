@@ -16,7 +16,7 @@ class Albert(Adv):
         `s3, fsc
         `fs, seq=2
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
     conf['afflict_res.paralysis'] = 0
 
     def init(self):

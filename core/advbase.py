@@ -1617,9 +1617,10 @@ class Adv(object):
     def dmg_formula(self, name, dmg_coef):
         att = 1.0 * self.att_mod(name) * self.base_att
         armor = 10 * self.def_mod()
+        ele = self.mod(self.slots.c.ele) + 0.5
         # return float(dmg_coef) * self.dmg_mod(name) * self.att_mod() / self.def_mod()
         # return float(dmg_coef) * self.dmg_mod(name) * self.def_mod()
-        return 5.0 / 3 * dmg_coef * self.dmg_mod(name) * att / armor * 1.5  # true formula
+        return 5.0 / 3 * dmg_coef * self.dmg_mod(name) * att / armor * ele  # true formula
         # return att/armor * dmg_coef * self.dmg_mod(name)
 
     def l_true_dmg(self, e):

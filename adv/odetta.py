@@ -14,7 +14,7 @@ class Odetta(Adv):
         `s3, fsc
         `fs, seq=2
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
     a1 = ('a',0.1,'hp70')
     a3 = ('bt',0.2)

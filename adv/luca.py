@@ -16,7 +16,7 @@ class Luca(Adv):
         `s3
         `fs, seq=4
         """
-    coab = ['Blade','Wand','Halloween_Elisanne']
+    coab = ['Blade','Sharena','Peony']
     conf['afflict_res.paralysis'] = 0
 
     def s1_proc(self, e):

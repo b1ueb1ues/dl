@@ -12,7 +12,7 @@ class Raemond(Adv):
         `s3, fsc
         `fs, x=3
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
 
 if __name__ == '__main__':

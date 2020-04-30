@@ -15,7 +15,7 @@ class Elias(Adv):
         `s2, fsc
         `fs, x=4
         """
-    coab = ['Blade','Lucretia','Halloween_Elisanne']
+    coab = ['Blade','Lucretia','Peony']
 
     def s2_proc(self, e):
         self.energy.add(1, team=True)

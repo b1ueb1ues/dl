@@ -17,7 +17,7 @@ class Julietta(Adv):
         `s1
         `s3,seq=5
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

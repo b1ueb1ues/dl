@@ -549,6 +549,17 @@
                 1
             ],
             "wand"
+        ],
+        "Sharena": [
+            [
+                "affself_paralysis",
+                0.13
+            ],
+            "sharena"
+        ],
+        "Peony": [
+            null,
+            "peony"
         ]
     },
     "shadow": {

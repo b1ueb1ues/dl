@@ -16,7 +16,7 @@ class Malora(Adv):
         `s3, cancel
         `fs, x=4
         """
-    coab = ['Blade','Wand','Halloween_Elisanne']
+    coab = ['Blade','Wand','Peony']
 
 
 if __name__ == '__main__':

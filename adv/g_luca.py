@@ -15,7 +15,7 @@ class Gala_Luca(Adv):
         `s2
         `s3, x=5
         """
-    coab = ['Axe2','Dagger','Halloween_Elisanne']
+    coab = ['Axe2','Dagger','Peony']
 
     def init(self):
         self.crit_mod = self.custom_crit_mod

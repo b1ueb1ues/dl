@@ -17,7 +17,7 @@ class Dragonyule_Malora(Adv):
         `s2, self.def_mod()!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
 
     def prerun(self):
         if self.condition('buff all team'):

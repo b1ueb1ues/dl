@@ -13,7 +13,7 @@ class Ryozen(Adv):
         `s3
         `fs, x=5
         """
-    coab = ['Blade','Dagger','Halloween_Elisanne']
+    coab = ['Blade','Dagger','Peony']
     
     def s1_proc(self, e):
         Teambuff('s1', 0.25, 15, 'defense').on()

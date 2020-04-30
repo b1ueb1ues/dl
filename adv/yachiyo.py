@@ -24,17 +24,20 @@ class Yachiyo(Adv):
         `s1
         `s3, fsc
         """
-    coab = ['Malora','Dagger','Halloween_Elisanne']
+    coab = ['Malora','Dagger','Peony']
     conf['afflict_res.paralysis'] = 0
 
+    def d_coabs(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.coab = ['Sharena','Dagger','Peony']
+
     def prerun(self):
-        self.fsa_charge = 0        
+        self.fsa_charge = 0
 
     def s1_proc(self, e):
         self.dmg_make('s1',4.32)
         self.afflics.paralysis('s1',100,0.66)
         self.dmg_make('s1',4.32)
-
 
     def s2_proc(self, e):
         # self.fso_dmg = self.conf.fs.dmg
