@@ -15,7 +15,7 @@ class Peony(Adv):
     a3 = ('k_paralysis',0.30)
 
     conf = peony_conf.copy()
-    conf['slots.a'] = Candy_Couriers()+Spirit_of_the_Season()
+    conf['slots.a'] = Valiant_Crown()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon, fsc
         `fs, s2.charged>=s2.sp and self.fs_alt.uses > 0
