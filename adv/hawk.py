@@ -22,9 +22,17 @@ class Hawk(Adv):
         `s2, cancel
         else
         `dragon.act("c3 s end"), self.duration > 120
-        `fs, s=2 and self.fs_alt.uses>0
-        `s2, s1.check()
+        `s1
+        `s2,self.fs_alt.uses=0
+        queue (self.fs_alt.uses=2)
+        `fs,s1.check()
+        `s1, fsc
         `s1, cancel
+        `s2, cancel
+        `fs,s1.check()
+        `s1, fsc
+        `s1,cancel
+end
         end
     """
     coab = ['Blade','Dragonyule_Xainfried','Sylas']
