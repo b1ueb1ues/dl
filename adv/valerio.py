@@ -222,25 +222,25 @@ appetizer_conf = {
 
 class Valerio(Adv):
     conf = {}
-    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
-    conf['slots.frostbite.a'] = conf['slots.a']
+    conf['slots.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         # stances
-        if s1.check() and not self.afflics.frostbite.get()
+        if s1.check() and (not self.afflics.frostbite.get() or not self.mod('def')!=1)
         `appetizer
         else
         `entree
         end
         # actions
+        if  not self.afflics.frostbite.get() or not self.mod('def')!=1
         `s1
-        `s2
-        `s3
+        end
         if self.stance='entree'
+        `s2
         `fsf, x=7
         end
     """
-    coab = ['Axe2','Xander', 'Summer_Estelle']
+    coab = ['Axe2','Xander', 'Renee']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

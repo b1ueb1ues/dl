@@ -9,6 +9,7 @@ class Summer_Luca(Adv):
 
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
+    conf['slots.paralysis.a'] = Kung_Fu_Masters()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon, cancel
         `s1

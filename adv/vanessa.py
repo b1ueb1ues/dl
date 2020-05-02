@@ -9,7 +9,7 @@ class Vanessa(Adv):
     a3 = ('lo',0.3)
     
     conf = {}
-    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
     conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `dragon
@@ -18,7 +18,18 @@ class Vanessa(Adv):
         `s2, x=4
         `fs, x=5
     """
-    coab = ['Blade', 'Marth', 'Serena']
+    coab = ['Blade', 'Marth', 'Wand']
+
+    def d_coabs(self):
+#        if self.duration <= 120 and self.duration > 60:
+#            self.coab = ['Blade', 'Marth', 'Hmym']
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.coab = ['Blade','Marth','Serena']
+
+#    def d_slots(self):
+#        if self.duration <= 120 and self.duration > 60:
+#            self.conf['slots.a'] = Resounding_Rendition() + Breakfast_at_Valerios()
+#   Websim gives better results for this than Bash
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

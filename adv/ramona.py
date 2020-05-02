@@ -9,7 +9,7 @@ class Ramona(Adv):
     a1 = ('primed_att',0.10)
     a3 = ('bc',0.13)
     conf = {}
-    conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
+    conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
     conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `dragon, s=1

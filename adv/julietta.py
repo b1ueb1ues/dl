@@ -7,9 +7,6 @@ def module():
 class Julietta(Adv):
     comment = 'no fs & no s2'
 
-    def s2_proc(self, e):
-       adv.Event('defchain')()
-
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
     conf['acl'] = """
@@ -18,6 +15,9 @@ class Julietta(Adv):
         `s3,seq=5
         """
     coab = ['Blade','Dagger','Peony']
+
+    def s2_proc(self, e):
+       Event('defchain')()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
