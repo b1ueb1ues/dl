@@ -218,7 +218,13 @@ def do_act_list(self, e):
     for line in acl.split('\n'):
         line = line.strip().replace('`', '')
         if len(line) > 0 and line[0] != '#':
-            real_lines.append(line)
+            if ';' in line:
+                for s in line.split(';'):
+                    s = s.strip().replace('`', '')
+                    if len(s) > 0 and s[0] != '#':
+                        real_lines.append(s)
+            else:
+                real_lines.append(line)
     for line in real_lines:
         upper = line.upper()
         if upper.startswith('IF '):
