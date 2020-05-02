@@ -22,7 +22,7 @@ class Annelie(Adv):
         `s3
         `fs, seq=5 
         """
-    coab = ['Lucretia','Dagger','Peony']
+    coab = ['Halloween_Elisanne','Dagger','Peony']
 
     def prerun(self):
         self.stance = 0

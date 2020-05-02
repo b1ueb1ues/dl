@@ -14,7 +14,7 @@ class Amane(Adv):
         `s1
         `s3, x=5
         """
-    coab = ['Blade','Raemond','Peony']
+    coab = ['Blade','Halloween_Elisanne','Peony']
 
 
 if __name__ == '__main__':

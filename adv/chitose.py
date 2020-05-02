@@ -17,7 +17,7 @@ class Chitose(Adv):
         `s1
         `s3, seq=5
         """
-    coab = ['Tobias','Blade','Bow']
+    coab = ['Tobias','Peony','Bow']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

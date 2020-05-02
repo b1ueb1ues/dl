@@ -9,8 +9,10 @@ class Nobunaga(Adv):
     comment = 'use s2 instead of fs to dispel when possible'
 
     a1 = ('a',0.2,'hit15')
+
     conf = {}
-    conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff

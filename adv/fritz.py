@@ -11,7 +11,7 @@ class Fritz(Adv):
         `s3
         `fs, x=5
         """
-    coab = ['Blade','Wand','Peony']
+    coab = ['Blade','Halloween_Elisanne','Peony']
 
     def prerun(self):
         self.stance = 0

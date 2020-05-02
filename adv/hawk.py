@@ -8,6 +8,7 @@ def module():
 class Hawk(Adv):
     a1 = [('edge_stun', 50), ('edge_poison', 50)]
     a3 = [('k_stun',0.4), ('k_poison',0.3)]
+    
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
@@ -15,7 +16,7 @@ class Hawk(Adv):
         # s2; s3; fs; s1, fsc; fs; s1, fsc; s1, cancel; s2, cancel
         # end
         `s3, not self.s3_buff
-        `dragon.act('c3 s end'), s
+        `dragon.act('c3 s end'), s and self.duration >= 120
         `s2, self.fs_alt.uses=0 or (self.s2_mode=1)
         `fs, (s1.check() and self.fs_alt.uses>1) or (x=4 and self.s2_mode=0 and self.fs_alt.uses>0)
         `s1, fsc or s=1
@@ -24,10 +25,6 @@ class Hawk(Adv):
     coab = ['Blade','Dragonyule_Xainfried','Sylas']
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
-    
-    def d_slots(self):
-        if self.duration <= 60:
-            self.conf['slots.a'] = The_Chocolatiers()+The_Fires_of_Hate()
     
     def fs_proc_alt(self, e):
         self.afflics.stun('fs', 110)

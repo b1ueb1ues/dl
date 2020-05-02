@@ -16,8 +16,12 @@ class Rena(Adv):
         `s2, s=1
         `fs, x=5 and (s1.charged=1500 or s1.charged=3200)
     """
-    coab = ['Wand', 'Dagger', 'Marth']    
+    coab = ['Wand', 'Joe', 'Marth']    
     conf['afflict_res.burn'] = 0
+
+    def d_coabs(self):
+        if self.duration <= 120:
+            self.coab = ['Blade','Wand','Serena']
 
     def prerun(self):
         self.stance = 0
