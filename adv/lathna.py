@@ -10,7 +10,7 @@ class Lathna(Adv):
     a3 = ('dt', 0.25)
     
     conf = {}
-    conf['slots.a'] = Resounding_Rendition()+The_Red_Impulse()
+    conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
     conf['slots.d'] = Chthonius()
     conf['slots.poison.d'] = Shinobi()
     conf['acl'] = """
@@ -19,7 +19,7 @@ class Lathna(Adv):
         `s1a
         `s2, x=5
         """
-    coab = ['Ieyasu','Wand','Cleo']
+    coab = ['Ieyasu','Euden','Cleo']
 
     def d_coabs(self):
         if self.duration <= 120 and self.duration > 60:
@@ -33,8 +33,6 @@ class Lathna(Adv):
                 self.coab = ['Ieyasu','Yaten','Cleo']
     
     def d_slots(self):
-        if self.duration <= 120:
-            self.conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
         if self.duration <= 60:
             self.conf['slots.poison.d'] = Chthonius()
     
