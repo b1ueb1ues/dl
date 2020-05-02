@@ -1,4 +1,5 @@
 from core.advbase import *
+from slot.a import *
 
 def module():
     return Halloween_Elisanne
@@ -7,6 +8,8 @@ class Halloween_Elisanne(Adv):
     a1 = ('s',0.3)
 
     conf = {}
+    conf['slots.a'] = Dragon_and_Tamer()+Primal_Crisis()
+    conf['slots.paralysis.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon, fsc
         `s1

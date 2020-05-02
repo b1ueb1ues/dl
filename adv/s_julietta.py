@@ -1,5 +1,6 @@
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Summer_Julietta
@@ -9,14 +10,21 @@ class Summer_Julietta(Adv):
     a3 = ('primed_att',0.10)
 
     conf = {}
-    conf['slots.a'] = KFM() + United_by_One_Vision()
+    conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
+    conf['slots.frostbite.a'] = Resounding_Rendition()+His_Clever_Brother()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
+        `dragon.act("c3 s end")
         `s2
         `s1
         `s3
-        """
-    coab = ['Blade', 'Bow', 'Summer_Estelle']
+    """
+    coab = ['Blade', 'Dagger', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
+
+    def d_coabs(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.coab = ['Blade', 'Renee', 'Summer_Estelle']
 
     def init(self):
         self.s2_stance = 1
