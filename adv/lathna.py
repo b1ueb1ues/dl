@@ -19,7 +19,7 @@ class Lathna(Adv):
         `s1a
         `s2, x=5
         """
-    coab = ['Ieyasu','Euden','Cleo']
+    coab = ['Ieyasu','Audric','Cleo']
 
     def d_coabs(self):
         if self.duration <= 120 and self.duration > 60:
