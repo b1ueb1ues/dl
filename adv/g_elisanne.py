@@ -22,7 +22,7 @@ class Gala_Elisanne(Adv):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def prerun(self):
-        self.s2.autocharge_init(1536).on()
+        self.s2.autocharge_init(900).on()
 
     def s1_proc(self, e):
         self.buff_class('s2',0.3,15).on()

@@ -1469,7 +1469,8 @@ class Adv(object):
             except:
                 pass
 
-        self.d_slots()
+        if not ('forced' in self.conf.slots and self.conf.slots.forced):
+            self.d_slots()
         self.base_att = 0
 
         self.afflic_condition()

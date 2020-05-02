@@ -214,36 +214,39 @@ def do_act_list(self, e):
     return 0"""
     root = Acl_Condition('True')
     node_stack = [root]
-    for line in re.findall(r'[\n\;]?.*', acl):
+    real_lines = []
+    for line in acl.split('\n'):
         line = line.strip().replace('`', '')
-        upper = line.upper()
         if len(line) > 0 and line[0] != '#':
-            if upper.startswith('IF '):
-                node = Acl_Condition(line[3:])
+            real_lines.append(line)
+    for line in real_lines:
+        upper = line.upper()
+        if upper.startswith('IF '):
+            node = Acl_Condition(line[3:])
+            node_stack[-1].add_action(node)
+            node_stack.append(node)
+        elif upper.startswith('QUEUE'):
+            node = Acl_Condition('QUEUE'+line[5:])
+            node_stack[-1].add_action(node)
+            node_stack.append(node)
+        elif upper.startswith('ELIF '):
+            node_stack[-1].add_condition(line[5:])
+        elif upper.startswith('ELSE'):
+            node_stack[-1].add_condition('ELSE')
+        elif upper.startswith('END'):
+            node_stack.pop()
+        else:
+            parts = [l.strip() for l in line.split(',')]
+            if len(parts) == 1 or len(parts[1]) == 0:
+                action = parts[0]
+                node = Acl_Action(action)
                 node_stack[-1].add_action(node)
-                node_stack.append(node)
-            elif upper.startswith('QUEUE'):
-                node = Acl_Condition('QUEUE'+line[5:])
-                node_stack[-1].add_action(node)
-                node_stack.append(node)
-            elif upper.startswith('ELIF '):
-                node_stack[-1].add_condition(line[5:])
-            elif upper.startswith('ELSE'):
-                node_stack[-1].add_condition('ELSE')
-            elif upper.startswith('END'):
-                node_stack.pop()
             else:
-                parts = [l.strip() for l in line.split(',')]
-                if len(parts) == 1 or len(parts[1]) == 0:
-                    action = parts[0]
-                    node = Acl_Action(action)
-                    node_stack[-1].add_action(node)
-                else:
-                    action = parts[0]
-                    condition = parts[1]
-                    node = Acl_Condition(condition)
-                    node_stack[-1].add_action(node)
-                    node.add_action(Acl_Action(action))
+                action = parts[0]
+                condition = parts[1]
+                node = Acl_Condition(condition)
+                node_stack[-1].add_action(node)
+                node.add_action(Acl_Action(action))
     acl_string = acl_base.format(
         act_prep_block=root.prepare(),
         act_cond_block=root.act()

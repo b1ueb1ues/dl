@@ -11,30 +11,16 @@ class Hawk(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
+        # queue self.duration<=60 and prep and self.afflics.stun.resist
+        # s2; s3; fs; s1, fsc; fs; s1, fsc; s1, cancel; s2, cancel
+        # end
         `s3, not self.s3_buff
-        queue (prep and self.duration <= 60 and self.afflics.stun.resist < 100)
-        `s2
-        `fs
-        `s1, fsc
-        `fs
-        `s1, fsc
-        `s1, cancel
-        `s2, cancel
-        else
-        `dragon.act("c3 s end"), self.duration > 120
-        `s1
-        `s2,self.fs_alt.uses=0
-        queue (self.fs_alt.uses=2)
-        `fs,s1.check()
-        `s1, fsc
-        `s1, cancel
-        `s2, cancel
-        `fs,s1.check()
-        `s1, fsc
-        `s1,cancel
-end
-        end
+        `dragon.act('c3 s end'), s
+        `s2, self.fs_alt.uses=0 or (self.s2_mode=1)
+        `fs, (s1.check() and self.fs_alt.uses>1) or (x=4 and self.s2_mode=0 and self.fs_alt.uses>0)
+        `s1, fsc or s=1
     """
+
     coab = ['Blade','Dragonyule_Xainfried','Sylas']
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
