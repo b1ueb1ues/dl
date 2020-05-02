@@ -8,7 +8,7 @@ class Luca(Adv):
     a1 = ('a',0.13,'hp100')
 
     conf = {}
-    conf['slots.paralysis.a'] = Resounding_Rendition()+Spirit_of_the_Season()
+    conf['slots.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon
         `s1
@@ -16,7 +16,7 @@ class Luca(Adv):
         `s3
         `fs, seq=4
         """
-    coab = ['Blade','Sharena','Peony']
+    coab = ['Blade','Halloween_Elisanne','Peony']
     conf['afflict_res.paralysis'] = 0
 
     def s1_proc(self, e):

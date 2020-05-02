@@ -10,15 +10,33 @@ class Lathna(Adv):
     a3 = ('dt', 0.25)
     
     conf = {}
-    conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
+    conf['slots.a'] = Resounding_Rendition()+The_Red_Impulse()
     conf['slots.d'] = Chthonius()
+    conf['slots.poison.d'] = Shinobi()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
         `s1a
         `s2, x=5
         """
-    coab = ['Ieyasu','Gala_Alex','Cleo']
+    coab = ['Ieyasu','Wand','Cleo']
+
+    def d_coabs(self):
+        if self.duration <= 120 and self.duration > 60:
+            self.coab = ['Ieyasu','Yaten','Cleo']
+        if self.duration <= 60:
+            self.coab = ['Ieyasu','Gala_Alex','Cleo']
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            if self.duration <= 180 and self.duration > 60:
+                self.coab = ['Ieyasu','Wand','Cleo']
+            if self.duration <= 60:
+                self.coab = ['Ieyasu','Yaten','Cleo']
+    
+    def d_slots(self):
+        if self.duration <= 120:
+            self.conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
+        if self.duration <= 60:
+            self.conf['slots.poison.d'] = Chthonius()
     
     conf['dragonform'] = {
         'act': 'c3 s c3 c3 c2 c2 c2',
@@ -41,10 +59,6 @@ class Lathna(Adv):
 
         'dodge.startup': 41 / 60.0, # dodge frames
     }
-
-    def d_slots(self):
-        if self.duration <= 120:
-            self.conf['slots.poison.a'] = An_Ancient_Oath()+The_Fires_of_Hate()
 
     def ds_proc(self):
         dmg = self.dmg_make('ds', 3.64, 's')

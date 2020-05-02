@@ -10,7 +10,7 @@ class Mikoto(Adv):
     a3 = ('cc',0.08)
     
     conf = {}
-    conf['slots.burn.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.a'] = Primal_Crisis()+The_Wyrmclan_Duo()
     conf['acl'] = """
         `dragon, s=2
         `s3, x=5 and not self.s3_buff

@@ -14,7 +14,7 @@ class Beautician_Zardin(Adv):
         `s1
         `s3
         """
-    coab = ['Wand','Dagger','Peony']
+    coab = ['Halloween_Elisanne','Dagger','Peony']
 
     def s1_proc(self, e):
         self.energy.add(1)

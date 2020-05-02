@@ -14,7 +14,7 @@ class Halloween_Elisanne(Adv):
         `s3
         `fs, x=5
         """
-    coab = ['Blade','Dagger','Wand']
+    coab = ['Blade','Dagger','Peony']
 
     def prerun(self):
         self.stance = 0

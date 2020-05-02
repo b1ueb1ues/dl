@@ -8,7 +8,7 @@ class Jurota(Adv):
     a1 = ('bk',0.2)
 
     conf = {}
-    conf['slot.d'] = Leviathan()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1

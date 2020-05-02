@@ -17,9 +17,7 @@ class Durant(Adv):
     conf['slots.poison.d'] = Epimetheus()
     
     conf['acl'] = """
-        if self.slots.d.name != 'Fatalis'
         `dragon, s=1
-        end
         `s3, not self.s3_buff
         `s1
         `s2, x=5

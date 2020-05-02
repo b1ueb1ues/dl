@@ -8,6 +8,7 @@ class Xuan_Zang(Adv):
     a3 = ('cc',0.06,'hp70')
     
     conf = {}
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
     conf['acl'] = """
         `dragon, s=2

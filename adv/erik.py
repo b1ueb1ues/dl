@@ -10,9 +10,7 @@ class Erik(Adv):
     conf['slots.d'] = Fatalis()
     conf['slots.poison.d'] = Shinobi()
     conf['acl'] = """
-        if self.slots.d.name != 'Fatalis'
         `dragon.act("c3 s end")
-        end
         `s3, not self.s3_buff
         `s1
         `s2, fsc
