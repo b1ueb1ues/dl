@@ -17,7 +17,7 @@ class Sophie(Adv):
         `s2, x=5
     """
     conf['afflict_res.poison'] = 0
-    coab = ['Blade', 'Akasha', 'Lin_You']
+    coab = ['Blade', 'Tiki', 'Lin_You']
 
     def s2_proc(self, e):
         self.afflics.poison('s2', 120, 0.582)

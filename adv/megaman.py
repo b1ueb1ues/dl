@@ -102,7 +102,7 @@ class Mega_Man(Adv):
         `s2, self.s1_x.active and self.bleed._static['stacks']>=3
         `s1, self.s1_x.active and self.bleed._static['stacks']>=3
     """
-    coab = ['Blade', 'Marth', 'Serena']
+    coab = ['Blade', 'Marth', 'Tiki']
 
     conf['dragonform'] = {
         'act': 'c5 s',

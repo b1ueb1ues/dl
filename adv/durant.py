@@ -22,7 +22,7 @@ class Durant(Adv):
         `s1
         `s2, x=5
     """
-    coab = ['Dagger', 'Tobias', 'Axe2']
+    coab = ['Tiki', 'Tobias', 'Axe2']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

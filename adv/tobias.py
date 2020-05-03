@@ -80,7 +80,7 @@ class Tobias(Adv):
         `s3, not self.s3_buff
         `s1
     """
-    coab = ['Bow','Blade','Lin_You']
+    coab = ['Bow','Blade','Tiki']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
