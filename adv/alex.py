@@ -20,7 +20,7 @@ class Alex(Adv):
         `s2
         `fs, x=5
         """
-    coab = ['Blade','Wand','Gala_Alex']
+    coab = ['Blade','Wand','Heinwald']
     conf['afflict_res.poison'] = 0    
 
     def s1_proc(self, e):
