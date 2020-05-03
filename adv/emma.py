@@ -21,7 +21,7 @@ class Emma(Adv):
         `s1, cancel
         `fs, x=5
         """
-    coab = ['Tobias', 'Blade', 'Bow']
+    coab = ['Tobias', 'Tiki', 'Bow']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
