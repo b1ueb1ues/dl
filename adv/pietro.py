@@ -12,7 +12,7 @@ class Pietro(Adv):
 
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
-    conf['slots.frostbite.a'] = KFM()+His_Clever_Brother()
+    conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon

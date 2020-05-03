@@ -242,7 +242,18 @@ class Doublebuff_CD(Doublebuff):
 ability_dict['bcc'] = Doublebuff
 
 
-class Slayer_Strength(BuffingAbility):
+# class Slayer_Strength(BuffingAbility):
+#     def __init__(self, name, value):
+#         super().__init__(name, value, -1)
+
+#     def oninit(self, adv, afrom=None):
+#         for _ in range(5):
+#             adv.Buff(*self.buff_args).on()
+
+# ability_dict['sts'] = Slayer_Strength
+# ability_dict['sls'] = Slayer_Strength
+
+class Slayers(BuffingAbility):
     def __init__(self, name, value):
         super().__init__(name, value, -1)
 
@@ -250,8 +261,8 @@ class Slayer_Strength(BuffingAbility):
         for _ in range(5):
             adv.Buff(*self.buff_args).on()
 
-ability_dict['sts'] = Slayer_Strength
-ability_dict['sls'] = Slayer_Strength
+ability_dict['slayers'] = Slayers
+
 
 class Dragon_Buff(Ability):
     def __init__(self, name, dc_values, buff_args=()):

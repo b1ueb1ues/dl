@@ -18,8 +18,12 @@ class Sharena(Adv):
         `s2, cancel
         `fs, x=5
     """
-    coab = ['Blade','Dagger','Peony']
+    coab = ['Malora','Dagger','Peony']
     conf['afflict_res.paralysis'] = 0
+
+    def d_coabs(self):
+        if self.duration <= 60:
+            self.coab = ['Blade','Dagger','Peony']
 
     def prerun(self):
         self.s2_debuff = Debuff('s2',0.05,10)
