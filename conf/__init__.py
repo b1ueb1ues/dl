@@ -21,7 +21,12 @@ def load_json(name):
 
 advconfs = load_json('advconf.json')
 coability = load_json('chains.json')
-all_ele_chain = ['Euden', 'Ranzal', 'Elisanne', 'Luca', 'Cleo']
+
+def coability_dict(ele):
+    if ele:
+        return {**coability['all'], **coability[ele]}
+    else:
+        return coability['all'].copy()
 
 def get(name):
     conf = Conf()

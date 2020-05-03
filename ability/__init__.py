@@ -168,7 +168,8 @@ class Co_Ability(Ability):
         'tobias': [('buff','time',0.20)],
         'grace': [('fs','ex',0.20)],
         'sharena': [('paralysis_killer', 'passive', 0.08)],
-        'peony': [('light','ele',0.20)]
+        'peony': [('light','ele',0.20)],
+        'tiki': [('x','ex',0.20)],
     }
     def __init__(self, name, value, cond=None):
         try:

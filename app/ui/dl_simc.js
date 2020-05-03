@@ -244,7 +244,7 @@ function loadAdvSlots() {
                 $('#wp2-' + slots.adv.pref_wp.wp2).prop('selected', true);
 
                 buildCoab(slots.coab, slots.adv.fullname, slots.adv.wt);
-                for (const c of slots.adv.pref_coab){
+                for (const c of slots.adv.pref_coab) {
                     const check = $("input[id$='-" + c.toLowerCase() + "']");
                     check.prop('checked', true);
                     coabSelection(1);
@@ -338,7 +338,7 @@ function checkCoabSelection(e) {
     const add = $(e.target).prop('checked') ? 1 : -1
     coabSelection(add);
 }
-function coabSelection(add){
+function coabSelection(add) {
     const count = $('#input-coabs').data('selected') + add;
     const max = $('#input-coabs').data('max');
     if (count >= max) {
@@ -354,45 +354,43 @@ function buildCoab(coab, fullname, weapontype) {
     $('#input-coabs').data('max', 3);
     let found_fullname = null;
     $('#input-coabs').data('selected', 0);
-    for (t of ['ele', 'all']) {
-        for (k in coab[t]) {
-            const cid = 'coab-' + t + '-' + k.toLowerCase();
-            const kcoab = coab[t][k];
-            const wrap = $('<div></div>').addClass('custom-control custom-checkbox custom-control-inline');
-            const check = $('<input>').addClass('custom-control-input').prop('type', 'checkbox').prop('id', cid);
-            check.data('name', k);
-            check.data('chain', kcoab[0]);
-            check.data('ex', kcoab[1]);
-            check.change(checkCoabSelection);
-            if (k == fullname) {
-                if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp<40')) {
-                    check.prop('disabled', true);
-                    check.prop('checked', true);
-                } else {
-                    $('#input-coabs').data('max', 4);
-                    check.addClass('coab-check');
-                }
-                found_fullname = kcoab[1];
+    for (k in coab) {
+        const cid = 'coab-' + t + '-' + k.toLowerCase();
+        const kcoab = coab[t][k];
+        const wrap = $('<div></div>').addClass('custom-control custom-checkbox custom-control-inline');
+        const check = $('<input>').addClass('custom-control-input').prop('type', 'checkbox').prop('id', cid);
+        check.data('name', k);
+        check.data('chain', kcoab[0]);
+        check.data('ex', kcoab[1]);
+        check.change(checkCoabSelection);
+        if (k == fullname) {
+            if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp<40')) {
+                check.prop('disabled', true);
+                check.prop('checked', true);
             } else {
+                $('#input-coabs').data('max', 4);
                 check.addClass('coab-check');
             }
-            const label = $(`<label>${k}</label>`).addClass('custom-control-label').prop('for', cid);
-            wrap.append(check);
-            wrap.append(label);
-            if (kcoab[0]) {
-                wrap.prop('title', kcoab[0].join('|') + ' - ' + kcoab[1]);
-            } else {
-                wrap.prop('title', kcoab[1]);
-            }
-            if (WEAPON_TYPES.includes(kcoab[1])) {
-                $('#input-coabs-' + kcoab[1]).append(wrap);
-            } else {
-                $('#input-coabs-other').append(wrap);
-            }
+            found_fullname = kcoab[1];
+        } else {
+            check.addClass('coab-check');
+        }
+        const label = $(`<label>${k}</label>`).addClass('custom-control-label').prop('for', cid);
+        wrap.append(check);
+        wrap.append(label);
+        if (kcoab[0]) {
+            wrap.prop('title', kcoab[0].join('|') + ' - ' + kcoab[1]);
+        } else {
+            wrap.prop('title', kcoab[1]);
+        }
+        if (WEAPON_TYPES.includes(kcoab[1])) {
+            $('#input-coabs-' + kcoab[1]).append(wrap);
+        } else {
+            $('#input-coabs-other').append(wrap);
         }
     }
     let check = $('#coab-all-' + weapontype);
-    if (found_fullname){
+    if (found_fullname) {
         check = $('#coab-all-' + found_fullname);
     }
     check.prop('disabled', true);

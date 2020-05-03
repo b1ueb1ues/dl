@@ -1461,11 +1461,10 @@ class Adv(object):
         self.coab_list = self.coab
         if 'coabs' in self.conf:
             self.coab_list = self.conf['coabs']
-        from conf import coability
+        from conf import coability_dict
         for name in self.coab_list:
-            chain_dict = {**coability['all'], **coability[self.slots.c.ele]}
             try:
-                self.slots.c.coabs[name] = chain_dict[name]
+                self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
             except:
                 pass
 

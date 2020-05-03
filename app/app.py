@@ -14,7 +14,7 @@ import slot.a
 import slot.d
 import slot.w
 from core.afflic import AFFLICT_LIST
-from conf import coability
+from conf import coability_dict
 app = Flask(__name__)
 
 # Helpers
@@ -260,9 +260,6 @@ def get_adv_slotlist():
     adv_ele = None
     dragon_module = slot.d
     weap_module = slot.w
-    result['coab'] = {
-        'all': coability['all']
-    }
     if result['adv']['name'] is not None:
         adv_instance = ADV_MODULES[result['adv']['name'].lower()]()
         adv_ele = adv_instance.slots.c.ele.lower()
@@ -271,7 +268,7 @@ def get_adv_slotlist():
         dragon_module = getattr(slot.d, adv_ele)
         result['adv']['wt'] = adv_instance.slots.c.wt.lower()
         weap_module = getattr(slot.w, result['adv']['wt'])
-        result['coab']['ele'] = coability[adv_ele]
+        result['coab']['ele'] = coability_dict(adv_ele)
         result['adv']['pref_dra'] = type(adv_instance.slots.d).__qualname__
         result['adv']['pref_wep'] = type(adv_instance.slots.w).__qualname__
         result['adv']['pref_wp'] = {

@@ -299,6 +299,13 @@
                 0.13
             ],
             "axe"
+        ],
+        "Tiki": [
+            [
+                "dh",
+                0.18
+            ],
+            "tiki"
         ]
     },
     "wind": {
@@ -746,6 +753,14 @@
         "Grace": [
             null,
             "grace"
+        ],
+        "Sharena": [
+            null,
+            "sharena"
+        ],
+        "Tiki": [
+            null,
+            "tiki"
         ]
     }
 }
