@@ -1576,9 +1576,9 @@ class Adv(object):
     def charge_p(self, name, percent, target=None):
         percent = percent / 100 if percent > 1 else percent
         if not target:
-            self.s1.charge(self.sp_convert(percent, self.conf.s1.sp))
-            self.s2.charge(self.sp_convert(percent, self.conf.s2.sp))
-            self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
+            self.s1.charge(self.sp_convert(percent, self.s1.sp))
+            self.s2.charge(self.sp_convert(percent, self.s2.sp))
+            self.s3.charge(self.sp_convert(percent, self.s3.sp))
         else:
             try:
                 skill = self.__dict__[target]

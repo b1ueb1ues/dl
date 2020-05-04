@@ -161,7 +161,7 @@ class AfflicUncapped(object):
         prev_r, prev_t = self.c_uptime
         rate = prev_r + next_r*(next_t-prev_t)
         self.c_uptime = (rate, next_t)
-        if next_t > 0 and rate > 0 and next_t % 60 == 0:
+        if next_t > 0 and rate > 0:
             log('{}_uptime'.format(self.name), '{:.2f}/{:.2f}'.format(rate, next_t), '{:.2%}'.format(rate/next_t))
 
 

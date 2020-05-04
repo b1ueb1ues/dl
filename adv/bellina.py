@@ -67,7 +67,7 @@ class Bellina(Adv):
     def fs_proc_alt(self, e):
         with CrisisModifier('s1', 1.00, self.hp):
             self.dmg_make('fs', 5.65)
-        self.dragonform.charge_gauge(self.conf.fs.utp, percent=False)
+        self.dragonform.charge_gauge(self.conf.fs.utp, utp=True)
 
     def l_dragondrive_x(self, e):
         xalt = self.dragondrive_x
@@ -81,7 +81,7 @@ class Bellina(Adv):
         with CrisisModifier('x', 1.00, self.hp):
             self.dmg_make(xseq, dmg_coef)
         self.charge(xseq, sp)
-        self.dragonform.charge_gauge(utp, percent=False)
+        self.dragonform.charge_gauge(utp, utp=True)
 
     def prerun(self):
         self.dragondrive_buff = Selfbuff('dragondrive', 0.35, -1, 's', 'passive')
@@ -124,7 +124,7 @@ class Bellina(Adv):
                 self.dmg_make('s1', 2.02 * 5)
                 self.hits += 5
             self.s1.charge(self.conf.s1.sp)
-            self.dragonform.charge_gauge(-750, percent=False)
+            self.dragonform.charge_gauge(-750, utp=True)
             # 2.02 mod 1.5x crisis
             # 0.2666666805744171 + 0.18000000715255737 * 5
             # 1.1666666269302368 (?)
@@ -142,15 +142,15 @@ class Bellina(Adv):
             with CrisisModifier('s2', 2.00, self.hp):
                 self.dmg_make('s2', 12.12)
                 self.hits += 1
-            self.dragonform.charge_gauge(-3000, percent=False)
+            self.dragonform.charge_gauge(-3000, utp=True)
             # -3000 gauge
             # 2.7666666507720947 (?)
             # 1212 mod, 3x crisis
         else:
-            self.dragonform.charge_gauge(1200, percent=False)
+            self.dragonform.charge_gauge(1200, utp=True)
             # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
             if self.hp > 30:
-                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, percent=False)
+                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
                 self.hp = 30
                 self.a3_str.on()
                 self.a3_spd.on()

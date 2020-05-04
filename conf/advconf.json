@@ -3446,6 +3446,29 @@
             "startup": 0.1
         }
     },
+    "Tiki": {
+        "c": {
+            "att": 498,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.3333,
+            "sp": 2248,
+            "startup": 0.10
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 7868,
+            "startup": 0.10
+        }
+    },
     "Tobias": {
         "c": {
             "att": 494,

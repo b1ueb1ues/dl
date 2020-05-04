@@ -44,7 +44,7 @@ class Aldred(Adv):
         if self.dragondrive_buff.get():
             try:
                 utp = self.conf[e.name].utp
-                self.dragonform.charge_gauge(utp, percent=False)
+                self.dragonform.charge_gauge(utp, utp=True)
             except:
                 pass
 
@@ -52,7 +52,7 @@ class Aldred(Adv):
         if self.dragondrive_buff.get():
             with CrisisModifier('s1', 1.00, self.hp):
                 self.dmg_make('s1', 2.42*4)
-            self.dragonform.charge_gauge(-750, percent=False)
+            self.dragonform.charge_gauge(-750, utp=True)
             self.s1.charge(self.sp_convert(0.50, self.conf.s1.sp))
         else:
             self.dmg_make('s1', 2.42*4)
@@ -66,12 +66,12 @@ class Aldred(Adv):
         if self.dragondrive_buff.get():
             self.s2_stuff_on()
             self.s2_stuff_timer.on(40 * self.mod('bt'))
-            self.dragonform.charge_gauge(3000, percent=False)
+            self.dragonform.charge_gauge(3000, utp=True)
         else:
-            self.dragonform.charge_gauge(1200, percent=False)
+            self.dragonform.charge_gauge(1200, utp=True)
             # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
             if self.hp > 30:
-                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, percent=False)
+                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
                 self.hp = 30
         # +1200 dd points
         # 1.3333333730697632s
