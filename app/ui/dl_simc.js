@@ -355,8 +355,8 @@ function buildCoab(coab, fullname, weapontype) {
     let found_fullname = null;
     $('#input-coabs').data('selected', 0);
     for (k in coab) {
-        const cid = 'coab-' + t + '-' + k.toLowerCase();
-        const kcoab = coab[t][k];
+        const cid = 'coab-' + k.toLowerCase();
+        const kcoab = coab[k];
         const wrap = $('<div></div>').addClass('custom-control custom-checkbox custom-control-inline');
         const check = $('<input>').addClass('custom-control-input').prop('type', 'checkbox').prop('id', cid);
         check.data('name', k);
