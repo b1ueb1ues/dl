@@ -51,15 +51,16 @@ class DragonForm(Action):
 
         self.is_dragondrive = False
 
-    def set_dragondrive(self, dd_buff):
+    def set_dragondrive(self, dd_buff=None, max_gauge=3000, shift_cost=1200):
         self.disabled = False
         self.is_dragondrive = True
         self.shift_event = Event('dragondrive')
         self.dragondrive_end_event = Event('dragondrive_end')
-        self.max_gauge = 3000
-        self.shift_cost = 1200 # does not deduct, but need to have this much pt to shift
-        self.dragondrive_buff = dd_buff
+        self.max_gauge = max_gauge
+        self.shift_cost = shift_cost # does not deduct, but need to have this much pt to shift
+        self.dragondrive_buff = dd_buff or self.dracolith_mod
         self.dragondrive_timer = Timer(self.d_dragondrive_end)
+        return self.dragondrive_buff
 
     def end_silence(self, t):
         self.shift_silence = False
@@ -189,7 +190,7 @@ class DragonForm(Action):
             return
         elif self.c_act_name != 'dodge':
             # dname = self.c_act_name[:-1] if self.c_act_name != 'dshift' else self.c_act_name
-            self.shift_damage_sum += self.adv.dmg_make(self.c_act_name, self.c_act_conf.dmg)
+            self.shift_damage_sum += self.adv.dmg_make(self.c_act_name, self.c_act_conf.dmg, 'x' if self.c_act_name != 'dshift' else self.c_act_name)
             if self.c_act_name.startswith('dx'):
                 if len(self.act_sum) > 0 and self.act_sum[-1][0] == 'c' and int(self.act_sum[-1][1]) < int(self.c_act_name[-1]):
                     self.act_sum[-1] = 'c'+self.c_act_name[-1]
