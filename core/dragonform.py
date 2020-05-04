@@ -57,8 +57,9 @@ class DragonForm(Action):
         self.is_dragondrive = True
         self.shift_event = Event('dragondrive')
         self.dragondrive_end_event = Event('dragondrive_end')
-        self.dragon_gauge *= max_gauge / self.max_gauge
-        self.dragon_gauge_val *= (max_gauge / self.max_gauge)/2
+        ratio = max_gauge / self.max_gauge
+        self.dragon_gauge *= ratio
+        self.dragon_gauge_val *= ratio
         self.max_gauge = max_gauge
         self.shift_cost = shift_cost # does not deduct, but need to have this much pt to shift
         self.drain = drain

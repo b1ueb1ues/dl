@@ -102,7 +102,9 @@ class Tiki(Adv):
         self.hits += hit
         self.dmg_make(xseq, dmg_coef)
         self.charge(xseq, sp)
-        # self.dragonform.charge_gauge(utp, utp=True)
+
+        # trigger updates on dgauge
+        self.dragonform.charge_gauge(0, utp=True)
 
     def prerun(self):
         self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon') # reeee
@@ -122,6 +124,7 @@ class Tiki(Adv):
         self.o_s3 = self.s3
         self.d_s3 = Skill('s3', self.conf.s3)
         self.d_s3.check = lambda: False
+        self.d_s3.charge = lambda sp: None
 
     def dragondrive_on(self, e):
         self.s1 = self.d_s1
