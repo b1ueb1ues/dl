@@ -3,7 +3,7 @@ import slot
 from slot.a import *
 from slot.d import *
 import slot.w
-from conf import coability, all_ele_chain
+from conf import coability_dict
 
 ele_dragon = {
     'flame': Gala_Mars,
@@ -60,7 +60,7 @@ def set(slots):
 
     slots.a = wp1()+wp2()
 
-    chain_dict = {**coability['all'], **coability[ele]}
+    chain_dict = coability_dict(ele)
     try:
         chain, _ = chain_dict[name]
         if chain is None or len(chain)<3 or chain[2] != 'hp<40':

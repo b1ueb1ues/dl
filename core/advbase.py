@@ -1461,11 +1461,10 @@ class Adv(object):
         self.coab_list = self.coab
         if 'coabs' in self.conf:
             self.coab_list = self.conf['coabs']
-        from conf import coability
+        from conf import coability_dict
         for name in self.coab_list:
-            chain_dict = {**coability['all'], **coability[self.slots.c.ele]}
             try:
-                self.slots.c.coabs[name] = chain_dict[name]
+                self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
             except:
                 pass
 
@@ -1577,9 +1576,9 @@ class Adv(object):
     def charge_p(self, name, percent, target=None):
         percent = percent / 100 if percent > 1 else percent
         if not target:
-            self.s1.charge(self.sp_convert(percent, self.conf.s1.sp))
-            self.s2.charge(self.sp_convert(percent, self.conf.s2.sp))
-            self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
+            self.s1.charge(self.sp_convert(percent, self.s1.sp))
+            self.s2.charge(self.sp_convert(percent, self.s2.sp))
+            self.s3.charge(self.sp_convert(percent, self.s3.sp))
         else:
             try:
                 skill = self.__dict__[target]
