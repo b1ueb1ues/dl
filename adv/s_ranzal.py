@@ -18,7 +18,7 @@ class Summer_Ranzal(Adv):
         `s2, x=5
         `s3, x=5
         """
-    coab = ['Xander', 'Dagger', 'Summer_Estelle']
+    coab = ['Xander', 'Dagger', 'Tiki']
     conf['afflict_res.bog'] = 100
 
     def init(self):

@@ -13,7 +13,7 @@ class Vida(Adv):
         `s1
         `fs, x=5
         """
-    coab = ['Ieyasu','Wand','Cleo']
+    coab = ['Ieyasu','Wand','Tiki']
 
     def prerun(self):
         conf_fs_alt = {'fs.dmg': 0.110, 'fs.hit': 6}

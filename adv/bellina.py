@@ -62,7 +62,7 @@ class Bellina(Adv):
         `fs, x=4
         end
     """
-    coab = ['Tiki','Curran','Berserker']
+    coab = ['Ieyasu','Curran','Berserker']
 
     def fs_proc_alt(self, e):
         with CrisisModifier('s1', 1.00, self.hp):

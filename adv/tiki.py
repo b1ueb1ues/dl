@@ -84,7 +84,7 @@ class Tiki(Adv):
         `s3
         end
     """
-    coab = ['Blade', 'Wand', 'Axe2']
+    coab = ['Blade', 'Xander', 'Axe2']
 
     def x_proc(self, e):
         xseq = e.name

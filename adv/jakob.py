@@ -17,7 +17,7 @@ class Jakob(Adv):
         `s3,fsc
         `fs,seq=5
     """
-    coab = ['Blade', 'Xander', 'Dagger']
+    coab = ['Tiki', 'Xander', 'Dagger']
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):

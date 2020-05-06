@@ -17,7 +17,7 @@ class Xuan_Zang(Adv):
         `s2
         `fs, x=5
         """
-    coab = ['Blade', 'Marth', 'Serena']
+    coab = ['Blade', 'Marth', 'Tiki']
 
     def s1_proc(self, e):
         if self.mod('def')!= 1:

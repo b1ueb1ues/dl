@@ -15,8 +15,7 @@ class Cibella(Adv):
         `s3, seq=5
         `fs, seq=5
         """
-    coab = ['Blade', 'Xander', 'Dagger']
-
+    coab = ['Tiki', 'Xander', 'Dagger']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

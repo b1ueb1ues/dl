@@ -11,8 +11,7 @@ class Taro(Adv):
         `s1
         `s2
         """
-    coab = ['Wand','Dagger','Cleo']
-
+    coab = ['Wand','Dagger','Tiki']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

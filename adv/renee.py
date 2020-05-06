@@ -8,7 +8,7 @@ class Renee(Adv):
     a1 = ('primed_crit_chance', 0.6,5)
 
     conf = {}
-    conf['slot.d'] = Leviathan()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1
@@ -16,7 +16,7 @@ class Renee(Adv):
         `s3, seq=5
         `fs, seq=5
         """
-    coab = ['Blade', 'Xander', 'Summer_Estelle']
+    coab = ['Blade', 'Xander', 'Tiki']
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):

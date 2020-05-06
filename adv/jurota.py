@@ -15,9 +15,8 @@ class Jurota(Adv):
         `s2, seq=5
         `s3
     """
-    coab = ['Wand', 'Xander', 'Dagger']
+    coab = ['Tiki', 'Xander', 'Dagger']
     
-
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

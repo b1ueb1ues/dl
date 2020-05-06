@@ -18,7 +18,7 @@ class Karl(Adv):
         `s2, cancel
         `fs, x=2
     """
-    coab = ['Blade', 'Marth', 'Bow']
+    coab = ['Blade', 'Tiki', 'Bow']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

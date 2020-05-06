@@ -20,8 +20,7 @@ class Pietro(Adv):
         `s3,seq=4
         `fs,seq=5
         """
-    coab = ['Blade', 'Xander', 'Dagger']
-    
+    coab = ['Tiki', 'Xander', 'Dagger']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -6,6 +6,7 @@ def module():
 class Fritz(Adv):
     conf = {}
     conf['acl'] = """
+        `dragon
         `s1, x=5 and cancel or fsc
         `s2
         `s3

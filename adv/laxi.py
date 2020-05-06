@@ -18,7 +18,7 @@ class Laxi(Adv):
         `s1
         `fs, x=5
         """
-    coab = ['Dagger', 'Marth', 'Serena']
+    coab = ['Dagger', 'Marth', 'Tiki']
 
     def prerun(self):
         self.hp = 0.0

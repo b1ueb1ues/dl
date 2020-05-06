@@ -18,7 +18,7 @@ class Waike(Adv):
         `s3, fsc
         `fs, seq=4
         """
-    coab = ['Blade', 'Xander', 'Thaniel']
+    coab = ['Blade', 'Xander', 'Tiki']
     conf['afflict_res.bog'] = 100
 
     def s2_proc(self, e):
