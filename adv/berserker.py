@@ -12,8 +12,7 @@ class Berserker(Adv):
         `s1
         `fs, x=3
         """
-    coab = ['Ieyasu','Wand','Dagger']
-
+    coab = ['Ieyasu','Wand','Tiki']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

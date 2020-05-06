@@ -32,7 +32,7 @@ class Hunter_Vanessa(Adv):
         `s2, not self.s2_att_boost.get()
         `s3, x=5 or fsc
     """
-    coab = ['Blade','Dagger','Peony']
+    coab = ['Sharena','Dagger','Peony']
     conf['afflict_res.paralysis'] = 0
 
     def d_slots(self):

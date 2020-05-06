@@ -18,7 +18,7 @@ class Euden(Adv):
         `s2, fsc
         `fs, x=3
     """
-    coab = ['Blade', 'Joe', 'Yuya']
+    coab = ['Blade', 'Tiki', 'Yuya']
     conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):

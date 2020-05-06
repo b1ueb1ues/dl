@@ -17,7 +17,7 @@ class Mikoto(Adv):
         `s1, x=5
         `s2, x=5
         """
-    coab = ['Dagger', 'Halloween_Mym', 'Marth']
+    coab = ['Dagger', 'Tiki', 'Marth']
 
     def prerun(self):
         self.s1buff = Selfbuff("s1",0.0, 20)

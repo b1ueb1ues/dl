@@ -12,7 +12,7 @@ class Pietro(Adv):
 
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
-    conf['slots.frostbite.a'] = KFM()+His_Clever_Brother()
+    conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
@@ -20,8 +20,7 @@ class Pietro(Adv):
         `s3,seq=4
         `fs,seq=5
         """
-    coab = ['Blade', 'Xander', 'Dagger']
-    
+    coab = ['Tiki', 'Xander', 'Dagger']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

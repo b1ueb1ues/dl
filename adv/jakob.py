@@ -1,4 +1,5 @@
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -8,6 +9,7 @@ class Jakob(Adv):
     a1 = ('prep','50%')
 
     conf = {}
+    conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
@@ -15,7 +17,7 @@ class Jakob(Adv):
         `s3,fsc
         `fs,seq=5
     """
-    coab = ['Blade', 'Xander', 'Dagger']
+    coab = ['Tiki', 'Xander', 'Dagger']
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):

@@ -17,7 +17,7 @@ class Alfonse(Adv):
         `s3,fsc
         `fs, x=3
     """
-    coab = ['Blade','Dagger','Peony']
+    coab = ['Sharena','Dagger','Peony']
 
     def prerun(self):
         self.hp = 80

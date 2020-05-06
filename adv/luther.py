@@ -8,7 +8,7 @@ class Luther(Adv):
     a1 = ('cc',0.10,'hit15')
 
     conf = {}
-    conf ['slot.d'] = Leviathan()
+    conf ['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1
@@ -16,8 +16,7 @@ class Luther(Adv):
         `s3, seq=5 and cancel or fsc
         `fs, seq=5
     """
-    coab = ['Blade', 'Xander', 'Wand']
-
+    coab = ['Blade', 'Xander', 'Tiki']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

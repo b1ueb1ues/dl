@@ -15,7 +15,7 @@ class Sinoa(Adv):
         `s1
         `s2
     '''
-    coab = ['Blade', 'Gala_Sarisse', 'Marth']
+    coab = ['Tiki', 'Gala_Sarisse', 'Marth']
 
     def prerun(self):
         self.s1_buff_mode = 'means'

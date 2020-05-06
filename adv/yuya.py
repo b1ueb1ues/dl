@@ -24,7 +24,7 @@ class Yuya(Adv):
 
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Blade','Marth','Serena']
+            self.coab = ['Blade','Marth','Tiki']
 
     def prerun(self):
         if self.condition('hp60'):

@@ -15,7 +15,7 @@ class Templar_Hope(Adv):
         `s2
         `fs, x=2
         """
-    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    coab = ['Blade','Dragonyule_Xainfried','Tiki']
     
     def s1_proc(self, e):
         Teambuff('s1', 0.25, 15, 'defense').on()

@@ -1,4 +1,5 @@
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -8,14 +9,16 @@ class Dragonyule_Xander(Adv):
     a3 = ('sp',0.05)
 
     conf = {}
-    conf['slot.d'] = Leviathan()
+    conf['slots.a'] = CC()+PC()
+    conf['slots.frostbite.a'] = conf['slots.a']
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s1, seq=5 and cancel
+        `s1
         `s2, seq=5 and cancel or s
-        `s3, seq=5 and cancel
+        `s3
     """
-    coab = ['Summer_Celliera', 'Blade', 'Thaniel']
+    coab = ['Tiki', 'Blade', 'Thaniel']
 
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
@@ -23,7 +26,6 @@ class Dragonyule_Xander(Adv):
     def s2_proc(self, e):
         self.energy.add(1, team=self.condition('buff all team'))
         self.buff_class('s2', 0.15, 10)
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

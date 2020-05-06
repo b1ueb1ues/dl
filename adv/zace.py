@@ -13,8 +13,7 @@ class Zace(Adv):
         `s2
         `fs, x=5
     """
-    coab = ['Ieyasu','Wand','Dagger']
-
+    coab = ['Ieyasu','Wand','Tiki']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -22,13 +22,13 @@ class Peony(Adv):
         `s1, x=5
         `s2, cancel
         `s3, cancel
-        """
+    """
     coab = ['Blade','Sharena','Malora']
     conf['afflict_res.paralysis'] = 0
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Blade','Sharena','Halloween_Elisanne']
+        if self.duration <= 60:
+            self.coab = ['Tiki','Sharena','Malora']
 
     def fs_proc_alt(self, e):
         self.fs_str.on()

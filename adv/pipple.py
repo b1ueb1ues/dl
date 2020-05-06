@@ -20,16 +20,10 @@ class Pipple(Adv):
     conf['slots.a'] = Primal_Crisis()+Brothers_in_Arms()
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
-        `s1
+        `s1, not self.afflics.frostbite.get()
         `s2, x=5
     """
-    coab = ['Blade', 'Xander', 'Axe2']
-
-    def d_acl(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.conf['acl'] = """
-            `s2, x=5
-        """
+    coab = ['Tiki', 'Xander', 'Axe2']
 
     def prerun(self):
         self.stance = 0

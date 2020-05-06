@@ -14,14 +14,11 @@ class Lily(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s2, seq=5 and cancel
+        `s2
         `s1, seq=5 and cancel
-        `s3, seq=5 and cancel
-        `s3, s
-        `s2, pin='prep'
-        """
-    coab = ['Blade', 'Dagger', 'Xainfried']
-
+        `s3
+    """
+    coab = ['Blade', 'Dagger', 'Tiki']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

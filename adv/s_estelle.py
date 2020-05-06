@@ -1,5 +1,6 @@
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Summer_Estelle
@@ -9,9 +10,10 @@ class Summer_Estelle(Adv):
     conf = {}
     conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
     conf['slots.frostbite.a'] = conf['slots.a']
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `s1, seq=5 and cancel
-        `s2, seq=5 and cancel 
+        `s1
+        `s2
         `s3, seq=5 and cancel
         """
     coab = ['Blade', 'Renee', 'Xander']

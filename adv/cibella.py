@@ -1,4 +1,5 @@
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -6,6 +7,7 @@ def module():
 
 class Cibella(Adv):
     conf = {}
+    conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
@@ -13,8 +15,7 @@ class Cibella(Adv):
         `s3, seq=5
         `fs, seq=5
         """
-    coab = ['Blade', 'Xander', 'Dagger']
-
+    coab = ['Tiki', 'Xander', 'Dagger']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
