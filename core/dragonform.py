@@ -88,25 +88,28 @@ class DragonForm(Action):
         self.auto_gauge(t)
         self.dragon_gauge_timer.on()
 
-    def add_drive_gauge_time(self, delta):
+    def add_drive_gauge_time(self, delta, skill_pause=False):
         max_duration = self.max_gauge/self.drain
         duration = self.dragondrive_timer.timing - now()
         max_add = max_duration - duration
-        add_time = min(delta/self.drain, max_add)
+        if skill_pause:
+            add_time = min(delta, max_add)
+        else:
+            add_time = min(delta/self.drain, max_add)
         self.dragondrive_timer.add(add_time)
         duration = self.dragondrive_timer.timing - now()
         if duration <= 0:
-            self.d_dragondrive_end(None)
+            self.d_dragondrive_end('<gauge deplete>')
             self.dragon_gauge = 0
         else:
             self.dragon_gauge = (duration/max_duration)*self.max_gauge
-            log('drive_time', f'{add_time:+2.4}', f'{duration:2.4}', '{:.2f}%'.format(self.dragon_gauge/self.max_gauge*100))
+            if add_time > 0:
+                log('drive_time' if not skill_pause else 'skill_pause', f'{add_time:+2.4}', f'{duration:2.4}', f'{int(self.dragon_gauge)}/{int(self.max_gauge)}')
 
-    def charge_gauge(self, value, utp=False):
-        if utp:
-            dh = 1
-        else:
-            dh = self.adv.mod('dh')
+    def charge_gauge(self, value, utp=False, dhaste=True):
+        dhaste = not utp
+        dh = self.adv.mod('dh') if dhaste else 1
+        if not utp:
             value *= 10
         value = self.adv.sp_convert(dh, value)
         delta = min(self.dragon_gauge+value, self.max_gauge) - self.dragon_gauge
@@ -115,7 +118,7 @@ class DragonForm(Action):
         elif delta > 0:
             self.dragon_gauge += delta
             if utp:
-                log('dragon_gauge', '{:+} utp'.format(int(delta)), '{:.2f}%'.format(self.dragon_gauge/self.max_gauge*100))
+                log('dragon_gauge', '{:+} utp'.format(int(delta)), f'{int(self.dragon_gauge)}/{int(self.max_gauge)}')
             else:
                 log('dragon_gauge', '{:+.2f}%'.format(delta/self.max_gauge*100), '{:.2f}%'.format(self.dragon_gauge/self.max_gauge*100))
 
@@ -156,7 +159,7 @@ class DragonForm(Action):
         self.idle_event()
 
     def d_dragondrive_end(self, t):
-        log('dragondrive', 'end')
+        log('dragondrive', 'end', t if isinstance(t, str) else '<timeout>')
         self.dragondrive_buff.off()
         self.shift_silence = True
         Timer(self.end_silence).on(10)
@@ -292,7 +295,7 @@ class DragonForm(Action):
         if self.is_dragondrive:
             self.act_list = ['end']
             if self.dragondrive_buff.get():
-                self.d_dragondrive_end(None)
+                self.d_dragondrive_end('<turn off>')
                 return True
             else:
                 self.dragondrive_timer.on(self.max_gauge/self.drain)

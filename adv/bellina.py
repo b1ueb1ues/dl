@@ -54,7 +54,7 @@ class Bellina(Adv):
         `s2, sim_duration-now()<1.5
         `s3, not self.s3_buff
         if self.dragondrive_buff.get()
-        `s1, self.dragonform.dragon_gauge>850 and x=3
+        `s1, self.dragonform.dragon_gauge>1000 and x=3
         `fsf, x=3
         else
         `s2
@@ -124,18 +124,12 @@ class Bellina(Adv):
                 self.dmg_make('s1', 2.02 * 5)
                 self.hits += 5
             self.s1.charge(self.conf.s1.sp)
+            self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(-750, utp=True)
-            # 2.02 mod 1.5x crisis
-            # 0.2666666805744171 + 0.18000000715255737 * 5
-            # 1.1666666269302368 (?)
-            # -750 gauge
-            # +100% skill
         else:
             with CrisisModifier('s1', 0.50, self.hp):
                 self.dmg_make('s1', 8.40)
                 self.hits += 1
-            # 840 mod, 1.5x crisis
-            # 1.399999976158142 (?)
 
     def s2_proc(self, e):
         if self.dragondrive_buff.get():

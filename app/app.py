@@ -69,6 +69,10 @@ SPECIAL_ADV = {
     'bellina_1hp': {
         'fn': 'bellina.py.1hp.py',
         'nc': []
+    },
+    'fjorm_stack': {
+        'fn': 'fjorm.py.x4.py',
+        'nc': ['acl']
     }
 }
 

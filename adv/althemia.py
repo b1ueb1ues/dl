@@ -1,5 +1,6 @@
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Althemia
@@ -9,6 +10,7 @@ class Althemia(Adv):
     
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
+    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff

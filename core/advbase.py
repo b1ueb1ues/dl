@@ -1462,11 +1462,20 @@ class Adv(object):
         if 'coabs' in self.conf:
             self.coab_list = self.conf['coabs']
         from conf import coability_dict
+        try:
+            self_coab = list(self.slots.c.coabs.keys())[0]
+        except:
+            self_coab = None
         for name in self.coab_list:
             try:
                 self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
             except:
                 pass
+        self.coab_list = list(self.slots.c.coabs.keys())
+        try:
+            self.coab_list.remove(self_coab)
+        except:
+            pass
 
         if not ('forced' in self.conf.slots and self.conf.slots.forced):
             self.d_slots()
