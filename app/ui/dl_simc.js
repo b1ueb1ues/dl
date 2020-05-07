@@ -52,6 +52,11 @@ function slots_icon_fmt(adv, ele, wt, slots) {
     if (weapon === 'HDT2' || (weapon === 'Agito')) {
         img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon weapon"/>');
     }
+    let placehold = 5 - img_urls.length;
+    while (placehold > 0){
+        img_urls.push('<img src="/dl-sim/pic/CleoDX.png" class="slot-icon placehold"/>');
+        placehold -= 1;
+    }
     const coabs = slots_list[3].split('|');
     for (c of coabs){
         if (WEAPON_TYPES.includes(c.toLowerCase())){
