@@ -73,6 +73,7 @@ class Tiki(Adv):
 
     conf = tiki_conf.copy()
     conf['slots.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
+    conf['slots.frostbite.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         if self.divine_dragon.get()
