@@ -1,7 +1,7 @@
-import adv.adv_test
 from core.advbase import *
 from slot.a import *
 from slot.d import*
+
 def module():
     return Summer_Ranzal
 
@@ -11,12 +11,13 @@ class Summer_Ranzal(Adv):
 
     conf = {}
     conf['slots.a'] = RR() + Breakfast_at_Valerios()
+    conf['slots.frostbite.a'] = PC() + His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
         `s1, x=5
         `s2, x=5
-        `s3, x=5
+        `s3
         """
     coab = ['Xander', 'Dagger', 'Tiki']
     conf['afflict_res.bog'] = 100
@@ -38,5 +39,5 @@ class Summer_Ranzal(Adv):
         Selfbuff('s2',0.10,15).on()
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
