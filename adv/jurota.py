@@ -1,4 +1,5 @@
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -8,6 +9,7 @@ class Jurota(Adv):
     a1 = ('bk',0.2)
 
     conf = {}
+    conf['slots.frostbite.a'] = Primal_Crisis() + His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon

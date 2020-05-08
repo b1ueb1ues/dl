@@ -18,7 +18,7 @@ class Nobunaga(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
-        `fs, x=5 and self.s2.charged<self.s2.sp-self.sp_val(5)
+        `fs, x=5 and (self.s2.charged<self.s2.sp-self.sp_val(5) or self.ba=0)
         """
     coab = ['Wand','Marth','Serena']
 
