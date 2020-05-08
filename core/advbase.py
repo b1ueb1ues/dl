@@ -1820,7 +1820,6 @@ class Adv(object):
         rt = self.conf.rotation
         if self.o_rt != rt:
             print('cannot change rotation after run')
-            errrrrrrrrrrrrrrrrr()
         ret = ''
         ret += rt[p]
         p += 1
@@ -1835,7 +1834,6 @@ class Adv(object):
 
         if self.o_rt != rt:
             print('cannot change rotation after run')
-            errrrrrrrrrrrrrrrrr()
         ret = ''
         while (1):
             if p >= self.rt_len:
@@ -1855,7 +1853,6 @@ class Adv(object):
             xidx = int(rt[p + 1])
             if xidx > 5 or xidx < 1:
                 print(rt + '\nlocation:%d,%s' % (p + 1, xidx))
-                errrrrrrrrrrrrrrrr()
             ret += rt[p:p + 2]
             p += 2
         elif rt[p] in ['1', '2', '3', '4', '5'] and rt[p + 1] in ['x', 'c']:
@@ -1866,7 +1863,6 @@ class Adv(object):
             sidx = int(rt[p + 1])
             if sidx > 3 or sidx < 1:
                 print(rt + '\nlocation:%d,%s' % (p + 1, sidx))
-                errrrrrrrrrrrrrrrr()
             ret += rt[p:p + 2]
             p += 2
         elif rt[p:p + 2] == 'fs':
@@ -1884,7 +1880,6 @@ class Adv(object):
         else:
             print(rt + '\nlocation:%d' % (p))
             print(rt[p])
-            errrrrrrrrrrrrrrrrrr()
 
         if p >= self.rt_len:
             self.rotation_reset()
