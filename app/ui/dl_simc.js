@@ -9,7 +9,6 @@ BASE_AFFLICT_UPTIME = {
 };
 WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
 RANGED = ['wand', 'bow', 'staff'];
-AXE2_ADV = ['Halloween_Mym', 'Valentines_Melody']
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
@@ -40,18 +39,35 @@ function slots_icon_fmt(adv, ele, wt, slots) {
     const amulets = slots_list[0].split('+');
     for (a of amulets) {
         if (amulet_name_override.hasOwnProperty(a)) {
-            img_urls.push('<img src="/dl-sim/pic/amulet/' + amulet_name_override[a] + '.png" class="slot-icon"/>');
+            img_urls.push('<img src="/dl-sim/pic/amulet/' + amulet_name_override[a] + '.png" class="slot-icon amulet"/>');
         } else {
             img_urls.push('<img src="/dl-sim/pic/amulet/' + a + '.png" class="slot-icon"/>');
         }
     }
     const dragon = slots_list[1];
     if (!dragon.startsWith('Unreleased')) {
-        img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon"/>');
+        img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon dragon"/>');
     }
     const weapon = slots_list[2];
     if (weapon === 'HDT2' || (weapon === 'Agito')) {
-        img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon"/>');
+        img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon weapon"/>');
+    }
+    let placehold = 5 - img_urls.length;
+    while (placehold > 0){
+        img_urls.push('<img src="/dl-sim/pic/CleoDX.png" class="slot-icon placehold"/>');
+        placehold -= 1;
+    }
+    const coabs = slots_list[3].split('|');
+    for (c of coabs){
+        if (WEAPON_TYPES.includes(c.toLowerCase())){
+            img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
+        } else {
+            if (c === 'Axe2'){
+                img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
+            } else {
+                img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon"/>');
+            }
+        }
     }
     return img_urls;
 }
@@ -477,7 +493,10 @@ function runAdvTest() {
                     const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
-                    newResultItem.append($('<h4 class="test-result-slot-grid"><div>' + icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
+                    newResultItem.append($(
+                        '<h4 class="test-result-slot-grid"><div>' +
+                        icon_urls[0] + '</div><div>' + name + '</div><div>' +
+                        icon_urls.slice(1, 5).join('') + ' | ' + icon_urls.slice(5).join('') + '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra, undefined);
                     if (result.length > 2 && result[2].includes(',')) {
                         cond_false = result[2].split(',');

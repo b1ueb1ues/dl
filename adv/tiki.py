@@ -68,23 +68,31 @@ divine_dragon_conf = {
 }
 
 class Tiki(Adv):
+    comment = 'dragon damage does not work on divine dragon (possibly a bug)'
     a1 = ('k_frostbite', 0.30)
 
     conf = tiki_conf.copy()
     conf['slots.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
+    conf['slots.frostbite.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         if self.divine_dragon.get()
         `s1
         `s2
+        `dodge, x=3
         else
-        `dragon
+        `dragon, self.dragonform.dragon_gauge>1000
         `s2
         `s1
         `s3
         end
     """
-    coab = ['Blade', 'Xander', 'Axe2']
+    coab = ['Blade', 'Xander', 'Dagger']
+
+    def d_slots(self):
+        if self.duration <= 60:
+            self.conf['slots.a'] = Twinfold_Bonds()+The_Chocolatiers()
+            self.conf['slots.frostbite.a'] = self.conf['slots.a']
 
     def x_proc(self, e):
         xseq = e.name
@@ -107,7 +115,7 @@ class Tiki(Adv):
         self.dragonform.charge_gauge(0, utp=True)
 
     def prerun(self):
-        self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon') # reeee
+        self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon')
         # self.divine_dragon = Selfbuff('divine_dragon', self.dragonform.ddamage(), -1, 'att', 'dragon') # reeee
         self.dragonform.set_dragondrive(dd_buff=self.divine_dragon, max_gauge=1800, shift_cost=560, drain=40)
         Event('dragon_end').listener(self.dragondrive_on) # cursed
@@ -122,7 +130,7 @@ class Tiki(Adv):
         self.d_s2 = Skill('s2', self.conf.s2+Conf({'startup': 0.10, 'recovery': 1.91, 'sp': 5800}))
 
         self.o_s3 = self.s3
-        self.d_s3 = Skill('s3', self.conf.s3)
+        self.d_s3 = Skill('s3', self.conf.s3+Conf({'sp': 0}))
         self.d_s3.check = lambda: False
         self.d_s3.charge = lambda sp: None
 
@@ -143,8 +151,7 @@ class Tiki(Adv):
         if self.divine_dragon.get():
             self.dmg_make('s1', 7.90)
             self.afflics.frostbite('s1',120,0.41)
-            # bolb
-            self.dragonform.dragondrive_timer.add(1.9)
+            self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
         else:
             self.dmg_make('s1', 3.76)
             self.dragonform.charge_gauge(260, utp=True)
@@ -153,8 +160,7 @@ class Tiki(Adv):
         if self.divine_dragon.get():
             with KillerModifier('s2_killer', 'hit', 0.2, ['frostbite']):
                 self.dmg_make('s2', 12.05)
-            # bolb
-            self.dragonform.dragondrive_timer.add(2.01)
+            self.dragonform.add_drive_gauge_time(self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
         else:
             self.dragonform.charge_gauge(1000, utp=True)
 

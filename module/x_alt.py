@@ -2,6 +2,7 @@ from core.advbase import Fs_group, Fs, X, Event
 from core.timeline import Listener, Timer
 from core.log import log
 from core.config import Conf
+from core.dragonform import DragonForm
 
 class Fs_alt:
     def __init__(self, adv, conf, fs_proc=None):
@@ -100,10 +101,13 @@ class X_alt:
             act = self.a_x_alt[1]
             doing = act._static.doing
             if not doing.idle and doing.status == -1:
-                doing.startup_timer.off()
-                doing._setprev()
-                doing._static.doing = doing.nop
-                act()
+                try:
+                    doing.startup_timer.off()
+                    doing._setprev()
+                    doing._static.doing = doing.nop
+                    act()
+                except:
+                    pass
 
             log('debug', '{} x_alt on'.format(self.name))
             self.active = True

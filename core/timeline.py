@@ -135,6 +135,7 @@ class Timer(object):
 
         self.timing = 0
         self.online = 0
+        self.pause_diff = 0
         #self.on()
 
 

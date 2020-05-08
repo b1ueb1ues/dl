@@ -52,6 +52,7 @@ class Aldred(Adv):
         if self.dragondrive_buff.get():
             with CrisisModifier('s1', 1.00, self.hp):
                 self.dmg_make('s1', 2.42*4)
+            self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(-750, utp=True)
             self.s1.charge(self.sp_convert(0.50, self.conf.s1.sp))
         else:
@@ -66,6 +67,7 @@ class Aldred(Adv):
         if self.dragondrive_buff.get():
             self.s2_stuff_on()
             self.s2_stuff_timer.on(40 * self.mod('bt'))
+            self.dragonform.add_drive_gauge_time(self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(3000, utp=True)
         else:
             self.dragonform.charge_gauge(1200, utp=True)
