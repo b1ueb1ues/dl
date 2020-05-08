@@ -1,46 +1,51 @@
-from timeline import *
+from core.timeline import *
+from functools import wraps
 #import timeline2
 import time
 
 def bench(func):
-    print '============='
-    a = time.time()
-    func()
-    b = time.time()
-    print '-------------'
-    print b-a
-    print '-------------'
+    @wraps
+    def wrapper():
+        print('=============')
+        a = time.time()
+        func()
+        b = time.time()
+        print('-------------')
+        print(b-a)
+        print('-------------')
+        return b - a
+    return wrapper
 
 def t1():
     a = 0
     for i in range(1000000):
         a += 1
-    print a
+    print(a)
 
 def t2():
     a = [0]
     for i in range(1000000):
         a[0] += 1
-    print a[0]
+    print(a[0])
 
 def t3():
     a = {0:0}
     for i in range(1000000):
         a[0] += 1
-    print a[0]
+    print(a[0])
 
 _g_test = 0
 def t4():
     global _g_test
     for i in range(1000000):
         _g_test += 1
-    print _g_test
+    print(_g_test)
 
 __g_test = 0
 def t5():
     for i in range(1000000):
         globals()['__g_test'] += 1
-    print globals()['__g_test']
+    print(globals()['__g_test'])
 
 
 a = 1
@@ -53,7 +58,7 @@ def t6():
     global a
     for i in range(1000000):
         get_event_trigger('test')[0]()
-    print a
+    print(a)
 
 a = 1
 add_event_listener('test',l)
@@ -62,43 +67,46 @@ def t7():
     et = get_event_trigger('test')
     for i in range(1000000):
         et[0]()
-    print a
+    print(a)
 
 
 class A():
     def __init__(self):
         return
 
-def a():
+@bench
+def a_():
     a = 0
     for i in range(1000000):
         a+=1
-    print a
+    print(a)
 
-def b():
+@bench
+def b_():
     a = {}
     a['a'] = 0
     for i in range(1000000):
         a['a']+=1
-    print a
+    print(a)
 
-def c():
+@bench
+def c_():
     a = A()
     a.a = 0
     for i in range(1000000):
         a.a+=1
-    print a.a
+    print(a.a)
 
-def d():
+@bench
+def d_():
     a = Static()
     a.a = 0
     for i in range(1000000):
         a.a+=1
-    print a.a
+    print(a.a)
 
-bench(a)
-bench(b)
-bench(c)
-bench(d)
-
-
+if __name__ == "__main__":
+    a_()
+    b_()
+    c_()
+    d_()

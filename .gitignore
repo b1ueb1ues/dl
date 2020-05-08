@@ -2,3 +2,5 @@
 tags
 *.csv
 .env
+.vscode
+env/

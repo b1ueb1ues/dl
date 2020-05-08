@@ -51,7 +51,6 @@ class Ctx(object):
     def off(self):
         if self._active[0] != self:
             print('try to turn off inactive ctx')
-            errrrrrrrrrrrr()
         for i in range(len(self.ctxdict_s)):
             gdict = self._gdict_s[i]
             vdict = self.ctxdict_s[i]
