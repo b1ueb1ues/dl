@@ -6,10 +6,10 @@ class Log:
         self.reset()
 
     @staticmethod
-    def update_dict(dict, name, value):
+    def update_dict(dict, name: str, value):
         try:
             dict[name] += value
-        except:
+        except KeyError:
             dict[name] = value
 
     def log(self, *args):

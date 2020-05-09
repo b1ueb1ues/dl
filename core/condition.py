@@ -1,12 +1,12 @@
+from typing import Union
 class Condition(dict):
-    def __init__(self, cond):
+    def __init__(self, cond: Union[bool, dict]):
         self.global_cond = True
         self.base_cond = {}
         self.min_hp_cond = (None, 100)
         super().__init__({})
-        if cond is None or isinstance(cond, bool):
-            if cond is not None:
-                self.global_cond = cond
+        if cond is not None or isinstance(cond, bool):
+            self.global_cond = cond
         elif isinstance(cond, dict):
             self.base_cond = cond
 
