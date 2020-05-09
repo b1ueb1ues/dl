@@ -115,8 +115,8 @@ class Tiki(Adv):
         self.dragonform.charge_gauge(0, utp=True)
 
     def prerun(self):
-        # self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon')
-        self.divine_dragon = Selfbuff('divine_dragon', self.dragonform.ddamage(), -1, 'att', 'dragon') # reeee
+        self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon')
+        # self.divine_dragon = Selfbuff('divine_dragon', self.dragonform.ddamage(), -1, 'att', 'dragon') # reeee
         self.dragonform.set_dragondrive(dd_buff=self.divine_dragon, max_gauge=1800, shift_cost=560, drain=40)
         Event('dragon_end').listener(self.dragondrive_on) # cursed
         Event('dragondrive_end').listener(self.dragondrive_off)
