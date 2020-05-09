@@ -5,10 +5,10 @@ class Condition(dict):
         self.base_cond = {}
         self.min_hp_cond = (None, 100)
         super().__init__({})
-        if cond is not None or isinstance(cond, bool):
-            self.global_cond = cond
-        elif isinstance(cond, dict):
+        if isinstance(cond, dict):
             self.base_cond = cond
+        elif isinstance(cond, bool):
+            self.global_cond = cond
 
     def cond_str(self):
         return ' & '.join([k for k, v in self.items() if v])
