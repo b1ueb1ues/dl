@@ -253,9 +253,9 @@ class Andromeda(DragonBase):
         return dmg
 
 
-class Unreleased_ShadowSkillHaste(DragonBase):
+class Azazel(DragonBase):
     ele = 'shadow'
-    att = 120
+    att = 128
     a = [('sp', 0.35)]
 
 class Unreleased_ShadowPrimedStr(DragonBase):
