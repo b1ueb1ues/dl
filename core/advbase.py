@@ -1042,6 +1042,15 @@ class Adv(object):
         # self.fs = self.a_fs
         self.fsf = self.a_fsf
         self.dodge = self.a_dodge
+        try:
+            self.a_x5ex = X(('x5ex', 5), self.conf.x5ex)
+            self.a_x5ex.atype = 'x'
+            self.a_x5ex.interrupt_by = ['fs', 's', 'dodge']
+            self.a_x5ex.cancel_by = ['fs', 's', 'dodge']
+            self.x4.cancel_by.append('x')
+            self.x5ex = self.a_x5ex
+        except:
+            pass
 
         self.hits = 0
         self.dragonform = None
@@ -1354,8 +1363,7 @@ class Adv(object):
         if prev.name[0] == 'x':
             if prev.index != 5:
                 x_next = prev.index + 1
-
-        a = getattr(self, 'x%d' % x_next)()
+        getattr(self, 'x%d' % x_next)()
         return 1
 
     def l_range_x(self, e):

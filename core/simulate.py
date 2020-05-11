@@ -313,7 +313,7 @@ def act_sum(actions, output):
     condensed = []
     for act in actions:
         if act[0] == 'x':
-            xseq = int(act[1:])
+            xseq = int(act[1:].replace('ex', ''))
             if xseq < p_xseq:
                 condensed = append_condensed(condensed, p_act)
             p_xseq = xseq
@@ -347,7 +347,8 @@ def act_sum(actions, output):
         elif idx > 0:
             output.write(' ')
         if act[0] == 'x' or act == 'fs':
-            output.write(act.replace('x', 'c'))
+            act = 'c' + act[1:]
+            output.write(act)
             p_type = 'x'
         else:
             if act == 'dshift':
