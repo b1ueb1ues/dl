@@ -63,7 +63,7 @@ def set(slots):
     chain_dict = coability_dict(ele)
     try:
         chain, _ = chain_dict[name]
-        if chain is None or len(chain)<3 or chain[2] != 'hp<40':
+        if chain is None or len(chain)<3 or chain[2] != 'hp≤40':
             slots.c.coabs[name] = chain_dict[name]
     except:
         try:

@@ -106,8 +106,8 @@ class DragonForm(Action):
             if add_time > 0:
                 log('drive_time' if not skill_pause else 'skill_pause', f'{add_time:+2.4}', f'{duration:2.4}', f'{int(self.dragon_gauge)}/{int(self.max_gauge)}')
 
-    def charge_gauge(self, value, utp=False, dhaste=True):
-        dhaste = not utp
+    def charge_gauge(self, value, utp=False, dhaste=False):
+        dhaste = dhaste or not utp
         dh = self.adv.mod('dh') if dhaste else 1
         if not utp:
             value *= 10

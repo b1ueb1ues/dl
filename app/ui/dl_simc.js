@@ -53,16 +53,16 @@ function slots_icon_fmt(adv, ele, wt, slots) {
         img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon weapon"/>');
     }
     let placehold = 5 - img_urls.length;
-    while (placehold > 0){
+    while (placehold > 0) {
         img_urls.push('<img src="/dl-sim/pic/CleoDX.png" class="slot-icon placehold"/>');
         placehold -= 1;
     }
     const coabs = slots_list[3].split('|');
-    for (c of coabs){
-        if (WEAPON_TYPES.includes(c.toLowerCase())){
+    for (c of coabs) {
+        if (WEAPON_TYPES.includes(c.toLowerCase())) {
             img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
         } else {
-            if (c === 'Axe2'){
+            if (c === 'Axe2') {
                 img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
             } else {
                 img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon"/>');
@@ -380,7 +380,7 @@ function buildCoab(coab, fullname, weapontype) {
         check.data('ex', kcoab[1]);
         check.change(checkCoabSelection);
         if (k == fullname) {
-            if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp<40')) {
+            if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp≤40')) {
                 check.prop('disabled', true);
                 check.prop('checked', true);
             } else {

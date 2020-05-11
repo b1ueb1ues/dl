@@ -1465,7 +1465,7 @@ class Adv(object):
         try:
             self_coab = list(self.slots.c.coabs.keys())[0]
         except:
-            self_coab = None
+            self_coab = self.__class__.__name__
         for name in self.coab_list:
             try:
                 self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
