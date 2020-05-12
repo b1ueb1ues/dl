@@ -437,16 +437,16 @@
     },
     "Celliera": {
         "c": {
-            "att": 492,
+            "att": 589,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "4",
             "wt": "blade"
         },
         "s1": {
-            "dmg": 9.68,
+            "dmg": 10.60,
             "hit": 4,
-            "recovery": 2.5,
+            "recovery": 1.6,
             "sp": 2537,
             "startup": 0.1
         },
@@ -973,6 +973,29 @@
             "recovery": 0.9,
             "sp": 5934,
             "startup": 0.25
+        }
+    },
+    "Forte": {
+        "c": {
+            "att": 511,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.8333,
+            "sp": 2352,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 25.28,
+            "hit": 4,
+            "recovery": 2.5,
+            "sp": 5161,
+            "startup": 0.1
         }
     },
     "Francesca": {
@@ -2871,16 +2894,16 @@
     },
     "Ranzal": {
         "c": {
-            "att": 444,
+            "att": 532,
             "ele": "wind",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "4",
             "wt": "axe"
         },
         "s1": {
-            "dmg": 11.4,
+            "dmg": 22.24,
             "hit": 4,
-            "recovery": 2.25,
+            "recovery": 2.1,
             "sp": 2805,
             "startup": 0.1
         },
@@ -3997,6 +4020,29 @@
             "recovery": 0.9,
             "sp": 8000,
             "startup": 0.25
+        }
+    },
+    "Yurius": {
+        "c": {
+            "att": 511,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 4,
+            "recovery": 1.7667,
+            "sp": 2711,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.7667,
+            "sp": 6400,
+            "startup": 0.1
         }
     },
     "Yuya": {

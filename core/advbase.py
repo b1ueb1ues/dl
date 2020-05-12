@@ -1109,7 +1109,8 @@ class Adv(object):
             aff, wpa = ele_punisher[self.slots.c.ele]
             wp1 = self.slots.a.__class__
             wp2 = wpa
-            self.slots.a = wp1()+wp2()
+            if wp1 != wp2:
+                self.slots.a = wp1()+wp2()
             if aff in self.conf.slots:
                 afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
                 for s in ('d', 'w', 'a'):
