@@ -409,6 +409,7 @@ class Affliction_Guard(Ability):
 
     def oninit(self, adv, afrom=None):
         adv.afflict_guard = self.value
+        adv.dragonform.disabled = False
 
 ability_dict['ag'] = Affliction_Guard
 

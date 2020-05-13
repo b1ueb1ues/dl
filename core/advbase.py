@@ -257,6 +257,15 @@ class Buff(object):
 
     def count_team_buff(self):
         self.dmg_test_event.modifiers = ModifierDict()
+
+        base_mods = [
+            Modifier('base_cc', 'crit', 'chance', 0.12),
+            Modifier('base_killer', 'killer','passive', 0.50)
+        ]
+        
+        for mod in base_mods:
+            self.dmg_test_event.modifiers.append(mod)
+
         for i in self._static.all_buffs:
             if i.name == 'simulated_def':
                 self.dmg_test_event.modifiers.append(i.modifier)
@@ -271,11 +280,19 @@ class Buff(object):
                 elif i.modifier.mod_type == 'spd':
                     spd += i.get()
                 else:
-                    self.dmg_test_event.modifiers.append(i.modifier)
+                    if i.modifier.mod_type.endswith('_killer'):
+                        mod_copy = copy.copy(i.modifier)
+                        mod_copy.mod_type = 'killer'
+                        self.dmg_test_event.modifiers.append(i.modifier)
+                    else:
+                        self.dmg_test_event.modifiers.append(i.modifier)
         self.dmg_test_event()
         team_buff_dmg = self.dmg_test_event.dmg * sd_mods
         team_buff_dmg += team_buff_dmg * spd
         log('buff', 'team', team_buff_dmg / no_team_buff_dmg - 1)
+        
+        for mod in base_mods:
+            mod.off()
 
     def on(self, duration=None):
         if duration == None:
