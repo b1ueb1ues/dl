@@ -13,7 +13,7 @@ class Yurius(Adv):
     conf['slots.frostbite.d'] = Siren()
     conf['acl'] = """
         if self.afflics.frostbite.get()
-        `dragon, not self.dragondrive_buff.get() and self.dragonform.dragon_gauge>=2120
+        `dragon, not self.dragondrive_buff.get()
         else
         `dragon, self.dragondrive_buff.get()
         `dragon, not self.dragondrive_buff.get() and s=2
