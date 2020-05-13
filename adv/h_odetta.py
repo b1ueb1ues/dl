@@ -11,13 +11,13 @@ class Halloween_Odetta(Adv):
 
     conf = {}
     conf['slots.a'] = Mega_Friends() + Primal_Crisis()
-    conf['slots.d'] = Dragonyule_Jeanne()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `s2, cancel
         `s1, fsc
         `s3, fsc
-        `fs, x=2
+        `fs, x=3
     """
     coab = ['Axe2','Xander','Dagger']
 

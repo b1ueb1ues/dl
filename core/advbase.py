@@ -1495,7 +1495,7 @@ class Adv(object):
         self.sim_buffbot()
 
         self.slot_backdoor()
-        self.base_att = int(self.slots.att(globalconf.forte))
+        self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)
 
         self.prerun()
