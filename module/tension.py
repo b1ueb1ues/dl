@@ -39,6 +39,7 @@ class Tension:
                 # entering a new s1/s2/s3 block
                 if scope in self.scope:
                     self.current_scope = scope
+                    log(self.name, 'active', 'stack <{}>'.format(self.stack))
                     self.modifier.on()
                     return True
             elif self.current_scope == scope:

@@ -1239,9 +1239,7 @@ class Adv(object):
                     m[order] += modifier.get()
                 else:
                     raise ValueError(f"Invalid crit mod order {order}")
-        chance = m['chance'] + m['passive'] + m['rate']
-        if chance > 1:
-            chance = 1
+        chance = min(m['chance'] + m['passive'] + m['rate'], 1)
         cdmg = m['dmg'] + m['damage'] + 1.7
         average = chance * (cdmg - 1) + 1
         return average
@@ -1633,12 +1631,13 @@ class Adv(object):
         return
 
     def dmg_formula(self, name, dmg_coef):
+        dmg_mod = self.dmg_mod(name)
         att = 1.0 * self.att_mod(name) * self.base_att
         armor = 10 * self.def_mod()
         ele = self.mod(self.slots.c.ele) + 0.5
         # return float(dmg_coef) * self.dmg_mod(name) * self.att_mod() / self.def_mod()
         # return float(dmg_coef) * self.dmg_mod(name) * self.def_mod()
-        return 5.0 / 3 * dmg_coef * self.dmg_mod(name) * att / armor * ele  # true formula
+        return 5.0 / 3 * dmg_coef * dmg_mod * att / armor * ele  # true formula
         # return att/armor * dmg_coef * self.dmg_mod(name)
 
     def l_true_dmg(self, e):

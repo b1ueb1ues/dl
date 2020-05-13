@@ -81,7 +81,7 @@ class Tiki(Adv):
         `s2
         `dodge, x=3
         else
-        `dragon, self.dragonform.dragon_gauge>1000
+        `dragon, self.dragonform.dragon_gauge>=1000
         `s2
         `s1
         `s3

@@ -12,12 +12,14 @@ class Yurius(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['slots.frostbite.d'] = Siren()
     conf['acl'] = """
-        `dragon, not self.dragondrive_buff.get() and self.inspiration()
-        `s2
-        `s1
+        `dragon, not self.dragondrive_buff.get() and self.dragonform.dragon_gauge>=2120
+        `s2, cancel
+        `s1, cancel
         `s3, cancel
     """
     coab = ['Blade','Dagger','Xander']
+    # conf['sim_afflict.efficiency'] = 1
+    # conf['sim_afflict.type'] = 'frostbite'
 
     def prerun(self):
         # 3000/1200/75
@@ -40,7 +42,7 @@ class Yurius(Adv):
         else:
             self.dmg_make('s1', 7.56)
             self.dragonform.charge_gauge(530, utp=True)
-            self.inspiration.add(1)
+            self.inspiration.add(1, team=False)
 
     def s2_proc(self, e):
         if self.dragondrive_buff.get():
@@ -51,7 +53,7 @@ class Yurius(Adv):
             self.afflics.frostbite('s2',120,0.287,duration=30)
             self.dmg_make('s2', 6.24)
             self.dragonform.charge_gauge(530, utp=True)
-            self.inspiration.add(2)
+            self.inspiration.add(2, team=False)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
