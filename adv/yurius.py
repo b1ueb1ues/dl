@@ -8,14 +8,14 @@ def module():
 class Yurius(Adv):
     a3 = ('prep', 100)
     conf = {}
-    conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
-    conf['slots.frostbite.a'] = conf['slots.a']
+    conf['slots.a'] = Primal_Crisis()+Candy_Couriers()
     conf['slots.d'] = Gaibhne_and_Creidhne()
+    conf['slots.frostbite.d'] = Siren()
     conf['acl'] = """
         `dragon, not self.dragondrive_buff.get()
         `s2
         `s1
-        `s3, x=4
+        `s3, cancel
     """
     coab = ['Blade','Dagger','Xander']
 

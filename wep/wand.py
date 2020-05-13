@@ -45,6 +45,10 @@ conf = {
     'x1fs.startup': 39 / 60.0, # 11 delay + FS
     'x2fs.startup': 35 / 60.0, # 7 delay + FS
 
+    'fsf.charge': 28 / 60.0,
+    'fsf.startup': 1 / 60.0,
+    'fsf.recovery': 0 / 60.0,
+
     'dodge.startup': 36 / 60.0,
     'dodge.recovery': 0 / 60.0,
 
