@@ -347,7 +347,8 @@ def act_sum(actions, output):
         elif idx > 0:
             output.write(' ')
         if act[0] == 'x' or act == 'fs':
-            act = 'c' + act[1:]
+            if act != 'fs':
+                act = 'c' + act[1:]
             output.write(act)
             p_type = 'x'
         else:
@@ -515,15 +516,15 @@ def test_with_argv(*argv, conf={}):
         duration = int(argv[3])
     except:
         duration = 180
-    # try:
-    #     ex = argv[4]
-    # except:
-    #     ex = '_'
     try:
-        mass = int(argv[4])
+        team_dps = int(argv[4])
+    except:
+        team_dps = 20000
+    try:
+        mass = int(argv[5])
     except:
         mass = 0
-    test(module, conf=conf, verbose=verbose, duration=duration, mass=mass)
+    test(module, conf=conf, verbose=verbose, duration=duration, mass=mass, team_dps=team_dps)
 
 if __name__ == '__main__':
     test_with_argv(*sys.argv)

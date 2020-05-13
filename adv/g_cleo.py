@@ -20,6 +20,12 @@ class Gala_Cleo(Adv):
         `fs, s1.charged>=s1.sp and self.fs_alt.uses > 0
         `s2, x=5 or x=4 or fsc or s=3
         `s1, s=2 or fsc
+
+        # Buffbot Gleo with Azazel & Memory_of_a_Friend
+        # `s3, not self.s3_buff
+        # `fs, (s1.check() or s2.check()) and self.fs_alt.uses > 0
+        # `s2, cancel
+        # `s1, cancel
         """
     coab = ['Blade','Bow','Dagger']
 
