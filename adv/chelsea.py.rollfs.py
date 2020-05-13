@@ -25,6 +25,9 @@ class Chelsea(adv.chelsea.Chelsea):
     """
     coab = ['Blade', 'Grace', 'Hunter_Berserker']
 
+    def init(self):
+        self.slots.c.coabs['Hunter_Berserker'] = [None, 'sword']
+
     def prerun(self):
         super().prerun()
         self.ro_charges = 3 if isinstance(self.slots.a.a2, Dear_Diary) else 0
