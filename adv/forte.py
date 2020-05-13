@@ -6,6 +6,7 @@ def module():
     return Forte
 
 class Forte(Adv):
+    comment = 'Cleo coab hits 10 stack buff limit'
     a3 = ('k_poison', 0.30)
 
     conf = {}
@@ -19,11 +20,11 @@ class Forte(Adv):
         `s1
         `fs, x=5
         """
-    coab = ['Ieyasu','Cleo','Bow']
+    coab = ['Ieyasu','Wand','Bow']
 
-    def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Ieyasu','Cleo','Wand']
+    # def d_coabs(self):
+    #     if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+    #         self.coab = ['Ieyasu','Cleo','Wand']
 
     def s1_proc(self, e):
         self.dragonform.charge_gauge(4, dhaste=False)
