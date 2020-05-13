@@ -12,7 +12,7 @@ class Yurius(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['slots.frostbite.d'] = Siren()
     conf['acl'] = """
-        `dragon, not self.dragondrive_buff.get()
+        `dragon, not self.dragondrive_buff.get() and self.inspiration()
         `s2
         `s1
         `s3, cancel
