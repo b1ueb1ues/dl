@@ -11,9 +11,6 @@ class Yurius(Adv):
     conf['slots.a'] = Primal_Crisis()+Candy_Couriers()
     conf['slots.d'] = Siren()
     conf['acl'] = """
-        queue prep
-        `s2; s1; s3; s1; s1
-        end
         if self.afflics.frostbite.get()
         `dragon, not self.dragondrive_buff.get()
         else
@@ -23,9 +20,6 @@ class Yurius(Adv):
         `s2, cancel
         `s1, cancel
         `s3, cancel
-        if self.dragondrive_buff.get()
-        `fs, x=5
-        end
     """
     coab = ['Blade','Hunter_Sarisse','Xander']
 
