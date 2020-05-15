@@ -280,7 +280,6 @@ class Mitsuba(Adv):
     def s1_proc(self, e):
         coef = self.s1_mod[self.stance]
         if self.stance == 'sashimi':
-            self.dmg_make('s1', coef)
             self.hits += 1
             self.afflics.frostbite('s1',120,0.41)
             for _ in range(7):

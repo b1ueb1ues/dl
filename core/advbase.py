@@ -257,6 +257,15 @@ class Buff(object):
 
     def count_team_buff(self):
         self.dmg_test_event.modifiers = ModifierDict()
+
+        base_mods = [
+            Modifier('base_cc', 'crit', 'chance', 0.12),
+            Modifier('base_killer', 'killer','passive', 0.50)
+        ]
+        
+        for mod in base_mods:
+            self.dmg_test_event.modifiers.append(mod)
+
         for i in self._static.all_buffs:
             if i.name == 'simulated_def':
                 self.dmg_test_event.modifiers.append(i.modifier)
@@ -271,11 +280,19 @@ class Buff(object):
                 elif i.modifier.mod_type == 'spd':
                     spd += i.get()
                 else:
-                    self.dmg_test_event.modifiers.append(i.modifier)
+                    if i.modifier.mod_type.endswith('_killer'):
+                        mod_copy = copy.copy(i.modifier)
+                        mod_copy.mod_type = 'killer'
+                        self.dmg_test_event.modifiers.append(i.modifier)
+                    else:
+                        self.dmg_test_event.modifiers.append(i.modifier)
         self.dmg_test_event()
         team_buff_dmg = self.dmg_test_event.dmg * sd_mods
         team_buff_dmg += team_buff_dmg * spd
         log('buff', 'team', team_buff_dmg / no_team_buff_dmg - 1)
+        
+        for mod in base_mods:
+            mod.off()
 
     def on(self, duration=None):
         if duration == None:
@@ -1042,6 +1059,15 @@ class Adv(object):
         # self.fs = self.a_fs
         self.fsf = self.a_fsf
         self.dodge = self.a_dodge
+        try:
+            self.a_x5ex = X(('x5ex', 5), self.conf.x5ex)
+            self.a_x5ex.atype = 'x'
+            self.a_x5ex.interrupt_by = ['fs', 's', 'dodge']
+            self.a_x5ex.cancel_by = ['fs', 's', 'dodge']
+            self.x4.cancel_by.append('x')
+            self.x5ex = self.a_x5ex
+        except:
+            pass
 
         self.hits = 0
         self.dragonform = None
@@ -1100,7 +1126,8 @@ class Adv(object):
             aff, wpa = ele_punisher[self.slots.c.ele]
             wp1 = self.slots.a.__class__
             wp2 = wpa
-            self.slots.a = wp1()+wp2()
+            if wp1 != wp2:
+                self.slots.a = wp1()+wp2()
             if aff in self.conf.slots:
                 afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
                 for s in ('d', 'w', 'a'):
@@ -1229,9 +1256,7 @@ class Adv(object):
                     m[order] += modifier.get()
                 else:
                     raise ValueError(f"Invalid crit mod order {order}")
-        chance = m['chance'] + m['passive'] + m['rate']
-        if chance > 1:
-            chance = 1
+        chance = min(m['chance'] + m['passive'] + m['rate'], 1)
         cdmg = m['dmg'] + m['damage'] + 1.7
         average = chance * (cdmg - 1) + 1
         return average
@@ -1354,8 +1379,7 @@ class Adv(object):
         if prev.name[0] == 'x':
             if prev.index != 5:
                 x_next = prev.index + 1
-
-        a = getattr(self, 'x%d' % x_next)()
+        getattr(self, 'x%d' % x_next)()
         return 1
 
     def l_range_x(self, e):
@@ -1465,7 +1489,7 @@ class Adv(object):
         try:
             self_coab = list(self.slots.c.coabs.keys())[0]
         except:
-            self_coab = None
+            self_coab = self.__class__.__name__
         for name in self.coab_list:
             try:
                 self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
@@ -1486,7 +1510,7 @@ class Adv(object):
         self.sim_buffbot()
 
         self.slot_backdoor()
-        self.base_att = int(self.slots.att(globalconf.forte))
+        self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)
 
         self.prerun()
@@ -1624,12 +1648,13 @@ class Adv(object):
         return
 
     def dmg_formula(self, name, dmg_coef):
+        dmg_mod = self.dmg_mod(name)
         att = 1.0 * self.att_mod(name) * self.base_att
         armor = 10 * self.def_mod()
         ele = self.mod(self.slots.c.ele) + 0.5
         # return float(dmg_coef) * self.dmg_mod(name) * self.att_mod() / self.def_mod()
         # return float(dmg_coef) * self.dmg_mod(name) * self.def_mod()
-        return 5.0 / 3 * dmg_coef * self.dmg_mod(name) * att / armor * ele  # true formula
+        return 5.0 / 3 * dmg_coef * dmg_mod * att / armor * ele  # true formula
         # return att/armor * dmg_coef * self.dmg_mod(name)
 
     def l_true_dmg(self, e):
@@ -1820,7 +1845,6 @@ class Adv(object):
         rt = self.conf.rotation
         if self.o_rt != rt:
             print('cannot change rotation after run')
-            errrrrrrrrrrrrrrrrr()
         ret = ''
         ret += rt[p]
         p += 1
@@ -1835,7 +1859,6 @@ class Adv(object):
 
         if self.o_rt != rt:
             print('cannot change rotation after run')
-            errrrrrrrrrrrrrrrrr()
         ret = ''
         while (1):
             if p >= self.rt_len:
@@ -1855,7 +1878,6 @@ class Adv(object):
             xidx = int(rt[p + 1])
             if xidx > 5 or xidx < 1:
                 print(rt + '\nlocation:%d,%s' % (p + 1, xidx))
-                errrrrrrrrrrrrrrrr()
             ret += rt[p:p + 2]
             p += 2
         elif rt[p] in ['1', '2', '3', '4', '5'] and rt[p + 1] in ['x', 'c']:
@@ -1866,7 +1888,6 @@ class Adv(object):
             sidx = int(rt[p + 1])
             if sidx > 3 or sidx < 1:
                 print(rt + '\nlocation:%d,%s' % (p + 1, sidx))
-                errrrrrrrrrrrrrrrr()
             ret += rt[p:p + 2]
             p += 2
         elif rt[p:p + 2] == 'fs':
@@ -1884,7 +1905,6 @@ class Adv(object):
         else:
             print(rt + '\nlocation:%d' % (p))
             print(rt[p])
-            errrrrrrrrrrrrrrrrrr()
 
         if p >= self.rt_len:
             self.rotation_reset()

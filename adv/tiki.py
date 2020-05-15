@@ -68,12 +68,12 @@ divine_dragon_conf = {
 }
 
 class Tiki(Adv):
-    comment = 'dragon damage does not work on divine dragon (possibly a bug)'
+    comment = 'dragon damage does not work on divine dragon'
     a1 = ('k_frostbite', 0.30)
 
     conf = tiki_conf.copy()
     conf['slots.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
-    conf['slots.frostbite.a'] = Twinfold_Bonds()+The_Prince_of_Dragonyule()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
         if self.divine_dragon.get()
@@ -81,10 +81,9 @@ class Tiki(Adv):
         `s2
         `dodge, x=3
         else
-        `dragon, self.dragonform.dragon_gauge>1000
+        `dragon, self.dragonform.dragon_gauge>=1800
         `s2
         `s1
-        `s3
         end
     """
     coab = ['Blade', 'Xander', 'Dagger']
@@ -112,7 +111,7 @@ class Tiki(Adv):
         self.charge(xseq, sp)
 
         # trigger updates on dgauge
-        self.dragonform.charge_gauge(0, utp=True)
+        self.dragonform.charge_gauge(0, utp=True, dhaste=True)
 
     def prerun(self):
         self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon')
@@ -154,7 +153,7 @@ class Tiki(Adv):
             self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
         else:
             self.dmg_make('s1', 3.76)
-            self.dragonform.charge_gauge(260, utp=True)
+            self.dragonform.charge_gauge(260, utp=True, dhaste=True)
 
     def s2_proc(self, e):
         if self.divine_dragon.get():
@@ -162,7 +161,7 @@ class Tiki(Adv):
                 self.dmg_make('s2', 12.05)
             self.dragonform.add_drive_gauge_time(self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
         else:
-            self.dragonform.charge_gauge(1000, utp=True)
+            self.dragonform.charge_gauge(1000, utp=True, dhaste=True)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

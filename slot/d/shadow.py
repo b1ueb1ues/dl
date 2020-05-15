@@ -107,16 +107,17 @@ class Fatalis(DragonBase):
     def oninit(self, adv):
         super().oninit(adv)
         adv.dragonform.disabled = True
-        # def permanent_curse(e):
-        #     if hasattr(adv, 'afflict_guard') and adv.afflict_guard > 0:
-        #         adv.afflict_guard -= 1
-        #     else:
-        #         adv.skill._static.silence = 1
-        #         adv.dragonform.disabled = True
-        #         from core.log import log
-        #         log('debug', 'permanent_curse')
-        # from core.timeline import Event
-        # Event('dragon').listener(permanent_curse)
+        def permanent_curse(e):
+            if hasattr(adv, 'afflict_guard') and adv.afflict_guard > 0:
+                adv.afflict_guard -= 1
+            else:
+                adv.skill._static.silence = 1
+                adv.dragonform.disabled = True
+                from core.log import log
+                log('debug', 'permanent_curse')
+        from core.timeline import Event
+        Event('dragon').listener(permanent_curse)
+
 
 class Nyarlathotep(DragonBase):
     ele = 'shadow'
@@ -253,10 +254,35 @@ class Andromeda(DragonBase):
         return dmg
 
 
-class Unreleased_ShadowSkillHaste(DragonBase):
+class Azazel(DragonBase):
     ele = 'shadow'
-    att = 120
+    att = 128
     a = [('sp', 0.35)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.90,
+        'dx1.startup': 12 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.09,
+        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.24,
+        'dx3.startup': 39 / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
+        'dx3.hit': 3,
+
+        'ds.recovery': 130 / 60, # skill frames, need confirm
+        'ds.hit': 1,
+    }
+
+    def ds_proc(self):
+        from core.advbase import Teambuff
+        dmg = self.adv.dmg_make('ds',5.00,'s')
+        Teambuff('ds', 0.15, 40, 'poison_killer', 'passive').on()
+        return dmg
 
 class Unreleased_ShadowPrimedStr(DragonBase):
     ele = 'shadow'

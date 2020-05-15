@@ -30,7 +30,8 @@ class Su_Fang(Adv):
         with KillerModifier('skiller', 'hit', 0.50, ['poison']):
             self.dmg_make('s1', 5.58)
             if self.s2_buff.get():
-                self.dmg_make('s1', 1.30)
+                self.dmg_make('s1', 2.60)
+                self.hits += 2
 
     def s2_proc(self, e):
         self.fs_alt.on(1)

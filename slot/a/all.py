@@ -438,6 +438,10 @@ class His_Clever_Brother(Amulet):
     att = 51
     a = [('k_frostbite',0.20),('sp',0.05)]
 
+class Memory_of_a_Friend(Amulet):
+    att = 64
+    a = [('sp', 0.08), ('a', 0.2, 'hit15')]
+
 amulets = []
 for k in list(globals()):
     v = globals()[k]

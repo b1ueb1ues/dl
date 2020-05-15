@@ -2,7 +2,7 @@ import json
 from slot import Slots
 from core import Conf
 
-import conf.forte
+import conf.halidom
 
 def load_json(name):
     fname = ''

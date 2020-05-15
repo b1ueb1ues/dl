@@ -32,6 +32,13 @@ conf = {
     # 'x5.recovery': 62 / 60.0,
     'x5.hit': 1,
 
+    'x5ex.dmg': 286 / 100.0,
+    'x5ex.sp': 900,
+    'x5ex.startup': 124 / 60.0,
+    'x5ex.recovery': 33 / 60.0,
+    # 'x5ex.recovery': 62 / 60.0,
+    'x5ex.hit': 2,
+
     'fs.dmg': 92 / 100.0,
     'fs.sp': 200,
     'fs.charge': 9 / 60.0,

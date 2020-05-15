@@ -158,3 +158,5 @@ sharena.py
 peony.py
 chrom.py
 tiki.py
+yurius.py
+forte.py

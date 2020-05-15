@@ -5,6 +5,9 @@ from importlib.util import spec_from_file_location, module_from_spec
 from time import monotonic
 import core.simulate
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 ROOT_DIR = '.'
 ADV_DIR = 'adv'
 OUTPUT_DIR = 'www/dl-sim'
@@ -53,6 +56,22 @@ def sim_adv_list(list_file):
     with open(os.path.join(ROOT_DIR, list_file)) as f:
         for adv_file in f:
             sim_adv(adv_file.strip(), special, mass)
+
+def download_writeups():
+    KEYFILE = './adv-haste-d888baf004e9.json'
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name(KEYFILE, scope)
+    client = gspread.authorize(creds)
+    sheet = client.open('dl-adv-writeups').sheet1
+
+    with open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '_writeups.csv'), 'w') as f:
+        for line in sheet.get_all_values()[1:]:
+            f.write(line[0])
+            f.write(',')
+            f.write('"')
+            f.write(line[1])
+            f.write('"')
+            f.write('\n')
 
 def combine():
     dst_dict = {}
@@ -104,6 +123,8 @@ if __name__ == '__main__':
     if '-m' in arguments:
         is_mass = True
         arguments.remove('-m')
+    if '-dw' in arguments:
+        download_writeups()
 
     sim_targets = arguments
 

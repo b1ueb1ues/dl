@@ -1,5 +1,6 @@
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Aldred
@@ -9,6 +10,7 @@ class Aldred(Adv):
 
     conf = {}
     conf['slots.a'] = Heralds_of_Hinomoto()+Dear_Diary()
+    conf['slots.d'] = Fatalis()
     conf['slots.poison.a'] = Heralds_of_Hinomoto()+The_Plaguebringer()
     conf['acl'] = """
         `s3, not self.s3_buff
@@ -50,8 +52,9 @@ class Aldred(Adv):
 
     def s1_proc(self, e):
         if self.dragondrive_buff.get():
+            self.dmg_make('s1', 2.42*3)
             with CrisisModifier('s1', 1.00, self.hp):
-                self.dmg_make('s1', 2.42*4)
+                self.dmg_make('s1', 2.42)
             self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(-750, utp=True)
             self.s1.charge(self.sp_convert(0.50, self.conf.s1.sp))
