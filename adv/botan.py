@@ -8,7 +8,7 @@ def module():
 class Botan(Adv):
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
     conf = {}
-    conf['slots.a'] = RR() + Jewels_of_the_Sun()
+    conf['slots.a'] = RR() + United_by_One_Vision()
     conf['acl'] = """
         `s3, not self.s3_buff and prep
         `s2

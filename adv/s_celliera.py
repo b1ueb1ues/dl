@@ -8,7 +8,7 @@ class Summer_Celliera(Adv):
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}
-    conf['slots.a'] = VC() + United_by_One_Vision()
+    conf['slots.a'] = VC() + Memory_of_a_Friend()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `s2
@@ -16,7 +16,7 @@ class Summer_Celliera(Adv):
         `s3, fsc
         `fs, seq=2
         """
-    coab = ['Blade','Renee','Summer_Estelle']
+    coab = ['Blade','Dagger','Summer_Estelle']
     conf['afflict_res.bog'] = 100
 
     def init(self):
