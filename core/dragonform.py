@@ -292,7 +292,6 @@ class DragonForm(Action):
     def __call__(self):
         if not self.check(dryrun=False):
             return False
-        self.shift_count += 1
         if self.is_dragondrive:
             self.act_list = ['end']
             if self.dragondrive_buff.get():
@@ -312,6 +311,7 @@ class DragonForm(Action):
             if self.off_ele_mod is not None:
                 self.off_ele_mod.on()
             self.pause_auto_gauge()
+        self.shift_count += 1
         self.shift_damage_sum = 0
         self.status = -1
         self._setdoing()
