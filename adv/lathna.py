@@ -26,7 +26,7 @@ class Lathna(Adv):
         if self.duration <= 60:
             self.coab = ['Ieyasu','Gala_Alex','Tiki']
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            if self.duration <= 180 and self.duration > 120:
+            if self.duration > 120:
                 self.coab = ['Ieyasu','Wand','Cleo']
             if self.duration <= 120 and self.duration > 60:
                 self.coab = ['Ieyasu','Wand','Tiki']
