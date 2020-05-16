@@ -18,7 +18,7 @@ class Lathna(Adv):
         `s1a
         `s2, x=5
         """
-    coab = ['Ieyasu','Audric','Tiki']
+    coab = ['Ieyasu','Audric','Forte']
 
     def d_coabs(self):
         if self.duration <= 120 and self.duration > 60:
@@ -27,9 +27,9 @@ class Lathna(Adv):
             self.coab = ['Ieyasu','Gala_Alex','Tiki']
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             if self.duration > 120:
-                self.coab = ['Ieyasu','Wand','Cleo']
+                self.coab = ['Ieyasu','Forte','Wand']
             if self.duration <= 120 and self.duration > 60:
-                self.coab = ['Ieyasu','Wand','Tiki']
+                self.coab = ['Ieyasu','Forte','Tiki']
             if self.duration <= 60:
                 self.coab = ['Ieyasu','Yaten','Tiki']
     

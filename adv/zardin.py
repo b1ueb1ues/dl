@@ -16,7 +16,7 @@ class Zardin(Adv):
         `s3, fsc
         `fs, seq=3 and cancel
         """
-    coab = ['Xander', 'Dagger', 'Pipple']
+    coab = ['Xander', 'Dagger', 'Yurius']
 
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:

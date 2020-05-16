@@ -1,5 +1,4 @@
 from core.advbase import *
-from slot.a import *
 from slot.d import *
 
 def module():
@@ -10,23 +9,25 @@ class Halloween_Odetta(Adv):
     a3 = ('bt',0.2)
 
     conf = {}
-    conf['slots.a'] = Mega_Friends() + Primal_Crisis()
     conf['slots.d'] = Gaibhne_and_Creidhne()
-    conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
+        `dragon.act('c3 s end'), s=2
         `s2, cancel
         `s1, fsc
         `s3, fsc
         `fs, x=3
     """
-    coab = ['Axe2','Xander','Dagger']
+    coab = ['Summer_Estelle','Blade','Dagger']
+
+    def d_coabs(self):
+        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+            self.coab = ['Summer_Estelle','Blade','Renee']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s2_proc(self, e):
         self.buff_class('s2',0.2,15).on()
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
