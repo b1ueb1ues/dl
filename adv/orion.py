@@ -19,8 +19,7 @@ class Orion(Adv):
 
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            self.coab = ['Ieyasu','Wand','Cleo']
-
+            self.coab = ['Ieyasu','Wand','Tiki']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

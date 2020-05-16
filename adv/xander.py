@@ -19,7 +19,7 @@ class Xander(Adv):
         `s3,fsc
         `fs, seq=2 and cancel
     """
-    coab = ['Xainfried', 'Pipple', 'Dagger']
+    coab = ['Blade', 'Yurius', 'Dagger']
 
     def s1_proc(self, e):
         self.dmg_make('o_s1_boost',self.conf['s1.dmg']*0.05*len(self.all_buffs))

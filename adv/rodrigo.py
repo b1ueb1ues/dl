@@ -15,7 +15,7 @@ class Rodrigo(Adv):
         `s2, fsc
         `fs, x=3
         """
-    coab = ['Ieyasu','Wand','Cleo']
+    coab = ['Ieyasu','Wand','Forte']
 
     def s1_proc(self, e):
         self.afflics.poison('s1',120,0.582)
