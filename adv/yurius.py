@@ -12,16 +12,23 @@ class Yurius(Adv):
     conf['slots.d'] = Siren()
     conf['acl'] = """
         if self.afflics.frostbite.get()
-        `dragon, not self.dragondrive_buff.get()
+        `dragon, not self.dragondrive_buff.get() and (self.duration<=120 or self.dragonform.dragon_gauge>=2130 or self.dragonform.shift_count>0)
         else
         `dragon, self.dragondrive_buff.get()
-        `dragon, not self.dragondrive_buff.get() and s=2
+        end
+        queue prep and self.duration>120
+        `s2; s1; s3
         end
         `s2, cancel
         `s1, cancel
         `s3, cancel
+        # Bow(15%) + DDrive(35%) 
+        `fs, x=5 and self.mod('sp')>=1.45
     """
     coab = ['Blade','Hunter_Sarisse','Xander']
+
+    # conf['sim_afflict.efficiency'] = 1
+    # conf['sim_afflict.type'] = 'frostbite'
 
     def prerun(self):
         # 3000/1200/75

@@ -22,10 +22,6 @@ class Forte(Adv):
         """
     coab = ['Ieyasu','Wand','Bow']
 
-    # def d_coabs(self):
-    #     if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-    #         self.coab = ['Ieyasu','Cleo','Wand']
-
     def s1_proc(self, e):
         self.dragonform.charge_gauge(4, dhaste=False)
         with KillerModifier('s1_killer', 'hit', 0.3, ['poison']):

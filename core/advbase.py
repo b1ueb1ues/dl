@@ -262,7 +262,7 @@ class Buff(object):
             Modifier('base_cc', 'crit', 'chance', 0.12),
             Modifier('base_killer', 'killer','passive', 0.50)
         ]
-        
+
         for mod in base_mods:
             self.dmg_test_event.modifiers.append(mod)
 
@@ -290,7 +290,7 @@ class Buff(object):
         team_buff_dmg = self.dmg_test_event.dmg * sd_mods
         team_buff_dmg += team_buff_dmg * spd
         log('buff', 'team', team_buff_dmg / no_team_buff_dmg - 1)
-        
+
         for mod in base_mods:
             mod.off()
 
@@ -1622,7 +1622,9 @@ class Adv(object):
                 return
         log('sp', name, '{:.0f}%   '.format(percent * 100), '%d/%d, %d/%d, %d/%d' % ( \
             self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
-        self.think_pin('prep')
+
+        if percent==1:
+            self.think_pin('prep')
 
     def charge(self, name, sp):
         # sp should be integer
