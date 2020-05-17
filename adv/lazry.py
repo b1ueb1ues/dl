@@ -67,7 +67,7 @@ class Lazry(Adv):
             # 1.0 + 1.0 + 1.0 + 5.730000019073486
             # 20 sd to next skill
             # 1.5666667222976685s
-            self.dmg_make('s1', 8.73)
+            self.dmg_make('s1_high', 8.73)
             self.hits += 5
             Timer(self.s1_buff_on).on(0.001)
 
