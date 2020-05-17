@@ -14,8 +14,8 @@ class Halloween_Odetta(Adv):
         `dragon.act('c3 s end'), s=2
         `s2, cancel
         `s1, fsc
-        `s3, fsc
-        `fs, x=3
+        `fs, x=3 and not self.afflics.frosbite.get()
+        `fs, x=2 and self.afflics.frosbite.get()
     """
     coab = ['Summer_Estelle','Blade','Dagger']
 
