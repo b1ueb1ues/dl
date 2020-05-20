@@ -239,7 +239,7 @@ class Valerio(Adv):
         `s3
         end
     """
-    coab = ['Pipple','Xander', 'Renee']
+    coab = ['Summer_Estelle', 'Renee', 'Xander']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):
