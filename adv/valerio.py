@@ -226,14 +226,16 @@ class Valerio(Adv):
     conf['slots.d'] = Siren()
     conf['acl'] = """
         # stances
-        if s1.check() and (not self.afflics.frostbite.get() or not self.mod('def')!=1)
+        if s1.check() and (not self.afflics.frostbite.get() or not self.s1_debuff.get())
         `appetizer
+        elif s2.check() and self.inspiration()=0
+        `entree
         else
         `dessert
         end
         # actions
-        `s1
         `s2
+        `s1
         `s3
         end
     """
