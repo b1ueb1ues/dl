@@ -22,7 +22,7 @@ dessert_conf = {
 
     # Dessert Stance
     # mC1 1 hit 195% 350SP (1.041s startup to cancel into mC2)
-    # mC2 4 hits 47% 710SP (uses same Absorb effect as Axe C4, 1.73333s to cancel into mC3)
+    # mC2 4 hits 27% 710SP (uses same Absorb effect as Axe C4, 1.73333s to cancel into mC3)
     # mc3 1 hit 453% 1590SP (cancelled @1.1573s)
 
     # C1 A
@@ -33,25 +33,25 @@ dessert_conf = {
     'x1.hit': 1,
 
     # C2 A B C D
-    'x2.dmg': 47 / 100.0,
+    'x2.dmg': 27 / 100.0,
     'x2.sp': 710,
     'x2.startup': 86 / 60.0,
     'x2.recovery': 0 / 60.0,
     'x2.hit': 1,
 
-    'x3.dmg': 47 / 100.0,
+    'x3.dmg': 27 / 100.0,
     'x3.sp': 0,
     'x3.startup': 16 / 60.0,
     'x3.recovery': 0 / 60.0,
     'x3.hit': 1,
 
-    'x4.dmg': 47 / 100.0,
+    'x4.dmg': 27 / 100.0,
     'x4.sp': 0,
     'x4.startup': 8 / 60.0,
     'x4.recovery': 0 / 60.0,
     'x4.hit': 1,
 
-    'x5.dmg': 47 / 100.0,
+    'x5.dmg': 27 / 100.0,
     'x5.sp': 0,
     'x5.startup': 4 / 60.0,
     'x5.recovery': 0 / 60.0,
@@ -81,7 +81,7 @@ entree_conf = {
     # Entree Stance
     # mC1 1 hit 195% 350SP  (1.041s startup to cancel into mC2)
     # mC2 3 hits 162% 700SP  (1.0185s startup to cancel into mC3)
-    # mc3 12 bullets 38% 780SP Attenuation rate 1.0 hitinterval 0.5, 0 Additional collisions (signaldata sent @1.6s forced cancel @2s)
+    # mc3 12 bullets 38% 720SP Attenuation rate 1.0 hitinterval 0.5, 0 Additional collisions (signaldata sent @1.6s forced cancel @2s)
 
     # C1 A
     'x1.dmg': 195 / 100.0,
@@ -97,13 +97,13 @@ entree_conf = {
     'x2.recovery': 0 / 60.0,
     'x2.hit': 1,
 
-    'x3.dmg': 486 / 100.0,
+    'x3.dmg': 162 / 100.0,
     'x3.sp': 0,
     'x3.startup': 15 / 60.0,
     'x3.recovery': 0 / 60.0,
     'x3.hit': 1,
 
-    'x4.dmg': 486 / 100.0,
+    'x4.dmg': 162 / 100.0,
     'x4.sp': 0,
     'x4.startup': 22 / 60.0,
     'x4.recovery': 0 / 60.0,
@@ -111,7 +111,7 @@ entree_conf = {
 
     # C3 A B C
     'x5.dmg': 152 / 100.0,
-    'x5.sp': 780,
+    'x5.sp': 720,
     'x5.startup': 57 / 60.0,
     'x5.recovery': 0 / 60.0,
     'x5.hit': 4,
@@ -163,9 +163,9 @@ appetizer_conf = {
     'x2.recovery': 0 / 60.0,
     'x2.hit': 2,
 
-    'x3.dmg': 24 / 100.0,
+    'x3.dmg': (258+12) / 100.0,
     'x3.sp': 0,
-    'x3.startup': 46 / 60.0,
+    'x3.startup': 6 / 60.0,
     'x3.recovery': 0 / 60.0,
     'x3.hit': 4,
 
@@ -175,7 +175,7 @@ appetizer_conf = {
     'x4.recovery': 0 / 60.0,
     'x4.hit': 4,
 
-    'x5.dmg': 72 / 100.0,
+    'x5.dmg': 24 / 100.0,
     'x5.sp': 0,
     'x5.startup': 24 / 60.0,
     'x5.recovery': 0 / 60.0,
@@ -223,24 +223,21 @@ appetizer_conf = {
 class Valerio(Adv):
     conf = {}
     conf['slots.a'] = Primal_Crisis()+His_Clever_Brother()
-    conf['slots.d'] = Dragonyule_Jeanne()
+    conf['slots.d'] = Siren()
     conf['acl'] = """
         # stances
         if s1.check() and (not self.afflics.frostbite.get() or not self.mod('def')!=1)
         `appetizer
         else
-        `entree
+        `dessert
         end
         # actions
-        if  not self.afflics.frostbite.get() or not self.mod('def')!=1
         `s1
-        end
-        if self.stance='entree'
         `s2
-        `fsf, x=7
+        `s3
         end
     """
-    coab = ['Tiki','Xander', 'Renee']
+    coab = ['Pipple','Xander', 'Renee']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):
