@@ -226,7 +226,7 @@ class Valerio(Adv):
     conf['slots.d'] = Siren()
     conf['acl'] = """
         # stances
-        if s1.check() and (not self.afflics.frostbite.get() or not self.s1_debuff.get())
+        if s1.check() and self.s1_debuff.buff_end_timer.timing-now()<7
         `appetizer
         elif s2.check() and self.inspiration()=0
         `entree
