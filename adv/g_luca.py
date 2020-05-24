@@ -23,6 +23,16 @@ class Gala_Luca(Adv):
         self.a1_buff_types = 3
         self.a1_states = {(None,) * self.a1_buff_types: 1.0}
 
+    def prerun(self):
+        self.ds_proc_o = self.dragonform.ds_proc
+        self.dragonform.ds_proc = self.ds_crit_proc
+
+    def ds_crit_proc(self):
+        self.in_s1 = True
+        dmg = self.ds_proc_o()
+        self.in_s1 = False
+        return dmg
+
     def buff_icon_count(self):
         # not entirely accurate to game, but works fine in the scope of s2 + the 3 a1 buffs
         return len(set([b.name for b in self.all_buffs]))
