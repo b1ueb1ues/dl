@@ -222,6 +222,7 @@ appetizer_conf = {
 
 class Valerio(Adv):
     conf = {}
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Siren()
     conf['acl'] = """
