@@ -34,7 +34,7 @@
     "type": 1,
     "sp": 6009
   },
-  "The_Prince": {
+  "Euden": {
     "limit": 10,
     "s": 1,
     "cost": 3,
@@ -162,7 +162,7 @@
   "Alfonse": {
     "limit": 10
   },
-  "Gala_Prince": {
+  "Gala_Euden": {
     "limit": 10,
     "s": 1,
     "cost": 7,

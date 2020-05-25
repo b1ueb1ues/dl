@@ -18,7 +18,7 @@ class Elisanne(Adv):
         `fs, x=5
     """
     coab = ['Tobias', 'Renee', 'Bow']
-
+    
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)
