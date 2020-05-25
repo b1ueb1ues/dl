@@ -21,6 +21,7 @@ def load_json(name):
 
 advconfs = load_json('advconf.json')
 coability = load_json('chains.json')
+skillshare = load_json('skillshare.json')
 
 def coability_dict(ele):
     if ele:

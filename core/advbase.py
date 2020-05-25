@@ -463,6 +463,7 @@ class Skill(object):
     sp = 0
     silence_duration = 1.9
     name = '_Skill'
+    owner = None # indicates self/weapon skill
 
     def __init__(self, name=None, conf=None, ac=None):
         self.charged = 0
@@ -865,6 +866,9 @@ class Adv(object):
     def s3_proc(self, e):
         self.slots.w.s3_proc(self, e)
 
+    def s4_proc(self, e):
+        pass
+
     def x_proc(self, e):
         pass
 
@@ -881,6 +885,9 @@ class Adv(object):
         pass
 
     def s3_before(self, e):
+        pass
+
+    def s4_before(self, e):
         pass
 
     def x_before(self, e):
@@ -916,6 +923,10 @@ class Adv(object):
     def prerun(self):
         pass
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        pass
+
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
 
     comment = ''
@@ -926,6 +937,7 @@ class Adv(object):
     a2 = None
     a3 = None
     coab = []
+    share = []
 
     conf_default = Conf()
 
@@ -1039,7 +1051,6 @@ class Adv(object):
         # skill init
         self.s1 = Skill('s1', self.conf.s1)
         self.s2 = Skill('s2', self.conf.s2)
-        self.s3 = Skill('s3', self.conf.s3)
 
         if self.conf.xtype == 'ranged':
             self.l_x = self.l_range_x
@@ -1441,6 +1452,62 @@ class Adv(object):
         except AttributeError:
             pass
 
+    def config_coabs(self):
+        self.d_coabs()
+        self.coab_list = self.coab.copy()
+        if 'coabs' in self.conf:
+            self.coab_list = self.conf['coabs']
+        from conf import coability_dict
+        try:
+            self_coab = list(self.slots.c.coabs.keys())[0]
+        except:
+            self_coab = self.__class__.__name__
+        for name in self.coab_list:
+            try:
+                self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
+            except:
+                pass
+        self.coab_list = list(self.slots.c.coabs.keys())
+        try:
+            self.coab_list.remove(self_coab)
+        except:
+            pass
+
+    def config_skillshare(self):
+        self.skillshare_list = self.share.copy()
+        if 'skill_share' in self.conf:
+            self.skillshare_list = self.conf['skill_share']
+        if len(self.skillshare_list) < 2:
+            self.skillshare_list.insert(0, 'Weapon')
+        if len(self.skillshare_list) > 2:
+            self.skillshare_list = self.skillshare_list[:2]
+        from conf import advconfs, skillshare
+        from core.simulate import load_adv_module
+        share_limit = skillshare[self.__class__.__name__]['limit']
+        share_costs = 0
+        self.skills = [self.s1, self.s2]
+        for idx, owner in enumerate(self.skillshare_list):
+            dst_key = f's{idx+3}'
+            if owner == 'Weapon':
+                self.__setattr__(dst_key, Skill(dst_key, self.conf[dst_key]))
+            else:
+                # I am going to spaget hell for this
+                sdata = skillshare[owner]
+                share_costs += sdata['cost']
+                if share_limit < share_costs:
+                    raise ValueError(f'Skill share exceed cost {(*self.skillshare_list, share_costs)}.')
+                src_key = f's{sdata["s"]}'
+                owner_conf = Conf(advconfs[owner])
+                owner_conf[src_key].sp = sdata["sp"]
+                self.conf[dst_key] = owner_conf[src_key]
+                s = Skill(dst_key, owner_conf[src_key])
+                s.owner = owner
+                self.__setattr__(dst_key, s)
+                owner_module = load_adv_module(owner)
+                owner_module.prerun_skillshare(self)
+                self.__setattr__(f'{dst_key}_proc', getattr(owner_module, f'{src_key}_proc').__get__(self, self.__class__))
+            self.skills.append(self.__getattribute__(dst_key))
+
     def run(self, d=300):
         self.duration = d
         global loglevel
@@ -1481,25 +1548,8 @@ class Adv(object):
                 else:
                     self.slots.c.a.append(ab)
 
-        self.d_coabs()
-        self.coab_list = self.coab
-        if 'coabs' in self.conf:
-            self.coab_list = self.conf['coabs']
-        from conf import coability_dict
-        try:
-            self_coab = list(self.slots.c.coabs.keys())[0]
-        except:
-            self_coab = self.__class__.__name__
-        for name in self.coab_list:
-            try:
-                self.slots.c.coabs[name] = coability_dict(self.slots.c.ele)[name]
-            except:
-                pass
-        self.coab_list = list(self.slots.c.coabs.keys())
-        try:
-            self.coab_list.remove(self_coab)
-        except:
-            pass
+        self.config_coabs()
+        self.config_skillshare()        
 
         if not ('forced' in self.conf.slots and self.conf.slots.forced):
             self.d_slots()
@@ -1609,9 +1659,8 @@ class Adv(object):
     def charge_p(self, name, percent, target=None):
         percent = percent / 100 if percent > 1 else percent
         if not target:
-            self.s1.charge(self.sp_convert(percent, self.s1.sp))
-            self.s2.charge(self.sp_convert(percent, self.s2.sp))
-            self.s3.charge(self.sp_convert(percent, self.s3.sp))
+            for s in self.skills:
+                s.charge(self.sp_convert(percent, s.sp))
         else:
             try:
                 skill = self.__dict__[target]
@@ -1620,21 +1669,18 @@ class Adv(object):
                 skill.charge(self.sp_convert(percent, skill.sp))
             except:
                 return
-        log('sp', name, '{:.0f}%   '.format(percent * 100), '%d/%d, %d/%d, %d/%d' % ( \
-            self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
+        log('sp', name, f'{percent*100:.0f}%', ', '.join([f'{s.charged}/{s.sp}' for s in self.skills]))
 
-        if percent==1:
+        if percent == 1:
             self.think_pin('prep')
 
     def charge(self, name, sp):
         # sp should be integer
         sp = self.sp_convert(self.sp_mod(name), sp)
-        self.s1.charge(sp)
-        self.s2.charge(sp)
-        self.s3.charge(sp)
+        for s in self.skills:
+            s.charge(sp)
         self.think_pin('sp')
-        log('sp', name, sp, '%d/%d, %d/%d, %d/%d' % ( \
-            self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp))
+        log('sp', name, sp, ', '.join([f'{s.charged}/{s.sp}' for s in self.skills]))
 
     def l_dmg_formula(self, e):
         name = e.dname
@@ -1676,30 +1722,6 @@ class Adv(object):
         log('dmg', name, count)
         self.dmg_proc(name, count)
         return count
-
-    def dmg_make_withspshow(self, name, dmg_coef, dtype=None):
-        if dtype == None:
-            dtype = name
-
-        count = self.dmg_formula(dtype, dmg_coef)
-        self.dmg_before(name, count)
-
-        if name[0] == 'x':
-            spgain = self.conf[name[:2] + '.sp']
-            log('dmg', name, count, '%d/%d, %d/%d, %d/%d (+%d)' % ( \
-                self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp, spgain))
-        elif name[:2] == 'fs':
-            spgain = self.conf['fs.sp']
-            log('dmg', name, count, '%d/%d, %d/%d, %d/%d (+%d)' % ( \
-                self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp, spgain))
-        else:
-            spgain = 0
-            if name[:2] + '.sp' in self.conf:
-                spgain = self.conf[name[:2] + '.sp']
-            log('dmg', name, count, '%d/%d, %d/%d, %d/%d (-%d)' % ( \
-                self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp, spgain))
-
-        self.dmg_proc(name, count)
 
     def l_melee_fs(self, e):
         log('cast', 'fs')
@@ -1753,7 +1775,7 @@ class Adv(object):
 
         if 'buff' in self.conf[e.name] and self.conf[e.name + '.buff'] is not None:
             buffarg = self.conf[e.name + '.buff']
-            if e.name == 's3':
+            if e.name == 's3' and self.s3.owner is None:
                 if len(self.s3_buff_list) == 0:
                     for ba in buffarg:
                         if ba is not None:
