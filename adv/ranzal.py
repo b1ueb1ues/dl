@@ -15,7 +15,6 @@ class Ranzal(Adv):
         `dragon.act("c3 s end"), s or x=5
         `s3, not self.s3_buff
         `s1
-        `s4
         """
     coab = ['Blade','Dragonyule_Xainfried','Eleonora']
 
