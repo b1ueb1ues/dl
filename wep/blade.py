@@ -23,10 +23,10 @@ conf = {
     'x4.sp': 360,
     'x4.startup': 0,
     'x4.recovery': 65 / 60.0,
-    'x4.hit': 1,
+    'x4.hit': 2,
 
-    'x5.dmg': 194 / 100.0,
-    'x5.sp': 660,
+    'x5.dmg': 286 / 100.0, # v1.20
+    'x5.sp': 900, # v1.20
     'x5.startup': 0,
     'x5.recovery': 33 / 60.0,
     # 'x5.recovery': 62 / 60.0,
@@ -36,7 +36,6 @@ conf = {
     'x5ex.sp': 900,
     'x5ex.startup': 124 / 60.0,
     'x5ex.recovery': 33 / 60.0,
-    # 'x5ex.recovery': 62 / 60.0,
     'x5ex.hit': 2,
 
     'fs.dmg': 92 / 100.0,
@@ -62,7 +61,7 @@ lv2 = {
     'x2.dmg': 106.7 / 100,
     'x3.dmg': 69.3*2/ 100,
     'x4.dmg': 141.9 / 100,
-    'x5.dmg': 213.4 / 100
+    'x5.dmg': 314.5 / 100
 }
 
 # Blade FS Framedata - MsNyara

@@ -16,19 +16,19 @@ conf = {
     'x3.dmg': 204 / 100.0,
     'x3.sp': 360,
     'x3.startup': 0 / 60.0,
-    'x3.recovery': 36 / 60.0, # https://streamable.com/36bjj
+    'x3.recovery': 39 / 60.0,
     'x3.hit': 1,
 
     'x4.dmg': 216 / 100.0,
     'x4.sp': 380,
     'x4.startup': 0,
-    'x4.recovery': 79 / 60.0,
+    'x4.recovery': 78 / 60.0,
     'x4.hit': 1,
 
     'x5.dmg': 228 / 100.0,
     'x5.sp': 420,
     'x5.startup': 0,
-    'x5.recovery': 19 / 60.0,
+    'x5.recovery': 18 / 60.0,
     'x5.hit': 1,
 
     'fs.dmg': 192 / 100.0,

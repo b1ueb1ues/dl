@@ -4,7 +4,7 @@ conf = {
     'x1.dmg': 75 / 100.0,
     'x1.sp': 144,
     'x1.startup': 12 / 60.0,
-    'x1.recovery': 22 / 60.0,
+    'x1.recovery': 23 / 60.0,
     'x1.hit': 1,
 
     'x2.dmg': 38*2 / 100.0,
@@ -16,7 +16,7 @@ conf = {
     'x3.dmg': 54*2 / 100.0,
     'x3.sp': 264,
     'x3.startup': 0 / 60.0,
-    'x3.recovery': 25 / 60.0,
+    'x3.recovery': 24 / 60.0,
     'x3.hit': 2,
 
     'x4.dmg': 119 / 100.0,
@@ -25,10 +25,10 @@ conf = {
     'x4.recovery': 36 / 60.0,
     'x4.hit': 1,
 
-    'x5.dmg': 119 / 100.0,
-    'x5.sp': 288,
+    'x5.dmg': 150 / 100.0, # v1.20
+    'x5.sp': 480, # v1.20
     'x5.startup': 0,
-    'x5.recovery': 40 / 60.0,
+    'x5.recovery': 38 / 60.0,
     'x5.hit': 1,
 
     'fs.dmg': 47*3 / 100.0,
@@ -53,7 +53,7 @@ lv2 = {
     'x2.dmg': 45.6*2 / 100.0,
     'x3.dmg': 64.8*2 / 100.0,
     'x4.dmg': 142.8 / 100.0,
-    'x5.dmg': 142.8 / 100.0,
+    'x5.dmg': 180.0 / 100.0,
 }
 
 # Dagger FS Framedata - MsNyara

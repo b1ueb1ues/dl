@@ -3,14 +3,14 @@ conf = {
 
     'x1.dmg': 75 / 100.0,
     'x1.sp': 150,
-    'x1.startup': 11 / 60.0,
+    'x1.startup': 10 / 60.0,
     'x1.recovery': 26 / 60.0,
     'x1.hit': 1,
 
     'x2.dmg': 80 / 100.0,
     'x2.sp': 150,
     'x2.startup': 0,
-    'x2.recovery': 23 / 60.0,
+    'x2.recovery': 22 / 60.0,
     'x2.hit': 1,
 
     'x3.dmg': 95 / 100.0,
@@ -22,13 +22,13 @@ conf = {
     'x4.dmg': 100 / 100.0,
     'x4.sp': 265,
     'x4.startup': 0,
-    'x4.recovery': 37 / 60.0,
+    'x4.recovery': 33 / 60.0,
     'x4.hit': 1,
 
     'x5.dmg': 150 / 100.0,
     'x5.sp': 391,
     'x5.startup': 0,
-    'x5.recovery': 42 / 60.0,
+    'x5.recovery': 35 / 60.0,
     'x5.hit': 1,
 
     'fs.dmg': 115 / 100.0,
