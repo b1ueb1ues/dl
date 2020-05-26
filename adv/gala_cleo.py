@@ -37,7 +37,7 @@ class Gala_Cleo(Adv):
 
     def prerun(self):
         self.a1_buffed = self.condition('always in a1')
-        self.s1p = 0 
+        self.s1_p = 0
 
         conf_fs_alt = {
             'fs.dmg':0,
@@ -48,33 +48,26 @@ class Gala_Cleo(Adv):
         }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.s1_p = 0
+        adv.fs_alt = Dummy()
+        adv.rebind_function(Gala_Cleo, 's1_dmg')
+
     def s1_dmg(self, t):
-        self.dmg_make('s1',0.88)
+        self.dmg_make(t.name,0.88)
         self.hits += 1
-        self.dmg_make('s1',2.65)
+        self.dmg_make(t.name,2.65)
         self.hits += 1
 
     def s1_proc(self, e):
-        self.s1p += 1
-        if self.s1p > 3 :
-            self.s1p = 1
-        if self.s1p == 1:
-            Timer(self.s1_dmg).on((42.0 + 12*0 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*1 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*2 )/60)
-        elif self.s1p == 2:
-            Timer(self.s1_dmg).on((42.0 + 12*0 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*1 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*2 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*3 )/60)
-        elif self.s1p == 3:
-            Timer(self.s1_dmg).on((42.0 + 12*0 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*1 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*2 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*3 )/60)
-            Timer(self.s1_dmg).on((42.0 + 12*4 )/60)
-
+        self.s1_p += 1
+        for i in range(0, 3 + self.s1_p):
+            s1_timer = Timer(self.s1_dmg)
+            s1_timer.name = e.name
+            s1_timer.on((42.0 + 12*i )/60)
         self.fs_alt.on()
+        self.s1_p %= 3
 
     def s2_proc(self, e):
         Debuff('s2', 0.10, 20).on()

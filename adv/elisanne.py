@@ -16,9 +16,12 @@ class Elisanne(Adv):
     conf['acl'] = """
         `s1
         `fs, x=5
+        `s3
+        `s4
     """
     coab = ['Tobias', 'Renee', 'Bow']
-    
+    share = ['Ranzal', 'Euden']
+
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

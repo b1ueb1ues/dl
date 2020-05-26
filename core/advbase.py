@@ -9,6 +9,7 @@ from core import *
 from core.timeline import *
 from core.log import *
 from core.afflic import *
+from core.dummy import Dummy
 import core.acl
 import conf as globalconf
 import slot
@@ -1473,6 +1474,11 @@ class Adv(object):
         except:
             pass
 
+    def rebind_function(self, owner, src, dst=None):
+        dst = dst or src
+        self.__setattr__(dst, getattr(owner, src).__get__(self, self.__class__))
+
+
     def config_skillshare(self):
         self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
@@ -1493,7 +1499,11 @@ class Adv(object):
             else:
                 # I am going to spaget hell for this
                 sdata = skillshare[owner]
-                share_costs += sdata['cost']
+                try:
+                    share_costs += sdata['cost']
+                except KeyError:
+                    # not allowed to share skill
+                    continue
                 if share_limit < share_costs:
                     raise ValueError(f'Skill share exceed cost {(*self.skillshare_list, share_costs)}.')
                 src_key = f's{sdata["s"]}'
@@ -1505,7 +1515,7 @@ class Adv(object):
                 self.__setattr__(dst_key, s)
                 owner_module = load_adv_module(owner)
                 owner_module.prerun_skillshare(self)
-                self.__setattr__(f'{dst_key}_proc', getattr(owner_module, f'{src_key}_proc').__get__(self, self.__class__))
+                self.rebind_function(owner_module, f'{src_key}_proc', f'{dst_key}_proc')
             self.skills.append(self.__getattribute__(dst_key))
 
     def run(self, d=300):
@@ -1754,16 +1764,8 @@ class Adv(object):
 
         self.update_hits(e.name)
 
-        prev, index, stat = self.getprev()
-        if prev == 'fs':
-            log('cast', e.name, 0, '<cast> %d/%d, %d/%d, %d/%d (%s after fs)' % ( \
-                self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp, e.name))
-        elif prev[0] == 'x':
-            log('cast', e.name, 0, '<cast> %d/%d, %d/%d, %d/%d (%s after c%s)' % ( \
-                self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp, e.name, index))
-        else:
-            log('cast', e.name, 0, '<cast> %d/%d, %d/%d, %d/%d (%s after %s)' % ( \
-                self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp, e.name, prev))
+        prev = self.action.getprev().name
+        log('cast', e.name, f'after {prev}', ', '.join([f'{s.charged}/{s.sp}' for s in self.skills]))
 
         dmg_coef = self.conf[e.name + '.dmg']
         func = e.name + '_before'
