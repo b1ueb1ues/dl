@@ -1483,11 +1483,10 @@ class Adv(object):
         self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
             self.skillshare_list = self.conf['skill_share']
-        if len(self.skillshare_list) > 2:
-            self.skillshare_list = self.skillshare_list[:2]
-        self.skillshare_list.sort()
         if len(self.skillshare_list) < 2:
             self.skillshare_list.insert(0, 'Weapon')
+        if len(self.skillshare_list) > 2:
+            self.skillshare_list = self.skillshare_list[:2]
         from conf import advconfs, skillshare
         from core.simulate import load_adv_module
         share_limit = skillshare[self.__class__.__name__]['limit']
