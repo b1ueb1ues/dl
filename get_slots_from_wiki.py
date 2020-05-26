@@ -286,7 +286,7 @@ if __name__ == '__main__':
         order_by = 'AvailabilityId DESC'
         weapon_data = get_data(tables=tables, fields=fields, where=where, order_by=order_by)
         with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w') as f:
-            weap_pref = {e: None for e in ELEMENT_TYPE}
+            weap_pref = {e: (None, 0) for e in ELEMENT_TYPE}
             f.write('from slot import *\n\n')
             for item in weapon_data:
                 wep = item['title']
@@ -294,36 +294,34 @@ if __name__ == '__main__':
                 # if ab_len == 0:
                 #     continue
                 prefix = ''
-                set_pref = False
                 wep_atk = calculate_atk(wep, WEAPON_LEVEL_RANGE)
                 if wep['Availability'] == 'High Dragon':
-                    if wep['ParentCraftNodeId'] == '101':
-                        prefix = 'HDT2'
-                        set_pref = True
-                    else:
-                        prefix = 'HDT1'
+                    prefix = 'HDT'
                 else:
                     prefix = wep['Availability']
+                prefix += '2' if int(wep['ParentCraftNodeId']) else '1'
                 clean_name = prefix + '_' + get_clean_name(wep['WeaponName'])
+                if prefix == 'Agito2':
+                    clean_name = clean_name.replace('_Tier_II', '')
                 f.write('class {}(WeaponBase):\n'.format(clean_name))
                 f.write('    ele = [\'{}\']\n'.format(wep['ElementalType'].lower()))
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
                 f.write('    att = {}\n'.format(wep_atk[1]))
-                if prefix == 'Agito':
+                if prefix.startswith('Agito'):
                     f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][1]\n')
                 else:
                     f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
                     f.write('    a = ' + ab + '\n')
                 f.write('\n')
 
-                clean_name_0ub = prefix +'0UB_' + get_clean_name(wep['WeaponName'])
-                f.write('class {}({}):\n'.format(clean_name_0ub, clean_name))
-                f.write('    att = {}\n'.format(wep_atk[0]))
-                if prefix == 'Agito':
-                    f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][0]\n')
-                f.write('\n')
+                # clean_name_0ub = prefix +'0UB_' + get_clean_name(wep['WeaponName'])
+                # f.write('class {}({}):\n'.format(clean_name_0ub, clean_name))
+                # f.write('    att = {}\n'.format(wep_atk[0]))
+                # if prefix == 'Agito':
+                #     f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][0]\n')
+                # f.write('\n')
 
-                if set_pref:
-                    weap_pref[wep['ElementalType']] = clean_name
-            for ele, w in weap_pref.items():
-                f.write('\n{} = {}'.format(ele.lower(), w))
+                if wep_atk[1] > weap_pref[wep['ElementalType']][1]:
+                    weap_pref[wep['ElementalType']] = clean_name, wep_atk[1]
+            for ele, wa in weap_pref.items():
+                f.write('\n{} = {}'.format(ele.lower(), wa[0]))

@@ -132,56 +132,50 @@ class HDT2_Dark_Hunger(WeaponBase):
     a = []
 
 class Chimeratech_Staff(WeaponBase):
-    ele = ['flame', 'shadow']
+    ele = ['flame', 'shadow', 'wind']
     wt = 'staff'
     att = 877
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Gjallarhorn(WeaponBase):
+class Agito2_Gjallarhorn(WeaponBase):
     ele = ['flame']
     wt = 'staff'
-    att = 1467
+    att = 1612
     s3 = agito_buffs['flame'][1]
 
-class Agito0UB_Gjallarhorn(Agito_Gjallarhorn):
-    att = 951
-    s3 = agito_buffs['flame'][0]
-
-class Agito_Goosefoot_Staff(WeaponBase):
+class Agito1_Goosefoot_Staff(WeaponBase):
     ele = ['shadow']
     wt = 'staff'
     att = 1467
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Goosefoot_Staff(Agito_Goosefoot_Staff):
-    att = 951
-    s3 = agito_buffs['shadow'][0]
+class Agito1_Gjallarhorn(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['flame'][1]
 
-class Agito_Avalon(WeaponBase):
+class Agito1_Avalon(WeaponBase):
     ele = ['wind']
     wt = 'staff'
     att = 1467
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Avalon(Agito_Avalon):
-    att = 951
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterStaff(Agito_Gjallarhorn):
+class UnreleasedAgitoStr_WaterStaff(Agito1_Gjallarhorn):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightStaff(Agito_Gjallarhorn):
+class UnreleasedAgitoStr_LightStaff(Agito1_Gjallarhorn):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterStaff(Agito_Goosefoot_Staff):
+class UnreleasedAgitoSpd_WaterStaff(Agito1_Goosefoot_Staff):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightStaff(Agito_Goosefoot_Staff):
+class UnreleasedAgitoSpd_LightStaff(Agito1_Goosefoot_Staff):
     ele = ['light']
 
-flame = Agito_Gjallarhorn
+flame = Agito2_Gjallarhorn
 water = HDT2_Oceans_Embrace
-wind = Agito_Avalon
+wind = Agito1_Avalon
 light = HDT2_Heavensneer
-shadow = Agito_Goosefoot_Staff
+shadow = Agito1_Goosefoot_Staff

@@ -132,56 +132,50 @@ class HDT2_Shaderulers_Maw(WeaponBase):
     a = []
 
 class Chimeratech_Dagger(WeaponBase):
-    ele = ['flame', 'shadow']
+    ele = ['flame', 'shadow', 'wind']
     wt = 'dagger'
     att = 981
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Hrotti(WeaponBase):
+class Agito2_Hrotti(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1662
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Hrotti(WeaponBase):
     ele = ['flame']
     wt = 'dagger'
     att = 1513
     s3 = agito_buffs['flame'][1]
 
-class Agito0UB_Hrotti(Agito_Hrotti):
-    att = 981
-    s3 = agito_buffs['flame'][0]
-
-class Agito_Qinghong_Jian(WeaponBase):
+class Agito1_Qinghong_Jian(WeaponBase):
     ele = ['shadow']
     wt = 'dagger'
     att = 1513
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Qinghong_Jian(Agito_Qinghong_Jian):
-    att = 981
-    s3 = agito_buffs['shadow'][0]
-
-class Agito_Carnwennan(WeaponBase):
+class Agito1_Carnwennan(WeaponBase):
     ele = ['wind']
     wt = 'dagger'
     att = 1513
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Carnwennan(Agito_Carnwennan):
-    att = 981
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterDagger(Agito_Hrotti):
+class UnreleasedAgitoStr_WaterDagger(Agito2_Hrotti):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightDagger(Agito_Hrotti):
+class UnreleasedAgitoStr_LightDagger(Agito2_Hrotti):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterDagger(Agito_Qinghong_Jian):
+class UnreleasedAgitoSpd_WaterDagger(Agito1_Qinghong_Jian):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightDagger(Agito_Qinghong_Jian):
+class UnreleasedAgitoSpd_LightDagger(Agito1_Qinghong_Jian):
     ele = ['light']
 
-flame = Agito_Hrotti
+flame = Agito2_Hrotti
 water = HDT2_Tiderulers_Maw
-wind = Agito_Carnwennan
+wind = Agito1_Carnwennan
 light = HDT2_Fulminators_Maw
-shadow = Agito_Qinghong_Jian
+shadow = Agito1_Qinghong_Jian

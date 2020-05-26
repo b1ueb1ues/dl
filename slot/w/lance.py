@@ -132,56 +132,50 @@ class HDT2_Ebon_Scourge_Lance(WeaponBase):
     a = []
 
 class Chimeratech_Lance(WeaponBase):
-    ele = ['flame', 'shadow']
+    ele = ['flame', 'shadow', 'wind']
     wt = 'lance'
     att = 962
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Gungnir(WeaponBase):
+class Agito2_Gungnir(WeaponBase):
+    ele = ['flame']
+    wt = 'lance'
+    att = 1730
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Gungnir(WeaponBase):
     ele = ['flame']
     wt = 'lance'
     att = 1575
     s3 = agito_buffs['flame'][1]
 
-class Agito0UB_Gungnir(Agito_Gungnir):
-    att = 1021
-    s3 = agito_buffs['flame'][0]
-
-class Agito_Qinglong_Yanyuedao(WeaponBase):
+class Agito1_Qinglong_Yanyuedao(WeaponBase):
     ele = ['shadow']
     wt = 'lance'
     att = 1575
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Qinglong_Yanyuedao(Agito_Qinglong_Yanyuedao):
-    att = 1021
-    s3 = agito_buffs['shadow'][0]
-
-class Agito_Rhongomyniad(WeaponBase):
+class Agito1_Rhongomyniad(WeaponBase):
     ele = ['wind']
     wt = 'lance'
     att = 1575
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Rhongomyniad(Agito_Rhongomyniad):
-    att = 1021
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterLance(Agito_Gungnir):
+class UnreleasedAgitoStr_WaterLance(Agito1_Gungnir):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightLance(Agito_Gungnir):
+class UnreleasedAgitoStr_LightLance(Agito1_Gungnir):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterLance(Agito_Qinglong_Yanyuedao):
+class UnreleasedAgitoSpd_WaterLance(Agito1_Qinglong_Yanyuedao):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightLance(Agito_Qinglong_Yanyuedao):
+class UnreleasedAgitoSpd_LightLance(Agito1_Qinglong_Yanyuedao):
     ele = ['light']
 
-flame = Agito_Gungnir
+flame = Agito2_Gungnir
 water = HDT2_Limpid_Rush
-wind = Agito_Rhongomyniad
+wind = Agito1_Rhongomyniad
 light = HDT2_Brilliant_Lightflash
-shadow = Agito_Qinglong_Yanyuedao
+shadow = Agito1_Qinglong_Yanyuedao
