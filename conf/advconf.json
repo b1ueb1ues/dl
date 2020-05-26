@@ -3780,6 +3780,29 @@
             "startup": 0.1
         }
     },
+    "Wu_Kong": {
+        "c": {
+            "att": 472,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 2256,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 11.89,
+            "hit": 4,
+            "recovery": 1.8,
+            "sp": 4904,
+            "startup": 0.1
+        }
+    },
     "Wedding_Aoi": {
         "c": {
             "att": 475,

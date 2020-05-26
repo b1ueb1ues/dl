@@ -131,56 +131,50 @@ class HDT2_Hellish_Prophecy(WeaponBase):
     a = []
 
 class Chimeratech_Bow(WeaponBase):
-    ele = ['flame', 'shadow']
+    ele = ['flame', 'shadow', 'wind']
     wt = 'bow'
     att = 961
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Ydalir(WeaponBase):
+class Agito2_Ichaival(WeaponBase):
     ele = ['flame']
     wt = 'bow'
-    att = 1482
+    att = 1629
     s3 = agito_buffs['flame'][1]
 
-class Agito0UB_Ydalir(Agito_Ydalir):
-    att = 961
-    s3 = agito_buffs['flame'][0]
-
-class Agito_Longshe_Gong(WeaponBase):
+class Agito1_Longshe_Gong(WeaponBase):
     ele = ['shadow']
     wt = 'bow'
     att = 1482
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Longshe_Gong(Agito_Longshe_Gong):
-    att = 961
-    s3 = agito_buffs['shadow'][0]
+class Agito1_Ydalir(WeaponBase):
+    ele = ['flame']
+    wt = 'bow'
+    att = 1482
+    s3 = agito_buffs['flame'][1]
 
-class Agito_Failnaught(WeaponBase):
+class Agito1_Failnaught(WeaponBase):
     ele = ['wind']
     wt = 'bow'
     att = 1482
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Failnaught(Agito_Failnaught):
-    att = 961
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterBow(Agito_Ydalir):
+class UnreleasedAgitoStr_WaterBow(Agito1_Ydalir):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightBow(Agito_Ydalir):
+class UnreleasedAgitoStr_LightBow(Agito1_Ydalir):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterBow(Agito_Longshe_Gong):
+class UnreleasedAgitoSpd_WaterBow(Agito1_Longshe_Gong):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightBow(Agito_Longshe_Gong):
+class UnreleasedAgitoSpd_LightBow(Agito1_Longshe_Gong):
     ele = ['light']
 
-flame = Agito_Ydalir
+flame = Agito2_Ichaival
 water = HDT2_Azure_Mercurius
-wind = Agito_Failnaught
+wind = Agito1_Failnaught
 light = HDT2_Jupiters_Sky
-shadow = Agito_Longshe_Gong
+shadow = Agito1_Longshe_Gong

@@ -132,56 +132,50 @@ class HDT2_Shadowy_Darkbite_Axe(WeaponBase):
     a = []
 
 class Chimeratech_Axe(WeaponBase):
-    ele = ['flame', 'shadow']
+    ele = ['flame', 'shadow', 'wind']
     wt = 'axe'
     att = 1051
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Mjolnir(WeaponBase):
-    ele = ['flame']
-    wt = 'axe'
-    att = 1621
-    s3 = agito_buffs['flame'][1]
-
-class Agito0UB_Mjolnir(Agito_Mjolnir):
-    att = 1051
-    s3 = agito_buffs['flame'][0]
-
-class Agito_Fangtian_Huaji(WeaponBase):
+class Agito1_Fangtian_Huaji(WeaponBase):
     ele = ['shadow']
     wt = 'axe'
     att = 1621
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Fangtian_Huaji(Agito_Fangtian_Huaji):
-    att = 1051
-    s3 = agito_buffs['shadow'][0]
+class Agito2_Mjolnir(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 1781
+    s3 = agito_buffs['flame'][1]
 
-class Agito_Marmyadose(WeaponBase):
+class Agito1_Mjolnir(WeaponBase):
+    ele = ['flame']
+    wt = 'axe'
+    att = 1621
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Marmyadose(WeaponBase):
     ele = ['wind']
     wt = 'axe'
     att = 1621
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Marmyadose(Agito_Marmyadose):
-    att = 1051
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterAxe(Agito_Mjolnir):
+class UnreleasedAgitoStr_WaterAxe(Agito1_Mjolnir):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightAxe(Agito_Mjolnir):
+class UnreleasedAgitoStr_LightAxe(Agito1_Mjolnir):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterAxe(Agito_Fangtian_Huaji):
+class UnreleasedAgitoSpd_WaterAxe(Agito1_Fangtian_Huaji):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightAxe(Agito_Fangtian_Huaji):
+class UnreleasedAgitoSpd_LightAxe(Agito1_Fangtian_Huaji):
     ele = ['light']
 
-flame = Agito_Mjolnir
+flame = Agito2_Mjolnir
 water = HDT2_Mercys_Azure_Tide
-wind = Agito_Marmyadose
+wind = Agito1_Marmyadose
 light = HDT2_Mighty_Thundercrash
-shadow = Agito_Fangtian_Huaji
+shadow = Agito1_Fangtian_Huaji

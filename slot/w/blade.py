@@ -132,56 +132,50 @@ class HDT2_True_Abyss(WeaponBase):
     a = []
 
 class Chimeratech_Blade(WeaponBase):
-    ele = ['flame', 'shadow']
+    ele = ['flame', 'shadow', 'wind']
     wt = 'blade'
     att = 1061
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Tyrfing(WeaponBase):
+class Agito2_Tyrfing(WeaponBase):
     ele = ['flame']
     wt = 'blade'
-    att = 1636
+    att = 1798
     s3 = agito_buffs['flame'][1]
 
-class Agito0UB_Tyrfing(Agito_Tyrfing):
-    att = 1051
-    s3 = agito_buffs['flame'][0]
-
-class Agito_Qixing_Baodao(WeaponBase):
+class Agito1_Qixing_Baodao(WeaponBase):
     ele = ['shadow']
     wt = 'blade'
     att = 1636
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Qixing_Baodao(Agito_Qixing_Baodao):
-    att = 1061
-    s3 = agito_buffs['shadow'][0]
+class Agito1_Tyrfing(WeaponBase):
+    ele = ['flame']
+    wt = 'blade'
+    att = 1636
+    s3 = agito_buffs['flame'][1]
 
-class Agito_Arondight(WeaponBase):
+class Agito1_Arondight(WeaponBase):
     ele = ['wind']
     wt = 'blade'
     att = 1636
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Arondight(Agito_Arondight):
-    att = 1061
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterBlade(Agito_Tyrfing):
+class UnreleasedAgitoStr_WaterBlade(Agito1_Tyrfing):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightBlade(Agito_Tyrfing):
+class UnreleasedAgitoStr_LightBlade(Agito1_Tyrfing):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterBlade(Agito_Qixing_Baodao):
+class UnreleasedAgitoSpd_WaterBlade(Agito1_Qixing_Baodao):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightBlade(Agito_Qixing_Baodao):
+class UnreleasedAgitoSpd_LightBlade(Agito1_Qixing_Baodao):
     ele = ['light']
 
-flame = Agito_Tyrfing
+flame = Agito2_Tyrfing
 water = HDT2_Ruinous_Torrent
-wind = Agito_Arondight
+wind = Agito1_Arondight
 light = HDT2_Brilliant_Flash
-shadow = Agito_Qixing_Baodao
+shadow = Agito1_Qixing_Baodao

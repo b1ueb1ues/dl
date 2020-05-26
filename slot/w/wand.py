@@ -138,50 +138,44 @@ class Chimeratech_Wand(WeaponBase):
     s3 = {} #
     a = [('uo', 0.04)]
 
-class Agito_Brisingr(WeaponBase):
+class Agito1_Brisingr(WeaponBase):
     ele = ['flame']
     wt = 'wand'
     att = 1590
     s3 = agito_buffs['flame'][1]
 
-class Agito0UB_Brisingr(Agito_Brisingr):
-    att = 1031
-    s3 = agito_buffs['flame'][0]
+class Agito2_Brisinga(WeaponBase):
+    ele = ['flame']
+    wt = 'wand'
+    att = 1747
+    s3 = agito_buffs['flame'][1]
 
-class Agito_Jiu_Ci(WeaponBase):
+class Agito1_Jiu_Ci(WeaponBase):
     ele = ['shadow']
     wt = 'wand'
     att = 1590
     s3 = agito_buffs['shadow'][1]
 
-class Agito0UB_Jiu_Ci(Agito_Jiu_Ci):
-    att = 1031
-    s3 = agito_buffs['shadow'][0]
-
-class Agito_Camelot(WeaponBase):
+class Agito1_Camelot(WeaponBase):
     ele = ['wind']
     wt = 'wand'
     att = 1590
     s3 = agito_buffs['wind'][1]
 
-class Agito0UB_Camelot(Agito_Camelot):
-    att = 1031
-    s3 = agito_buffs['wind'][0]
-
-class UnreleasedAgitoStr_WaterWand(Agito_Brisingr):
+class UnreleasedAgitoStr_WaterWand(Agito1_Brisingr):
     ele = ['water']
 
-class UnreleasedAgitoStr_LightWand(Agito_Brisingr):
+class UnreleasedAgitoStr_LightWand(Agito1_Brisingr):
     ele = ['light']
 
-class UnreleasedAgitoSpd_WaterWand(Agito_Jiu_Ci):
+class UnreleasedAgitoSpd_WaterWand(Agito1_Jiu_Ci):
     ele = ['water']
 
-class UnreleasedAgitoSpd_LightWand(Agito_Jiu_Ci):
+class UnreleasedAgitoSpd_LightWand(Agito1_Jiu_Ci):
     ele = ['light']
 
-flame = Agito_Brisingr
+flame = Agito2_Brisinga
 water = HDT2_Aquatic_Spiral
-wind = Agito_Camelot
+wind = Agito1_Camelot
 light = HDT2_Primeval_Thunder
-shadow = Agito_Jiu_Ci
+shadow = Agito1_Jiu_Ci
