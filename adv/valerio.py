@@ -222,7 +222,8 @@ appetizer_conf = {
 
 class Valerio(Adv):
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+His_Clever_Brother()
+    conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
+    conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.d'] = Siren()
     conf['acl'] = """
         # stances
@@ -237,7 +238,6 @@ class Valerio(Adv):
         `s2
         `s1
         `s3
-        end
     """
     coab = ['Summer_Estelle', 'Renee', 'Xander']
     conf['afflict_res.frostbite'] = 0
