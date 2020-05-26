@@ -280,6 +280,22 @@ def slots(adv):
         pass
     return slots
 
+def slots_csv(adv):
+    padded_coab = adv.coab_list.copy()
+    if len(padded_coab) < 3:
+        padded_coab.extend(['']*(3-len(padded_coab)))
+    padded_share = adv.skillshare_list.copy()
+    if len(padded_share) < 2:
+        padded_share.extend(['']*(2-len(padded_share)))
+    return (
+        adv.slots.a.__class__.__name__, 
+        adv.slots.a.a2.__class__.__name__,
+        adv.slots.d.__class__.__name__,
+        adv.slots.w.__class__.__name__.split('_')[0],
+        *padded_coab,
+        *padded_share
+    )
+
 def append_condensed(condensed, act):
     if len(condensed) > 0:
         l_act, l_cnt = condensed[-1]
@@ -453,7 +469,7 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
         adv.conf['c.ele'],
         adv.conf['c.wt'],
         adv.displayed_att,
-        slots(adv),
+        *slots_csv(adv),
         condition if cond else '!' + condition,
         adv.comment
     ])
