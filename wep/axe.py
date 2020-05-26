@@ -40,7 +40,6 @@ conf = {
 
     'x1fs.charge': 33 / 60.0, # 7 delay + fs
     'x2fs.charge': 35 / 60.0, # 10 delay + fs
-    'x5fs.charge': 12 / 60.0, # can charge fs while in c5
 
     'fsf.charge': 26 / 60.0, # https://streamable.com/36bjj
     'fsf.startup': 8 / 60.0,
