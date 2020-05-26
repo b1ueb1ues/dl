@@ -273,6 +273,8 @@ def slots(adv):
     slots += '['+adv.slots.d.__class__.__name__+']'
     slots += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
     slots += '['+'|'.join(adv.coab_list)+']'
+    slots += f'[S3:{adv.skillshare_list[0]}]'
+    slots += f'[S4:{adv.skillshare_list[1]}]'
     return slots
 
 def append_condensed(condensed, act):
