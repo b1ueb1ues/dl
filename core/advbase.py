@@ -1236,6 +1236,11 @@ class Adv(object):
             t.check(scope)
 
         if scope[0] == 's':
+            try:
+                # need to consider mystery afflict mod later
+                mod = 1 if self.__getattribute__(scope).owner is None else 0.5
+            except:
+                pass
             return mod * self.mod('s')
         elif scope[0:2] == 'fs':
             return mod * self.mod('fs')
@@ -1509,7 +1514,7 @@ class Adv(object):
                 src_key = f's{sdata["s"]}'
                 owner_conf = Conf(advconfs[owner])
                 owner_conf[src_key].sp = sdata["sp"]
-                self.conf[dst_key] = owner_conf[src_key]
+                self.conf[dst_key] = Conf(owner_conf[src_key])
                 s = Skill(dst_key, owner_conf[src_key])
                 s.owner = owner
                 self.__setattr__(dst_key, s)

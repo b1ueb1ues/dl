@@ -20,6 +20,7 @@ class Elisanne(Adv):
         `s4
     """
     coab = ['Tobias', 'Renee', 'Bow']
+    # share = ['Euden', 'Ranzal']
     share = ['Ranzal', 'Euden']
 
 if __name__ == '__main__':

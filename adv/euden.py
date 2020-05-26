@@ -22,7 +22,7 @@ class Euden(Adv):
     conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):
-        self.afflics.burn('s1',110,0.883)
+        self.afflics.burn(e.name,110,0.883)
         self.dragonform.charge_gauge(3)
 
 if __name__ == '__main__':
