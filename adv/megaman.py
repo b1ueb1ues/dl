@@ -151,14 +151,12 @@ class Mega_Man(Adv):
         
         random.seed()
         self.bleed = Bleed('g_bleed', 0).reset()
-        self.bleed.quickshot_event.dname = 'x_s1_bleed'
-        self.bleed.true_dmg_event.dtype = 'x'
         self.bleed_chance = 0.5
 
     def proc_bleed(self):
         if random.random() <= self.bleed_chance:
-            self.bleed = Bleed('x', 1.32)
-            self.bleed.quickshot_event.dname = 'x_s1_bleed'
+            self.bleed = Bleed('o_metal_blade', 1.32)
+            self.bleed.quickshot_event.dname = 'o_metal_blade_bleed'
             self.bleed.true_dmg_event.dtype = 'x'
             self.bleed.on()
 
