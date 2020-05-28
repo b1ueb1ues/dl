@@ -186,15 +186,15 @@ class Daikokuten(DragonBase):
         self.ds_buff.on()
         return self.adv.dmg_make('ds',7.00,'s')
 
+class Tie_Shan_Gongzhu(DragonBase):
+    ele = 'light'
+    att = 124
+    a = [('sp', 0.35)]
+
 class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'
     att = 128
     a = [('s', 0.9), ('a', 0.2)]
-
-class Unreleased_LightSkillHaste(DragonBase):
-    ele = 'light'
-    att = 120
-    a = [('sp', 0.35)]
 
 class Unreleased_LightCritDamage(DragonBase):
     ele = 'light'
