@@ -66,8 +66,10 @@ class Halloween_Mym(Adv):
 
     def s1_proc(self, e):
         if self.s1defdown :
-            Debuff('s1defdown',0.15,10,1).on()
-    
+            buff = Debuff('s1defdown',0.15,10,1)
+            buff.bufftime = buff._no_bufftime
+            buff.on()
+
     def s2_proc(self, e):
         self.buff_class('s2',0.20,15).on()
         Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()

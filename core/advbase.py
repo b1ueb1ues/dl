@@ -161,7 +161,8 @@ class CrisisModifier(Modifier):
 class Buff(object):
     _static = Static({
         'all_buffs': [],
-        'time_func': 0
+        'bufftime': lambda: 1,
+        'debufftime': lambda: 1
     })
 
     def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
@@ -178,10 +179,7 @@ class Buff(object):
         else:
             self.mod_order = morder or '<null>' or 'passive' or 'ex' or 'buff' or 'punisher'  # ...
 
-        if self.mod_order != 'buff':
-            self.bufftime = self.nobufftime
-        if not self._static.time_func:
-            self._static.time_func = self.nobufftime
+        self.bufftime = self._bufftime
 
         self.buff_end_timer = Timer(self.buff_end_proc)
         self.modifier = Modifier('mod_' + self.name, self.mod_type, self.mod_order, 0)
@@ -194,11 +192,14 @@ class Buff(object):
         self.__active = 0
         # self.on()
 
-    def nobufftime(self):
+    def _no_bufftime(self):
         return 1
 
-    def bufftime(self):
-        return self._static.time_func()
+    def _bufftime(self):
+        return self._static.bufftime()
+
+    def _debufftime(self):
+        return self._static.debufftime()
 
     def value(self, newvalue=None):
         if newvalue:
@@ -337,10 +338,6 @@ class Selfbuff(Buff):
     def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
         Buff.__init__(self, name, value, duration, mtype, morder)
         self.bufftype = 'self'
-        self.bufftime = self._bufftime
-
-    def _bufftime(self):
-        return self._static.time_func()
 
     def buffcount(self):
         bc = 0
@@ -380,15 +377,11 @@ class Teambuff(Buff):
     def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
         Buff.__init__(self, name, value, duration, mtype, morder)
         self.bufftype = 'team'
-        self.bufftime = self._bufftime
 
         self.base_cc_mod = []
         for mod in self.modifier._static.all_modifiers['crit']['chance']:
             if mod.mod_name.startswith('w_') or mod.mod_name.startswith('c_ex'):
                 self.base_cc_mod.append(mod)
-
-    def _bufftime(self):
-        return self._static.time_func()
 
     def on(self, duration=None):
         Buff.on(self, duration)
@@ -410,11 +403,7 @@ class Spdbuff(Buff):
         morder = 'passive'
         Buff.__init__(self, name, value, duration, mtype, morder)
         self.bufftype = wide
-        self.bufftime = self._bufftime
         Event('speed')()
-
-    def _bufftime(self):
-        return self._static.time_func()
 
     def on(self, duration=None):
         Buff.on(self, duration)
@@ -434,24 +423,17 @@ class Spdbuff(Buff):
             self.count_team_buff()
 
 class Debuff(Teambuff):
-    def __init__(self, name='<buff_noname>', value=0, duration=0, chance='1', mtype='def', morder=None):
-        value = 0 - value
-        chance = float(chance)
-        if chance != 1:
-            bd = 1.0 / (1.0 + value)
-            bd = (bd - 1) * chance + 1
-            value = 1 - 1.0 / bd
-            value = 0 - value
-        Teambuff.__init__(self, name, value, duration, mtype, morder)
+    def __init__(self, name='<buff_noname>', value=0, duration=0, chance=1.0, mtype='def', morder=None):
+        self.val = 0 - value
+        self.chance = chance
+        if self.chance != 1:
+            bd = 1.0 / (1.0 + self.val)
+            bd = (bd - 1) * self.chance + 1
+            self.val = 1 - 1.0 / bd
+            self.val = 0 - self.val
+        Teambuff.__init__(self, name, self.val, duration, mtype, morder)
         self.bufftype = 'debuff'
-        self.bufftime = self.nobufftime
-
-    def chance(c):
-        bd = 1.0 / (1.0 + self.value)
-        bd = (bd - 1) * c + 1
-        self.value = 1 - 1.0 / bd
-        return self
-
+        self.bufftime = self._debufftime
 
 class Skill(object):
     _static = Static({
@@ -1004,7 +986,8 @@ class Adv(object):
         self.buff = Buff()
         self.all_buffs = []
         self.buff._static.all_buffs = self.all_buffs
-        self.buff._static.time_func = self.bufftime
+        self.buff._static.bufftime = lambda: self.mod('buff')
+        self.buff._static.debufftime = lambda: self.mod('debuff')
         # set modifier
         self.modifier = Modifier(0, 0, 0, 0)
         self.all_modifiers = ModifierDict()
@@ -1294,6 +1277,13 @@ class Adv(object):
             if rate > 0:
                 rates[afflic] = rate
 
+        for buff in self.all_buffs:
+            if buff.get() and buff.bufftype == 'debuff' and buff.val < 0:
+                try:
+                    rates[f'debuff_{buff.mod_type}'] += buff.chance
+                except:
+                    rates[f'debuff_{buff.mod_type}'] = buff.chance
+
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):
             p = 1.0
@@ -1334,9 +1324,6 @@ class Adv(object):
             return self.sp_convert(self.sp_mod(param), self.conf[param + '.sp'])
         elif isinstance(param, int) and 0 < param:
             return sum([self.sp_convert(self.sp_mod('x{}'.format(x)), self.conf['x{}.sp'.format(x)]) for x in range(1, param + 1)])
-
-    def bufftime(self):
-        return self.mod('buff')
 
     def have_buff(self, name):
         for b in self.all_buffs:

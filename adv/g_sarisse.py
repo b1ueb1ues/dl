@@ -29,10 +29,10 @@ class Gala_Sarisse(Adv):
             if self.hits // 20 > self.ahits:
                 self.ahits = self.hits // 20
                 buff = Selfbuff('sylvan strength',0.02,15)
-                buff.bufftime = buff.nobufftime
+                buff.bufftime = buff._no_bufftime
                 buff.on()
                 buff = Selfbuff('sylvan crit',0.01,15,'crit','chance')
-                buff.bufftime = buff.nobufftime
+                buff.bufftime = buff._no_bufftime
                 buff.on()
 
     def s1_proc(self, e):

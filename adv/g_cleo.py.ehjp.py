@@ -47,7 +47,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         self.a1_zones = []
         for _ in range(4):
             buff = Selfbuff('a1_str',0.25,10)
-            buff.bufftime = buff.nobufftime
+            buff.bufftime = buff._no_bufftime
             self.a1_zones.append(buff)
 
     def dmg_proc(self, name, amount):

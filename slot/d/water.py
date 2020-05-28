@@ -148,7 +148,7 @@ class Halloween_Maritimus(DragonBase):
         super().oninit(adv)
         from core.advbase import Teambuff
         self.ds_buff = Teambuff('ds_sd',0.3,10,'s','buff')
-        self.ds_buff.bufftime = self.ds_buff.nobufftime
+        self.ds_buff.bufftime = self.ds_buff._no_bufftime
 
     def ds_proc(self):
         self.ds_buff.on()

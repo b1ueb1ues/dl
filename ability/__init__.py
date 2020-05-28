@@ -102,7 +102,7 @@ class Killer(Ability):
         if name == 'k':
             super().__init__(name, [('killer','passive',value, cond)])
         else:
-            afflict = name.split('_')[1]
+            afflict = name.split('_', 1)[1]
             super().__init__(name, [('{}_killer'.format(afflict), 'passive', value, cond)])
 
 ability_dict['k'] = Killer
@@ -170,6 +170,7 @@ class Co_Ability(Ability):
         'sharena': [('paralysis_killer', 'passive', 0.08)],
         'peony': [('light','ele',0.20)],
         'tiki': [('x','ex',0.20)],
+        'leif': [('debuff_def_killer', 'passive', 0.08),('debuff_attack_killer', 'passive', 0.08)]
     }
     def __init__(self, name, value, cond=None):
         try:
@@ -194,7 +195,7 @@ class Last_Offense(BuffingAbility):
     def oninit(self, adv, afrom=None):
         if adv.condition('last offense'):
             buff = adv.Buff(*self.buff_args)
-            buff.bufftime = buff.nobufftime
+            buff.bufftime = buff._no_bufftime
             buff.on()
 
 ability_dict['lo'] = Last_Offense
@@ -381,7 +382,7 @@ class Primed(BuffingAbility):
         def l_primed(e):
             if not self.is_cd:
                 buff = adv.Buff(*self.buff_args)
-                buff.bufftime = buff.nobufftime
+                buff.bufftime = buff._no_bufftime
                 buff.on()
                 self.is_cd = True
                 adv.Timer(pm_cd_end).on(self.PRIMED_CD)

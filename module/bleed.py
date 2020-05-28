@@ -8,8 +8,8 @@ class Bleed(Dot):
     _static['all_bleeds'] = []
     _static['stacks'] = 0
 
-    def __init__(self, name, dmg_coef):
-        Dot.__init__(self, name, dmg_coef, 30, 4.99)
+    def __init__(self, name, dmg_coef, duration=30):
+        Dot.__init__(self, name, dmg_coef, duration, 4.99)
         self.quickshot_event = Event("dmg_formula")
         self.quickshot_event.dmg_coef = dmg_coef
         self.quickshot_event.dname = 's_bleed'

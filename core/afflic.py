@@ -124,6 +124,13 @@ class AfflicUncapped(object):
     def __call__(self, *args, **argv):
         return self.on(*args, **argv)
 
+    def change_resist(self, delta):
+        states = defaultdict(lambda: 0.0)
+        for res, state_p in self.states.items():
+            # can u go below 0?
+            states[res + delta] = state_p
+        self.states = states
+
     def on(self):
         self.resist = self.get_resist()
         self.rate = self.get_rate()
@@ -335,7 +342,7 @@ class Afflic_bog(Afflic_scc):
             # Debuff('{}_bog'.format(name),-0.5*p,self.duration,1,'att','bog').on()
             from core.advbase import Selfbuff
             buff = Selfbuff('{}_bog'.format(name),0.5*p,self.duration,'att','bog')
-            buff.bufftime = buff.nobufftime
+            buff.bufftime = buff._no_bufftime
             buff.on()
         return p
 

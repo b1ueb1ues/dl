@@ -70,6 +70,7 @@ class Skill_Reservoir(Skill):
 
 class Gala_Alex(Adv):
     comment = 'no bk bonus in sim; s2 c4fs [s1 c4fs]*5 & use s1/s2 only when charge>=2'
+    a1 = ('k_debuff_def', 0.30)
     a3 = ('k_poison', 0.30)
 
     conf = galex_conf.copy()
@@ -93,11 +94,6 @@ class Gala_Alex(Adv):
     
     def prerun(self):
         self.s1_debuff = Debuff('s1', 0.05, 15)
-
-        self.a1_k = Modifier('a1', 'killer', 'passive', 0.30)
-        self.a1_k.get = self.a1_get
-        self.a1_k.on()
-
         self.sr = Skill_Reservoir('s1', self.conf.s1, self.conf.s2)
         # cursed
         self.s1.cast = lambda: self.sr(0)
@@ -118,15 +114,12 @@ class Gala_Alex(Adv):
         self.think_pin('sp')
         log('sp', name, sp, f'{self.sr.charged}/{self.sr.sp} ({self.sr.count}), {self.s3.charged}/{self.s3.sp}')
 
-    def a1_get(self):
-        return (self.mod('def') != 1) * 0.30
-
     def s1_proc(self, e):
         if self.sr.chain_status == 1:
-            k = 1 + (self.mod('def') != 1) * 0.1
-            self.dmg_make('s1', 2.02*3*k)
-            self.dmg_make('s1', 4.85*k)
-            self.hits += 4
+            with KillerModifier('s2_killer', 'hit', 0.1, ['debuff_def']):
+                self.dmg_make('s1', 2.02*3)
+                self.dmg_make('s1', 4.85)
+                self.hits += 4
         else:
             self.dmg_make('s1', 2.02)
             self.s1_debuff.on()
