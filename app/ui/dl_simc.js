@@ -49,7 +49,7 @@ function slots_icon_fmt(adv, ele, wt, slots) {
         img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon dragon"/>');
     }
     const weapon = slots_list[2];
-    if (weapon === 'HDT2' || (weapon === 'Agito')) {
+    if (weapon === 'HDT2' || (weapon === 'Agito1') || (weapon === 'Agito2')) {
         img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon weapon"/>');
     }
     let placehold = 5 - img_urls.length;
