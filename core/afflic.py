@@ -75,6 +75,7 @@ class AfflicUncapped(object):
         self.name = name
         self.resist = 0
         self.rate = 1
+        self.rate_modifier = 0
         self.tolerance = 0.2
         self.duration = 12
         self.states = None
@@ -113,7 +114,7 @@ class AfflicUncapped(object):
         nostack_p = 1.0
         for stack_p in self.stacks:
             nostack_p *= 1.0 - stack_p
-        self._get = 1.0 - nostack_p
+        self._get = min(1.0 + self.rate_modifier - nostack_p, 1)
 
     def stack_end_fun(self, p):
         def end_callback(t):
@@ -124,12 +125,8 @@ class AfflicUncapped(object):
     def __call__(self, *args, **argv):
         return self.on(*args, **argv)
 
-    def change_resist(self, delta):
-        states = defaultdict(lambda: 0.0)
-        for res, state_p in self.states.items():
-            # can u go below 0?
-            states[res + delta] = state_p
-        self.states = states
+    def set_rate_mod(self, delta):
+        self.rate_modifier = min(self.rate_modifier + delta, 1)
 
     def on(self):
         self.resist = self.get_resist()
