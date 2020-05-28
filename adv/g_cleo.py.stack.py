@@ -21,7 +21,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
                     buff = Teambuff('a1_str',0.25,10)
                 else:
                     buff = Selfbuff('a1_str',0.25,10)
-                buff.bufftime = buff.nobufftime
+                buff.bufftime = buff._no_bufftime
                 self.a1_zones.append(buff)
                 if len(self.a1_zones) > 4:
                     self.a1_zones.pop(0).off()

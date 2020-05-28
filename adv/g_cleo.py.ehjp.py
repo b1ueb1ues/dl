@@ -2,7 +2,7 @@ from core.advbase import *
 from module.x_alt import Fs_alt
 import adv.g_cleo
 from slot.a import Amulet
-from slot.w.wand import Agito_Jiu_Ci
+from slot.w.wand import Agito1_Jiu_Ci
 
 class Wily_Warriors_Air_and_Crash(Amulet):
     att = 49
@@ -19,7 +19,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
     conf = adv.g_cleo.Gala_Cleo.conf.copy()
     conf['slots.a'] = Candy_Couriers()+Wily_Warriors_Air_and_Crash()
     conf['slots.d'] = slot.d.Shinobi()
-    conf['slots.w'] = Agito_Jiu_Ci()
+    conf['slots.w'] = Agito1_Jiu_Ci()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
         s3 s2 s1 c5 d c5 d fs s1 c5 d c5 d fs s2 s1 dragon end
@@ -47,7 +47,7 @@ class Gala_Cleo(adv.g_cleo.Gala_Cleo):
         self.a1_zones = []
         for _ in range(4):
             buff = Selfbuff('a1_str',0.25,10)
-            buff.bufftime = buff.nobufftime
+            buff.bufftime = buff._no_bufftime
             self.a1_zones.append(buff)
 
     def dmg_proc(self, name, amount):

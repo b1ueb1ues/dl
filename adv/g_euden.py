@@ -41,7 +41,9 @@ class Gala_Euden(Adv):
 
     def s1_proc(self, e):
         if self.s1on :
-            Debuff('s1str',-0.20,10,1,'att').on()
+            buff = Teambuff('s1str',-0.20,10,1,'att')
+            buff.bufftime = buff._no_bufftime
+            buff.on()
 
     def s2_proc(self, e):
         Event('defchain')()

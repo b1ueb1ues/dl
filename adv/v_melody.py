@@ -31,8 +31,10 @@ class Valentines_Melody(Adv):
 
     def s1_proc(self, e):
         if self.s1defdown:
-            Debuff('s1',0.15,10,1).on()
-    
+            buff = Debuff('s1',0.15,10,1)
+            buff.bufftime = buff._no_bufftime
+            buff.on()
+
     def s2_proc(self, e):
         self.afflics.poison('s2', 120, 0.582)
 

@@ -32,7 +32,7 @@ class Gala_Cleo(Adv):
     def fs_proc_alt(self, e):
         if self.a1_buffed:
             buff = Teambuff('a1_str',0.25,10)
-            buff.bufftime = buff.nobufftime
+            buff.bufftime = buff._no_bufftime
             buff.on()
 
     def prerun(self):

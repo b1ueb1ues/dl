@@ -32,8 +32,8 @@ class Dragonyule_Malora(Adv):
         self.hits += 1
 
     def s2_proc(self, e):
-        if self.def_mod()!= 1:
-            self.dmg_make('o_s2_boost',4.32*3*0.8)
+        with KillerModifier('s2_killer', 'hit', 0.8, ['debuff_def']):
+            self.dmg_make('s2', 12.96)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -180,7 +180,7 @@ class Daikokuten(DragonBase):
         super().oninit(adv)
         from core.advbase import Spdbuff
         self.ds_buff = Spdbuff('ds',0.2,10,wide='team')
-        self.ds_buff.bufftime = self.ds_buff.nobufftime
+        self.ds_buff.bufftime = self.ds_buff._no_bufftime
 
     def ds_proc(self):
         self.ds_buff.on()
