@@ -27,8 +27,12 @@ class Halloween_Odetta(Adv):
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Teambuff if adv.condition('buff all team') else Selfbuff
+
     def s2_proc(self, e):
-        self.buff_class('s2',0.2,15).on()
+        self.buff_class(e.name,0.2,15).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

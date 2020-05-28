@@ -56,6 +56,11 @@ class Halloween_Mym(Adv):
         Event('dragon').listener(self.a1_on)
         Event('idle').listener(self.a1_off)
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Dummy if adv.slots.c.ele != 'flame' else Teambuff if adv.condition('buff all team') else Selfbuff
+        adv.s2_da = Dummy()
+
     def a1_on(self, e):
         if not self.a1_spd.get():
             self.a1_spd.on()
@@ -65,14 +70,14 @@ class Halloween_Mym(Adv):
             self.a1_spd.off()
 
     def s1_proc(self, e):
-        if self.s1defdown :
-            buff = Debuff('s1defdown',0.15,10,1)
+        if self.s1defdown:
+            buff = Debuff(e.name,0.15,10,1)
             buff.bufftime = buff._no_bufftime
             buff.on()
 
     def s2_proc(self, e):
-        self.buff_class('s2',0.20,15).on()
-        Selfbuff('s2_dreamboost',0.05,15,'crit','rate').on()
+        self.buff_class(e.name,0.20,15).on()
+        Selfbuff(f'{e.name}_dreamboost',0.05,15,'crit','rate').on()
         self.s2_da.on()
 
 

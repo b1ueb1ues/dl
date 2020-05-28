@@ -21,7 +21,6 @@ class Gala_Sarisse(Adv):
 
     def prerun(self):
         self.ahits = 0
-        self.bc = Selfbuff()
         self.s2stance = 0
 
     def dmg_proc(self, name, amount):
@@ -36,16 +35,16 @@ class Gala_Sarisse(Adv):
                 buff.on()
 
     def s1_proc(self, e):
-        buffcount = min(self.bc.buffcount(), 7)
-        self.dmg_make('s1',0.95*buffcount)
+        buffcount = min(len(self.all_buffs), 7)
+        self.dmg_make(e.name,0.95*buffcount)
         self.hits += buffcount
 
     def s2_proc(self, e):
         if self.s2stance == 0:
-            Teambuff('s2str',0.20,10).on()
+            Teambuff(f'{e.name}_str',0.20,10).on()
             self.s2stance = 1
         elif self.s2stance == 1:
-            Teambuff('s2def',0.20,15,'defense').on()
+            Teambuff(f'{e.name}_def',0.20,15,'defense').on()
             self.s2stance = 0
 
 

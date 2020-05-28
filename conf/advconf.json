@@ -1355,14 +1355,14 @@
         "s1": {
             "dmg": 0.0,
             "hit": 0,
-            "recovery": 1.8,
+            "recovery": 1.5,
             "sp": 5916,
             "startup": 0.1
         },
         "s2": {
             "dmg": 0.0,
             "hit": 0,
-            "recovery": 1.8,
+            "recovery": 1.5,
             "sp": 11832,
             "startup": 0.1
         }

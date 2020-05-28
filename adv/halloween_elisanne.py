@@ -22,21 +22,24 @@ class Halloween_Elisanne(Adv):
     def prerun(self):
         self.stance = 0
 
-    def s1latency(self, e):
-        Teambuff("s1_buff",0.1,15).on()
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.rebind_function(Halloween_Elisanne, 's1_latency')
+        adv.stance = 0
+
+    def s1_latency(self, t):
+        Teambuff(t.name,0.1,15).on()
 
     def s1_proc(self, e):
-        if self.stance == 0:
-            self.stance = 1
-        elif self.stance == 1:
-            Timer(self.s1latency).on(2.5)
-            self.stance = 2
-        elif self.stance == 2:
-            Timer(self.s1latency).on(2.5)
-            self.stance = 0
+        self.stance += 1
+        if self.stance > 1:
+            t = Timer(self.s1_latency)
+            t.name = e.name
+            t.on(2.5)
+        self.stance %= 3
 
     def s2_proc(self, e):
-        self.charge('s2',500)
+        self.charge(e.name,500)
 
 
 

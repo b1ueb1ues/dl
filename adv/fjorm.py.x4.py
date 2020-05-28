@@ -30,7 +30,7 @@ class Fjorm(adv.fjorm.Fjorm):
             Event('defchain')()
 
     def s2_proc(self, e):
-        self.dmg_make('s2_reflect', 3792*8, fixed=True)
+        self.dmg_make(f'{e.name}_reflect', 3792*8, fixed=True)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

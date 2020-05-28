@@ -23,7 +23,7 @@ class Fjorm(Adv):
         Teambuff('last_bravery',0.3,15).on()
 
     def s1_proc(self, e):
-        self.afflics.frostbite('s1',120,0.41)
+        self.afflics.frostbite(e.name,120,0.41)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

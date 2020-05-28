@@ -11,35 +11,39 @@ class Joachim(Adv):
     
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
-    conf['acl'] = """
-        `dragon.act("c3 s end")
+    conf['acl'] = '''
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s2, s=1
         `s1
-    """
+    '''
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
 
     def init(self):
         self.s1_stance = 1
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.s1_stance = 1
+
     def s1_proc(self, e):
-        with Modifier("s1killer", "poison_killer", "hit", 0.8):
+        with KillerModifier('s1_killer', 'hit', 0.8, ['poison']):
             coef = 2.2
-            self.dmg_make('s1', coef)
+            self.dmg_make(e.name, coef)
 
             if self.s1_stance == 1:
-                self.afflics.poison('s1',110, 0.53)
+                self.afflics.poison(e.name,110, 0.53)
                 self.s1_stance = 2
             elif self.s1_stance == 2:
-                self.afflics.poison('s1',160, 0.53)
+                self.afflics.poison(e.name,160, 0.53)
                 self.s1_stance = 3
             elif self.s1_stance == 3:
-                Teambuff("s1atk",0.15,10).on()
-                self.afflics.poison('s1',160, 0.53)
+                Teambuff(e.name,0.15,10).on()
+                self.afflics.poison(e.name,160, 0.53)
                 self.s1_stance = 1
 
-            self.dmg_make('s1', coef)
+            self.dmg_make(e.name, coef)
 
 
     def s2_proc(self, e):

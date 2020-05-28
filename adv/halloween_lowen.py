@@ -9,7 +9,7 @@ def module():
 class Halloween_Lowen(Adv):
     comment = 'hlowen dps <= burn DoT'
     a1 = ('fsprep', 3)
-    a3 = ('prep','75%')
+    a3 = ('prep', 0.75)
 
     conf = {}
     conf['slots.a'] = From_Whence_He_Comes()+The_Bridal_Dragon()

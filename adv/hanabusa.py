@@ -22,21 +22,21 @@ class Hanabusa(Adv):
             self.stance = 1
             Timer(self.stanceend).on(20)
         elif self.stance == 1:
-            self.dmg_make('s1',1.94)
+            self.dmg_make(e.name,1.94)
             self.stance = 2
             Timer(self.stanceend).on(20)
         elif self.stance == 2:
-            self.dmg_make('s1',2.51)
+            self.dmg_make(e.name,2.51)
             self.s1.sp = 2840
             self.stance = 0
 
     def s2_proc(self, e):
         if self.stance == 0:
-            Teambuff('s2',0.15,15).on()
+            Teambuff(e.name,0.15,15).on()
         elif self.stance == 1:
-            Teambuff('s2',0.15,18).on()
+            Teambuff(e.name,0.15,18).on()
         elif self.stance == 2:
-            Teambuff('s2',0.15,21).on()
+            Teambuff(e.name,0.15,21).on()
 
     def stanceend(self, e):
         self.s1.sp = 2840

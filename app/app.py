@@ -42,14 +42,6 @@ SPECIAL_ADV = {
         'fn': 'chelsea.py.rollfs.py',
         'nc': ['wp', 'coab']
     },
-    'gala_cleo_ehjp': {
-        'fn': 'g_cleo.py.ehjp.py',
-        'nc': ['w', 'wp', 'acl']
-    },
-    'gala_cleo_stack': {
-        'fn': 'g_cleo.py.stack.py',
-        'nc': []
-    },
     'gala_luca_maxstacks': {
         'fn': 'g_luca.py.maxstacks.py',
         'nc': []

@@ -36,7 +36,7 @@ class Gala_Cleo(Adv):
             buff.on()
 
     def prerun(self):
-        self.a1_buffed = self.condition('always in a1')
+        self.a1_buffed = self.condition('a1 buff for 10s')
         self.s1_p = 0
 
         conf_fs_alt = {
@@ -70,7 +70,7 @@ class Gala_Cleo(Adv):
         self.s1_p %= 3
 
     def s2_proc(self, e):
-        Debuff('s2', 0.10, 20).on()
+        Debuff(e.name, 0.10, 20).on()
 
 
 if __name__ == '__main__':

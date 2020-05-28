@@ -19,10 +19,6 @@ class Gala_Euden(Adv):
     conf['afflict_res.paralysis'] = 0
 
     def prerun(self):
-        if self.condition('s1 buff for 10s'):
-            self.s1on = 1
-        else:
-            self.s1on = 0
         self.s2.autocharge_init(15873).on()
         if self.condition('draconic charge'):
             self.dragonform.dragon_gauge += 500
@@ -40,14 +36,14 @@ class Gala_Euden(Adv):
             self.dragonlight_spd.off()
 
     def s1_proc(self, e):
-        if self.s1on :
-            buff = Teambuff('s1str',-0.20,10,1,'att')
+        if self.condition(f'{e.name} buff for 10s'):
+            buff = Teambuff(e.name,0.20,10,'att')
             buff.bufftime = buff._no_bufftime
             buff.on()
 
     def s2_proc(self, e):
         Event('defchain')()
-        self.afflics.paralysis('s2', 120, 0.97)
+        self.afflics.paralysis(e.name, 120, 0.97)
 
 
 if __name__ == '__main__':

@@ -21,11 +21,15 @@ class Gala_Elisanne(Adv):
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Dummy if adv.slots.c.ele != 'water' else Teambuff if adv.condition('buff all team') else Selfbuff
+
     def prerun(self):
         self.s2.autocharge_init(900).on()
 
     def s1_proc(self, e):
-        self.buff_class('s2',0.3,15).on()
+        self.buff_class(e.name,0.3,15).on()
 
     def s2_proc(self, e):
         self.energy.add(3)

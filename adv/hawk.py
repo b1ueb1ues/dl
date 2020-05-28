@@ -43,9 +43,9 @@ class Hawk(Adv):
 
     def s1_proc(self, e):
         with KillerModifier('s1_stun_killer', 'hit', 3.3, ['stun']):
-            self.dmg_make('s1',4.74)
+            self.dmg_make(e.name,4.74)
         with KillerModifier('s1_poison_killer', 'hit', 2, ['poison']):
-            self.dmg_make('s1',4.74)
+            self.dmg_make(e.name,4.74)
 
     def s2_proc(self, e):
         if self.s2_mode == 0:
@@ -53,7 +53,7 @@ class Hawk(Adv):
             self.s2.ac = self.a_s2a
         else:
             with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
-                self.dmg_make('s2', 9.48)
+                self.dmg_make(e.name, 9.48)
             self.conf.s2.startup = 0.25
             self.conf.s2.recovery = 0.9
             self.s2.ac = self.a_s2

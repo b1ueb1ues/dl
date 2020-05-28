@@ -69,18 +69,21 @@ class Gala_Ranzal(Adv):
         log('gauges', name, self.gauges['x'], self.gauges['fs'])
 
     def s1_proc(self, e):
-        boost = 0
-        if self.gauges['x'] >= 1000:
-            boost += 1
-            self.gauges['x'] = 0
-        if self.gauges['fs'] >= 1000:
-            boost += 1
-            self.gauges['fs'] = 0
-        if boost == 1:
-            self.dmg_make('o_s1_boost',self.conf['s1.dmg']*0.2)
-        if boost == 2:
-            self.dmg_make('o_s1_boost',self.conf['s1.dmg']*0.8)
-        self.ifs1ins2 = 1
+        try:
+            boost = 0
+            if self.gauges['x'] >= 1000:
+                boost += 1
+                self.gauges['x'] = 0
+            if self.gauges['fs'] >= 1000:
+                boost += 1
+                self.gauges['fs'] = 0
+            if boost == 1:
+                self.dmg_make(f'o_{e.name}_boost',self.conf[f'{e.name}.dmg']*0.2)
+            if boost == 2:
+                self.dmg_make(f'o_{e.name}_boost',self.conf[f'{e.name}.dmg']*0.8)
+            self.ifs1ins2 = 1
+        except:
+            pass
 
 
     def s2_proc(self, e):

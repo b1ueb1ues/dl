@@ -12,35 +12,39 @@ class Fleur(Adv):
 
     conf = {}
     conf['slots.a'] = TB()+SotS()
-    conf['acl'] = """
-        `dragon.act("c3 s end")
+    conf['acl'] = '''
+        `dragon.act('c3 s end')
         `s2, s=1
         `s1
         `s3
         `fs, seq=4
-    """
+    '''
     coab = ['Blade','Sharena','Peony']
     conf['afflict_res.paralysis'] = 0
 
     def init(self):
         self.s1_stance = 1
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.s1_stance = 1
+
     def s1_proc(self, e):
-        with Modifier("s1killer", "paralysis_killer", "hit", 0.8):
+        with Modifier('s1killer', 'paralysis_killer', 'hit', 0.8):
             coef = 3.33
-            self.dmg_make('s1', coef)
+            self.dmg_make(e.name, coef)
 
             if self.s1_stance == 1:
-                self.afflics.paralysis('s1',110, 0.883)
+                self.afflics.paralysis(e.name,110, 0.883)
                 self.s1_stance = 2
             elif self.s1_stance == 2:
-                self.afflics.paralysis('s1',160, 0.883)
+                self.afflics.paralysis(e.name,160, 0.883)
                 self.s1_stance = 3
             elif self.s1_stance == 3:
-                self.afflics.paralysis('s1',160, 0.883)
+                self.afflics.paralysis(e.name,160, 0.883)
                 self.s1_stance = 1
 
-            self.dmg_make('s1', coef)
+            self.dmg_make(e.name, coef)
 
 
     def s2_proc(self, e):

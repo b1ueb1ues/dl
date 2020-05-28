@@ -25,7 +25,7 @@ class Kleimann(Adv):
             self.coab = ['Ieyasu','Gala_Alex','Bow']
 
     def madness_autocharge(self, t):
-        for s in (self.s1, self.s2, self.s3):
+        for s in self.skills:
             if s.charged < s.sp:
                 sp = self.madness_status * 100
                 s.charge(sp)
@@ -44,12 +44,12 @@ class Kleimann(Adv):
                 self.madness_timer.on()
 
     def s1_proc(self, e):
-        self.afflics.poison('s1',120,0.582)
+        self.afflics.poison(e.name,120,0.582)
 
     def s2_proc(self, e):
-        self.afflics.sleep('s2',110)
+        self.afflics.sleep(e.name,110)
         with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
-            self.dmg_make("s2", 11.00)
+            self.dmg_make(e.name, 11.00)
         if self.madness < 5:
             self.madness += 1
 

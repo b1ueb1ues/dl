@@ -26,11 +26,27 @@ class Gala_Luca(Adv):
     def prerun(self):
         self.ds_proc_o = self.dragonform.ds_proc
         self.dragonform.ds_proc = self.ds_crit_proc
+        self.shared_crit = False
+
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.rebind_function(Gala_Luca, 'ds_crit_proc')
+        adv.rebind_function(Gala_Luca, 'buff_icon_count')
+        adv.ds_proc_o = adv.dragonform.ds_proc
+        adv.dragonform.ds_proc = adv.ds_crit_proc
+        adv.shared_crit = True
 
     def ds_crit_proc(self):
-        self.in_s1 = True
-        dmg = self.ds_proc_o()
-        self.in_s1 = False
+        if self.shared_crit:
+            crit_mod = Modifier('gala_luca_share', 'crit', 'chance', 0.1 * self.buff_icon_count())
+            crit_mod.on()
+            dmg = self.ds_proc_o()
+            crit_mod.off()
+            self.in_s1 = False
+        else:
+            self.in_s1 = True
+            dmg = self.ds_proc_o()
+            self.in_s1 = False
         return dmg
 
     def buff_icon_count(self):
@@ -81,16 +97,19 @@ class Gala_Luca(Adv):
         return 1.0 + mean_rate * crit_dmg
 
     def s1_proc(self, e):
+        if self.shared_crit:
+            crit_mod = Modifier('gala_luca_share', 'crit', 'chance', 0.1 * self.buff_icon_count())
+            crit_mod.on()
+        else:
+            self.in_s1 = True
         self.in_s1 = True
-        self.dmg_make('s1', 3.14)
-        self.hits += 1
-        self.dmg_make('s1', 3.14)
-        self.hits += 1
-        self.dmg_make('s1', 3.14)
-        self.hits += 1
-        self.dmg_make('s1', 3.14)
-        self.hits += 1
-        self.in_s1 = False
+        for _ in range(4):
+            self.dmg_make(e.name, 3.14)
+            self.hits += 1
+        if self.shared_crit:
+            crit_mod.off()
+        else:
+            self.in_s1 = False
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

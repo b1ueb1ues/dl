@@ -103,7 +103,11 @@ class Gala_Alex(Adv):
         percent = percent / 100 if percent > 1 else percent
         self.sr.charge(self.sp_convert(percent, self.conf.sr.sp))
         self.s3.charge(self.sp_convert(percent, self.conf.s3.sp))
-        log('sp', name, f'{percent*100:.0f}%', f'{self.sr.charged}/{self.sr.sp}, {self.s3.charged}/{self.s3.sp}')
+        try:
+            self.s4.charge(self.sp_convert(percent, self.conf.s4.sp))
+            log('sp', name, f'{percent*100:.0f}%', f'{self.sr.charged}/{self.sr.sp} ({self.sr.count}), {self.s3.charged}/{self.s3.sp}, {self.s4.charged}/{self.s4.sp}')
+        except:
+            log('sp', name, f'{percent*100:.0f}%', f'{self.sr.charged}/{self.sr.sp}, {self.s3.charged}/{self.s3.sp}')
         self.think_pin('prep')
 
     def charge(self, name, sp):
@@ -111,19 +115,23 @@ class Gala_Alex(Adv):
         sp = self.sp_convert(self.sp_mod(name), sp)
         self.sr.charge(sp)
         self.s3.charge(sp)
+        try:
+            self.s4.charge(sp)
+            log('sp', name, sp, f'{self.sr.charged}/{self.sr.sp} ({self.sr.count}), {self.s3.charged}/{self.s3.sp}, {self.s4.charged}/{self.s4.sp}')
+        except:
+            log('sp', name, sp, f'{self.sr.charged}/{self.sr.sp}, {self.s3.charged}/{self.s3.sp}')
         self.think_pin('sp')
-        log('sp', name, sp, f'{self.sr.charged}/{self.sr.sp} ({self.sr.count}), {self.s3.charged}/{self.s3.sp}')
 
     def s1_proc(self, e):
         if self.sr.chain_status == 1:
-            with KillerModifier('s2_killer', 'hit', 0.1, ['debuff_def']):
-                self.dmg_make('s1', 2.02*3)
-                self.dmg_make('s1', 4.85)
+            with KillerModifier('s1_killer', 'hit', 0.1, ['debuff_def']):
+                self.dmg_make(e.name, 2.02*3)
+                self.dmg_make(e.name, 4.85)
                 self.hits += 4
         else:
-            self.dmg_make('s1', 2.02)
+            self.dmg_make(e.name, 2.02)
             self.s1_debuff.on()
-            self.dmg_make('s1', 2.02*2)
+            self.dmg_make(e.name, 2.02*2)
             self.hits += 3
         # elif self.sr.chain_status == 2:
         #     k = 1 + (self.mod('def') != 1) * 0.1
@@ -136,13 +144,13 @@ class Gala_Alex(Adv):
 
     def s2_proc(self, e):
         if self.sr.chain_status == 2:
-            with Modifier('s2_killer', 'poison_killer', 'hit', 0.1):
-                self.dmg_make('s2', 5.53)
-                self.dmg_make('s2', 4.42)
+            with KillerModifier('s2_killer', 'hit', 0.1, ['poison']):
+                self.dmg_make(e.name, 5.53)
+                self.dmg_make(e.name, 4.42)
                 self.hits += 2
         else:
-            self.dmg_make('s2', 5.53)
-            self.afflics.poison('s2', 120, 0.582)
+            self.dmg_make(e.name, 5.53)
+            self.afflics.poison(e.name, 120, 0.582)
             self.hits += 1
         # elif self.sr.chain_status == 2:
         #     self.dmg_make('s2', 5.53)
