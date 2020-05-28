@@ -20,7 +20,7 @@ class Aurien(Adv):
     coab = ['Blade', 'Marth', 'Tiki']
 
     def s2_proc(self, e):
-        self.afflics.burn('s2',100,0.803)
+        self.afflics.burn(e.name,100,0.803)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

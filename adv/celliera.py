@@ -37,7 +37,7 @@ class Celliera(Adv):
 
     def s1_proc(self, e):
         if self.s2_buff.get():
-            self.afflics.frostbite('s1',120,0.37)
+            self.afflics.frostbite(e.name,120,0.37)
 
     def s2_proc(self, e):
         if self.s2_buff.get():

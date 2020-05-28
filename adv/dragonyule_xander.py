@@ -23,9 +23,13 @@ class Dragonyule_Xander(Adv):
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Teambuff if adv.condition('buff all team') else Selfbuff
+
     def s2_proc(self, e):
         self.energy.add(1, team=self.condition('buff all team'))
-        self.buff_class('s2', 0.15, 10)
+        self.buff_class(e.name, 0.15, 10)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

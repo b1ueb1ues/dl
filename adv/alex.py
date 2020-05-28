@@ -24,7 +24,7 @@ class Alex(Adv):
     conf['afflict_res.poison'] = 0    
 
     def s1_proc(self, e):
-        self.afflics.poison('s1',100,0.396)
+        self.afflics.poison(e.name,100,0.396)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

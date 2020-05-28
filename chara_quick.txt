@@ -8,7 +8,7 @@ amane.py
 annelie.py
 aoi.py
 audric.py
-b_zardin.py
+beautician_zardin.py
 berserker.py
 botan.py
 cassandra.py
@@ -16,11 +16,11 @@ celliera.py
 chelsea.py
 cibella.py
 curran.py
-d_cleo.py
-d_malora.py
-d_nefaria.py
-d_xainfried.py
-d_xander.py
+dragonyule_cleo.py
+dragonyule_malora.py
+dragonyule_nefaria.py
+dragonyule_xainfried.py
+dragonyule_xander.py
 delphi.py
 durant.py
 eleonora.py

@@ -23,8 +23,12 @@ class Dragonyule_Xainfried(Adv):
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Dummy if adv.slots.c.ele != 'wind' else Teambuff if adv.condition('buff all team') else Selfbuff
+
     def s1_proc(self, e):
-        self.buff_class('s1',0.2,15,'crit','chance').on()
+        self.buff_class(e.name,0.2,15,'crit','chance').on()
 
 
 if __name__ == '__main__':

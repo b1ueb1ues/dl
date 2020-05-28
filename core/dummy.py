@@ -1,11 +1,13 @@
 # fake class for skill share purposes bolb
 class Dummy:
-    def __init__(self, is_on=False, is_get=False):
-        self.is_on = is_on
-        self.is_get = is_get
+    def __init__(self, *args):
+        pass
 
     def on(self):
-        return self.is_on
-        
+        return False
+
+    def off(self):
+        return False
+
     def get(self):
-        return self.is_get
+        return False

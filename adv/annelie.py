@@ -27,20 +27,23 @@ class Annelie(Adv):
     def prerun(self):
         self.stance = 0
 
+    def prerun_skillshare(adv):
+        adv.stance = 0
+
     def s1_proc(self, e):
         if self.stance == 0:
-            self.dmg_make('s1',0.1+8.14)
+            self.dmg_make(e.name,0.1+8.14)
             self.energy.add(1)
             self.hits += 2
             self.stance = 1
         elif self.stance == 1:
-            self.dmg_make('s1',2*(0.1+4.07))
+            self.dmg_make(e.name,2*(0.1+4.07))
             self.energy.add(2)
             self.hits += 4
             self.stance = 2
         elif self.stance == 2:
-            self.dmg_make('s1',3*0.1)
-            self.dmg_make('s1',3*3.54)
+            self.dmg_make(e.name,3*0.1)
+            self.dmg_make(e.name,3*3.54)
             self.hits += 6
             self.stance = 0
 

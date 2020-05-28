@@ -29,11 +29,11 @@ class Cassandra(Adv):
         self.hp = 80
 
     def s1_proc(self, e):
-        self.afflics.poison('s1',120,0.582)
+        self.afflics.poison(e.name,120,0.582)
 
     def s2_proc(self, e):
-        with CrisisModifier('s2', 1, self.hp):
-            self.dmg_make('s2',9.72)
+        with CrisisModifier(e.name, 1, self.hp):
+            self.dmg_make(e.name,9.72)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -10,7 +10,7 @@ class Addis(Adv):
     a3 = ('bk',0.20)
     conf = {}
     conf['acl'] = """
-        `dragon.act("c3 s end")
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s2, s1.charged>=s1.sp-260 and seq=5 and self.bleed._static['stacks'] != 3
         `s1, s2.charged<s2.sp and self.bleed._static['stacks'] != 3
@@ -26,24 +26,25 @@ class Addis(Adv):
 
     def prerun(self):
         random.seed()
-        self.s2buff = Selfbuff("s2_shapshifts1",1, 10,'ss','ss')
-        self.s2str = Selfbuff("s2_str",0.25,10)
-        self.bleedpunisher = Modifier("bleed","att","killer",0.08)
+        self.s2buff = Selfbuff('s2_shapshifts1',1, 10,'ss','ss')
+        self.s2str = Selfbuff('s2_str',0.25,10)
+        self.bleedpunisher = Modifier('bleed','att','killer',0.08)
         self.bleedpunisher.get = self.getbleedpunisher
-        self.bleed = Bleed("g_bleed",0).reset()
+        self.bleed = Bleed('g_bleed',0).reset()
         #self.crit_mod = self.rand_crit_mod
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.s2buff = Dummy()
 
     def s1_proc(self, e):
-
         if self.s2buff.get():
             self.s2buff.buff_end_timer.timing += 2.5
             self.s2str.buff_end_timer.timing += 2.5
-            log('-special','s1_with_s2')
             if random.random() < 0.8:
-                Bleed("s1", 1.32).on()
+                Bleed(e.name, 1.32).on()
         else:
-            self.afflics.poison('s1',100,0.53)
+            self.afflics.poison(e.name,100,0.53)
 
 
     def s2_proc(self, e):

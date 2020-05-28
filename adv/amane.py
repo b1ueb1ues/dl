@@ -5,7 +5,7 @@ def module():
 
 class Amane(Adv):
     a3 = ('bk',0.2)
-    a1 = ('prep','75%')
+    a1 = ('prep',0.75)
     
     conf = {}
     conf['acl'] = """

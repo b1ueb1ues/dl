@@ -26,8 +26,12 @@ class Emma(Adv):
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Dummy if adv.slots.c.ele != 'flame' else Teambuff if adv.condition('buff all team') else Selfbuff
+
     def s1_proc(self, e):
-        self.buff_class('s2',0.25,15).on()
+        self.buff_class(e.name,0.25,15).on()
 
     def s2_proc(self, e):
         Event('defchain')()

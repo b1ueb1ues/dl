@@ -65,7 +65,7 @@ class Bellina(Adv):
     coab = ['Ieyasu','Curran','Berserker']
 
     def fs_proc_alt(self, e):
-        with CrisisModifier('s1', 1.00, self.hp):
+        with CrisisModifier(e.name, 1.00, self.hp):
             self.dmg_make('fs', 5.65)
         self.dragonform.charge_gauge(self.conf.fs.utp, utp=True)
 
@@ -120,21 +120,21 @@ class Bellina(Adv):
 
     def s1_proc(self, e):
         if self.dragondrive_buff.get():
-            with CrisisModifier('s1', 0.50, self.hp):
-                self.dmg_make('s1', 2.02 * 5)
+            with CrisisModifier(e.name, 0.50, self.hp):
+                self.dmg_make(e.name, 2.02 * 5)
                 self.hits += 5
             self.s1.charge(self.conf.s1.sp)
             self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(-750, utp=True)
         else:
-            with CrisisModifier('s1', 0.50, self.hp):
-                self.dmg_make('s1', 8.40)
+            with CrisisModifier(e.name, 0.50, self.hp):
+                self.dmg_make(e.name, 8.40)
                 self.hits += 1
 
     def s2_proc(self, e):
         if self.dragondrive_buff.get():
-            with CrisisModifier('s2', 2.00, self.hp):
-                self.dmg_make('s2', 12.12)
+            with CrisisModifier(e.name, 2.00, self.hp):
+                self.dmg_make(e.name, 12.12)
                 self.hits += 1
             self.dragonform.charge_gauge(-3000, utp=True)
             # -3000 gauge

@@ -20,10 +20,10 @@ class Eleonora(Adv):
     a1 = ('edge_poison', 50, 'hp100')
 
     def s1_proc(self, e):
-        self.afflics.poison('s1',110,0.53)
+        self.afflics.poison(e.name,110,0.53)
 
     def s2_proc(self, e):
-        self.afflics.poison('s2',100,0.396)
+        self.afflics.poison(e.name,100,0.396)
 
 
 if __name__ == '__main__':

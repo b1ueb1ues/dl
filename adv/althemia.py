@@ -25,11 +25,11 @@ class Althemia(Adv):
             self.coab = ['Blade','Bow',"Gala_Alex"]
 
     def s1_proc(self, e):
-        self.afflics.poison('s1',100,0.482)
+        self.afflics.poison(e.name,100,0.482)
 
     def s2_proc(self, e):
         with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
-            self.dmg_make("s2", 14.96)
+            self.dmg_make(e.name, 14.96)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

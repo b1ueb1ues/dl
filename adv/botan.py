@@ -27,10 +27,10 @@ class Botan(Adv):
         self.bleed = Bleed("g_bleed",0).reset()
 
     def s1_proc(self, e):
-        Bleed("s1", 1.46).on()
+        Bleed(e.name, 1.46).on()
 
     def s2_proc(self, e):
-        self.buff_class('s2',0.1,15,'crit','chance').on()
+        self.buff_class(e.name,0.1,15,'crit','chance').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

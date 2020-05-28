@@ -27,6 +27,13 @@ class Chelsea(Adv):
 
         Event('dragon').listener(self.s2_clear)
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.hp = 100
+        adv.a3 = Dummy()
+        adv.a1atk = Dummy()
+        adv.a1spd = Dummy()
+
     def s2_clear(self, e):
         for buff in self.s2_buffs:
             buff.off()
@@ -88,24 +95,13 @@ class Chelsea(Adv):
             self.a1atk.off()
             self.a1spd.off()
 
-        self.dmg_make('s1',1.36)
-        self.hits += 1
-        self.dmg_make('s1',1.36)
-        self.hits += 1
-        self.dmg_make('s1',1.36)
-        self.hits += 1
-        self.dmg_make('s1',1.36)
-        self.hits += 1
-        self.dmg_make('s1',1.36)
-        self.hits += 1
-        self.dmg_make('s1',1.36)
-        self.hits += 1
-        self.dmg_make('s1',1.36)
-        self.hits += 1
+        for _ in range(7):
+            self.dmg_make(e.name,1.36)
+            self.hits += 1
 
     def s2_proc(self, e):
-        self.s2_buffs.append(Selfbuff('s2',0.3,60).on())
-        self.obsession = Selfbuff('s2').stack()
+        self.s2_buffs.append(Selfbuff(e.name,0.3,60).on())
+        self.obsession = Selfbuff(e.name).stack()
         self.a3.on()
 
     def dmg_make(self, name, dmg_coef, dtype=None, fixed=None):

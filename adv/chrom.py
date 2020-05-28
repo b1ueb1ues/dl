@@ -48,13 +48,13 @@ class Chrom(Adv):
     def s2_proc(self, e):
         with KillerModifier('s2_killer', 'hit', 0.2, AFFLICT_LIST):
             if self.s2.flames == 3 and self.s2.count == 2:
-                self.dmg_make('s2', 51.86)
+                self.dmg_make(e.name, 51.86)
                 self.s2.charged = 0
             else:
                 if self.s2.flames == 1:
-                    self.dmg_make('s2', 6.51)
+                    self.dmg_make(e.name, 6.51)
                 else:
-                    self.dmg_make('s2', 15.21)
+                    self.dmg_make(e.name, 15.21)
         self.s2.flames = 0
 
 if __name__ == '__main__':

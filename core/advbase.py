@@ -1475,19 +1475,24 @@ class Adv(object):
         self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
             self.skillshare_list = self.conf['skill_share']
+        try:
+            self.skillshare_list.remove(self.__class__.__name__)
+        except:
+            pass
         if len(self.skillshare_list) < 2:
             self.skillshare_list.insert(0, 'Weapon')
         if len(self.skillshare_list) > 2:
             self.skillshare_list = self.skillshare_list[:2]
         from conf import advconfs, skillshare
         from core.simulate import load_adv_module
-        share_limit = skillshare[self.__class__.__name__]['limit']
+        self_data = skillshare[self.__class__.__name__]
+        share_limit = self_data['limit']
         try:
-            sp_modifier = skillshare[self.__class__.__name__]['mod_sp']
+            sp_modifier = self_data['mod_sp']
         except:
             sp_modifier = 1
         try:
-            self.skill_share_att = skillshare[self.__class__.__name__]['mod_att']
+            self.skill_share_att = self_data['mod_att']
         except:
             self.skill_share_att = 0.7
         share_costs = 0

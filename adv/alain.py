@@ -18,10 +18,10 @@ class Alain(Adv):
     coab = ['Blade', 'Wand', 'Marth']
 
     def s1_proc(self, e):
-        self.afflics.burn('s1',100,0.803)
+        self.afflics.burn(e.name,100,0.803)
     
     def s2_proc(self, e):
-        self.afflics.burn('s2',100,0.803)
+        self.afflics.burn(e.name,100,0.803)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

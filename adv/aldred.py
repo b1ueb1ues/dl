@@ -52,14 +52,14 @@ class Aldred(Adv):
 
     def s1_proc(self, e):
         if self.dragondrive_buff.get():
-            self.dmg_make('s1', 2.42*3)
-            with CrisisModifier('s1', 1.00, self.hp):
-                self.dmg_make('s1', 2.42)
+            self.dmg_make(e.name, 2.42*3)
+            with CrisisModifier(e.name, 1.00, self.hp):
+                self.dmg_make(e.name, 2.42)
             self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(-750, utp=True)
             self.s1.charge(self.sp_convert(0.50, self.conf.s1.sp))
         else:
-            self.dmg_make('s1', 2.42*4)
+            self.dmg_make(e.name, 2.42*4)
         # 242 * 4 mod, 4 hits, 2.4s
         # 242 * 4 w/ 2x crisis
         # -750 dd points

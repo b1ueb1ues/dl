@@ -23,15 +23,14 @@ class Alfonse(Adv):
         self.hp = 80
 
     def s1_before(self, e):
-        Selfbuff('s1buff',0.20,12).on()
+        Selfbuff('s1_buff',0.20,12).on()
 
     def s1_proc(self, e):
-        self.afflics.paralysis('s1',120, 0.97)
+        self.afflics.paralysis(e.name,120, 0.97)
 
     def s2_proc(self, e):
-        with CrisisModifier('s2', 1.00, self.hp):
-            self.dmg_make('s2', 7.32)
-
+        with CrisisModifier(e.name, 1.00, self.hp):
+            self.dmg_make(e.name, 7.32)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
