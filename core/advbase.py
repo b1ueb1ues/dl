@@ -1238,7 +1238,7 @@ class Adv(object):
         if scope[0] == 's':
             try:
                 # need to consider mystery afflict mod later
-                mod = 1 if self.__getattribute__(scope).owner is None else 0.5
+                mod = 1 if self.__getattribute__(scope).owner is None else self.skill_share_att
             except:
                 pass
             return mod * self.mod('s')
@@ -1354,7 +1354,7 @@ class Adv(object):
 
     def bufftime(self):
         return self.mod('buff')
-
+        
     def have_buff(self, name):
         for b in self.all_buffs:
             if b.name.startswith(name) and b.get():
@@ -1495,6 +1495,14 @@ class Adv(object):
         from conf import advconfs, skillshare
         from core.simulate import load_adv_module
         share_limit = skillshare[self.__class__.__name__]['limit']
+        try:
+            sp_modifier = skillshare[self.__class__.__name__]['mod_sp']
+        except:
+            sp_modifier = 1
+        try:
+            self.skill_share_att = skillshare[self.__class__.__name__]['mod_att']
+        except:
+            self.skill_share_att = 0.7
         share_costs = 0
         self.skills = [self.s1, self.s2]
         for idx, owner in enumerate(self.skillshare_list):
@@ -1513,7 +1521,7 @@ class Adv(object):
                     raise ValueError(f'Skill share exceed cost {(*self.skillshare_list, share_costs)}.')
                 src_key = f's{sdata["s"]}'
                 owner_conf = Conf(advconfs[owner])
-                owner_conf[src_key].sp = sdata["sp"]
+                owner_conf[src_key].sp = sdata['sp'] * sp_modifier
                 self.conf[dst_key] = Conf(owner_conf[src_key])
                 s = Skill(dst_key, owner_conf[src_key])
                 s.owner = owner
