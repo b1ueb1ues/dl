@@ -23,20 +23,17 @@ class Valentines_Melody(Adv):
     coab = ['Blade','Eleonora','Lin_You']
     conf['afflict_res.poison'] = 0
 
-    def prerun(self):
-        self.s1defdown = self.condition('s1 defdown for 10s')
-
     def init(self):
         self.slots.c.coabs['Axe2'] = [None, 'axe2']
 
     def s1_proc(self, e):
-        if self.s1defdown:
-            buff = Debuff('s1',0.15,10,1)
+        if self.condition(f'{e.name} defdown for 10s'):
+            buff = Debuff(e.name,0.15,10,1)
             buff.bufftime = buff._no_bufftime
             buff.on()
 
     def s2_proc(self, e):
-        self.afflics.poison('s2', 120, 0.582)
+        self.afflics.poison(e.name, 120, 0.582)
 
 
 if __name__ == '__main__':

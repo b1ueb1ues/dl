@@ -26,16 +26,20 @@ class Su_Fang(Adv):
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
         self.s2_buff = Selfbuff('s2', 0.30, 15)
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.s2_buff = Dummy()
+
     def s1_proc(self, e):
         with KillerModifier('skiller', 'hit', 0.50, ['poison']):
-            self.dmg_make('s1', 5.58)
+            self.dmg_make(e.name, 5.58)
             if self.s2_buff.get():
-                self.dmg_make('s1', 2.60)
+                self.dmg_make(e.name, 2.60)
                 self.hits += 2
 
     def s2_proc(self, e):
         self.fs_alt.on(1)
-        self.s2_buff = Selfbuff('s2', 0.30, 15).on()
+        self.s2_buff = Selfbuff(e.name, 0.30, 15).on()
 
 
 if __name__ == '__main__':

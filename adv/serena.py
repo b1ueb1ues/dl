@@ -19,37 +19,40 @@ class Serena(Adv):
     coab = ['Blade', 'Yuya', 'Marth']
 
     def s1_before(self, e):
-        Selfbuff('s1buff',0.1,5,'crit','rate').on()
-
-    def init(self):
-        if self.condition('always connect hits'):
-            self.dmg_proc = self.c_dmg_proc
+        Selfbuff(f'{e.name}buff',0.1,5,'crit','rate').on()
 
     def prerun(self):
         self.hits = 0
         self.a1count = 0
         self.a3count = 0
 
-    def c_dmg_proc(self, name, amount):
-        a1old = self.a1count
-        if self.hits > 60:
-            self.a1count = 3
-        elif self.hits > 40:
-            self.a1count = 2
-        elif self.hits > 20:
-            self.a1count = 1
-        if a1old != self.a1count:
-            Selfbuff('a1buff',0.06,-1,'crit','damage').on()
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.hits = 0
+        adv.a1count = 0
+        adv.a3count = 0
 
-        a3old = self.a3count
-        if self.hits > 90:
-            self.a3count = 3
-        elif self.hits > 60:
-            self.a3count = 2
-        elif self.hits > 30:
-            self.a3count = 1
-        if a3old != self.a3count:
-            Selfbuff('a3buff',0.03,-1,'crit','chance').on()
+    def dmg_proc(self, name, amount):
+        if self.condition('always connect hits'):
+            a1old = self.a1count
+            if self.hits > 60:
+                self.a1count = 3
+            elif self.hits > 40:
+                self.a1count = 2
+            elif self.hits > 20:
+                self.a1count = 1
+            if a1old != self.a1count:
+                Selfbuff('a1buff',0.06,-1,'crit','damage').on()
+
+            a3old = self.a3count
+            if self.hits > 90:
+                self.a3count = 3
+            elif self.hits > 60:
+                self.a3count = 2
+            elif self.hits > 30:
+                self.a3count = 1
+            if a3old != self.a3count:
+                Selfbuff('a3buff',0.03,-1,'crit','chance').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

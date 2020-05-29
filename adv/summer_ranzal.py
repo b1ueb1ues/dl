@@ -24,19 +24,19 @@ class Summer_Ranzal(Adv):
 
     def init(self):
         self.a3_iscding = 0
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
+
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s1_proc(self, e):
-        self.dmg_make('s1',2.16)
-        self.afflics.bog.on('s1', 100)
-        self.dmg_make('s1',6.48)
-
-    def c_s2_proc(self, e):
-        Teambuff('s2',0.10,15).on()
+        self.dmg_make(e.name,2.16)
+        self.afflics.bog.on(e.name, 100)
+        self.dmg_make(e.name,6.48)
 
     def s2_proc(self, e):
-        Selfbuff('s2',0.10,15).on()
+        self.buff_class(e.name,0.10,15).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

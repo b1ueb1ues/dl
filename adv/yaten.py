@@ -25,7 +25,7 @@ class Yaten(Adv):
 
     def s1_proc(self, e):
         if self.energy() == 5:
-            self.dmg_make('o_s1_boost',6*0.69)
+            self.dmg_make(f'o_{e.name}_boost',6*0.69)
         self.energy.add(1)
 
     def s2_proc(self, e):

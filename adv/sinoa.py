@@ -20,24 +20,28 @@ class Sinoa(Adv):
     def prerun(self):
         self.s1_buff_mode = 'means'
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.s1_buff_mode = 'means'
+
     def s1_proc(self, e):
         if self.s1_buff_mode == 'means':
-            Teambuff('s1_att',0.25/4,15,'att').on()
-            Teambuff('s1_crit',0.25/4,10,'crit').on()
+            Teambuff(f'{e.name}_att',0.25/4,15,'att').on()
+            Teambuff(f'{e.name}_crit',0.25/4,10,'crit').on()
         elif self.s1_buff_mode == 'random':
             r = random.random()
             if r<0.25  :
-                Teambuff('s1_att',0.25,15,'att').on()
+                Teambuff(f'{e.name}_att',0.25,15,'att').on()
             elif r<0.5 :
-                Teambuff('s1_crit',0.25,10,'crit').on()
+                Teambuff(f'{e.name}_crit',0.25,10,'crit').on()
             elif r<0.75:
                 Event('defchain')()
             else:
                 log('debug','s1 HP buff')
         elif self.s1_buff_mode == 'att':
-            Teambuff('s1_att',0.25,15,'att').on()
+            Teambuff(f'{e.name}_att',0.25,15,'att').on()
         elif self.s1_buff_mode == 'crit':
-            Teambuff('s1_crit',0.25,10,'crit').on()
+            Teambuff(f'{e.name}_crit',0.25,10,'crit').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

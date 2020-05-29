@@ -26,20 +26,20 @@ class Wedding_Aoi(Adv):
             self.s1_addition = 1
 
     def s1_before(self, e):
-        self.dmg_make('o_s1_hit1',1.47)
-        self.afflics.sleep('s1',110,6.5)
+        self.dmg_make(f'o_{e.name}_hit1',1.47)
+        self.afflics.sleep(e.name,110,6.5)
 
     def s1_proc(self, e):
         if self.s1_addition == 4:
-            self.dmg_make('o_s1_hit2',1.47)
-            self.dmg_make('o_s1_hit3',1.47)
-            self.dmg_make('o_s1_hit4',1.47)
+            self.dmg_make(f'o_{e.name}_hit2',1.47)
+            self.dmg_make(f'o_{e.name}_hit3',1.47)
+            self.dmg_make(f'o_{e.name}_hit4',1.47)
         elif self.s1_addition == 1:
             pass
 
     def s2_proc(self, e):
         with Modifier("s1killer", "sleep_killer", "hit", 1):
-            self.dmg_make('s1',5*1.40)
+            self.dmg_make(e.name,5*1.40)
 
 
 if __name__ == '__main__':
