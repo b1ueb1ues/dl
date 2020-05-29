@@ -6,7 +6,6 @@ def module():
     return Lin_You
 
 class Lin_You(Adv):
-    comment = '2in1 ' 
     a1 = [('cc',0.10,'hp70'), ('cc',0.20,'hit25'), ('cc',0.20,'hit50')]
     a3 = ('sp',0.08)
     conf = {}
@@ -27,10 +26,10 @@ class Lin_You(Adv):
 
     def s1_proc(self, e):
         if self.s2_buff.get():
-            self.dmg_make('s1_powerup', 1.86*3)
+            self.dmg_make(f'{e.name}_powerup', 1.86*3)
             self.s2_buff.buff_end_timer.add(self.s1.ac.getstartup()+self.s1.ac.getrecovery())
             self.hits += 3
-            self.afflics.sleep('s1', 150)
+            self.afflics.sleep(e.name, 150)
         self.fs_alt.on(3)
 
     def s2_proc(self, e):

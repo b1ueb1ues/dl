@@ -21,7 +21,7 @@ class Lea(Adv):
     coab = ['Blade', 'Wand', 'Marth']
     
     def s1_proc(self, e):
-        self.afflics.burn('s1',120,0.97)
+        self.afflics.burn(e.name,120,0.97)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

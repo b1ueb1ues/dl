@@ -1490,16 +1490,25 @@ class Adv(object):
             self.skillshare_list = self.skillshare_list[:2]
         from conf import advconfs, skillshare
         from core.simulate import load_adv_module
-        self_data = skillshare[self.__class__.__name__]
-        share_limit = self_data['limit']
+        share_limit = 10
+        sp_modifier = 1
+        self.skill_share_att = 0.7
         try:
-            sp_modifier = self_data['mod_sp']
-        except:
-            sp_modifier = 1
-        try:
-            self.skill_share_att = self_data['mod_att']
-        except:
-            self.skill_share_att = 0.7
+            self_data = skillshare[self.__class__.__name__]
+            try:
+                share_limit = self_data['limit']
+            except KeyError:
+                pass
+            try:
+                sp_modifier = self_data['mod_sp']
+            except KeyError:
+                pass
+            try:
+                self.skill_share_att = self_data['mod_att']
+            except KeyError:
+                pass
+        except KeyError:
+            pass
         share_costs = 0
         self.skills = [self.s1, self.s2]
         for idx, owner in enumerate(self.skillshare_list):

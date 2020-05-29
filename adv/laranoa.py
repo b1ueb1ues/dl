@@ -23,27 +23,19 @@ class Laranoa(Adv):
     coab = ['Renee', 'Xander', 'Summer_Estelle']
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def prerun(self):
         self.ahits = 0
 
-    
-    def c_s2_proc(self, e):
-        Teambuff('s2_str',0.10,10).on()
-        Selfbuff('s2_sp',0.20,10,'sp','passive').on()
-
     def s2_proc(self, e):
-        Selfbuff('s2_str',0.10,10).on()
-        Selfbuff('s2_sp',0.20,10,'sp','passive').on()
+        self.buff_class(e.name,0.10,10).on()
+        Selfbuff(f'{e.name}_sp',0.20,10,'sp','passive').on()
 
     def dmg_proc(self, name, amount):
         if self.hits // 20 > self.ahits:
             self.ahits = self.hits // 20
             Selfbuff('sylvan critdmg',0.10,20,'crit','damage').on()
-
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

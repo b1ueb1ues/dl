@@ -19,12 +19,11 @@ class Louise(Adv):
     conf['afflict_res.poison'] = 0
 
     def s1_proc(self, e):
-        self.afflics.poison('s1', 120, 0.582)
-
+        self.afflics.poison(e.name, 120, 0.582)
 
     def s2_proc(self, e):
-        with Modifier("s2killer", "poison_killer", "hit", 0.5):
-            self.dmg_make("s2", 8.07)
+        with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
+            self.dmg_make(e.name, 8.07)
 
 
 if __name__ == '__main__':

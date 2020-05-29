@@ -20,7 +20,7 @@ class Luca(Adv):
     conf['afflict_res.paralysis'] = 0
 
     def s1_proc(self, e):
-        self.afflics.paralysis('s1',110,0.883)
+        self.afflics.paralysis(e.name,110,0.883)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
