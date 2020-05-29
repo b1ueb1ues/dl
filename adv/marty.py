@@ -18,7 +18,7 @@ class Marty(Adv):
     def d_coabs(self):
         if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
             if self.duration > 120:
-                self.coab = ['Blade','Marth','Serena']    
+                self.coab = ['Blade','Marth','Serena']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

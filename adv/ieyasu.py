@@ -35,7 +35,7 @@ class Ieyasu(Adv):
         self.s2charge = 0
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.bleed = Bleed('g_bleed',0).reset()
 
     def s1_proc(self, e):

@@ -57,7 +57,7 @@ class Halloween_Mym(Adv):
         Event('idle').listener(self.a1_off)
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.buff_class = Dummy if adv.slots.c.ele != 'flame' else Teambuff if adv.condition('buff all team') else Selfbuff
         adv.s2_da = Dummy()
 

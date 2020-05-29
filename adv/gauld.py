@@ -25,7 +25,7 @@ class Gauld(Adv):
         self.s1_frostbite = [(120,0.37),(160,0.74),(160,0.74)]
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.s1p = 0
         adv.s1_frostbite = [(120,0.37),(160,0.74),(160,0.74)]
 

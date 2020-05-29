@@ -907,7 +907,7 @@ class Adv(object):
         pass
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         pass
 
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
@@ -1474,9 +1474,15 @@ class Adv(object):
         dst = dst or src
         self.__setattr__(dst, getattr(owner, src).__get__(self, self.__class__))
 
+    @property
+    def skills(self):
+        try:
+            return self.s1, self.s2, self.s3, self.s4
+        except AttributeError:
+            return self.s1, self.s2, self.s3
 
     def config_skillshare(self):
-        preruns = []
+        preruns = {}
         self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
             self.skillshare_list = self.conf['skill_share']
@@ -1510,7 +1516,6 @@ class Adv(object):
         except KeyError:
             pass
         share_costs = 0
-        self.skills = [self.s1, self.s2]
         for idx, owner in enumerate(self.skillshare_list):
             dst_key = f's{idx+3}'
             if owner == 'Weapon':
@@ -1533,9 +1538,8 @@ class Adv(object):
                 s.owner = owner
                 self.__setattr__(dst_key, s)
                 owner_module = load_adv_module(owner)
-                preruns.append(owner_module.prerun_skillshare)
+                preruns[dst_key] = owner_module.prerun_skillshare
                 self.rebind_function(owner_module, f'{src_key}_proc', f'{dst_key}_proc')
-            self.skills.append(self.__getattribute__(dst_key))
         return preruns
 
     def run(self, d=300):
@@ -1594,8 +1598,9 @@ class Adv(object):
         self.slots.oninit(self)
 
         self.prerun()
-        for prerun in preruns_ss:
-            prerun(self)
+        for dst_key, prerun in preruns_ss.items():
+            print(dst_key)
+            prerun(self, dst_key)
 
         self.d_acl()
         self.acl_backdoor()

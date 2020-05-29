@@ -21,7 +21,7 @@ class Dragonyule_Cleo(Adv):
         self.stance = 0
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.buff_class = Teambuff if adv.condition('buff all team') else Selfbuff
         adv.stance = 0
 

@@ -169,6 +169,10 @@ class Hunter_Sarisse(Adv):
     def prerun(self):
         self.s1_fs_boost = SingleActionBuff('s1', 1.00, 1, 'fs', 'buff', ['fs1','fs2','fs3','fs4'])
 
+    @staticmethod
+    def prerun_skillshare(adv, dst_key):
+        adv.s1_fs_boost = SingleActionBuff(dst_key, 1.00, 1, 'fs', 'buff', ['fs','fs1','fs2','fs3','fs4'])
+
     def s1_proc(self, e):
         self.s1_fs_boost.on()
 

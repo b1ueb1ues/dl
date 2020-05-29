@@ -25,7 +25,7 @@ class Ezelith(Adv):
         self.a1_hits = 0
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.s1_hit_frames = [13, 13, 20, 28, 10, 19, 26, 10, 16, 24, 44]
         adv.rebind_function(Ezelith, 's1_hit')
         adv.a1_on = False

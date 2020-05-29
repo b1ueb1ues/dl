@@ -2425,8 +2425,8 @@
             "wt": "dagger"
         },
         "s1": {
-            "dmg": 0.61,
-            "hit": 1,
+            "dmg": 0.0,
+            "hit": 0,
             "recovery": 1.55,
             "sp": 2641,
             "startup": 0.1

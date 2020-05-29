@@ -160,23 +160,18 @@ class Mega_Man(Adv):
             self.bleed.true_dmg_event.dtype = 'x'
             self.bleed.on()
 
-    def charge_p(self, name, percent):
-        percent = percent / 100 if percent > 1 else percent
-        log('sp', name, '{:.0f}%   '.format(percent*100),'%d/%d, %d/%d, %d/%d'%(\
-            self.s1.charged, self.s1.sp, self.s2.charged, self.s2.sp, self.s3.charged, self.s3.sp) )
-        self.think_pin('prep')
-
     def charge(self, name, sp):
         sp = self.sp_convert(self.sp_mod(name), sp)
-        self.s3.charge(sp)
-        self.think_pin('sp')
-
         # ammo
         self.s1.charge_ammo(self.conf[name.split('_')[0]].ammo)
         self.s2.charge_ammo(self.conf[name.split('_')[0]].ammo)
-
-        log('sp', name, sp,'%d/%d, %d/%d, %d/%d'%(\
-            self.s1.current_ammo, self.s1.ammo, self.s2.current_ammo, self.s2.ammo, self.s3.charged, self.s3.sp))
+        self.s3.charge(sp)
+        try:
+            self.s4.charge(sp)
+            log('sp', name, sp, f'{self.s1.current_ammo}/{self.s1.ammo}, {self.s2.current_ammo}/{self.s2.ammo}, {self.s3.charged}/{self.s3.sp}, {self.s4.charged}/{self.s4.sp}')
+        except:
+            log('sp', name, sp, f'{self.s1.current_ammo}/{self.s1.ammo}, {self.s2.current_ammo}/{self.s2.ammo}, {self.s3.charged}/{self.s3.sp}')
+        self.think_pin('sp')
 
     def s1_proc(self, e):
         if self.s2_x.active:

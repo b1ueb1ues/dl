@@ -23,7 +23,7 @@ class Halloween_Elisanne(Adv):
         self.stance = 0
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.rebind_function(Halloween_Elisanne, 's1_latency')
         adv.stance = 0
 

@@ -281,14 +281,14 @@ class Mitsuba(Adv):
         coef = self.s1_mod[self.stance]
         if self.stance == 'sashimi':
             self.hits += 1
-            self.afflics.frostbite('s1',120,0.41)
+            self.afflics.frostbite(e.name,120,0.41)
             for _ in range(7):
-                self.dmg_make('s1', coef)
+                self.dmg_make(e.name, coef)
                 self.hits += 1
         elif self.stance == 'tempura':
-            with Modifier('s1killer', 'frostbite_killer', 'hit', 0.6):
+            with KillerModifier('s1_killer', 'hit', 0.6, ['frostbite']):
                 for _ in range(8):
-                    self.dmg_make('s1', coef)
+                    self.dmg_make(e.name, coef)
                     self.hits += 1
 
     def s2_proc(self, e):

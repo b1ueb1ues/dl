@@ -16,9 +16,10 @@ class Ranzal(Adv):
         # `s3, not self.s3_buff
         # `s1
         `s4
+            
         """
     coab = ['Blade','Dragonyule_Xainfried','Eleonora']
-    share = ['Aeleen']
+    share = ['Lathna']
     
     def s1_proc(self, e):
         self.afflics.poison(e.name, 120, 0.582)

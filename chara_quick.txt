@@ -136,9 +136,9 @@ patia.py
 heinwald.py
 gala_luca.py
 aurien.py
-mhalloween_berserker.py
-mhalloween_vanessa.py
-mhalloween_sarisse.py
+hunter_berserker.py
+hunter_vanessa.py
+hunter_sarisse.py
 v_melody.py
 v_addis.py
 pipple.py

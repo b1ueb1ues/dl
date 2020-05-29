@@ -26,7 +26,7 @@ class Forte(Adv):
         self.dgauge = 4
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.dgauge = 0
 
     def s1_proc(self, e):

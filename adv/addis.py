@@ -34,7 +34,7 @@ class Addis(Adv):
         #self.crit_mod = self.rand_crit_mod
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.s2buff = Dummy()
 
     def s1_proc(self, e):

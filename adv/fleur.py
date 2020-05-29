@@ -26,7 +26,7 @@ class Fleur(Adv):
         self.s1_stance = 1
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.s1_stance = 1
 
     def s1_proc(self, e):

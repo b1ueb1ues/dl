@@ -105,7 +105,7 @@ class Hunter_Vanessa(Adv):
         return (self.mod('def') != 1) * 0.20
 
     def s1_proc(self, e):
-        self.afflics.paralysis('s1',120, 0.97)
+        self.afflics.paralysis(e.name,120, 0.97)
 
     def s2_proc(self, e):
         self.s2_att_boost.on()

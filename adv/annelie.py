@@ -27,7 +27,8 @@ class Annelie(Adv):
     def prerun(self):
         self.stance = 0
 
-    def prerun_skillshare(adv):
+    @staticmethod
+    def prerun_skillshare(adv, dst_key):
         adv.stance = 0
 
     def s1_proc(self, e):

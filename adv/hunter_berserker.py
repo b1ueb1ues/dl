@@ -118,6 +118,10 @@ class Hunter_Berserker(Adv):
         self.a3_crit.get = self.a3_crit_get
         self.a3_crit.on()
 
+    @staticmethod
+    def prerun_skillshare(adv, dst_key):
+        adv.s1_debuff = Debuff(dst_key, 0.05, 10)
+
     def a3_crit_get(self):
         return (self.mod('def') != 1) * 0.20
 

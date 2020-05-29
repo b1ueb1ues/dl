@@ -49,7 +49,7 @@ class Gala_Cleo(Adv):
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst_key):
         adv.s1_p = 0
         adv.fs_alt = Dummy()
         adv.rebind_function(Gala_Cleo, 's1_dmg')

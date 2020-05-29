@@ -77,7 +77,6 @@
     "type": 1,
     "sp": 4752
   },
-  "Audric": {},
   "Naveed": {
     "s": 1,
     "cost": 5,
@@ -102,7 +101,6 @@
     "type": 1,
     "sp": 7101
   },
-  "Chrom": {},
   "Xander": {
     "s": 1,
     "cost": 4,
@@ -127,14 +125,12 @@
     "type": 1,
     "sp": 7255
   },
-  "Gala_Leif": {},
   "Albert": {
     "s": 1,
     "cost": 5,
     "type": 1,
     "sp": 4702
   },
-  "Alfonse": {},
   "Gala_Euden": {
     "s": 1,
     "cost": 7,
@@ -147,7 +143,6 @@
     "type": 4,
     "sp": 12726
   },
-  "Gala_Alex": {},
   "Aoi": {
     "s": 1,
     "cost": 5,
@@ -184,7 +179,6 @@
     "type": 1,
     "sp": 3044
   },
-  "Celliera": {},
   "Summer_Ranzal": {
     "s": 2,
     "cost": 6,
@@ -209,14 +203,12 @@
     "type": 1,
     "sp": 5134
   },
-  "Hanabusa": {},
   "Durant": {
     "s": 1,
     "cost": 6,
     "type": 5,
     "sp": 14337
   },
-  "Aldred": {},
   "Mikoto": {
     "s": 2,
     "cost": 5,
@@ -235,7 +227,6 @@
     "type": 1,
     "sp": 7920
   },
-  "Valerio": {},
   "Victor": {
     "s": 1,
     "cost": 7,
@@ -302,7 +293,6 @@
     "type": 1,
     "sp": 4892
   },
-  "Melsa": {},
   "Yuya": {
     "s": 2,
     "cost": 4,
@@ -327,7 +317,6 @@
     "type": 1,
     "sp": 4737
   },
-  "Su_Fang": {},
   "Fritz": {
     "s": 1,
     "cost": 3,
@@ -364,8 +353,6 @@
     "type": 1,
     "sp": 6397
   },
-  "Mitsuba": {},
-  "Tiki": {},
   "Wedding_Aoi": {
     "s": 1,
     "cost": 5,
@@ -378,9 +365,6 @@
     "type": 1,
     "sp": 5282
   },
-  "Wu_Kong": {},
-  "Delphi": {},
-  "Bellina": {},
   "Rex": {
     "s": 1,
     "cost": 5,
@@ -471,8 +455,6 @@
     "type": 4,
     "sp": 15360
   },
-  "Lazry": {},
-  "Lin_You": {},
   "Valentines_Melody": {
     "s": 2,
     "cost": 6,
@@ -533,7 +515,6 @@
     "type": 1,
     "sp": 4704
   },
-  "Xuan_Zang": {},
   "Emma": {
     "s": 1,
     "cost": 6,
@@ -576,7 +557,6 @@
     "type": 1,
     "sp": 13478
   },
-  "Botan": {},
   "Patia": {
     "s": 1,
     "cost": 5,
@@ -709,7 +689,6 @@
     "type": 1,
     "sp": 5116
   },
-  "Elias": {},
   "Norwin": {
     "s": 1,
     "cost": 4,
@@ -808,7 +787,6 @@
     "type": 1,
     "sp": 5126
   },
-  "Summer_Estelle": {},
   "Pipple": {
     "s": 1,
     "cost": 5,
@@ -851,14 +829,12 @@
     "type": 1,
     "sp": 7152
   },
-  "Mega_Man": {},
   "Lily": {
     "s": 1,
     "cost": 5,
     "type": 1,
     "sp": 4980
   },
-  "Yurius": {},
   "Maribelle": {
     "s": 1,
     "cost": 5,
@@ -877,7 +853,6 @@
     "type": 1,
     "sp": 18200
   },
-  "Radiant_Xuan_Zang": {},
   "Veronica": {
     "s": 1,
     "cost": 7,
@@ -980,7 +955,6 @@
     "type": 3,
     "sp": 10057
   },
-  "Felicia": {},
   "Cleo": {
     "s": 1,
     "cost": 3,
@@ -1023,7 +997,6 @@
     "type": 3,
     "sp": 10648
   },
-  "Grace": {},
   "Zethia": {
     "s": 1,
     "cost": 0,

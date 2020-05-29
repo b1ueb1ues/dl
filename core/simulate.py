@@ -83,7 +83,7 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
         return
     if isinstance(verbose, str):
         from conf import skillshare
-        if 'cost' not in skillshare[verbose] or verbose == classname.__name__:
+        if verbose not in skillshare or verbose == classname.__name__:
             raise Exception('no skill share')
         conf['skill_share'] = [verbose]
         verbose = 1

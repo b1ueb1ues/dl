@@ -30,21 +30,21 @@ class Marth(Adv):
         self.stance = 0
 
     def s1_proc(self, e):
-        self.afflics.burn('s1',120,0.97)
+        self.afflics.burn(e.name,120,0.97)
 
     def s2_proc(self, e):
         with KillerModifier('s2_killer', 'hit', 1.0, ['burn']):
-            self.dmg_make("s2", 8.99)
+            self.dmg_make(e.name, 8.99)
         if self.stance == 0:
             self.stance = 1
-            Selfbuff('s21',0.1,10).on()
+            Selfbuff(e.name,0.1,10).on()
         elif self.stance == 1:
             self.stance = 2
-            Teambuff('s22',0.1,10).on()
+            Teambuff(e.name,0.1,10).on()
         elif self.stance == 2:
             self.stance = 0
-            Teambuff('s23',0.1,10).on()
-            Spdbuff('s23s',0.3,10, wide='team').on()
+            Teambuff(e.name,0.1,10).on()
+            Spdbuff(f'{e.name}_spd',0.3,10, wide='team').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
