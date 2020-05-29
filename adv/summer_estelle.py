@@ -19,14 +19,14 @@ class Summer_Estelle(Adv):
     coab = ['Blade', 'Renee', 'Xander']
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
-    def c_s2_proc(self, e):
-        Teambuff('s2',0.15,15).on()
-
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.buff_class = Dummy if adv.slots.c.ele != 'water' else Teambuff if adv.condition('buff all team') else Selfbuff
+    
     def s2_proc(self, e):
-        Selfbuff('s2',0.15,15).on()
+        self.buff_class(e.name,0.15,15).on()
 
 
 if __name__ == '__main__':

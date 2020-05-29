@@ -24,7 +24,7 @@ class Summer_Luca(Adv):
             self.conf.slot.a = KFM()+HoH()
 
     def s2_proc(self, e):
-        Spdbuff('s2',0.2,10).on()
+        Spdbuff(e.name,0.2,10).on()
         self.energy.add(1.4) # means
 
 
