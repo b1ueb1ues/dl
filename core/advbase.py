@@ -1476,6 +1476,7 @@ class Adv(object):
 
 
     def config_skillshare(self):
+        preruns = []
         self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
             self.skillshare_list = self.conf['skill_share']
@@ -1523,9 +1524,10 @@ class Adv(object):
                 s.owner = owner
                 self.__setattr__(dst_key, s)
                 owner_module = load_adv_module(owner)
-                owner_module.prerun_skillshare(self)
+                preruns.append(owner_module.prerun_skillshare)
                 self.rebind_function(owner_module, f'{src_key}_proc', f'{dst_key}_proc')
             self.skills.append(self.__getattribute__(dst_key))
+        return preruns
 
     def run(self, d=300):
         self.duration = d
@@ -1568,6 +1570,7 @@ class Adv(object):
                     self.slots.c.a.append(ab)
 
         self.config_coabs()
+        preruns_ss = self.config_skillshare()
 
         if not ('forced' in self.conf.slots and self.conf.slots.forced):
             self.d_slots()
@@ -1581,8 +1584,9 @@ class Adv(object):
         self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)
 
-        self.config_skillshare()
         self.prerun()
+        for prerun in preruns_ss:
+            prerun(self)
 
         self.d_acl()
         self.acl_backdoor()

@@ -353,7 +353,7 @@ class Skill_Prep(Ability):
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
-        adv.charge_p('skill prep',self.value)
+        adv.charge_p('skill_prep',self.value)
 
 ability_dict['prep'] = Skill_Prep
 
