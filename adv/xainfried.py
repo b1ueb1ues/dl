@@ -22,10 +22,10 @@ class Xainfried(Adv):
 
     def s1_proc(self, e):
         with KillerModifier('s1_killer', 'hit', 0.30, ['frostbite']):
-            self.dmg_make("s1", 2.30)
+            self.dmg_make(e.name, 2.30)
             self.hits += 1
-            self.afflics.frostbite('s1',120,0.41)
-            self.dmg_make("s1", 6.90)
+            self.afflics.frostbite(e.name,120,0.41)
+            self.dmg_make(e.name, 6.90)
             self.hits += 3
 
     def s2_proc(self, e):

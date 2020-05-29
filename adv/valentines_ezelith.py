@@ -2,28 +2,26 @@ from core.advbase import *
 from slot.a import *
 
 def module():
-    return Valentines_Orion
+    return Valentines_Ezelith
 
-class Valentines_Orion(Adv):
+class Valentines_Ezelith(Adv):
+    a1 = ('ecombo',35)
+    a3 = ('bk',0.2)
+
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.a'] = Forest_Bonds()+Elegant_Escort()
     conf['acl'] = """
         `dragon
-        `s3, fsc and not self.s3_buff
+        `s3, not self.s3_buff
         `s1
-        `fs, x=3
+        `s2
+        `fs, seq=4
     """
     coab = ['Blade', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
 
-    def prerun(self):
-        self.dc_event = Event('defchain')
-
     def s1_proc(self, e):
-        self.afflics.burn('s1',100,0.803)
-
-    def s2_proc(self, e):
-        self.dc_event()
+        self.afflics.burn(e.name,110,0.883)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

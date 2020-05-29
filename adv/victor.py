@@ -18,11 +18,11 @@ class Victor(Adv):
 
     def prerun(self):
         random.seed()
-        self.bleed = Bleed("g_bleed",0).reset()
+        self.bleed = Bleed('g_bleed',0).reset()
 
     def s1_proc(self, e):
         if random.random() < 0.8:
-            Bleed("s1", 1.46).on()
+            Bleed(e.name, 1.46).on()
 
 
 if __name__ == '__main__':

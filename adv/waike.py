@@ -22,7 +22,7 @@ class Waike(Adv):
     conf['afflict_res.bog'] = 100
 
     def s2_proc(self, e):
-        self.afflics.bog.on('s2', 80)
+        self.afflics.bog.on(e.name, 80)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

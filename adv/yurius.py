@@ -47,22 +47,22 @@ class Yurius(Adv):
     def s1_proc(self, e):
         if self.dragondrive_buff.get():
             with KillerModifier('s1_killer', 'hit', 0.6, ['frostbite']):
-                self.dmg_make('s1', 7.92)
+                self.dmg_make(e.name, 7.92)
             self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
         else:
-            self.dmg_make('s1', 7.56)
+            self.dmg_make(e.name, 7.56)
             self.dragonform.charge_gauge(530, utp=True)
             self.inspiration.add(1, team=False)
 
     def s2_proc(self, e):
         if self.dragondrive_buff.get():
             with KillerModifier('s2_killer', 'hit', 0.6, ['frostbite']):
-                self.dmg_make('s2', 10.52)
+                self.dmg_make(e.name, 10.52)
             self.dragonform.add_drive_gauge_time(self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
         else:
-            self.dmg_make('s2', 2.08)
-            self.afflics.frostbite('s2',120,0.287,duration=30)
-            self.dmg_make('s2', 6.24)
+            self.dmg_make(e.name, 2.08)
+            self.afflics.frostbite(e.name,120,0.287,duration=30)
+            self.dmg_make(e.name, 6.24)
             self.dragonform.charge_gauge(530, utp=True)
             self.inspiration.add(2, team=False)
 

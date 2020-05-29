@@ -17,19 +17,13 @@ class Wedding_Elisanne(Adv):
         `s3, not self.s3_buff
         `s1,fsc and s2.charged<s2.sp-749
         `s2
-        `fs,seq=2 and cancel and ((s1.charged>=909 and not self.s2_debuff.get()) or s3.charged>=s3.sp)
-        `fs,seq=3 and cancel
+        `fs,x=2
     """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
 
-    def prerun(self):
-        self.s2_debuff = Debuff('s2defdown',0.15,10,1)
-        self.s2_defdown = self.condition('s2 defdown for 10s')
-
     def s2_proc(self, e):
-        if self.s2_defdown:
-            self.s2_debuff = Debuff('s2defdown',0.15,10,1).on()
-
+        if self.condition(f'{e.name} defdown for 10s'):
+            self.s2_debuff = Debuff(e.name,0.15,10,1).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

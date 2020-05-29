@@ -34,10 +34,14 @@ class Yachiyo(Adv):
     def prerun(self):
         self.fsa_charge = 0
 
+    @staticmethod
+    def prerun_skillshare(adv):
+        adv.fsa_charge = 0
+
     def s1_proc(self, e):
-        self.dmg_make('s1',4.32)
-        self.afflics.paralysis('s1',100,0.66)
-        self.dmg_make('s1',4.32)
+        self.dmg_make(e.name,4.32)
+        self.afflics.paralysis(e.name,100,0.66)
+        self.dmg_make(e.name,4.32)
 
     def s2_proc(self, e):
         # self.fso_dmg = self.conf.fs.dmg
@@ -49,7 +53,7 @@ class Yachiyo(Adv):
     def fs_proc(self, e):
         if self.fsa_charge:
             # self.conf.fs.dmg = self.fso_dmg
-            self.dmg_make("o_fs_boost",6.90)
+            self.dmg_make(f'o_{e.name}_boost',6.90)
             self.conf.fs.sp = self.fso_sp
             self.fsa_charge = 0
 

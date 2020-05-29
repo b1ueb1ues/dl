@@ -21,7 +21,7 @@ class Xuan_Zang(Adv):
 
     def s1_proc(self, e):
         if self.mod('def')!= 1:
-            self.dmg_make('o_s1_boost',2.51*3*0.2*0.91)
+            self.dmg_make(f'o_{e.name}_boost',2.51*3*0.2*0.91)
 
     def s2_proc(self, e):
         Debuff('s2_defdown',0.1,20,0.7).on()
