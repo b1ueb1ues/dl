@@ -75,7 +75,7 @@ class AfflicUncapped(object):
         self.name = name
         self.resist = 0
         self.rate = 1
-        self.rate_modifier = 0
+        self.res_modifier = 0
         self.tolerance = 0.2
         self.duration = 12
         self.states = None
@@ -114,7 +114,7 @@ class AfflicUncapped(object):
         nostack_p = 1.0
         for stack_p in self.stacks:
             nostack_p *= 1.0 - stack_p
-        self._get = min(1.0 + self.rate_modifier - nostack_p, 1)
+        self._get = 1.0 - nostack_p
 
     def stack_end_fun(self, p):
         def end_callback(t):
@@ -125,8 +125,8 @@ class AfflicUncapped(object):
     def __call__(self, *args, **argv):
         return self.on(*args, **argv)
 
-    def set_rate_mod(self, delta):
-        self.rate_modifier = min(self.rate_modifier + delta, 1)
+    def set_res_mod(self, delta):
+        self.res_modifier = min(self.res_modifier + delta, 1)
 
     def on(self):
         self.resist = self.get_resist()
@@ -138,6 +138,7 @@ class AfflicUncapped(object):
         states = defaultdict(lambda: 0.0)
         total_success_p = 0.0
         for res, state_p in self.states.items():
+            res -= self.res_modifier
             if res >= self.rate or res >= 1:
                 states[res] += state_p
             else:
@@ -176,6 +177,7 @@ class AfflicCapped(object):
         self.name = name
         self.resist = 0
         self.rate = 1
+        self.res_modifier = 0
         self.tolerance = 0.2
         self.default_duration = duration
         self.duration = duration
@@ -229,6 +231,9 @@ class AfflicCapped(object):
     def __call__(self, *args, **argv):
         return self.on(*args, **argv)
 
+    def set_res_mod(self, delta):
+        self.res_modifier = min(self.res_modifier + delta, 1)
+
     def on(self):
         self.resist = self.get_resist()
         self.rate = self.get_rate()
@@ -240,7 +245,7 @@ class AfflicCapped(object):
         states = defaultdict(lambda: 0.0)
         total_p = 0.0
         for start_state, start_state_p in self.states.items():
-            res = start_state.resist
+            res = start_state.resist - self.res_modifier
             if res >= self.rate or res >= 1 or len(start_state.timers) >= self.stack_cap:
                 states[start_state] += start_state_p
             else:

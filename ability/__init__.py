@@ -96,6 +96,11 @@ class Buff_Time(Ability):
 
 ability_dict['bt'] = Buff_Time
 
+class Debuff_Time(Ability):
+    def __init__(self, name, value, cond=None):
+        super().__init__(name, [('debuff','time',value, cond)])
+
+ability_dict['dbt'] = Debuff_Time
 
 class Killer(Ability):
     def __init__(self, name, value, cond=None):
@@ -170,7 +175,7 @@ class Co_Ability(Ability):
         'sharena': [('paralysis_killer', 'passive', 0.08)],
         'peony': [('light','ele',0.20)],
         'tiki': [('x','ex',0.20)],
-        'leif': [('debuff_def_killer', 'passive', 0.08),('debuff_attack_killer', 'passive', 0.08)]
+        'gleif': [('debuff_def_killer', 'passive', 0.08),('debuff_attack_killer', 'passive', 0.08)]
     }
     def __init__(self, name, value, cond=None):
         try:

@@ -161,3 +161,7 @@ tiki.py
 yurius.py
 forte.py
 wu_kong.py
+radiant_xuan_zang.py
+zhu_bajie.py
+sha_wujing.py
+gala_leif.py
