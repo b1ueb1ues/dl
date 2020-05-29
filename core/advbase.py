@@ -1348,6 +1348,10 @@ class Adv(object):
                 return True
         return False
 
+    @property
+    def is_sim_afflict(self):
+        return 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency == 1
+
     def l_idle(self, e):
         """
         Listener that is called when there is nothing to do.
