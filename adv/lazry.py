@@ -58,16 +58,16 @@ class Lazry(Adv):
         if self.mode == 'low_power':
             # 1.7699999809265137 + 1.7699999809265137 + 3.369999885559082
             # 120, 41 fb
-            self.dmg_make('s1', 1.77)
-            self.afflics.frostbite('s1',120,0.41)
+            self.dmg_make(e.name, 1.77)
+            self.afflics.frostbite(e.name,120,0.41)
             self.hits += 1
-            self.dmg_make('s1', 1.77+3.37)
+            self.dmg_make(e.name, 1.77+3.37)
             self.hits += 2
         else:
             # 1.0 + 1.0 + 1.0 + 5.730000019073486
             # 20 sd to next skill
             # 1.5666667222976685s
-            self.dmg_make('s1_high', 8.73)
+            self.dmg_make(f'{e.name}_high', 8.73)
             self.hits += 5
             Timer(self.s1_buff_on).on(0.001)
 
@@ -77,13 +77,13 @@ class Lazry(Adv):
     def s2_proc(self, e):
         if self.mode == 'low_power':
             # team 15 str 10 crit 15s
-            Teambuff('s2',0.15,15,'att','buff').on()
-            Teambuff('s2',0.10,15,'crit','chance').on()
+            Teambuff(e.name,0.15,15,'att','buff').on()
+            Teambuff(e.name,0.10,15,'crit','chance').on()
         else:
             # 2.4700000286102295 + 9.359999656677246
             # 2.5
             # recover s1 sp
-            self.dmg_make('s2_high',11.83)
+            self.dmg_make(f'{e.name}_high',11.83)
             self.hits += 2
             self.s1.charge(self.s1.sp)
 

@@ -15,7 +15,7 @@ class Lathna(Adv):
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
-        `s1a
+        `s1
         `s2, x=5
         """
     coab = ['Ieyasu','Audric','Forte']
@@ -70,11 +70,27 @@ class Lathna(Adv):
         Event('dragon').listener(self.a1_on)
         Event('idle').listener(self.a1_off)
 
-        self.a_s1 = self.s1.ac
-        self.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 2.00}))
+        a_s1 = self.s1.ac
+        a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 2.00}))
         def recovery():
-            return self.a_s1a._recovery + self.a_s1.getrecovery()
-        self.a_s1a.getrecovery = recovery
+            return a_s1a._recovery + a_s1.getrecovery()
+        a_s1a.getrecovery = recovery
+        self.s1.ac = a_s1a
+
+    @staticmethod
+    def prerun_skillshare(adv):
+        if 'Lathna' == adv.skillshare_list[0]:
+            s = adv.s3
+        elif 'Lathna' == adv.skillshare_list[1]:
+            s = adv.s4
+        else:
+            return
+        a_s1 = s.ac
+        a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 2.00}))
+        def recovery():
+            return a_s1a._recovery + a_s1.getrecovery()
+        a_s1a.getrecovery = recovery
+        s.ac = a_s1a
 
     def a1_on(self, e):
         if not self.faceless_god.get():
@@ -84,28 +100,14 @@ class Lathna(Adv):
         if self.faceless_god.get():
             self.faceless_god.off()
 
-    def s1back(self, t):
-        self.s1.ac = self.a_s1
-
-    def s1a(self):
-        if self.s1.check():
-            with Modifier("s1killer", "poison_killer", "hit", 0.5):
-                self.dmg_make("s1", 2.37*4)
-            self.s1.ac = self.a_s1a
-            Timer(self.s1back).on(self.conf.s1.startup+0.01)
-            self.hits += 4
-            return self.s1()
-        else:
-            return 0
-    
     def s1_proc(self, e):
-        with Modifier("s1killer", "poison_killer", "hit", 0.5):
-            self.dmg_make("s1", 2.37*3)
-            self.hits += 3
+        with KillerModifier('s1_killer', 'hit', 0.5, ['poison']):
+            self.dmg_make(e.name, 2.37*7)
+            self.hits += 7
 
     def s2_proc(self, e):
-        with Modifier("s2killer", "poison_killer", "hit", 0.5):
-            self.dmg_make("s2", 17.26)
+        with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
+            self.dmg_make(e.name, 17.26)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
