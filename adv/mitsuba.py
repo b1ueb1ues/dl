@@ -240,7 +240,7 @@ class Mitsuba(Adv):
 
     def queue_stance(self, stance):
         # assume you can swap stance instantly instead of on next auto, to simplify acl
-        if self.stance != stance and self.next_stance != stance:
+        if self.stance != stance and self.next_stance != stance and not self.skill._static.silence:
             log('stance', stance, 'queued')
             self.next_stance = stance
             self.update_stance()

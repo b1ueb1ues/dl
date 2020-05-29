@@ -190,6 +190,30 @@ class Tie_Shan_Gongzhu(DragonBase):
     ele = 'light'
     att = 124
     a = [('sp', 0.35)]
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.30,
+        'dx1.startup': 31 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.52,
+        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.45,
+        'dx3.startup': 42 / 60.0, # c3 frames
+        'dx3.recovery': 55 / 60.0, # recovery
+        'dx3.hit': 1,
+
+        'ds.recovery': 110 / 60, # skill frames
+        'ds.hit': 5,
+    }
+    def ds_proc(self):
+        count = self.adv.dmg_make('ds',7.00,'s')
+        self.adv.energy.add(5, team=True)
+        return count
+
 
 class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'

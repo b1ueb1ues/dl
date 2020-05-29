@@ -41,7 +41,7 @@ class Gala_Euden(Adv):
 
     def s1_proc(self, e):
         if self.s1on :
-            buff = Teambuff('s1str',-0.20,10,1,'att')
+            buff = Teambuff('s1str',-0.20,10,'att')
             buff.bufftime = buff._no_bufftime
             buff.on()
 

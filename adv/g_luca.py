@@ -11,9 +11,10 @@ class Gala_Luca(Adv):
     conf['slots.a'] = The_Wyrmclan_Duo()+Primal_Crisis()
     conf['acl'] = """
         `dragon
-        `s1
         `s2
+        `s1
         `s3, x=5
+        `fs, x=5
         """
     coab = ['Axe2','Dagger','Peony']
 

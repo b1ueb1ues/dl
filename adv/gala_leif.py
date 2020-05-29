@@ -59,15 +59,17 @@ class Gala_Leif(Adv):
         else
         `shielding
         end
+        `dragon.act('c3 s end')
+        `s3, not self.s3_buff
         `s1, not self.stance='shielding'
         `s2
-        `s3
+        `fs, x=3
     """
-    coab = ['Dragonyule_Xainfried', 'Blade', 'Dagger']
+    coab = ['Dragonyule_Xainfried', 'Blade', 'Lin_You']
     
     def prerun(self):
-        self.stance = 'striking'
-        self.next_stance = 'striking'
+        self.stance = 'shielding'
+        self.next_stance = 'shielding'
         self.stance_dict = {
             'striking': X_alt(self, 'striking', striking_conf, x_proc=self.l_stance_x),
             'shielding': X_alt(self, 'shielding', shielding_conf, x_proc=self.l_stance_x)
@@ -93,9 +95,9 @@ class Gala_Leif(Adv):
     def s2_proc(self, e):
         if self.stance == 'striking':
             with KillerModifier('s2_killer', 'hit', 0.2, ['poison']):
-                self.dmg_make(e.name, 5.46)
+                self.dmg_make(e.name, 4.91)
                 self.s2_attdown.on()
-                self.dmg_make(e.name, 5.46+6.0)
+                self.dmg_make(e.name, 4.91+5.40)
                 self.hits += 3
         else:
             with KillerModifier('s2_killer', 'hit', 0.2, ['debuff_def']):
@@ -114,7 +116,7 @@ class Gala_Leif(Adv):
         return False
 
     def update_stance(self):
-        if self.hits >= 20 and self.next_stance is not None:
+        if self.hits >= 6 and self.next_stance is not None and not self.skill._static.silence:
             curr_stance = self.stance_dict[self.stance]
             curr_stance.off()
             next_stance = self.stance_dict[self.next_stance]

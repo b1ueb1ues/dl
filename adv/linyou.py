@@ -6,7 +6,6 @@ def module():
     return Lin_You
 
 class Lin_You(Adv):
-    comment = '2in1 ' 
     a1 = [('cc',0.10,'hp70'), ('cc',0.20,'hit25'), ('cc',0.20,'hit50')]
     a3 = ('sp',0.08)
     conf = {}

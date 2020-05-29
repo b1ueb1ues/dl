@@ -2869,6 +2869,29 @@
             "startup": 0.25
         }
     },
+    "Radiant_Xuan_Zang": {
+        "c": {
+            "att": 485,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.6667,
+            "sp": 3000,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 4500,
+            "startup": 0.1
+        }
+    },
     "Raemond": {
         "c": {
             "att": 477,
@@ -3155,6 +3178,29 @@
             "hit": 4,
             "recovery": 2.2,
             "sp": 4593,
+            "startup": 0.1
+        }
+    },
+    "Sha_Wujing": {
+        "c": {
+            "att": 491,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3051,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.2667,
+            "sp": 8424,
             "startup": 0.1
         }
     },
@@ -4158,6 +4204,29 @@
             "recovery": 0.9,
             "sp": 5225,
             "startup": 0.1
+        }
+    },
+    "Zhu_Bajie": {
+        "c": {
+            "att": 515,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 1,
+            "recovery": 1.1667,
+            "sp": 2800,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5600,
+            "startup": 0.25
         }
     }
 }

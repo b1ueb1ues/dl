@@ -28,7 +28,7 @@ class Lazry(Adv):
     conf['afflict_res.frostbite'] = 0
 
     def low_power(self):
-        if self.mode != 'low_power':
+        if self.mode != 'low_power' and not self.skill._static.silence:
             log('stance', 'low_power')
             self.mode = 'low_power'
             self.s1.ac = self.a_s1
@@ -37,7 +37,7 @@ class Lazry(Adv):
         return False
 
     def high_power(self):
-        if self.mode != 'high_power':
+        if self.mode != 'high_power' and not self.skill._static.silence:
             log('stance', 'high_power')
             self.mode = 'high_power'
             self.s1.ac = self.a_s1a
