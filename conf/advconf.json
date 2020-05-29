@@ -1153,6 +1153,29 @@
             "startup": 0.1
         }
     },
+    "Gala_Leif": {
+        "c": {
+            "att": 456,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.1667,
+            "sp": 3456,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 8640,
+            "startup": 0.1
+        }
+    },
     "Gala_Luca": {
         "c": {
             "att": 517,
