@@ -35,12 +35,11 @@ class Radiant_Xuan_Zang(Adv):
     conf['afflict_res.paralysis'] = 0
 
     def fs_proc_alt(self, e):
-        self.afflics.paralysis.set_rate_mod(0.20)
+        self.afflics.paralysis.res_modifier = 0.20
         Timer(self.paralysis_rate_reset).on(20)
 
     def paralysis_rate_reset(self, t):
-        self.afflics.paralysis.set_rate_mod(-0.20)
-        pass
+        self.afflics.paralysis.res_modifier = 0
 
     def prerun(self):
         conf_fs_alt = {'fs.dmg':8.88}
