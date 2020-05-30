@@ -30,19 +30,18 @@ class Zhu_Bajie(Adv):
     a3 = ('ro', 0.10)
 
     conf = {}
-    conf['slots.a'] = Kung_Fu_Masters()+Mega_Friends()
-    conf['slots.paralysis.a'] = conf['slots.a']
+    conf['slots.a'] = Mega_Friends()+Dear_Diary()
     conf['slots.d'] = Cupid()
     conf['slots.paralysis.d'] = Corsaint_Phoenix()
     conf['acl'] = """
-        `s2
-        `s1
-        `fs3, x=1
+        `s2, fsc
+        `s1, fsc
+        `dodge, fsc
+        `fs3
         """
     coab = ['Blade','Grace','Peony']
 
     def prerun(self):
-        self.hp = 100
         self.conf.fs.hit = 1
         conf_alt_fs = {
             'fs1': {
@@ -75,10 +74,6 @@ class Zhu_Bajie(Adv):
         self.l_fs1 = Listener('fs1',self.l_fs1)
         self.l_fs2 = Listener('fs2',self.l_fs2)
         self.l_fs3 = Listener('fs3',self.l_fs3)
-
-    @staticmethod
-    def prerun_skillshare(self, dst):
-        self.hp = 100
 
     def do_fs(self, e, name):
         log('cast','fs')
@@ -117,7 +112,7 @@ class Zhu_Bajie(Adv):
 
     def s2_proc(self, e):
         if self.hp > 30:
-            self.hp = 20
+            self.set_hp(20)
         else:
             Selfbuff(e.name, 0.15, 10).on()
 

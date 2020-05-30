@@ -194,14 +194,36 @@ class BuffingAbility(Ability):
         super().__init__(name)
 
 class Last_Offense(BuffingAbility):
+    FORCED_PROC = True
     def __init__(self, name, value, duration=15):
         super().__init__(name, value, duration)
+        self.proc_chances = 1
 
     def oninit(self, adv, afrom=None):
-        if adv.condition('last offense'):
-            buff = adv.Buff(*self.buff_args)
-            buff.bufftime = buff._no_bufftime
-            buff.on()
+        def l_lo_buff(e):
+            if e.hp <= 30 and self.proc_chances > 0:
+                self.proc_chances -= 1
+                buff = adv.Buff(*self.buff_args)
+                buff.bufftime = buff._no_bufftime
+                buff.on()
+        adv.Event('hp').listener(l_lo_buff)
+
+        if Last_Offense.FORCED_PROC and adv.condition('last offense'):
+            def lo_damaged(t):
+                if adv.hp > 30:
+                    next_hp = adv.condition.hp_threshold_list()
+                    if next_hp and next_hp[0] < 30:
+                        adv.set_hp(next_hp)
+                    else:
+                        adv.set_hp(30)
+                    adv.Timer(lo_healed).on(10)
+            def lo_healed(t):
+                next_hp = adv.condition.hp_threshold_list(30)
+                try:
+                    adv.set_hp(next_hp[0])
+                except:
+                    adv.set_hp(100)
+            adv.Timer(lo_damaged).on(0.1)
 
 ability_dict['lo'] = Last_Offense
 
@@ -331,18 +353,38 @@ class Resilient_Offense(Ability):
         self.value = value
         if name == 'ro':
             self.proc_chances = 3
-            self.interval = interval or 180
+            self.interval = interval
+            self.hp_threshold = 30
         elif name == 'uo':
             self.proc_chances = 5
-            self.interval = interval or 30
+            self.interval = interval
+            self.hp_threshold = 70
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
-        if adv.condition('hp30 every {}s'.format(self.interval)):
-            def ro_buff(t):
-                adv.Buff(self.name,self.value, -1).on()
-            for i in range(self.proc_chances):
-                adv.Timer(ro_buff).on(self.interval*i)
+        def l_ro_buff(e):
+            if e.hp <= self.hp_threshold and self.proc_chances > 0:
+                self.proc_chances -= 1
+                adv.Buff(self.name, self.value, -1).on()
+        adv.Event('hp').listener(l_ro_buff)
+        def ro_damaged(t):
+            if adv.hp > self.hp_threshold:
+                next_hp = adv.condition.hp_threshold_list()
+                if next_hp and next_hp[0] < self.hp_threshold:
+                    adv.set_hp(next_hp)
+                else:
+                    adv.set_hp(self.hp_threshold)
+                adv.Timer(ro_healed).on(10)
+        def ro_healed(t):
+            next_hp = adv.condition.hp_threshold_list(self.hp_threshold)
+            try:
+                adv.set_hp(next_hp[0])
+            except:
+                adv.set_hp(100)
+        if self.interval and self.interval < adv.duration and adv.condition(f'hp={self.hp_threshold}% every {self.interval}s'):
+            for i in range(1, self.proc_chances):
+                adv.Timer(ro_damaged).on(self.interval*i)
+        adv.Timer(ro_damaged).on(0.1)
 
 ability_dict['ro'] = Resilient_Offense
 ability_dict['uo'] = Resilient_Offense

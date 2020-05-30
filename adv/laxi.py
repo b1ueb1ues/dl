@@ -20,15 +20,14 @@ class Laxi(Adv):
         '''
     coab = ['Dagger', 'Marth', 'Tiki']
 
-    def prerun(self):
-        self.hp = 0.0
-        
+    def prerun(self):  
         self.healed = 0
         self.heal = Action('heal')
         self.heal.conf.startup = 0.1
         self.heal.conf.recovery = 5.0
 
-        self.heal_initial = Timer(self.heal_proc,0).on()
+        self.set_hp(0)
+        self.heal_initial = Timer(self.heal_proc, 0).on()
         self.s2buff = Selfbuff('s2',0.15,-1)
         self.s2tick = Timer(self.s2_tick,2.9,1)
 
@@ -52,8 +51,7 @@ class Laxi(Adv):
             self.s2tick.off()
 
     def s2_tick(self, t):
-        if self.hp >= 4.0:
-            self.hp -= 3.5
+        self.set_hp(self.hp-3.5)
         if self.hp <= 30.0:
             self.a3buff.on()
             if self.healed == 0:
@@ -63,7 +61,7 @@ class Laxi(Adv):
 
     def heal_proc(self, t):
         self.healed = 1
-        self.hp = 100.0
+        self.set_hp(100)
         self.s2buff.off()
         self.s2tick.off()
         self.a3buff.off()

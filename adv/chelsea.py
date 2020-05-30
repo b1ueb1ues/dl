@@ -17,7 +17,6 @@ class Chelsea(Adv):
     coab = ['Blade', 'Grace', 'Serena']
 
     def prerun(self):
-        self.hp = 100
         self.obsession = 0
         self.s2_buffs = []
 
@@ -29,7 +28,6 @@ class Chelsea(Adv):
 
     @staticmethod
     def prerun_skillshare(adv, dst):
-        adv.hp = 100
         adv.a3 = Dummy()
         adv.a1atk = Dummy()
         adv.a1spd = Dummy()
@@ -42,62 +40,30 @@ class Chelsea(Adv):
         self.obsession = 0
 
     def dmg_before(self, name):
-        hpold = self.hp
-
+        new_hp = self.hp
         if name != 's1' and self.a3.get():
-            self.hp -= 3 * self.obsession
-
-        if self.hp <= 0:
-            self.hp = hpold
-        elif self.hp > 100:
-            self.hp = 100
-
-        if self.hp <= 30:
-            self.a1atk.on()
-            self.a1spd.on()
-        else:
-            self.a1atk.off()
-            self.a1spd.off()
+            new_hp -= 3 * self.obsession
+        self.update_hp(new_hp)
 
     def dmg_proc(self, name, amount):
-        hpold = self.hp
-
+        new_hp = self.hp
         if name == 's1' and self.a3.get():
-            self.hp += 7
-
-        if self.hp <= 0:
-            self.hp = hpold
-        elif self.hp > 100:
-            self.hp = 100
-
-        if self.hp <= 30:
-            self.a1atk.on()
-            self.a1spd.on()
-        else:
-            self.a1atk.off()
-            self.a1spd.off()
+            new_hp += 7
+        self.update_hp(new_hp)
 
     def s1_proc(self, e):
-        hpold = self.hp
-
-        if self.a3.get():
-            self.hp -= 3 * self.obsession
-
-        if self.hp <= 0:
-            self.hp = hpold
-        elif self.hp > 100:
-            self.hp = 100
-
-        if self.hp <= 30:
-            self.a1atk.on()
-            self.a1spd.on()
-        else:
-            self.a1atk.off()
-            self.a1spd.off()
-
         for _ in range(7):
             self.dmg_make(e.name,1.36)
             self.hits += 1
+
+    def update_hp(self, new_hp):
+        if new_hp <= 30:
+            self.a1atk.on()
+            self.a1spd.on()
+        else:
+            self.a1atk.off()
+            self.a1spd.off()
+        self.set_hp(new_hp)
 
     def s2_proc(self, e):
         self.s2_buffs.append(Selfbuff(e.name,0.3,60).on())

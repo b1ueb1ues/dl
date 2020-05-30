@@ -19,9 +19,6 @@ class Alfonse(Adv):
     """
     coab = ['Sharena','Dagger','Peony']
 
-    def prerun(self):
-        self.hp = 80
-
     def s1_before(self, e):
         Selfbuff('s1_buff',0.20,12).on()
 

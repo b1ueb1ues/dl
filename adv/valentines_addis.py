@@ -22,13 +22,8 @@ class Valentines_Addis(Adv):
     conf['afflict_res.poison'] = 0
 
     def prerun(self):
-        self.hp = 100
         self.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
         self.a3spd = Spdbuff('a3spd',0.10,-1)
-
-    @staticmethod
-    def prerun_skillshare(adv, dst):
-        adv.hp = 100
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 1.25, self.hp):
@@ -37,7 +32,7 @@ class Valentines_Addis(Adv):
 
     def s2_proc(self, e):
         if self.hp > 30:
-            self.hp = 20
+            self.set_hp(20)
             self.a3atk.on()
             self.a3spd.on()
 

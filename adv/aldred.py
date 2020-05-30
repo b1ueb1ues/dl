@@ -30,7 +30,6 @@ class Aldred(Adv):
         self.s2_stuff_timer = Timer(self.s2_stuff_off)
         self.s2_on = False
 
-        self.hp = 100
         self.conf.x1.utp = 120
         self.conf.x2.utp = 120
         self.conf.x3.utp = 120
@@ -77,7 +76,7 @@ class Aldred(Adv):
             # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
             if self.hp > 30:
                 self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
-                self.hp = 30
+                self.set_hp(30)
         # +1200 dd points
         # 1.3333333730697632s
 
@@ -92,7 +91,8 @@ class Aldred(Adv):
         self.s2_tick.off()
 
     def s2_degen(self, t):
-        self.hp = max(self.hp-6, 0)
+        if self.hp > 0:
+            self.set_hp(self.hp-6)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

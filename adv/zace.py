@@ -8,6 +8,7 @@ def module():
 class Zace(Adv):
     a1 = ('s',0.2)
     conf = {}
+    conf['slots.a'] = Heralds_of_Hinomoto()+Dear_Diary()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

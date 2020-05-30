@@ -9,7 +9,7 @@ class Mitsuhide(Adv):
     a3 = ('k_paralysis',0.3)
 
     conf = {}
-    conf['slots.a'] = TB()+Spirit_of_the_Season()
+    conf['slots.a'] = Twinfold_Bonds()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon
         `s1

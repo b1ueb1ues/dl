@@ -7,7 +7,7 @@ def module():
 
 class Cassandra(Adv):
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
-    a3 = ('ro', 0.15)
+    a3 = ('ro', 0.15, 180)
 
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
@@ -26,7 +26,7 @@ class Cassandra(Adv):
             self.coab = ['Curran','Berserker',"Blade"]
 
     def prerun(self):
-        self.hp = 80
+        self.set_hp(80)
 
     def s1_proc(self, e):
         self.afflics.poison(e.name,120,0.582)

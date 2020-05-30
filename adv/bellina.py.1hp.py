@@ -8,7 +8,7 @@ class Bellina(adv.bellina.Bellina):
 
     def prerun(self):
         super().prerun()
-        self.hp = 0
+        self.set_hp(0)
         self.a3_str.on()
         self.a3_spd.on()
 

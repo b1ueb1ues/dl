@@ -74,6 +74,8 @@ class Modifier(object):
     def get(self):
         if callable(self.mod_get) and not self.mod_get():
             return 0
+        if self.mod_condition is not None and not self._static.g_condition(self.mod_condition):
+            return 0
         return self.mod_value
 
     def on(self, modifier=None):
@@ -1068,12 +1070,26 @@ class Adv(object):
             pass
 
         self.hits = 0
+        self.hp = 100
+        self.hp_event = Event('hp')
         self.dragonform = None
 
         from module.tension import Energy, Inspiration
         self.energy = Energy()
         self.inspiration = Inspiration()
         self.tension = [self.energy, self.inspiration]
+
+    def set_hp(self, hp):
+        old_hp = self.hp
+        self.hp = max(min(hp, 100), 0)
+        if self.hp != old_hp:
+            if self.hp == 0:
+                log('hp', f'{self.hp/100:.0%}', f'{(self.hp-old_hp)/100:.0%}')
+            else:
+                log('hp', f'{self.hp/100:.0%}', f'{(self.hp-old_hp)/100:.0%}')
+            self.condition.hp_cond_set(self.hp)
+            self.hp_event.hp = self.hp
+            self.hp_event()
 
     def afflic_condition(self):
         if 'afflict_res' in self.conf:

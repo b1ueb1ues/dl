@@ -17,7 +17,7 @@ class Veronica(adv.veronica.Veronica):
 
     def prerun(self):
         super().prerun()
-        self.hp = 0
+        self.set_hp(0)
         self.a1_buff.on()
 
 if __name__ == '__main__':

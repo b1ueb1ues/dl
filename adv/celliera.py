@@ -21,13 +21,12 @@ class Celliera(Adv):
     coab = ['Dagger', 'Xander', 'Wand']
 
     def prerun(self):
-        self.hp = 100
         self.s2_buff = Selfbuff('s2',0.25,-1,'att','buff')
         self.frostbite = Timer(self.frostbite_damage, timeout=2.9, repeat=True)
 
     def frostbite_damage(self, t):
         if self.hp > 0:
-            self.hp -= 1
+            self.set_hp(self.hp-1)
 
     def fs_proc(self, e):
         if self.s2_buff.get():

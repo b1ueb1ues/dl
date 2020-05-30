@@ -9,7 +9,7 @@ class Zhu_Bajie(adv.zhu_bajie.Zhu_Bajie):
 
     def prerun(self):
         super().prerun()
-        self.hp = 0
+        self.set_hp(0)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -23,13 +23,8 @@ class Natalie(Adv):
             self.conf['slots.poison.a'] = The_Chocolatiers()+The_Plaguebringer()
 
     def prerun(self):
-        self.hp = 100
         self.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
         self.a3spd = Spdbuff('a3spd',0.10,-1)
-
-    @staticmethod
-    def prerun_skillshare(adv, dst):
-        adv.hp = 100
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 1, self.hp):
@@ -42,7 +37,7 @@ class Natalie(Adv):
 
     def s2_proc(self, e):
         if self.hp > 30:
-            self.hp = 20
+            self.set_hp(20)
             self.a3atk.on()
             self.a3spd.on()
         else:

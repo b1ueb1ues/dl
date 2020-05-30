@@ -95,8 +95,6 @@ class Bellina(Adv):
         self.a3_str = Modifier('a3', 'att', 'passive', 0.20)
         self.a3_spd = Spdbuff('a3',0.10,-1)
         
-        self.hp = 100
-
         self.a_s1 = self.s1.ac
         self.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 1.10}))
 
@@ -145,7 +143,7 @@ class Bellina(Adv):
             # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
             if self.hp > 30:
                 self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
-                self.hp = 30
+                self.set_hp(30)
                 self.a3_str.on()
                 self.a3_spd.on()
             # regular buff duration (?)

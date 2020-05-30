@@ -21,19 +21,17 @@ class Veronica(Adv):
 
     def prerun(self):
         # Teambuff('last',2.28,1).on()
-        self.hp = 100
         self.a1_buff = Selfbuff('a1', 0.30, -1, 's', 'buff')
 
     @staticmethod
     def prerun_skillshare(adv, dst):
-        adv.hp = 100
         adv.a1_buff = Dummy()
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 0.5, self.hp), KillerModifier('s1_killer', 'hit', 0.2, ['poison']):
             self.dmg_make(e.name, 19.05)
         if self.hp >= 50:
-            self.hp -= 10
+            self.set_hp(self.hp-10)
             self.charge_p(f'{e.name}_hpcut', 0.20, target=e.name)
             # assume you take bit more damage at and proc last destruction at some point
             if self.hp <= 50:
