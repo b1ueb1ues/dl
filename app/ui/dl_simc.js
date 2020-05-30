@@ -28,15 +28,17 @@ const amulet_name_override = {
     Spirit_of_the_Season_No_HP100: 'Spirit_of_the_Season',
     The_Fires_of_Hate_No_HP100: 'The_Fires_of_Hate',
 }
-function slots_icon_fmt(adv, ele, wt, slots) {
+function slots_icon_fmt(data) {
+    const adv = data[1];
+    const ele = data[3];
+    const wt = data[4];
     const img_urls = [];
     if (speshul.hasOwnProperty(adv) && Math.random() < 0.1) {
         img_urls.push('<img src="' + speshul[adv] + '" class="slot-icon character"/>');
     } else {
         img_urls.push('<img src="/dl-sim/pic/character/' + adv + '.png" class="slot-icon character"/>');
     }
-    const slots_list = slots.replace(/\[/g, '').split(']');
-    const amulets = slots_list[0].split('+');
+    const amulets = data.slice(6, 8);
     for (a of amulets) {
         if (amulet_name_override.hasOwnProperty(a)) {
             img_urls.push('<img src="/dl-sim/pic/amulet/' + amulet_name_override[a] + '.png" class="slot-icon amulet"/>');
@@ -44,11 +46,11 @@ function slots_icon_fmt(adv, ele, wt, slots) {
             img_urls.push('<img src="/dl-sim/pic/amulet/' + a + '.png" class="slot-icon"/>');
         }
     }
-    const dragon = slots_list[1];
+    const dragon = data[8];
     if (!dragon.startsWith('Unreleased')) {
         img_urls.push('<img src="/dl-sim/pic/dragon/' + dragon + '.png" class="slot-icon dragon"/>');
     }
-    const weapon = slots_list[2];
+    const weapon = data[9];
     if (weapon === 'HDT2' || (weapon === 'Agito1') || (weapon === 'Agito2')) {
         img_urls.push('<img src="/dl-sim/pic/weapon/' + weapon + '_' + ele + '_' + wt + '.png" class="slot-icon weapon"/>');
     }
@@ -57,7 +59,7 @@ function slots_icon_fmt(adv, ele, wt, slots) {
         img_urls.push('<img src="/dl-sim/pic/CleoDX.png" class="slot-icon placehold"/>');
         placehold -= 1;
     }
-    const coabs = slots_list[3].split('|');
+    const coabs = data.slice(10, 13);
     for (c of coabs) {
         if (WEAPON_TYPES.includes(c.toLowerCase())) {
             img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
@@ -70,6 +72,9 @@ function slots_icon_fmt(adv, ele, wt, slots) {
         }
     }
     return img_urls;
+}
+function slots_text_format(data) {
+    return '['+data.slice(6, 8).join('+')+']['+data[8]+']['+data[9]+']['+data.slice(10, 13).join('|')+']';
 }
 function populateSelect(id, data) {
     const t = id.split('-')[1];
@@ -109,9 +114,9 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     const total = parseInt(arr[0])
     total_dps = (total_dps == undefined) ? total : parseInt(total_dps);
     const adv = arr[1];
-    let slots = ' ' + arr[6];
-    const cond = (arr[7] != undefined && arr[7] != '<>' && arr[7].includes('<')) ? arr[7].replace('<', '&lt;').replace('>', '&gt;') : '';
-    const comment = (arr[8] != undefined) ? arr[8] : '';
+    let slots = ' ' + slots_text_format(arr);
+    const cond = (arr[15] != undefined && arr[15] != '<>' && arr[15].includes('<')) ? arr[15].replace('<', '&lt;').replace('>', '&gt;') : '';
+    const comment = (arr[16] != undefined) ? arr[16] : '';
     let cond_comment = [];
     let cond_comment_str = '';
     let cond_cpy_str = '';
@@ -135,7 +140,7 @@ function createDpsBar(resDiv, arr, extra, total_dps = undefined) {
     let colorIdx = 0;
     let damageTxtArr = [];
     let damageTxtBar = [];
-    for (let i = 9; i < arr.length; i++) {
+    for (let i = 17; i < arr.length; i++) {
         const dmg = arr[i].split(':')
         if (dmg.length == 2) {
             const dmg_val = parseInt(dmg[1]);
@@ -490,7 +495,7 @@ function runAdvTest() {
                     const result = res.test_output.split('\n');
                     const cond_true = result[1].split(',');
                     const name = name_fmt(cond_true[1]);
-                    const icon_urls = slots_icon_fmt(cond_true[1], cond_true[3], cond_true[4], cond_true[6]);
+                    const icon_urls = slots_icon_fmt(cond_true);
                     let copyTxt = '**' + name + ' ' + t + 's** ';
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($(
