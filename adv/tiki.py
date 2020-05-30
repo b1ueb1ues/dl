@@ -133,10 +133,16 @@ class Tiki(Adv):
         self.d_s3.check = lambda: False
         self.d_s3.charge = lambda sp: None
 
+        self.o_s4 = self.s4
+        self.d_s4 = Skill('s4', self.conf.s4+Conf({'sp': 0}))
+        self.d_s4.check = lambda: False
+        self.d_s4.charge = lambda sp: None
+
     def dragondrive_on(self, e):
         self.s1 = self.d_s1
         self.s2 = self.d_s2
         self.s3 = self.d_s3
+        self.s4 = self.d_s4
         self.charge_p('divine_dragon', 100)
         self.dragondrive_x.on()
 
@@ -144,6 +150,7 @@ class Tiki(Adv):
         self.s1 = self.o_s1
         self.s2 = self.o_s2
         self.s3 = self.o_s3
+        self.s4 = self.o_s4
         self.dragondrive_x.off()
 
     def s1_proc(self, e):

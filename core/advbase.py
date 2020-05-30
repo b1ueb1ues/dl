@@ -938,6 +938,7 @@ class Adv(object):
     conf_default.s1 = Conf({'dmg': 0, 'sp': 0, 'startup': 0.1, 'recovery': 1.9})
     conf_default.s2 = Conf({'dmg': 0, 'sp': 0, 'startup': 0.1, 'recovery': 1.9})
     conf_default.s3 = Conf({'dmg': 0, 'sp': 0, 'startup': 0.1, 'recovery': 1.9})
+    conf_default.s4 = Conf({'dmg': 0, 'sp': 0, 'startup': 0.1, 'recovery': 1.9})
     conf_default.dodge = Conf({'startup': 0, 'recovery': 43.0 / 60.0})
     conf_default.fsf = Conf({'startup': 0, 'recovery': 41.0 / 60.0})
     # conf_default.slots = Conf({'w':None,'d':None,'a':None})
@@ -1035,6 +1036,8 @@ class Adv(object):
         # skill init
         self.s1 = Skill('s1', self.conf.s1)
         self.s2 = Skill('s2', self.conf.s2)
+        self.s3 = Skill('s3', self.conf.s3)
+        self.s4 = Skill('s4', self.conf.s4)
 
         if self.conf.xtype == 'ranged':
             self.l_x = self.l_range_x
@@ -1477,16 +1480,14 @@ class Adv(object):
 
     @property
     def skills(self):
-        try:
-            return self.s1, self.s2, self.s3, self.s4
-        except AttributeError:
-            return self.s1, self.s2, self.s3
+        return self.s1, self.s2, self.s3, self.s4
 
     def config_skillshare(self):
         preruns = {}
-        self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
             self.skillshare_list = self.conf['skill_share'].copy()
+        else:
+            self.skillshare_list = self.share.copy()
         try:
             self.skillshare_list.remove(self.__class__.__name__)
         except:
@@ -1519,9 +1520,7 @@ class Adv(object):
         share_costs = 0
         for idx, owner in enumerate(self.skillshare_list):
             dst_key = f's{idx+3}'
-            if owner == 'Weapon':
-                self.__setattr__(dst_key, Skill(dst_key, self.conf[dst_key]))
-            else:
+            if owner != 'Weapon':
                 # I am going to spaget hell for this
                 sdata = skillshare[owner]
                 try:
