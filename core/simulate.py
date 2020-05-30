@@ -480,7 +480,7 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
         else:
             dps_mappings[k] = dmg['f'][k] / real_d
     for k in sorted(dmg['s']):
-        if k in ('s1', 's2', 's3'):
+        if k in ('s1', 's2', 's3', 's4'):
             dps_mappings['skill_{}'.format(k[1])] = dmg['s'][k] / real_d
         else:
             dps_mappings[k] = dmg['s'][k] / real_d
