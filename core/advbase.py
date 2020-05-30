@@ -1318,9 +1318,11 @@ class Adv(object):
             if buff.get() and buff.bufftype == 'debuff' and buff.val < 0:
                 dkey = f'debuff_{buff.mod_type}'
                 try:
-                    rates[dkey] = min(rates[dkey] + buff.chance, 1)
+                    rates[dkey] *= (1 - buff.chance)
                 except:
-                    rates[dkey] = buff.chance
+                    rates[dkey] = 1 - buff.chance
+            for dkey in rates.keys():
+                rates[dkey] = 1 - rates[dkey]
 
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):

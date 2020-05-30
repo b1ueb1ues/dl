@@ -63,11 +63,9 @@ class Gala_Leif(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
-        `s4
         `fs, x=3
     """
     coab = ['Dragonyule_Xainfried', 'Blade', 'Lin_You']
-    share = ['Curran']
     
     def prerun(self):
         self.stance = 'shielding'
