@@ -9,18 +9,13 @@ BASE_AFFLICT_UPTIME = {
 };
 WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
 RANGED = ['wand', 'bow', 'staff'];
+DEFAULT_SHARE = 'Ranzal'
+DEFAULT_SHARE_ALT = 'Elisanne'
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
 const speshul = {
-    Lily: 'https://cdn.discordapp.com/emojis/664261164208750592.png',
-    // Gala_Luca: 'https://cdn.discordapp.com/emojis/619420426770186240.png',
-    // Gala_Cleo: 'https://cdn.discordapp.com/emojis/637119887071772673.png',
-    // Gala_Elisanne: 'https://cdn.discordapp.com/emojis/651238318327201792.png',
-    // Gala_Euden: 'https://cdn.discordapp.com/emojis/495873033203089418.png',
-    // Gala_Ranzal: 'https://cdn.discordapp.com/emojis/512920940963692566.png',
-    // Gala_Sarisse: 'https://cdn.discordapp.com/emojis/622190324059734028.png',
-    // Gala_Mym: 'https://cdn.discordapp.com/emojis/589506568148615178.gif'
+    Lily: 'https://cdn.discordapp.com/emojis/664261164208750592.png'
 }
 const amulet_name_override = {
     Dear_Diary_Fast_RO: 'Dear_Diary',
@@ -74,7 +69,7 @@ function slots_icon_fmt(data) {
     return img_urls;
 }
 function slots_text_format(data) {
-    return '['+data.slice(6, 8).join('+')+']['+data[8]+']['+data[9]+']['+data.slice(10, 13).join('|')+']';
+    return '[' + data.slice(6, 8).join('+') + '][' + data[8] + '][' + data[9] + '][' + data.slice(10, 13).join('|') + ']';
 }
 function populateSelect(id, data) {
     const t = id.split('-')[1];
@@ -210,6 +205,27 @@ function getUrlVars() {
     });
     return vars;
 }
+function populateSkillShare(skillshare) {
+    $('#input-ss3').empty();
+    $('#input-ss3').append($('<option>Weapon</option>')
+        .attr({ id: 'ss3-weapon', value: '' }));
+    $('#input-ss4').empty();
+    for (const t of ['ss3', 'ss4']) {
+        let options = [];
+        for (const ss in skillshare) {
+            const ss_data = skillshare[ss];
+            const ss_repr = name_fmt(ss) + '\t(S' + ss_data['s'] + ': ' + ss_data['sp'] + ' SP, ' + ss_data['cost'] + ' Cost)';
+            options.push($('<option>' + ss_repr + '</option>')
+                .attr({ id: t + '-' + ss, value: ss }))
+        }
+        options.sort((a, b) => {
+            if (a[0].innerText < b[0].innerText) return -1;
+            if (a[0].innerText > b[0].innerText) return 1;
+            return 0;
+        })
+        $('#input-' + t).append(options);
+    }
+}
 function loadAdvWPList() {
     let selectedAdv = 'euden';
     let urlVars = getUrlVars();
@@ -232,6 +248,7 @@ function loadAdvWPList() {
                 populateSelect('#input-wp1', advwp.amulets);
                 populateSelect('#input-wp2', advwp.amulets);
 
+                populateSkillShare(advwp.skillshare);
                 loadAdvSlots();
             }
         },
@@ -269,6 +286,25 @@ function loadAdvSlots() {
                     const check = $("input[id$='-" + c.toLowerCase() + "']");
                     check.prop('checked', true);
                     coabSelection(1);
+                }
+
+                for (const t of ['ss3', 'ss4']) {
+                    $('#input-' + t + ' > option').prop('disabled', false);
+                    $('#' + t + '-' + slots.adv.fullname).prop('disabled', true);
+                }
+                if (slots.adv.pref_share[0]) {
+                    $('#ss3-' + slots.adv.pref_share[0]).prop('selected', true);
+                } else {
+                    $('#ss3-weapon').prop('selected', true);
+                }
+                if (slots.adv.pref_share[1]) {
+                    $('#ss4-' + slots.adv.pref_share[1]).prop('selected', true);
+                } else {
+                    if (slots.adv.fullname === DEFAULT_SHARE) {
+                        $('#ss4-' + DEFAULT_SHARE_ALT).prop('selected', true);
+                    } else {
+                        $('#ss4-' + DEFAULT_SHARE).prop('selected', true);
+                    }
                 }
 
                 if (RANGED.includes(slots.adv.wt)) {
@@ -375,7 +411,7 @@ function buildCoab(coab, fullname, weapontype) {
     $('#input-coabs').data('max', 3);
     let found_fullname = null;
     $('#input-coabs').data('selected', 0);
-    for (k in coab) {
+    for (const k in coab) {
         const cid = 'coab-' + k.toLowerCase();
         const kcoab = coab[k];
         const wrap = $('<div></div>').addClass('custom-control custom-checkbox custom-control-inline');
@@ -418,16 +454,30 @@ function buildCoab(coab, fullname, weapontype) {
     check.prop('checked', true);
     check.removeClass('coab-check');
 }
-function readCoabDict() {
+function readCoabList() {
     const coabList = $('input:checked.coab-check');
     if (coabList.length === 0) {
         return null;
     } else {
-        coabilities = {};
+        const coabilities = [];
         coabList.each(function (idx, res) {
-            coabilities[$(res).data('name')] = [$(res).data('chain'), $(res).data('ex')];
+            coabilities.push($(res).data('name'));
         });
         return coabilities;
+    }
+}
+function readSkillShare() {
+    const skillShare = [];
+    if ($('#input-ss3').val() != '') {
+        skillShare.push($('#input-ss3').val());
+    }
+    if ($('#input-ss4').val() != '') {
+        skillShare.push($('#input-ss4').val());
+    }
+    if (skillShare.length === 0) {
+        return null;
+    } else {
+        return skillShare;
     }
 }
 function runAdvTest() {
@@ -445,7 +495,8 @@ function runAdvTest() {
         requestJson['wp1'] = $('#input-wp1').val();
         requestJson['wp2'] = $('#input-wp2').val();
     }
-    requestJson['coab'] = readCoabDict();
+    requestJson['share'] = readSkillShare();
+    requestJson['coab'] = readCoabList();
     const t = $('#input-t').val();
     if (!isNaN(parseInt(t))) {
         requestJson['t'] = t;

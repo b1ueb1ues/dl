@@ -14,11 +14,11 @@ import slot.a
 import slot.d
 import slot.w
 from core.afflic import AFFLICT_LIST
-from conf import coability_dict
+from conf import coability_dict, skillshare
 app = Flask(__name__)
 
 # Helpers
-ROOT_DIR = os.getenv('ROOT_DIR', '.')
+ROOT_DIR = os.getenv('ROOT_DIR', '..')
 ADV_DIR = 'adv'
 MEANS_ADV = {
     'addis': 'addis.py.means.py',
@@ -192,13 +192,8 @@ def simc_adv_test():
     t   = 180 if not 't' in params else abs(float(params['t']))
     log = -2
     mass = 25 if adv_name in MASS_SIM_ADV and adv_name not in MEANS_ADV else 0
-    if 'coab' not in params:
-        coab = None
-    else:
-        try:
-            coab = list(params['coab'].keys())
-        except:
-            coab = []
+    coab = None if 'coab' not in params else params['coab']
+    share = None if 'share' not in params else params['share']
     # latency = 0 if 'latency' not in params else abs(float(params['latency']))
     print(params, flush=True)
 
@@ -219,6 +214,8 @@ def simc_adv_test():
             conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
     if coab is not None:
         conf['coabs'] = coab
+    if share is not None:
+        conf['skill_share'] = share
     for afflic in AFFLICT_LIST:
         try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)
@@ -272,6 +269,7 @@ def get_adv_slotlist():
             'wp2': type(adv_instance.slots.a.a2).__qualname__
         }
         result['adv']['pref_coab'] = adv_instance.coab
+        result['adv']['pref_share'] = adv_instance.share
         result['adv']['acl'] = adv_instance.conf.acl
         if 'afflict_res' in adv_instance.conf:
             res_conf = adv_instance.conf.afflict_res
@@ -296,4 +294,5 @@ def get_adv_wp_list():
     result = {}
     result['amulets'] = list_members(slot.a, is_amulet)
     result['adv'] = list(ADV_MODULES.keys())
+    result['skillshare'] = dict(sorted(skillshare.items()))
     return jsonify(result)

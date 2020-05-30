@@ -87,7 +87,7 @@ class WeaponBase(Slot):
     s3 = Conf()
     ele = [] # or ''
 
-    def setup(self, c):
+    def setup(self, c, adv):
         super(WeaponBase, self).setup(c)
         if type(self.ele) == list:
             for i in self.ele:
@@ -95,11 +95,13 @@ class WeaponBase(Slot):
                     self.onele = 1
                     break
 
-        if self.onele :
+        if self.onele:
             self.att *= 1.5
-            self.conf.s3 = Conf(self.s3)
-        elif 'all' in self.ele :
-            self.conf.s3 = Conf(self.s3)
+            if adv is not None and adv.s3.owner is None:
+                self.conf.s3 = Conf(self.s3)
+        elif 'all' in self.ele:
+            if adv is not None and adv.s3.owner is None:
+                self.conf.s3 = Conf(self.s3)
 
         if self.wt == 'axe':
             self.mod.append(('crit','chance',0.04))
@@ -177,7 +179,7 @@ class Amuletempty(object):
     stype = 'a2'
     def oninit(self,adv):
         return
-    def setup(self, c):
+    def setup(self, c, adv):
         return
 
 
@@ -229,9 +231,9 @@ class Slots(object):
         self.d = None
         self.a = None
 
-    def __setup(self):
+    def __setup(self, adv):
         self.c.setup()
-        self.w.setup(self.c)
+        self.w.setup(self.c, adv)
         self.d.setup(self.c)
         self.a.setup(self.c)
 
@@ -239,7 +241,7 @@ class Slots(object):
     def oninit(self, adv):
         tmp = copy.deepcopy(self)
         self.tmp = tmp
-        tmp.__setup()
+        tmp.__setup(adv)
         tmp.c.oninit(adv)
         tmp.w.oninit(adv)
         tmp.d.oninit(adv)
@@ -258,7 +260,7 @@ class Slots(object):
     def att(self, forte=None):
         tmp = copy.deepcopy(self)
         self.tmp = tmp
-        tmp.__setup()
+        tmp.__setup(None)
         if not forte:
             return tmp.c.att + tmp.d.att + tmp.w.att + tmp.a.att
         # return tmp.c.att*forte.c(tmp.c.ele,tmp.c.wt) + tmp.d.att*forte.d(tmp.d.ele) + tmp.w.att + tmp.a.att
@@ -267,17 +269,3 @@ class Slots(object):
 import slot.d as d
 import slot.w as w
 import slot.a as a
-
-def main():
-    s = Slots('elisanne')
-    import slot
-    slot.DragonBase = DragonBase
-    #slot.d.base(DragonBase)
-    import slot.d.water
-    import slot.d.flame
-    s.d = slot.d.water.Dragon()
-    s.setup()
-    print(s.d.att)
-
-if __name__ == "__main__":
-    main()

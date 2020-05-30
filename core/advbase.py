@@ -1486,7 +1486,7 @@ class Adv(object):
         preruns = {}
         self.skillshare_list = self.share.copy()
         if 'skill_share' in self.conf:
-            self.skillshare_list = self.conf['skill_share']
+            self.skillshare_list = self.conf['skill_share'].copy()
         try:
             self.skillshare_list.remove(self.__class__.__name__)
         except:
@@ -1532,15 +1532,27 @@ class Adv(object):
                 if share_limit < share_costs:
                     raise ValueError(f'Skill share exceed cost {(*self.skillshare_list, share_costs)}.')
                 src_key = f's{sdata["s"]}'
-                owner_conf = Conf(advconfs[owner])
-                owner_conf[src_key].sp = sdata['sp'] * sp_modifier
-                self.conf[dst_key] = Conf(owner_conf[src_key])
-                s = Skill(dst_key, owner_conf[src_key])
-                s.owner = owner
-                self.__setattr__(dst_key, s)
-                owner_module = load_adv_module(owner)
-                preruns[dst_key] = owner_module.prerun_skillshare
-                self.rebind_function(owner_module, f'{src_key}_proc', f'{dst_key}_proc')
+                try:
+                    owner_conf = Conf(advconfs[owner])
+                    owner_conf[src_key].sp = sdata['sp'] * sp_modifier
+                    self.conf[dst_key] = Conf(owner_conf[src_key])
+                    s = Skill(dst_key, owner_conf[src_key])
+                    s.owner = owner
+                    self.__setattr__(dst_key, s)
+                    owner_module = load_adv_module(owner)
+                    preruns[dst_key] = owner_module.prerun_skillshare
+                    self.rebind_function(owner_module, f'{src_key}_proc', f'{dst_key}_proc')
+                except:
+                    # placeholder for healer skill share
+                    default_skill = Conf({
+                        'dmg': 0,
+                        'hit': 0,
+                        'recovery': 1.8,
+                        'sp': sdata['sp'] * sp_modifier,
+                        'startup': 0.1
+                    })
+                    self.conf[dst_key] = default_skill
+                    self.__setattr__(dst_key, Skill(dst_key, default_skill))
         return preruns
 
     def run(self, d=300):
