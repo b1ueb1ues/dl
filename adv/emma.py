@@ -22,6 +22,7 @@ class Emma(Adv):
         `fs, x=5
         """
     coab = ['Tobias', 'Tiki', 'Bow']
+    share = ['Patia','Summer_Luca']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

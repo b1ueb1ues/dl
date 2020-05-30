@@ -15,10 +15,12 @@ class Noelle(Adv):
     conf['slots.a'] = A_Dogs_Day()+Primal_Crisis()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s4
         `s1
+        `s3
         """
     coab = ['Tiki','Tobias','Bow']
+    share = ['Patia','Summer_Luca']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

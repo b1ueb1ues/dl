@@ -13,10 +13,13 @@ class Gala_Elisanne(Adv):
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
+        `s4
         `s1
+        `s3
         `fsf, x=4
     """
     coab = ['Bow','Tobias', 'Renee']
+    share = ['Patia','Summer_Luca']
     
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

@@ -77,10 +77,12 @@ class Tobias(Adv):
     conf['slots.poison.a'] = conf['slots.a']
     conf['slots.d'] = Freyja()
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s4
         `s1
+        `s3
     """
     coab = ['Bow','Blade','Tiki']
+    share = ['Patia','Summer_Luca']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
