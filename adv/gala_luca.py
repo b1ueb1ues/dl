@@ -52,7 +52,7 @@ class Gala_Luca(Adv):
 
     def buff_icon_count(self):
         # not entirely accurate to game, but works fine in the scope of s2 + the 3 a1 buffs
-        return len(set([b.name for b in self.all_buffs]))
+        return min(len(set([b.name for b in self.all_buffs])), 7)
 
     def custom_crit_mod(self, name):
         if name == 'test':
