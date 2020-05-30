@@ -34,7 +34,7 @@ function slots_icon_fmt(data) {
         img_urls.push('<img src="/dl-sim/pic/character/' + adv + '.png" class="slot-icon character"/>');
     }
     const amulets = data.slice(6, 8);
-    for (a of amulets) {
+    for (const a of amulets) {
         if (amulet_name_override.hasOwnProperty(a)) {
             img_urls.push('<img src="/dl-sim/pic/amulet/' + amulet_name_override[a] + '.png" class="slot-icon amulet"/>');
         } else {
@@ -54,16 +54,24 @@ function slots_icon_fmt(data) {
         img_urls.push('<img src="/dl-sim/pic/CleoDX.png" class="slot-icon placehold"/>');
         placehold -= 1;
     }
+    img_urls.push(' | ');
     const coabs = data.slice(10, 13);
-    for (c of coabs) {
+    for (const c of coabs) {
         if (WEAPON_TYPES.includes(c.toLowerCase())) {
             img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
         } else {
             if (c === 'Axe2') {
                 img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
             } else {
-                img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon"/>');
+                img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon coab unique"/>');
             }
+        }
+    }
+    img_urls.push(' | ');
+    const share = data.slice(13, 15);
+    for (const s of share) {
+        if (s != '' && s != 'Weapon') {
+            img_urls.push('<img src="/dl-sim/pic/character/' + s + '.png" class="slot-icon skillshare"/>');
         }
     }
     return img_urls;
@@ -551,8 +559,7 @@ function runAdvTest() {
                     let newResultItem = $('<div></div>').attr({ class: 'test-result-item' });
                     newResultItem.append($(
                         '<h4 class="test-result-slot-grid"><div>' +
-                        icon_urls[0] + '</div><div>' + name + '</div><div>' +
-                        icon_urls.slice(1, 5).join('') + ' | ' + icon_urls.slice(5).join('') + '</div></h4>'));
+                        icon_urls[0] + '</div><div>' + name + '</div><div>' + icon_urls.slice(1).join('') + '</div></h4>'));
                     copyTxt += createDpsBar(newResultItem, cond_true, res.extra, undefined);
                     if (result.length > 2 && result[2].includes(',')) {
                         cond_false = result[2].split(',');
