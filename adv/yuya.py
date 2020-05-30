@@ -33,7 +33,7 @@ class Yuya(Adv):
             Selfbuff('a1',-0.2,-1,'att','passive').on()
 
     def s1_proc(self, e):
-        Spdbuff('s1',0.2,10)
+        Spdbuff(e.name,0.2,10).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

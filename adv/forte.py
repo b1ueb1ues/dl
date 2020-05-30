@@ -23,19 +23,19 @@ class Forte(Adv):
     coab = ['Ieyasu','Wand','Bow']
 
     def prerun(self):
-        self.dgauge = 4
+        self.dgauge_charge = 4
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
-        adv.dgauge = 0
+    def prerun_skillshare(adv, dst):
+        adv.dgauge_charge = 0
 
     def s1_proc(self, e):
-        self.dragonform.charge_gauge(self.dgauge, dhaste=False)
+        self.dragonform.charge_gauge(self.dgauge_charge, dhaste=False)
         with KillerModifier('s1_killer', 'hit', 0.3, ['poison']):
             self.dmg_make(e.name, 11.34)
 
     def s2_proc(self, e):
-        self.dragonform.charge_gauge(self.dgauge, dhaste=False)
+        self.dragonform.charge_gauge(self.dgauge_charge, dhaste=False)
         Selfbuff(e.name, 0.20, 15, 'att', 'buff')
 
 if __name__ == '__main__':

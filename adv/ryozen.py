@@ -16,7 +16,7 @@ class Ryozen(Adv):
     coab = ['Blade','Dagger','Peony']
     
     def s1_proc(self, e):
-        Teambuff('s1', 0.25, 15, 'defense').on()
+        Teambuff(e.name, 0.25, 15, 'defense').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

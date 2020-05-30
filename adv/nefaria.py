@@ -38,10 +38,10 @@ class Nefaria(Adv):
         
     def s1_proc(self, e):
         with KillerModifier('s1killer', 'hit', 0.74, ['blind', 'poison']):
-            self.dmg_make('s1',1.06)
+            self.dmg_make(e.name,1.06)
             self.hits += 1
-            self.afflics.poison('s1', 70, 0.582)
-            self.dmg_make('s1',7*1.06)
+            self.afflics.poison(e.name, 70, 0.582)
+            self.dmg_make(e.name,7*1.06)
             self.hits += 7
 
     def s2_proc(self, e):

@@ -1,14 +1,14 @@
 from core.advbase import *
 from slot.a import Forest_Bonds, Primal_Crisis
-import adv.v_addis
+import adv.valentines_addis
 
 def module():
     return Valentines_Addis
 
-class Valentines_Addis(adv.v_addis.Valentines_Addis):
+class Valentines_Addis(adv.valentines_addis.Valentines_Addis):
     comment = 'no s2'
 
-    conf = adv.v_addis.Valentines_Addis.conf.copy()
+    conf = adv.valentines_addis.Valentines_Addis.conf.copy()
     def prerun(self):
         super().prerun()
         self.hp = 0

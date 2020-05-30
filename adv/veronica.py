@@ -25,7 +25,7 @@ class Veronica(Adv):
         self.a1_buff = Selfbuff('a1', 0.30, -1, 's', 'buff')
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst):
         adv.hp = 100
         adv.a1_buff = Dummy()
 
@@ -34,7 +34,7 @@ class Veronica(Adv):
             self.dmg_make(e.name, 19.05)
         if self.hp >= 50:
             self.hp -= 10
-            self.charge_p('s1_hpcut', 0.20, target=e.name)
+            self.charge_p(f'{e.name}_hpcut', 0.20, target=e.name)
             # assume you take bit more damage at and proc last destruction at some point
             if self.hp <= 50:
                 self.a1_buff.on()

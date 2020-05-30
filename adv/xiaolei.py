@@ -16,8 +16,8 @@ class Xiao_Lei(Adv):
     coab = ['Blade','Dagger','Peony']
 
     def s2_proc(self, e):
-        Teambuff('s2cc',0.08,10,'crit','rate').on()
-        Teambuff('s2cd',0.40,10,'crit','dmg').on()
+        Teambuff(f'{e.name}_cc',0.08,10,'crit','rate').on()
+        Teambuff(f'{e.name}_cd',0.40,10,'crit','dmg').on()
 
 
 

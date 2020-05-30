@@ -35,7 +35,7 @@ class Laxi(Adv):
         self.a3buff = Selfbuff('a3',0.2,-1,'att','passive')
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst):
         adv.s2buff = Dummy()
 
     def s1_proc(self, e):

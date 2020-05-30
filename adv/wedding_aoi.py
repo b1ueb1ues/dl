@@ -38,7 +38,7 @@ class Wedding_Aoi(Adv):
             pass
 
     def s2_proc(self, e):
-        with Modifier("s1killer", "sleep_killer", "hit", 1):
+        with KillerModifier('s2_killer', 'hit', 0.5, ['sleep']):
             self.dmg_make(e.name,5*1.40)
 
 

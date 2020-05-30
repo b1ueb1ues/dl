@@ -322,13 +322,13 @@ class Valerio(Adv):
         return self.queue_stance('dessert')
 
     def s1_proc(self, e):
-        self.dmg_make('s1', self.s1_mod[self.stance])
+        self.dmg_make(e.name, self.s1_mod[self.stance])
         self.hits += 1
         if self.stance == 'appetizer':
-            self.afflics.frostbite('s1',120,0.41)
+            self.afflics.frostbite(e.name,120,0.41)
             self.s1_debuff.on()
         for _ in range(5):
-            self.dmg_make('s1', self.s1_mod[self.stance])
+            self.dmg_make(e.name, self.s1_mod[self.stance])
             self.hits += 1
 
     def s2_proc(self, e):

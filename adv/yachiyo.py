@@ -34,10 +34,6 @@ class Yachiyo(Adv):
     def prerun(self):
         self.fsa_charge = 0
 
-    @staticmethod
-    def prerun_skillshare(adv):
-        adv.fsa_charge = 0
-
     def s1_proc(self, e):
         self.dmg_make(e.name,4.32)
         self.afflics.paralysis(e.name,100,0.66)

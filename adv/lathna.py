@@ -78,10 +78,10 @@ class Lathna(Adv):
         self.s1.ac = a_s1a
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
-        s = adv.__getattribute__(dst_key)
+    def prerun_skillshare(adv, dst):
+        s = adv.__getattribute__(dst)
         a_s1 = s.ac
-        a_s1a = S(dst_key, Conf({'startup': 0.10, 'recovery': 2.00}))
+        a_s1a = S(dst, Conf({'startup': 0.10, 'recovery': 2.00}))
         def recovery():
             return a_s1a._recovery + a_s1.getrecovery()
         a_s1a.getrecovery = recovery

@@ -28,7 +28,7 @@ class Chelsea(Adv):
         Event('dragon').listener(self.s2_clear)
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         adv.hp = 100
         adv.a3 = Dummy()
         adv.a1atk = Dummy()

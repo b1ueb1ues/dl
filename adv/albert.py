@@ -37,7 +37,7 @@ class Albert(Adv):
         self.s1_hits = 6 if self.condition('big hitbox') else 4
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         adv.s2buff = Dummy()
 
     def fs_alt_end(self,t):

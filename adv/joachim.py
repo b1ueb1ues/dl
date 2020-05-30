@@ -21,27 +21,26 @@ class Joachim(Adv):
     conf['afflict_res.poison'] = 0
 
     def init(self):
-        self.s1_stance = 1
+        self.phase['s1'] = 0
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
-        adv.s1_stance = 1
+    def prerun_skillshare(adv, dst):
+        adv.phase[dst] = 0
 
     def s1_proc(self, e):
         with KillerModifier('s1_killer', 'hit', 0.8, ['poison']):
             coef = 2.2
             self.dmg_make(e.name, coef)
 
-            if self.s1_stance == 1:
+            self.phase[e.name] += 1
+            if self.phase[e.name] == 1:
                 self.afflics.poison(e.name,110, 0.53)
-                self.s1_stance = 2
-            elif self.s1_stance == 2:
+            elif self.phase[e.name] == 2:
                 self.afflics.poison(e.name,160, 0.53)
-                self.s1_stance = 3
-            elif self.s1_stance == 3:
+            elif self.phase[e.name] == 3:
                 Teambuff(e.name,0.15,10).on()
                 self.afflics.poison(e.name,160, 0.53)
-                self.s1_stance = 1
+            self.phase[e.name] %= 3
 
             self.dmg_make(e.name, coef)
 

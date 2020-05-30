@@ -21,7 +21,7 @@ class Sinoa(Adv):
         self.s1_buff_mode = 'means'
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst):
         adv.s1_buff_mode = 'means'
 
     def s1_proc(self, e):

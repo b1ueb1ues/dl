@@ -19,10 +19,6 @@ class Summer_Luca(Adv):
         """
     coab = ['Blade','Dagger','Peony']
 
-    def d_slots(self):
-        if self.slots.c.has_ex('bow'):
-            self.conf.slot.a = KFM()+HoH()
-
     def s2_proc(self, e):
         Spdbuff(e.name,0.2,10).on()
         self.energy.add(1.4) # means

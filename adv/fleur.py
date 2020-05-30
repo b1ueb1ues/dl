@@ -23,34 +23,26 @@ class Fleur(Adv):
     conf['afflict_res.paralysis'] = 0
 
     def init(self):
-        self.s1_stance = 1
+        self.phase['s1'] = 0
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
-        adv.s1_stance = 1
+    def prerun_skillshare(adv, dst):
+        adv.phase[dst] = 0
 
     def s1_proc(self, e):
         with Modifier('s1killer', 'paralysis_killer', 'hit', 0.8):
             coef = 3.33
             self.dmg_make(e.name, coef)
-
-            if self.s1_stance == 1:
-                self.afflics.paralysis(e.name,110, 0.883)
-                self.s1_stance = 2
-            elif self.s1_stance == 2:
+            self.phase[e.name] += 1
+            if self.phase[e.name] == 1:
+                self.afflics.paralysis(e.name,110,0.883)
+            else:
                 self.afflics.paralysis(e.name,160, 0.883)
-                self.s1_stance = 3
-            elif self.s1_stance == 3:
-                self.afflics.paralysis(e.name,160, 0.883)
-                self.s1_stance = 1
-
             self.dmg_make(e.name, coef)
-
+            self.phase[e.name] %= 3
 
     def s2_proc(self, e):
         self.s1.charge(self.s1.sp)
-
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

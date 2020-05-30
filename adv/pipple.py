@@ -26,17 +26,18 @@ class Pipple(Adv):
     coab = ['Tiki', 'Xander', 'Axe2']
 
     def prerun(self):
-        self.stance = 0
+        self.phase['s1'] = 0
+
+    @staticmethod
+    def prerun_skillshare(self, dst):
+        self.phase[dst] = 0
 
     def s1_proc(self, e):
-        Teambuff('s1', 0.25, 15, 'defense').on()
-        if self.stance == 0:
-            self.stance = 1
-        elif self.stance == 1:
-            self.stance = 2
-        elif self.stance == 2:
+        Teambuff(e.name, 0.25, 15, 'defense').on()
+        self.phase[e.name] += 1
+        if self.phase[e.name] == 2:
             self.energy.add(1)
-            self.stance = 0
+        self.phase[e.name] %= 3
 
     def s2_proc(self, e):
         self.energy.add(2, team=True)

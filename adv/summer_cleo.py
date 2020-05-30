@@ -22,45 +22,40 @@ class Summer_Cleo(Adv):
 
     def init(self):
         random.seed()
-        self.bc = Selfbuff()
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
+
+    @staticmethod
+    def prerun_skillshare(self, dst):
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     def s1_lantency(self, t):
-        self.dmg_make('s1_missile',1.06)
+        self.dmg_make(t.name,1.06)
         self.hits += 1
-        p = self.afflics.paralysis('s1',120,0.97)
-        buffcount = self.bc.buffcount()
+        p = self.afflics.paralysis(t.name,120,0.97)
         self.afflics.paralysis.get()
         if random.random() < p :
             Selfbuff('a1',0.10,20,'sp','passive').on()
-        self.dmg_make('s1_missile',1.06)
+        self.dmg_make(t.name,1.06)
         self.hits += 1
-        self.dmg_make('s1_missile',1.06)
+        self.dmg_make(t.name,1.06)
         self.hits += 1
-        self.dmg_make('s1_big_missile',5.3)
+        self.dmg_make(t.name,5.3)
         self.hits += 1
 
-        if buffcount > 4:
-            buffcount = 4
-        for i in range(buffcount):
-            self.dmg_make('o_s1_boost',1.06)
+        for _ in range(min(len(self.all_buffs), 4)):
+            self.dmg_make(f'o_{t.name}_boost',1.06)
             self.hits += 1
 
     def s1_proc(self, e):
-        Timer(self.s1_lantency).on(1)
-
-    def c_s2_proc(self, e):
-        Teambuff('s2str',0.05,10).on()
-        Teambuff('s2crit',0.03,10,'crit','chance').on()
-        Teambuff('s2sd',0.10,10,'s').on()
-        Teambuff('s2sp',0.10,10,'sp','passive').on()
+        t = Timer(self.s1_lantency)
+        t.name = e.name
+        t.on(1)
 
     def s2_proc(self, e):
-        Selfbuff('s2str',0.05,10).on()
-        Selfbuff('s2crit',0.03,10,'crit','chance').on()
-        Selfbuff('s2sd',0.10,10,'s').on()
-        Selfbuff('s2sp',0.10,10,'sp','passive').on()
+        self.buff_class(e.name,0.05,10).on()
+        self.buff_class(f'{e.name}_crit',0.03,10,'crit','chance').on()
+        self.buff_class(f'{e.name}_sd',0.10,10,'s').on()
+        self.buff_class(f'{e.name}_sp',0.10,10,'sp','passive').on()
 
 
 if __name__ == '__main__':

@@ -24,7 +24,7 @@ class Xuan_Zang(Adv):
             self.dmg_make(f'o_{e.name}_boost',2.51*3*0.2*0.91)
 
     def s2_proc(self, e):
-        Debuff('s2_defdown',0.1,20,0.7).on()
+        Debuff(e.name,0.1,20,0.7).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

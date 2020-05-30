@@ -23,7 +23,7 @@ ADV_DIR = 'adv'
 MEANS_ADV = {
     'addis': 'addis.py.means.py',
     'sazanka': 'sazanka.py.means.py',
-    'victor': 'victor.py.m.py'
+    'victor': 'victor.py.means.py'
 }
 
 NORMAL_ADV = ['h_lowen']

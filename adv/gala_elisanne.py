@@ -22,7 +22,7 @@ class Gala_Elisanne(Adv):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         adv.buff_class = Dummy if adv.slots.c.ele != 'water' else Teambuff if adv.condition('buff all team') else Selfbuff
 
     def prerun(self):

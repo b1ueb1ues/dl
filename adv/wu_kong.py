@@ -20,17 +20,17 @@ class Wu_Kong(Adv):
     coab = ['Blade','Wand','Peony']
 
     def prerun(self):
-        self.s1_p = 0
+        self.phase['s1'] = 0
 
     def s1_proc(self, e):
-        self.s1_p += 1
-        if self.s1_p == 1:
+        self.phase[e.name] += 1
+        if self.phase[e.name] == 1:
             self.dmg_make(e.name, 5.46)
-        elif self.s1_p == 2:
+        elif self.phase[e.name] == 2:
             self.dmg_make(e.name, 5.73)
-        elif self.s1_p == 3:
+        elif self.phase[e.name] == 3:
             self.dmg_make(e.name, 6.00)
-        self.s1_p %= 3
+        self.phase[e.name] %= 3
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -23,12 +23,8 @@ class Sazanka(Adv):
     conf['afflict_res.sleep'] = 80
 
     def prerun(self):
-        self.bleed = Bleed("g_bleed",0).reset()
+        self.bleed = Bleed('g_bleed',0).reset()
         self.s2fscharge = 0
-
-    @staticmethod
-    def prerun_skillshare(adv):
-        adv.s2fscharge = 0
 
     def s1_proc(self, e):
         if random.random() < 0.8:

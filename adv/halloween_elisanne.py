@@ -20,28 +20,26 @@ class Halloween_Elisanne(Adv):
     coab = ['Blade','Dagger','Peony']
 
     def prerun(self):
-        self.stance = 0
+        self.phase['s1'] = 0
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         adv.rebind_function(Halloween_Elisanne, 's1_latency')
-        adv.stance = 0
+        adv.phase[dst] = 0
 
     def s1_latency(self, t):
         Teambuff(t.name,0.1,15).on()
 
     def s1_proc(self, e):
-        self.stance += 1
-        if self.stance > 1:
+        self.phase[e.name] += 1
+        if self.phase[e.name] > 1:
             t = Timer(self.s1_latency)
             t.name = e.name
             t.on(2.5)
-        self.stance %= 3
+        self.phase[e.name] %= 3
 
     def s2_proc(self, e):
         self.charge(e.name,500)
-
-
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

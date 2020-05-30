@@ -27,10 +27,8 @@ class Serena(Adv):
         self.a3count = 0
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst):
         adv.hits = 0
-        adv.a1count = 0
-        adv.a3count = 0
 
     def dmg_proc(self, name, amount):
         if self.condition('always connect hits'):

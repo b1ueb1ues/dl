@@ -28,7 +28,7 @@ class Ramona(Adv):
         self.s1.ac = self.a_s1a
 
     def s1_proc(self):
-        self.dmg_make('s1', 2.93*6)
+        self.dmg_make(e.name, 2.93*6)
         self.hits += 6
 
     def s2_proc(self, e):

@@ -27,7 +27,7 @@ class Marth(Adv):
             self.coab = ['Blade','Wand','Gala_Sarisse']
 
     def init(self):
-        self.stance = 0
+        self.phase['s1'] = 0
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,120,0.97)
@@ -35,16 +35,15 @@ class Marth(Adv):
     def s2_proc(self, e):
         with KillerModifier('s2_killer', 'hit', 1.0, ['burn']):
             self.dmg_make(e.name, 8.99)
-        if self.stance == 0:
-            self.stance = 1
+        self.phase[e.name] += 1
+        if self.phase[e.name] == 0:
             Selfbuff(e.name,0.1,10).on()
-        elif self.stance == 1:
-            self.stance = 2
+        elif self.phase[e.name] == 1:
             Teambuff(e.name,0.1,10).on()
-        elif self.stance == 2:
-            self.stance = 0
+        elif self.phase[e.name] == 2:
             Teambuff(e.name,0.1,10).on()
             Spdbuff(f'{e.name}_spd',0.3,10, wide='team').on()
+        self.phase[e.name] %= 3
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

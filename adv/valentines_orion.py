@@ -16,18 +16,11 @@ class Valentines_Orion(Adv):
     coab = ['Blade', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
 
-    def prerun(self):
-        self.dc_event = Event('defchain')
-
-    @staticmethod
-    def prerun_skillshare(adv):
-        adv.dc_event = Dummy()
-
     def s1_proc(self, e):
         self.afflics.burn(e.name,100,0.803)
 
     def s2_proc(self, e):
-        self.dc_event()
+        Event('defchain')()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

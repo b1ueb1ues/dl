@@ -21,10 +21,14 @@ class Naveed(Adv):
     def prerun(self):
         self.s1level = 0
 
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.s1level = 0
+
     def s1_proc(self, e):
         for _ in range(self.s1level):
             for _ in range(3):
-                self.dmg_make("o_s1_boost",0.7,'s')
+                self.dmg_make(e.name,0.7)
                 self.hits += 1
 
     def s2_proc(self, e):

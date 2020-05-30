@@ -37,7 +37,7 @@ class Gala_Cleo(Adv):
 
     def prerun(self):
         self.a1_buffed = self.condition('a1 buff for 10s')
-        self.s1_p = 0
+        self.phase['s1'] = 0
 
         conf_fs_alt = {
             'fs.dmg':0,
@@ -49,8 +49,8 @@ class Gala_Cleo(Adv):
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
-        adv.s1_p = 0
+    def prerun_skillshare(adv, dst):
+        adv.phase[dst] = 0
         adv.fs_alt = Dummy()
         adv.rebind_function(Gala_Cleo, 's1_dmg')
 
@@ -61,13 +61,13 @@ class Gala_Cleo(Adv):
         self.hits += 1
 
     def s1_proc(self, e):
-        self.s1_p += 1
-        for i in range(0, 3 + self.s1_p):
+        self.phase[e.name] += 1
+        for i in range(0, 3 + self.phase[e.name]):
             s1_timer = Timer(self.s1_dmg)
             s1_timer.name = e.name
             s1_timer.on((42.0 + 12*i )/60)
         self.fs_alt.on()
-        self.s1_p %= 3
+        self.phase[e.name] %= 3
 
     def s2_proc(self, e):
         Debuff(e.name, 0.10, 20).on()

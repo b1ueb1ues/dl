@@ -20,9 +20,9 @@ class Renee(Adv):
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):
-        self.dmg_make('s1',1.11)
-        self.afflics.bog.on('s1', 100)
-        self.dmg_make('s1',5.55)
+        self.dmg_make(e.name,1.11)
+        self.afflics.bog.on(e.name, 100)
+        self.dmg_make(e.name,5.55)
 
     def s2_proc(self, e):
         Event('defchain')()

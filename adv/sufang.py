@@ -26,10 +26,6 @@ class Su_Fang(Adv):
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
         self.s2_buff = Selfbuff('s2', 0.30, 15)
 
-    @staticmethod
-    def prerun_skillshare(adv):
-        adv.s2_buff = Dummy()
-
     def s1_proc(self, e):
         with KillerModifier('skiller', 'hit', 0.50, ['poison']):
             self.dmg_make(e.name, 5.58)

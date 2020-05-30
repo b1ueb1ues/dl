@@ -21,14 +21,13 @@ class Patia(Adv):
     coab = ['Blade','Bow','Tobias']
 
     def prerun(self):
-        self.bleed = Bleed("g_bleed",0).reset()
+        self.bleed = Bleed('g_bleed',0).reset()
 
     def s1_proc(self, e):
-        Teambuff('s1', 0.25, 15, 'defense').on()
-        #Teambuff('s1',0.10,9.375).on()
+        Teambuff(f'{e.name}_defense', 0.25, 15, 'defense').on()
 
     def s2_proc(self, e):
-        Bleed("s2", 1.46).on()
+        Bleed(e.name, 1.46).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

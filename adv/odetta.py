@@ -20,14 +20,14 @@ class Odetta(Adv):
     a3 = ('bt',0.2)
 
     def init(self):
-        if self.condition('buff all team'):
-            self.s2_proc = self.c_s2_proc
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
-    def c_s2_proc(self, e):
-        Teambuff('s2',0.15,15).on()
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.buff_class = Teambuff if adv.condition('buff all team') else Selfbuff
 
     def s2_proc(self, e):
-        Selfbuff('s2',0.15,15).on()
+        self.buff_class(e.name,0.15,15).on()
 
 
 if __name__ == '__main__':

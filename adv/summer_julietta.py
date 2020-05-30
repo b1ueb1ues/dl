@@ -27,13 +27,13 @@ class Summer_Julietta(Adv):
             self.coab = ['Blade', 'Renee', 'Summer_Estelle']
 
     def init(self):
-        self.s2_stance = 1
+        self.phase['s2'] = 0
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
     @staticmethod
-    def prerun_skillshare(adv):
-        adv.s2_stance = 1
-        adv.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
+    def prerun_skillshare(adv, dst):
+        adv.phase[dst] = 0
+        adv.buff_class = Teambuff if adv.condition('buff all team') else Selfbuff
     
     def s1_proc(self, e):
         #560+168+392
@@ -42,17 +42,11 @@ class Summer_Julietta(Adv):
         self.dmg_make(e.name,5.60)
 
     def s2_proc(self, e):
-        if self.s2_stance == 1:
-            self.buff_class(e.name,0.15,15).on()
-            self.s2_stance = 2
-        elif self.s2_stance == 2:
-            self.buff_class(e.name,0.15,15).on()
+        self.phase[e.name] += 1
+        self.buff_class(e.name,0.15,15).on()
+        if self.phase[e.name] > 1:
             self.buff_class(e.name,0.10,15, 'crit','chance').on()
-            self.s2_stance = 3
-        elif self.s2_stance == 3:
-            self.buff_class(e.name,0.15,15).on()
-            self.buff_class(e.name,0.10,15, 'crit','chance').on()
-            self.s2_stance = 1
+        self.phase[e.name] %= 3
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

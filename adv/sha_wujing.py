@@ -28,6 +28,10 @@ class Sha_Wujing(Adv):
         self.a1_count = 3
         Timer(self.a3_start).on(self.duration*0.3)
 
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.a1_check = lambda: False
+
     def a3_start(self, t):
         Selfbuff('a3', 0.08, -1, 'att', 'assailant').on()
 
@@ -52,7 +56,7 @@ class Sha_Wujing(Adv):
         self.a1_check()
 
     def s2_proc(self, e):
-        if self.condition('s2 defdown for 10s'):
+        if self.condition(f'{e.name} defdown for 10s'):
             self.s2_defdown = Debuff(e.name, 0.15, 10, 1).on()
         
         self.a1_check()

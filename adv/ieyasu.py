@@ -35,11 +35,11 @@ class Ieyasu(Adv):
         self.s2charge = 0
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         adv.bleed = Bleed('g_bleed',0).reset()
 
     def s1_proc(self, e):
-        with Modifier('s1killer', 'poison_killer', 'hit', 0.2):
+        with KillerModifier('s1_killer', 'hit', 0.2, ['poison']):
             self.dmg_make(e.name, 12.40)
             Bleed(e.name, 1.46).on()
 

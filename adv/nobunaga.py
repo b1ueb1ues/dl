@@ -23,21 +23,32 @@ class Nobunaga(Adv):
     coab = ['Wand','Marth','Serena']
 
     def prerun(self):
-        self.ba = 0
+        self.burning_ambition = 0
     
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.burning_ambition = 0
+        adv.rebind_function(Nobunaga, 'ba_proc')
+
     def s1_proc(self, e):
-        self.ba = self.dmg_formula('s', 11.18)
+        self.burning_ambition = self.dmg_formula(e.name, 11.18)
+        t = Timer(self.ba_proc)
+        t.name = e.name
+        t.on(30)
+
+    def ba_proc(self, t):
+        if self.burning_ambition > 0:
+            self.dmg_make(f'{t.name}_boost', self.burning_ambition, fixed=True)
+            self.burning_ambition = 0
+            return True
+        return False
 
     def s2_proc(self, e):
-        if self.ba > 0:
-            self.dmg_make('o_s1_boost', self.ba, fixed=True)
-            self.ba = 0
-            self.dmg_make('o_s2_boost',self.conf.s2.dmg*0.3)
+        if self.ba_proc(e):
+            self.dmg_make(f'{e.name}_boost',self.conf[e.name].dmg*0.3)
 
     def fs_proc(self, e):
-        if self.ba > 0:
-            self.dmg_make('o_s1_boost', self.ba, fixed=True)
-            self.ba = 0
+        self.ba_proc(e)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

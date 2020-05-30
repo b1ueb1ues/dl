@@ -24,35 +24,36 @@ class Rena(Adv):
             self.coab = ['Blade','Wand','Serena']
 
     def prerun(self):
-        self.stance = 0
+        self.phase['s1'] = 0
+
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.phase[dst] = 0
 
     def s1_proc(self, e):
-        if self.stance == 0:
-            self.stance = 1
-            self.dmg_make("s1", 0.72)
+        self.phase[e.name] += 1
+        if self.phase[e.name] == 1:
+            self.dmg_make(e.name, 0.72)
             self.hits += 1
-            self.afflics.burn('s1',120,0.97)
-            self.dmg_make("s1", 8.81)
+            self.afflics.burn(e.name,120,0.97)
+            self.dmg_make(e.name,8.81)
             self.hits += 4
-
-        elif self.stance == 1:
-            self.stance = 2
-            self.dmg_make("s1", 0.72)
-            self.afflics.burn('s1',120,0.97)
+        elif self.phase[e.name] == 2:
+            self.dmg_make(e.name, 0.72)
+            self.afflics.burn(e.name,120,0.97)
             self.hits += 1
-            self.dmg_make("s1", 8.81)
-            Selfbuff('s1crit',0.1,15,'crit','chance').on()
+            self.dmg_make(e.name,8.81)
+            Selfbuff(e.name,0.1,15,'crit','chance').on()
             self.hits += 4
-
-        elif self.stance == 2:
-            self.stance = 0
-            with Modifier("s1killer", "burn_killer", "hit", 0.8):
-                self.dmg_make("s1", 0.72)
+        elif self.phase[e.name] == 3:
+            with KillerModifier('s1_killer', 'hit', 0.8, ['burn']):
+                self.dmg_make(e.name, 0.72)
                 self.hits += 1
-                self.afflics.burn('s1',120,0.97)
-                self.dmg_make("s1", 8.81)
+                self.afflics.burn(e.name,120,0.97)
+                self.dmg_make(e.name, 8.81)
                 self.hits += 4
-            Selfbuff('s1crit',0.1,15,'crit','chance').on()
+            Selfbuff(e.name,0.1,15,'crit','chance').on()
+        self.phase[e.name] %= 3
 
     def s2_proc(self, e):
         self.s1.charge(self.s1.sp)

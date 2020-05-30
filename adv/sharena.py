@@ -29,10 +29,6 @@ class Sharena(Adv):
         self.s2_debuff = Debuff('s2',0.05,10)
         # Teambuff('fs_guard',0.15,-1,'att').on()
 
-    @staticmethod
-    def prerun_skillshare(adv):
-        adv.s2_debuff = Dummy()
-
     def s1_proc(self, e):
         self.afflics.paralysis(e.name,120, 0.97)
 

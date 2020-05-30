@@ -20,11 +20,11 @@ class Norwin(Adv):
     conf['afflict_res.blind'] = 80
 
     def s1_proc(self, e):
-        self.afflics.blind('s1',100)
+        self.afflics.blind(e.name,100)
 
     def s2_proc(self, e):
-        with Modifier("s1killer", "blind_killer", "hit", 0.44):
-            self.dmg_make('s1',3*2.45)
+        with KillerModifier('s2_killer', 'hit', 0.44, ['blind']):
+            self.dmg_make(e.name,3*2.45)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

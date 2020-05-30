@@ -148,17 +148,17 @@ class Tiki(Adv):
 
     def s1_proc(self, e):
         if self.divine_dragon.get():
-            self.dmg_make('s1', 7.90)
-            self.afflics.frostbite('s1',120,0.41)
+            self.dmg_make(e.name, 7.90)
+            self.afflics.frostbite(e.name,120,0.41)
             self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
         else:
-            self.dmg_make('s1', 3.76)
+            self.dmg_make(e.name, 3.76)
             self.dragonform.charge_gauge(260, utp=True, dhaste=True)
 
     def s2_proc(self, e):
         if self.divine_dragon.get():
             with KillerModifier('s2_killer', 'hit', 0.2, ['frostbite']):
-                self.dmg_make('s2', 12.05)
+                self.dmg_make(e.name, 12.05)
             self.dragonform.add_drive_gauge_time(self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
         else:
             self.dragonform.charge_gauge(1000, utp=True, dhaste=True)

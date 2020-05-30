@@ -10,11 +10,11 @@ def module():
 
 class Sazanka(sazanka.Sazanka):
     def prerun(self):
-        self.bleed = mBleed("g_bleed",0).reset()
+        self.bleed = mBleed('g_bleed',0).reset()
         self.s2fscharge = 0
 
     def s1_proc(self, e):
-        mBleed("s1", 1.32).on()
+        mBleed(e.name, 1.32).on()
 
 
 if __name__ == '__main__':

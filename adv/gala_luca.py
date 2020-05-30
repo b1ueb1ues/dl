@@ -30,7 +30,7 @@ class Gala_Luca(Adv):
         self.shared_crit = False
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         adv.rebind_function(Gala_Luca, 'ds_crit_proc')
         adv.rebind_function(Gala_Luca, 'buff_icon_count')
         adv.ds_proc_o = adv.dragonform.ds_proc

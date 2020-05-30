@@ -60,19 +60,24 @@ class Peony(Adv):
         self.a1_charge_defer = False
         self.a1_cd_timer = Timer(self.a1_cd)
 
+    @staticmethod
+    def prerun_skillshare(self, dst_key):
+        self.a1_is_cd = False
+        self.fs_alt = Dummy()
+
     def s1_proc(self,e):
-        self.afflics.paralysis('s1',120,0.97)
+        self.afflics.paralysis(e.name,120,0.97)
         if self.s1_shift > 0:
             Event('defchain')()
         if self.s1_shift > 1:
-            Teambuff('s1_str',0.10,10,'att','buff').on()
+            Teambuff(e.name,0.10,10,'att','buff').on()
         self.s1_shift = (self.s1_shift + 1) % 3
 
     def s2_proc(self,e):
         with KillerModifier('s2_killer','hit',0.2,['paralysis']):
-            self.dmg_make('s2',9.64)
-        Spdbuff('s2_spd',0.10,10,wide='team').on()
-        Teambuff('s2_str',0.10,10,'att','buff').on()
+            self.dmg_make(e.name,9.64)
+        Spdbuff(f'{e.name}_spd',0.10,10,wide='team').on()
+        Teambuff(f'{e.name}_str',0.10,10,'att','buff').on()
 
         if self.a1_is_cd:
             self.a1_charge_defer = True

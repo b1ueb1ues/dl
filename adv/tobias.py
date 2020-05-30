@@ -85,6 +85,10 @@ class Tobias(Adv):
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.buff_class = Dummy if adv.slots.c.ele != 'wind' else Teambuff if adv.condition('buff all team') else Selfbuff
+
     def prerun(self):
         self.s2_mode = 0
         self.s1.autocharge_init(85)
@@ -113,7 +117,7 @@ class Tobias(Adv):
         self.s2_x_alt.off()
 
     def s1_proc(self, e):
-        self.buff_class('s1',0.3,15).on()
+        self.buff_class(e.name,0.3,15).on()
 
     def s2_proc(self, e):
         if self.s2_mode == 0:
@@ -123,9 +127,9 @@ class Tobias(Adv):
             Timer(self.s1_autocharge_off).on(7*self.mod('buff'))
             Timer(self.s2_x_alt_off).on(10*self.mod('buff'))
         else:
-            self.dmg_make('s2',1.04)
+            self.dmg_make(e.name,1.04)
             self.hits += 8
-            self.afflics.poison('s2', 120, 0.582)
+            self.afflics.poison(e.name, 120, 0.582)
             self.s2.ac = self.a_s2
             self.s2_x_alt.on()
             self.s1.autocharge_timer.off()

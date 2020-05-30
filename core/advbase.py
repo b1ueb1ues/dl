@@ -907,7 +907,7 @@ class Adv(object):
         pass
 
     @staticmethod
-    def prerun_skillshare(adv, dst_key):
+    def prerun_skillshare(adv, dst):
         pass
 
     # ^^^^^^^^^ rewrite these to provide advanced tweak ^^^^^^^^^^
@@ -1171,6 +1171,7 @@ class Adv(object):
         self.s3_buff = None
 
         self.damage_sources = {'s'}
+        self.phase = {}
         self.Modifier._static.damage_sources = self.damage_sources
 
         if not self.conf:
@@ -1597,10 +1598,9 @@ class Adv(object):
         self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)
 
-        self.prerun()
         for dst_key, prerun in preruns_ss.items():
-            print(dst_key)
             prerun(self, dst_key)
+        self.prerun()
 
         self.d_acl()
         self.acl_backdoor()

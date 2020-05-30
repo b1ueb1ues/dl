@@ -27,9 +27,13 @@ class Natalie(Adv):
         self.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
         self.a3spd = Spdbuff('a3spd',0.10,-1)
 
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.hp = 100
+
     def s1_proc(self, e):
-        with CrisisModifier('s1', 1, self.hp):
-            self.dmg_make('s1', 10.62)
+        with CrisisModifier(e.name, 1, self.hp):
+            self.dmg_make(e.name, 10.62)
 
         self.energy.add(1.8)
         # self.energy.add(1)
@@ -42,7 +46,7 @@ class Natalie(Adv):
             self.a3atk.on()
             self.a3spd.on()
         else:
-            Selfbuff('s2', 0.15, 10).on()
+            Selfbuff(e.name, 0.15, 10).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

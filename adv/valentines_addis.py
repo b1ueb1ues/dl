@@ -27,10 +27,8 @@ class Valentines_Addis(Adv):
         self.a3spd = Spdbuff('a3spd',0.10,-1)
 
     @staticmethod
-    def prerun_skillshare(adv):
+    def prerun_skillshare(adv, dst):
         adv.hp = 100
-        adv.a3atk = Dummy()
-        adv.a3spd = Dummy()
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 1.25, self.hp):
