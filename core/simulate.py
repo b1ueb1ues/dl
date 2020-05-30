@@ -81,12 +81,6 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
     if verbose == -4:
         brute_force_coabs(classname, conf, output, team_dps, duration)
         return
-    if isinstance(verbose, str):
-        from conf import skillshare
-        if verbose not in skillshare or verbose == classname.__name__:
-            raise Exception('no skill share')
-        conf['skill_share'] = [verbose]
-        verbose = 1
     run_results = []
     adv, real_d = run_once(classname, conf, duration, cond)
     if verbose == 1:
@@ -537,7 +531,7 @@ def test_with_argv(*argv, conf={}):
     try:
         verbose = int(argv[2])
     except:
-        verbose = argv[2]
+        verbose = 0
     try:
         duration = int(argv[3])
     except:
