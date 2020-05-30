@@ -1,9 +1,9 @@
 xander.py.best.py
 veronica.py.1hp.py
-v_addis.py.1hp.py
+valentines_addis.py.1hp.py
 chelsea.py.rollfs.py
 gala_luca.py.maxstacks.py
-h_lowen.py
+halloween_lowen.py
 natalie.py.1hp.py
 bellina.py.1hp.py
 zhu_bajie.py.1hp.py

@@ -1,5 +1,6 @@
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Zhu_Bajie
@@ -29,15 +30,16 @@ class Zhu_Bajie(Adv):
     a3 = ('ro', 0.10)
 
     conf = {}
-    conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
-    conf['slots.paralysis.a'] = Kung_Fu_Masters()+Spirit_of_the_Season()
+    conf['slots.a'] = Kung_Fu_Masters()+Mega_Friends()
+    conf['slots.paralysis.a'] = conf['slots.a']
+    conf['slots.d'] = Cupid()
+    conf['slots.paralysis.d'] = Corsaint_Phoenix()
     conf['acl'] = """
-        `dragon, s=2
         `s2
         `s1
         `fs3, x=1
         """
-    coab = ['Blade','Dagger','Peony']
+    coab = ['Blade','Grace','Peony']
 
     def prerun(self):
         self.hp = 100

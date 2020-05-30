@@ -12,14 +12,11 @@ class Ranzal(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
     conf['acl'] = """
-        # `dragon.act("c3 s end"), s or x=5
-        # `s3, not self.s3_buff
-        # `s1
-        `s4
-            
+        `dragon.act("c3 s end"), s or x=5
+        `s3, not self.s3_buff
+        `s1
         """
     coab = ['Blade','Dragonyule_Xainfried','Eleonora']
-    share = ['Lathna']
     
     def s1_proc(self, e):
         self.afflics.poison(e.name, 120, 0.582)

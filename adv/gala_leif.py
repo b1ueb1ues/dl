@@ -56,12 +56,12 @@ class Gala_Leif(Adv):
     conf['acl'] = """
         if s1.check()
         `striking
-        else
+        elif s2.check()
         `shielding
         end
         `dragon.act('c3 s end')
         `s3, not self.s3_buff
-        `s1, not self.stance='shielding'
+        `s1
         `s2
         `fs, x=3
     """

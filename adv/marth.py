@@ -27,7 +27,7 @@ class Marth(Adv):
             self.coab = ['Blade','Wand','Gala_Sarisse']
 
     def init(self):
-        self.phase['s1'] = 0
+        self.phase['s2'] = 0
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,120,0.97)

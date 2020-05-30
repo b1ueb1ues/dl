@@ -27,7 +27,7 @@ class Ramona(Adv):
         self.a_s1a.getrecovery = recovery
         self.s1.ac = self.a_s1a
 
-    def s1_proc(self):
+    def s1_proc(self, e):
         self.dmg_make(e.name, 2.93*6)
         self.hits += 6
 

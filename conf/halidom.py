@@ -2,20 +2,20 @@ fac_ele = {
     'altar': (0.115, 0.115),
     'slime': 0.04,
     'flame': {
-        'tree': 0.16,
+        'tree': 0.26,
         'arctos': 0.085
     },
     'water': {
         'yuletree': 0.085,
-        'dragonata': 0.07
+        'dragonata': 0.085
     },
     'wind': {
         'tree': 0.16,
-        'shrine': 0.07
+        'shrine': 0.085
     },
     'light': {
         'retreat': 0.085,
-        'circus': 0.07
+        'circus': 0.085
     },
     'shadow': {
         'tree': 0.16,

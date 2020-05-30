@@ -26,7 +26,7 @@ MEANS_ADV = {
     'victor': 'victor.py.means.py'
 }
 
-NORMAL_ADV = ['h_lowen']
+NORMAL_ADV = ['halloween_lowen']
 MASS_SIM_ADV = []
 
 with open(os.path.join(ROOT_DIR, 'chara_quick.txt')) as f:
@@ -43,7 +43,7 @@ SPECIAL_ADV = {
         'nc': ['wp', 'coab']
     },
     'gala_luca_maxstacks': {
-        'fn': 'g_luca.py.maxstacks.py',
+        'fn': 'gala_luca.py.maxstacks.py',
         'nc': []
     },
     'veronica_1hp': {
@@ -55,7 +55,7 @@ SPECIAL_ADV = {
         'nc': []
     },
     'valentines_addis_1hp': {
-        'fn': 'v_addis.py.1hp.py',
+        'fn': 'valentines_addis.py.1hp.py',
         'nc': []
     },
     'bellina_1hp': {

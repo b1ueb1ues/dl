@@ -1,5 +1,5 @@
 victor.py
-s_cleo.py
+summer_cleo.py
 addis.py
 sazanka.py
 megaman.py
