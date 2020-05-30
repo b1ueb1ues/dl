@@ -1552,9 +1552,10 @@ class Adv(object):
                 if share_limit < share_costs:
                     raise ValueError(f'Skill share exceed cost {(*self.skillshare_list, share_costs)}.')
                 src_key = f's{sdata["s"]}'
+                shared_sp = self.sp_convert(sdata['sp'], sp_modifier)
                 try:
                     owner_conf = Conf(advconfs[owner])
-                    owner_conf[src_key].sp = sdata['sp'] * sp_modifier
+                    owner_conf[src_key].sp = shared_sp
                     self.conf[dst_key] = Conf(owner_conf[src_key])
                     s = Skill(dst_key, owner_conf[src_key])
                     s.owner = owner
@@ -1568,7 +1569,7 @@ class Adv(object):
                         'dmg': 0,
                         'hit': 0,
                         'recovery': 1.8,
-                        'sp': sdata['sp'] * sp_modifier,
+                        'sp': shared_sp,
                         'startup': 0.1
                     })
                     self.conf[dst_key] = default_skill
