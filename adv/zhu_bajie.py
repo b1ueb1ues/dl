@@ -76,6 +76,10 @@ class Zhu_Bajie(Adv):
         self.l_fs2 = Listener('fs2',self.l_fs2)
         self.l_fs3 = Listener('fs3',self.l_fs3)
 
+    @staticmethod
+    def prerun_skillshare(self, dst):
+        self.hp = 100
+
     def do_fs(self, e, name):
         log('cast','fs')
         self.__dict__['a_'+name].getdoing().cancel_by.append(name)
