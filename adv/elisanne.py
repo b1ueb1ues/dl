@@ -16,7 +16,6 @@ class Elisanne(Adv):
     conf['acl'] = """
         `s1
         `fs, x=5
-        `s3
     """
     coab = ['Tobias', 'Renee', 'Bow']
 
