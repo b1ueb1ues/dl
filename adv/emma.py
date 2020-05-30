@@ -17,8 +17,9 @@ class Emma(Adv):
     conf['acl'] = """
         `dragon.act('c1 s s end'), s=1
         `fs, self.fs_prep_c==3
-        `s3, not self.s3_buff
-        `s1, cancel
+        `s4, cancel
+        `s1
+        `s3
         `fs, x=5
         """
     coab = ['Tobias', 'Tiki', 'Bow']
