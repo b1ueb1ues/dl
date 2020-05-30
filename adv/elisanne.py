@@ -15,9 +15,11 @@ class Elisanne(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
+        `s4
         `fs, x=5
     """
     coab = ['Tobias', 'Renee', 'Bow']
+    share = ['Gala_Elisanne']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

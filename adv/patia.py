@@ -17,8 +17,10 @@ class Patia(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
     """
     coab = ['Blade','Bow','Tobias']
+    share = ['Karl']
 
     def prerun(self):
         self.bleed = Bleed('g_bleed',0).reset()

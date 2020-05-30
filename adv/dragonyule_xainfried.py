@@ -16,9 +16,10 @@ class Dragonyule_Xainfried(Adv):
         `dragon.act("s end")
         `s3, not self.s3_buff
         `s1
-        `s2, x=5
+        `s4
         """
     coab = ['Blade','Bow','Tobias']
+    share = ['Tobias']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
