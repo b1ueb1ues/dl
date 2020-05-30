@@ -272,11 +272,11 @@ def slots(adv):
     slots += '['+adv.slots.d.__class__.__name__+']'
     slots += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
     slots += '['+'|'.join(adv.coab_list)+']'
-    slots += f'[S3:{adv.skillshare_list[0]}]'
+    slots += f'[S3:{adv.skillshare_list[0]}'
     try:
-        slots += f'[S4:{adv.skillshare_list[1]}]'
+        slots += f'|S4:{adv.skillshare_list[1]}]'
     except:
-        pass
+        slots += ']'
     return slots
 
 def slots_csv(adv):
@@ -287,7 +287,7 @@ def slots_csv(adv):
     if len(padded_share) < 2:
         padded_share.extend(['']*(2-len(padded_share)))
     return (
-        adv.slots.a.__class__.__name__, 
+        adv.slots.a.__class__.__name__,
         adv.slots.a.a2.__class__.__name__,
         adv.slots.d.__class__.__name__,
         adv.slots.w.__class__.__name__.split('_')[0],

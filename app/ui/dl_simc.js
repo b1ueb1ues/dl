@@ -77,7 +77,10 @@ function slots_icon_fmt(data) {
     return img_urls;
 }
 function slots_text_format(data) {
-    return '[' + data.slice(6, 8).join('+') + '][' + data[8] + '][' + data[9] + '][' + data.slice(10, 13).join('|') + ']';
+    return '[' + data.slice(6, 8).join('+') +
+    '][' + data[8] + '][' + data[9] +
+    '][' + data.slice(10, 13).join('|') +
+    '][S3:' + data[13] + '|S4:' + data[14] + ']';
 }
 function populateSelect(id, data) {
     const t = id.split('-')[1];
