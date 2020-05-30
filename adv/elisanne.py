@@ -15,7 +15,7 @@ class Elisanne(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `s1
-        `s3
+        `s4
         `fs, x=5
     """
     coab = ['Tobias', 'Renee', 'Bow']
