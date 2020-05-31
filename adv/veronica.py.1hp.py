@@ -18,7 +18,6 @@ class Veronica(adv.veronica.Veronica):
     def prerun(self):
         super().prerun()
         self.set_hp(0)
-        self.a1_buff.on()
 
 if __name__ == '__main__':
     import sys

@@ -46,6 +46,8 @@ dragondrive_fs_conf = {
 }
 
 class Bellina(Adv):
+    a3 = ('crisisattspd', 3)
+
     conf = {}
     conf['slots.a'] = Twinfold_Bonds()+Howling_to_the_Heavens()
     conf['slots.poison.a'] = Twinfold_Bonds()+The_Plaguebringer()
@@ -91,9 +93,6 @@ class Bellina(Adv):
 
         self.dragondrive_x = X_alt(self, 'dragondrive', dragondrive_auto_conf, x_proc=self.l_dragondrive_x)
         self.fs_alt = Fs_alt(self, Conf(dragondrive_fs_conf), self.fs_proc_alt)
-
-        self.a3_str = Modifier('a3', 'att', 'passive', 0.20)
-        self.a3_spd = Spdbuff('a3',0.10,-1)
         
         self.a_s1 = self.s1.ac
         self.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 1.10}))
@@ -144,8 +143,6 @@ class Bellina(Adv):
             if self.hp > 30:
                 self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
                 self.set_hp(30)
-                self.a3_str.on()
-                self.a3_spd.on()
             # regular buff duration (?)
 
 if __name__ == '__main__':

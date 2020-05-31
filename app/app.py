@@ -46,22 +46,6 @@ SPECIAL_ADV = {
         'fn': 'gala_luca.py.maxstacks.py',
         'nc': []
     },
-    'veronica_1hp': {
-        'fn': 'veronica.py.1hp.py',
-        'nc': []
-    },
-    'natalie_1hp': {
-        'fn': 'natalie.py.1hp.py',
-        'nc': []
-    },
-    'valentines_addis_1hp': {
-        'fn': 'valentines_addis.py.1hp.py',
-        'nc': []
-    },
-    'bellina_1hp': {
-        'fn': 'bellina.py.1hp.py',
-        'nc': []
-    },
     'fjorm_stack': {
         'fn': 'fjorm.py.x4.py',
         'nc': ['acl']

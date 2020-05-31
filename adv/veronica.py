@@ -22,6 +22,12 @@ class Veronica(Adv):
     def prerun(self):
         # Teambuff('last',2.28,1).on()
         self.a1_buff = Selfbuff('a1', 0.30, -1, 's', 'buff')
+        Event('hp').listener(self.a1_buff_on)
+
+    def a1_buff_on(self, e):
+        # assume you take bit more damage at and proc last destruction at some point
+        if e.hp <= 50:
+            self.a1_buff.on()
 
     @staticmethod
     def prerun_skillshare(adv, dst):
@@ -33,9 +39,9 @@ class Veronica(Adv):
         if self.hp >= 50:
             self.set_hp(self.hp-10)
             self.charge_p(f'{e.name}_hpcut', 0.20, target=e.name)
-            # assume you take bit more damage at and proc last destruction at some point
-            if self.hp <= 50:
-                self.a1_buff.on()
+
+    def s2_proc(self, e):
+        self.set_hp(self.hp+7.7)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

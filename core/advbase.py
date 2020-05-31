@@ -1081,8 +1081,7 @@ class Adv(object):
 
     def set_hp(self, hp):
         old_hp = self.hp
-        if 'hp' in self.conf:
-            hp = self.conf['hp']
+        hp = round(hp*10)/10
         self.hp = max(min(hp, 100), 0)
         if self.hp != old_hp:
             if self.hp == 0:
@@ -1633,12 +1632,12 @@ class Adv(object):
         self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)
 
-        if 'hp' in self.conf:
-            self.set_hp(self.conf['hp'])
-
         for dst_key, prerun in preruns_ss.items():
             prerun(self, dst_key)
         self.prerun()
+
+        if 'hp' in self.conf:
+            self.set_hp(self.conf['hp'])
 
         self.d_acl()
         self.acl_backdoor()

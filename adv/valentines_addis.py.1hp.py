@@ -12,8 +12,6 @@ class Valentines_Addis(adv.valentines_addis.Valentines_Addis):
     def prerun(self):
         super().prerun()
         self.set_hp(0)
-        self.a3atk.on()
-        self.a3spd.on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
