@@ -342,14 +342,6 @@ class Selfbuff(Buff):
         Buff.__init__(self, name, value, duration, mtype, morder)
         self.bufftype = 'self'
 
-    def buffcount(self):
-        bc = 0
-        for i in self._static.all_buffs:
-            if i.get() and i.bufftype == 'self' or i.bufftype == 'team':
-                bc += 1
-        return bc
-
-
 class SingleActionBuff(Buff):
     # self buff lasts until the action it is buffing is completed
     def __init__(self, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None):
@@ -1373,6 +1365,14 @@ class Adv(object):
             if b.name.startswith(name) and b.get():
                 return True
         return False
+
+    @property
+    def buffcount(self):
+        bc = 0
+        for i in self.all_buffs:
+            if i.get() and i.bufftype == 'self' or i.bufftype == 'team':
+                bc += 1
+        return bc
 
     @property
     def is_sim_afflict(self):

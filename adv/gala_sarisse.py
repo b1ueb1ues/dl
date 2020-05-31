@@ -35,7 +35,7 @@ class Gala_Sarisse(Adv):
                 buff.on()
 
     def s1_proc(self, e):
-        buffcount = min(len(self.all_buffs), 7)
+        buffcount = min(self.buffcount, 7)
         self.dmg_make(e.name,0.95*buffcount)
         self.hits += buffcount
 
