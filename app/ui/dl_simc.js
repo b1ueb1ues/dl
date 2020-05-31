@@ -57,13 +57,15 @@ function slots_icon_fmt(data) {
     img_urls.push(' | ');
     const coabs = data.slice(10, 13);
     for (const c of coabs) {
-        if (WEAPON_TYPES.includes(c.toLowerCase())) {
-            img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
-        } else {
-            if (c === 'Axe2') {
-                img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
+        if (c){
+            if (WEAPON_TYPES.includes(c.toLowerCase())) {
+                img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
             } else {
-                img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon coab unique"/>');
+                if (c === 'Axe2') {
+                    img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
+                } else {
+                    img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon coab unique"/>');
+                }
             }
         }
     }
@@ -432,14 +434,14 @@ function buildCoab(coab, fullname, weapontype) {
         check.data('ex', kcoab[1]);
         check.change(checkCoabSelection);
         if (k == fullname) {
-            if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp≤40')) {
+            if (!kcoab[0] || kcoab[0][2] != 'hp'+String.fromCharCode(8804)+'40') {
                 check.prop('disabled', true);
                 check.prop('checked', true);
+                found_fullname = kcoab[1];
             } else {
                 $('#input-coabs').data('max', 4);
                 check.addClass('coab-check');
             }
-            found_fullname = kcoab[1];
         } else {
             check.addClass('coab-check');
         }
@@ -644,8 +646,8 @@ function clearResults() {
     resistList.each(function (idx, res) { $(res).val(''); });
     $('input:checked.coab-check').prop('check', false);
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
-    $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);
+    $('#input-sim-buff-str').removeAttr('value');
     $('#input-sim-afflict-time').empty();
     $('#input-sim-buff-str').removeAttr('value');
     $('#input-sim-buff-str').empty();
