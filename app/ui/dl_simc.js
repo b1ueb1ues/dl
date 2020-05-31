@@ -640,7 +640,7 @@ function clearResults() {
         $('#input-teamdps').val(BASE_TEAM_DPS);
         localStorage.setItem('teamdps', BASE_TEAM_DPS);
     }
-    $('#input-missile').val(0);
+    $('#input-missile').val('');
     $('#input-hp').val('');
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
