@@ -78,9 +78,9 @@ function slots_icon_fmt(data) {
 }
 function slots_text_format(data) {
     return '[' + data.slice(6, 8).join('+') +
-    '][' + data[8] + '][' + data[9] +
-    '][' + data.slice(10, 13).join('|') +
-    '][S3:' + data[13] + '|S4:' + data[14] + ']';
+        '][' + data[8] + '][' + data[9] +
+        '][' + data.slice(10, 13).join('|') +
+        '][S3:' + data[13] + '|S4:' + data[14] + ']';
 }
 function populateSelect(id, data) {
     const t = id.split('-')[1];
@@ -524,6 +524,9 @@ function runAdvTest() {
     if (!isNaN(parseInt($('#input-missile').val()))) {
         requestJson['missile'] = $('#input-missile').val();
     }
+    if (!isNaN(parseInt($('#input-hp').val()))) {
+        requestJson['hp'] = $('#input-hp').val();
+    }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
@@ -636,6 +639,7 @@ function clearResults() {
         localStorage.setItem('teamdps', BASE_TEAM_DPS);
     }
     $('#input-missile').val(0);
+    $('#input-hp').val(100);
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
     $('input:checked.coab-check').prop('check', false);
@@ -644,7 +648,9 @@ function clearResults() {
     $('#input-sim-afflict-time').prop('disabled', true);
     $('#input-sim-afflict-time').empty();
     $('#input-sim-buff-str').removeAttr('value');
+    $('#input-sim-buff-str').empty();
     $('#input-sim-buff-def').removeAttr('value');
+    $('#input-sim-buff-def').empty();
     $('#input-conditions').empty();
 }
 function weaponSelectChange() {

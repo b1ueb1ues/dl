@@ -212,6 +212,8 @@ def simc_adv_test():
         missile = abs(float(params['missile']))
         if missile > 0:
             conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
+    if 'hp' in params:
+        conf['hp'] = min(abs(int(params['hp'])), 100)
     if coab is not None:
         conf['coabs'] = coab
     if share is not None:
