@@ -641,18 +641,15 @@ function clearResults() {
         localStorage.setItem('teamdps', BASE_TEAM_DPS);
     }
     $('#input-missile').val(0);
-    $('#input-hp').val(100);
+    $('#input-hp').val('');
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
     $('input:checked.coab-check').prop('check', false);
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
     $('#input-sim-afflict-time').prop('disabled', true);
-    $('#input-sim-buff-str').removeAttr('value');
-    $('#input-sim-afflict-time').empty();
-    $('#input-sim-buff-str').removeAttr('value');
-    $('#input-sim-buff-str').empty();
-    $('#input-sim-buff-def').removeAttr('value');
-    $('#input-sim-buff-def').empty();
+    $('#input-sim-afflict-time').val('');
+    $('#input-sim-buff-str').val('');
+    $('#input-sim-buff-def').val('');
     $('#input-conditions').empty();
 }
 function weaponSelectChange() {
