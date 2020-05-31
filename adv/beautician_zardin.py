@@ -18,6 +18,7 @@ class Beautician_Zardin(Adv):
 
     def s1_proc(self, e):
         self.energy.add(1)
+        Debuff(e.name, 0.05, 10, 0.3, 'attack').on()
 
     def s2_proc(self, e):
         self.energy.add(2)

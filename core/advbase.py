@@ -1307,8 +1307,8 @@ class Adv(object):
             if rate > 0:
                 rates[afflic] = rate
 
+        debuff_rates = {}
         for buff in self.all_buffs:
-            debuff_rates = {}
             if buff.get() and buff.bufftype == 'debuff' and buff.val < 0:
                 dkey = f'debuff_{buff.mod_type}'
                 try:
@@ -1319,9 +1319,10 @@ class Adv(object):
                     debuff_rates['debuff'] *= (1 - buff.chance)
                 except:
                     debuff_rates['debuff'] = 1 - buff.chance
-            for dkey in debuff_rates.keys():
-                debuff_rates[dkey] = 1 - debuff_rates[dkey]
-            rates.update(debuff_rates)
+        for dkey in debuff_rates.keys():
+            debuff_rates[dkey] = 1 - debuff_rates[dkey]
+        rates.update(debuff_rates)
+        
 
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):

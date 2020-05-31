@@ -74,6 +74,7 @@ class Zhu_Bajie(Adv):
         self.l_fs1 = Listener('fs1',self.l_fs1)
         self.l_fs2 = Listener('fs2',self.l_fs2)
         self.l_fs3 = Listener('fs3',self.l_fs3)
+        self.fs = None
 
     def do_fs(self, e, name):
         log('cast','fs')

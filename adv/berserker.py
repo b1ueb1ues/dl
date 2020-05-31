@@ -20,6 +20,9 @@ class Berserker(Adv):
         """
     coab = ['Berserker','Ieyasu','Wand','Tiki']
 
+    def s1_proc(self, e):
+        Debuff(e.name, 0.05, 10, 0.4, 'attack')
+
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

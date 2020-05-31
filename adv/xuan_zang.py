@@ -20,11 +20,12 @@ class Xuan_Zang(Adv):
     coab = ['Blade', 'Marth', 'Tiki']
 
     def s1_proc(self, e):
-        if self.mod('def')!= 1:
-            self.dmg_make(f'o_{e.name}_boost',2.51*3*0.2*0.91)
+        with KillerModifier(e.name, 'hit', 0.2, ['debuff']):
+            self.dmg_make(e.name, 7.53)
 
     def s2_proc(self, e):
         Debuff(e.name,0.1,20,0.7).on()
+        Debuff(f'{e.name}_atk',0.05,20,0.7,'attack').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

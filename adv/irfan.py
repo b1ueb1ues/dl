@@ -14,6 +14,8 @@ class Irfan(Adv):
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
 
+    def s2_proc(self, e):
+        Debuff(e.name, 0.05, 10, 0.8, 'attack').on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
