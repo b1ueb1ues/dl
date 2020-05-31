@@ -1310,7 +1310,7 @@ class Adv(object):
         for buff in self.all_buffs:
             debuff_rates = {}
             if buff.get() and buff.bufftype == 'debuff' and buff.val < 0:
-                dkey = f'debuff_{buff.mod_type}'
+                dkey = 'debuff'
                 try:
                     debuff_rates[dkey] *= (1 - buff.chance)
                 except:

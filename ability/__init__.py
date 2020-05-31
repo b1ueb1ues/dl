@@ -177,7 +177,7 @@ class Co_Ability(Ability):
         'sharena': [('paralysis_killer', 'passive', 0.08)],
         'peony': [('light','ele',0.20)],
         'tiki': [('x','ex',0.20)],
-        'gleif': [('debuff_def_killer', 'passive', 0.08),('debuff_attack_killer', 'passive', 0.08)]
+        'gleif': [('debuff_killer', 'passive', 0.08)]
     }
     def __init__(self, name, value, cond=None):
         try:
