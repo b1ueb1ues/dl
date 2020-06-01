@@ -10,7 +10,7 @@ BASE_AFFLICT_UPTIME = {
 WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
 RANGED = ['wand', 'bow', 'staff'];
 DEFAULT_SHARE = 'Ranzal'
-DEFAULT_SHARE_ALT = 'Elisanne'
+DEFAULT_SHARE_ALT = 'Curran'
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
@@ -270,6 +270,31 @@ function loadAdvWPList() {
         }
     });
 }
+function selectSkillShare(fullname, pref_share){
+    for (const t of ['ss3', 'ss4']) {
+        $('#input-' + t + ' > option').prop('disabled', false);
+        $('#' + t + '-' + fullname).prop('disabled', true);
+    }
+
+    switch (pref_share.length){
+        case 1:
+            $('#ss3-weapon').prop('selected', true);
+            $('#ss4-' + pref_share[0]).prop('selected', true);
+            break;
+        case 2:
+            $('#ss3-' + pref_share[0]).prop('selected', true);
+            $('#ss4-' + pref_share[1]).prop('selected', true);
+            break;
+        default:
+            $('#ss3-weapon').prop('selected', true);
+            if (fullname === DEFAULT_SHARE) {
+                $('#ss4-' + DEFAULT_SHARE_ALT).prop('selected', true);
+            } else {
+                $('#ss4-' + DEFAULT_SHARE).prop('selected', true);
+            }
+            break;
+    }
+}
 function loadAdvSlots() {
     clearResults();
     if ($('#input-adv').val() == '') {
@@ -301,24 +326,7 @@ function loadAdvSlots() {
                     coabSelection(1);
                 }
 
-                for (const t of ['ss3', 'ss4']) {
-                    $('#input-' + t + ' > option').prop('disabled', false);
-                    $('#' + t + '-' + slots.adv.fullname).prop('disabled', true);
-                }
-                if (slots.adv.pref_share[0]) {
-                    $('#ss3-' + slots.adv.pref_share[0]).prop('selected', true);
-                } else {
-                    $('#ss3-weapon').prop('selected', true);
-                }
-                if (slots.adv.pref_share[1]) {
-                    $('#ss4-' + slots.adv.pref_share[1]).prop('selected', true);
-                } else {
-                    if (slots.adv.fullname === DEFAULT_SHARE) {
-                        $('#ss4-' + DEFAULT_SHARE_ALT).prop('selected', true);
-                    } else {
-                        $('#ss4-' + DEFAULT_SHARE).prop('selected', true);
-                    }
-                }
+                selectSkillShare(slots.adv.fullname, slots.adv.pref_share);
 
                 if (RANGED.includes(slots.adv.wt)) {
                     $('#input-missile').prop('disabled', false);
