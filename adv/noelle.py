@@ -17,7 +17,6 @@ class Noelle(Adv):
     conf['acl'] = """
         `s4
         `s1
-        `s3
         """
     coab = ['Tiki','Tobias','Bow']
     share = ['Dragonyule_Xainfried']

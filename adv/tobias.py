@@ -79,7 +79,6 @@ class Tobias(Adv):
     conf['acl'] = """
         `s4
         `s1
-        `s3
     """
     coab = ['Bow','Blade','Tiki']
     share = ['Dragonyule_Xainfried']
