@@ -15,7 +15,6 @@ class Veronica(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
-        `s2, x=5 and self.a1_buff.get() and self.hp<50
         """
     coab = ['Ieyasu','Curran','Berserker']
 
@@ -26,12 +25,9 @@ class Veronica(Adv):
 
     def a1_buff_on(self, e):
         # assume you take bit more damage at and proc last destruction at some point
-        if e.hp <= 50:
+        if e.hp <= 50 and not self.a1_buff.get():
+            self.set_hp(30)
             self.a1_buff.on()
-
-    @staticmethod
-    def prerun_skillshare(adv, dst):
-        adv.a1_buff = Dummy()
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 0.5, self.hp), KillerModifier('s1_killer', 'hit', 0.2, ['poison']):
