@@ -1083,6 +1083,8 @@ class Adv(object):
             self.condition.hp_cond_set(self.hp)
             self.hp_event.hp = self.hp
             self.hp_event()
+            if 'hp' in self.conf and self.hp != self.conf['hp']:
+                self.set_hp(self.conf['hp'])
 
     def afflic_condition(self):
         if 'afflict_res' in self.conf:
@@ -1322,7 +1324,7 @@ class Adv(object):
         for dkey in debuff_rates.keys():
             debuff_rates[dkey] = 1 - debuff_rates[dkey]
         rates.update(debuff_rates)
-        
+
 
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):

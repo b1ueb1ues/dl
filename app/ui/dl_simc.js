@@ -368,6 +368,9 @@ function buildConditionList(conditions) {
     const conditionDiv = $('#input-conditions');
     conditionDiv.empty();
     for (cond in conditions) {
+        if (cond.startsWith('hp')){
+            continue;
+        }
         const newCondCheck = $('<div></div>').attr({ class: 'custom-control custom-checkbox custom-control-inline' });
         const newCondCheckInput = $('<input/>').attr({ id: 'input-cond-' + cond, type: 'checkbox', class: 'custom-control-input' }).prop('checked', conditions[cond]).data('cond', cond);
         const newCondCheckLabel = $('<label>' + cond + '</label>').attr({ for: 'input-cond-' + cond, class: 'custom-control-label' });
