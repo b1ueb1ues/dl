@@ -82,7 +82,7 @@ class Tobias(Adv):
         `s3
     """
     coab = ['Bow','Blade','Tiki']
-    share = ['Patia','Summer_Luca']
+    share = ['Dragonyule_Xainfried']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
