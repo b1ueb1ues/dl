@@ -6,6 +6,8 @@ def module():
     return Natalie
 
 class Natalie(Adv):
+    a3 = ('crisisattspd', 3)
+
     conf = {}
     conf['slots.a'] = HoH() + Dear_Diary()
     conf['slots.poison.a'] = HoH() + The_Plaguebringer()
@@ -22,10 +24,6 @@ class Natalie(Adv):
             self.conf['slots.a'] = The_Chocolatiers()+TL()
             self.conf['slots.poison.a'] = The_Chocolatiers()+The_Plaguebringer()
 
-    def prerun(self):
-        self.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
-        self.a3spd = Spdbuff('a3spd',0.10,-1)
-
     def s1_proc(self, e):
         with CrisisModifier(e.name, 1, self.hp):
             self.dmg_make(e.name, 10.62)
@@ -38,8 +36,6 @@ class Natalie(Adv):
     def s2_proc(self, e):
         if self.hp > 30:
             self.set_hp(20)
-            self.a3atk.on()
-            self.a3spd.on()
         else:
             Selfbuff(e.name, 0.15, 10).on()
 

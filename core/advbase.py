@@ -342,14 +342,6 @@ class Selfbuff(Buff):
         Buff.__init__(self, name, value, duration, mtype, morder)
         self.bufftype = 'self'
 
-    def buffcount(self):
-        bc = 0
-        for i in self._static.all_buffs:
-            if i.get() and i.bufftype == 'self' or i.bufftype == 'team':
-                bc += 1
-        return bc
-
-
 class SingleActionBuff(Buff):
     # self buff lasts until the action it is buffing is completed
     def __init__(self, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None):
@@ -1081,6 +1073,7 @@ class Adv(object):
 
     def set_hp(self, hp):
         old_hp = self.hp
+        hp = round(hp*10)/10
         self.hp = max(min(hp, 100), 0)
         if self.hp != old_hp:
             if self.hp == 0:
@@ -1090,6 +1083,8 @@ class Adv(object):
             self.condition.hp_cond_set(self.hp)
             self.hp_event.hp = self.hp
             self.hp_event()
+            if 'hp' in self.conf and self.hp != self.conf['hp']:
+                self.set_hp(self.conf['hp'])
 
     def afflic_condition(self):
         if 'afflict_res' in self.conf:
@@ -1314,17 +1309,22 @@ class Adv(object):
             if rate > 0:
                 rates[afflic] = rate
 
+        debuff_rates = {}
         for buff in self.all_buffs:
-            debuff_rates = {}
             if buff.get() and buff.bufftype == 'debuff' and buff.val < 0:
                 dkey = f'debuff_{buff.mod_type}'
                 try:
                     debuff_rates[dkey] *= (1 - buff.chance)
                 except:
                     debuff_rates[dkey] = 1 - buff.chance
-            for dkey in debuff_rates.keys():
-                debuff_rates[dkey] = 1 - debuff_rates[dkey]
-            rates.update(debuff_rates)
+                try:
+                    debuff_rates['debuff'] *= (1 - buff.chance)
+                except:
+                    debuff_rates['debuff'] = 1 - buff.chance
+        for dkey in debuff_rates.keys():
+            debuff_rates[dkey] = 1 - debuff_rates[dkey]
+        rates.update(debuff_rates)
+
 
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):
@@ -1372,6 +1372,14 @@ class Adv(object):
             if b.name.startswith(name) and b.get():
                 return True
         return False
+
+    @property
+    def buffcount(self):
+        bc = 0
+        for i in self.all_buffs:
+            if i.get() and i.bufftype == 'self' or i.bufftype == 'team':
+                bc += 1
+        return bc
 
     @property
     def is_sim_afflict(self):
@@ -1634,6 +1642,9 @@ class Adv(object):
         for dst_key, prerun in preruns_ss.items():
             prerun(self, dst_key)
         self.prerun()
+
+        if 'hp' in self.conf:
+            self.set_hp(self.conf['hp'])
 
         self.d_acl()
         self.acl_backdoor()

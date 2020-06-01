@@ -119,6 +119,8 @@ class Hunter_Sarisse(Adv):
         self.l_fs4 = Listener('fs4',self.l_fs4)
         self.fs = None
 
+        self.fs_attdown = Debuff('fs', 0.15, 10, 1, 'attack')
+
     def do_fs(self, e, name):
         log('cast','fs')
         self.__dict__['a_'+name].getdoing().cancel_by.append(name)
@@ -137,6 +139,9 @@ class Hunter_Sarisse(Adv):
         self.fs_proc(e)
         self.think_pin('fs')
         self.charge(name,self.conf[name+'.sp'])
+
+    def fs_proc(e):
+        self.fs_attdown.on()
 
     def l_fs1(self, e):
         self.do_fs(e, 'fs1')

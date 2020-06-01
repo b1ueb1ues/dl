@@ -39,7 +39,7 @@ class Condition(dict):
         return self[key] and self.global_cond
 
     def hp_cond_set(self, hp, cond=True):
-        key = f'hp={hp}%' if hp > 0 else 'hp=1'
+        key = 'hp100' if hp == 100 else f'hp={hp}%' if hp > 0 else 'hp=1'
         return self.hp_cond_update(key, hp, '=') and self.global_cond
 
     def hp_threshold_cond_set(self, hp, cond=True, op='>'):

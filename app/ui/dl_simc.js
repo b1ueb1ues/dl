@@ -57,13 +57,15 @@ function slots_icon_fmt(data) {
     img_urls.push(' | ');
     const coabs = data.slice(10, 13);
     for (const c of coabs) {
-        if (WEAPON_TYPES.includes(c.toLowerCase())) {
-            img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
-        } else {
-            if (c === 'Axe2') {
-                img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
+        if (c){
+            if (WEAPON_TYPES.includes(c.toLowerCase())) {
+                img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
             } else {
-                img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon coab unique"/>');
+                if (c === 'Axe2') {
+                    img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
+                } else {
+                    img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon coab unique"/>');
+                }
             }
         }
     }
@@ -78,9 +80,9 @@ function slots_icon_fmt(data) {
 }
 function slots_text_format(data) {
     return '[' + data.slice(6, 8).join('+') +
-    '][' + data[8] + '][' + data[9] +
-    '][' + data.slice(10, 13).join('|') +
-    '][S3:' + data[13] + '|S4:' + data[14] + ']';
+        '][' + data[8] + '][' + data[9] +
+        '][' + data.slice(10, 13).join('|') +
+        '][S3:' + data[13] + '|S4:' + data[14] + ']';
 }
 function populateSelect(id, data) {
     const t = id.split('-')[1];
@@ -366,6 +368,9 @@ function buildConditionList(conditions) {
     const conditionDiv = $('#input-conditions');
     conditionDiv.empty();
     for (cond in conditions) {
+        if (cond.startsWith('hp')){
+            continue;
+        }
         const newCondCheck = $('<div></div>').attr({ class: 'custom-control custom-checkbox custom-control-inline' });
         const newCondCheckInput = $('<input/>').attr({ id: 'input-cond-' + cond, type: 'checkbox', class: 'custom-control-input' }).prop('checked', conditions[cond]).data('cond', cond);
         const newCondCheckLabel = $('<label>' + cond + '</label>').attr({ for: 'input-cond-' + cond, class: 'custom-control-label' });
@@ -432,14 +437,14 @@ function buildCoab(coab, fullname, weapontype) {
         check.data('ex', kcoab[1]);
         check.change(checkCoabSelection);
         if (k == fullname) {
-            if (!kcoab[0] || (kcoab[0].length < 3 || kcoab[0][2] != 'hp≤40')) {
+            if (!kcoab[0] || kcoab[0][2] != 'hp'+String.fromCharCode(8804)+'40') {
                 check.prop('disabled', true);
                 check.prop('checked', true);
+                found_fullname = kcoab[1];
             } else {
                 $('#input-coabs').data('max', 4);
                 check.addClass('coab-check');
             }
-            found_fullname = kcoab[1];
         } else {
             check.addClass('coab-check');
         }
@@ -523,6 +528,9 @@ function runAdvTest() {
     }
     if (!isNaN(parseInt($('#input-missile').val()))) {
         requestJson['missile'] = $('#input-missile').val();
+    }
+    if (!isNaN(parseInt($('#input-hp').val()))) {
+        requestJson['hp'] = $('#input-hp').val();
     }
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
@@ -635,16 +643,16 @@ function clearResults() {
         $('#input-teamdps').val(BASE_TEAM_DPS);
         localStorage.setItem('teamdps', BASE_TEAM_DPS);
     }
-    $('#input-missile').val(0);
+    $('#input-missile').val('');
+    $('#input-hp').val('');
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
     $('input:checked.coab-check').prop('check', false);
     $('#input-sim-afflict-type')[0].selectedIndex = 0;
-    $('#input-sim-afflict-time').removeAttr('value');
     $('#input-sim-afflict-time').prop('disabled', true);
-    $('#input-sim-afflict-time').empty();
-    $('#input-sim-buff-str').removeAttr('value');
-    $('#input-sim-buff-def').removeAttr('value');
+    $('#input-sim-afflict-time').val('');
+    $('#input-sim-buff-str').val('');
+    $('#input-sim-buff-def').val('');
     $('#input-conditions').empty();
 }
 function weaponSelectChange() {

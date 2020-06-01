@@ -8,6 +8,7 @@ class Valentines_Addis(Adv):
     comment = 'use s2 once'
 
     a1 = ('k_poison',0.3)
+    a3 = ('crisisattspd', 3)
     
     conf = {}
     conf['slots.a'] = The_Plaguebringer()+Primal_Crisis()
@@ -21,9 +22,6 @@ class Valentines_Addis(Adv):
     coab = ['Wand','Curran','Berserker']
     conf['afflict_res.poison'] = 0
 
-    def prerun(self):
-        self.a3atk = Selfbuff('a3atk',0.20,-1,'att','passive')
-        self.a3spd = Spdbuff('a3spd',0.10,-1)
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 1.25, self.hp):
@@ -33,8 +31,6 @@ class Valentines_Addis(Adv):
     def s2_proc(self, e):
         if self.hp > 30:
             self.set_hp(20)
-            self.a3atk.on()
-            self.a3spd.on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

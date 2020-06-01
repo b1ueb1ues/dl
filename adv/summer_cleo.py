@@ -42,7 +42,7 @@ class Summer_Cleo(Adv):
         self.dmg_make(t.name,5.3)
         self.hits += 1
 
-        for _ in range(min(len(self.all_buffs), 4)):
+        for _ in range(min(self.buffcount, 4)):
             self.dmg_make(f'o_{t.name}_boost',1.06)
             self.hits += 1
 

@@ -96,11 +96,13 @@ class Buff_Time(Ability):
 
 ability_dict['bt'] = Buff_Time
 
+
 class Debuff_Time(Ability):
     def __init__(self, name, value, cond=None):
         super().__init__(name, [('debuff','time',value, cond)])
 
 ability_dict['dbt'] = Debuff_Time
+
 
 class Killer(Ability):
     def __init__(self, name, value, cond=None):
@@ -175,7 +177,7 @@ class Co_Ability(Ability):
         'sharena': [('paralysis_killer', 'passive', 0.08)],
         'peony': [('light','ele',0.20)],
         'tiki': [('x','ex',0.20)],
-        'gleif': [('debuff_def_killer', 'passive', 0.08),('debuff_attack_killer', 'passive', 0.08)]
+        'gleif': [('debuff_killer', 'passive', 0.08)]
     }
     def __init__(self, name, value, cond=None):
         try:
@@ -194,7 +196,6 @@ class BuffingAbility(Ability):
         super().__init__(name)
 
 class Last_Offense(BuffingAbility):
-    FORCED_PROC = True
     def __init__(self, name, value, duration=15):
         super().__init__(name, value, duration)
         self.proc_chances = 1
@@ -208,7 +209,7 @@ class Last_Offense(BuffingAbility):
                 buff.on()
         adv.Event('hp').listener(l_lo_buff)
 
-        if Last_Offense.FORCED_PROC and adv.condition('last offense'):
+        if 'hp' not in adv.conf and adv.condition('last offense'):
             def lo_damaged(t):
                 if adv.hp > 30:
                     next_hp = adv.condition.hp_threshold_list()
@@ -381,10 +382,11 @@ class Resilient_Offense(Ability):
                 adv.set_hp(next_hp[0])
             except:
                 adv.set_hp(100)
-        if self.interval and self.interval < adv.duration and adv.condition(f'hp={self.hp_threshold}% every {self.interval}s'):
-            for i in range(1, self.proc_chances):
-                adv.Timer(ro_damaged).on(self.interval*i)
-        adv.Timer(ro_damaged).on(0.1)
+        if 'hp' not in adv.conf and self.interval:
+            if self.interval < adv.duration and adv.condition(f'hp={self.hp_threshold}% every {self.interval}s'):
+                for i in range(1, self.proc_chances):
+                    adv.Timer(ro_damaged).on(self.interval*i)
+            adv.Timer(ro_damaged).on(0.1)
 
 ability_dict['ro'] = Resilient_Offense
 ability_dict['uo'] = Resilient_Offense
@@ -656,3 +658,28 @@ class Skill_Recharge(Ability):
         adv.Event('s').listener(l_skill_charge)
 
 ability_dict['scharge'] = Skill_Recharge
+
+
+class Crisis_Att_Spd(Ability):
+    BUFF_LEVEL = {
+        2: (0.15, 0.10),
+        3: (0.20, 0.10)
+    }
+    def __init__(self, name, lvl):
+        self.att, self.spd = Crisis_Att_Spd.BUFF_LEVEL[lvl]
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        from core.advbase import Selfbuff, Spdbuff
+        self.atk_buff = Selfbuff(f'{self.name}_att',self.att,-1,'att','passive')
+        self.spd_buff = Spdbuff(f'{self.name}_spd',self.spd,-1)
+        def l_cas_buff(e):
+            if e.hp <= 30:
+                self.atk_buff.on()
+                self.spd_buff.on()
+            else:
+                self.atk_buff.off()
+                self.spd_buff.off()
+        adv.Event('hp').listener(l_cas_buff)
+
+ability_dict['crisisattspd'] = Crisis_Att_Spd

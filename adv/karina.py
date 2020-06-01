@@ -20,7 +20,7 @@ class Karina(Adv):
     coab = ['Dagger', 'Xander', 'Wand']
 
     def s1_proc(self, e):
-        self.dmg_make(f'o_{e.name}_boost',self.conf[f'{e.name}.dmg']*0.05*len(self.all_buffs))
+        self.dmg_make(f'o_{e.name}_boost',self.conf[f'{e.name}.dmg']*0.05*self.buffcount)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

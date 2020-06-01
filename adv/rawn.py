@@ -16,6 +16,9 @@ class Rawn(Adv):
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
 
+    def s1_proc(self, e):
+        Debuff(e.name, 0.05, 10, 0.4, 'attack').on()
+
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

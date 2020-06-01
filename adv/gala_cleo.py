@@ -71,6 +71,7 @@ class Gala_Cleo(Adv):
 
     def s2_proc(self, e):
         Debuff(e.name, 0.10, 20).on()
+        Debuff(e.name, 0.05, 20, 1, 'attack').on()
 
 
 if __name__ == '__main__':
