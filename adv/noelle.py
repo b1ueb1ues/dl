@@ -15,6 +15,7 @@ class Noelle(Adv):
     conf['slots.a'] = A_Dogs_Day()+Primal_Crisis()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
+        `fs, self.fs_prep_c>0 and x=5
         `s4
         `s1
         """

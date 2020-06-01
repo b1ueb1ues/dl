@@ -77,6 +77,7 @@ class Tobias(Adv):
     conf['slots.poison.a'] = conf['slots.a']
     conf['slots.d'] = Freyja()
     conf['acl'] = """
+        `fs, self.fs_prep_c>0 and x=5
         `s4
         `s1
     """
