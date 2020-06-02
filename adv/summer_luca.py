@@ -6,6 +6,7 @@ def module():
 
 class Summer_Luca(Adv):
     a1 = ('a',0.1,'hp70')
+    a3 = ('eextra', 0.4)
 
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
@@ -21,7 +22,7 @@ class Summer_Luca(Adv):
 
     def s2_proc(self, e):
         Spdbuff(e.name,0.2,10).on()
-        self.energy.add(1.4) # means
+        self.energy.add(1)
 
 
 if __name__ == '__main__':
