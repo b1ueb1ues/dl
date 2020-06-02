@@ -683,3 +683,16 @@ class Crisis_Att_Spd(Ability):
         adv.Event('hp').listener(l_cas_buff)
 
 ability_dict['crisisattspd'] = Crisis_Att_Spd
+
+class Energy_Extra(Ability):
+    def __init__(self, name, value):
+        self.value = value
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        def l_energy(e):
+            adv.energy.add_extra(self.value) #means
+
+        adv.Event('energy').listener(l_energy)
+
+ability_dict['eextra'] = Energy_Extra

@@ -33,6 +33,16 @@ class Tension:
         self.event.stack = self.stack
         self.event.on()
 
+    def add_extra(self, n, team=False):
+        if team:
+            log('{}_extra'.format(self.name), 'team', n)
+        if self.stack == self.MAX_STACK:
+            return
+        self.stack += n
+        if self.stack >= self.MAX_STACK:
+            self.stack = self.MAX_STACK
+        log('{}_extra'.format(self.name), '+{}'.format(n), 'stack <{}>'.format(self.stack))
+
     def check(self, scope):
         if self.stack >= self.MAX_STACK:
             if self.current_scope is None and scope in self.scope and scope in self.damage_sources:
