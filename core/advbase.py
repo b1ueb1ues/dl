@@ -1107,6 +1107,8 @@ class Adv(object):
                 value = -self.conf.sim_buffbot.debuff
                 if self.condition('boss def {:+.0%}'.format(value)):
                     buff = self.Selfbuff('simulated_def', value, -1, mtype='def')
+                    buff.chance = 1
+                    buff.val = value
                     buff.on()
             if 'buff' in self.conf.sim_buffbot:
                 if self.condition('team str {:+.0%}'.format(self.conf.sim_buffbot.buff)):
@@ -1311,7 +1313,7 @@ class Adv(object):
 
         debuff_rates = {}
         for buff in self.all_buffs:
-            if buff.get() and buff.bufftype == 'debuff' and buff.val < 0:
+            if buff.get() and (buff.bufftype == 'debuff' or buff.name == 'simulated_def') and buff.val < 0:
                 dkey = f'debuff_{buff.mod_type}'
                 try:
                     debuff_rates[dkey] *= (1 - buff.chance)
