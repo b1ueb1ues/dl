@@ -6,6 +6,7 @@ def module():
     return Natalie
 
 class Natalie(Adv):
+    a1 = ('eextra', 0.8)
     a3 = ('crisisattspd', 3)
 
     conf = {}
@@ -28,7 +29,7 @@ class Natalie(Adv):
         with CrisisModifier(e.name, 1, self.hp):
             self.dmg_make(e.name, 10.62)
 
-        self.energy.add(1.8)
+        self.energy.add(1)
         # self.energy.add(1)
         # if random.random() < 0.8:
         #     self.energy.add(1)
