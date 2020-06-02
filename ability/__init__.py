@@ -600,8 +600,8 @@ class Energy_StrCrit(Ability):
         def l_energy(e):
             self.att_buff.off()
             self.crit_buff.off()
-            self.att_buff.set(self.att_values[e.stack])
-            self.crit_buff.set(self.crit_values[e.stack])
+            self.att_buff.set(self.att_values[round(e.stack)])
+            self.crit_buff.set(self.crit_values[round(e.stack)])
             self.att_buff.on()
             self.crit_buff.on()
         adv.Event('energy').listener(l_energy)
