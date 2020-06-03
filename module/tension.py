@@ -43,7 +43,12 @@ class Tension:
             self.stack = self.MAX_STACK
         log('{}_extra'.format(self.name), '+{}'.format(n), 'stack <{}>'.format(self.stack))
 
-    def check(self, scope):
+    def check(self, name):
+        scope = name.split('_')
+        if scope[0] == 'o':
+            scope = scope[1]
+        else:
+            scope = scope[0]
         if self.stack >= self.MAX_STACK:
             if self.current_scope is None and scope in self.scope and scope in self.damage_sources:
                 # entering a new s1/s2/s3 block

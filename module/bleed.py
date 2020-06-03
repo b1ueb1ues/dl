@@ -10,11 +10,12 @@ class Bleed(Dot):
 
     def __init__(self, name, dmg_coef, duration=30):
         Dot.__init__(self, name, dmg_coef, duration, 4.99)
-        self.quickshot_event = Event("dmg_formula")
+        self.quickshot_event = Event('dmg_formula')
         self.quickshot_event.dmg_coef = dmg_coef
-        self.quickshot_event.dname = 's_bleed'
+        self.quickshot_event.dname = 'o_{}_bleed'.format(name)
+        self.quickshot_event.dtype = 's'
         self.dot_end_timer = Timer(self.dot_end_proc)
-        self.true_dmg_event = Event("true_dmg")
+        self.true_dmg_event = Event('true_dmg')
         self.true_dmg_event.dname = 'o_{}_bleed'.format(name)
         self.true_dmg_event.dtype = 's'
 
@@ -28,26 +29,20 @@ class Bleed(Dot):
         stacks = self._static['stacks']
         for i in self._static['all_bleeds']:
             dmg_sum += i.quickshot_event.dmg
-        if stacks == 1:
-            dmg = dmg_sum
-        elif stacks == 2:
-            dmg = dmg_sum * 1.5
-        elif stacks == 3:
-            dmg = dmg_sum * 2
-        else:
-            print("err in bleed tick_proc")
-            exit()
-        self.true_dmg_event.comment = " stack <%d>"%stacks
+        if stacks < 0 or stacks > 3:
+            raise Exception(f'Bleed stack out of range ({stacks}).')
+        dmg = dmg_sum * (stacks + 1) * 0.5
+        self.true_dmg_event.comment = ' stack <%d>'%stacks
         self.true_dmg_event.count = dmg
         self.true_dmg_event.on()
-        #log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
+        #log('dmg','o_bleed',dmg,'%d stacks'%stacks)
         e.timing += self.iv
 
     def dot_end_proc(self, e):
         idx = self._static['all_bleeds'].index(self)
         self._static['all_bleeds'].pop(idx)
         self._static['stacks'] -= 1
-        log('debuff','bleed','stack_end',"stack <%d>"%self._static['stacks'])
+        log('debuff','bleed','stack_end','stack <%d>'%self._static['stacks'])
         if self._static['stacks'] < 0:
             print('err in bleed dot_end_proc')
             exit()
@@ -62,7 +57,7 @@ class Bleed(Dot):
             log('resist','bleed')
             return
         elif self._static['stacks'] > 3:
-            print("err in bleed on")
+            print('err in bleed on')
             exit()
 
         log('debuff','bleed')
@@ -89,7 +84,7 @@ class mBleed(Bleed):
         self.chance = chance
 
     def sum_bleeds(self, bleeds, active=None, probability=1.0, index=0):
-        """ Calculates the total damage from bleed during the current tick
+        ''' Calculates the total damage from bleed during the current tick
         Keeps a running probability of each possible combination of active bleed stacks in cache
         Also able to calculate it from scratch which is slower
 
@@ -104,7 +99,7 @@ class mBleed(Bleed):
         index : int, optional
             The index in the list of bleeds we're current at
             If equal to the length, it instead adds up damage and also caches for the next tick
-        """
+        '''
         if active is None:
             active = []
 
@@ -163,10 +158,10 @@ class mBleed(Bleed):
         else:
             dmg = self.sum_bleeds(bleeds)
 
-        self.true_dmg_event.comment = "%d active stacks"%stacks
+        self.true_dmg_event.comment = '%d active stacks'%stacks
         self.true_dmg_event.count = dmg
         self.true_dmg_event.on()
-        #log("dmg",'o_bleed',dmg,"%d stacks"%stacks)
+        #log('dmg','o_bleed',dmg,'%d stacks'%stacks)
         e.timing += self.iv
 
     def on(self):
@@ -189,7 +184,7 @@ class mBleed(Bleed):
         # will not be directly blocked by self bleed
         self.end_index = length-1
         self._static['stacks'] -= 1
-        log('debuff', 'bleed', 'stack_end', "stack <%d>" % self._static['stacks'])
+        log('debuff', 'bleed', 'stack_end', 'stack <%d>' % self._static['stacks'])
         if self._static['stacks'] < 0:
             print('err in bleed dot_end_proc')
             exit()
