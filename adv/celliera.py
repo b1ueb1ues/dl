@@ -7,7 +7,7 @@ def module():
     return Celliera
 
 class Celliera(Adv):
-    a3 = ('lo',0.50)
+    a3 = ('lo',0.60)
 
     conf = {}
     conf['slots.d'] = Siren()

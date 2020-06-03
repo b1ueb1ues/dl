@@ -1232,9 +1232,6 @@ class Adv(object):
         else:
             scope = scope[0]
 
-        for t in self.tension:
-            t.check(scope)
-
         if scope[0] == 's':
             try:
                 # need to consider mystery afflict mod later
@@ -1799,6 +1796,8 @@ class Adv(object):
 
     def dmg_make(self, name, dmg_coef, dtype=None, fixed=False):
         self.damage_sources.add(name)
+        for t in self.tension:
+            t.check(name)
         if dtype == None:
             dtype = name
         count = self.dmg_formula(dtype, dmg_coef) if not fixed else dmg_coef

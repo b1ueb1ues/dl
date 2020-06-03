@@ -291,10 +291,13 @@ class Afflic_dot(AfflicUncapped):
     def on(self, name, rate, coef, duration=None, iv=None, dtype=None):
         self.rate = rate + self.edge
         self.coef = coef
-        self.dtype = dtype
+        if dtype is None and name[0] == 's':
+            self.dtype = 's'
+        else:
+            self.dtype = dtype
         self.duration = duration or self.default_duration
         self.iv = iv or self.default_iv
-        self.dot = Dot('o_%s_%s' % (name, self.name), coef, self.duration, self.iv, self.dtype)
+        self.dot = Dot(f'o_{name}_{self.name}', coef, self.duration, self.iv, self.dtype)
         self.dot.on()
         r = super().on()
         self.dot.tick_dmg *= r

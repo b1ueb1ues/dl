@@ -31,14 +31,14 @@ class Nobunaga(Adv):
         adv.rebind_function(Nobunaga, 'ba_proc')
 
     def s1_proc(self, e):
-        self.burning_ambition = self.dmg_formula(e.name, 11.18)
+        self.burning_ambition = self.dmg_formula('s', 11.18)
         t = Timer(self.ba_proc)
         t.name = e.name
         t.on(30)
 
     def ba_proc(self, t):
         if self.burning_ambition > 0:
-            self.dmg_make(f'{t.name}_boost', self.burning_ambition, fixed=True)
+            self.dmg_make(f'{t.name}_burning_ambition', self.burning_ambition, fixed=True)
             self.burning_ambition = 0
             return True
         return False
