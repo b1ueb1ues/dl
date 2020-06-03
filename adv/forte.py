@@ -23,7 +23,7 @@ class Forte(Adv):
     coab = ['Ieyasu','Wand','Bow']
 
     def prerun(self):
-        self.dgauge_charge = 4
+        self.dgauge_charge = 40
 
     @staticmethod
     def prerun_skillshare(adv, dst):

@@ -23,9 +23,13 @@ class Curran(Adv):
         '''
     coab = ['Curran','Blade','Wand','Bow']
 
+    def s1_before(self, e):
+        with Modifier('s1killer', 'poison_killer', 'hit', 0.6):
+            self.dmg_make(e.name, 2.45)
+
     def s1_proc(self, e):
         with Modifier('s1killer', 'poison_killer', 'hit', 0.6):
-            self.dmg_make(e.name, 14.70)
+            self.dmg_make(e.name, 12.70)
 
     def s2_proc(self, e):
         with Modifier('s2killer', 'poison_killer', 'hit', 1):

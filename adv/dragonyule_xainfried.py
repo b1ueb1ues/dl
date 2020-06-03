@@ -30,6 +30,8 @@ class Dragonyule_Xainfried(Adv):
     def s1_proc(self, e):
         self.buff_class(e.name,0.2,15,'crit','chance').on()
 
+    def s2_proc(self, e):
+        self.dragonform.charge_gauge(50)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

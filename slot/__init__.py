@@ -120,7 +120,7 @@ class DragonBase(Slot):
         'exhilaration': 0, # psiren aura
         'skill_use': 1, # number of skill usage
         'gauge_iv': 15, # gauge interval
-        'gauge_val': 10, # gauge regen value
+        'gauge_val': 100, # gauge regen value
         'latency': 0, # amount of delay for cancel
         'act': 'end',
 

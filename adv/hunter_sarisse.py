@@ -140,7 +140,7 @@ class Hunter_Sarisse(Adv):
         self.think_pin('fs')
         self.charge(name,self.conf[name+'.sp'])
 
-    def fs_proc(e):
+    def fs_proc(self, e):
         self.fs_attdown.on()
 
     def l_fs1(self, e):

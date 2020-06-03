@@ -36,8 +36,8 @@ class Sylas(Adv):
         with KillerModifier('s1_killer', 'hit', 0.5, ['poison']):
             self.dmg_make(e.name, 5.52)
             self.s1_attdown.on()
-            self.dmg_make(e.name, 5.52)
             self.afflics.poison(e.name,120,0.582)
+            self.dmg_make(e.name, 5.52)
 
     def s2_proc(self, e):
         Selfbuff(f'{e.name}_sp',0.30,15,'sp','buff').on()
