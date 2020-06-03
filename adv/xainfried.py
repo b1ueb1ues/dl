@@ -29,7 +29,7 @@ class Xainfried(Adv):
             self.hits += 3
 
     def s2_proc(self, e):
-        self.dragonform.charge_gauge(10)
+        self.dragonform.charge_gauge(100)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

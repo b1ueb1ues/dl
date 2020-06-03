@@ -31,7 +31,7 @@ class Audric(Adv):
             self.cursed_blood.off()
 
     def s1_proc(self, e):
-        self.dragonform.charge_gauge(3)
+        self.dragonform.charge_gauge(30)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
