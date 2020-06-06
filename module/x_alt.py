@@ -11,7 +11,7 @@ class Fs_alt:
         self.conf_og = adv.conf
         self.fs_proc_og = adv.fs_proc
         self.conf_alt = adv.conf + Conf(conf)
-        self.a_fs_alt = Fs_group('fs_alt', self.conf_alt)
+        self.a_fs_alt = Fs_group('fs', self.conf_alt)
         self.fs_proc_alt = fs_proc
         self.uses = 0
         self.has_fsf = False
