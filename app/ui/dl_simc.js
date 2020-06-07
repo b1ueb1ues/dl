@@ -504,6 +504,22 @@ function readSkillShare() {
         return skillShare;
     }
 }
+function readSimAfflic(){
+    let simAff = {};
+    const affList = $('#affliction-sim > div > input[type="text"]');
+    if (affList.length === 0) {
+        return null;
+    } else {
+        affList.each(function (idx, res) {
+            const resVal = parseInt($(res).val());
+            if (!isNaN(resVal)) {
+                const parts = $(res).attr('id').split('-');
+                simAff[parts[parts.length - 1]] = resVal;
+            }
+        });
+        return simAff;
+    }
+}
 function runAdvTest() {
     if ($('#input-adv').val() == '') {
         return false;
@@ -543,10 +559,14 @@ function runAdvTest() {
     if ($('#input-edit-acl').prop('checked')) {
         requestJson['acl'] = $('#input-acl').val();
     }
-    if ($('#input-sim-afflict').val() !== 'none' && !isNaN(parseInt($('#input-sim-afflict-time').val()))) {
-        requestJson['sim_afflict_type'] = $('#input-sim-afflict-type').val();
-        requestJson['sim_afflict_time'] = $('#input-sim-afflict-time').val();
+    const sim_aff = readSimAfflic();
+    if (sim_aff != null){
+        requestJson['sim_afflict'] = sim_aff;
     }
+    // if ($('#input-sim-afflict').val() !== 'none' && !isNaN(parseInt($('#input-sim-afflict-time').val()))) {
+    //     requestJson['sim_afflict_type'] = $('#input-sim-afflict-type').val();
+    //     requestJson['sim_afflict_time'] = $('#input-sim-afflict-time').val();
+    // }
     if (!isNaN(parseInt($('#input-sim-buff-str').val()))) {
         requestJson['sim_buff_str'] = $('#input-sim-buff-str').val();
     }
@@ -655,10 +675,9 @@ function clearResults() {
     $('#input-hp').val('');
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
+    const simAff = $('#affliction-resist > div > input[type="text"]');
+    simAff.each(function (idx, res) { $(res).val(''); });
     $('input:checked.coab-check').prop('check', false);
-    $('#input-sim-afflict-type')[0].selectedIndex = 0;
-    $('#input-sim-afflict-time').prop('disabled', true);
-    $('#input-sim-afflict-time').val('');
     $('#input-sim-buff-str').val('');
     $('#input-sim-buff-def').val('');
     $('#input-conditions').empty();
@@ -682,16 +701,6 @@ function weaponSelectChange() {
         $('#input-acl').val($('#input-acl').data('default_acl'));
     }
 }
-function simAfflictSelectChange() {
-    const simAfflict = $('#input-sim-afflict-type').val();
-    if (simAfflict !== 'none') {
-        $('#input-sim-afflict-time').prop('disabled', false);
-        $('#input-sim-afflict-time').val(BASE_AFFLICT_UPTIME[simAfflict]);
-    } else {
-        $('#input-sim-afflict-time').prop('disabled', true);
-        $('#input-sim-afflict-time').removeAttr('value');
-    }
-}
 window.onload = function () {
     $('#input-adv').change(debounce(loadAdvSlots, 200));
     $('#run-test').click(debounce(runAdvTest, 200));
@@ -704,7 +713,6 @@ window.onload = function () {
     $('#reset-test').click(loadAdvSlots);
     $('#input-edit-acl').change(editAcl);
     $('#input-wep').change(weaponSelectChange);
-    $('#input-sim-afflict-type').change(simAfflictSelectChange);
     clearResults();
     loadAdvWPList();
 }

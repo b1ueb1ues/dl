@@ -88,34 +88,37 @@
                 </div>
             </div>
             <div class="collapse" id="advanced-inputs">
+                <div class="form-row" id="affliction-sim">
+                    <div class="col-sm col-4">
+                        <label for="input-res-poison">Poison Uptime (%)</label><input id="input-sim-poison" class="form-control" type="text" placeholder="0" />
+                    </div>
+                    <div class="col-sm col-4">
+                        <label for="input-res-paralysis">Paralysis Uptime (%)</label><input id="input-sim-paralysis" class="form-control" type="text" placeholder="0" />
+                    </div>
+                    <div class="col-sm col-4">
+                        <label for="input-res-burn">Burn Uptime (%)</label><input id="input-sim-burn" class="form-control" type="text" placeholder="0" />
+                    </div>
+                    <div class="col-sm col-4">
+                        <label for="input-res-frostbite">Frostbite Uptime (%)</label><input id="input-sim-frostbite" class="form-control" type="text" placeholder="0" />
+                    </div>
+                </div>
                 <div class="form-row">
-                    <div class="col-sm-3">
-                        <label for="input-sim-afflict-type">Simulate Affliction</label>
-                        <select id="input-sim-afflict-type" class="form-control">
-                            <option value="none">None</option>
-                            <option value="burn">Burn</option>
-                            <option value="paralysis">Paralysis</option>
-                            <option value="poison">Poison</option>
-                            <option value="frostbite">Frostbite</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <label for="input-sim-afflict-time">Uptime (%)</label><input id="input-sim-afflict-time" class="form-control" type="text" disabled />
-                    </div>
                     <div class="col-sm-3">
                         <label for="input-sim-buff-str">Simulate +Str%</label><input id="input-sim-buff-str" class="form-control" type="text" />
                     </div>
                     <div class="col-sm-3">
                         <label for="input-sim-buff-def">Simulate -Def%</label><input id="input-sim-buff-def" class="form-control" type="text" />
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-9">
-                        <label>Conditions</label>
-                        <div id="input-conditions"></div>
+                    <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
                         <label for="input-missile">Missile</label><input id="input-missile" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Conditions</label>
+                        <div id="input-conditions"></div>
                     </div>
                 </div>
                 <div class="form-row" id="affliction-resist">
@@ -192,9 +195,11 @@
                         <h5>How do I enter ACL?</h5>
                         <p>Please consult <a href="https://github.com/b1ueb1ues/dl/blob/master/README.md">this page</a> for ACL syntax.</p>
                         <h5>How does simulated afflictions work?</h5>
-                        <p>The affliction is considered [uptime]% effective for the duration. Default uptimes are burn 85% (Euden), paralysis 85% (Mitsuhide), poison 90% (Delphi), frostbite 90% (Xainfried). Adventurers that already have affliction in their kit will not get more uptime from this.</p>
+                        <p>The affliction is considered [uptime]% effective for the entire duration of the simulation.</p>
                         <h5>How does simulated buff/debuff work?</h5>
                         <p>1 stack of the entered buff/debuff is active for the entire duration of the simulation.</p>
+                        <h5>Why does only some characters use skill share?</h5>
+                        <p>Skill share is an experimental feature for now.</p>
                         <h5>Something is <i>wrong</i> with this tool/Please add a new feature!</h5>
                         <p>Ask me on discord I'm chu2.718281828459045235360287471#0110</p>
                     </div>

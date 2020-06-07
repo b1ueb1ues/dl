@@ -207,10 +207,10 @@ def simc_adv_test():
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)
         except:
             pass
-    try:
-        conf[f'sim_afflict.{params["sim_afflict_type"]}'] = abs(float(params['sim_afflict_time'])) / 100
-    except:
-        pass
+        try:
+            conf['sim_afflict.'+afflic] = min(abs(int(params['sim_afflict'][afflic])), 100)/100
+        except:
+            pass
     try:
         conf['sim_buffbot.buff'] = min(max(int(params['sim_buff_str']), -1000), 1000)/100
     except:
