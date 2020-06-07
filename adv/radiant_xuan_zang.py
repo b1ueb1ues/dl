@@ -28,10 +28,12 @@ class Radiant_Xuan_Zang(Adv):
         `dragon, x=1
         `s2
         `s1
+        `s4
         `s3, x=5
         `fs, self.fs_alt.uses>0 and cancel
     """
     coab = ['Sharena', 'Blade', 'Peony']
+    share = ['Curran']
     conf['afflict_res.paralysis'] = 0
 
     def fs_proc_alt(self, e):

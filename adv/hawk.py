@@ -20,9 +20,11 @@ class Hawk(Adv):
         `s2, self.fs_alt.uses=0 or (self.s2_mode=1)
         `fs, (s1.check() and self.fs_alt.uses>1) or (x=4 and self.s2_mode=0 and self.fs_alt.uses>0)
         `s1, fsc or s=1
+        `s4, s or x=5
     """
 
     coab = ['Blade','Dragonyule_Xainfried','Sylas']
+    share = ['Curran']
     conf['afflict_res.stun'] = 80
     conf['afflict_res.poison'] = 0
     

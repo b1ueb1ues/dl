@@ -18,6 +18,7 @@ class Nobunaga(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, self.burning_ambition
+        `s4
         `fs, x=5 and s2.charged<s2.sp-self.sp_val(2)
         """
     coab = ['Wand','Marth','Serena']

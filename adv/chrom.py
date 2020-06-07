@@ -29,9 +29,11 @@ class Chrom(Adv):
         `s3, fsc and not self.s3_buff
         `s2, self.s2.flames=3 and self.s2.count=3
         `s1, fsc
+        `s4, fsc
         `fs, x=3
     """
     coab = ['Blade', 'Wand', 'Marth']
+    share = ['Curran']
 
     def init(self):
         del self.slots.c.coabs['Sword']

@@ -61,11 +61,14 @@ class Gala_Leif(Adv):
         end
         `dragon.act('c3 s end')
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
         `fs, x=3
     """
     coab = ['Dragonyule_Xainfried', 'Blade', 'Lin_You']
+    share = ['Curran']
+    conf['afflict_res.poison'] = 0
     
     def prerun(self):
         self.stance = 'shielding'

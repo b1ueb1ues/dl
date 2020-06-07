@@ -18,9 +18,11 @@ class Marth(Adv):
         `s3, not self.s3_buff
         `s2
         `s1, fsc
+        `s4, fsc
         `fs, x=3
     """
     coab = ['Blade', 'Wand', 'Joe']
+    share = ['Curran']
 
     def d_coabs(self):
         if self.duration <= 60:

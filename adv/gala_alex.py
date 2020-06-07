@@ -80,12 +80,16 @@ class Gala_Alex(Adv):
         `s3, not self.s3_buff
         if fsc
         `s2, not self.afflics.poison.get()
-        `s2, self.sr.chain_status=1 and self.s1_debuff.buff_end_timer.timing-now()<5
+        if self.sr.chain_status=1 and self.s1_debuff.buff_end_timer.timing-now()<5
+        `s4
+        `s2
+        end
         `s1, not self.s1_debuff.get() or self.sr.count > 1
         end
         `fs, x=4
     """
     coab = ['Blade','Wand','Delphi']
+    share = ['Rodrigo']
     conf['afflict_res.poison'] = 0
 
     def d_coabs(self):

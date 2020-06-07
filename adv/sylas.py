@@ -14,11 +14,13 @@ class Sylas(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
         `fs, x=5
         """
     coab = ['Eleonora','Dragonyule_Xainfried','Blade']
+    share = ['Curran']
     conf['afflict_res.poison'] = 0
 
     def d_coabs(self):

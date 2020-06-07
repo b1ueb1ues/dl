@@ -16,11 +16,13 @@ class Forte(Adv):
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s3, not self.s3_buff
+        `s4
         `s2
         `s1
         `fs, x=5
         """
     coab = ['Ieyasu','Wand','Bow']
+    share = ['Curran']
 
     def prerun(self):
         self.dgauge_charge = 40

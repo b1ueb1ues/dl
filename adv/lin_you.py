@@ -13,11 +13,13 @@ class Lin_You(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s2, s1.check()
         `s1
         `fs, self.hits <= 44 and self.fs_alt.uses > 0 and x=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Axe2']
+    share = ['Curran']
 
     def prerun(self):
         conf_fs_alt = {'fs.dmg': 2.59, 'fs.hit': 6}

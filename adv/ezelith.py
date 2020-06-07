@@ -1,4 +1,5 @@
 from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
@@ -14,9 +15,11 @@ class Ezelith(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, cancel
+        `s4, cancel
         `fs, x=5
         """
     coab = ['Halloween_Mym', 'Blade', 'Marth']
+    share = ['Curran']
 
     def prerun(self):
         self.s2_buff = Selfbuff('s2',0.2,15)

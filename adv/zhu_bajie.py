@@ -36,10 +36,12 @@ class Zhu_Bajie(Adv):
     conf['acl'] = """
         `s2, fsc
         `s1, fsc
+        `s4, fsc
         `dodge, fsc
         `fs3
         """
     coab = ['Blade','Grace','Peony']
+    share = ['Veronica']
 
     def prerun(self):
         self.conf.fs.hit = 1

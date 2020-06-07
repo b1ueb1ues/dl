@@ -216,10 +216,14 @@ class Mitsuba(Adv):
         `tempura
         end
         `s1
-        `s2, x=2
-        `fsf, x=2
+        if x=2
+        `s4
+        `s2
+        `fsf
+        end
     """
     coab = ['Blade','Xander', 'Summer_Estelle']
+    share = ['Curran']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

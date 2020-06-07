@@ -57,6 +57,7 @@ class Bellina(Adv):
         `s3, not self.s3_buff
         if self.dragondrive_buff.get()
         `s1, self.dragonform.dragon_gauge>1000 and x=3
+        `s4, x=3
         `fsf, x=3
         else
         `s2
@@ -65,6 +66,7 @@ class Bellina(Adv):
         end
     """
     coab = ['Ieyasu','Curran','Berserker']
+    share = ['Veronica']
 
     def fs_proc_alt(self, e):
         with CrisisModifier(e.name, 1.00, self.hp):
@@ -121,7 +123,6 @@ class Bellina(Adv):
                 self.dmg_make(e.name, 2.02 * 5)
                 self.hits += 5
             self.s1.charge(self.conf.s1.sp)
-            self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
             self.dragonform.charge_gauge(-750, utp=True)
         else:
             with CrisisModifier(e.name, 0.50, self.hp):
@@ -144,6 +145,11 @@ class Bellina(Adv):
                 self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
                 self.set_hp(30)
             # regular buff duration (?)
+
+    def s_proc(self, e):
+        if self.dragondrive_buff.get():
+            s = getattr(self, e.name)
+            self.dragonform.add_drive_gauge_time(s.ac.getstartup()+s.ac.getrecovery(), skill_pause=True)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
