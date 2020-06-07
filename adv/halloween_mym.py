@@ -71,9 +71,7 @@ class Halloween_Mym(Adv):
 
     def s1_proc(self, e):
         if self.s1defdown:
-            buff = Debuff(e.name,0.15,10,1)
-            buff.bufftime = buff._no_bufftime
-            buff.on()
+            self.s1_debuff = Debuff(e.name,0.15,10,1).no_bufftime().on()
 
     def s2_proc(self, e):
         self.buff_class(e.name,0.20,15).on()

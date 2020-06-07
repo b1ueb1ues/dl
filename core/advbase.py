@@ -204,6 +204,10 @@ class Buff(object):
     def _debufftime(self):
         return self._static.debufftime()
 
+    def no_bufftime(self):
+        self.bufftime = self._no_bufftime
+        return self
+
     def value(self, newvalue=None):
         if newvalue:
             return self.set(newvalue)

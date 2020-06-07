@@ -144,14 +144,9 @@ class Halloween_Maritimus(DragonBase):
         'ds.hit': -1,
     }
 
-    def oninit(self, adv):
-        super().oninit(adv)
-        from core.advbase import Teambuff
-        self.ds_buff = Teambuff('ds_sd',0.3,10,'s','buff')
-        self.ds_buff.bufftime = self.ds_buff._no_bufftime
-
     def ds_proc(self):
-        self.ds_buff.on()
+        from core.advbase import Teambuff
+        Teambuff('ds_sd',0.3,10,'s','buff').no_bufftime().on()
         return 0
 H_Maritimus = Halloween_Maritimus
 
