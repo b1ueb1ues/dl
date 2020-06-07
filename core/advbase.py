@@ -850,6 +850,9 @@ class Adv(object):
     def s4_proc(self, e):
         pass
 
+    def s_proc(self, e):
+        pass
+
     def x_proc(self, e):
         pass
 
@@ -869,6 +872,9 @@ class Adv(object):
         pass
 
     def s4_before(self, e):
+        pass
+
+    def s_before(self, e):
         pass
 
     def x_before(self, e):
@@ -1850,6 +1856,7 @@ class Adv(object):
         dmg_coef = self.conf[e.name + '.dmg']
         func = e.name + '_before'
         tmp = getattr(self, func)(e)
+        self.s_before(e)
         if tmp != None:
             dmg_coef = tmp
         if dmg_coef:
@@ -1880,6 +1887,7 @@ class Adv(object):
 
         func = e.name + '_proc'
         getattr(self, func)(e)
+        self.s_proc(e)
 
     @staticmethod
     def do_buff(e, buffarg):
