@@ -1524,10 +1524,11 @@ class Adv(object):
             self.skillshare_list.remove(self.__class__.__name__)
         except:
             pass
-        if len(self.skillshare_list) < 2:
-            self.skillshare_list.insert(0, 'Weapon')
+        self.skillshare_list = list(set(self.skillshare_list))
         if len(self.skillshare_list) > 2:
             self.skillshare_list = self.skillshare_list[:2]
+        if len(self.skillshare_list) < 2:
+            self.skillshare_list.insert(0, 'Weapon')
         from conf import advconfs, skillshare
         from core.simulate import load_adv_module
         share_limit = 10
