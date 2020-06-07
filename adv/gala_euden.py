@@ -37,9 +37,7 @@ class Gala_Euden(Adv):
 
     def s1_proc(self, e):
         if self.condition(f'{e.name} buff for 10s'):
-            buff = Teambuff(e.name,0.20,10,'att')
-            buff.bufftime = buff._no_bufftime
-            buff.on()
+            Teambuff(e.name,0.20,10,'att').no_bufftime().on()
 
     def s2_proc(self, e):
         Event('defchain')()

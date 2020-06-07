@@ -204,9 +204,7 @@ class Last_Offense(BuffingAbility):
         def l_lo_buff(e):
             if e.hp <= 30 and self.proc_chances > 0:
                 self.proc_chances -= 1
-                buff = adv.Buff(*self.buff_args)
-                buff.bufftime = buff._no_bufftime
-                buff.on()
+                adv.Buff(*self.buff_args).no_bufftime().on()
         adv.Event('hp').listener(l_lo_buff)
 
         if 'hp' not in adv.conf and adv.condition('last offense'):
@@ -430,9 +428,7 @@ class Primed(BuffingAbility):
 
         def l_primed(e):
             if not self.is_cd:
-                buff = adv.Buff(*self.buff_args)
-                buff.bufftime = buff._no_bufftime
-                buff.on()
+                adv.Buff(*self.buff_args).no_bufftime().on()
                 self.is_cd = True
                 adv.Timer(pm_cd_end).on(self.PRIMED_CD)
 

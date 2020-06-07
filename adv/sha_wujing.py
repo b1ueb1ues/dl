@@ -57,9 +57,7 @@ class Sha_Wujing(Adv):
 
     def s2_proc(self, e):
         if self.condition(f'{e.name} defdown for 10s'):
-            self.s2_debuff = Debuff(e.name,0.15,10,1)
-            self.s2_debuff.bufftime = self.s2_debuff._no_bufftime
-            self.s2_debuff.on()
+            self.s2_debuff = Debuff(e.name,0.15,10,1).no_bufftime().on()
         
         self.a1_check()
 

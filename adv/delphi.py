@@ -33,9 +33,7 @@ class Delphi(Adv):
 
     def s1_proc(self, e):
         if self.s1defdown:
-            buff = Debuff('s1defdown',0.20,10,1)
-            buff.bufftime = buff._no_bufftime
-            buff.on()
+            Debuff('s1defdown',0.20,10,1).no_bufftime().on()
         self.s1fscharge = 1
     
     def s2_proc(self, e):
