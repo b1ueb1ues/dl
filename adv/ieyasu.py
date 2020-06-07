@@ -20,7 +20,7 @@ class Ieyasu(Adv):
     coab = ['Wand','Dagger','Axe2']
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Wand','Bow','Axe2']
 
     def s2ifbleed(self):

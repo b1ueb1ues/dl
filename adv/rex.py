@@ -26,7 +26,7 @@ class Rex(Adv):
             self.conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0 and (self.duration > 120 or self.duration <= 60):
+        if self.sim_afflict and (self.duration > 120 or self.duration <= 60):
             self.coab = ['Blade', 'Xander','Yurius']
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ class Yaten(Adv):
     coab = ['Ieyasu','Wand','Dagger']
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Ieyasu','Wand','Bow']
 
     def s1_proc(self, e):

@@ -23,7 +23,7 @@ class Summer_Julietta(Adv):
     conf['afflict_res.bog'] = 100
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Blade', 'Renee', 'Summer_Estelle']
 
     def init(self):

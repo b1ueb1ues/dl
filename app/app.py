@@ -208,9 +208,7 @@ def simc_adv_test():
         except:
             pass
     try:
-        if params['sim_afflict_type'] in ['burn', 'paralysis', 'poison', 'frostbite']:
-            conf['sim_afflict.efficiency'] = abs(float(params['sim_afflict_time'])) / 100
-            conf['sim_afflict.type'] = params['sim_afflict_type']
+        conf[f'sim_afflict.{params["sim_afflict_type"]}'] = abs(float(params['sim_afflict_time'])) / 100
     except:
         pass
     try:

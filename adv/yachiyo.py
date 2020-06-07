@@ -28,7 +28,7 @@ class Yachiyo(Adv):
     conf['afflict_res.paralysis'] = 0
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Sharena','Dagger','Peony']
 
     def prerun(self):
