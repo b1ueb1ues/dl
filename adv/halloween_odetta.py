@@ -21,7 +21,7 @@ class Halloween_Odetta(Adv):
     coab = ['Summer_Estelle','Blade','Dagger']
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Summer_Estelle','Blade','Renee']
 
     def init(self):

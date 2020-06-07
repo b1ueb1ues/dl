@@ -23,7 +23,7 @@ class Vanessa(Adv):
     def d_coabs(self):
 #        if self.duration <= 120 and self.duration > 60:
 #            self.coab = ['Blade', 'Marth', 'Hmym']
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Blade','Marth','Serena']
 
 #    def d_slots(self):

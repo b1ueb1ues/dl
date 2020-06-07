@@ -16,7 +16,7 @@ class Marty(Adv):
     coab = ['Blade', 'Marth', 'Tiki']
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             if self.duration > 120:
                 self.coab = ['Blade','Marth','Serena']
 

@@ -1101,9 +1101,15 @@ class Adv(object):
                         vars(self.afflics)[afflic].resist = 100
 
     def sim_affliction(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
-            aff = vars(self.afflics)[self.conf.sim_afflict.type]
-            aff.get_override = min(self.conf.sim_afflict.efficiency, 1)
+        if 'sim_afflict' in self.conf:
+            for aff_type in AFFLICT_LIST:
+                aff = vars(self.afflics)[aff_type]
+                try:
+                    if self.conf.sim_afflict[aff_type] > 0:
+                        aff.get_override = min(self.conf.sim_afflict[aff_type], 1.0)
+                        self.sim_afflict.add(aff_type)
+                except:
+                    continue
 
     def sim_buffbot(self):
         if 'sim_buffbot' in self.conf:
@@ -1137,14 +1143,14 @@ class Adv(object):
             return
 
         from conf.slot_common import ele_punisher
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             aff, wpa = ele_punisher[self.slots.c.ele]
             wp1 = self.slots.a.__class__
             wp2 = wpa
             if wp1 != wp2:
                 self.slots.a = wp1()+wp2()
             if aff in self.conf.slots:
-                afflic_slots = self.conf.slots[self.conf.sim_afflict.type]
+                afflic_slots = self.conf.slots[aff]
                 for s in ('d', 'w', 'a'):
                     if s in afflic_slots:
                         self.slots.__dict__[s] = afflic_slots[s]
@@ -1173,6 +1179,7 @@ class Adv(object):
     def __init__(self, conf={}, cond=None):
         if not self.name:
             self.name = self.__class__.__name__
+
         self.Event = Event
         self.Buff = Buff
         self.Debuff = Debuff
@@ -1198,6 +1205,12 @@ class Adv(object):
             self.conf = Conf()
         self.pre_conf()
 
+        # set afflic
+        self.afflics = Afflics()
+        self.sim_afflict = set()
+        self.afflic_condition()
+        self.sim_affliction()
+
         # self.slots = slot.Slots()
         self.default_slot()
 
@@ -1214,9 +1227,6 @@ class Adv(object):
 
         self.skill = Skill()
         self._acl = None
-
-        # set afflic
-        self.afflics = Afflics()
 
         # self.classconf = self.conf
         self.init()
@@ -1327,8 +1337,7 @@ class Adv(object):
         for dkey in debuff_rates.keys():
             debuff_rates[dkey] = 1 - debuff_rates[dkey]
         rates.update(debuff_rates)
-
-
+        
         rate_list = list(rates.items())
         for mask in product(*[[0, 1]] * len(rate_list)):
             p = 1.0
@@ -1383,10 +1392,6 @@ class Adv(object):
             if i.get() and i.bufftype == 'self' or i.bufftype == 'team':
                 bc += 1
         return bc
-
-    @property
-    def is_sim_afflict(self):
-        return 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency == 1
 
     def l_idle(self, e):
         """
@@ -1635,10 +1640,7 @@ class Adv(object):
             self.d_slots()
         self.base_att = 0
 
-        self.afflic_condition()
-        self.sim_affliction()
         self.sim_buffbot()
-
         self.slot_backdoor()
         self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)

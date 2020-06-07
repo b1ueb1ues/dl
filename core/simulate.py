@@ -11,13 +11,15 @@ tension_efficiency = {
     'inspiration': 0.6
 }
 
-ele_afflict = {
+ELE_AFFLICT = {
     'flame': 'burn',
     'water': 'frostbite',
     'wind': 'poison',
     'light': 'paralysis',
     'shadow': 'poison'
 }
+
+DOT_AFFLICT = ['poison', 'paralysis', 'burn', 'frostbite']
 
 def run_once(classname, conf, duration, cond):
     adv = classname(conf=conf,cond=cond)
@@ -107,10 +109,11 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
             'team_tension': adv_2.logs.team_tension
         }
 
-    if verbose == -5:
-        aff_name = ele_afflict[adv.slots.c.ele]
-        conf['sim_afflict.efficiency'] = 1
-        conf['sim_afflict.type'] = aff_name
+    if -10 <= verbose <= -5:
+        aff_name = ELE_AFFLICT[adv.slots.c.ele]
+        conf[f'sim_afflict.{aff_name}'] = 1
+        for aff_name in DOT_AFFLICT[:(-verbose-5)]:
+            conf[f'sim_afflict.{aff_name}'] = 1
         adv, real_d = run_once(classname, conf, duration, cond)
         if mass:
             adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration, cond)
@@ -126,6 +129,10 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
                 output.write('-,{},{}\n'.format(page, c if isinstance(c, str) else '_'))
             report(d, a, output, team_dps, cond=c)
         else:
+            if c == 'affliction':
+                output.write('-'*BR+'\n')
+                output.write(' & '.join(adv.sim_afflict))
+                output.write('\n')
             summation(d, a, output, cond=c, no_cond_dps=no_cond_dps)
 
     return run_results
@@ -452,8 +459,7 @@ def summation(real_d, adv, output, cond=True, mod_func=None, no_cond_dps=None):
             output.write('\n')
     output.write('-'*BR)
     damage_counts(real_d, adv.logs.damage, adv.logs.counts, output, mod_func=mod_func, res=res)
-    if cond:
-        output.write('\n')
+    output.write('\n')
 
 def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
     name = adv.__class__.__name__

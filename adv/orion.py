@@ -18,7 +18,7 @@ class Orion(Adv):
     coab = ['Ieyasu','Wand','Axe2']
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Ieyasu','Wand','Tiki']
 
 if __name__ == '__main__':
