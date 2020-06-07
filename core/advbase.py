@@ -1579,6 +1579,7 @@ class Adv(object):
                     self.__setattr__(dst_key, s)
                     owner_module = load_adv_module(owner)
                     preruns[dst_key] = owner_module.prerun_skillshare
+                    self.rebind_function(owner_module, f'{src_key}_before', f'{dst_key}_before')
                     self.rebind_function(owner_module, f'{src_key}_proc', f'{dst_key}_proc')
                 except:
                     # placeholder for healer skill share
