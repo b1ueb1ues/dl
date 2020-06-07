@@ -112,8 +112,9 @@ def test(classname, conf={}, duration=180, verbose=0, mass=None, output=None, te
     if -10 <= verbose <= -5:
         aff_name = ELE_AFFLICT[adv.slots.c.ele]
         conf[f'sim_afflict.{aff_name}'] = 1
-        for aff_name in DOT_AFFLICT[:(-verbose-6)]:
-            conf[f'sim_afflict.{aff_name}'] = 1
+        if verbose < -5:
+            for aff_name in DOT_AFFLICT[:(-verbose-6)]:
+                conf[f'sim_afflict.{aff_name}'] = 1
         adv, real_d = run_once(classname, conf, duration, cond)
         if mass:
             adv.logs, real_d = run_mass(mass, adv.logs, real_d, classname, conf, duration, cond)
