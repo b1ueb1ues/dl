@@ -1,12 +1,12 @@
 from core.advbase import *
 from slot.a import *
-#from slot.d import *
+from slot.d import *
 
 def module():
     return Nobunaga
 
 class Nobunaga(Adv):
-    comment = 'use s2 instead of fs to dispel when possible'
+    comment = 'burning ambition currently bugged (no skill damage)'
 
     a1 = ('a',0.2,'hit15')
 
@@ -31,7 +31,7 @@ class Nobunaga(Adv):
         adv.rebind_function(Nobunaga, 'ba_proc')
 
     def s1_proc(self, e):
-        self.burning_ambition = self.dmg_formula('s', 11.18)
+        self.burning_ambition = self.dmg_formula('x', 11.18)
         t = Timer(self.ba_proc)
         t.name = e.name
         t.on(30)
