@@ -19,7 +19,7 @@ class Zardin(Adv):
     coab = ['Xander', 'Dagger', 'Yurius']
 
     def d_coabs(self):
-        if 'sim_afflict' in self.conf and self.conf.sim_afflict.efficiency > 0:
+        if self.sim_afflict:
             self.coab = ['Xander','Dagger','Wand']
 
 
