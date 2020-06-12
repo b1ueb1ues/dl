@@ -25,7 +25,6 @@ class FS_Linnea(Action):
         return (self._charge / self.charge_speed()) + (self._startup / self.speed())
 
 class Linnea(Adv):
-    comment = 'use skill share instead of agito s3 (see custom)'
     a3 = ('fs',0.50)
 
     conf = {}
@@ -33,7 +32,6 @@ class Linnea(Adv):
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
-        `s4
         `s1
         `s2
         `fs3
