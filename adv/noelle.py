@@ -16,6 +16,7 @@ class Noelle(Adv):
     conf['slots.d'] = Ariel()
     conf['acl'] = """
         `fs, self.fs_prep_c>0 and x=5
+        `s3, not self.s3_buff
         `s4
         `s1
         """

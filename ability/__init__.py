@@ -682,12 +682,19 @@ ability_dict['crisisattspd'] = Crisis_Att_Spd
 
 class Energy_Extra(Ability):
     def __init__(self, name, value):
+        self.use_rng = name == 'eextra_rng'
         self.value = value
         super().__init__(name)
 
     def oninit(self, adv, afrom=None):
-        def l_energy(e):
-            adv.energy.add_extra(self.value) #means
+        if self.use_rng:
+            def l_energy(e):
+                import random
+                if random.random() < self.value:
+                    adv.energy.add_extra(1)
+        else:
+            def l_energy(e):
+                adv.energy.add_extra(self.value) # means
 
         adv.Event('energy').listener(l_energy)
 
