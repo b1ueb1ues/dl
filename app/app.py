@@ -204,10 +204,6 @@ def simc_adv_test():
         conf['skill_share'] = share
     for afflic in AFFLICT_LIST:
         try:
-            conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)
-        except:
-            pass
-        try:
             conf['sim_afflict.'+afflic] = min(abs(int(params['sim_afflict'][afflic])), 100)/100
         except:
             pass
