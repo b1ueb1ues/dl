@@ -675,7 +675,7 @@ function clearResults() {
     $('#input-hp').val('');
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
-    const simAff = $('#affliction-resist > div > input[type="text"]');
+    const simAff = $('#affliction-sim > div > input[type="text"]');
     simAff.each(function (idx, res) { $(res).val(''); });
     $('input:checked.coab-check').prop('check', false);
     $('#input-sim-buff-str').val('');
