@@ -32,8 +32,8 @@ class Linnea(Adv):
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
-        `s1
         `s2
+        `s1
         `fs3
         """
     coab = ['Dagger','Grace','Axe2']
