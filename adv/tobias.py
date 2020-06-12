@@ -81,6 +81,7 @@ class Tobias(Adv):
         `s3, not self.s3_buff
         `s4
         `s1
+        `s3
     """
     coab = ['Bow','Blade','Tiki']
     share = ['Dragonyule_Xainfried']

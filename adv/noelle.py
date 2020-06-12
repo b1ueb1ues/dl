@@ -20,6 +20,7 @@ class Noelle(Adv):
         `s3, not self.s3_buff
         `s4
         `s1
+        `s3
         """
     coab = ['Tiki','Tobias','Bow']
     share = ['Dragonyule_Xainfried']
