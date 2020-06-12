@@ -33,16 +33,17 @@ class Linnea(Adv):
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
-        `fs3, self.fs_alt_uses>0
+        `fs3
         """
     coab = ['Dagger','Grace','Axe2']
 
-    def prerun(self):
+    def init(self):
         conf_alt_fs = {
             'fs1': {
-                'dmg': 1260 / 100.0,
+                'dmg': 1551 / 100.0,
                 'sp': 600,
                 'charge': 30 / 60.0,
                 'startup': 16 / 60.0,
@@ -50,7 +51,7 @@ class Linnea(Adv):
                 'hit': 3
             },
             'fs2': {
-                'dmg': 1392 / 100.0,
+                'dmg': 1722 / 100.0,
                 'sp': 925,
                 'charge': 108 / 60.0,
                 'startup': 16 / 60.0,
@@ -58,7 +59,7 @@ class Linnea(Adv):
                 'hit': 6
             },
             'fs3': {
-                'dmg': 1719 / 100.0,
+                'dmg': 2124 / 100.0,
                 'sp': 1500,
                 'charge': 210 / 60.0,
                 'startup': 16 / 60.0,
@@ -77,10 +78,11 @@ class Linnea(Adv):
         self.l_fs2 = Listener('fs2',self.l_fs2)
         self.l_fs2 = Listener('fs3',self.l_fs3)
 
+    def prerun(self):
         self.fs_hits = 0
         self.fs_ahits = 0
         self.fs_alt_uses = 0
-        self.s2_cspd = Spdbuff(f's2_spd',0.2,15, mtype='cspd').on()
+        self.s2_cspd = Spdbuff(f's2_spd',0.2,15, mtype='cspd')
         self.s2_mode = 0
         self.a_s2 = self.s2.ac
         self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 1.3333}))
@@ -107,9 +109,9 @@ class Linnea(Adv):
         self.update_hits('fs')
         if name == 'fs3':
             with KillerModifier('fs_killer', 'hit', 0.2, ['poison']):
-                self.dmg_make('fs', self.conf[name+'.dmg'], 'fs')
+                self.dmg_make(e.name, self.conf[name+'.dmg'], 'fs')
         else:
-            self.dmg_make('fs', self.conf[name+'.dmg'], 'fs')
+            self.dmg_make(e.name, self.conf[name+'.dmg'], 'fs')
         self.fs_proc(e)
         self.think_pin('fs')
         self.charge(name,self.conf[name+'.sp'])
@@ -125,6 +127,8 @@ class Linnea(Adv):
             delta = self.fs_hits // 3 - self.fs_ahits
             self.fs_ahits = self.fs_hits // 3
             self.s1.charge(self.sp_convert(0.30*delta, self.conf.s1.sp))
+        # fs always break combo
+        self.hits = 0
 
     def l_fs1(self, e):
         self.do_fs(e, 'fs1')
