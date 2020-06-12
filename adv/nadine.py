@@ -60,25 +60,25 @@ class Nadine(Adv):
     coab = ['Blade', 'Wand', 'Marth']
 
     def prerun(self):
-        self.base_s1_hits = 2
+        self.team_s1_hits = 1
         teammates = 2
         if self.condition(f'{teammates} teammates in s1'):
-            self.base_s1_hits += teammates
+            self.team_s1_hits += teammates
         self.s2_ss = Selfbuff('s2_ss', 1, 15, 'upgrade', 's1')
 
     @staticmethod
     def prerun_skillshare(adv, dst):
-        adv.base_s1_hits = 2
+        adv.team_s1_hits = 1
         teammates = 2
-        if adv.condition(f'{teammates} teammates in {dst}'):
-            adv.base_s1_hits += teammates
+        if adv.condition(f'{teammates} teammates in s1'):
+            adv.team_s1_hits += teammates
         adv.s2_ss = Dummy()
 
     def s1_proc(self, e):
-        s1_hits = self.base_s1_hits
         is_ss = self.s2_ss.get()
+        s1_hits = self.team_s1_hits + 1
         if is_ss:
-            s1_hits *= 3
+            s1_hits += 2
         self.dmg_make(e.name, 8.22)
         self.hits += s1_hits
         self.afflics.burn(e.name,120,0.97)
