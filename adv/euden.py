@@ -9,7 +9,7 @@ class Euden(Adv):
     a1 = ('dc', 4)
     
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.a'] = The_Shining_Overlord()+Me_and_My_Bestie()
     conf['slots.d'] = Gala_Mars()
     conf['acl'] = """
         `dragon

@@ -8,7 +8,7 @@ class Joe(Adv):
     a1 = ('edge_burn', 70, 'hp100')
 
     conf = {}
-    conf['slots.a'] = Resounding_Rendition()+Elegant_Escort()
+    conf['slots.a'] = Resounding_Rendition()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon, s=1
         `s3, fsc and not self.s3_buff

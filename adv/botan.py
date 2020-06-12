@@ -17,7 +17,7 @@ class Botan(Adv):
     coab = ['Blade','Wand','Dagger']
 
     def d_coabs(self):
-        if self.is_sim_afflict:
+        if self.sim_afflict:
             self.coab = ['Blade','Wand','Bow']
 
     def init(self):

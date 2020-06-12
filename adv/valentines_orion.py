@@ -6,7 +6,7 @@ def module():
 
 class Valentines_Orion(Adv):
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.a'] = The_Shining_Overlord()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon
         `s3, fsc and not self.s3_buff

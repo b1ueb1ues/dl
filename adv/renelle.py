@@ -8,7 +8,7 @@ class Renelle(Adv):
     a1 = ('cc',0.15,'hit15')
     
     conf = {}
-    conf['slots.a'] = Twinfold_Bonds()+Elegant_Escort()
+    conf['slots.a'] = Twinfold_Bonds()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

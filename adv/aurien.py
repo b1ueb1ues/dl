@@ -10,7 +10,7 @@ class Aurien(Adv):
     a1 = ('s',0.4,'hp70')
 
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+Elegant_Escort()
+    conf['slots.a'] = Primal_Crisis()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

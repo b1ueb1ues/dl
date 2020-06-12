@@ -7,7 +7,7 @@ def module():
 class Yue(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+Breakfast_at_Valerios()
-    conf['slots.burn.a'] = Kung_Fu_Masters()+Elegant_Escort()
+    conf['slots.burn.a'] = Kung_Fu_Masters()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff

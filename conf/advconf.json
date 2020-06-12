@@ -2067,6 +2067,29 @@
             "startup": 0.25
         }
     },
+    "Linnea": {
+        "c": {
+            "att": 521,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.133,
+            "sp": 3000,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5259,
+            "startup": 0.25
+        }
+    },
     "Linus": {
         "c": {
             "att": 442,
@@ -2092,14 +2115,14 @@
     },
     "Louise": {
         "c": {
-            "att": 470,
+            "att": 563,
             "ele": "wind",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "bow"
         },
         "s1": {
-            "dmg": 8.48,
+            "dmg": 0.0,
             "hit": 4,
             "recovery": 1.95,
             "sp": 2896,
@@ -2344,16 +2367,16 @@
     },
     "Melody": {
         "c": {
-            "att": 470,
+            "att": 563,
             "ele": "wind",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "3",
             "wt": "blade"
         },
         "s1": {
             "buff": [
                 "team",
-                0.15,
+                0.20,
                 15.0
             ],
             "dmg": 0.0,
@@ -2363,7 +2386,7 @@
             "startup": 0.25
         },
         "s2": {
-            "dmg": 7.92,
+            "dmg": 8.10,
             "hit": 3,
             "recovery": 2.75,
             "sp": 4784,
@@ -2487,6 +2510,29 @@
             "hit": 0,
             "recovery": 0.9,
             "sp": 4430,
+            "startup": 0.25
+        }
+    },
+    "Nadine": {
+        "c": {
+            "att": 521,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 3,
+            "recovery": 1.85,
+            "sp": 3247,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6000,
             "startup": 0.25
         }
     },

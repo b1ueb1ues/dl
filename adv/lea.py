@@ -10,7 +10,7 @@ class Lea(Adv):
     a3 = ('sp', 0.12, 'fs')
         
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.a'] = The_Shining_Overlord()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon, fsc
         `s3, not self.s3_buff

@@ -442,9 +442,6 @@ class Memory_of_a_Friend(Amulet):
     att = 64
     a = [('sp', 0.08), ('a', 0.2, 'hit15')]
 
-amulets = []
-for k in list(globals()):
-    v = globals()[k]
-    if type(v) == type(Conf):
-        if v.__module__ == 'slot.a.all':
-            amulets.append(v)
+class Me_and_My_Bestie(Amulet):
+    att = 64
+    a = [('k_burn', 0.30), ('bc_energy', 1)]

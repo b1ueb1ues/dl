@@ -151,6 +151,13 @@
                 20
             ],
             "bow"
+        ],
+        "Nadine": [
+            [
+                "affself_burn",
+                0.13
+            ],
+            "lance"
         ]
     },
     "water": {
