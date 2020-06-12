@@ -2515,24 +2515,29 @@
     },
     "Nadine": {
         "c": {
-            "att": 521,
-            "ele": "shadow",
+            "att": 510,
+            "ele": "flame",
             "lv2_autos": 0,
             "stars": "5",
-            "wt": "blade"
+            "wt": "lance"
         },
         "s1": {
-            "dmg": 0.0,
-            "hit": 3,
-            "recovery": 1.85,
-            "sp": 3247,
+            "dmg": 0.00,
+            "hit": 1,
+            "recovery": 1.30,
+            "sp": 3036,
             "startup": 0.1
         },
         "s2": {
+            "buff": [
+                "self",
+                0.30,
+                15.0
+            ],
             "dmg": 0.0,
             "hit": 0,
             "recovery": 0.9,
-            "sp": 6000,
+            "sp": 5054,
             "startup": 0.25
         }
     },

@@ -75,8 +75,9 @@ class Tobias(Adv):
     conf = {}
     conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
     conf['slots.poison.a'] = conf['slots.a']
-    conf['slots.d'] = Freyja()
+    conf['slots.d'] = Ariel()
     conf['acl'] = """
+        `fs, self.fs_prep_c>0 and x=5
         `s3, not self.s3_buff
         `s1
     """

@@ -12,9 +12,10 @@ class Noelle(Adv):
     a3 = ('primed_defense',0.08)
 
     conf = {}
-    conf['slots.a'] = A_Dogs_Day()+Primal_Crisis()
+    conf['slots.a'] = A_Dogs_Day()+Castle_Cheer_Corps()
     conf['slots.d'] = Ariel()
     conf['acl'] = """
+        `fs, self.fs_prep_c>0 and x=5
         `s3, not self.s3_buff
         `s1
         """
