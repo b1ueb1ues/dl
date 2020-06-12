@@ -2,21 +2,24 @@
 
 
 ## Running
-python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)] [time] [ex/co-abilities] [mass]
+```
+python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)] [teamdps] [mass]
+```
+or
+```
+./sim [someone] [loglevel(-4,-3,-2,-1,0,1,2)] [teamdps] [mass]
+```
+or
+```
+./sim.bat [someone] [loglevel(-4,-3,-2,-1,0,1,2)] [teamdps] [mass]
+```
 
 loglevel:
-- -4:  generate a acl recursive result
-- -3:  generate a WP set recursive result
-- -2:  generate a comma seperate result for www use
-- -1:  generate a single line result
-- 1:  generate a verbose log
-- 2:  generate a verbose verbose log
-
-Ex-Skill / Co-abilities
-k: blade
-r: wand
-d: dagger
-b: bow
+- 0: default report
+- 1: detailed log
+- 2: python code transpiled from ACL
+- -2: CSV format
+- -5: sim with 100% affliction
 
 - python adv/mikoto.py
 
@@ -26,22 +29,8 @@ show basic result of Mikoto's simulation
 
 show result and combo loop of Maribelle
 
-- python adv/g_sarisse.py -2 180 kr
-show result of Gala Sarisse for 180s with blade and dagger ex/co-abilities
-
-- python adv/xander.py -3 > xander\_wp\_set.csv 
-
-then you can use excel to open that csv and sort the result by dps to choose the best WP set.
-
-## Alt Method
-python core/simulate.py [someone] [verbose(-5,0,1,2)] [time] [ex/co-abilities] [mass]
-
-loglevel:
-- -5: csv result with post run blade/wand coab applied
-- -2: csv result
--  0: standard output
--  1: verbose log
--  2: acl str
+- python adv/gala_sarisse.py -2 180 10000
+show result of Gala Sarisse for 180s with 10000 team dps
 
 ## Folders
 - core: simulate engine

@@ -80,7 +80,7 @@ class Linnea(Adv):
         self.fs_hits = 0
         self.fs_ahits = 0
         self.fs_alt_uses = 0
-        self.s2_cspd = Spdbuff(f's2_spd',0.2,15, mtype='cspd')
+        self.s2_cspd = Spdbuff(f's2_spd',0.3,15, mtype='cspd')
         self.s2_mode = 0
         self.a_s2 = self.s2.ac
         self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 1.3333}))
