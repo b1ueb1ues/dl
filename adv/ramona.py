@@ -10,7 +10,7 @@ class Ramona(Adv):
     a3 = ('bc',0.13)
     conf = {}
     conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
-    conf['slots.burn.a'] = Resounding_Rendition()+Elegant_Escort()
+    conf['slots.burn.a'] = Resounding_Rendition()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon, s=1
         `s3, not self.s3_buff

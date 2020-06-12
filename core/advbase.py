@@ -245,7 +245,7 @@ class Buff(object):
         return value, stack
 
     def buff_end_proc(self, e):
-        log('buff', self.name, '%s: %.2f' % (self.mod_type, self.value()), self.name + ' buff end <timeout>')
+        log('buff', self.name, f'{self.mod_type}({self.mod_order}): {self.value()}', f'{self.name} buff end <timeout>')
         self.__active = 0
 
         if self.__stored:
@@ -260,7 +260,7 @@ class Buff(object):
             self.__stored = 0
         value, stack = self.valuestack()
         if stack > 0:
-            log('buff', self.name, '%s: %.2f' % (self.mod_type, value), self.name + ' buff stack <%d>' % stack)
+            log('buff', self.name, f'{self.mod_type}({self.mod_order}): {value}', f'{self.name} buff stack <{stack}>')
         self.modifier.off()
 
     def count_team_buff(self):
@@ -314,16 +314,16 @@ class Buff(object):
                 self.__stored = 1
             if d >= 0:
                 self.buff_end_timer.on(d)
-            log('buff', self.name, '%s: %.2f' % (self.mod_type, self.value()), self.name + ' buff start <%ds>' % d)
+            log('buff', self.name, f'{self.mod_type}({self.mod_order}): {self.value()}', f'{self.name} buff start <{d}s>')
         else:
             if d >= 0:
                 self.buff_end_timer.on(d)
-                log('buff', self.name, '%s: %.2f' % (self.mod_type, self.value()),
-                    self.name + ' buff refresh <%ds>' % d)
+                log('buff', self.name, f'{self.mod_type}({self.mod_order}): {self.value()}', f'{self.name} buff refresh <{d}s>')
 
         value, stack = self.valuestack()
         if stack > 1:
-            log('buff', self.name, '%s: %.2f' % (self.mod_type, value), self.name + ' buff stack <%d>' % stack)
+            log('buff', self.name, f'{self.mod_type}({self.mod_order}): {value}', f'{self.name} buff stack <{stack}>')
+
 
         if self.mod_type == 'defense':
             Event('defchain').on()
@@ -334,7 +334,7 @@ class Buff(object):
     def off(self):
         if self.__active == 0:
             return
-        log('buff', self.name, '%s: %.2f' % (self.mod_type, self.value()), self.name + ' buff end <turn off>')
+        log('buff', self.name, f'{self.mod_type}({self.mod_order}): {self.value()}', f'{self.name} buff end <turn off>')
         self.__active = 0
         self.modifier.off()
         self.buff_end_timer.off()
@@ -398,7 +398,7 @@ class Teambuff(Buff):
 
 class Spdbuff(Buff):
     def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, wide='self'):
-        mtype = 'spd'
+        mtype = mtype or 'spd'
         morder = 'passive'
         Buff.__init__(self, name, value, duration, mtype, morder)
         self.bufftype = wide
@@ -558,6 +558,7 @@ class Action(object):
         'prev': 0,
         'doing': 0,
         'spd_func': 0,
+        'c_spd_func': 0,
     })
 
     name = '_Action'
@@ -597,11 +598,13 @@ class Action(object):
         if act != None:
             self.act = act
 
-        if self._static.spd_func == 0:
+        if not self._static.spd_func:
             self._static.spd_func = self.nospeed
-        if self._static.doing == 0:
+        if not self._static.c_spd_func:
+            self._static.c_spd_func = self.nospeed
+        if not self._static.doing:
             self._static.doing = self.nop
-        if self._static.prev == 0:
+        if not self._static.prev:
             self._static.prev = self.nop
 
         self.cancel_by = []
@@ -755,6 +758,9 @@ class Fs(Action):
         self.interrupt_by = ['s']
         self.cancel_by = ['s', 'dodge']
 
+    def charge_speed(self):
+        return self._static.c_spd_func()
+
     def sync_config(self, c):
         self._charge = c.charge
         self._startup = c.startup
@@ -762,7 +768,7 @@ class Fs(Action):
         self._active = c.active
 
     def getstartup(self):
-        return self._charge + (self._startup / self.speed())
+        return (self._charge / self.charge_speed()) + (self._startup / self.speed())
 
     def realtime(self):
         self.act_event = Event('fs')
@@ -1273,11 +1279,14 @@ class Adv(object):
         return 1 + sum([modifier.get() for modifier in self.all_modifiers[mtype][morder]])
 
     def l_have_speed(self, e):
-        self.speed = self.have_speed
         self.action._static.spd_func = self.speed
+        self.action._static.c_spd_func = self.c_speed
 
-    def have_speed(self):
+    def speed(self):
         return min(self.mod('spd'), 1.50)
+
+    def c_speed(self):
+        return min(self.mod('cspd'), 1.50)
 
     def crit_mod(self):
         pass

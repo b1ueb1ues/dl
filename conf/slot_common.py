@@ -37,7 +37,7 @@ wt_prints = {
 
 # used in advbase
 ele_punisher = {
-    'flame': ('burn', Elegant_Escort),
+    'flame': ('burn', Me_and_My_Bestie),
     'water': ('frostbite', His_Clever_Brother),
     'wind': ('poison', The_Fires_of_Hate),
     'light': ('paralysis', Spirit_of_the_Season),

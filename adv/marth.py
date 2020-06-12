@@ -12,7 +12,7 @@ class Marth(Adv):
     a3 = ('cc',0.13,'hit10')
     
     conf = {}
-    conf['slots.a'] = The_Shining_Overlord()+Elegant_Escort()
+    conf['slots.a'] = The_Shining_Overlord()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff

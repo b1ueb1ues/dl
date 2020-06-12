@@ -164,7 +164,7 @@ def brute_force_slots(classname, conf, output, team_dps, duration):
         The_Shining_Overlord,
         Summer_Paladyns,
         Sisters_Day_Out,
-        Elegant_Escort,
+        Me_and_My_Bestie,
         Beautiful_Nothingness,
         Dear_Diary,
         Mega_Friends,

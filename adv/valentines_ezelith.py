@@ -9,7 +9,7 @@ class Valentines_Ezelith(Adv):
     a3 = ('bk',0.2)
 
     conf = {}
-    conf['slots.a'] = Forest_Bonds()+Elegant_Escort()
+    conf['slots.a'] = Forest_Bonds()+Me_and_My_Bestie()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
