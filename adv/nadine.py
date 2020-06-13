@@ -94,8 +94,7 @@ class Nadine(Adv):
         self.hits += 1
 
     def s2_proc(self, e):
-        # if random.random() < 0.50:
-        if random.random() < 1.1:
+        if random.random() < 0.50:
             self.s2_ss.on()
 
 if __name__ == '__main__':

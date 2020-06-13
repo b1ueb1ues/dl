@@ -3,6 +3,7 @@ import sys
 import random
 from functools import reduce
 from itertools import product
+from collections import OrderedDict
 
 from ability import Ability
 from core import *
@@ -1544,7 +1545,7 @@ class Adv(object):
             self.skillshare_list.remove(self.__class__.__name__)
         except:
             pass
-        self.skillshare_list = list(set(self.skillshare_list))
+        self.skillshare_list = list(OrderedDict.fromkeys(self.skillshare_list))
         if len(self.skillshare_list) > 2:
             self.skillshare_list = self.skillshare_list[:2]
         if len(self.skillshare_list) < 2:
