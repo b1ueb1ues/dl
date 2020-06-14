@@ -28,7 +28,7 @@ class Linnea(Adv):
     a3 = ('fs',0.50)
 
     conf = {}
-    conf['slots.a'] = The_Lurker_in_the_Woods()+Beautiful_Nothingness()
+    conf['slots.a'] = The_Lurker_in_the_Woods()+Levins_Champion()
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
