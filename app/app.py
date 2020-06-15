@@ -198,6 +198,8 @@ def simc_adv_test():
             conf['missile_iv'] = {'fs': missile, 'x1': missile, 'x2': missile, 'x3': missile, 'x4': missile, 'x5': missile}
     if 'hp' in params:
         conf['hp'] = min(abs(int(params['hp'])), 100)
+    if 'dragonbattle' in params:
+        conf['dragonbattle'] = bool(params['dragonbattle'])
     if coab is not None:
         conf['coabs'] = coab
     if share is not None:
