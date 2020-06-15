@@ -70,6 +70,7 @@ class DragonForm(Action):
         return self.dragondrive_buff
 
     def set_dragonbattle(self, duration):
+        self.disabled = False
         self.dragon_gauge = self.max_gauge
         self.conf.duration = duration
         self.can_end = False
