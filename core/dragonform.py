@@ -143,7 +143,7 @@ class DragonForm(Action):
 
     def ds_reset(self):
         self.skill_use = self.conf.skill_use
-        self.skill_sp = 0 if self.conf.skill_use == 1 else 30
+        self.skill_sp = 30
         self.skill_spc = self.skill_sp
 
     def d_shift_end(self, t):
