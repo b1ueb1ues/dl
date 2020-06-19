@@ -18,6 +18,7 @@ class Halloween_Elisanne(Adv):
         `fs, x=5
         """
     coab = ['Blade','Sharena','Peony']
+    conf['afflict_res.paralysis'] = 0
 
     def prerun(self):
         self.phase['s1'] = 0
