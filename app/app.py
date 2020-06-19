@@ -207,6 +207,9 @@ def simc_adv_test():
     for afflic in AFFLICT_LIST:
         try:
             conf['sim_afflict.'+afflic] = min(abs(int(params['sim_afflict'][afflic])), 100)/100
+        except:
+            pass
+        try:
             conf['afflict_res.'+afflic] = min(abs(int(params['afflict_res'][afflic])), 100)
         except:
             pass
