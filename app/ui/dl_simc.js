@@ -536,6 +536,7 @@ function runAdvTest() {
         requestJson['wp2'] = $('#input-wp2').val();
     }
     requestJson['share'] = readSkillShare();
+    console.log(requestJson['share']);
     requestJson['coab'] = readCoabList();
     const t = $('#input-t').val();
     if (!isNaN(parseInt(t))) {
@@ -552,6 +553,9 @@ function runAdvTest() {
     }
     if (!isNaN(parseInt($('#input-missile').val()))) {
         requestJson['missile'] = $('#input-missile').val();
+    }
+    if (!isNaN(parseInt($('#input-dragonbattle').val()))) {
+        requestJson['dragonbattle'] = $('#input-dragonbattle').val();
     }
     if (!isNaN(parseInt($('#input-hp').val()))) {
         requestJson['hp'] = $('#input-hp').val();
