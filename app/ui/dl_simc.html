@@ -278,6 +278,7 @@ end</code></pre>This forces 2 s1 uses before an s2 use, even if s2 was fully cha
                                     <li><code>s</code>: the previous action was a skill</li>
                                     <li><code>pin='prep'</code>: at the start of the fight if the adventurer has skill prep</li>
                                     <li><code>s1.charged</code> is the amount of sp charged on s1, you can combine it with <code>s1.sp</code> and <code>this.sp_val</code> to make conditions like <code>s1.charged&gt;=s1.sp-this.sp_val('fs')</code>, aka "do this action when S1 is one FS away from being fully charged. This can be used with s2 and s3 as well.</li>
+                                    <li><code>s1.check()</code> signify that a skill is ready to use.</li>
                                     <li>``this.have_buff(buffname)` checks for presence of buff on certain character. The name of buffs is poorly documented with inconsistent naming scheme, but you can look at logs to figure out the specifics for your adventurer.</li>
                                     <li>You can use any python logical operators in the condition, such as <code>and</code> to combine 2 conditions</li>
                                     <li>For Agito weapons, <code>s3, not this.s3_buff</code> means only use S3 if the buff is not on, you can also check for what type of buff is currently active, e.g. <code>s3, this.s3_buff and this.s3_buff.mod_type = 'defense'</code></li>
