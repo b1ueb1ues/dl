@@ -1346,23 +1346,23 @@
     },
     "Halloween_Elisanne": {
         "c": {
-            "att": 483,
+            "att": 578,
             "ele": "light",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "lance"
         },
         "s1": {
-            "dmg": 8.05,
+            "dmg": 0.0,
             "hit": 7,
-            "recovery": 2.8,
-            "sp": 2450,
+            "recovery": 2.73,
+            "sp": 4548,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 8.3,
-            "hit": 10,
-            "recovery": 3.55,
+            "dmg": 8.5,
+            "hit": 1,
+            "recovery": 1.466667,
             "sp": 5252,
             "startup": 0.1
         }
