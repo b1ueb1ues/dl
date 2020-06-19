@@ -1,5 +1,5 @@
 from core.advbase import Fs_group, Fs, X, Event
-from core.timeline import Listener, Timer
+from core.timeline import Listener, Timer, now
 from core.log import log
 from core.config import Conf
 from core.dragonform import DragonForm
@@ -91,6 +91,18 @@ class X_alt:
 
     def act_off(self):
         return False
+
+    def on_t(self, t):
+        log('debug', '{} x_alt on'.format(self.name))
+        self.active = True
+        self.adv.x = self.x_alt
+        if self.l_x_alt:
+            self.adv.l_x.off()
+            self.l_x_alt.on()
+        if self.no_fs:
+            self.adv.fs = self.act_off
+        if self.no_dodge:
+            self.adv.dodge = self.act_off
     
     def on(self):
         if not self.active:
@@ -100,25 +112,18 @@ class X_alt:
 
             act = self.a_x_alt[1]
             doing = act._static.doing
-            if not doing.idle and doing.status == -1:
+            delay = 0
+            if not doing.idle:
                 try:
-                    doing.startup_timer.off()
-                    doing._setprev()
-                    doing._static.doing = doing.nop
-                    act()
+                    if doing.status == -1:
+                        delay = doing.startup_timer.timing - now()
+                    elif doing.status == 0:
+                        delay = doing.getrecovery()
+                    elif doing.status == 1:
+                        delay = doing.recovery_timer.timing - now()
                 except:
                     pass
-
-            log('debug', '{} x_alt on'.format(self.name))
-            self.active = True
-            self.adv.x = self.x_alt
-            if self.l_x_alt:
-                self.adv.l_x.off()
-                self.l_x_alt.on()
-            if self.no_fs:
-                self.adv.fs = self.act_off
-            if self.no_dodge:
-                self.adv.dodge = self.act_off
+            Timer(self.on_t).on(delay)
                 
     def off(self):
         if self.active:
@@ -136,3 +141,53 @@ class X_alt:
             doing = self.a_x_alt[1]._static.doing
             self.zeroed = (doing, doing.index)
             doing.index = 0
+
+    def switch_t(self, t):
+        prev_x = t.prev_x_alt
+        log('debug', '{} x_alt off'.format(prev_x.name))
+        if prev_x.active:
+            doing = prev_x.a_x_alt[1]._static.doing
+            prev_x.zeroed = (doing, doing.index)
+            doing.index = 0
+            prev_x.active = False
+            if prev_x.l_x_alt:
+                prev_x.l_x_alt.off()
+                prev_x.adv.l_x.on()
+            if prev_x.no_fs:
+                prev_x.adv.fs = prev_x.fs_og
+            if prev_x.no_dodge:
+                prev_x.adv.dodge = prev_x.dodge_og
+        
+        log('debug', '{} x_alt on'.format(self.name))
+        self.active = True
+        self.adv.x = self.x_alt
+        if self.l_x_alt:
+            self.adv.l_x.off()
+            self.l_x_alt.on()
+        if self.no_fs:
+            self.adv.fs = self.act_off
+        if self.no_dodge:
+            self.adv.dodge = self.act_off
+
+    def switch(self, prev_x_alt):
+        if not self.active:
+            if self.zeroed is not None:
+                self.zeroed[0].index = self.zeroed[1]
+                self.zeroed = None
+
+            act = self.a_x_alt[1]
+            doing = act._static.doing
+            delay = 0
+            if not doing.idle and isinstance(doing, X):
+                try:
+                    if doing.status == -1:
+                        delay = doing.startup_timer.timing - now()
+                    elif doing.status == 0:
+                        delay = doing.getrecovery()
+                    elif doing.status == 1:
+                        delay = doing.recovery_timer.timing - now()
+                except:
+                    pass
+            t = Timer(self.switch_t)
+            t.prev_x_alt = prev_x_alt
+            t.on(delay)
