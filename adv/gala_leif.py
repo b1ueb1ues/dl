@@ -66,7 +66,8 @@ class Gala_Leif(Adv):
         `fs, x=3
     """
     coab = ['Dragonyule_Xainfried', 'Blade', 'Lin_You']
-    
+    conf['afflict_res.poison'] = 0
+
     def prerun(self):
         self.stance = 'shielding'
         self.next_stance = 'shielding'

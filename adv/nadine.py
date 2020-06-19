@@ -58,6 +58,7 @@ class Nadine(Adv):
         `fs, x=5
         """
     coab = ['Blade', 'Wand', 'Marth']
+    conf['afflict_res.burn'] = 0
 
     def prerun(self):
         self.team_s1_hits = 1
