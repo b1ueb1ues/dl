@@ -19,6 +19,7 @@ class Ranzal(Adv):
         """
     coab = ['Blade','Dragonyule_Xainfried','Eleonora']
     share = ['Curran']
+    conf['afflict_res.poison'] = 0
     
     def s1_proc(self, e):
         self.afflics.poison(e.name, 120, 0.582)
