@@ -292,9 +292,8 @@ class Valerio(Adv):
     def update_stance(self):
         if self.hits >= 20 and self.next_stance is not None and not self.skill._static.silence:
             curr_stance = self.stance_dict[self.stance]
-            curr_stance.off()
             next_stance = self.stance_dict[self.next_stance]
-            next_stance.on()
+            next_stance.switch(curr_stance)
             self.stance = self.next_stance
             self.next_stance = None
 
