@@ -1658,6 +1658,7 @@ class Adv(object):
         self.base_att = 0
 
         self.sim_buffbot()
+
         self.slot_backdoor()
         self.base_att = int(self.slots.att(globalconf.halidom))
         self.slots.oninit(self)
@@ -1668,6 +1669,12 @@ class Adv(object):
 
         if 'hp' in self.conf:
             self.set_hp(self.conf['hp'])
+
+        if 'dragonbattle' in self.conf and self.conf['dragonbattle']:
+            self.conf['acl'] = """
+                `dragon
+            """
+            self.dragonform.set_dragonbattle(self.duration)
 
         self.d_acl()
         self.acl_backdoor()

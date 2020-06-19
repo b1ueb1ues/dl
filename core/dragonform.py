@@ -52,6 +52,7 @@ class DragonForm(Action):
         self.shift_silence = False
 
         self.is_dragondrive = False
+        self.can_end = True
 
     def set_dragondrive(self, dd_buff, max_gauge=3000, shift_cost=1200, drain=150):
         self.disabled = False
@@ -67,6 +68,13 @@ class DragonForm(Action):
         self.dragondrive_buff = dd_buff
         self.dragondrive_timer = Timer(self.d_dragondrive_end)
         return self.dragondrive_buff
+
+    def set_dragonbattle(self, duration):
+        self.disabled = False
+        self.dragon_gauge = self.max_gauge
+        self.conf.duration = duration
+        self.can_end = False
+        self.skill_use = -1
 
     def end_silence(self, t):
         self.shift_silence = False
@@ -132,11 +140,11 @@ class DragonForm(Action):
         return self.conf.dracolith + self.adv.mod('da') - 1
 
     def ds_check(self):
-        return self.skill_use > 0 and self.skill_spc >= self.skill_sp
+        return self.skill_use != 0 and self.skill_spc >= self.skill_sp
 
     def ds_reset(self):
         self.skill_use = self.conf.skill_use
-        self.skill_sp = 0 if self.conf.skill_use == 1 else 30
+        self.skill_sp = 30
         self.skill_spc = self.skill_sp
 
     def d_shift_end(self, t):
@@ -265,7 +273,7 @@ class DragonForm(Action):
                 if (a == 's' or a == 'ds') and skill_usage < self.skill_use:
                     self.act_list.append('ds')
                     skill_usage += 1
-                elif a == 'end':
+                elif a == 'end' and self.can_end:
                     self.act_list.append('end')
                 elif a == 'dodge':
                     self.act_list.append('dodge')
