@@ -19,6 +19,10 @@ class Veronica(adv.veronica.Veronica):
         super().prerun()
         self.set_hp(0)
 
+    def a1_buff_on(self, e):
+        super().a1_buff_on(e)
+        self.set_hp(0)
+
 if __name__ == '__main__':
     import sys
     from core.simulate import test_with_argv
