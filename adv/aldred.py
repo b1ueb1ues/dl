@@ -34,6 +34,8 @@ class Aldred(Adv):
         self.conf.x2.utp = 120
         self.conf.x3.utp = 120
         self.conf.x4.utp = 180
+        self.conf.x5.dmg = 1.94
+        self.conf.x5.sp = 660
         self.conf.x5.utp = 180
 
     def d_slots(self):
