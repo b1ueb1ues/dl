@@ -4257,6 +4257,29 @@
             "startup": 0.1
         }
     },
+    "Zena": {
+        "c": {
+            "att": 514,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 7.79,
+            "hit": 4,
+            "recovery": 1.1667,
+            "sp": 2759,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 4.00,
+            "hit": 1,
+            "recovery": 0.8667,
+            "sp": 5570,
+            "startup": 0.10
+        }
+    },
     "Zhu_Bajie": {
         "c": {
             "att": 515,
