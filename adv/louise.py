@@ -30,9 +30,9 @@ class Louise(Adv):
 
     def s2_proc(self, e):
         with KillerModifier(e.name, 'hit', 0.5, ['poison']), CrisisModifier(e.name, -0.5, self.hp):
-            self.dmg_make(e.name, 6.93)
-            self.dmg_make(e.name, 6.93)
-            self.dmg_make(e.name, 6.93)
+            self.dmg_make(e.name, 6.98)
+            self.dmg_make(e.name, 6.98)
+            self.dmg_make(e.name, 6.98)
 
 
 if __name__ == '__main__':
