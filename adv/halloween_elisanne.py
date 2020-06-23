@@ -45,6 +45,7 @@ class Halloween_Elisanne(Adv):
             self.dmg_make(e.name, 1.17*6)
         self.phase[e.name] %= 3
         self.conf[e.name].sp = self.heli_s1_sp[self.phase[e.name]]
+        self.__getattribute__(e.name).sp = self.heli_s1_sp[self.phase[e.name]]
 
     def s2_proc(self, e):
         self.charge(e.name, 700)

@@ -469,6 +469,7 @@ class Skill(object):
         return self.cast()
 
     def sync_sp(self, c):
+        print('sync', self.name, self.sp, c.sp)
         self.sp = c.sp
 
     def init(self):
@@ -1590,7 +1591,7 @@ class Adv(object):
                     owner_conf = Conf(advconfs[owner])
                     owner_conf[src_key].sp = shared_sp
                     self.conf[dst_key] = Conf(owner_conf[src_key])
-                    s = Skill(dst_key, owner_conf[src_key])
+                    s = Skill(dst_key, self.conf[dst_key])
                     s.owner = owner
                     self.__setattr__(dst_key, s)
                     owner_module = load_adv_module(owner)
