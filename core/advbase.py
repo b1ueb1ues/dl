@@ -469,7 +469,6 @@ class Skill(object):
         return self.cast()
 
     def sync_sp(self, c):
-        print('sync', self.name, self.sp, c.sp)
         self.sp = c.sp
 
     def init(self):
