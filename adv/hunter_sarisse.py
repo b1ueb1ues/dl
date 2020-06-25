@@ -67,6 +67,7 @@ class Hunter_Sarisse(Adv):
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Dragonyule_Jeanne()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
         `dodge, fsc

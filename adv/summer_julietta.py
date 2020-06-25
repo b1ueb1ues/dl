@@ -15,9 +15,9 @@ class Summer_Julietta(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s2
         `s1
-        `s3
     """
     coab = ['Blade', 'Dagger', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100

@@ -12,9 +12,9 @@ class Orsem(Adv):
     conf['slots.d'] = Nimis()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
-        `s3, fsc
         `fs, x=4
     """
     coab = ['Tiki', 'Xander', 'Yurius']

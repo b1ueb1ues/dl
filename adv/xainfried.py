@@ -13,6 +13,7 @@ class Xainfried(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end')
+        `s3, not self.s3_buff
         `s1
         `s2
         `fs, x=5

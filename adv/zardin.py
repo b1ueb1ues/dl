@@ -11,9 +11,9 @@ class Zardin(Adv):
     conf['slots.a'] = Primal_Crisis()+The_Shining_Overlord()
     conf['acl'] = """
         `dragon.act('c3 s end'), not self.afflics.frostbite.get()
+        `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `fs, seq=3 and cancel
         """
     coab = ['Xander', 'Dagger', 'Yurius']

@@ -13,6 +13,7 @@ class Gala_Elisanne(Adv):
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `fsf, x=4
     """

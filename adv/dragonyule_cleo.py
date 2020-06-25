@@ -9,9 +9,9 @@ class Dragonyule_Cleo(Adv):
     
     conf = {}
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
         `s2, seq=5 and cancel or fsc
-        `s3, fsc
         `fs, seq=5
     """
     coab = ['Hunter_Sarisse', 'Xander', 'Summer_Estelle']

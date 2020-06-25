@@ -12,9 +12,9 @@ class Gauld(Adv):
     conf['slots.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['acl'] = """
         `dragon.act('c3 s end')
+        `s3, not self.s3_buff
         `s1
         `s2, s=1
-        `s3, x=5 or fsc
         `fs, x=5
     """
     coab = ['Dagger', 'Xander', 'Summer_Estelle']

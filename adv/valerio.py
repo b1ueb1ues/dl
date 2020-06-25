@@ -235,9 +235,9 @@ class Valerio(Adv):
         `dessert
         end
         # actions
+        `s3, not self.s3_buff 
         `s2
         `s1
-        `s3
     """
     coab = ['Summer_Estelle', 'Renee', 'Xander']
     conf['afflict_res.frostbite'] = 0

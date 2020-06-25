@@ -13,6 +13,7 @@ class Halloween_Odetta(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end'), s=2
+        `s3, not self.s3_buff
         `s2, cancel
         `s1, fsc
         `fs, x=3 and not self.afflics.frostbite.get()

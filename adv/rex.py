@@ -12,10 +12,10 @@ class Rex(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1 
-        `s2,seq=4
-        `s3,seq=4
-        `fs,seq=5
+        `s2, x=4
+        `fs, x=5
     """
     coab = ['Blade', 'Xander', 'Dagger']
 

@@ -13,9 +13,9 @@ class Jurota(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1
         `s2, seq=5
-        `s3
     """
     coab = ['Tiki', 'Xander', 'Dagger']
     
