@@ -39,6 +39,9 @@ class Zena(Adv):
         self.s2_timers = []
         Event('dragon').listener(self.s2_clear)
 
+    def prerun_skillshare(self, dst):
+        self.fs_alt = Dummy()
+
     def s1_proc(self, e):
         self.fs_alt.on(1)
 
