@@ -175,7 +175,7 @@ class UnreleasedAgitoSpd_LightBlade(Agito1_Qixing_Baodao):
     ele = ['light']
 
 flame = Agito2_Tyrfing
-water = HDT2_Ruinous_Torrent
+water = Agito1_Ame_no_Habakiri
 wind = Agito1_Arondight
 light = HDT2_Brilliant_Flash
 shadow = Agito1_Qixing_Baodao
