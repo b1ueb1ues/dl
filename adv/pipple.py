@@ -18,8 +18,10 @@ class Pipple(Adv):
 
     conf = pipple_conf.copy()
     conf['slots.a'] = Primal_Crisis()+Brothers_in_Arms()
-    conf['slots.d'] = Dragonyule_Jeanne()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
+        `dragon
+        `s3, not self.s3_buff
         `s1, not self.afflics.frostbite.get()
         `s2, x=5
     """

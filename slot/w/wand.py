@@ -162,20 +162,20 @@ class Agito1_Camelot(WeaponBase):
     att = 1590
     s3 = agito_buffs['wind'][1]
 
-class UnreleasedAgitoStr_WaterWand(Agito1_Brisingr):
+class Agito1_Omizununo(WeaponBase):
     ele = ['water']
+    wt = 'wand'
+    att = 1590
+    s3 = agito_buffs['water'][1]
 
 class UnreleasedAgitoStr_LightWand(Agito1_Brisingr):
     ele = ['light']
-
-class UnreleasedAgitoSpd_WaterWand(Agito1_Jiu_Ci):
-    ele = ['water']
 
 class UnreleasedAgitoSpd_LightWand(Agito1_Jiu_Ci):
     ele = ['light']
 
 flame = Agito2_Brisinga
-water = HDT2_Aquatic_Spiral
+water = Agito1_Omizununo
 wind = Agito1_Camelot
 light = HDT2_Primeval_Thunder
 shadow = Agito1_Jiu_Ci

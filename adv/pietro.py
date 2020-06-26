@@ -13,12 +13,12 @@ class Pietro(Adv):
     conf = {}
     conf['slots.a'] = RR()+Breakfast_at_Valerios()
     conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
-    conf['slots.d'] = Leviathan()
+    conf['slots.d'] = Nimis()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1
-        `s3,seq=4
-        `fs,seq=5
+        `fs, x=5
         """
     coab = ['Tiki', 'Xander', 'Dagger']
 

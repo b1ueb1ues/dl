@@ -161,20 +161,20 @@ class Agito1_Failnaught(WeaponBase):
     att = 1482
     s3 = agito_buffs['wind'][1]
 
-class UnreleasedAgitoStr_WaterBow(Agito1_Ydalir):
+class Agito1_Ame_no_Hajiyumi(WeaponBase):
     ele = ['water']
+    wt = 'bow'
+    att = 1482
+    s3 = agito_buffs['water'][1]
 
 class UnreleasedAgitoStr_LightBow(Agito1_Ydalir):
     ele = ['light']
-
-class UnreleasedAgitoSpd_WaterBow(Agito1_Longshe_Gong):
-    ele = ['water']
 
 class UnreleasedAgitoSpd_LightBow(Agito1_Longshe_Gong):
     ele = ['light']
 
 flame = Agito2_Ichaival
-water = HDT2_Azure_Mercurius
+water = Agito1_Ame_no_Hajiyumi
 wind = Agito1_Failnaught
 light = HDT2_Jupiters_Sky
 shadow = Agito1_Longshe_Gong

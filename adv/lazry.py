@@ -13,6 +13,7 @@ class Lazry(Adv):
     conf['slots.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
+        `s3, not self.s3_buff
         if s1.check() and self.afflics.frostbite.timeleft()<7
         `low_power
         elif s2.check()

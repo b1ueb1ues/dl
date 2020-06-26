@@ -162,20 +162,20 @@ class Agito1_Arondight(WeaponBase):
     att = 1636
     s3 = agito_buffs['wind'][1]
 
-class UnreleasedAgitoStr_WaterBlade(Agito1_Tyrfing):
+class Agito1_Ame_no_Habakiri(WeaponBase):
     ele = ['water']
+    wt = 'blade'
+    att = 1636
+    s3 = agito_buffs['water'][1]
 
 class UnreleasedAgitoStr_LightBlade(Agito1_Tyrfing):
     ele = ['light']
-
-class UnreleasedAgitoSpd_WaterBlade(Agito1_Qixing_Baodao):
-    ele = ['water']
 
 class UnreleasedAgitoSpd_LightBlade(Agito1_Qixing_Baodao):
     ele = ['light']
 
 flame = Agito2_Tyrfing
-water = HDT2_Ruinous_Torrent
+water = Agito1_Ame_no_Habakiri
 wind = Agito1_Arondight
 light = HDT2_Brilliant_Flash
 shadow = Agito1_Qixing_Baodao

@@ -41,6 +41,20 @@ agito_buffs = {
         'recovery' : 0.90,
         },
     ],
+    'water': [
+        {
+        'buff'     : [('self',0.8,-1,'crit','chance'), ('self',0.25,-1,'defense')],
+        'sp'       : 3000,
+        'startup'  : 0.25,
+        'recovery' : 0.90,
+        },
+        {
+        'buff'     : [('self',0.12,-1,'crit','chance'), ('self',0.35,-1,'defense')],
+        'sp'       : 3000,
+        'startup'  : 0.25,
+        'recovery' : 0.90,
+        },
+    ]
 }
 
 from slot import *

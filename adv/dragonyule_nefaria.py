@@ -13,8 +13,8 @@ class Dragonyule_Nefaria(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1, fsc
-        `s3, fsc
         `fs, seq=4
     """
     coab = ['Blade', 'Xander', 'Thaniel']

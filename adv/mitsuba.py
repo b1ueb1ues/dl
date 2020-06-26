@@ -210,6 +210,7 @@ class Mitsuba(Adv):
     conf['slots.a'] = Twinfold_Bonds()+His_Clever_Brother()
     # tc2afsf tc2a- s1
     conf['acl'] = """
+        `s3, not self.s3_buff
         if s1.check() and not self.afflics.frostbite.get()
         `sashimi
         else

@@ -13,8 +13,9 @@ class Xainfried(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end')
-        `s4
+        `s3, not self.s3_buff
         `s2
+        `s4
         `s1
         `fs, x=5
         """

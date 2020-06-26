@@ -11,9 +11,9 @@ class Summer_Celliera(Adv):
     conf['slots.a'] = VC() + Memory_of_a_Friend()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s2
         `s1
-        `s3, fsc
         `fs, seq=2
         """
     coab = ['Blade','Dagger','Summer_Estelle']

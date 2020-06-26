@@ -15,9 +15,9 @@ class Summer_Ranzal(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1, x=5
         `s2, x=5
-        `s3
         """
     coab = ['Xander', 'Dagger', 'Tiki']
     conf['afflict_res.bog'] = 100

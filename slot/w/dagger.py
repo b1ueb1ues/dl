@@ -162,20 +162,20 @@ class Agito1_Carnwennan(WeaponBase):
     att = 1513
     s3 = agito_buffs['wind'][1]
 
-class UnreleasedAgitoStr_WaterDagger(Agito2_Hrotti):
+class Agito1_Futsu_no_Mitama(WeaponBase):
     ele = ['water']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['water'][1]
 
 class UnreleasedAgitoStr_LightDagger(Agito2_Hrotti):
     ele = ['light']
-
-class UnreleasedAgitoSpd_WaterDagger(Agito1_Qinghong_Jian):
-    ele = ['water']
 
 class UnreleasedAgitoSpd_LightDagger(Agito1_Qinghong_Jian):
     ele = ['light']
 
 flame = Agito2_Hrotti
-water = HDT2_Tiderulers_Maw
+water = Agito1_Futsu_no_Mitama
 wind = Agito1_Carnwennan
 light = HDT2_Fulminators_Maw
 shadow = Agito1_Qinghong_Jian

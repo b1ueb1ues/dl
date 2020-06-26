@@ -14,9 +14,9 @@ class Lily(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s2
         `s1, seq=5 and cancel
-        `s3
     """
     coab = ['Blade', 'Dagger', 'Tiki']
 

@@ -162,20 +162,20 @@ class Agito1_Avalon(WeaponBase):
     att = 1467
     s3 = agito_buffs['wind'][1]
 
-class UnreleasedAgitoStr_WaterStaff(Agito1_Gjallarhorn):
+class Agito1_Kunado(WeaponBase):
     ele = ['water']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['water'][1]
 
 class UnreleasedAgitoStr_LightStaff(Agito1_Gjallarhorn):
     ele = ['light']
-
-class UnreleasedAgitoSpd_WaterStaff(Agito1_Goosefoot_Staff):
-    ele = ['water']
 
 class UnreleasedAgitoSpd_LightStaff(Agito1_Goosefoot_Staff):
     ele = ['light']
 
 flame = Agito2_Gjallarhorn
-water = HDT2_Oceans_Embrace
+water = Agito1_Kunado
 wind = Agito1_Avalon
 light = HDT2_Heavensneer
 shadow = Agito1_Goosefoot_Staff

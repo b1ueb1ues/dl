@@ -19,10 +19,10 @@ class Yurius(Adv):
         queue prep and self.duration>120
         `s2; s1; s4; s3
         end
+        `s3, not self.s3_buff
         `s2, cancel
         `s4, cancel
         `s1, cancel
-        `s3, cancel
         # Bow(15%) + DDrive(35%) 
         `fs, x=5 and self.mod('sp')>=1.45
     """

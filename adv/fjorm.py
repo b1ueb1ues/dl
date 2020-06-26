@@ -12,8 +12,8 @@ class Fjorm(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+His_Clever_Brother()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
-        `s3
         `s2, fsc or s=3
         `fs, x=5
     """

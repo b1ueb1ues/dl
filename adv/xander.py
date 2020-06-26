@@ -14,10 +14,10 @@ class Xander(Adv):
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `dragon.act('c3 s end')
-        `s1,fsc
-        `s2,fsc
-        `s3,fsc
-        `fs, seq=2 and cancel
+        `s3, not self.s3_buff
+        `s1, fsc
+        `s2, fsc
+        `fs, x=2
     """
     coab = ['Blade', 'Yurius', 'Dagger']
 

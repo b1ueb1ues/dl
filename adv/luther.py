@@ -8,13 +8,13 @@ class Luther(Adv):
     a1 = ('cc',0.10,'hit15')
 
     conf = {}
-    conf ['slots.d'] = Leviathan()
+    conf ['slots.d'] = Nimis()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1
-        `s2, seq=5 and cancel
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `s2, x=5
+        `fs, x=5
     """
     coab = ['Blade', 'Xander', 'Tiki']
 

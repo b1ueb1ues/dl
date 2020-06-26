@@ -12,9 +12,9 @@ class Karina(Adv):
     conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['acl'] = """
         `dragon.act('c3 s end')
+        `s3, not self.s3_buff
         `s1
         `s2, seq=4
-        `s3, fsc
         `fs, seq=5
     """
     coab = ['Dagger', 'Xander', 'Wand']

@@ -11,9 +11,9 @@ class Renee(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3, seq=5
         `fs, seq=5
         """
     coab = ['Blade', 'Xander', 'Tiki']
