@@ -5,10 +5,10 @@ from slot.a import *
 def module():
     return Xander
 
-class Wily_Warriors_Metal_and_Quick(Amulet):
-    att = 55
+class Here_Come_the_Sealers(Amulet):
+    att = 65
     a = [('slayers',0.06),
-         ('cd',0.22,'hp70')]
+         ('fs',0.50)]
 
 class A_New_Look(Amulet):
     att = 65
@@ -19,15 +19,10 @@ class Xander(adv.xander.Xander):
     comment = '10 stacks striker\'s strength'
     a1 = ('slayers',0.06)
     
-    conf = {}
-    conf['slots.a'] = Wily_Warriors_Metal_and_Quick() + A_New_Look()
-    conf['acl'] = """
-        `s1
-        `s2, fsc
-        `s3, fsc
-        `fs, x=2 and cancel
-        """
-    coab = ['Blade','Wand','Dagger']
+    conf = adv.xander.Xander.conf.copy()
+    conf['slots.a'] = Here_Come_the_Sealers() + A_New_Look()
+    conf['slots.frostbite.a'] = conf['slots.a']
+    coab = ['Blade', 'Yurius', 'Dagger']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

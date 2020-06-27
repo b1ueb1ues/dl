@@ -18,7 +18,7 @@ class Xainfried(Adv):
         `s2
         `fs, x=5
         """
-    coab = ['Xander', 'Pipple', 'Bow']
+    coab = ['Xander', 'Yurius', 'Bow']
     conf['afflict_res.frostbite'] = 0
 
     def s1_proc(self, e):

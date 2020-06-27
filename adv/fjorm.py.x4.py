@@ -9,7 +9,7 @@ def module():
 class Fjorm(adv.fjorm.Fjorm):
     comment = '4x Fjorm in 20.55s with sufficient dprep'
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
-    a2 = [('dp',50)] # team dprep
+    a2 = [('dp', 50)] # team dprep
     conf = {}
     conf['slots.a'] = Unexpected_Requests()+Valiant_Crown()
     conf['slots.frostbite.a'] = Unexpected_Requests()+Valiant_Crown()

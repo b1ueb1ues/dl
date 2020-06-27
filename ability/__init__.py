@@ -209,7 +209,7 @@ class Last_Offense(BuffingAbility):
 
         if 'hp' not in adv.conf and adv.condition('last offense'):
             def lo_damaged(t):
-                if adv.hp > 30:
+                if adv.hp > 30 and self.proc_chances > 0:
                     next_hp = adv.condition.hp_threshold_list()
                     if next_hp and next_hp[0] < 30:
                         adv.set_hp(next_hp)

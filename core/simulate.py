@@ -345,7 +345,7 @@ def act_sum(actions, output):
             if xseq < p_xseq:
                 condensed = append_condensed(condensed, p_act)
             p_xseq = xseq
-        elif act == 'fs' and p_act[0] == 'x':
+        elif act.startswith('fs') and p_act[0] == 'x':
             p_xseq = 0
             condensed = append_condensed(condensed, p_act+act)
         else:
@@ -374,8 +374,8 @@ def act_sum(actions, output):
             freq -= 1
         elif idx > 0:
             output.write(' ')
-        if act[0] == 'x' or act == 'fs':
-            if act != 'fs':
+        if act[0] == 'x' or act.startswith('fs'):
+            if act[0] == 'x':
                 act = 'c' + act[1:]
             output.write(act)
             p_type = 'x'
@@ -482,8 +482,8 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
     dps_mappings = {}
     dps_mappings['attack'] = dict_sum(dmg['x'], mod_func) / real_d
     for k in sorted(dmg['f']):
-        if k == 'fs':
-            dps_mappings['force_strike'] = dmg['f']['fs'] / real_d
+        if k.startswith('fs'):
+            dps_mappings['force_strike'] = dmg['f'][k] / real_d
         else:
             dps_mappings[k] = dmg['f'][k] / real_d
     for k in sorted(dmg['s']):
