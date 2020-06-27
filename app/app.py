@@ -49,6 +49,10 @@ SPECIAL_ADV = {
     'fjorm_stack': {
         'fn': 'fjorm.py.x4.py',
         'nc': ['acl']
+    },
+    'hunter_sarisse_allhits': {
+        'fn': 'hunter_sarisse.py.allhits.py',
+        'nc': []
     }
 }
 
