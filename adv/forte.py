@@ -6,7 +6,6 @@ def module():
     return Forte
 
 class Forte(Adv):
-    comment = 'Cleo coab hits 10 stack buff limit'
     a3 = ('k_poison', 0.30)
 
     conf = {}
@@ -21,7 +20,7 @@ class Forte(Adv):
         `s1
         `fs, x=5
         """
-    coab = ['Ieyasu','Wand','Bow']
+    coab = ['Ieyasu','Wand','Cleo']
     share = ['Curran']
 
     def prerun(self):

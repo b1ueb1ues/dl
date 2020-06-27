@@ -19,7 +19,7 @@ class Xainfried(Adv):
         `s1
         `fs, x=5
         """
-    coab = ['Xander', 'Pipple', 'Bow']
+    coab = ['Xander', 'Yurius', 'Bow']
     share = ['Rodrigo']
     conf['afflict_res.frostbite'] = 0
 
