@@ -482,8 +482,11 @@ def report(real_d, adv, output, team_dps, cond=True, mod_func=None):
     dps_mappings = {}
     dps_mappings['attack'] = dict_sum(dmg['x'], mod_func) / real_d
     for k in sorted(dmg['f']):
-        if k.startswith('fs'):
-            dps_mappings['force_strike'] = dmg['f'][k] / real_d
+        if k in ('fs', 'fs1', 'fs2', 'fs3', 'fs4'):
+            try:
+                dps_mappings['force_strike'] += dmg['f'][k] / real_d
+            except:
+                dps_mappings['force_strike'] = dmg['f'][k] / real_d
         else:
             dps_mappings[k] = dmg['f'][k] / real_d
     for k in sorted(dmg['s']):
