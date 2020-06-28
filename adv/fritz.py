@@ -8,12 +8,13 @@ class Fritz(Adv):
     conf = {}
     conf['acl'] = """
         `dragon
-        `s1, x=5 and cancel or fsc
+        `s1, x=5 or fsc
+        `s4
         `s2
-        `s3
         `fs, x=5
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
     def fs_proc_alt(self, e):
         self.afflics.stun('fs', 100)

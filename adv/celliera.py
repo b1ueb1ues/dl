@@ -14,11 +14,13 @@ class Celliera(Adv):
     conf['slots.a'] = Primal_Crisis()+His_Clever_Brother()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
-        `s3, not self.s3_buff
         `s2, not self.s2_buff.get()
+        `s3, cancel
+        `s4, x=4
         `s1
     """
     coab = ['Dagger', 'Xander', 'Wand']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def prerun(self):
         self.s2_buff = Selfbuff('s2',0.25,-1,'att','buff')

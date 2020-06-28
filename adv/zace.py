@@ -12,11 +12,13 @@ class Zace(Adv):
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
         `fs, x=5
     """
     coab = ['Ieyasu','Wand','Tiki']
+    share = ['Rodrigo']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

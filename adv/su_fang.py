@@ -13,10 +13,12 @@ class Su_Fang(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s2, fsc
+        `s4, fsc
         `s1
         `fs, x=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
 
     def fs_proc_alt(self, e):
         self.afflics.poison('fs', 120, 0.582)

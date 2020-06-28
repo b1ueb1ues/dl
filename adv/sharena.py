@@ -14,12 +14,14 @@ class Sharena(Adv):
     conf['slots.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon, fsc
+        `s4
         `s1
         `s2, cancel
         `fs, x=5
     """
     coab = ['Malora','Dagger','Peony']
     conf['afflict_res.paralysis'] = 0
+    share = ['Ranzal']
 
     def d_coabs(self):
         if self.duration <= 60:

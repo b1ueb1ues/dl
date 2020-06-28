@@ -10,15 +10,12 @@ class Marty(Adv):
     conf['acl'] = """
         `dragon, s
         `s3, fsc and not self.s3_buff
+        `s4, fsc
         `s1, fsc
         `fs, x=2
         """
     coab = ['Blade', 'Marth', 'Tiki']
-
-    def d_coabs(self):
-        if self.sim_afflict:
-            if self.duration > 120:
-                self.coab = ['Blade','Marth','Serena']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

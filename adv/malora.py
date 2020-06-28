@@ -11,12 +11,14 @@ class Malora(Adv):
     conf['slots.paralysis.a'] = Resounding_Rendition()+Spirit_of_the_Season()
     conf['acl'] = """
         `dragon
+        `s4
         `s1
         `s2, cancel
         `s3, cancel
         `fs, x=4
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

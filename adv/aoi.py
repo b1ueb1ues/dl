@@ -12,11 +12,13 @@ class Aoi(Adv):
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
     """
     coab = ['Wand', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,100,0.803)

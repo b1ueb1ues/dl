@@ -28,12 +28,16 @@ class Hunter_Vanessa(Adv):
     conf['acl'] = """
         `dragon, fsc
         `fs2, s1.charged>=s1.sp-self.sp_val('fs2')
-        `s1, x=5 or fsc
         `s2, not self.s2_att_boost.get()
-        `s3, x=5 or fsc
+        if x=5 or fsc
+        `s1
+        `s4
+        `s3
+        end
     """
     coab = ['Sharena','Dagger','Peony']
     conf['afflict_res.paralysis'] = 0
+    share = ['Ranzal']
 
     def d_slots(self):
         if self.duration <= 90:
