@@ -5,12 +5,12 @@ def module():
     return Yuya
 
 class Yuya(Adv):
-    a3 = ('primed_crit_chance', 0.5,5)
+    a3 = ('primed_crit_chance', 0.05,5)
     
     conf = {}
     conf['slots.burn.a'] = Twinfold_Bonds()+Me_and_My_Bestie()
     conf['acl'] = """
-        `dragon
+        `dragon, s=1
         `s3, not self.s3_buff
         `s1
         `fs, x=4
