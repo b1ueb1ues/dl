@@ -11,7 +11,7 @@ class Tension:
         self.damage_sources = mod._static.damage_sources # need to account for healing skills bleh
         self.modifier.off()
         self.event = event or Event(name)
-        self.scope = {'s1', 's2', 's3', 's'}
+        self.scope = {'s1', 's2', 's3', 's4', 's'}
         self.current_scope = None
         self.stack = 0
         self.has_stack = Buff('has_'+self.name, 1, -1, self.name, self.name)
