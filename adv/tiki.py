@@ -88,6 +88,7 @@ class Tiki(Adv):
         end
     """
     coab = ['Blade', 'Xander', 'Dagger']
+    share = ['Gala_Luca']
 
     def d_slots(self):
         if self.duration <= 60:

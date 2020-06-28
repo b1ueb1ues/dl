@@ -210,21 +210,21 @@ class Mitsuba(Adv):
     conf['slots.a'] = Twinfold_Bonds()+His_Clever_Brother()
     # tc2afsf tc2a- s1
     conf['acl'] = """
-        `s3, not self.s3_buff
         if s1.check() and not self.afflics.frostbite.get()
         `sashimi
         else
         `tempura
         end
-        `s1
         if x=2
         `s4
+        `s3
         `s2
+        `s1
         `fsf
         end
     """
     coab = ['Blade','Xander', 'Summer_Estelle']
-    share = ['Curran']
+    share = ['Gala_Elisanne', 'Ranzal']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

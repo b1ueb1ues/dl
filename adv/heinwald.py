@@ -14,9 +14,11 @@ class Heinwald(Adv):
     conf['acl'] = '''
         `s3, not self.s3_buff
         `s2, s=3 or cancel
+        `s4, cancel
         `s1, cancel
         '''
     coab = ['Blade','Wand','Dagger']
+    share = ['Curran']
     
     def s2_proc(self, e):
         self.s2_buff = Selfbuff(e.name,0.25,10).on()

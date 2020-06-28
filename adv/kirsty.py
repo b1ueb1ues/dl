@@ -10,10 +10,12 @@ class Kirsty(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2, seq=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Akasha']
+    share = ['Curran']
 
     def prerun(self):
         if self.condition('maintain Dauntless Strength'):

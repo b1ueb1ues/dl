@@ -17,14 +17,17 @@ class Zena(Adv):
         `s3, not self.s3_buff
         `s2
         `s1
+        `s4
 
         # If healing FS is needed
         # `fs, s1.check() and self.fs_alt.uses>0
         # `s3, not self.s3_buff
         # `s2
+        # `s4
         # `s1, fsc or self.fs_alt.uses=0
         """
     coab = ['Blade', 'Dagger', 'Bow']
+    share = ['Curran']
 
     def prerun(self):
         conf_fs_alt = {

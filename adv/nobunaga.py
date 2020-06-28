@@ -14,12 +14,13 @@ class Nobunaga(Adv):
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff
+        `s4, cancel
         `s1
         `s2, self.burning_ambition
-        `s4
         `fs, x=5 and s2.charged<s2.sp-self.sp_val(2)
         """
     coab = ['Wand','Marth','Serena']
+    share = ['Rodrigo']
 
     def prerun(self):
         self.burning_ambition = 0

@@ -10,17 +10,18 @@ class Summer_Ranzal(Adv):
     a3 = ('primed_defense', 0.08)
 
     conf = {}
-    conf['slots.a'] = RR() + Breakfast_at_Valerios()
-    conf['slots.frostbite.a'] = PC() + His_Clever_Brother()
+    conf['slots.a'] = Resounding_Rendition() + Breakfast_at_Valerios()
+    conf['slots.frostbite.a'] = Primal_Crisis() + His_Clever_Brother()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
-        `s1, x=5
-        `s2, x=5
+        `s3
+        `s4
+        `s2
         """
     coab = ['Xander', 'Dagger', 'Tiki']
     conf['afflict_res.bog'] = 100
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def init(self):
         self.a3_iscding = 0

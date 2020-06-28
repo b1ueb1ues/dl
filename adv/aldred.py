@@ -16,9 +16,11 @@ class Aldred(Adv):
         `s3, not self.s3_buff
         `s2
         `dragon, not self.dragondrive_buff.get()
+        `s4
         `s1, x=5
     """
     coab = ['Wand','Berserker','Curran']
+    share = ['Veronica']
 
     def prerun(self):
         self.dragondrive_buff = Selfbuff('dragondrive', 0.30, -1, 's', 'passive')

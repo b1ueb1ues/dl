@@ -11,10 +11,12 @@ class Student_Maribelle(Adv):
     conf['acl'] = """
         `dragon, s
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
     """
     coab = ['Blade', 'Marth', 'Serena']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

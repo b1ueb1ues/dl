@@ -10,10 +10,12 @@ class Vida(Adv):
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
+        `s4
         `s1
         `fs, x=5
         """
     coab = ['Ieyasu','Wand','Tiki']
+    share = ['Curran']
 
     def prerun(self):
         conf_fs_alt = {'fs.dmg': 0.110, 'fs.hit': 6}

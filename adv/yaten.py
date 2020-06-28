@@ -13,11 +13,13 @@ class Yaten(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2, fsc and self.energy() < 4
         `fs, x=3
     """
     coab = ['Ieyasu','Wand','Dagger']
+    share = ['Curran']
 
     def d_coabs(self):
         if self.sim_afflict:

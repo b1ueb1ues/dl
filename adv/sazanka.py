@@ -15,12 +15,14 @@ class Sazanka(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2, fsc
         `fs, seq=5
     """
-    coab = ['Blade','Wand','Dagger']
+    coab = ['Blade', 'Wand', 'Dagger']
     conf['afflict_res.sleep'] = 80
+    share = ['Curran']
 
     def prerun(self):
         self.bleed = Bleed('g_bleed',0).reset()
