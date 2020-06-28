@@ -12,12 +12,14 @@ class Fjorm(Adv):
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+His_Clever_Brother()
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s3, fsc
+        `s4
         `s1
-        `s2, fsc or s=3
+        `s2, fsc
         `fs, x=5
     """
     coab = ['Blade', 'Summer_Estelle', 'Xander']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def prerun(self):
         Teambuff('last_bravery',0.3,15).on()

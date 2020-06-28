@@ -12,15 +12,15 @@ class Summer_Celliera(Adv):
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `dragon.act('c3 s end')
-        `s3, not self.s3_buff
         `s2
+        `s3
         `s4
         `s1
         `fs, seq=2
         """
     coab = ['Blade', 'Dagger','Summer_Estelle']
     conf['afflict_res.bog'] = 100
-    share = ['Patia']
+    share = ['Patia', 'Ranzal']
 
     def init(self):
         self.phase['s2'] = 0

@@ -13,12 +13,14 @@ class Lily(Adv):
     conf['slots.a'] = CC()+Seaside_Princess()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
-        `dragon
-        `s3, not self.s3_buff
+        `dragon, cancel
+        `s4
+        `s3
         `s2
         `s1, seq=5 and cancel
     """
     coab = ['Blade', 'Dagger', 'Tiki']
+    share = ['Gala_Elisanne', 'Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

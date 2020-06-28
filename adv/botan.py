@@ -11,10 +11,12 @@ class Botan(Adv):
     conf['slots.a'] = RR() + United_by_One_Vision()
     conf['acl'] = """
         `s3, not self.s3_buff and prep
+        `s4
         `s2
         `s1, cancel
     """
     coab = ['Blade','Wand','Dagger']
+    share = ['Ranzal']
 
     def d_coabs(self):
         if self.sim_afflict:

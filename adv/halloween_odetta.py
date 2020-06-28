@@ -13,13 +13,15 @@ class Halloween_Odetta(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end'), s=2
-        `s3, not self.s3_buff
+        `s3, cancel
         `s2, cancel
+        `s4, fsc
         `s1, fsc
         `fs, x=3 and not self.afflics.frostbite.get()
         `fs, x=2 and self.afflics.frostbite.get()
     """
     coab = ['Summer_Estelle','Blade','Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def d_coabs(self):
         if self.sim_afflict:

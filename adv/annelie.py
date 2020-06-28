@@ -3,12 +3,6 @@ from core.advbase import *
 def module():
     return Annelie
 
-        # `s1, s2.charged<=10000
-        # `s1, s=2
-        # `s2
-        # `s3
-        # `fs, seq=5 
-
 class Annelie(Adv):
     comment = '1121'
     a1 = ('s',0.35,'hp70')
@@ -17,12 +11,14 @@ class Annelie(Adv):
     conf['acl'] = """
         `dragon
         `s1, s2.charged<=10000
+        `s4
         `s1, s=2
         `s2
         `s3
         `fs, seq=5 
         """
     coab = ['Halloween_Elisanne','Dagger','Peony']
+    share = ['Althemia']
 
     def prerun(self):
         self.phase['s1'] = 0

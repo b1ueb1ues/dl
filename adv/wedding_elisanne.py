@@ -15,11 +15,13 @@ class Wedding_Elisanne(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
-        `s1,fsc and s2.charged<s2.sp-749
-        `s2
-        `fs,x=2
+        `s4, fsc
+        `s1, fsc
+        `s2, fsc
+        `fs, x=2
     """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
         if self.condition(f'{e.name} defdown for 10s'):

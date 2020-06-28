@@ -98,11 +98,13 @@ class Mega_Man(Adv):
         # check_s(n) means neither s1 or s2 are active, and s[n] has full ammo
         `dragon
         `s3, not self.s3_buff
+        `s4
         `s1, self.check_s(1) and self.bleed._static['stacks']<3
         `s2, self.s1_x.active and self.bleed._static['stacks']>=3
         `s1, self.s1_x.active and self.bleed._static['stacks']>=3
     """
     coab = ['Blade', 'Marth', 'Tiki']
+    share = ['Emma']
 
     conf['dragonform'] = {
         'act': 'c5 s',

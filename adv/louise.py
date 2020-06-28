@@ -13,12 +13,14 @@ class Louise(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end"), fsc
         `s3, not self.s3_buff
-        `s2
         `s1
+        `s4
+        `s2
         `fs, x=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def s1_proc(self, e):
         self.dmg_make(e.name, 3.87)

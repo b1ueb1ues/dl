@@ -11,11 +11,13 @@ class Rodrigo(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2, fsc
         `fs, x=3
         """
     coab = ['Ieyasu','Wand','Forte']
+    share = ['Curran']
 
     def s1_proc(self, e):
         self.afflics.poison(e.name,120,0.582)
