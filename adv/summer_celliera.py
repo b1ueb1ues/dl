@@ -8,15 +8,17 @@ class Summer_Celliera(Adv):
     a1 = ('bc',0.13)
     a3 = ('bt',0.30)
     conf = {}
-    conf['slots.a'] = VC() + Memory_of_a_Friend()
+    conf['slots.a'] = Valiant_Crown() + Memory_of_a_Friend()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s2
+        `s4
         `s1
         `fs, seq=2
         """
-    coab = ['Blade','Dagger','Summer_Estelle']
+    coab = ['Blade', 'Dagger','Summer_Estelle']
     conf['afflict_res.bog'] = 100
 
     def init(self):
