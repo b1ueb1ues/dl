@@ -349,11 +349,12 @@ class Selfbuff(Buff):
 
 class SingleActionBuff(Buff):
     # self buff lasts until the action it is buffing is completed
-    def __init__(self, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None):
+    def __init__(self, name='<buff_noname>', value=0, casts=1, mtype=None, morder=None, event=None, end_proc=None):
         super().__init__(name, value, -1, mtype, morder)
         self.bufftype = 'self'
         self.casts = casts
         self.end_event = event if event is not None else mtype
+        self.end_proc = end_proc
         if isinstance(self.end_event, str):
             Listener(self.end_event, self.l_off).on()
         else:
@@ -368,7 +369,10 @@ class SingleActionBuff(Buff):
         if e.name in self.modifier._static.damage_sources or (hasattr(e, 'damage') and e.damage):
             self.casts -= 1
             if self.casts <= 0:
-                return super().off()
+                result = super().off()
+                if self.end_proc is not None:
+                    self.end_proc(e)
+                return result
             else:
                 return self
 
