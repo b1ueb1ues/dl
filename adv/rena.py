@@ -14,14 +14,10 @@ class Rena(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, s=1
-        `fs, x=5 and (s1.charged=1500 or s1.charged=3200)
+        `s4, x=5
     """
-    coab = ['Wand', 'Joe', 'Marth']    
+    coab = ['Wand', 'Serena', 'Marth']
     conf['afflict_res.burn'] = 0
-
-    def d_coabs(self):
-        if self.duration <= 120:
-            self.coab = ['Blade','Wand','Serena']
 
     def prerun(self):
         self.phase['s1'] = 0
