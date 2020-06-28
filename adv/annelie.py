@@ -11,14 +11,14 @@ class Annelie(Adv):
     conf['acl'] = """
         `dragon
         `s1, s2.charged<=10000
-        `s4
+        `s4, x=5
         `s1, s=2
         `s2
         `s3
-        `fs, seq=5 
+        `fs, x=5 
         """
     coab = ['Halloween_Elisanne','Dagger','Peony']
-    share = ['Althemia']
+    share = ['Ranzal']
 
     def prerun(self):
         self.phase['s1'] = 0

@@ -13,14 +13,14 @@ class Xainfried(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end')
-        `s3, not self.s3_buff
+        `s3
         `s2
         `s4
         `s1
         `fs, x=5
         """
     coab = ['Xander', 'Yurius', 'Bow']
-    share = ['Rodrigo']
+    share = ['Gala_Elisanne', 'Ranzal']
     conf['afflict_res.frostbite'] = 0
 
     def s1_proc(self, e):

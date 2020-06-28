@@ -11,13 +11,15 @@ class Renee(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
+        `s4
         `s1
         `s2
         `fs, seq=5
         """
     coab = ['Blade', 'Xander', 'Tiki']
     conf['afflict_res.bog'] = 100
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def s1_proc(self, e):
         self.dmg_make(e.name,1.11)

@@ -18,7 +18,7 @@ class Zace(Adv):
         `fs, x=5
     """
     coab = ['Ieyasu','Wand','Tiki']
-    share = ['Rodrigo']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

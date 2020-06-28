@@ -25,7 +25,7 @@ class Peony(Adv):
         `s4, cancel
     """
     coab = ['Blade','Sharena','Malora']
-    share = ['Rodrigo']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def d_coabs(self):

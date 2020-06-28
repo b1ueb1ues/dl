@@ -17,9 +17,9 @@ class Yurius(Adv):
         `dragon, self.dragondrive_buff.get()
         end
         queue prep and self.duration>120
-        `s2; s1; s4; s3
+        `s3; s2; s1; s4
         end
-        `s3, not self.s3_buff
+        `s3, cancel
         `s2, cancel
         `s4, cancel
         `s1, cancel
@@ -27,7 +27,7 @@ class Yurius(Adv):
         `fs, x=5 and self.mod('sp')>=1.45
     """
     coab = ['Blade','Hunter_Sarisse','Xander']
-    share = ['Althemia']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     # conf['sim_afflict.efficiency'] = 1
     # conf['sim_afflict.type'] = 'frostbite'

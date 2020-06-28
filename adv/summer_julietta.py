@@ -15,12 +15,14 @@ class Summer_Julietta(Adv):
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act("c3 s end")
-        `s3, not self.s3_buff
+        `s3
         `s2
+        `s4
         `s1
     """
     coab = ['Blade', 'Dagger', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def d_coabs(self):
         if self.sim_afflict:

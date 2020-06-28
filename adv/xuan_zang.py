@@ -13,11 +13,13 @@ class Xuan_Zang(Adv):
     conf['acl'] = """
         `dragon, s=2
         `s3, not self.s3_buff
-        `s1
         `s2
+        `s1
+        `s4
         `fs, x=5
         """
     coab = ['Blade', 'Marth', 'Tiki']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         with KillerModifier(e.name, 'hit', 0.2, ['debuff']):

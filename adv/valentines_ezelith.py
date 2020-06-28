@@ -13,12 +13,14 @@ class Valentines_Ezelith(Adv):
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
         `fs, seq=4
     """
     coab = ['Blade', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,110,0.883)

@@ -12,6 +12,7 @@ class Halloween_Elisanne(Adv):
     conf['slots.paralysis.a'] = conf['slots.a']
     conf['acl'] = """
         `dragon, fsc
+        `s4, fsc or x=5
         `s2
         `s1
         `s3, x=5
@@ -19,6 +20,7 @@ class Halloween_Elisanne(Adv):
         """
     coab = ['Blade','Sharena','Peony']
     conf['afflict_res.paralysis'] = 0
+    share = ['Ranzal']
 
     def prerun(self):
         self.phase['s1'] = 0

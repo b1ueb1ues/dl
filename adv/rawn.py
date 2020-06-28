@@ -16,7 +16,7 @@ class Rawn(Adv):
         `fs, x=4
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
-    share = ['Althemia']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         Debuff(e.name, 0.05, 10, 0.4, 'attack').on()

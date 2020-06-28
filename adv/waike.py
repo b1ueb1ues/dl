@@ -13,13 +13,15 @@ class Waike(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3, fsc
+        `s4, fsc
         `s1, fsc
         `s2, fsc
         `fs, seq=4
         """
     coab = ['Blade', 'Xander', 'Tiki']
     conf['afflict_res.bog'] = 100
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def s2_proc(self, e):
         self.afflics.bog.on(e.name, 80)
