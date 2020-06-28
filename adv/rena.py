@@ -18,6 +18,7 @@ class Rena(Adv):
     """
     coab = ['Wand', 'Serena', 'Marth']
     conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
     def prerun(self):
         self.phase['s1'] = 0

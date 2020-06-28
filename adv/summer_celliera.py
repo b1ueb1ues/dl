@@ -20,6 +20,7 @@ class Summer_Celliera(Adv):
         """
     coab = ['Blade', 'Dagger','Summer_Estelle']
     conf['afflict_res.bog'] = 100
+    share = ['Patia']
 
     def init(self):
         self.phase['s2'] = 0

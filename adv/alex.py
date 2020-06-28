@@ -16,12 +16,14 @@ class Alex(Adv):
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
         `fs, x=5
         """
     coab = ['Blade','Wand','Heinwald']
-    conf['afflict_res.poison'] = 0    
+    conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def s1_proc(self, e):
         self.afflics.poison(e.name,100,0.396)

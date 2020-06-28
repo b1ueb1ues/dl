@@ -18,10 +18,11 @@ class Valentines_Addis(Adv):
         `s3, not self.s3_buff
         `s2, self.hp > 30
         `s1
+        `s4
     """
     coab = ['Wand','Curran','Berserker']
     conf['afflict_res.poison'] = 0
-
+    share = ['Veronica']
 
     def s1_proc(self, e):
         with CrisisModifier(e.name, 1.25, self.hp):

@@ -24,8 +24,10 @@ class Pipple(Adv):
         `s3, not self.s3_buff
         `s1, not self.afflics.frostbite.get()
         `s2, x=5
+        `s4, x=5
     """
     coab = ['Tiki', 'Xander', 'Axe2']
+    share = ['Gala_Elisanne']
 
     def prerun(self):
         self.phase['s1'] = 0

@@ -31,12 +31,14 @@ class Linnea(Adv):
     conf['slots.a'] = The_Lurker_in_the_Woods()+Levins_Champion()
     conf['slots.d'] = Fatalis()
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s4
+        `s3
         `s2
         `s1
         `fs3
         """
-    coab = ['Dagger','Grace','Axe2']
+    coab = ['Dagger', 'Grace', 'Axe2']
+    share = ['Hunter_Sarisse', 'Elisanne']
 
     def init(self):
         conf_alt_fs = {
@@ -99,7 +101,7 @@ class Linnea(Adv):
         self.s2_mode = (self.s2_mode + 1) % 2
 
     def do_fs(self, e, name):
-        log('cast','fs')
+        log('cast', name)
         e.name = name
         self.__dict__['a_'+name].getdoing().cancel_by.append(name)
         self.__dict__['a_'+name].getdoing().interrupt_by.append(name)

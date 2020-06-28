@@ -11,12 +11,14 @@ class Summer_Estelle(Adv):
     conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `dragon
+        `dragon, s
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         """
     coab = ['Blade', 'Renee', 'Xander']
+    share = ['Ranzal']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

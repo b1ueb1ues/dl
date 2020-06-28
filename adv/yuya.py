@@ -12,10 +12,12 @@ class Yuya(Adv):
     conf['acl'] = """
         `dragon, s=1
         `s3, not self.s3_buff
+        `s4
         `s1
         `fs, x=4
         """
     coab = ['Blade', 'Marth', 'Tiki']
+    share = ['Gala_Mym']
 
     def prerun(self):
         if self.condition('hp60'):

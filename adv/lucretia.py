@@ -10,10 +10,12 @@ class Lucretia(Adv):
     conf['acl'] = """
         `dragon, s=2
         `s2, x=5
+        `s4
         `s1
         `s3
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.energy.add(1, team=True)
