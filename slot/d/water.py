@@ -250,6 +250,56 @@ class Gaibhne_and_Creidhne(DragonBase):
         Timer(autocharge_off, 10, True).on()
         return 0
 
+class Styx(DragonBase):
+    ele = 'water'
+    att = 125
+    a = []
+    dragonform = {
+        'act': 'c3 s',
+
+        'dx1.dmg': 2.40,
+        'dx1.startup': 20 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.64,
+        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 4.32,
+        'dx3.startup': 58 / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
+        'dx3.hit': 2,
+
+        'ds.dmg': 0,
+        'ds.recovery': 150 / 60, # skill frames
+        'ds.hit': 0,
+
+        'dodge.startup': 40 / 60, # dodge frames
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from core.advbase import Selfbuff, Event, Timer
+        self.csd_buff = Selfbuff('d_compounding_sd',0.0,-1,'s','buff').on()
+        self.csd_stack = 0
+        self.csd_timer = Timer(self.add_csd, 15, True).on()
+        Event('s').listener(self.reset_csd)
+
+    def add_csd(self, t):
+        self.csd_stack = min(self.csd_stack+1, 4)
+        self.update_csd()
+
+    def reset_csd(self, e):
+        if self.csd_stack > 0 and e.name in self.csd_buff.modifier._static.damage_sources or (hasattr(e, 'damage') and e.damage):
+            self.csd_stack = 0
+        self.update_csd()
+
+    def update_csd(self):
+        self.csd_buff.off()
+        if self.csd_stack > 0:
+            self.csd_buff.value(0.50*self.csd_stack)
+            self.csd_buff.on()
+
 class Unreleased_WaterFrostbitePunish(DragonBase):
     ele = 'water'
     att = 127

@@ -284,6 +284,68 @@ class Azazel(DragonBase):
         Teambuff('ds', 0.15, 40, 'poison_killer', 'passive').on()
         return dmg
 
+class Cait_Sith(DragonBase):
+    ele = 'shadow'
+    att = 128
+    a = []
+    dragonform = {
+        # placeholder
+        'act': 'c3 s',
+
+        'dx1.dmg': 1.90,
+        'dx1.startup': 12 / 60.0, # c1 frames
+        'dx1.hit': 1,
+
+        'dx2.dmg': 2.09,
+        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.hit': 1,
+
+        'dx3.dmg': 3.24,
+        'dx3.startup': 39 / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
+        'dx3.hit': 3,
+
+        'ds.recovery': 130 / 60,
+        'ds.hit': 1,
+    }
+
+    def oninit(self, adv):
+        super().oninit(adv)
+        from core.advbase import Event, SingleActionBuff
+        Event('dragon_end').listener(self.shift_end_trickery)
+        self.trickery = 15
+        self.threshold = 25
+        self.trickery_buff = SingleActionBuff('d_trickery_buff', 1.80, 1,'s', 'passive', end_proc=self.check_trickery)
+        self.check_trickery()
+
+        if adv.condition('always connect hits'):
+            self.dmg_proc_o = adv.dmg_proc
+            self.thit = 0
+            def dmg_proc(name, amount):
+                n_thit = adv.hits // self.threshold
+                if n_thit > self.thit:
+                    self.add_trickery(n_thit-self.thit)
+                    self.thit = n_thit
+                self.dmg_proc_o(name, amount)
+            adv.dmg_proc = dmg_proc
+
+    def add_trickery(self, t):
+        from core.log import log
+        log('debug', 'trickery', f'+{t}', self.trickery)
+        self.trickery = min(self.trickery+t, 15)
+        self.check_trickery()
+
+    def check_trickery(self, e=None):
+        from core.log import log
+        if self.trickery > 0 and not self.trickery_buff.get():
+            self.trickery -= 1
+            log('debug', 'trickery', 'consume', self.trickery)
+            self.trickery_buff.on()
+
+    def shift_end_trickery(self, e):
+        self.add_trickery(8)
+
+
 class Unreleased_ShadowPrimedStr(DragonBase):
     ele = 'shadow'
     att = 127
