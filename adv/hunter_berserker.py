@@ -36,6 +36,7 @@ class Hunter_Berserker(Adv):
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1, fsc
+        `s4, fsc
         queue self.s2.check()
         `s2
         `fs3, x=1
@@ -44,6 +45,7 @@ class Hunter_Berserker(Adv):
         `fs3
     """
     coab = ['Blade','Grace','Marth']
+    share = ['Hunter_Sarisse']
 
     def init(self):
         self.conf.fs.hit = 1

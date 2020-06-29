@@ -10,11 +10,13 @@ class Valentines_Orion(Adv):
     conf['acl'] = """
         `dragon
         `s3, fsc and not self.s3_buff
+        `s4
         `s1
         `fs, x=3
     """
     coab = ['Blade', 'Marth', 'Serena']
     conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,100,0.803)

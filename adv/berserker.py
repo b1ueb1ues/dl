@@ -16,9 +16,11 @@ class Berserker(Adv):
         `dragon
         `s3, not self.s3_buff
         `s1
+        `s4
         `fs, x=3
         """
     coab = ['Berserker','Ieyasu','Wand','Tiki']
+    share = ['Curran']
 
     def s1_proc(self, e):
         Debuff(e.name, 0.05, 10, 0.4, 'attack')

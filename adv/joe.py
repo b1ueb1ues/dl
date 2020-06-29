@@ -14,10 +14,12 @@ class Joe(Adv):
         `s3, fsc and not self.s3_buff
         `s1
         `s2
+        `s4
         `fs, x=4
     """
     coab = ['Blade', 'Wand', 'Marth']
     conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,100,0.803)

@@ -16,11 +16,13 @@ class Pietro(Adv):
     conf['slots.d'] = Nimis()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
         `s1
+        `s4
         `fs, x=5
         """
     coab = ['Tiki', 'Xander', 'Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

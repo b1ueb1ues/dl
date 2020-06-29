@@ -17,10 +17,12 @@ class Fleur(Adv):
         `s2, s=1
         `s1
         `s3
+        `s4, s
         `fs, seq=4
     '''
     coab = ['Blade','Sharena','Peony']
     conf['afflict_res.paralysis'] = 0
+    share = ['Ranzal']
 
     def init(self):
         self.phase['s1'] = 0

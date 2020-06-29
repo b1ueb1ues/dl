@@ -12,12 +12,14 @@ class Addis(Adv):
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s3, not self.s3_buff
+        `s4, not self.s2buff.get()
         `s2, s1.charged>=s1.sp-260 and seq=5 and self.bleed._static['stacks'] != 3
         `s1, s2.charged<s2.sp and self.bleed._static['stacks'] != 3
         `fs, self.s2buff.get() and seq=4 and self.s1.charged>=s1.sp-200
         """
     coab = ['Akasha','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def getbleedpunisher(self):
         if self.bleed._static['stacks'] > 0:

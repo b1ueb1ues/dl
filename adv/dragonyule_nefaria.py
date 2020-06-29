@@ -13,12 +13,13 @@ class Dragonyule_Nefaria(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3, fsc
         `s1, fsc
+        `s4, fsc
         `fs, seq=4
     """
     coab = ['Blade', 'Xander', 'Thaniel']
-
+    share = ['Gala_Elisanne', 'Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

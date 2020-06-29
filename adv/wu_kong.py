@@ -15,9 +15,11 @@ class Wu_Kong(Adv):
         `s1
         `s2
         `s3
+        `s4
         `fs, x=5
         """
     coab = ['Blade','Wand','Peony']
+    share = ['Ranzal']
 
     def prerun(self):
         self.phase['s1'] = 0

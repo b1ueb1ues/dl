@@ -14,10 +14,12 @@ class Aurien(Adv):
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
+        `s4, x=5
         `s2, x=5
     """
     conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Marth', 'Tiki']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
         self.afflics.burn(e.name,100,0.803)

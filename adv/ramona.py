@@ -14,10 +14,12 @@ class Ramona(Adv):
     conf['acl'] = """
         `dragon, s=1
         `s3, not self.s3_buff
+        `s2, s1.check()
+        `s4
         `s1
-        `s2,x=4
         """
     coab = ['Blade', 'Wand', 'Marth']
+    share = ['Ranzal']
 
     def prerun(self):
         self.a_s1 = self.s1.ac

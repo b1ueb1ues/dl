@@ -13,8 +13,10 @@ class Amane(Adv):
         `s2
         `s1
         `s3, x=5
+        `s4, x=5
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
 
 if __name__ == '__main__':

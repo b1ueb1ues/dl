@@ -10,23 +10,23 @@ class Lazry(Adv):
     a3 = ('s', 0.35, 'hp70')
 
     conf = {}
-    conf['slots.a'] = Heralds_of_Hinomoto()+His_Clever_Brother()
+    conf['slots.a'] = Resounding_Rendition()+His_Clever_Brother()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `s3, not self.s3_buff
         if s1.check() and self.afflics.frostbite.timeleft()<7
-        `low_power
-        elif s2.check()
         `low_power
         else
         `high_power
         end
+        `dragon, s
+        `s3
         `s1
         `s2
-        `fs, x=5
+        `s4
     """
     coab = ['Blade','Xander', 'Summer_Estelle']
     conf['afflict_res.frostbite'] = 0
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def low_power(self):
         if self.mode != 'low_power' and not self.skill._static.silence:

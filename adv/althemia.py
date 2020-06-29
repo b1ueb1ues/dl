@@ -16,9 +16,11 @@ class Althemia(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
     """
     coab = ['Blade','Delphi','Gala_Alex']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def d_coabs(self):
         if self.duration <= 60:

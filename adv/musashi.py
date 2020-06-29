@@ -12,11 +12,13 @@ class Musashi(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
-        `s2, seq=5
+        `s2, x=5
+        `s4
         `s1
         """
     coab = ['Eleonora','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def s1_proc(self, e):
         self.afflics.poison(e.name,110,0.53)

@@ -10,8 +10,10 @@ class Nicolas(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         """
     coab = ['Blade','Ku_Hai','Lin_You']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

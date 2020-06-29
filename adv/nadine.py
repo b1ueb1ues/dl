@@ -54,11 +54,13 @@ class Nadine(Adv):
         `dragon.act('c1 s s end'), s=1
         `s3, not self.s3_buff
         `s2
+        `s4
         `s1
         `fs, x=5
         """
     coab = ['Blade', 'Wand', 'Marth']
     conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
     def prerun(self):
         self.team_s1_hits = 1

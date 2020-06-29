@@ -13,12 +13,14 @@ class Vice(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
+        `s4
         `s1
         `s2
         `fs, x=5
         """
     coab = ['Wand','Gala_Alex','Heinwald']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def fs_proc_alt(self, e):
         self.afflics.poison('fs', 120, 0.582)

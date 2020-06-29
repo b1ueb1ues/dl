@@ -13,11 +13,13 @@ class Alfonse(Adv):
     conf['acl'] = """
         `dragon, fsc
         `s1
-        `s2,fsc
-        `s3,fsc
+        `s2, fsc
+        `s3, fsc
+        `s4, fsc
         `fs, x=3
     """
     coab = ['Sharena','Dagger','Peony']
+    share = ['Ranzal']
 
     def s1_before(self, e):
         Selfbuff('s1_buff',0.20,12).on()

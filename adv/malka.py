@@ -12,9 +12,11 @@ class Malka(Adv):
         `s1
         `s2
         `s3
+        `s4
         `fs, seq=5
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

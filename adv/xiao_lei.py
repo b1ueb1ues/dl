@@ -12,8 +12,10 @@ class Xiao_Lei(Adv):
         `s1
         `s2
         `s3
+        `s4
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
         Teambuff(f'{e.name}_cc',0.08,10,'crit','rate').on()

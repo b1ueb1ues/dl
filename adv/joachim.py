@@ -16,9 +16,11 @@ class Joachim(Adv):
         `s3, not self.s3_buff
         `s2, s=1
         `s1
+        `s4
     '''
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
     def init(self):
         self.phase['s1'] = 0

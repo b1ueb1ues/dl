@@ -237,10 +237,12 @@ class Valerio(Adv):
         # actions
         `s3, not self.s3_buff 
         `s2
+        `s4
         `s1
     """
     coab = ['Summer_Estelle', 'Renee', 'Xander']
     conf['afflict_res.frostbite'] = 0
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def prerun(self):
         random.seed()

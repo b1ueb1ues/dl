@@ -14,10 +14,12 @@ class Ieyasu(Adv):
     conf['acl'] = '''
         `dragon.act('c3 s end')
         `s3, not self.s3_buff
-        `s1, x=4 and self.s3_buff
         `s2, x=5
+        `s1, x=4 and self.s3_buff
+        `s4, x=5
         '''
     coab = ['Wand','Dagger','Axe2']
+    share = ['Curran']
 
     def d_coabs(self):
         if self.sim_afflict:
