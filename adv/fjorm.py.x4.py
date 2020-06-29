@@ -16,9 +16,10 @@ class Fjorm(adv.fjorm.Fjorm):
     conf['slots.d'] = Leviathan()
     conf['acl'] = "`rotation"
     conf['rotation'] = """
-        s2 s1 dragon end
+        s4 s2 s1 dragon end
     """
     coab = ['Blade', 'Tiki', 'Axe2']
+    share = ['Yue']
     conf['afflict_res.bog'] = 80
 
     def prerun(self):

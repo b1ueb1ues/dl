@@ -13,8 +13,6 @@ class Curran(Adv):
 
     conf = {}
     conf['slots.poison.a'] = Kung_Fu_Masters()+The_Plaguebringer()
-    conf['slots.d'] = Fatalis()
-    conf['slots.poison.d'] = Shinobi()
     conf['acl'] = '''
         `dragon.act('c3 s end')
         `s3, not self.s3_buff

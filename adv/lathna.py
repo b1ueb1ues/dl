@@ -6,12 +6,14 @@ def module():
     return Lathna
 
 class Lathna(Adv):
+    comment = 'cait sith skill damage does not work on s1 extra hits'
     a1 = ('k_poison',0.15)
     a3 = ('dt', 0.25)
     
     conf = {}
     conf['slots.a'] = Resounding_Rendition()+An_Ancient_Oath()
     conf['slots.d'] = Chthonius()
+    conf['slots.poison.d'] = Gala_Cat_Sith()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
@@ -34,11 +36,7 @@ class Lathna(Adv):
                 self.coab = ['Ieyasu','Forte','Tiki']
             if self.duration <= 60:
                 self.coab = ['Ieyasu','Yaten','Tiki']
-    
-    def d_slots(self):
-        if self.duration > 120:
-            self.conf['slots.poison.d'] = Shinobi()
-    
+        
     conf['dragonform'] = {
         'act': 'c3 s c3 c3 c2 c2 c2',
 
@@ -99,7 +97,9 @@ class Lathna(Adv):
 
     def s1_proc(self, e):
         with KillerModifier('s1_killer', 'hit', 0.5, ['poison']):
-            self.dmg_make(e.name, 2.37*7)
+            self.dmg_make(e.name, 2.37*3)
+            self.dmg_make(e.name, 2.37*4*self.sub_mod('s', 'passive')*self.sub_mod('s', 'ex'), 'hecking_spaget')
+
             self.hits += 7
 
     def s2_proc(self, e):

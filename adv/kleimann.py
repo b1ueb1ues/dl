@@ -10,7 +10,6 @@ class Kleimann(Adv):
  
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
-    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff

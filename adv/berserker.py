@@ -10,8 +10,6 @@ class Berserker(Adv):
     conf = {}
     conf['slots.a'] = The_Shining_Overlord()+The_Lurker_in_the_Woods()
     conf['slots.poison.a'] = The_Shining_Overlord()+The_Plaguebringer()
-    conf['slots.d'] = Fatalis()
-    conf['slots.poison.d'] = Epimetheus()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff

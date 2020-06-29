@@ -11,7 +11,6 @@ class Sazanka(Adv):
 
     conf = {}
     conf['slots.a'] = KFM()+Crystalian_Envoy()
-    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff

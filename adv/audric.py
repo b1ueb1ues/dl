@@ -9,7 +9,7 @@ class Audric(Adv):
     
     conf = {}
     conf['acl'] = """
-        `dragon
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc

@@ -9,11 +9,6 @@ def module():
 class Veronica(adv.veronica.Veronica):
 
     conf = adv.veronica.Veronica.conf.copy()
-    conf['acl'] = """
-        `dragon.act("c3 s end")
-        `s3, not self.s3_buff
-        `s1
-    """
 
     def prerun(self):
         super().prerun()

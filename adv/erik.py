@@ -7,8 +7,6 @@ def module():
 class Erik(Adv):
     a1 = ('fs',0.30)
     conf = {}
-    conf['slots.d'] = Fatalis()
-    conf['slots.poison.d'] = Shinobi()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff

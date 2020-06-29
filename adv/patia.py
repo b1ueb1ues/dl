@@ -11,8 +11,8 @@ class Patia(Adv):
     a3 = ('primed_crit_chance', 0.10, 5)
 
     conf = {}
-    conf['slots.a'] = Brothers_in_Arms()+RR()
-    conf['slots.d'] = Fatalis()
+    conf['slots.a'] = Resounding_Rendition()+Brothers_in_Arms()
+    conf['slots.poison.a'] = Valiant_Crown()+The_Fires_of_Hate()
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1

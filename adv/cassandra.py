@@ -12,8 +12,8 @@ class Cassandra(Adv):
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
     conf['slots.poison.a'] = conf['slots.a']
-    conf['slots.d'] = Fatalis()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s1
         `s2

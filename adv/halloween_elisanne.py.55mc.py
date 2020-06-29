@@ -16,9 +16,11 @@ class Halloween_Elisanne(Adv):
         `s1
         `s2, fsc
         `s3
+        `s4
         `fs, x=5
         """
     coab = ['Blade','Wand','Peony']
+    share = ['Ranzal']
     
     conf['c.att'] = 521 # lv90 55 mc
     conf['c.lv2_autos'] = False

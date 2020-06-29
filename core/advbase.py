@@ -2021,7 +2021,7 @@ class Adv(object):
             p += 2
         elif rt[p] == 's':
             sidx = int(rt[p + 1])
-            if sidx > 3 or sidx < 1:
+            if sidx > 4 or sidx < 1:
                 print(rt + '\nlocation:%d,%s' % (p + 1, sidx))
             ret += rt[p:p + 2]
             p += 2

@@ -10,6 +10,7 @@ class Botan(Adv):
     conf = {}
     conf['slots.a'] = RR() + United_by_One_Vision()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff and prep
         `s4
         `s2

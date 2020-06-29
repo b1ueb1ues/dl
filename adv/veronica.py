@@ -18,7 +18,7 @@ class Veronica(Adv):
         `s4
         """
     coab = ['Ieyasu','Curran','Berserker']
-    share = ['Valentines_Addis']
+    share = ['Curran']
 
     def prerun(self):
         # Teambuff('last',2.28,1).on()

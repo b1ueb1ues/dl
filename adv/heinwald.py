@@ -10,8 +10,8 @@ class Heinwald(Adv):
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
 
     conf = {}
-    conf['slots.d'] = Fatalis()
     conf['acl'] = '''
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s2, s=3 or cancel
         `s4, cancel

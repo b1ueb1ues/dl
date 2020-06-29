@@ -1,7 +1,6 @@
 xander.py.best.py
 veronica.py.1hp.py
 valentines_addis.py.1hp.py
-chelsea.py.rollfs.py
 gala_luca.py.maxstacks.py
 halloween_lowen.py
 natalie.py.1hp.py

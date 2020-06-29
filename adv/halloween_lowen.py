@@ -17,12 +17,14 @@ class Halloween_Lowen(Adv):
     conf['slots.d'] = PopStar_Siren()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
-        `s1, x=5
         `s2, pin='prep' or x=5 and self.hp_stack < 3
+        `s1, x=5
+        `s3, x=5
+        `s4, x=5
         `fs, s=3 and self.fs_prep_c > 0
     """
-    coab = ['Bow', 'Euden', 'Yuya']
+    coab = ['Tobias', 'Euden', 'Yuya']
+    share = ['Patia', 'Summer_Cleo']
 
     def init(self):
         self.hp_stack = 0
@@ -39,6 +41,6 @@ class Halloween_Lowen(Adv):
         log('debug', 'HP {}0%'.format(self.hp_stack))
 
 if __name__ == '__main__':
-    conf = {}
-    adv.adv_test.test(module(), conf)
-
+    import sys
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

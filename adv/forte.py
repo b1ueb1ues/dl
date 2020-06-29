@@ -9,9 +9,7 @@ class Forte(Adv):
     a3 = ('k_poison', 0.30)
 
     conf = {}
-    conf['slots.a'] = The_Red_Impulse()+Heralds_of_Hinomoto()
-    conf['slots.d'] = Epimetheus()
-    conf['slots.poison.d'] = Shinobi()
+    conf['slots.a'] = Resounding_Rendition()+The_Red_Impulse()
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s3, not self.s3_buff

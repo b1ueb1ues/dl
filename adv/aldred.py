@@ -10,7 +10,6 @@ class Aldred(Adv):
 
     conf = {}
     conf['slots.a'] = Heralds_of_Hinomoto()+Dear_Diary()
-    conf['slots.d'] = Fatalis()
     conf['slots.poison.a'] = Heralds_of_Hinomoto()+The_Plaguebringer()
     conf['acl'] = """
         `s3, not self.s3_buff

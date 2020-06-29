@@ -51,7 +51,6 @@ class Bellina(Adv):
     conf = {}
     conf['slots.a'] = Twinfold_Bonds()+Howling_to_the_Heavens()
     conf['slots.poison.a'] = Twinfold_Bonds()+The_Plaguebringer()
-    conf['slots.d'] = Fatalis()
     conf['acl'] = """
         `s2, sim_duration-now()<1.5
         `s3, not self.s3_buff

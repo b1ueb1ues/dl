@@ -284,29 +284,29 @@ class Azazel(DragonBase):
         Teambuff('ds', 0.15, 40, 'poison_killer', 'passive').on()
         return dmg
 
-class Cait_Sith(DragonBase):
+class Gala_Cat_Sith(DragonBase):
     ele = 'shadow'
     att = 128
     a = []
     dragonform = {
-        # placeholder
         'act': 'c3 s',
 
-        'dx1.dmg': 1.90,
-        'dx1.startup': 12 / 60.0, # c1 frames
+        'dx1.dmg': 3.00,
+        'dx1.startup': 16 / 60.0, # c1 frames
         'dx1.hit': 1,
 
-        'dx2.dmg': 2.09,
-        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.dmg': 3.60,
+        'dx2.startup': 50 / 60.0, # c2 frames
         'dx2.hit': 1,
 
-        'dx3.dmg': 3.24,
+        'dx3.dmg': 4.50,
         'dx3.startup': 39 / 60.0, # c3 frames
-        'dx3.recovery': 56 / 60.0, # recovery
-        'dx3.hit': 3,
+        'dx3.recovery': 51 / 60.0, # recovery
+        'dx3.hit': 1,
 
-        'ds.recovery': 130 / 60,
-        'ds.hit': 1,
+        'ds.dmg': 7.744,
+        'ds.recovery': 90 / 60,
+        'ds.hit': 32,
     }
 
     def oninit(self, adv):
@@ -315,7 +315,7 @@ class Cait_Sith(DragonBase):
         Event('dragon_end').listener(self.shift_end_trickery)
         self.trickery = 15
         self.threshold = 25
-        self.trickery_buff = SingleActionBuff('d_trickery_buff', 1.80, 1,'s', 'passive', end_proc=self.check_trickery)
+        self.trickery_buff = SingleActionBuff('d_trickery_buff', 1.80, 1,'s', 'buff', end_proc=self.check_trickery)
         self.check_trickery()
 
         if adv.condition('always connect hits'):
@@ -331,7 +331,7 @@ class Cait_Sith(DragonBase):
 
     def add_trickery(self, t):
         from core.log import log
-        log('debug', 'trickery', f'+{t}', self.trickery)
+        log('debug', 'trickery', f'+{t}', self.trickery, self.adv.hits)
         self.trickery = min(self.trickery+t, 15)
         self.check_trickery()
 

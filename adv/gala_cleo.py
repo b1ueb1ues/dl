@@ -15,7 +15,6 @@ class Gala_Cleo(Adv):
     a3 = ('prep','100%')
     conf = {}
     conf['slots.a'] = Candy_Couriers()+Primal_Crisis()  # wand c2*1.08 = 217
-    conf['slots.d'] = Shinobi()
     conf['acl'] = """
         `s3, not self.s3_buff
         `fs, s1.charged>=s1.sp and self.fs_alt.uses > 0

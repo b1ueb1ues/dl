@@ -7,13 +7,14 @@ def module():
     return Zena
 
 class Zena(Adv):
-    comment = '40 extra hits s2 on Agito size enemy (max 100 without roll & 120 with roll)'
+    comment = '40 extra hits s2 on Agito size enemy (max 100 without roll & 120 with roll); cait sith skill damage does not work on s2 extra hits'
     a1 = ('a', 0.08)
     a3 = ('prep', 100)
 
     conf = {}
     conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
     conf['acl'] = """
+        `dragon.act('c3 s end')
         `s3, not self.s3_buff
         `s2
         `s1
@@ -49,7 +50,7 @@ class Zena(Adv):
         self.fs_alt.on(1)
 
     def s2_extra_hits(self, t):
-        self.dmg_make(f'{t.name}_extra', self.s2_extra_hit_rate*0.50)
+        self.dmg_make(f'{t.name}_extra', self.s2_extra_hit_rate*0.50*self.sub_mod('s', 'passive')*self.sub_mod('s', 'ex'), 'hecking_spaget')
         self.hits += self.s2_extra_hit_rate
 
     def s2_clear(self, e):
