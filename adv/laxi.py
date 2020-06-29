@@ -16,9 +16,11 @@ class Laxi(Adv):
         `s3, not self.s3_buff
         `s2, not self.s2buff.get()
         `s1
+        `s4
         `fs, x=5
         '''
     coab = ['Dagger', 'Marth', 'Tiki']
+    share = ['Ranzal']
 
     def prerun(self):  
         self.healed = 0

@@ -5,16 +5,18 @@ def module():
     return Aeleen
 
 class Aeleen(Adv):
+    a1 = ('bt',0.25)
     conf = {}
     conf['slots.d'] = AC011_Garland()
     conf['acl'] = """
         `dragon
         `s3, not self.s3_buff
         `s1
+        `s4
         `fs, seq=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
-    a1 = ('bt',0.25)
+    share = ['Curran']
 
 
 if __name__ == '__main__':

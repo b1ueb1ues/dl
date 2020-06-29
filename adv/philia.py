@@ -12,10 +12,12 @@ class Philia(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
+        `s1, x=5 or fsc
+        `s2, x=5 or fsc
+        `s4, x=5 or fsc
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
     conf['afflict_res.paralysis'] = 0
 
     def s2_proc(self, e):

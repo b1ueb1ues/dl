@@ -13,8 +13,10 @@ class Beautician_Zardin(Adv):
         `dragon
         `s1
         `s3
+        `s4
         """
     coab = ['Halloween_Elisanne','Dagger','Peony']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.energy.add(1)

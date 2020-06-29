@@ -14,8 +14,10 @@ class Sinoa(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
     '''
     coab = ['Tiki', 'Gala_Sarisse', 'Marth']
+    share = ['Ranzal']
 
     def prerun(self):
         self.s1_buff_mode = 'means'

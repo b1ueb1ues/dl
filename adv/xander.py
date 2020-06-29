@@ -11,15 +11,16 @@ class Xander(Adv):
 
     conf = {}
     conf['slots.a'] = TSO()+Primal_Crisis()
-    conf['slots.frostbite.a'] = conf['slots.a']
     conf['acl'] = """
         `dragon.act('c3 s end')
-        `s3, not self.s3_buff
+        `s3, fsc
         `s1, fsc
         `s2, fsc
+        `s4, fsc
         `fs, x=2
     """
     coab = ['Blade', 'Yurius', 'Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def s1_proc(self, e):
         self.dmg_make(f'o_{e.name}_boost',self.conf[f'{e.name}.dmg']*0.05*self.buffcount)

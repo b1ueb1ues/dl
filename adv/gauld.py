@@ -15,9 +15,11 @@ class Gauld(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, s=1
+        `s4, cancel
         `fs, x=5
     """
     coab = ['Dagger', 'Xander', 'Summer_Estelle']
+    share = ['Gala_Elisanne', 'Ranzal']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

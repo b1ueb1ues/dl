@@ -20,8 +20,10 @@ class Curran(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         '''
     coab = ['Curran','Blade','Wand','Bow']
+    share = ['Veronica']
 
     def s1_before(self, e):
         with KillerModifier('s1_killer', 'hit', 0.6, ['poison']):

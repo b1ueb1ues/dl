@@ -14,9 +14,11 @@ class Erik(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, fsc
+        `s4, fsc
         `fs, x=5
     """
     coab = ['Blade','Wand','Dagger']
+    share = ['Curran']
 
     def s1_proc(self, e):
         with KillerModifier('s1_killer', 'hit', 0.5, ['poison']):

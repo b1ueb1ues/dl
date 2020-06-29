@@ -11,12 +11,14 @@ class Luther(Adv):
     conf ['slots.d'] = Nimis()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
         `s1
+        `s4
         `s2, x=5
         `fs, x=5
     """
     coab = ['Blade', 'Xander', 'Tiki']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def s2_proc(self, e):
         Debuff(e.name, 0.05, 10, 0.9, 'attack').on()

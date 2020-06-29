@@ -12,12 +12,14 @@ class Summer_Cleo(Adv):
     conf = {}
     conf['slots.a'] = RR()+Spirit_of_the_Season()
     conf['acl'] = """
-            `dragon
-            `s2
-            `s1
-            `s3
-            """
+        `dragon
+        `s2
+        `s1
+        `s3
+        `s4
+    """
     coab = ['Blade','Sharena','Peony']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def init(self):

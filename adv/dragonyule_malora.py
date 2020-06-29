@@ -14,10 +14,12 @@ class Dragonyule_Malora(Adv):
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s1
+        `s4
         `s2, self.def_mod()!=1
         `fsf, x=4 and (s1.charged == self.sp_val(4))
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def prerun(self):
         self.s1debuff = Debuff('s1',0.15,15) if self.condition('buff all team') else None

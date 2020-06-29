@@ -15,9 +15,11 @@ class Melody(Adv):
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
+        `s4
         `fs, x=5
     """
     coab = ['Bow','Tobias','Tiki']
+    share = ['Dragonyule_Xainfried']
 
     def prerun(self):
         conf_fs_alt = {

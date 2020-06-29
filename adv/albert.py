@@ -14,9 +14,11 @@ class Albert(Adv):
         `fs, s=2 and not self.afflics.paralysis.get()
         `s1, fsc
         `s3, fsc
+        `s4
         `fs, seq=2
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def fs_proc_alt(self, e):

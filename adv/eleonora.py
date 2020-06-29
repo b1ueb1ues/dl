@@ -13,9 +13,11 @@ class Eleonora(Adv):
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
+        `s4, fsc
         `fs, seq=4
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
     conf['afflict_res.poison'] = 0
     a1 = ('edge_poison', 50, 'hp100')
 

@@ -10,9 +10,11 @@ class Irfan(Adv):
         `s1
         `s2, seq=5
         `s3
+        `s4
         `fs, seq=5
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
         Debuff(e.name, 0.05, 10, 0.8, 'attack').on()

@@ -12,8 +12,10 @@ class Halloween_Edward(Adv):
         `s1
         `s2, x=5
         `s3
+        `s4
         """
     coab = ['Halloween_Elisanne','Dagger','Peony']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

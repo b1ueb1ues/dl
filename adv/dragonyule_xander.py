@@ -14,11 +14,13 @@ class Dragonyule_Xander(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
+        `s4
         `s1
-        `s2, seq=5 and cancel or s
+        `s2, x=5 or s
     """
     coab = ['Tiki', 'Blade', 'Thaniel']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

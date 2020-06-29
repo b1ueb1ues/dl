@@ -14,10 +14,12 @@ class Renelle(Adv):
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
+        `s4, fsc
         `fs, x=5
         """
     conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Marth', 'Serena']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,100,0.803)

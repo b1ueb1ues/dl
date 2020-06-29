@@ -16,9 +16,11 @@ class Karl(Adv):
         `dragon, s=2
         `s3, not self.s3_buff
         `s2, cancel
+        `s4, cancel
         `fs, x=2
     """
     coab = ['Blade', 'Tiki', 'Bow']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

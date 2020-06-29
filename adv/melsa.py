@@ -15,9 +15,11 @@ class Melsa(Adv):
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
+        `s4, fsc
         `fs, x=2
     """
     coab = ['Blade', 'Serena', 'Marth']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

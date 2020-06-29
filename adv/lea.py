@@ -15,10 +15,12 @@ class Lea(Adv):
         `dragon, fsc
         `s3, not self.s3_buff
         `s1, fsc
+        `s4, fsc
         `fs, x=2
         """
     conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Wand', 'Marth']
+    share = ['Ranzal']
     
     def s1_proc(self, e):
         self.afflics.burn(e.name,120,0.97)

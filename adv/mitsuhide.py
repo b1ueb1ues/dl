@@ -15,9 +15,11 @@ class Mitsuhide(Adv):
         `s1
         `s2
         `s3
+        `s4
         `fs, seq=4
     """
     coab = ['Blade','Sharena','Peony']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def init(self):

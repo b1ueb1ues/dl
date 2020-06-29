@@ -13,8 +13,10 @@ class Victor(Adv):
         `s3, not self.s3_buff
         `s1, self.bleed._static['stacks'] < 3
         `s2, x=5
+        `s4, x=5
         """
     coab = ['Akasha','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
 
     def prerun(self):
         random.seed()

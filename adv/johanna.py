@@ -12,10 +12,11 @@ class Johanna(Adv):
         `s3, not self.s3_buff
         `s1 
         `s2 
+        `s4
         `fs,seq=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
-
+    share = ['Curran']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

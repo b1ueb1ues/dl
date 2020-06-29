@@ -13,9 +13,11 @@ class Orion(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         `fs, x=5
     """
     coab = ['Ieyasu','Wand','Axe2']
+    share = ['Curran']
 
     def d_coabs(self):
         if self.sim_afflict:

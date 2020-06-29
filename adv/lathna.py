@@ -16,9 +16,11 @@ class Lathna(Adv):
         `dragon
         `s3, not self.s3_buff
         `s1
+        `s4
         `s2, x=5
         """
     coab = ['Ieyasu','Audric','Forte']
+    share = ['Curran']
 
     def d_coabs(self):
         if self.duration <= 120 and self.duration > 60:

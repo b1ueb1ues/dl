@@ -15,8 +15,10 @@ class Norwin(Adv):
         `s3, not self.s3_buff
         `s1, self.s3_buff
         `s2
+        `s4
     """
     coab = ['Ieyasu','Wand','Tiki']
+    share = ['Curran']
     conf['afflict_res.blind'] = 80
 
     def s1_proc(self, e):

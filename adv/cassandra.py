@@ -17,8 +17,10 @@ class Cassandra(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
     """
     coab = ['Curran','Berserker','Delphi']
+    share = ['Veronica']
     conf['afflict_res.poison'] = 0
 
     def d_coabs(self):

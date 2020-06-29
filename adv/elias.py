@@ -13,9 +13,11 @@ class Elias(Adv):
         `s1, fsc
         `s3, fsc
         `s2, fsc
+        `s4, fsc
         `fs, x=4
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
         self.energy.add(1, team=True)

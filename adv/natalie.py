@@ -16,9 +16,11 @@ class Natalie(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s2, s=3 or x=5
+        `s4
         `s1
         """
     coab = ['Wand','Curran','Berserker']
+    share = ['Veronica']
 
     def d_slots(self):
         if self.duration <= 60:

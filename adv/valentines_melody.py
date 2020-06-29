@@ -18,9 +18,11 @@ class Valentines_Melody(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
     coab = ['Blade','Eleonora','Lin_You']
+    share = ['Curran']
     conf['afflict_res.poison'] = 0
 
     def init(self):

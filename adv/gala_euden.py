@@ -10,12 +10,14 @@ class Gala_Euden(Adv):
     conf = {}
     conf['acl'] = """
         `dragon, s=1
-        `s1,fsc or s=2
-        `s2,fsc
-        `s3,fsc
+        `s1, fsc or s=2
+        `s2, fsc
+        `s3, fsc
+        `s4, fsc
         `fs,seq=2 and cancel
     """
     coab = ['Tiki','Dagger','Peony']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def prerun(self):

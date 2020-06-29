@@ -14,10 +14,12 @@ class Delphi(Adv):
     conf['acl'] = """
         `s3, not self.s3_buff
         `s1
+        `s4
         `s2, self.s1fscharge == 0 and (s1.charged <= ((s1.sp/13)*9))
         `fs, x=2
     """
     coab = ['Blade','Gala_Alex','Heinwald']
+    share = ['Elisanne']
     conf['afflict_res.poison'] = 0
 
     def prerun(self):

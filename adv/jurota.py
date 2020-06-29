@@ -13,12 +13,14 @@ class Jurota(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
         `s1
         `s2, seq=5
+        `s4
     """
     coab = ['Tiki', 'Xander', 'Dagger']
-    
+    share = ['Gala_Elisanne', 'Ranzal']
+
 if __name__ == '__main__':
     from core.simulate import test_with_argv
     test_with_argv(None, *sys.argv)

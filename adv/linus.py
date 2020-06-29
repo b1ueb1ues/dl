@@ -13,10 +13,12 @@ class Linus(Adv):
         `dragon
         `s1 
         `s2
-        `s3,seq=4
-        `fs,seq=5
+        `s3, x=4
+        `s4
+        `fs, x=5
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def d_slots(self):
         if self.duration <= 120:
