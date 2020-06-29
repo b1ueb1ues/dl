@@ -21,7 +21,7 @@ class Euden(Adv):
     """
     coab = ['Blade', 'Tiki', 'Yuya']
     conf['afflict_res.burn'] = 0
-    share = ['Curran']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,110,0.883)

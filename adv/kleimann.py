@@ -16,9 +16,11 @@ class Kleimann(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         `fs, self.madness_status<5 and self.madness>0
         """
     coab = ['Ieyasu','Gala_Alex','Dagger']
+    share = ['Curran']
 
     def d_coabs(self):
         if self.duration <= 60:

@@ -12,9 +12,11 @@ class Julietta(Adv):
     conf['acl'] = """
         `dragon
         `s1
-        `s3,seq=5
+        `s4
+        `s3, x=5
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
        Event('defchain')()

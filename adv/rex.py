@@ -12,12 +12,14 @@ class Rex(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
-        `s1 
+        `s3
+        `s1
+        `s4, x=4 
         `s2, x=4
         `fs, x=5
     """
     coab = ['Blade', 'Xander', 'Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def d_slots(self):
         if self.duration <= 120:

@@ -13,9 +13,11 @@ class Yue(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, x=4
+        `s4, x=4
         `fs, x=5
     """
     coab = ['Blade', 'Marth', 'Halloween_Mym']
+    share = ['Ranzal']
 
     def d_coabs(self):
         if self.duration <= 60:

@@ -12,9 +12,11 @@ class Chelsea(Adv):
         `s3, fsc and not self.s3_buff
         `s1, fsc
         `s2, fsc
+        `s4, fsc
         `fs, x=1
     """
     coab = ['Blade', 'Grace', 'Serena']
+    share = ['Ranzal']
 
     def prerun(self):
         self.obsession = 0
@@ -69,15 +71,6 @@ class Chelsea(Adv):
         self.s2_buffs.append(Selfbuff(e.name,0.3,60).on())
         self.obsession = Selfbuff(e.name).stack()
         self.a3.on()
-
-    def dmg_make(self, name, dmg_coef, dtype=None, fixed=None):
-        if dtype == None:
-            dtype = name
-        self.dmg_before(name)
-        count = self.dmg_formula(dtype, dmg_coef)
-        log('dmg', name, count)
-        self.dmg_proc(name, count)
-        return count
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

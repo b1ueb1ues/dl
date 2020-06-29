@@ -15,10 +15,12 @@ class Summer_Luca(Adv):
         `dragon, cancel
         `s1
         `s2
-        `s3,seq=4
+        `s3, x=4
+        `s4, x=4
         `fs, x=5
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def s2_proc(self, e):
         Spdbuff(e.name,0.2,10).on()

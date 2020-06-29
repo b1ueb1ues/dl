@@ -19,7 +19,7 @@ class Ezelith(Adv):
         `fs, x=5
         """
     coab = ['Halloween_Mym', 'Blade', 'Marth']
-    share = ['Curran']
+    share = ['Ranzal']
 
     def prerun(self):
         self.s2_buff = Selfbuff('s2',0.2,15)

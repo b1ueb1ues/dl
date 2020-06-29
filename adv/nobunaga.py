@@ -20,7 +20,7 @@ class Nobunaga(Adv):
         `fs, x=5 and s2.charged<s2.sp-self.sp_val(2)
         """
     coab = ['Wand','Marth','Serena']
-    share = ['Rodrigo']
+    share = ['Ranzal']
 
     def prerun(self):
         self.burning_ambition = 0

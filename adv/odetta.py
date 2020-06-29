@@ -5,6 +5,8 @@ def module():
 
 class Odetta(Adv):
     comment = 'c2+fs'
+    a1 = ('a',0.1,'hp70')
+    a3 = ('bt',0.2)
 
     conf = {}
     conf['acl'] = """
@@ -12,12 +14,11 @@ class Odetta(Adv):
         `s2, fsc
         `s1, fsc
         `s3, fsc
+        `s4, fsc
         `fs, seq=2
         """
     coab = ['Blade','Dagger','Peony']
-
-    a1 = ('a',0.1,'hp70')
-    a3 = ('bt',0.2)
+    share = ['Ranzal']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

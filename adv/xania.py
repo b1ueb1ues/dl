@@ -14,8 +14,10 @@ class Xania(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, x=5
+        `s4, x=5
     """
     coab = ['Blade', 'Marth', 'Joe']
+    share = ['Ranzal']
     conf['afflict_res.burn'] = 0
 
     def s1_proc(self, e):

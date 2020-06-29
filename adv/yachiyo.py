@@ -22,9 +22,11 @@ class Yachiyo(Adv):
         `fs, self.fsa_charge and seq=5
         `s2
         `s1
+        `s4
         `s3, fsc
         """
     coab = ['Malora','Dagger','Peony']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def d_coabs(self):

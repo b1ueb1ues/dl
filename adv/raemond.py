@@ -10,9 +10,11 @@ class Raemond(Adv):
         `s1
         `s2, fsc
         `s3, fsc
+        `s4, fsc
         `fs, x=3
         """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
 
 if __name__ == '__main__':

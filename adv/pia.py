@@ -12,9 +12,11 @@ class Pia(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, fsc
+        `s4
         `fs, x=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
 
     def s2_proc(self, e):
         self.energy.add(1, team=True)

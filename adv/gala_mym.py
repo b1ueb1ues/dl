@@ -19,8 +19,10 @@ class Gala_Mym(Adv):
         `s3, not self.s3_buff
         `s1
         `s2, fsc
+        `s4, fsc
         `fs, x=5
     """
+    share = ['Ranzal']
     coab = ['Blade', 'Marth', 'Yuya']
 
     def d_coabs(self):

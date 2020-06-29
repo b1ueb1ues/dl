@@ -22,7 +22,7 @@ class Marth(Adv):
         `fs, x=3
     """
     coab = ['Blade', 'Wand', 'Joe']
-    share = ['Curran']
+    share = ['Ranzal']
 
     def d_coabs(self):
         if self.duration <= 60:

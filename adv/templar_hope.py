@@ -13,9 +13,11 @@ class Templar_Hope(Adv):
         `dragon
         `s3, not self.s3_buff
         `s2
+        `s4
         `fs, x=2
         """
     coab = ['Blade','Dragonyule_Xainfried','Tiki']
+    share = ['Curran']
     
     def s1_proc(self, e):
         Teambuff(e.name, 0.25, 15, 'defense').on()

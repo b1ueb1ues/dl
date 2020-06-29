@@ -13,9 +13,11 @@ class Audric(Adv):
         `s3, not self.s3_buff
         `s1, fsc
         `s2, fsc
+        `s4, fsc
         `fs, x=3
     """
     coab = ['Ieyasu','Tiki','Forte']
+    share = ['Curran']
 
     def prerun(self):
         self.cursed_blood = Selfbuff('cursed_blood',0.30,-1,'crit','chance')

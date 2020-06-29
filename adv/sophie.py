@@ -15,9 +15,11 @@ class Sophie(Adv):
         `dragon
         `s3, not self.s3_buff
         `s2, x=5
+        `s4, x=5
     """
     coab = ['Blade', 'Tiki', 'Lin_You']
     conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
 
     def s2_proc(self, e):

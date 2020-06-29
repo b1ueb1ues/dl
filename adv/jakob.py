@@ -13,11 +13,13 @@ class Jakob(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
         `s1
-        `fs,seq=5
+        `s4
+        `fs, seq=5
     """
     coab = ['Tiki', 'Xander', 'Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
     conf['afflict_res.bog'] = 100
 
     def s1_proc(self, e):

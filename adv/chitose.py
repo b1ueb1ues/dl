@@ -9,16 +9,17 @@ class Chitose(Adv):
     a3 = ('a',-0.1)
 
     conf = {}
-    conf['slots.a'] = A_Game_of_Cat_and_Boar()+Memory_of_a_Friend
+    conf['slots.a'] = A_Game_of_Cat_and_Boar()+Castle_Cheer_Corps()
     conf['slots.paralysis.a'] = conf['slots.a']
     conf['slots.d'] = Tie_Shan_Gongzhu()
     conf['acl'] = """
+        `fs, self.fs_prep_c>0 and x=5
         `s4
         `s1
         `s3
         """
     coab = ['Tobias','Peony','Bow']
-    share = ['Patia','Summer_Luca']
+    share = ['Patia','Summer_Cleo']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

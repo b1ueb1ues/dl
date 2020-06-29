@@ -13,11 +13,13 @@ class Naveed(Adv):
         `s3, not self.s3_buff
         `s2, self.s1level < 5
         `s1, cancel
+        `s4, cancel
         `fs, x=3 and cancel
         """
     conf['slots.a'] = The_Shining_Overlord()+Primal_Crisis()
     coab = ['Blade', 'Wand', 'Gala_Sarisse']
-            
+    share = ['Ranzal']
+
     def prerun(self):
         self.s1level = 0
 

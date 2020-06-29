@@ -21,10 +21,12 @@ class Ku_Hai(Adv):
         `s3, not self.s3_buff
         `s1, fsc
         `s2
+        `s4
         `fs, seq=2 and self.fs_alt.get()
         `fs, seq=3
         '''
     coab = ['Blade','Dragonyule_Xainfried','Akasha']
+    share = ['Curran']
 
     def prerun(self):
         self.fshit = 2

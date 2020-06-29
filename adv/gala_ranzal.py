@@ -16,10 +16,12 @@ class Gala_Ranzal(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1, fsc
+        `s4, fsc
         `fs, seq=2 and self.gauges['x'] <= 500
         `fs, seq=3
     '''
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
     
     a3 = ('s',0.3)
 

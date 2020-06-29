@@ -13,9 +13,11 @@ class Sha_Wujing(Adv):
         `dragon, s=2
         `s2, cancel
         `s1
+        `s4
         `fs, x=5
     """
     coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
     def prerun(self):
         self.s1_p = 0

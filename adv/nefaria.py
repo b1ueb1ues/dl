@@ -18,9 +18,11 @@ class Nefaria(Adv):
         `s3, not self.s3_buff
         `fs, self.fs_alt.uses > 0 and x=4
         `s1, fsc or x=1 or not self.s3_buff
+        `s4
         `s2
         """
     coab = ['Wand','Gala_Alex','Heinwald']
+    share = ['Curran']
 
     conf['afflict_res.blind'] = 80
     conf['afflict_res.poison'] = 0

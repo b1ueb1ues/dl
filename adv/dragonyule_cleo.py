@@ -9,12 +9,14 @@ class Dragonyule_Cleo(Adv):
     
     conf = {}
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s3, x=5
         `s1
-        `s2, seq=5 and cancel or fsc
-        `fs, seq=5
+        `s4, x=5
+        `s2, x=5 or fsc
+        `fs, x=5
     """
     coab = ['Hunter_Sarisse', 'Xander', 'Summer_Estelle']
+    share = ['Gala_Elisanne', 'Ranzal']
 
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

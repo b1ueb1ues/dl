@@ -13,9 +13,11 @@ class Maribelle(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s1
-        `s2, seq=5 and cancel
+        `s2, x=5
+        `s4
         """
     coab = ['Blade','Akasha','Lin_You']
+    share = ['Curran']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

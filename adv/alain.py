@@ -12,10 +12,12 @@ class Alain(Adv):
         `s3, not self.s3_buff
         `s1, cancel
         `s2, cancel
+        `s4, cancel
         `fs, x=5
         """
     conf['afflict_res.burn'] = 0
     coab = ['Blade', 'Wand', 'Marth']
+    share = ['Ranzal']
 
     def s1_proc(self, e):
         self.afflics.burn(e.name,100,0.803)

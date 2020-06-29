@@ -16,20 +16,15 @@ class Vanessa(Adv):
         `s3, not self.s3_buff
         `s1, cancel
         `s2, x=4
+        `s4
         `fs, x=5
     """
     coab = ['Blade', 'Marth', 'Wand']
+    share = ['Ranzal']
 
     def d_coabs(self):
-#        if self.duration <= 120 and self.duration > 60:
-#            self.coab = ['Blade', 'Marth', 'Hmym']
         if self.sim_afflict:
             self.coab = ['Blade','Marth','Serena']
-
-#    def d_slots(self):
-#        if self.duration <= 120 and self.duration > 60:
-#            self.conf['slots.a'] = Resounding_Rendition() + Breakfast_at_Valerios()
-#   Websim gives better results for this than Bash
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

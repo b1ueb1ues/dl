@@ -15,9 +15,11 @@ class Gala_Sarisse(Adv):
         `s3, not self.s3_buff
         `s1
         `s2
+        `s4
         `fs, x=4
     """
     coab = ['Blade', 'Wand', 'Marth']
+    share = ['Ranzal']
 
     def prerun(self):
         self.ahits = 0

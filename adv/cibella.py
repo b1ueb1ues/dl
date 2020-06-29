@@ -11,11 +11,13 @@ class Cibella(Adv):
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
         `dragon
-        `s3, not self.s3_buff
+        `s3
         `s2
+        `s4
         `fs, seq=5
         """
     coab = ['Tiki', 'Xander', 'Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

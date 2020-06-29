@@ -14,9 +14,11 @@ class Luca(Adv):
         `s1
         `s2, fsc
         `s3
+        `s4
         `fs, seq=4
         """
     coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 
     def s1_proc(self, e):
