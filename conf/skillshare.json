@@ -113,6 +113,12 @@
     "type": 1,
     "sp": 5033
   },
+  "Eugene": {
+    "s": 2,
+    "cost": 4,
+    "type": 1,
+    "sp": 15759
+  },
   "Gala_Ranzal": {
     "s": 1,
     "cost": 4,
@@ -586,6 +592,12 @@
     "cost": 6,
     "type": 1,
     "sp": 5476
+  },
+  "Catherine": {
+    "s": 2,
+    "cost": 6,
+    "type": 1,
+    "sp": 4680
   },
   "Sylas": {
     "s": 1,

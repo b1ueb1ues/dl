@@ -5,3 +5,4 @@ sazanka.py
 megaman.py
 valerio.py
 nadine.py
+eugene.py

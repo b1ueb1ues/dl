@@ -320,6 +320,21 @@
                 0.20
             ],
             "wand"
+        ],
+        "Eugene": [
+            [
+                "dcc",
+                6
+            ],
+            "sword"
+        ],
+        "Catherine": [
+            [
+                "achain",
+                0.13,
+                "hit10"
+            ],
+            "lance"
         ]
     },
     "wind": {

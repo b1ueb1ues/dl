@@ -255,20 +255,20 @@ class Styx(DragonBase):
     att = 125
     a = []
     dragonform = {
-        'act': 'c3 s',
+        'act': 'c3 c3 c3 s',
 
-        'dx1.dmg': 2.40,
-        'dx1.startup': 20 / 60.0, # c1 frames
+        'dx1.dmg': 1.80,
+        'dx1.startup': 15 / 60.0, # c1 frames
         'dx1.hit': 1,
 
-        'dx2.dmg': 2.64,
-        'dx2.startup': 36 / 60.0, # c2 frames
+        'dx2.dmg': 1.95,
+        'dx2.startup': 48 / 60.0, # c2 frames
         'dx2.hit': 1,
 
-        'dx3.dmg': 4.32,
-        'dx3.startup': 58 / 60.0, # c3 frames
-        'dx3.recovery': 56 / 60.0, # recovery
-        'dx3.hit': 2,
+        'dx3.dmg': 0.84,
+        'dx3.startup': 46 / 60.0, # c3 frames
+        'dx3.recovery': 55 / 60.0, # recovery
+        'dx3.hit': 1,
 
         'ds.dmg': 0,
         'ds.recovery': 150 / 60, # skill frames
@@ -276,6 +276,13 @@ class Styx(DragonBase):
 
         'dodge.startup': 40 / 60, # dodge frames
     }
+    csd_stack = 0
+    def ds_proc(self):
+        # 7 10 13 16
+        spirit = self.adv.dragonform.act_sum.count('c3')
+        dmg = self.adv.dmg_make('ds', 0.90*spirit*3+7, 's')
+        self.adv.hits += spirit*3+7
+        return dmg
 
     def oninit(self, adv):
         super().oninit(adv)

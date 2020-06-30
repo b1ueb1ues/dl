@@ -435,6 +435,34 @@
             "startup": 0.1
         }
     },
+    "Catherine": {
+        "c": {
+            "att": 508,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "buff": [
+                "self",
+                0.20,
+                10.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.9,
+            "sp": 5400,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 12.42,
+            "hit": 46,
+            "recovery": 3.85,
+            "sp": 23400,
+            "startup": 0.1
+        }
+    },
     "Celliera": {
         "c": {
             "att": 589,
@@ -898,6 +926,29 @@
             "hit": 1,
             "recovery": 2.7,
             "sp": 4880,
+            "startup": 0.1
+        }
+    },
+    "Eugene": {
+        "c": {
+            "att": 479,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.6667,
+            "sp": 3456,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 25.00,
+            "hit": 1,
+            "recovery": 1.6667,
+            "sp": 0,
             "startup": 0.1
         }
     },

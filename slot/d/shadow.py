@@ -292,16 +292,16 @@ class Gala_Cat_Sith(DragonBase):
         'act': 'c3 s',
 
         'dx1.dmg': 3.00,
-        'dx1.startup': 16 / 60.0, # c1 frames
+        'dx1.startup': 18 / 60.0, # c1 frames
         'dx1.hit': 1,
 
         'dx2.dmg': 3.60,
-        'dx2.startup': 50 / 60.0, # c2 frames
+        'dx2.startup': 55 / 60.0, # c2 frames
         'dx2.hit': 1,
 
         'dx3.dmg': 4.50,
-        'dx3.startup': 39 / 60.0, # c3 frames
-        'dx3.recovery': 51 / 60.0, # recovery
+        'dx3.startup': 43 / 60.0, # c3 frames
+        'dx3.recovery': 56 / 60.0, # recovery
         'dx3.hit': 1,
 
         'ds.dmg': 7.744,

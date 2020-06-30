@@ -221,7 +221,7 @@ class DragonForm(Action):
                     self.act_sum[-1] = 'c'+self.c_act_name[-1]
                 else:
                     self.act_sum.append('c'+self.c_act_name[-1])
-                if self.skill_sp > 0 and self.skill_spc < self.skill_sp:
+                if self.skill_use > 0 and self.skill_spc < self.skill_sp:
                     self.skill_spc += self.adv.sp_convert(self.adv.sp_mod('x'), 5)
                     if self.skill_spc > self.skill_sp:
                         self.skill_spc = self.skill_sp

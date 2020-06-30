@@ -1213,6 +1213,7 @@ class Adv(object):
 
         self.s3_buff_list = []
         self.s3_buff = None
+        self.x_max = 5
 
         self.damage_sources = {'s'}
         self.phase = {}
@@ -1446,7 +1447,7 @@ class Adv(object):
         prev = self.action.getprev()
         x_next = 1
         if prev.name[0] == 'x':
-            if prev.index != 5:
+            if prev.index != self.x_max:
                 x_next = prev.index + 1
         getattr(self, 'x%d' % x_next)()
         return 1
