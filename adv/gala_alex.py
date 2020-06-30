@@ -79,8 +79,8 @@ class Gala_Alex(Adv):
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         if fsc
-        `s2, not self.afflics.poison.get()
-        if self.sr.chain_status=1 and self.s1_debuff.buff_end_timer.timing-now()<5
+        # use s4/s2 if no poison or if s1 def down has less than 1/3 time left
+        if (not self.afflics.poison.get()) or (self.sr.chain_status=1 and self.s1_debuff.buff_end_timer.timing-now()<5)
         `s4
         `s2
         end
