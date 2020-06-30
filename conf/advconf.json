@@ -458,7 +458,7 @@
         "s2": {
             "dmg": 12.42,
             "hit": 46,
-            "recovery": 3.85,
+            "recovery": 3.333,
             "sp": 23400,
             "startup": 0.1
         }

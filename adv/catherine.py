@@ -48,16 +48,16 @@ class Catherine(Adv):
 
     conf = ohoho_conf_base.copy()
     conf['slots.a'] = Resounding_Rendition()+Memory_of_a_Friend()
-    conf['slots.frostbite.a'] = Resounding_Rendition()+His_Clever_Brother()
+    conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end'), s
         `s3
-        `s1
-        `s2, self.perfect_escort=3
         `s4
+        `s2, self.perfect_escort=3 and self.energy()
+        `s1
     """
-    coab = ['Dagger', 'Hunter_Sarisse', 'Yurius']
+    coab = ['Dagger', 'Hunter_Sarisse', 'Summer_Estelle']
     share = ['Gala_Elisanne', 'Ranzal']
 
     def init(self):
