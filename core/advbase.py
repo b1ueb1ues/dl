@@ -1282,7 +1282,10 @@ class Adv(object):
         return reduce(operator.mul, [self.sub_mod(mtype, order) for order in self.all_modifiers[mtype].keys()], 1)
 
     def sub_mod(self, mtype, morder):
-        return 1 + sum([modifier.get() for modifier in self.all_modifiers[mtype][morder]])
+        mod_sum = sum([modifier.get() for modifier in self.all_modifiers[mtype][morder]])
+        if morder == 'buff':
+            mod_sum = min(mod_sum, 2.00)
+        return 1 + mod_sum
 
     def l_have_speed(self, e):
         self.action._static.spd_func = self.speed
