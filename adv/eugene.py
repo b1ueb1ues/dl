@@ -43,8 +43,8 @@ class Eugene(Adv):
         self.a1_cd = False
 
     @staticmethod
-    def prerun_skillshare(self, dst):
-        self.checkmate = 0
+    def prerun_skillshare(adv, dst):
+        adv.checkmate = 0
 
     def s1_proc(self, e):
         self.phase[e.name] += 1

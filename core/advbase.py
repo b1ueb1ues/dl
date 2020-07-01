@@ -10,7 +10,7 @@ from core import *
 from core.timeline import *
 from core.log import *
 from core.afflic import *
-from core.dummy import Dummy
+from core.dummy import Dummy, dummy_function
 import core.acl
 import conf as globalconf
 import slot

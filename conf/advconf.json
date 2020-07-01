@@ -595,7 +595,7 @@
             ],
             "dmg": 0.0,
             "hit": 4,
-            "recovery": 2.1,
+            "recovery": 2.0,
             "sp": 3083,
             "startup": 0.1
         },
@@ -641,7 +641,7 @@
         "s1": {
             "dmg": 7.37,
             "hit": 11,
-            "recovery": 2.6,
+            "recovery": 2.5,
             "sp": 3136,
             "startup": 0.1
         },
@@ -1915,14 +1915,14 @@
         "s1": {
             "dmg": 17.80,
             "hit": 1,
-            "recovery": 1.9,
+            "recovery": 1.567,
             "sp": 2854,
             "startup": 0.1
         },
         "s2": {
             "dmg": 0,
             "hit": 2,
-            "recovery": 1.8,
+            "recovery": 1.667,
             "sp": 7090,
             "startup": 0.1
         }
@@ -3415,7 +3415,7 @@
         "s1": {
             "dmg": 0.0,
             "hit": 4,
-            "recovery": 1.35,
+            "recovery": 1.4,
             "sp": 2649,
             "startup": 0.1
         },

@@ -66,8 +66,10 @@ class Catherine(Adv):
     def prerun(self):
         self.update_perfect_escort(reset=True)
 
-    def prerun_skillshare(self, dst):
-        self.perfect_escort = 0
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.perfect_escort = 0
+        adv.update_perfect_escort = dummy_function
     
     def s1_proc(self, e):
         self.update_perfect_escort()
