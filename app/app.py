@@ -225,6 +225,10 @@ def simc_adv_test():
         conf['sim_buffbot.debuff'] = min(max(int(params['sim_buff_def']), -50), 50)/100
     except:
         pass
+    try:
+        conf['sim_buffbot.count'] = abs(int(params['sim_buff_count']))
+    except:
+        pass
 
     result = run_adv_test(adv_name, wp1, wp2, dra, wep, acl, conf, cond, teamdps, t=t, log=log, mass=mass)
     return jsonify(result)

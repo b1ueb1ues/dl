@@ -134,7 +134,11 @@ class DragonBase(Slot):
         'dx3.recovery': 0,
         'dx4.recovery': 0,
         'dx5.recovery': 0,
+        
         'ds.startup': 0,
+        'ds.recovery': 0,
+        'ds.dmg': 0,
+        'ds.hit': 0,
 
         'dodge.startup': 40 / 60, # dodge frames
         'dodge.recovery': 0,

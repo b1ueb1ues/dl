@@ -57,7 +57,7 @@ function slots_icon_fmt(data) {
     img_urls.push(' | ');
     const coabs = data.slice(10, 13);
     for (const c of coabs) {
-        if (c){
+        if (c) {
             if (WEAPON_TYPES.includes(c.toLowerCase())) {
                 img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
             } else {
@@ -270,13 +270,13 @@ function loadAdvWPList() {
         }
     });
 }
-function selectSkillShare(fullname, pref_share){
+function selectSkillShare(fullname, pref_share) {
     for (const t of ['ss3', 'ss4']) {
         $('#input-' + t + ' > option').prop('disabled', false);
         $('#' + t + '-' + fullname).prop('disabled', true);
     }
 
-    switch (pref_share.length){
+    switch (pref_share.length) {
         case 1:
             $('#ss3-weapon').prop('selected', true);
             $('#ss4-' + pref_share[0]).prop('selected', true);
@@ -328,11 +328,12 @@ function loadAdvSlots() {
 
                 selectSkillShare(slots.adv.fullname, slots.adv.pref_share);
 
-                if (RANGED.includes(slots.adv.wt)) {
-                    $('#input-missile').prop('disabled', false);
-                } else {
-                    $('#input-missile').prop('disabled', true);
-                }
+                // if (RANGED.includes(slots.adv.wt)) {
+                //     $('#input-missile').prop('disabled', false);
+                // } else {
+                //     $('#input-missile').prop('disabled', true);
+                // }
+
                 $('#input-acl').blur();
                 $('#input-edit-acl').prop('checked', false);
                 $('#input-acl').prop('disabled', true);
@@ -376,7 +377,7 @@ function buildConditionList(conditions) {
     const conditionDiv = $('#input-conditions');
     conditionDiv.empty();
     for (cond in conditions) {
-        if (cond.startsWith('hp')){
+        if (cond.startsWith('hp')) {
             continue;
         }
         const newCondCheck = $('<div></div>').attr({ class: 'custom-control custom-checkbox custom-control-inline' });
@@ -445,7 +446,7 @@ function buildCoab(coab, fullname, weapontype) {
         check.data('ex', kcoab[1]);
         check.change(checkCoabSelection);
         if (k == fullname) {
-            if (!kcoab[0] || kcoab[0][2] != 'hp'+String.fromCharCode(8804)+'40') {
+            if (!kcoab[0] || kcoab[0][2] != 'hp' + String.fromCharCode(8804) + '40') {
                 check.prop('disabled', true);
                 check.prop('checked', true);
                 found_fullname = kcoab[1];
@@ -504,7 +505,7 @@ function readSkillShare() {
         return skillShare;
     }
 }
-function readSimAfflic(){
+function readSimAfflic() {
     let simAff = {};
     const affList = $('#affliction-sim > div > input[type="text"]');
     if (affList.length === 0) {
@@ -551,9 +552,9 @@ function runAdvTest() {
         requestJson['teamdps'] = dps;
         localStorage.setItem('teamdps', dps);
     }
-    if (!isNaN(parseInt($('#input-missile').val()))) {
-        requestJson['missile'] = $('#input-missile').val();
-    }
+    // if (!isNaN(parseInt($('#input-missile').val()))) {
+    //     requestJson['missile'] = $('#input-missile').val();
+    // }
     if (!isNaN(parseInt($('#input-dragonbattle').val()))) {
         requestJson['dragonbattle'] = $('#input-dragonbattle').val();
     }
@@ -564,7 +565,7 @@ function runAdvTest() {
         requestJson['acl'] = $('#input-acl').val();
     }
     const sim_aff = readSimAfflic();
-    if (sim_aff != null){
+    if (sim_aff != null) {
         requestJson['sim_afflict'] = sim_aff;
     }
     // if ($('#input-sim-afflict').val() !== 'none' && !isNaN(parseInt($('#input-sim-afflict-time').val()))) {
@@ -576,6 +577,9 @@ function runAdvTest() {
     }
     if (!isNaN(parseInt($('#input-sim-buff-def').val()))) {
         requestJson['sim_buff_def'] = $('#input-sim-buff-def').val();
+    }
+    if (!isNaN(parseInt($('#input-sim-buff-count').val()))) {
+        requestJson['sim_buff_count'] = $('#input-sim-buff-count').val();
     }
     const condition = readConditionList();
     if (condition !== null) {
@@ -675,7 +679,7 @@ function clearResults() {
         $('#input-teamdps').val(BASE_TEAM_DPS);
         localStorage.setItem('teamdps', BASE_TEAM_DPS);
     }
-    $('#input-missile').val('');
+    // $('#input-missile').val('');
     $('#input-hp').val('');
     const resistList = $('#affliction-resist > div > input[type="text"]');
     resistList.each(function (idx, res) { $(res).val(''); });
