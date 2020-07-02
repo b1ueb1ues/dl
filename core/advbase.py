@@ -169,12 +169,12 @@ class Buff(object):
         'debufftime': lambda: 1
     })
 
-    def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None):
+    def __init__(self, name='<buff_noname>', value=0, duration=0, mtype=None, morder=None, modifier=None):
         self.name = name
         self.__value = value
         self.duration = duration
         self.mod_type = mtype or 'att' or 'x' or 'fs' or 's'  # ....
-        self.bufftype = ''
+        self.bufftype = 'self'
         if morder == None:
             if self.mod_type == 'crit':
                 self.mod_order = 'chance'
@@ -186,8 +186,12 @@ class Buff(object):
         self.bufftime = self._bufftime
 
         self.buff_end_timer = Timer(self.buff_end_proc)
-        self.modifier = Modifier('mod_' + self.name, self.mod_type, self.mod_order, 0)
-        self.modifier.get = self.get
+        if modifier:
+            self.modifier = modifier
+            self.get = self.modifier.get
+        else:
+            self.modifier = Modifier('mod_' + self.name, self.mod_type, self.mod_order, 0)
+            self.modifier.get = self.get
         self.dmg_test_event = Event('dmg_formula')
         self.dmg_test_event.dmg_coef = 1
         self.dmg_test_event.dname = 'test'
@@ -1411,11 +1415,11 @@ class Adv(object):
 
     @property
     def buffcount(self):
-        bc = 0
-        for i in self.all_buffs:
-            if i.get() and i.bufftype == 'self' or i.bufftype == 'team':
-                bc += 1
-        return bc
+        buffcount = reduce(lambda s, b: s+int(b.get() and b.bufftype in ('self', 'team')), self.all_buffs, 0)
+        try:
+            return self.conf.sim_buffbot.count + buffcount
+        except:
+            return buffcount
 
     def l_idle(self, e):
         """
