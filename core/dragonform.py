@@ -265,11 +265,17 @@ class DragonForm(Action):
                     dxseq = 'dx{}'.format(i)
                     if dxseq in self.dx_list:
                         self.act_list.append(dxseq)
-                if self.dodge_cancel() or self.act_list[-1] != self.dx_list[-1]:
-                    self.act_list.append('dodge')
+                try:
+                    if self.dodge_cancel() or self.act_list[-1] != self.dx_list[-1]:
+                        self.act_list.append('dodge')
+                except IndexError:
+                    pass
             else:
-                if len(self.act_list) > 0 and self.act_list[-1] == 'dodge':
-                    self.act_list.pop()
+                try:
+                    if len(self.act_list) > 0 and self.act_list[-1] == 'dodge':
+                        self.act_list.pop()
+                except IndexError:
+                    pass
                 if (a == 's' or a == 'ds') and skill_usage < self.skill_use:
                     self.act_list.append('ds')
                     skill_usage += 1
@@ -277,6 +283,7 @@ class DragonForm(Action):
                     self.act_list.append('end')
                 elif a == 'dodge':
                     self.act_list.append('dodge')
+                    
 
     def act(self, act_str):
         self.parse_act(act_str)

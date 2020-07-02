@@ -41,8 +41,10 @@ class Ability:
                     continue
                 if m[3] is not None:
                     m = self.flurry_modifier(m, adv)
-            adv.Modifier('{}{}_{}'.format(afrom, self.name, idx),*m)
-
+            mod_name = '{}{}_{}'.format(afrom, self.name, idx)
+            mod = adv.Modifier(mod_name,*m)
+            if m[1] == 'buff':
+                adv.Buff(f'{mod_name}_buff', duration=-1, modifier=mod).on()
 
 ability_dict = {}
 
@@ -228,8 +230,8 @@ ability_dict['lo'] = Last_Offense
 
 
 class Doublebuff(BuffingAbility):
-    def __init__(self, name, value):
-        super().__init__(name, value, 15)
+    def __init__(self, name, value, duration=15):
+        super().__init__(name, value, duration)
 
     def oninit(self, adv, afrom=None):
         if self.name == 'bc_energy':
