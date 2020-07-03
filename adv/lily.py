@@ -9,12 +9,19 @@ def module():
 
 cp_auto_conf = wep.wand.conf.copy()
 cp_auto_conf.update({
-    'x1.dmg': 1.105,
-    'x2.dmg': 1.19,
-    'x3.dmg': 1.2,
-    'x4.dmg': 1.65,
-    'x5.dmg': 2.26,
+    'x1.dmg': 1.27075,
+    'x2.dmg': 1.3685,
+    'x3.dmg': 1.38,
+    'x4.dmg': 1.8975,
+    'x5.dmg': 2.599,
 })
+
+# C1: 1x 127.075%
+# C2: 136.85%
+# C3: 3x 46%
+# C4: 2x 94.875%
+# C5: 1x 75.9% + 4x 46%
+75.9+46*4
 
 class Lily(Adv):    
     a1 = ('a',0.20,'hp100')
