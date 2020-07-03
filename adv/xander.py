@@ -17,26 +17,24 @@ class Xander(Adv):
     conf['acl'] = """
         `dragon.act('c3 s end'), fsc
         `s3
-        `s1
         `s2
+        `s1
         `s4
-        `fs, x=2 and (self.fs_alt.uses=0 or self.fs_alt.uses=2)
-
-        # use FS instead of S1 P3
-        # `fs, x=2 and (self.fs_alt.uses=0 or self.fs_alt.uses=2)
+        `fs, x=2 and not (self.born_ruler_1.get() and not self.born_ruler_2.get())
     """
     coab = ['Blade', 'Yurius', 'Hunter_Sarisse']
     share = ['Gala_Elisanne', 'Ranzal']
 
     def fs_proc_alt(self, e):
-        if self.fs_alt.uses == 2:
+        if self.born_ruler_2.get():
             with KillerModifier('fs_killer', 'hit', 0.30, ['frostbite']):
                 self.dmg_make('fs', 6.66)
         else:
             self.dmg_make('fs', 3.26)
         self.conf[e.name].dmg = 8.32
-        self.fs_alt.off()
         self.born_ruler.off()
+        self.born_ruler_1.off()
+        self.born_ruler_2.off()
 
     def prerun(self):
         # identical to granzal FS in frames
@@ -58,26 +56,30 @@ class Xander(Adv):
         }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
         self.born_ruler = Selfbuff('born_ruler', 0.05, -1, 'att', 'buff')
+        self.born_ruler_1 = Selfbuff('born_ruler_1', 1, -1, 'xunder', 'buff')
+        self.born_ruler_2 = Selfbuff('born_ruler_2', 1, -1, 'xunder', 'buff')
     
     def s1_proc(self, e):
         boost = 0.05*self.buffcount
         self.afflics.frostbite(e.name,120,0.41*(1+boost))
         try:
-            if self.fs_alt.get():
-                self.fs_alt.uses += 1
-                if self.fs_alt.uses == 2:
-                    # phase 2
-                    self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
-                    self.conf[e.name].dmg = 8.40
-                elif self.fs_alt.uses == 3:
-                    # phase 3
-                    self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
-                    self.conf[e.name].dmg = 8.32
-                    self.fs_alt.off()
-                    self.born_ruler.off()
+            if self.born_ruler_2.get():
+                # phase 3
+                self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
+                self.conf[e.name].dmg = 8.32
+                self.fs_alt.off()
+                self.born_ruler.off()
+                self.born_ruler_1.off()
+                self.born_ruler_2.off()
+            elif self.born_ruler_1.get():
+                # phase 2
+                self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
+                self.conf[e.name].dmg = 8.40
+                self.born_ruler_2.on()
             else:
                 self.fs_alt.on()
                 self.born_ruler.on()
+                self.born_ruler_1.on()
                 # phase 1
                 self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
                 self.conf[e.name].dmg = 8.37
