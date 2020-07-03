@@ -280,9 +280,12 @@ class Honest_Repose(Amulet):
     att = 53
     a = [('sp', 10, 'flame')]
 
-
 class High_Dragon_WP(Amulet):
     att = 39
+
+class Taiko_Tandem(Amulet):
+    att = 50
+    a = [('ecombo', 30), ('prep', 0.20)]
 
 class Candy_Couriers(Amulet):
     att = 65

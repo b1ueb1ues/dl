@@ -31,6 +31,7 @@ class Kleimann(Adv):
                 sp = self.madness_status * 100
                 s.charge(sp)
                 log('sp', s.name+'_autocharge', int(sp))
+        self.set_hp(self.hp-1)
 
     def prerun(self):
         self.madness = 0
