@@ -5,24 +5,26 @@ def module():
     return Zardin
 
 class Zardin(Adv):
-    a1 = ('a',0.10,'hp100')
+    a1 = ('a',0.20,'hp100')
     
     conf = {}
-    conf['slots.a'] = Primal_Crisis()+The_Shining_Overlord()
+    conf['slots.a'] = The_Shining_Overlord()+Primal_Crisis()
     conf['acl'] = """
-        `dragon.act('c3 s end'), not self.afflics.frostbite.get()
+        `dragon.act('c3 s end')
         `s3, cancel
         `s4, fsc
         `s1, fsc
         `s2, fsc
         `fs, seq=3 and cancel
         """
-    coab = ['Xander', 'Dagger', 'Yurius']
+    coab = ['Blade', 'Dagger', 'Yurius']
     share = ['Gala_Elisanne', 'Ranzal']
 
-    def d_coabs(self):
-        if self.sim_afflict:
-            self.coab = ['Xander','Dagger','Wand']
+    def s1_proc(self, e):
+        self.afflics.frostbite(e.name,120,0.41)
+
+    def s2_proc(self, e):
+        self.afflics.frostbite(e.name,120,0.41)
 
 
 if __name__ == '__main__':

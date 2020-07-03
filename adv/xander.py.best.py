@@ -1,6 +1,7 @@
 import adv.xander
 from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Xander

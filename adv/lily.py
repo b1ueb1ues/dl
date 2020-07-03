@@ -1,26 +1,65 @@
 from core.advbase import *
 from slot.a import *
 from slot.d import *
+from module.x_alt import X_alt
+import wep.wand
 
 def module():
     return Lily
 
-class Lily(Adv):
-    a1 = ('a',0.15,'hp100')
-    a3 = ('prep','100%')
+cp_auto_conf = wep.wand.conf.copy()
+cp_auto_conf.update({
+    'x1.dmg': 1.105,
+    'x2.dmg': 1.19,
+    'x3.dmg': 1.2,
+    'x4.dmg': 1.65,
+    'x5.dmg': 2.26,
+})
+
+class Lily(Adv):    
+    a1 = ('a',0.20,'hp100')
+    a3 = [('prep',1.00), ('scharge_all', 0.05)]
 
     conf = {}
-    conf['slots.a'] = CC()+Seaside_Princess()
-    conf['slots.d'] = Leviathan()
+    
+    comment = 's1 for freeze/frostbite only'
+    conf['slots.a'] = Candy_Couriers()+His_Clever_Brother()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `dragon, cancel
-        `s4
+        `dragon.act('c3 s end'), cancel
+        `s1, not self.sim_afflict
         `s3
+        `s4
         `s2
-        `s1, seq=5 and cancel
     """
     coab = ['Blade', 'Dagger', 'Tiki']
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Eugene']
+
+    # conf['slots.a'] = Candy_Couriers()+His_Clever_Brother()
+    # conf['slots.d'] = Siren()
+    # conf['acl'] = """
+    #     `dragon.act('c3 s end'), cancel
+    #     `s3
+    #     `s4
+    #     `s2
+    #     `s1
+    # """
+    # coab = ['Blade', 'Dagger', 'Lazry']
+    # share = ['Ranzal', 'Eugene']
+
+    def prerun(self):
+        self.crystalian_princess = X_alt(self, 'crystalian_princess', cp_auto_conf, x_proc=self.l_cp_x)
+
+    def l_cp_x(self, e):
+        with KillerModifier('alt_x_killer', 'hit', 0.3, ['frostbite']):
+            self.crystalian_princess.x_proc_default(e)
+
+    def s1_proc(self, e):
+        self.afflics.freeze(e.name, 200)
+        self.afflics.frostbite(e.name, 120,0.41)
+
+    def s2_proc(self, e):
+        self.crystalian_princess.on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

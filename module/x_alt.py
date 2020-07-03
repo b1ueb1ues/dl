@@ -48,7 +48,7 @@ class Fs_alt:
             self.adv.fsf = self.a_fsf_og
 
     def get(self):
-        return self.uses != 0
+        return self.uses
 
 class X_alt:
     def __init__(self, adv, name, conf, x_proc=None, no_fs=False, no_dodge=False):
@@ -57,11 +57,8 @@ class X_alt:
         self.name = name
         self.x_og = adv.x
         self.a_x_alt = {}
-        if x_proc:
-            self.x_proc = x_proc
-            self.l_x_alt = Listener('x', self.l_x).off()
-        else:
-            self.l_x_alt = None
+        self.x_proc = x_proc or X_alt.x_proc_default
+        self.l_x_alt = Listener('x', self.l_x).off()
         self.no_fs = no_fs
         self.no_dodge = no_dodge
         self.fs_og = adv.fs
@@ -84,6 +81,16 @@ class X_alt:
         else:
             x_seq = 1
         return self.a_x_alt[x_seq]()
+
+    def x_proc_default(self, e):
+        xseq = e.name
+        dmg_coef = self.conf[xseq].dmg
+        sp = self.conf[xseq].sp
+        hit = self.conf[xseq].hit
+        log('x', xseq, self.name)
+        self.adv.hits += hit
+        self.adv.dmg_make(xseq, dmg_coef)
+        self.adv.charge(xseq, sp)
 
     def l_x(self, e):
         self.x_proc(e)

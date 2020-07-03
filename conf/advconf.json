@@ -1827,23 +1827,23 @@
     },
     "Karina": {
         "c": {
-            "att": 452,
+            "att": 542,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "4",
             "wt": "axe"
         },
         "s1": {
-            "dmg": 10.86,
+            "dmg": 10.90,
             "hit": 2,
-            "recovery": 1.85,
+            "recovery": 1.5,
             "sp": 3033,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 10.28,
+            "dmg": 10.40,
             "hit": 4,
-            "recovery": 2.2,
+            "recovery": 2.1,
             "sp": 5610,
             "startup": 0.1
         }
@@ -2074,23 +2074,23 @@
     },
     "Lily": {
         "c": {
-            "att": 511,
+            "att": 613,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "wand"
         },
         "s1": {
-            "dmg": 9.68,
+            "dmg": 10.58,
             "hit": -2,
             "recovery": 3.95,
             "sp": 2490,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 9.74,
+            "dmg": 10.70,
             "hit": 1,
-            "recovery": 1.85,
+            "recovery": 1.46,
             "sp": 5909,
             "startup": 0.1
         }
@@ -2240,16 +2240,16 @@
     },
     "Luther": {
         "c": {
-            "att": 459,
+            "att": 550,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "4",
             "wt": "dagger"
         },
         "s1": {
-            "dmg": 7.44,
+            "dmg": 10.12,
             "hit": 4,
-            "recovery": 2.4,
+            "recovery": 2.3,
             "sp": 2343,
             "startup": 0.1
         },
@@ -2258,11 +2258,11 @@
                 "debuff",
                 0.05,
                 10.0,
-                0.3
+                0.5
             ],
-            "dmg": 5.76,
+            "dmg": 10.30,
             "hit": 4,
-            "recovery": 2.2,
+            "recovery": 1.8,
             "sp": 4904,
             "startup": 0.1
         }
@@ -4050,23 +4050,23 @@
     },
     "Xander": {
         "c": {
-            "att": 503,
+            "att": 603,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 6,
             "stars": "5",
             "wt": "sword"
         },
         "s1": {
-            "dmg": 8.25,
+            "dmg": 8.32,
             "hit": 1,
             "recovery": 1.9,
             "sp": 2714,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 7.44,
+            "dmg": 7.59,
             "hit": 3,
-            "recovery": 1.9,
+            "recovery": 1.77,
             "sp": 4817,
             "startup": 0.1
         }
@@ -4287,21 +4287,21 @@
     },
     "Zardin": {
         "c": {
-            "att": 432,
+            "att": 517,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "3",
             "wt": "sword"
         },
         "s1": {
-            "dmg": 6.82,
+            "dmg": 7.01,
             "hit": 1,
-            "recovery": 1.35,
+            "recovery": 1.3,
             "sp": 2443,
             "startup": 0.1
         },
         "s2": {
-            "dmg": 6.14,
+            "dmg": 7.50,
             "hit": 1,
             "recovery": 0.9,
             "sp": 5225,
