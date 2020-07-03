@@ -31,7 +31,7 @@ class Xander(Adv):
                 self.dmg_make('fs', 6.66)
         else:
             self.dmg_make('fs', 3.26)
-        self.conf[e.name].dmg = 8.32
+        self.conf['s1'].dmg = 8.32
         self.born_ruler.off()
         self.born_ruler_1.off()
         self.born_ruler_2.off()
