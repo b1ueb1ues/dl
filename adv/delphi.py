@@ -19,7 +19,7 @@ class Delphi(Adv):
         `fs, x=2
     """
     coab = ['Blade','Gala_Alex','Heinwald']
-    share = ['Elisanne']
+    share = ['Karl']
     conf['afflict_res.poison'] = 0
 
     def prerun(self):

@@ -21,7 +21,7 @@ class Wedding_Elisanne(Adv):
         `fs, x=2
     """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
-    share = ['Ranzal']
+    share = ['Curran']
 
     def s2_proc(self, e):
         if self.condition(f'{e.name} defdown for 10s'):

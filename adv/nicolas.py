@@ -13,7 +13,7 @@ class Nicolas(Adv):
         `s4
         """
     coab = ['Blade','Ku_Hai','Lin_You']
-    share = ['Ranzal']
+    share = ['Curran']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv
