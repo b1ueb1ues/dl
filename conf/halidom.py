@@ -6,6 +6,7 @@ fac_ele = {
         'arctos': 0.085
     },
     'water': {
+        'tree': 0.16,
         'yuletree': 0.085,
         'dragonata': 0.085
     },
