@@ -20,7 +20,11 @@ class Pipple(Adv):
     conf['slots.a'] = Primal_Crisis()+Brothers_in_Arms()
     conf['slots.d'] = Leviathan()
     conf['acl'] = """
+        if self.afflics.bog.resist>=100
+        `dragon.act('c2 '*10)
+        else
         `dragon
+        end
         `s3, not self.s3_buff
         `s1, not self.afflics.frostbite.get()
         `s2, x=5

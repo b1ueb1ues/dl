@@ -15,15 +15,21 @@ class Xander(Adv):
     conf['slots.a'] = The_Shining_Overlord()+His_Clever_Brother()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `dragon.act('c3 s end'), fsc
-        `s3
+        if self.born_ruler_1.get() and not self.born_ruler_2.get()
+        `s3 
+        `s4
         `s2
         `s1
-        `s4
-        `fs, x=2 and not (self.born_ruler_1.get() and not self.born_ruler_2.get())
+        else
+        `dragon.act('c3 s end'), fsc
+        `s3, fsc or s
+        `s2, fsc or s
+        `s1, fsc or s
+        `fs, x=2
+        end
     """
     coab = ['Blade', 'Yurius', 'Hunter_Sarisse']
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Hunter_Sarisse']
 
     def fs_proc_alt(self, e):
         if self.born_ruler_2.get():
