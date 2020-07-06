@@ -78,7 +78,7 @@ class Hunter_Sarisse(Adv):
     share = ['Gala_Elisanne']
 
     def init(self):
-        default_pierce = 1
+        default_pierce = 2 if self.condition('lance+ distance from HBH sized enemy') else 1
         conf_alt_fs = {
             'fs1': {
                 'dmg': 0.74,

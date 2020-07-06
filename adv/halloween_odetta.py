@@ -20,12 +20,8 @@ class Halloween_Odetta(Adv):
         `fs, x=3 and not self.afflics.frostbite.get()
         `fs, x=2 and self.afflics.frostbite.get()
     """
-    coab = ['Summer_Estelle','Blade','Dagger']
-    share = ['Gala_Elisanne', 'Ranzal']
-
-    def d_coabs(self):
-        if self.sim_afflict:
-            self.coab = ['Summer_Estelle','Blade','Renee']
+    coab = ['Summer_Estelle','Blade','Renee']
+    share = ['Gala_Elisanne', 'Eugene']
 
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

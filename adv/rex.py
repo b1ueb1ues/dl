@@ -18,7 +18,7 @@ class Rex(Adv):
         `s2, x=4
         `fs, x=5
     """
-    coab = ['Blade', 'Xander', 'Dagger']
+    coab = ['Blade', 'Xander', 'Renee']
     share = ['Gala_Elisanne', 'Ranzal']
 
     def d_slots(self):

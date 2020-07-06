@@ -20,7 +20,7 @@ class Dragonyule_Xander(Adv):
         `s2, x=5 or s
     """
     coab = ['Tiki', 'Blade', 'Thaniel']
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Eugene']
 
     def prerun(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

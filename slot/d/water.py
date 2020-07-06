@@ -312,6 +312,11 @@ class Unreleased_WaterFrostbitePunish(DragonBase):
     att = 127
     a = [('k_frostbite', 0.2), ('a', 0.5)]
 
+class Unreleased_WaterForceStrike(DragonBase):
+    ele = 'water'
+    att = 127
+    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]
+
 class Unreleased_Water80Str(DragonBase):
     ele = 'water'
     att = 127

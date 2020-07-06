@@ -224,7 +224,7 @@ class Mitsuba(Adv):
         end
     """
     coab = ['Blade','Xander', 'Summer_Estelle']
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Eugene']
     conf['afflict_res.frostbite'] = 0
 
     def prerun(self):

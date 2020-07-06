@@ -20,7 +20,7 @@ class Karina(Adv):
         `s4
     """
     coab = ['Xander', 'Blade', 'Summer_Estelle']
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Eugene']
 
     def s1_proc(self, e):
         boost = 0.05*self.buffcount
