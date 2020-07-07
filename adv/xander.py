@@ -91,9 +91,12 @@ class Xander(Adv):
                 self.conf[e.name].dmg = 8.37
         except:
             self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
+        log('debug', 'xander_s1_boost', f'x{self.buffcount} = {self.conf[e.name].dmg*(1+boost):.2%}')
 
     def s2_proc(self, e):
-        self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*0.05*self.buffcount)
+        boost = 0.05*self.buffcount
+        self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
+        log('debug', 'xander_s2_boost', f'x{self.buffcount} = {self.conf[e.name].dmg*(1+boost):.2%}')
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

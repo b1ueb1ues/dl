@@ -10,13 +10,13 @@ class Karina(Adv):
     a3 = [('prep',1.00), ('scharge_all', 0.05)]
 
     conf = {}
-    conf['slots.a'] = Valiant_Crown()+His_Clever_Brother()
+    conf['slots.a'] = Summer_Paladyns()+His_Clever_Brother()
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end'), s
         `s3
-        `s1
         `s2
+        `s1
         `s4
     """
     coab = ['Xander', 'Blade', 'Summer_Estelle']
@@ -24,6 +24,7 @@ class Karina(Adv):
 
     def s1_proc(self, e):
         boost = 0.05*self.buffcount
+        log('debug', 'karina_s1_boost', f'x{self.buffcount} = {self.conf[e.name].dmg*(1+boost):.2%}')
         self.afflics.frostbite(e.name,120,0.41*(1+boost))
         self.dmg_make(f'o_{e.name}_boost',self.conf[e.name].dmg*boost)
 

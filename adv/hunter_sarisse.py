@@ -67,7 +67,7 @@ class Hunter_Sarisse(Adv):
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
-        `s3, not self.s3_buff
+        `s3, fsc
         `s1, fsc
         `s2, fsc
         `s4, fsc
@@ -75,7 +75,7 @@ class Hunter_Sarisse(Adv):
         `fs4
     """
     coab = ['Dagger', 'Xander', 'Grace']
-    share = ['Gala_Elisanne']
+    share = ['Gala_Elisanne', 'Eugene']
 
     def init(self):
         default_pierce = 1
