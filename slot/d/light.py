@@ -214,11 +214,6 @@ class Unreleased_LightSkillDamage(DragonBase):
     ele = 'light'
     att = 128
     a = [('s', 0.9), ('a', 0.2)]
-		
-class Unreleased_LightForceStrike(DragonBase):
-    ele = 'light'
-    att = 127
-    a = [('a', 0.55), ('fs', 0.60), ('sp',0.30,'fs')]
 
 class Unreleased_LightCritDamage(DragonBase):
     ele = 'light'
