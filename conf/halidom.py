@@ -6,6 +6,7 @@ fac_ele = {
         'arctos': 0.085
     },
     'water': {
+        'tree': 0.16,
         'yuletree': 0.085,
         'dragonata': 0.085
     },
@@ -25,7 +26,11 @@ fac_ele = {
 fac_wt = {
     'dojo': (0.15, 0.15),
     'dagger': 0.05,
-    'bow': 0.05
+    'bow': 0.05,
+    'blade': 0.05,
+    'wand': 0.05,
+    'sword': 0.05,
+    'lance': 0.05
 }
 fac_faf = 0.115
 
