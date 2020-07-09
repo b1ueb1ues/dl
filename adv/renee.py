@@ -8,7 +8,7 @@ class Renee(Adv):
     a1 = ('primed_crit_chance', 0.6,5)
 
     conf = {}
-    conf['slots.d'] = Leviathan()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon
         `s3
@@ -19,7 +19,7 @@ class Renee(Adv):
         """
     coab = ['Blade', 'Xander', 'Tiki']
     conf['afflict_res.bog'] = 100
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Eugene']
 
     def s1_proc(self, e):
         self.dmg_make(e.name,1.11)

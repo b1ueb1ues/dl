@@ -19,7 +19,7 @@ class Celliera(Adv):
         `s4, x=4
         `s1
     """
-    coab = ['Dagger', 'Xander', 'Wand']
+    coab = ['Renee', 'Xander', 'Summer_Estelle']
     share = ['Gala_Elisanne', 'Ranzal']
 
     def prerun(self):

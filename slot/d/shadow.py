@@ -344,7 +344,11 @@ class Gala_Cat_Sith(DragonBase):
 
     def shift_end_trickery(self, e):
         self.add_trickery(8)
-
+						
+class Unreleased_ShadowCritDamage(DragonBase):
+    ele = 'shadow'
+    att = 127
+    a = [('a', 0.45), ('cd', 0.55)]
 
 class Unreleased_ShadowPrimedStr(DragonBase):
     ele = 'shadow'

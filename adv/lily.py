@@ -39,7 +39,7 @@ class Lily(Adv):
         `s4
         `s2
     """
-    coab = ['Blade', 'Dagger', 'Tiki']
+    coab = ['Blade', 'Renee', 'Tiki']
     share = ['Gala_Elisanne', 'Eugene']
 
     # conf['slots.a'] = Candy_Couriers()+His_Clever_Brother()

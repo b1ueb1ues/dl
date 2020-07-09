@@ -19,7 +19,7 @@ class Jurota(Adv):
         `s4
     """
     coab = ['Tiki', 'Xander', 'Dagger']
-    share = ['Gala_Elisanne', 'Ranzal']
+    share = ['Gala_Elisanne', 'Eugene']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

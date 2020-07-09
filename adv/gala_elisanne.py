@@ -19,7 +19,7 @@ class Gala_Elisanne(Adv):
         `fsf, x=4
     """
     coab = ['Bow','Tobias', 'Renee']
-    share = ['Patia','Summer_Cleo']
+    share = ['Patia','Summer_Luca']
     
     def init(self):
         self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff

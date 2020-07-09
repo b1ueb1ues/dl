@@ -18,7 +18,7 @@ class Summer_Celliera(Adv):
         `s1
         `fs, seq=2
         """
-    coab = ['Blade', 'Dagger','Summer_Estelle']
+    coab = ['Blade', 'Renee','Summer_Estelle']
     conf['afflict_res.bog'] = 100
     share = ['Patia', 'Ranzal']
 

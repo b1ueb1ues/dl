@@ -57,7 +57,7 @@ class Catherine(Adv):
         `s2, self.perfect_escort=3 and self.energy()
         `s1
     """
-    coab = ['Dagger', 'Hunter_Sarisse', 'Summer_Estelle']
+    coab = ['Renee', 'Hunter_Sarisse', 'Summer_Estelle']
     share = ['Gala_Elisanne', 'Ranzal']
 
     def init(self):
