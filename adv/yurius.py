@@ -9,7 +9,7 @@ class Yurius(Adv):
     a3 = ('prep', 100)
     conf = {}
     conf['slots.a'] = Primal_Crisis()+Candy_Couriers()
-    conf['slots.d'] = Siren()
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         if self.afflics.frostbite.get()
         `dragon, not self.dragondrive_buff.get() and (self.duration<=120 or self.dragonform.dragon_gauge>=2130 or self.dragonform.shift_count>0)
@@ -23,8 +23,6 @@ class Yurius(Adv):
         `s2, cancel
         `s4, cancel
         `s1, cancel
-        # Bow(15%) + DDrive(35%) 
-        `fs, x=5 and self.mod('sp')>=1.45
     """
     coab = ['Blade','Hunter_Sarisse','Xander']
     share = ['Gala_Elisanne', 'Ranzal']
