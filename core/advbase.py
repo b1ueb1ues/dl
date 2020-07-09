@@ -916,6 +916,9 @@ class Adv(object):
     def d_slots(self):
         pass
 
+    def d_skillshare(self):
+        pass
+
     def slot_backdoor(self):
         pass
 
@@ -1548,6 +1551,7 @@ class Adv(object):
         return self.s1, self.s2, self.s3, self.s4
 
     def config_skillshare(self):
+        self.d_skillshare()
         preruns = {}
         if 'skill_share' in self.conf:
             self.skillshare_list = self.conf['skill_share'].copy()
