@@ -1722,6 +1722,7 @@ class Adv(object):
             prerun(self, dst_key)
         self.prerun()
 
+        self.hp = self.condition.prev_hp
         if 'hp' in self.conf:
             self.set_hp(self.conf['hp'])
 
