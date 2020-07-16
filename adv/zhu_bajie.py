@@ -5,28 +5,8 @@ from slot.d import *
 def module():
     return Zhu_Bajie
 
-class FS_MH(Action):
-    def __init__(self, name, conf, act=None):
-        Action.__init__(self, name, conf, act)
-        self.atype = 'fs'
-        self.interrupt_by = ['s']
-        self.cancel_by = ['s','dodge']
-
-    def act(self, action):
-        self.act_event.name = 'fs'
-        self.act_event.idx = self.idx
-        self.act_event()
-
-    def sync_config(self, c):
-        self._charge = c.charge
-        self._startup = c.startup
-        self._recovery = c.recovery
-        self._active = c.active
-
-    def getstartup(self):
-        return self._charge + (self._startup / self.speed())
-
 class Zhu_Bajie(Adv):
+    comment = 's2 att buff bugged to be 30s'
     a3 = ('ro', 0.10)
 
     conf = {}
@@ -117,7 +97,7 @@ class Zhu_Bajie(Adv):
         if self.hp > 30:
             self.set_hp(20)
         else:
-            Selfbuff(e.name, 0.15, 10).on()
+            Selfbuff(e.name, 0.20, 30).on()
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

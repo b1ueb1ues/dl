@@ -3525,6 +3525,58 @@
             "startup": 0.25
         }
     },
+    "Summer_Mikoto": {
+        "c": {
+            "att": 492,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 2600,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.1667,
+            "sp": 8600,
+            "startup": 0.1
+        }
+    },
+    "Summer_Patia": {
+        "c": {
+            "att": 519,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                1
+            ],
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 2800,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 23.10,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 5600,
+            "startup": 0.1
+        }
+    },
     "Summer_Ranzal": {
         "c": {
             "att": 454,

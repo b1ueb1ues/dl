@@ -491,6 +491,12 @@
     "type": 1,
     "sp": 8015
   },
+  "Summer_Patia": {
+    "s": 2,
+    "cost": 7,
+    "type": 1,
+    "sp": 10080
+  },
   "Alain": {
     "s": 1,
     "cost": 5,
@@ -755,6 +761,12 @@
     "cost": 5,
     "type": 4,
     "sp": 10779
+  },
+  "Summer_Mikoto": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 10400
   },
   "Nefaria": {
     "mod_sp": 1.149999976158142,

@@ -12,7 +12,7 @@ class Curran(Adv):
     a3 = ('lo',0.6)
 
     conf = {}
-    conf['slots.poison.a'] = Kung_Fu_Masters()+The_Plaguebringer()
+    conf['slots.poison.a'] = Summer_Paladyns()+The_Plaguebringer()
     conf['acl'] = '''
         `dragon.act('c3 s end')
         `s3, not self.s3_buff

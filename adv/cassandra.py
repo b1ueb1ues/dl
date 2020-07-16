@@ -19,13 +19,9 @@ class Cassandra(Adv):
         `s2
         `s4
     """
-    coab = ['Curran','Berserker','Delphi']
+    coab = ['Curran','Summer_Patia','Delphi']
     share = ['Veronica']
     conf['afflict_res.poison'] = 0
-
-    def d_coabs(self):
-        if self.duration <= 120:
-            self.coab = ['Curran','Berserker',"Blade"]
 
     def prerun(self):
         self.set_hp(80)

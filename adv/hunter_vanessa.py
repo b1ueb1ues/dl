@@ -4,22 +4,6 @@ from slot.a import *
 def module():
     return Hunter_Vanessa
 
-class FS_MH(Action):
-    def __init__(self, name, conf, act=None):
-        Action.__init__(self, name, conf, act)
-        self.atype = 'fs'
-        self.interrupt_by = ['s']
-        self.cancel_by = ['s','dodge']
-
-    def sync_config(self, c):
-        self._charge = c.charge
-        self._startup = c.startup
-        self._recovery = c.recovery
-        self._active = c.active
-
-    def getstartup(self):
-        return self._charge + (self._startup / self.speed())
-
 class Hunter_Vanessa(Adv):
     a1 = ('fs', 0.30)
 
@@ -64,9 +48,6 @@ class Hunter_Vanessa(Adv):
         for n, c in conf_alt_fs.items():
             self.conf[n] = Conf(c)
             act = FS_MH(n, self.conf[n])
-            act.atype = 'fs'
-            act.interrupt_by = ['s']
-            act.cancel_by = ['s','dodge']
             self.__dict__['a_'+n] = act
         
         self.l_fs1 = Listener('fs1',self.l_fs1)
@@ -80,6 +61,7 @@ class Hunter_Vanessa(Adv):
         self.fs_before(e)
         self.update_hits('fs')
         self.dmg_make('fs', self.conf[name+'.dmg'], 'fs')
+        e.name = name
         self.fs_proc(e)
         self.think_pin('fs')
         self.charge(name,self.conf[name+'.sp'])

@@ -3,52 +3,58 @@ from slot.a import *
 from slot.d import *
 
 def module():
-    return Hunter_Berserker
+    return Summer_Patia
 
+class Summer_Patia(Adv):
+    comment = 'cannot build combo for Cat Sith; uses up 15 stacks by 46.94s'
+    a3 = [('antiaffself_poison', 0.15, 10, 5), ('edge_poison', 60, 'hp50')]
 
-class Hunter_Berserker(Adv):
-    comment = 'needs combo time from chain coability to keep combo & do c1 after s2'
-    a1 = ('fs', 0.30)
-    conf ={}
-    conf['slots.a'] = The_Lurker_in_the_Woods()+Primal_Crisis()
-    conf['slots.d'] = Dreadking_Rathalos()
+    conf = {}
+    conf['slots.poison.a'] = Kung_Fu_Masters()+The_Plaguebringer()
+    conf['slots.d'] = Shinobi()
     conf['acl'] = """
+        # use dragon if using Cat Sith
+        # `dragon.act('c3 s end'), fsc
         `s3, not self.s3_buff
         `s1, fsc
+        `s2, fsc
         `s4, fsc
-        queue self.s2.check()
-        `s2
-        `fs3, x=1
-        end
         `dodge, fsc
         `fs3
     """
-    coab = ['Blade','Grace','Marth']
-    share = ['Hunter_Sarisse']
+    coab = ['Summer_Patia', 'Blade', 'Wand', 'Curran']
+    share = ['Curran']
+
+    def d_slots(self):
+        if self.duration <= 120:
+            self.conf['slots.d'] = Gala_Cat_Sith()
 
     def init(self):
-        self.conf.fs.hit = 1
+        self.conf.fs.hit = -1
         conf_alt_fs = {
             'fs1': {
-                'dmg': 296 / 100.0,
+                'dmg': 207 / 100.0,
+                'dmg2': 2.17,
                 'sp': 600,
                 'charge': 24 / 60.0,
-                'startup': 50 / 60.0, # 40 + 10
-                'recovery': 40 / 60.0,
+                'startup': 24 / 60.0,
+                'recovery': 46 / 60.0,
             },
             'fs2': {
-                'dmg': 424 / 100.0,
-                'sp': 960,
+                'dmg': 297 / 100.0,
+                'dmg2': 3.12,
+                'sp': 900,
                 'charge': 48 / 60.0,
-                'startup': 50 / 60.0,
-                'recovery': 40 / 60.0,
+                'startup': 24 / 60.0,
+                'recovery': 46 / 60.0,
             },
             'fs3': {
-                'dmg': 548 / 100.0,
+                'dmg': 384 / 100.0,
+                'dmg2': 4.03,
                 'sp': 1400,
                 'charge': 72 / 60.0,
-                'startup': 50 / 60.0,
-                'recovery': 40 / 60.0,
+                'startup': 24 / 60.0,
+                'recovery': 46 / 60.0,
             }
         }
         for n, c in conf_alt_fs.items():
@@ -60,14 +66,21 @@ class Hunter_Berserker(Adv):
         self.l_fs2 = Listener('fs2',self.l_fs2)
         self.l_fs3 = Listener('fs3',self.l_fs3)
         self.fs = None
+        self.fs_alt_uses = 0
 
     def do_fs(self, e, name):
-        log('cast','fs')
+        log('cast', name)
+        e.name = name
         self.__dict__['a_'+name].getdoing().cancel_by.append(name)
         self.__dict__['a_'+name].getdoing().interrupt_by.append(name)
         self.fs_before(e)
         self.update_hits('fs')
-        self.dmg_make('fs', self.conf[name+'.dmg'], 'fs')
+        if self.fs_alt_uses:
+            self.dmg_make(e.name, self.conf[name+'.dmg2'], 'fs')
+            self.afflics.poison(e.name,110,0.436)
+            self.fs_alt_uses = 0
+        else:
+            self.dmg_make(e.name, self.conf[name+'.dmg'], 'fs')
         self.fs_proc(e)
         self.think_pin('fs')
         self.charge(name,self.conf[name+'.sp'])
@@ -90,28 +103,15 @@ class Hunter_Berserker(Adv):
     def fs3(self):
         return self.a_fs3()
 
-    def prerun(self):
-        self.s1_debuff = Debuff('s1', 0.05, 10)
-
-        self.s2_fs_boost = SingleActionBuff('s2', 0.80, 1, 'fs', 'buff', ['fs1','fs2','fs3'])
-
-        self.a3_crit = Modifier('a3', 'crit', 'chance', 0)
-        self.a3_crit.get = self.a3_crit_get
-        self.a3_crit.on()
-
-    @staticmethod
-    def prerun_skillshare(adv, dst):
-        adv.s1_debuff = Debuff(dst, 0.05, 10)
-
-    def a3_crit_get(self):
-        return (self.mod('def') != 1) * 0.20
+    def s1_before(self, e):
+        self.dmg_make(e.name, 7.47)
 
     def s1_proc(self, e):
-        self.s1_debuff.on()
+        self.dmg_make(e.name, 7.47)
+        self.fs_alt_uses = 1
 
     def s2_proc(self, e):
-        self.s2_fs_boost.on(1)
-
+        self.afflics.poison(e.name,120,0.582)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -7,6 +7,7 @@ def module():
 
 class Delphi(Adv):
     a1 = ('a',-0.55)
+    a3 = ('edge_poison', 70, 'hit15')
 
     conf = {}
     conf['slots.a'] = Mega_Friends()+The_Fires_of_Hate()
@@ -22,9 +23,7 @@ class Delphi(Adv):
     share = ['Karl']
     conf['afflict_res.poison'] = 0
 
-    def prerun(self):
-        self.flurry_poison = 70
-        
+    def prerun(self):        
         self.s1defdown = self.condition('s1 defdown for 10s')
 
         self.s1.autocharge_init(80000).on()
@@ -39,14 +38,14 @@ class Delphi(Adv):
         self.s1fscharge = 1
     
     def s2_proc(self, e):
-        self.afflics.poison(e.name,120+self.flurry_poison*(self.hits>=15),3.00,27)
+        self.afflics.poison(e.name,120,3.00,27)
         self.s2_attdown.on()
 
     def fs_proc(self, e):
         if self.s1fscharge > 0:
             self.s1fscharge -= 1
             self.dmg_make("o_fs_boost",0.21*3)
-            self.afflics.poison('fs',120+self.flurry_poison*(self.hits>=15),3.00,27)
+            self.afflics.poison('fs',120,3.00,27)
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

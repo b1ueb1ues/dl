@@ -12,12 +12,12 @@ class Veronica(Adv):
     conf['slots.a'] = Candy_Couriers()+Primal_Crisis()
     conf['slots.poison.a'] = Candy_Couriers()+The_Plaguebringer()
     conf['acl'] = """
-        `dragon.act("c3 s end")
+        `dragon.act("c3 s end"), s
         `s3, not self.s3_buff
         `s1
         `s4
         """
-    coab = ['Ieyasu','Curran','Berserker']
+    coab = ['Ieyasu','Curran','Summer_Patia']
     share = ['Curran']
 
     def prerun(self):

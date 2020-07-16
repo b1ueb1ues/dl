@@ -18,7 +18,7 @@ class Aldred(Adv):
         `s4
         `s1, x=5
     """
-    coab = ['Wand','Berserker','Curran']
+    coab = ['Wand','Summer_Patia','Curran']
     share = ['Veronica']
 
     def prerun(self):

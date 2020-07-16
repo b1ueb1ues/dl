@@ -168,3 +168,5 @@ zhu_bajie.py
 linnea.py
 zena.py
 catherine.py
+summer_mikoto.py
+summer_patia.py

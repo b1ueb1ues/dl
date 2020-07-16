@@ -1,3 +1,5 @@
+from core.afflic import AFFLICT_LIST
+
 class Ability:
     COND_ELE = ('flame', 'water', 'wind', 'light', 'shadow')
     COND_WT = ('axe', 'blade', 'bow', 'dagger', 'lance', 'staff', 'sword', 'wand')
@@ -42,15 +44,15 @@ class Ability:
                 if m[3] is not None:
                     m = self.flurry_modifier(m, adv)
             mod_name = '{}{}_{}'.format(afrom, self.name, idx)
-            mod = adv.Modifier(mod_name,*m)
+            self.mod_object = adv.Modifier(mod_name,*m)
             if m[1] == 'buff':
-                adv.Buff(f'{mod_name}_buff', duration=-1, modifier=mod).on()
+                adv.Buff(f'{mod_name}_buff', duration=-1, modifier=self.mod_object).on()
 
 ability_dict = {}
 
 class Strength(Ability):
     def __init__(self, name, value, cond=None):
-        super().__init__(name, [('att','passive',value, cond)])
+        super().__init__(name, [('att', 'passive', value, cond)])
 
 ability_dict['a'] = Strength
 ability_dict['att'] = Strength
@@ -69,20 +71,6 @@ class Skill_Damage(Ability):
 
 ability_dict['s'] = Skill_Damage
 ability_dict['sd'] = Skill_Damage
-
-
-class Critical_Chance(Ability):
-    def __init__(self, name, value, cond=None):
-        super().__init__(name, [('crit','chance',value, cond)])
-
-ability_dict['cc'] = Critical_Chance
-
-
-class Critical_Damage(Ability):
-    def __init__(self, name, value, cond=None):
-        super().__init__(name, [('crit','damage',value, cond)])
-
-ability_dict['cd'] = Critical_Damage
 
 
 class Force_Strike(Ability):
@@ -105,14 +93,31 @@ class Debuff_Time(Ability):
 
 ability_dict['dbt'] = Debuff_Time
 
-
-class Killer(Ability):
-    def __init__(self, name, value, cond=None):
-        if name == 'k':
-            super().__init__(name, [('killer','passive',value, cond)])
-        else:
+class ConditionalModifierAbility(Ability):
+    def __init__(self, name, mtype, morder, value, cond=None):
+        if '_' in name:
             afflict = name.split('_', 1)[1]
-            super().__init__(name, [('{}_killer'.format(afflict), 'passive', value, cond)])
+            super().__init__(name, [(f'{afflict}_{mtype}', morder, value, cond)])
+        else:
+            super().__init__(name, [(mtype, morder, value, cond)])
+
+class Critical_Chance(ConditionalModifierAbility):
+    def __init__(self, name, value, cond=None):
+        super().__init__(name, 'crit','chance', value, cond)
+
+ability_dict['cc'] = Critical_Chance
+
+
+class Critical_Damage(ConditionalModifierAbility):
+    def __init__(self, name, value, cond=None):
+        super().__init__(name, 'crit','damage',value, cond)
+
+ability_dict['cd'] = Critical_Damage
+
+
+class Killer(ConditionalModifierAbility):
+    def __init__(self, name, value, cond=None):
+        super().__init__(name, 'killer','passive',value, cond)
 
 ability_dict['k'] = Killer
 
@@ -576,6 +581,20 @@ class Affliction_Teambuff(Affliction_Selfbuff):
 ability_dict['affteam'] = Affliction_Teambuff
 
 
+class AntiAffliction_Selfbuff(Affliction_Selfbuff):
+    def oninit(self, adv, afrom=None):
+        def cd_end(t):
+            self.is_cd = False
+        def l_afflict(e):
+            if not self.is_cd:
+                adv.Buff(self.name, self.value * (1 - e.rate), self.duration, *self.buff_args).on()
+                self.is_cd = True
+                adv.Timer(cd_end).on(self.cd)
+        adv.Event(self.atype).listener(l_afflict)
+
+ability_dict['antiaffself'] = AntiAffliction_Selfbuff
+
+
 class Energy_StrCrit(Ability):
     STR_LEVELS = {
         3: (0.0, 0.04, 0.06, 0.08, 0.10, 0.20),
@@ -610,14 +629,11 @@ ability_dict['epassive'] = Energy_StrCrit
 class Affliction_Edge(Ability):
     def __init__(self, name, value, cond=None):
         self.atype = name.split('_')[1]
-        self.value = value
-        self.cond = cond
-        super().__init__(name)
+        super().__init__(name, [('edge', self.atype, value, cond)])
 
     def oninit(self, adv, afrom=None):
-        aff = adv.afflics.__dict__[self.atype]
-        if aff.resist < 100 and (not self.cond or adv.condition(self.cond)):
-            aff.edge += self.value
+        super().oninit(adv, afrom)
+        adv.afflics.__dict__[self.atype].aff_edge_mods.append(self.mod_object)
 
 ability_dict['edge'] = Affliction_Edge
 

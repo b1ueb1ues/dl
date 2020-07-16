@@ -20,7 +20,7 @@ class Valentines_Addis(Adv):
         `s1
         `s4
     """
-    coab = ['Wand','Curran','Berserker']
+    coab = ['Wand','Curran','Summer_Patia']
     conf['afflict_res.poison'] = 0
     share = ['Veronica']
 

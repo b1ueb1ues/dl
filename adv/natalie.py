@@ -19,7 +19,7 @@ class Natalie(Adv):
         `s4
         `s1
         """
-    coab = ['Wand','Curran','Berserker']
+    coab = ['Wand','Curran','Summer_Patia']
     share = ['Veronica']
 
     def d_slots(self):

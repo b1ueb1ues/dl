@@ -87,6 +87,11 @@ class AfflicUncapped(object):
         self.event = Event(self.name)
 
         self.get_override = 0
+        self.aff_edge_mods = []
+
+    @property
+    def edge(self):
+        return sum([m.get() for m in self.aff_edge_mods])
 
     def get_tolerance(self):
         if self.tolerance > 1:
@@ -190,6 +195,11 @@ class AfflicCapped(object):
         self.event = Event(self.name)
 
         self.get_override = 0
+        self.aff_edge_mods = []
+
+    @property
+    def edge(self):
+        return sum([m.get() for m in self.aff_edge_mods])
 
     def get_tolerance(self):
         if self.tolerance > 1:
@@ -285,7 +295,6 @@ class Afflic_dot(AfflicUncapped):
         self.duration = duration
         self.default_iv = iv
         self.iv = iv
-        self.edge = 0
         self.dot = None
 
     def on(self, name, rate, coef, duration=None, iv=None, dtype=None):
@@ -314,7 +323,6 @@ class Afflic_cc(AfflicCapped):
     def __init__(self, name=None, duration=6.5):
         super().__init__(name, duration)
         self.stack_cap = 1
-        self.edge = 0
 
     def on(self, name, rate, duration=None):
         self.rate = rate + self.edge
@@ -329,7 +337,6 @@ class Afflic_scc(AfflicCapped):
     def __init__(self, name=None, duration=8):
         super().__init__(name, duration)
         self.stack_cap = 1
-        self.edge = 0
 
     def on(self, name, rate, duration=None):
         self.rate = rate + self.edge
