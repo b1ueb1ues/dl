@@ -3406,9 +3406,9 @@
     },
     "Summer_Celliera": {
         "c": {
-            "att": 479,
+            "att": 574,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "sword"
         },
@@ -3422,7 +3422,7 @@
         "s2": {
             "dmg": 6.6,
             "hit": 1,
-            "recovery": 1.95,
+            "recovery": 2.06,
             "sp": 7641,
             "startup": 0.1
         }
@@ -3481,15 +3481,15 @@
     },
     "Summer_Julietta": {
         "c": {
-            "att": 516,
+            "att": 618,
             "ele": "water",
-            "lv2_autos": 0,
+            "lv2_autos": 1,
             "stars": "5",
             "wt": "axe"
         },
         "s1": {
             "dmg": 0.0,
-            "hit": 1,
+            "hit": 3,
             "recovery": 1.7,
             "sp": 3194,
             "startup": 0.1

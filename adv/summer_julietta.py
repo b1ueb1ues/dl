@@ -6,8 +6,8 @@ def module():
     return Summer_Julietta
 
 class Summer_Julietta(Adv):
-    a1 = ('affteam_bog', 0.10, 15, 5)
-    a3 = ('primed_att',0.10)
+    a1 = ('affteam_bog', 0.15, 15, 5)
+    a3 = ('primed_att', 0.15)
 
     conf = {}
     conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
@@ -38,16 +38,15 @@ class Summer_Julietta(Adv):
         adv.buff_class = Teambuff if adv.condition('buff all team') else Selfbuff
     
     def s1_proc(self, e):
-        #560+168+392
-        self.dmg_make(e.name,5.60)
-        self.afflics.bog.on(e.name, 110)
-        self.dmg_make(e.name,5.60)
+        self.dmg_make(e.name, 6.16)
+        self.afflics.bog.on(e.name, 120)
+        self.dmg_make(e.name, 6.15)
 
     def s2_proc(self, e):
         self.phase[e.name] += 1
         self.buff_class(e.name,0.15,15).on()
         if self.phase[e.name] > 1:
-            self.buff_class(e.name,0.10,15, 'crit','chance').on()
+            self.buff_class(e.name,0.13,15, 'crit','chance').on()
         self.phase[e.name] %= 3
 
 if __name__ == '__main__':
