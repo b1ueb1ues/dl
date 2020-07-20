@@ -26,10 +26,15 @@ class Summer_Celliera(Adv):
 
     def init(self):
         self.phase['s2'] = 0
+        self.celery_s1_bog = 120
+
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.celery_s1_bog = 110
 
     def s1_proc(self, e):
         self.dmg_make(e.name,1.84)
-        self.afflics.bog.on(e.name, 120)
+        self.afflics.bog.on(e.name, self.celery_s1_bog)
         self.dmg_make(e.name,5.52)
 
     def s2_proc(self, e):
