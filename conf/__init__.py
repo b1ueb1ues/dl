@@ -4,6 +4,7 @@ from core import Conf
 
 import conf.halidom
 
+
 def load_json(name):
     fname = ''
     find = '/'
@@ -16,12 +17,14 @@ def load_json(name):
         l = __file__.rfind(find)
         fname = __file__[:l] + find + name
 
-    with open(fname, 'r') as f:
+    with open(fname, 'r', encoding='utf8') as f:
         return json.load(f, parse_float=float, parse_int=int)
+
 
 advconfs = load_json('advconf.json')
 coability = load_json('chains.json')
 skillshare = load_json('skillshare.json')
+
 
 def coability_dict(ele):
     if ele:
@@ -29,13 +32,14 @@ def coability_dict(ele):
     else:
         return coability['all'].copy()
 
+
 def get(name):
     conf = Conf()
 
     json_conf = Conf(advconfs.get(name))
 
     conf += json_conf
-    
+
     import wep
     wt = conf.c.wt
     weapon = getattr(wep, wt)
