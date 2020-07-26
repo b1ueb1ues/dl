@@ -3,8 +3,10 @@ from slot.a import *
 from slot.d import *
 from module.x_alt import X_alt, Fs_alt
 
+
 def module():
     return Tiki
+
 
 # divine dragon mods
 tiki_conf = {
@@ -43,7 +45,7 @@ tiki_conf = {
     'x5.recovery': 0 / 60.0,
     'x5.hit': 1,
 
-    'dodge.startup': 40 / 60.0, # actually dragon dodge but w/e
+    'dodge.startup': 40 / 60.0,  # actually dragon dodge but w/e
 }
 
 # divine dragon mods
@@ -67,6 +69,7 @@ divine_dragon_conf = {
     'x3.hit': 1,
 }
 
+
 class Tiki(Adv):
     comment = 'dragon damage does not work on divine dragon'
     a1 = ('k_frostbite', 0.30)
@@ -88,7 +91,6 @@ class Tiki(Adv):
         end
     """
     coab = ['Blade', 'Xander', 'Dagger']
-    share = ['Gala_Luca']
 
     def d_slots(self):
         if self.duration <= 60:
@@ -120,20 +122,25 @@ class Tiki(Adv):
         self.buff_icon_count = lambda: False
 
     def prerun(self):
-        self.divine_dragon = Selfbuff('divine_dragon', 1, -1, 'divine', 'dragon')
+        self.divine_dragon = Selfbuff(
+            'divine_dragon', 1, -1, 'divine', 'dragon')
         self.divine_dragon.bufftype = 'dd'
         # self.divine_dragon = Selfbuff('divine_dragon', self.dragonform.ddamage(), -1, 'att', 'dragon') # reeee
-        self.dragonform.set_dragondrive(dd_buff=self.divine_dragon, max_gauge=1800, shift_cost=560, drain=40)
-        Event('dragon_end').listener(self.dragondrive_on) # cursed
+        self.dragonform.set_dragondrive(
+            dd_buff=self.divine_dragon, max_gauge=1800, shift_cost=560, drain=40)
+        Event('dragon_end').listener(self.dragondrive_on)  # cursed
         Event('dragondrive_end').listener(self.dragondrive_off)
 
-        self.dragondrive_x = X_alt(self, 'divine_dragon', divine_dragon_conf, x_proc=self.l_dragon_x, no_fs=True)
+        self.dragondrive_x = X_alt(
+            self, 'divine_dragon', divine_dragon_conf, x_proc=self.l_dragon_x, no_fs=True)
 
         self.o_s1 = self.s1
-        self.d_s1 = Skill('s1', self.conf.s1+Conf({'startup': 0.10, 'recovery': 1.8, 'sp': 3480}))
+        self.d_s1 = Skill('s1', self.conf.s1 +
+                          Conf({'startup': 0.10, 'recovery': 1.8, 'sp': 3480}))
 
         self.o_s2 = self.s2
-        self.d_s2 = Skill('s2', self.conf.s2+Conf({'startup': 0.10, 'recovery': 1.91, 'sp': 5800}))
+        self.d_s2 = Skill('s2', self.conf.s2 +
+                          Conf({'startup': 0.10, 'recovery': 1.91, 'sp': 5800}))
 
         self.o_s3 = self.s3
         self.d_s3 = Skill('s3', self.conf.s3+Conf({'sp': 0}))
@@ -161,26 +168,24 @@ class Tiki(Adv):
         self.dragondrive_x.off()
 
     def s1_proc(self, e):
-        if self.shared_crit:
-            crit_mod = Modifier('gala_luca_share', 'crit', 'chance', 0.1 * self.buff_icon_count())
-            crit_mod.on()
         if self.divine_dragon.get():
             self.dmg_make(e.name, 7.90)
-            self.afflics.frostbite(e.name,120,0.41)
-            self.dragonform.add_drive_gauge_time(self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
+            self.afflics.frostbite(e.name, 120, 0.41)
+            self.dragonform.add_drive_gauge_time(
+                self.s1.ac.getstartup()+self.s1.ac.getrecovery(), skill_pause=True)
         else:
             self.dmg_make(e.name, 3.76)
             self.dragonform.charge_gauge(260, utp=True, dhaste=True)
-        if self.shared_crit:
-            crit_mod.off()
 
     def s2_proc(self, e):
         if self.divine_dragon.get():
             with KillerModifier('s2_killer', 'hit', 0.2, ['frostbite']):
                 self.dmg_make(e.name, 12.05)
-            self.dragonform.add_drive_gauge_time(self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
+            self.dragonform.add_drive_gauge_time(
+                self.s2.ac.getstartup()+self.s2.ac.getrecovery(), skill_pause=True)
         else:
             self.dragonform.charge_gauge(1000, utp=True, dhaste=True)
+
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

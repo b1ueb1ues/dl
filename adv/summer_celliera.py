@@ -2,27 +2,29 @@ from core.advbase import *
 from slot.a import *
 from slot.d import *
 
+
 def module():
     return Summer_Celliera
 
+
 class Summer_Celliera(Adv):
-    a1 = ('bc',0.15)
-    a3 = ('bt',0.35)
+    a1 = ('bc', 0.15)
+    a3 = ('bt', 0.35)
     conf = {}
-    conf['slots.a'] = Valiant_Crown() + Memory_of_a_Friend()
+    conf['slots.a'] = Valiant_Crown() + Proper_Maintenance()
     conf['slots.frostbite.a'] = conf['slots.a']
     conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
         `dragon.act('c3 s end')
         `s2
         `s3
-        `s4
-        `s1
+        `s4, fsc
+        `s1, fsc
         `fs, x=2
         """
-    coab = ['Blade', 'Dagger', 'Summer_Estelle']
+    coab = ['Blade', 'Renee', 'Summer_Estelle']
     conf['afflict_res.bog'] = 100
-    share = ['Patia', 'Ranzal']
+    share = ['Patia', 'Summer_Luca']
 
     def init(self):
         self.phase['s2'] = 0
@@ -35,17 +37,17 @@ class Summer_Celliera(Adv):
         adv.celery_s1_hits = 3
 
     def s1_proc(self, e):
-        self.dmg_make(e.name,1.84)
+        self.dmg_make(e.name, 1.84)
         self.afflics.bog.on(e.name, self.celery_s1_bog)
-        self.dmg_make(e.name,1.84*self.celery_s1_hits)
+        self.dmg_make(e.name, 1.84*self.celery_s1_hits)
 
     def s2_proc(self, e):
         self.phase[e.name] += 1
-        Teambuff(f'{e.name}_def',0.15,10,'defense').on()
+        Teambuff(f'{e.name}_def', 0.15, 10, 'defense').on()
         if self.phase[e.name] > 1:
-            Teambuff(e.name,0.13,10).on()
+            Teambuff(e.name, 0.13, 10).on()
         if self.phase[e.name] > 2:
-            Spdbuff(f'{e.name}_spd',0.25,10,wide='team').on()
+            Spdbuff(f'{e.name}_spd', 0.25, 10, wide='team').on()
         self.phase[e.name] %= 3
 
 
