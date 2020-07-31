@@ -21,7 +21,7 @@ class Yue(Adv):
 
     def d_coabs(self):
         if self.duration <= 60:
-            self.coab = ['Blade','Marth','Tiki']
+            self.coab = ['Blade','Marth','Dagger2']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

@@ -21,7 +21,7 @@ class Orion(Adv):
 
     def d_coabs(self):
         if self.sim_afflict:
-            self.coab = ['Ieyasu','Wand','Tiki']
+            self.coab = ['Ieyasu','Wand','Dagger2']
 
 if __name__ == '__main__':
     from core.simulate import test_with_argv

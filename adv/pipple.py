@@ -30,7 +30,7 @@ class Pipple(Adv):
         `s2, x=5
         `s4, x=5
     """
-    coab = ['Tiki', 'Xander', 'Axe2']
+    coab = ['Dagger2', 'Xander', 'Axe2']
     share = ['Gala_Elisanne']
 
     def prerun(self):

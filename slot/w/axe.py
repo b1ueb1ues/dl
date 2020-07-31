@@ -144,6 +144,12 @@ class Agito1_Fangtian_Huaji(WeaponBase):
     att = 1621
     s3 = agito_buffs['shadow'][1]
 
+class Agito2_Fangtian_Huaji(WeaponBase):
+    ele = ['shadow']
+    wt = 'axe'
+    att = 1781
+    s3 = agito_buffs['shadow'][2]
+
 class Agito2_Mjolnir(WeaponBase):
     ele = ['flame']
     wt = 'axe'
@@ -178,4 +184,4 @@ flame = Agito2_Mjolnir
 water = Agito1_Ohohagari
 wind = Agito1_Marmyadose
 light = HDT2_Mighty_Thundercrash
-shadow = Agito1_Fangtian_Huaji
+shadow = Agito2_Fangtian_Huaji

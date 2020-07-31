@@ -17,7 +17,7 @@ class Renee(Adv):
         `s2
         `fs, seq=5
         """
-    coab = ['Blade', 'Xander', 'Tiki']
+    coab = ['Blade', 'Xander', 'Dagger2']
     conf['afflict_res.bog'] = 100
     share = ['Gala_Elisanne', 'Eugene']
 

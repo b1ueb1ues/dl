@@ -19,7 +19,7 @@ class Dragonyule_Xander(Adv):
         `s1
         `s2, x=5 or s
     """
-    coab = ['Tiki', 'Blade', 'Thaniel']
+    coab = ['Dagger2', 'Blade', 'Thaniel']
     share = ['Gala_Elisanne', 'Eugene']
 
     def prerun(self):

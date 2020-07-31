@@ -1204,6 +1204,29 @@
             "startup": 0.1
         }
     },
+    "Gala_Laxi": {
+        "c": {
+            "att": 500,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.2667,
+            "sp": 2476,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 7732,
+            "startup": 0.1
+        }
+    },
     "Gala_Leif": {
         "c": {
             "att": 456,
@@ -3404,6 +3427,36 @@
             "startup": 0.25
         }
     },
+    "Summer_Amane": {
+        "c": {
+            "att": 467,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.333,
+            "sp": 3849,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.20,
+                10.0,
+                "crit",
+                "chance"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.0,
+            "sp": 5217,
+            "startup": 0.1
+        }
+    },
     "Summer_Celliera": {
         "c": {
             "att": 574,
@@ -3548,6 +3601,29 @@
             "startup": 0.1
         }
     },
+    "Summer_Norwin": {
+        "c": {
+            "att": 499,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 4513,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 4512,
+            "startup": 0.1
+        }
+    },
     "Summer_Patia": {
         "c": {
             "att": 519,
@@ -3597,6 +3673,29 @@
             "hit": 0,
             "recovery": 2.4,
             "sp": 7383,
+            "startup": 0.1
+        }
+    },
+    "Summer_Sinoa": {
+        "c": {
+            "att": 487,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 16.0,
+            "hit": 1,
+            "recovery": 1.333,
+            "sp": 1986,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.233,
+            "sp": 3812,
             "startup": 0.1
         }
     },

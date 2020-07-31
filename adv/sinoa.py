@@ -16,7 +16,7 @@ class Sinoa(Adv):
         `s2
         `s4
     '''
-    coab = ['Tiki', 'Gala_Sarisse', 'Marth']
+    coab = ['Dagger2', 'Gala_Sarisse', 'Marth']
     share = ['Ranzal']
 
     def prerun(self):

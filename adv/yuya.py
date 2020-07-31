@@ -16,7 +16,7 @@ class Yuya(Adv):
         `s1
         `fs, x=4
         """
-    coab = ['Blade', 'Marth', 'Tiki']
+    coab = ['Blade', 'Marth', 'Dagger2']
     share = ['Gala_Mym']
 
     def prerun(self):

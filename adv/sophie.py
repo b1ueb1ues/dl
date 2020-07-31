@@ -17,7 +17,7 @@ class Sophie(Adv):
         `s2, x=5
         `s4, x=5
     """
-    coab = ['Blade', 'Tiki', 'Lin_You']
+    coab = ['Blade', 'Dagger2', 'Lin_You']
     conf['afflict_res.poison'] = 0
     share = ['Curran']
 

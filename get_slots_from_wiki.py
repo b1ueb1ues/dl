@@ -233,7 +233,7 @@ if __name__ == '__main__':
     where = 'Rarity >= 4'
     wp_data = get_data(tables=tables, fields=fields, where=where)
     os.mkdir(AMULET_DIR)
-    with open(AMULET_DIR+'/all.py', 'w') as f:
+    with open(AMULET_DIR+'/all.py', 'w', encoding='utf8') as f:
         f.write('from slot.a import *\n\n')
         for item in wp_data:
             wp = item['title']
@@ -255,7 +255,7 @@ if __name__ == '__main__':
     for ele in ELEMENT_TYPE:
         where = 'Rarity >= 5 AND ElementalType = "{}"'.format(ele)
         dragon_data = get_data(tables=tables, fields=fields, where=where)
-        with open(DRAGON_DIR + '/' + ele.lower() + '.py', 'w') as f:
+        with open(DRAGON_DIR + '/' + ele.lower() + '.py', 'w', encoding='utf8') as f:
             f.write('from slot import *\n\n')
             for item in dragon_data:
                 dra = item['title']
@@ -282,10 +282,10 @@ if __name__ == '__main__':
     tables = 'Weapons'
     fields = 'Id,BaseId,FormId,WeaponName,WeaponNameJP,Type,TypeId,Rarity,ElementalType,ElementalTypeId,MinHp,MaxHp,MinAtk,MaxAtk,VariationId,Skill,SkillName,SkillDesc,Abilities11,Abilities21,IsPlayable,FlavorText,SellCoin,SellDewPoint,ReleaseDate,CraftNodeId,ParentCraftNodeId,CraftGroupId,FortCraftLevel,AssembleCoin,DisassembleCoin,DisassembleCost,MainWeaponId,MainWeaponQuantity,CraftMaterialType1,CraftMaterial1,CraftMaterialQuantity1,CraftMaterialType2,CraftMaterial2,CraftMaterialQuantity2,CraftMaterialType3,CraftMaterial3,CraftMaterialQuantity3,CraftMaterialType4,CraftMaterial4,CraftMaterialQuantity4,CraftMaterialType5,CraftMaterial5,CraftMaterialQuantity5,Obtain,Availability,AvailabilityId'
     for wt in WEAPON_TYPE:
-        where = 'ElementalType IS NOT NULL AND (Availability="High Dragon" OR Availability="Agito" OR Abilities11="634") AND Type = "{}"'.format(wt)
+        where = 'ElementalType IS NOT NULL AND (Availability="High Dragon" OR Availability="Agito") AND Type = "{}"'.format(wt)
         order_by = 'AvailabilityId DESC'
         weapon_data = get_data(tables=tables, fields=fields, where=where, order_by=order_by)
-        with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w') as f:
+        with open(WEAPON_DIR + '/' + wt.lower() + '.py', 'w', encoding='utf8') as f:
             weap_pref = {e: (None, 0) for e in ELEMENT_TYPE}
             f.write('from slot import *\n\n')
             for item in weapon_data:
@@ -299,7 +299,8 @@ if __name__ == '__main__':
                     prefix = 'HDT'
                 else:
                     prefix = wep['Availability']
-                prefix += '2' if int(wep['ParentCraftNodeId']) else '1'
+                tier = '2' if int(wep['ParentCraftNodeId']) else '1'
+                prefix += tier
                 clean_name = prefix + '_' + get_clean_name(wep['WeaponName'])
                 if prefix == 'Agito2':
                     clean_name = clean_name.replace('_Tier_II', '')
@@ -308,7 +309,7 @@ if __name__ == '__main__':
                 f.write('    wt = \'{}\'\n'.format(wt.lower()))
                 f.write('    att = {}\n'.format(wep_atk[1]))
                 if prefix.startswith('Agito'):
-                    f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][1]\n')
+                    f.write(f'    s3 = agito_buffs[\'{wep["ElementalType"].lower()}\'][{tier}]\n')
                 else:
                     f.write('    s3 = {} # ' + wep['SkillName'] + '\n')
                     f.write('    a = ' + ab + '\n')

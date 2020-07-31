@@ -16,7 +16,7 @@ class Gala_Euden(Adv):
         `s4, fsc
         `fs,seq=2 and cancel
     """
-    coab = ['Tiki','Dagger','Peony']
+    coab = ['Dagger2','Dagger','Peony']
     share = ['Ranzal']
     conf['afflict_res.paralysis'] = 0
 

@@ -18,7 +18,7 @@ class Xuan_Zang(Adv):
         `s4
         `fs, x=5
         """
-    coab = ['Blade', 'Marth', 'Tiki']
+    coab = ['Blade', 'Marth', 'Dagger2']
     share = ['Ranzal']
 
     def s1_proc(self, e):

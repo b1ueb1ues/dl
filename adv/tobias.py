@@ -82,7 +82,7 @@ class Tobias(Adv):
         `s4
         `s1
     """
-    coab = ['Bow','Blade','Tiki']
+    coab = ['Bow','Blade','Dagger2']
     share = ['Dragonyule_Xainfried']
 
     def init(self):

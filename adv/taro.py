@@ -12,7 +12,7 @@ class Taro(Adv):
         `s2
         `s4
         """
-    coab = ['Wand','Dagger','Tiki']
+    coab = ['Wand','Dagger','Dagger2']
     share = ['Curran']
 
 if __name__ == '__main__':

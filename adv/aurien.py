@@ -18,7 +18,7 @@ class Aurien(Adv):
         `s2, x=5
     """
     conf['afflict_res.burn'] = 0
-    coab = ['Blade', 'Marth', 'Tiki']
+    coab = ['Blade', 'Marth', 'Dagger2']
     share = ['Ranzal']
 
     def s2_proc(self, e):

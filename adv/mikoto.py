@@ -18,7 +18,7 @@ class Mikoto(Adv):
         `s2, x=5
         `s4, x=5
         """
-    coab = ['Dagger', 'Tiki', 'Marth']
+    coab = ['Dagger', 'Dagger2', 'Marth']
     share = ['Ranzal']
 
     def prerun(self):

@@ -17,7 +17,7 @@ class Norwin(Adv):
         `s2
         `s4
     """
-    coab = ['Ieyasu','Wand','Tiki']
+    coab = ['Ieyasu','Wand','Dagger2']
     share = ['Curran']
     conf['afflict_res.blind'] = 80
 

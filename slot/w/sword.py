@@ -168,6 +168,12 @@ class Agito1_Ame_no_Murakumo(WeaponBase):
     att = 1544
     s3 = agito_buffs['water'][1]
 
+class Agito2_Yitian_Jian(WeaponBase):
+    ele = ['shadow']
+    wt = 'sword'
+    att = 1696
+    s3 = agito_buffs['shadow'][2]
+
 class UnreleasedAgitoStr_LightSword(Agito1_Nothung):
     ele = ['light']
 
@@ -178,4 +184,4 @@ flame = Agito2_Nothung
 water = Agito1_Ame_no_Murakumo
 wind = Agito1_Excalibur
 light = HDT2_Absolute_Lightning
-shadow = Agito1_Yitian_Jian
+shadow = Agito2_Yitian_Jian

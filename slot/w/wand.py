@@ -168,6 +168,12 @@ class Agito1_Omizununo(WeaponBase):
     att = 1590
     s3 = agito_buffs['water'][1]
 
+class Agito2_Jiu_Ci(WeaponBase):
+    ele = ['shadow']
+    wt = 'wand'
+    att = 1747
+    s3 = agito_buffs['shadow'][2]
+
 class UnreleasedAgitoStr_LightWand(Agito1_Brisingr):
     ele = ['light']
 
@@ -178,4 +184,4 @@ flame = Agito2_Brisinga
 water = Agito1_Omizununo
 wind = Agito1_Camelot
 light = HDT2_Primeval_Thunder
-shadow = Agito1_Jiu_Ci
+shadow = Agito2_Jiu_Ci

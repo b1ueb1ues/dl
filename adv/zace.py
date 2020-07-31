@@ -17,7 +17,7 @@ class Zace(Adv):
         `s2
         `fs, x=5
     """
-    coab = ['Ieyasu','Wand','Tiki']
+    coab = ['Ieyasu','Wand','Dagger2']
     share = ['Ranzal']
 
 if __name__ == '__main__':

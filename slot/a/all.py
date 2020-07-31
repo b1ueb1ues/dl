@@ -448,3 +448,7 @@ class Memory_of_a_Friend(Amulet):
 class Me_and_My_Bestie(Amulet):
     att = 64
     a = [('k_burn', 0.30), ('bc_energy', 1)]
+
+class Blossoms_on_the_Waters_Edge(Amulet):
+    att = 62
+    a = [('dh', 0.08), ('dp', 0.10)]

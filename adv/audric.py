@@ -16,7 +16,7 @@ class Audric(Adv):
         `s4, fsc
         `fs, x=3
     """
-    coab = ['Ieyasu','Tiki','Forte']
+    coab = ['Ieyasu','Dagger2','Forte']
     share = ['Curran']
 
     def prerun(self):

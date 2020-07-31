@@ -312,7 +312,7 @@
                 "dh",
                 0.20
             ],
-            "tiki"
+            "dagger2"
         ],
         "Yurius": [
             [
@@ -463,6 +463,14 @@
                 0.10
             ],
             "gleif"
+        ],
+        "Summer_Amane": [
+            [
+                "achain",
+                0.06,
+                "hp60"
+            ],
+            "axe"
         ]
     },
     "light": {
@@ -809,9 +817,9 @@
             null,
             "sharena"
         ],
-        "Tiki": [
+        "Dagger2": [
             null,
-            "tiki"
+            "dagger2"
         ],
         "Gala_Leif": [
             null,

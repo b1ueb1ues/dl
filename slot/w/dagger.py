@@ -156,6 +156,12 @@ class Agito1_Qinghong_Jian(WeaponBase):
     att = 1513
     s3 = agito_buffs['shadow'][1]
 
+class Agito2_Qinghong_Jian(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 1662
+    s3 = agito_buffs['shadow'][2]
+
 class Agito1_Carnwennan(WeaponBase):
     ele = ['wind']
     wt = 'dagger'
@@ -178,4 +184,4 @@ flame = Agito2_Hrotti
 water = Agito1_Futsu_no_Mitama
 wind = Agito1_Carnwennan
 light = HDT2_Fulminators_Maw
-shadow = Agito1_Qinghong_Jian
+shadow = Agito2_Qinghong_Jian
