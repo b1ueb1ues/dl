@@ -9,14 +9,15 @@ class Summer_Norwin(Adv):
     a1 = ('ehaste', 3)
     a3 = ('k_poison',0.30)
     conf = {}
-    conf['slots.a'] = Twinfold_Bonds()+The_Fires_of_Hate()
+    conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    conf['slots.poison.a'] = Twinfold_Bonds()+The_Plaguebringer()
     conf['acl'] = """
         `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s4, fsc
         `s1
         `s2, self.phase_s12>=1
-        `fs, x=4
+        `fs, x=5
         """
     coab = ['Blade','Dragonyule_Xainfried','Lin_You']
     share = ['Curran']
