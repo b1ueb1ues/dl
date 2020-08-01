@@ -88,8 +88,8 @@ class Gala_Laxi(Adv):
         `ex
         `dragon
         `s3, not self.s3_buff
-        `s1
         `s2
+        `s1
         `s4
         """
     conf['afflict_res.burn'] = 0
