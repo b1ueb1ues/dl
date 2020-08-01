@@ -31,15 +31,10 @@ class Summer_Celliera(Adv):
         self.celery_s1_bog = 120
         self.celery_s1_hits = 5
 
-    @staticmethod
-    def prerun_skillshare(adv, dst):
-        adv.celery_s1_bog = 110
-        adv.celery_s1_hits = 3
-
     def s1_proc(self, e):
         self.dmg_make(e.name, 1.84)
-        self.afflics.bog.on(e.name, self.celery_s1_bog)
-        self.dmg_make(e.name, 1.84*self.celery_s1_hits)
+        self.afflics.bog.on(e.name, 120)
+        self.dmg_make(e.name, 1.84*5)
 
     def s2_proc(self, e):
         self.phase[e.name] += 1

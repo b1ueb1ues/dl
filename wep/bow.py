@@ -51,7 +51,7 @@ conf = {
     'dodge.recovery': 0 / 60.0,
 
     'missile_iv': {
-        'fs': 0.5,
+        'fs': 0.0,
         'x1': 0.0,
         'x2': 0.0,
         'x3': 0.0,

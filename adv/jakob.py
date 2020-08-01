@@ -18,7 +18,7 @@ class Jakob(Adv):
         `s4
         `fs, seq=5
     """
-    coab = ['Tiki', 'Xander', 'Dagger']
+    coab = ['Dagger2', 'Xander', 'Dagger']
     share = ['Gala_Elisanne', 'Ranzal']
     conf['afflict_res.bog'] = 100
 

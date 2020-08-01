@@ -23,7 +23,7 @@ class Durant(Adv):
         `s2, x=5
         `s4
     """
-    coab = ['Tiki', 'Tobias', 'Axe2']
+    coab = ['Dagger2', 'Tobias', 'Axe2']
     share = ['Curran']
 
 if __name__ == '__main__':

@@ -9,8 +9,12 @@ BASE_AFFLICT_UPTIME = {
 };
 WEAPON_TYPES = ['sword', 'blade', 'dagger', 'axe', 'lance', 'bow', 'wand', 'staff'];
 RANGED = ['wand', 'bow', 'staff'];
-DEFAULT_SHARE = 'Ranzal'
-DEFAULT_SHARE_ALT = 'Curran'
+SECONDARY_COABS = {
+    'axe2': 'Valentines_Melody',
+    'dagger2': 'Gala_Laxi'
+}
+DEFAULT_SHARE = 'Ranzal';
+DEFAULT_SHARE_ALT = 'Curran';
 function name_fmt(name) {
     return name.replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 }
@@ -61,8 +65,8 @@ function slots_icon_fmt(data) {
             if (WEAPON_TYPES.includes(c.toLowerCase())) {
                 img_urls.push('<img src="/dl-sim/pic/icons/' + c.toLowerCase() + '.png" class="slot-icon coab generic"/>');
             } else {
-                if (c === 'Axe2') {
-                    img_urls.push('<img src="/dl-sim/pic/character/Valentines_Melody.png" class="slot-icon coab unique"/>');
+                if (SECONDARY_COABS[c]) {
+                    img_urls.push('<img src="/dl-sim/pic/character/' + SECONDARY_COABS[c] + '.png" class="slot-icon coab unique"/>');
                 } else {
                     img_urls.push('<img src="/dl-sim/pic/character/' + c + '.png" class="slot-icon coab unique"/>');
                 }

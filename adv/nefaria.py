@@ -35,6 +35,7 @@ class Nefaria(Adv):
             'fs.dmg':7.90,
             'fs.hit':19,
             'fs.sp':2400,
+            'missile_iv.fs': 0.5
         }
         self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
         

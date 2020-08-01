@@ -18,7 +18,7 @@ class Orsem(Adv):
         `s2, fsc
         `fs, x=4
     """
-    coab = ['Tiki', 'Xander', 'Yurius']
+    coab = ['Dagger2', 'Xander', 'Yurius']
     share = ['Gala_Elisanne', 'Ranzal']
 
 if __name__ == '__main__':

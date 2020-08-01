@@ -18,7 +18,7 @@ class Melody(Adv):
         `s4
         `fs, x=5
     """
-    coab = ['Bow','Tobias','Tiki']
+    coab = ['Bow','Tobias','Dagger2']
     share = ['Dragonyule_Xainfried']
 
     def prerun(self):

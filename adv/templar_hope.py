@@ -16,7 +16,7 @@ class Templar_Hope(Adv):
         `s4
         `fs, x=2
         """
-    coab = ['Blade','Dragonyule_Xainfried','Tiki']
+    coab = ['Blade','Dragonyule_Xainfried','Dagger2']
     share = ['Curran']
     
     def s1_proc(self, e):

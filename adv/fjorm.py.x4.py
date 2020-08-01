@@ -18,7 +18,7 @@ class Fjorm(adv.fjorm.Fjorm):
     conf['rotation'] = """
         s4 s2 s1 dragon end
     """
-    coab = ['Blade', 'Tiki', 'Axe2']
+    coab = ['Blade', 'Dagger2', 'Axe2']
     share = ['Yue']
     conf['afflict_res.bog'] = 80
 

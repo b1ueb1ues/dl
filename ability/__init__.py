@@ -177,13 +177,13 @@ class Co_Ability(Ability):
         'wand': [('s','ex',0.15)],
         'sword': [('dh','passive',0.15)],
         'axe2': [('crit','damage',0.30)],
+        'dagger2': [('x','ex',0.20)],
         'geuden': [('da','passive',0.10),('dt','passive',0.20)],
         'megaman': [('killer','passive',0.15*Overdrive_Punisher.EFFICIENCY)],
         'tobias': [('buff','time',0.20)],
         'grace': [('fs','ex',0.20)],
         'sharena': [('paralysis_killer', 'passive', 0.08)],
         'peony': [('light','ele',0.20)],
-        'tiki': [('x','ex',0.20)],
         'gleif': [('debuff_killer', 'passive', 0.08)]
     }
     def __init__(self, name, value, cond=None):
@@ -624,6 +624,27 @@ class Energy_StrCrit(Ability):
         adv.Event('energy').listener(l_energy)
 
 ability_dict['epassive'] = Energy_StrCrit
+
+
+class Energy_Haste(Ability):
+    HASTE_LEVELS = {
+        3: (0.0, 0.05, 0.10, 0.15, 0.20, 0.25),
+    }
+    def __init__(self, name, value):
+        # self.atk_buff = Selfbuff('a1atk',0.00,-1,'att','passive').on()
+        # self.a1crit = Selfbuff('a1crit',0.00,-1,'crit','chance').on()
+        self.haste_values = self.STR_LEVELS[value]
+        super().__init__(name)
+
+    def oninit(self, adv, afrom=None):
+        self.haste_buff = adv.Selfbuff('ehaste', 0.00,-1,'sp', 'passive').on()
+        def l_energy(e):
+            self.haste_buff.off()
+            self.haste_buff.set(self.haste_values[round(e.stack)])
+            self.haste_buff.on()
+        adv.Event('energy').listener(l_energy)
+
+ability_dict['ehaste'] = Energy_StrCrit
 
 
 class Affliction_Edge(Ability):

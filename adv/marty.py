@@ -14,7 +14,7 @@ class Marty(Adv):
         `s1, fsc
         `fs, x=2
         """
-    coab = ['Blade', 'Marth', 'Tiki']
+    coab = ['Blade', 'Marth', 'Dagger2']
     share = ['Ranzal']
 
 if __name__ == '__main__':

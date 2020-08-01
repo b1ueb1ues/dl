@@ -30,7 +30,7 @@ class Peony(Adv):
 
     def d_coabs(self):
         if self.duration <= 60:
-            self.coab = ['Tiki','Sharena','Malora']
+            self.coab = ['Dagger2','Sharena','Malora']
 
     def fs_proc_alt(self, e):
         self.fs_str.on()

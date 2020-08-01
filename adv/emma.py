@@ -22,7 +22,7 @@ class Emma(Adv):
         `s3
         `fs, x=5
         """
-    coab = ['Tobias', 'Tiki', 'Bow']
+    coab = ['Tobias', 'Dagger2', 'Bow']
     share = ['Patia','Summer_Cleo']
 
     def init(self):

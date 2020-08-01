@@ -162,6 +162,23 @@ class CrisisModifier(Modifier):
         return self.mod_value
 
 
+class MultiBuffManager:
+    def __init__(self, buffs):
+        self.buffs = buffs
+
+    def on(self):
+        for b in self.buffs:
+            b.on()
+        return self
+
+    def off(self):
+        for b in self.buffs:
+            b.off()
+        return self
+
+    def get(self):
+        return all(map(lambda b: b.get(), self.buffs))
+
 class Buff(object):
     _static = Static({
         'all_buffs': [],
@@ -1964,20 +1981,27 @@ class Adv(object):
 
     @staticmethod
     def do_buff(e, buffarg):
-        wide = buffarg[0]
-        buffarg = buffarg[1:]
-        buff = None
-        if wide == 'team':
-            buff = Teambuff(e.name, *buffarg)
-        elif wide == 'self':
-            buff = Selfbuff(e.name, *buffarg)
-        elif wide == 'debuff':
-            buff = Debuff(e.name, *buffarg)
-        elif wide == 'spd':
-            buff = Spdbuff(e.name, *buffarg)
+        if not isinstance(buffarg[0], tuple):
+            buffarg = [buffarg]
+        buffs = []
+        for ba in buffarg:
+            wide = ba[0]
+            ba = ba[1:]
+            if wide == 'team':
+                buff = Teambuff(e.name, *ba)
+            elif wide == 'self':
+                buff = Selfbuff(e.name, *ba)
+            elif wide == 'debuff':
+                buff = Debuff(e.name, *ba)
+            elif wide == 'spd':
+                buff = Spdbuff(e.name, *ba)
+            else:
+                buff = Buff(e.name, *ba)
+            buffs.append(buff)
+        if len(buffs) > 1:
+            return MultiBuffManager(buffs)
         else:
-            buff = Buff(e.name, *buffarg)
-        return buff
+            return buffs[0]
 
     def rotation(self):
         r = 0

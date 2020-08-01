@@ -19,7 +19,7 @@ class Laxi(Adv):
         `s4
         `fs, x=5
         '''
-    coab = ['Dagger', 'Marth', 'Tiki']
+    coab = ['Dagger', 'Marth', 'Dagger2']
     share = ['Ranzal']
 
     def prerun(self):  

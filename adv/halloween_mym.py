@@ -16,7 +16,7 @@ class Halloween_Mym(Adv):
         `s4, cancel
         `fsf, x=4 and (s1.charged == self.sp_val(4))
     """
-    coab = ['Blade', 'Tiki', 'Serena']
+    coab = ['Blade', 'Dagger2', 'Serena']
     share = ['Gala_Mym']
 
     conf['dragonform'] = {

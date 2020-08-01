@@ -111,7 +111,7 @@
     "s": 1,
     "cost": 3,
     "type": 1,
-    "sp": 5033
+    "sp": 6887
   },
   "Eugene": {
     "s": 2,
@@ -353,6 +353,12 @@
     "type": 1,
     "sp": 4800
   },
+  "Gala_Laxi": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5075
+  },
   "Dragonyule_Cleo": {
     "s": 1,
     "cost": 3,
@@ -364,6 +370,12 @@
     "cost": 5,
     "type": 1,
     "sp": 6242
+  },
+  "Summer_Norwin": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 17145
   },
   "Mitsuhide": {
     "s": 1,
@@ -870,6 +882,12 @@
     "cost": 5,
     "type": 1,
     "sp": 7149
+  },
+  "Summer_Sinoa": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 13343
   },
   "Lucretia": {
     "s": 1,

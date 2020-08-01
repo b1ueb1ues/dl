@@ -168,6 +168,12 @@ class Agito1_Kunado(WeaponBase):
     att = 1467
     s3 = agito_buffs['water'][1]
 
+class Agito2_Goosefoot_Staff(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 1612
+    s3 = agito_buffs['shadow'][2]
+
 class UnreleasedAgitoStr_LightStaff(Agito1_Gjallarhorn):
     ele = ['light']
 
@@ -178,4 +184,4 @@ flame = Agito2_Gjallarhorn
 water = Agito1_Kunado
 wind = Agito1_Avalon
 light = HDT2_Heavensneer
-shadow = Agito1_Goosefoot_Staff
+shadow = Agito2_Goosefoot_Staff

@@ -1,13 +1,19 @@
 agito_buffs = {
     'flame': [
         {
-        'buff'     : [('self',0.10,-1,'att','buff'), None],
+        'buff'     : [('self',0.10,-1,'att','buff'), ('self',0.03,-1,'regen')],
         'sp'       : 3000,
         'startup'  : 0.25,
         'recovery' : 0.90,
         },
         {
-        'buff'     : [('self',0.20,-1,'att','buff'), None],
+        'buff'     : [('self',0.20,-1,'att','buff'), ('self',0.05,-1,'regen')],
+        'sp'       : 3000,
+        'startup'  : 0.25,
+        'recovery' : 0.90,
+        },
+        { # combo time
+        'buff'     : [('self',0.20,-1,'att','buff'), ('self',0.05,-1,'regen')],
         'sp'       : 3000,
         'startup'  : 0.25,
         'recovery' : 0.90,
@@ -36,6 +42,12 @@ agito_buffs = {
         },
         {
         'buff'     : [('spd',0.30,-1), ('self',0.40,-1,'defense')],
+        'sp'       : 3000,
+        'startup'  : 0.25,
+        'recovery' : 0.90,
+        },
+        {
+        'buff'     : [[('spd',0.30,-1), ('self',0.05,-1,'crit','chance')], ('self',0.40,-1,'defense')],
         'sp'       : 3000,
         'startup'  : 0.25,
         'recovery' : 0.90,

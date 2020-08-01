@@ -21,7 +21,7 @@ class Pietro(Adv):
         `s4
         `fs, x=5
         """
-    coab = ['Tiki', 'Xander', 'Dagger']
+    coab = ['Dagger2', 'Xander', 'Dagger']
     share = ['Gala_Elisanne', 'Ranzal']
 
 if __name__ == '__main__':

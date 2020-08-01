@@ -19,7 +19,7 @@ class Karl(Adv):
         `s4, cancel
         `fs, x=2
     """
-    coab = ['Blade', 'Tiki', 'Bow']
+    coab = ['Blade', 'Dagger2', 'Bow']
     share = ['Ranzal']
 
 if __name__ == '__main__':

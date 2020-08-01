@@ -156,6 +156,12 @@ class Agito1_Qinglong_Yanyuedao(WeaponBase):
     att = 1575
     s3 = agito_buffs['shadow'][1]
 
+class Agito2_Qinglong_Yanyuedao(WeaponBase):
+    ele = ['shadow']
+    wt = 'lance'
+    att = 1730
+    s3 = agito_buffs['shadow'][2]
+
 class Agito1_Rhongomyniad(WeaponBase):
     ele = ['wind']
     wt = 'lance'
@@ -178,4 +184,4 @@ flame = Agito2_Gungnir
 water = Agito1_Ame_no_Nuhoko
 wind = Agito1_Rhongomyniad
 light = HDT2_Brilliant_Lightflash
-shadow = Agito1_Qinglong_Yanyuedao
+shadow = Agito2_Qinglong_Yanyuedao

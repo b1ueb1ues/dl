@@ -19,7 +19,7 @@ class Summer_Ranzal(Adv):
         `s4
         `s2
         """
-    coab = ['Xander', 'Dagger', 'Tiki']
+    coab = ['Xander', 'Dagger', 'Dagger2']
     conf['afflict_res.bog'] = 100
     share = ['Gala_Elisanne', 'Ranzal']
 

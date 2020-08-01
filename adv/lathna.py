@@ -26,16 +26,16 @@ class Lathna(Adv):
 
     def d_coabs(self):
         if self.duration <= 120 and self.duration > 60:
-            self.coab = ['Ieyasu','Yaten','Tiki']
+            self.coab = ['Ieyasu','Yaten','Dagger2']
         if self.duration <= 60:
-            self.coab = ['Ieyasu','Gala_Alex','Tiki']
+            self.coab = ['Ieyasu','Gala_Alex','Dagger2']
         if self.sim_afflict:
             if self.duration > 120:
                 self.coab = ['Ieyasu','Forte','Wand']
             if self.duration <= 120 and self.duration > 60:
-                self.coab = ['Ieyasu','Forte','Tiki']
+                self.coab = ['Ieyasu','Forte','Dagger2']
             if self.duration <= 60:
-                self.coab = ['Ieyasu','Yaten','Tiki']
+                self.coab = ['Ieyasu','Yaten','Dagger2']
         
     conf['dragonform'] = {
         'act': 'c3 s c3 c3 c2 c2 c2',

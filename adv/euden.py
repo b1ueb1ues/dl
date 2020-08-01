@@ -19,7 +19,7 @@ class Euden(Adv):
         `s4, fsc
         `fs, x=3
     """
-    coab = ['Blade', 'Tiki', 'Yuya']
+    coab = ['Blade', 'Dagger2', 'Yuya']
     conf['afflict_res.burn'] = 0
     share = ['Ranzal']
 

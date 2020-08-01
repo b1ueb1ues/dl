@@ -37,7 +37,7 @@ def sim_adv(adv_file, special=None, mass=None):
 
     adv_file = os.path.basename(adv_file)
     output = open(os.path.join(ROOT_DIR, OUTPUT_DIR,
-                               'chara', '{}.csv'.format(adv_file)), 'w')
+                               'chara', '{}.csv'.format(adv_file)), 'w', encoding='utf8')
     if special is None and adv_file.count('.py') > 1:
         special == True
     if special:
@@ -56,7 +56,7 @@ def sim_adv(adv_file, special=None, mass=None):
 def sim_adv_list(list_file):
     special = list_file.startswith('chara_sp')
     mass = list_file.endswith('slow.txt') and not special
-    with open(os.path.join(ROOT_DIR, list_file)) as f:
+    with open(os.path.join(ROOT_DIR, list_file), encoding='utf8') as f:
         for adv_file in f:
             sim_adv(adv_file.strip(), special, mass)
 
@@ -72,7 +72,7 @@ def download_writeups():
     client = gspread.authorize(creds)
     sheet = client.open('dl-adv-writeups').sheet1
 
-    with open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '_writeups.csv'), 'w') as f:
+    with open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '_writeups.csv'), 'w', encoding='utf8') as f:
         for line in sheet.get_all_values()[1:]:
             f.write(line[0])
             f.write(',')
@@ -93,7 +93,7 @@ def combine():
                 ROOT_DIR, OUTPUT_DIR, 'page/{}_{}.csv'.format(p, a)), 'w')
 
     for list_file in ADV_LIST_FILES:
-        with open(os.path.join(ROOT_DIR, list_file)) as src:
+        with open(os.path.join(ROOT_DIR, list_file), encoding='utf8') as src:
             c_page, c_aff = '60', '_'
             for adv_file in src:
                 adv_file = adv_file.strip()

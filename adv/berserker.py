@@ -17,7 +17,7 @@ class Berserker(Adv):
         `s4
         `fs, x=3
         """
-    coab = ['Berserker','Ieyasu','Wand','Tiki']
+    coab = ['Berserker','Ieyasu','Wand','Dagger2']
     share = ['Curran']
 
     def s1_proc(self, e):

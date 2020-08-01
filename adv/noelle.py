@@ -21,7 +21,7 @@ class Noelle(Adv):
         `s4
         `s1
         """
-    coab = ['Tiki','Tobias','Bow']
+    coab = ['Dagger2','Tobias','Bow']
     share = ['Dragonyule_Xainfried']
 
     def init(self):

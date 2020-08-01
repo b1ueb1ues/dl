@@ -170,3 +170,7 @@ zena.py
 catherine.py
 summer_mikoto.py
 summer_patia.py
+summer_amane.py
+gala_laxi.py
+summer_sinoa.py
+summer_norwin.py

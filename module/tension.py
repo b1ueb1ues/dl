@@ -15,8 +15,11 @@ class Tension:
         self.current_scope = None
         self.stack = 0
         self.has_stack = Buff('has_'+self.name, 1, -1, self.name, self.name)
+        self.disabled = False
 
     def add(self, n=1, team=False):
+        if self.disabled:
+            return
         if n < 1:
             return
         if team:

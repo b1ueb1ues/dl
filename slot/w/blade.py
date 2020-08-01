@@ -150,6 +150,12 @@ class Agito1_Qixing_Baodao(WeaponBase):
     att = 1636
     s3 = agito_buffs['shadow'][1]
 
+class Agito2_Qixing_Baodao(WeaponBase):
+    ele = ['shadow']
+    wt = 'blade'
+    att = 1798
+    s3 = agito_buffs['shadow'][2]
+
 class Agito1_Tyrfing(WeaponBase):
     ele = ['flame']
     wt = 'blade'
@@ -178,4 +184,4 @@ flame = Agito2_Tyrfing
 water = Agito1_Ame_no_Habakiri
 wind = Agito1_Arondight
 light = HDT2_Brilliant_Flash
-shadow = Agito1_Qixing_Baodao
+shadow = Agito2_Qixing_Baodao

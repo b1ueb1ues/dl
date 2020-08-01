@@ -1,7 +1,8 @@
 # dragalia lost sim and analysis
 
-
 ## Running
+Python 3.7+
+
 ```
 python adv/[someone].py [loglevel(-4,-3,-2,-1,0,1,2)] [teamdps] [mass]
 ```

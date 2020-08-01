@@ -14,7 +14,7 @@ class Vida(Adv):
         `s1
         `fs, x=5
         """
-    coab = ['Ieyasu','Wand','Tiki']
+    coab = ['Ieyasu','Wand','Dagger2']
     share = ['Curran']
 
     def prerun(self):
