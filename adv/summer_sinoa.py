@@ -11,13 +11,12 @@ class Summer_Sinoa(Adv):
     conf['slots.d'] = Ariel()
     conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
     conf['acl'] = """
-        `dragon.act("c3 s end")
         `s3, not self.s3_buff
         `s4
         `s2, self.overload=3
         `s1
         """
-    coab = ['Blade','Eleonora','Lin_You']
+    coab = ['Blade','Eleonora','Tobias']
     share = ['Curran']
 
     def prerun(self):
@@ -55,8 +54,8 @@ class Summer_Sinoa(Adv):
     def s2_proc(self, e):
         if self.overload == 3:
             self.inspiration.add(2, team=True)
-            Teambuff('s2_crit_rate', 0.15, 30, 'crit', 'rate').on()
-            Teambuff('s2_crit_dmg', 0.10, 30, 'crit', 'damage').on()
+            Teambuff('s2_crit_rate', 0.20, 30, 'crit', 'rate').on()
+            Teambuff('s2_crit_dmg', 0.15, 30, 'crit', 'damage').on()
         else:
             buffs = [
                 lambda: self.inspiration.add(2),
