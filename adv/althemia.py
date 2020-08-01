@@ -11,11 +11,11 @@ class Althemia(Adv):
     conf = {}
     conf['slots.a'] = Candy_Couriers()+The_Fires_of_Hate()
     conf['acl'] = """
-        `dragon.act("c3 s end")
         `s3, not self.s3_buff
-        `s1
         `s2
         `s4
+        `s1,self.s3_buff
+        `dragon.act('c3 s end'),x=5
     """
     coab = ['Blade','Delphi','Gala_Alex']
     conf['afflict_res.poison'] = 0
