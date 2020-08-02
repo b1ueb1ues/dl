@@ -11,13 +11,15 @@ class Heinwald(Adv):
 
     conf = {}
     conf['acl'] = '''
-        `dragon.act('c3 s end')
-        `s3, not self.s3_buff
-        `s2, s=3 or cancel
-        `s4, cancel
-        `s1, cancel
+        queue prep and not self.s3_buff
+        `s3;s1;s4;s2
+        end
+        `s4
+        `s1
+        `s2, cancel
+        `dragon.act('c3 s end'),x=5
         '''
-    coab = ['Blade','Wand','Dagger']
+    coab = ['Blade','Wand','Bow']
     share = ['Curran']
     
     def s2_proc(self, e):
