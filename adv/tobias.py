@@ -98,7 +98,7 @@ class Tobias(Adv):
         self.s2.charge(1)
         self.s2_x_alt = X_alt(self, 'sacred_blade', sacred_blade_conf, x_proc=self.l_sacred_blade_x, no_fs=True, no_dodge=True)
         self.a_s2 = self.s2.ac
-        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 1.91}))
+        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 1.53}))
 
     def l_sacred_blade_x(self, e):
         xseq = e.name

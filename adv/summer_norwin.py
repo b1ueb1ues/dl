@@ -10,16 +10,15 @@ class Summer_Norwin(Adv):
     a3 = ('k_poison',0.30)
     conf = {}
     conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
-    conf['slots.poison.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    conf['slots.poison.a'] = conf['slots.a']
     conf['acl'] = """
-        `dragon.act("c3 s end")
+        `dragon.act("c3 s end"), x=5 and s1.charged<2000
         `s3, not self.s3_buff
-        `s4, fsc
         `s1
-        `s2, self.phase_s12>=1
-        `fs, x=5
+        `s2, x=5
+        `s4, x=5
         """
-    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    coab = ['Blade','Dragonyule_Xainfried','Eleonora']
     share = ['Curran']
 
     def prerun(self):
@@ -56,8 +55,7 @@ class Summer_Norwin(Adv):
         elif self.phase_s12 == 3:
             self.dmg_make(f'{e.name}_p{self.phase_s12}', 16.38)
         elif self.phase_s12 == 4:
-            # if self.doleful > 0:
-            #     self.set_hp(self.hp-20)
+            self.set_hp(self.hp*(1-self.doleful*0.20))
             self.dmg_make(f'{e.name}_p{self.phase_s12}', 20.16)
             self.afflics.poison(f'{e.name}_p{self.phase_s12}',120,0.582,30)
             self.doleful = min(self.doleful+1, 4)

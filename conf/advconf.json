@@ -79,7 +79,7 @@
         "s1": {
             "dmg": 8.25,
             "hit": 1,
-            "recovery": 2.55,
+            "recovery": 2.267,
             "sp": 2351,
             "startup": 0.1
         },
@@ -228,7 +228,7 @@
         "s1": {
             "dmg": 0.0,
             "hit": 0,
-            "recovery": 2.1,
+            "recovery": 1.7,
             "sp": 3051,
             "startup": 0.1
         },
@@ -430,7 +430,7 @@
         "s2": {
             "dmg": 0.0,
             "hit": 5,
-            "recovery": 3.85,
+            "recovery": 3.13,
             "sp": 4935,
             "startup": 0.1
         }
@@ -595,7 +595,7 @@
             ],
             "dmg": 0.0,
             "hit": 4,
-            "recovery": 2.0,
+            "recovery": 1.633,
             "sp": 3083,
             "startup": 0.1
         },
@@ -1808,7 +1808,7 @@
         "s1": {
             "dmg": 12.54,
             "hit": 2,
-            "recovery": 2.25,
+            "recovery": 1.933,
             "sp": 3130,
             "startup": 0.1
         },
@@ -2060,7 +2060,7 @@
         "s1": {
             "dmg": 0,
             "hit": 0,
-            "recovery": 2.0667,
+            "recovery": 1.70,
             "sp": 3194,
             "startup": 0.1
         },
@@ -2083,14 +2083,14 @@
         "s1": {
             "dmg": 7.4,
             "hit": 5,
-            "recovery": 3.1,
+            "recovery": 2.7,
             "sp": 2325,
             "startup": 0.1
         },
         "s2": {
             "dmg": 7.42,
             "hit": -2,
-            "recovery": 3.85,
+            "recovery": 3.13,
             "sp": 4730,
             "startup": 0.1
         }
@@ -2106,7 +2106,7 @@
         "s1": {
             "dmg": 10.58,
             "hit": -2,
-            "recovery": 3.95,
+            "recovery": 3.1,
             "sp": 2490,
             "startup": 0.1
         },
@@ -2205,7 +2205,7 @@
         "s2": {
             "dmg": 0.0,
             "hit": 3,
-            "recovery": 2.7,
+            "recovery": 2.167,
             "sp": 5001,
             "startup": 0.1
         }
@@ -2649,7 +2649,7 @@
         "s1": {
             "dmg": 8.32,
             "hit": 4,
-            "recovery": 2.6,
+            "recovery": 2.2,
             "sp": 2590,
             "startup": 0.1
         },
@@ -3392,16 +3392,16 @@
             ],
             "dmg": 9.6,
             "hit": 12,
-            "recovery": 2.5,
+            "recovery": 1.1667,
             "sp": 2649,
             "startup": 0.1
         },
         "s2": {
             "dmg": 12.88,
             "hit": 2,
-            "recovery": 0.9,
+            "recovery": 1.46,
             "sp": 8300,
-            "startup": 0.25
+            "startup": 0.1
         }
     },
     "Su_Fang": {
@@ -3946,7 +3946,7 @@
         "s1": {
             "dmg": 0,
             "hit": 0,
-            "recovery": 2.98,
+            "recovery": 2.83,
             "sp": 2640,
             "startup": 0.1
         },

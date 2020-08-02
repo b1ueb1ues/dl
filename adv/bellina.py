@@ -99,7 +99,7 @@ class Bellina(Adv):
         self.a_s1a = S('s1', Conf({'startup': 0.10, 'recovery': 1.10}))
 
         self.a_s2 = self.s2.ac
-        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 2.70}))
+        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 2.26}))
 
         self.fsf_a = Fs('fsf', self.conf.fsf)
 
