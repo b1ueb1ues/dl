@@ -55,8 +55,9 @@ class Bellina(Adv):
         `s2, sim_duration-now()<1.5
         `s3, not self.s3_buff
         if self.dragondrive_buff.get()
+        `s4, self.dragonform.dragon_gauge>1000 and x=3
         `s1, self.dragonform.dragon_gauge>1000 and x=3
-        `s4, x=3
+        `s1, s=4
         `fsf, x=3
         else
         `s2
@@ -65,7 +66,7 @@ class Bellina(Adv):
         end
     """
     coab = ['Ieyasu','Curran','Berserker']
-    share = ['Veronica']
+    share = ['Sha_Wujing']
 
     def fs_proc_alt(self, e):
         with CrisisModifier(e.name, 1.00, self.hp):
@@ -138,11 +139,13 @@ class Bellina(Adv):
             # 2.7666666507720947 (?)
             # 1212 mod, 3x crisis
         else:
-            self.dragonform.charge_gauge(1200, utp=True)
-            # 1 hp loss = 1 gauge gain, will assume 3000 max hp here
+            # 2% hp loss = 1% gauge gain, cannot dhaste
             if self.hp > 30:
-                self.dragonform.charge_gauge(3000 * (self.hp-30)/100, utp=True)
+                # TODO: but at this time self.hp = 40, should we keep this? or use 100hp->30hp = 1051 utp
+                #self.dragonform.charge_gauge(3000 * (self.hp-30)/200, utp=True)
+                self.dragonform.charge_gauge(1051, utp=True, dhaste=False)
                 self.set_hp(30)
+            self.dragonform.charge_gauge(1200, utp=True)  # ingame logic, hp2utp before 1200
             # regular buff duration (?)
 
     def s_proc(self, e):
