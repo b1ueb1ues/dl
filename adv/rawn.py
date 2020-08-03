@@ -1,25 +1,26 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Rawn
 
-class Rawn(adv.Adv):
-    def prerun(this):
-        if this.condition('c1+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=1
-                """
+class Rawn(Adv):
+    conf = {}
+    conf['slots.paralysis.a'] = Resounding_Rendition()+Spirit_of_the_Season()
+    conf['acl'] = """
+        `dragon, fsc
+        `s1
+        `s2
+        `s3
+        `s4
+        `fs, x=4
+        """
+    coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
+    def s1_proc(self, e):
+        Debuff(e.name, 0.05, 10, 0.4, 'attack').on()
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        """
-    adv_test.test(module(), conf, verbose=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

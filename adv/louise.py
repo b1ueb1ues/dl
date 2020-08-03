@@ -1,36 +1,42 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Louise
 
-class Louise(adv.Adv):
-    a1 = ('od',0.13)
+class Louise(Adv):
+    a1 = ('od',0.15)
+    a3 = ('bc',0.15)
 
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.poison.resist=0
-        else:
-            this.afflics.poison.resist=100
+    conf = {}
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['acl'] = """
+        `dragon.act("c3 s end"), fsc
+        `s3, not self.s3_buff
+        `s1
+        `s4
+        `s2
+        `fs, x=5
+        """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
+    def s1_proc(self, e):
+        self.dmg_make(e.name, 3.87)
+        self.afflics.poison(e.name, 120, 0.582)
+        self.dmg_make(e.name, 3.87)
+        self.dmg_make(e.name, 3.87)
+        self.dmg_make(e.name, 3.87)
+        self.set_hp(self.hp+5)
 
-    def s1_proc(this, e):
-        this.afflics.poison('s1', 120, 0.582)
-
-
-    def s2_proc(this, e):
-        coef = (4.035-2.69)*3 * this.afflics.poison.get()
-        this.dmg_make("o_s2_boost", coef)
+    def s2_proc(self, e):
+        with KillerModifier(e.name, 'hit', 0.5, ['poison']), CrisisModifier(e.name, -0.5, self.hp):
+            self.dmg_make(e.name, 6.98)
+            self.dmg_make(e.name, 6.98)
+            self.dmg_make(e.name, 6.98)
 
 
 if __name__ == '__main__':
-    module().comment = 'no fs'
-    conf = {}
-    from slot.d import *
-#    conf['slot.d'] = Pazuzu()
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

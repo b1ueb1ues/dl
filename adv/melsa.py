@@ -1,5 +1,6 @@
-import adv_test
-from adv import *
+from core.advbase import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Melsa
@@ -7,22 +8,19 @@ def module():
 class Melsa(Adv):
     a3 = ('cc',0.08,'hit15')
 
-
+    conf = {}
+    conf['slots.a'] = Twinfold_Bonds()+Stellar_Show()
+    conf['acl'] = """
+        `dragon
+        `s3, not self.s3_buff
+        `s1, fsc
+        `s2, fsc
+        `s4, fsc
+        `fs, x=2
+    """
+    coab = ['Blade', 'Serena', 'Marth']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `rotation
-        """
-    conf['rotation'] = """
-        C4FS C4FS C2- S1 C4FS C5- S2 C2- S1 C4FS C5- S3 C1- S1 C4FS C5-
-        S2 C2- S1 C4FS C4FS C1- S1 C4FS C5- S3 C1- S2 C1- S1
-    """
-
-    #conf['acl'] = """
-    #    `s1
-    #    `s3
-    #    `s2
-    #    """
-    adv_test.test(module(), conf, verbose=0, mass=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

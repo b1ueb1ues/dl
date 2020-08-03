@@ -1,31 +1,25 @@
-import adv_test
-from adv import *
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Francesca
 
 class Francesca(Adv):
     a1 = ('fs',0.30)
-
+    conf = {}
+    conf['slots.a'] = Twinfold_Bonds()+Primal_Crisis()
+    conf['acl'] = """
+        `dragon.act("c3 s end")
+        `s3, not self.s3_buff
+        `s1
+        `s2
+        `s4
+        `fs, x=4
+        """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `rotation
-        """
-    conf['rotation_init'] = """
-        C4FS C4FS C1- 
-    """
-    conf['rotation'] = """
-        S1 C4FS C4FS C1- S1 C1- S2 C4FS C5- S1 C1- S3 
-        C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 c4fs c5
-    """
-
-    #conf['acl'] = """
-    #    `s1
-    #    `s3
-    #    `s2
-    #    """
-    adv_test.test(module(), conf, verbose=0, mass=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

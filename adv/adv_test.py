@@ -1,54 +1,65 @@
 # /usr/bin/env python
 # encoding:utf-8
-if __package__ is None or __package__ == '':
-    import os
-    os.sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from core.log import *
 import time
 import sys
-import conf as globalconf
-#import random
-from core import condition as m_condition
-from core.acl import *
+import io
+import csv
+from contextlib import redirect_stdout
 
+#import random
+from core.condition import Condition
+import multiprocessing
 
 page = ''
-if len(sys.argv) >= 3:
-    if sys.argv[2] == 'sp':
-        sim_duration = 180
-        page = 'sp'
-    else:
-        sim_duration = int(sys.argv[2])
-        page = sys.argv[2]
-else:
-    sim_duration = 180
+
+sim_duration = 180
 sim_times = 1000
 
-team_dps = 16000 
-#team_dps = 5000
-
-# 5000 raw skill damage, 0.5 bosst, 2 person, cost 5 stacks
-energy_efficiency = 12000 * 0.5 * 2 / 5 / sim_duration 
-katana = 0
+team_dps = 16000
 
 ex_str = '_'
 ex_set = {}
-if len(sys.argv) >= 4:
-    ex_str = sys.argv[3]
-    for i in ex_str:
-        if i == 'k':
-            ex_set['blade'] = ('ex','blade')
-            katana = 1
-        elif i == 'r':
-            ex_set['wand'] = ('ex','wand')
-        elif i == 'd':
-            ex_set['dagger'] = ('ex','dagger')
-        elif i == 'b':
-            ex_set['bow'] = ('ex','bow')
 ex_team_init = 0
 
+def skill_efficiency(mod):
+    return (team_dps * 1.25) * mod * 2 / 5 / sim_duration
+tension_efficiency = {
+    'energy': 0.5,
+    'inspiration': 0.6
+}
 
+
+def set_ex(ex_string):
+    global ex_set
+    global ex_str
+    ex_set = {}
+    ex_str = ''
+
+    ex_mapping = {
+        'k': 'blade',
+        'r': 'wand',
+        'd': 'dagger',
+        'b': 'bow',
+        'm': 'axe2',
+        's': 'sword',
+        'g': 'geuden',
+        't': 'tobias'
+    }
+
+    for e in ex_string:
+        if e in ex_mapping:
+            ex_str += e
+            ex_name = ex_mapping[e]
+            ex_set[ex_name] = ('ex', ex_name)
+
+    if len(ex_str) == 0:
+        ex_str = '_'
+
+
+# if not sys.argv[0].endswith('flask') and len(sys.argv) >= 4:
+#     set_ex(sys.argv[3])
+#     ex_str = sys.argv[3]
 
 mname = ""
 base_str = 0
@@ -60,14 +71,11 @@ comment = ""
 dps = 0
 bps = 0
 real_duration = 0
-line = ''
-line_k = ''
 dmax = 0
 dmin = 0
 
-def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
+def test(classname, conf, verbose=None, mass=None, duration=None, cond=None, ex=None, lines=None, special=False):
     global team_dps
-    global energy_efficiency
     global mname
     global displayed_str
     global base_str
@@ -78,20 +86,51 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     global real_duration
     global sim_times
     global ex_str
-    global line
-    global line_k
 
     if duration:
         sim_duration = duration
+    else:
+        try:
+            sim_duration = int(sys.argv[2])
+        except:
+            sim_duration = 180
 
-    if loglevel==None:
+    if verbose is not None:
         loglevel = verbose
-    #random.seed()
+    else:
+        try:
+            loglevel = int(sys.argv[1])
+        except:
+            loglevel = 0
+
+    if ex is not None:
+        ex_str = ex
+        set_ex(ex_str)
+    else:
+        try:
+            ex_str = sys.argv[3]
+            set_ex(ex_str)
+        except:
+            pass 
+
+    if mass is None:
+        try:
+            mass = int(sys.argv[4])
+        except:
+            pass
+
     a = time.time()
     if classname.name :
         mname = classname.name
     else:
         mname = classname.__name__
+
+    if lines is None:
+        lines = {}
+        lines['_'] = []
+        lines['k'] = []
+        lines['r'] = []
+        lines['kr'] = []
 
     if verbose == 255:
         loglevel = -2
@@ -108,47 +147,31 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         module.racl.test(classname, conf, sim_duration)
         return
 
-
     global ex_set
-    if not no_cond:
-        adv = classname(conf=conf,cond=1)
-        adv.ex = ex_set
-    else:
-        adv = classname(conf=conf,cond=0)
-        adv.ex = ex_set
-
-    comment = adv.comment
-
+    adv = classname(conf=conf,cond=cond)
+    adv.slots.c.ex.update(ex_set)
     real_duration = adv.run(sim_duration)
 
-    global ex_team_init
-    if not ex_team_init :
-        ex_team_init = 1
-        for i in adv.ex:
-            if i == 'blade':
-                team_dps *= 1.1
-                energy_efficiency *= 1.1
-            elif i == 'wand':
-                team_dps *= 1.08
-                energy_efficiency *= 1.15
-            elif i == 'dagger':
-                team_dps *= 1.07
-                energy_efficiency *= 1.07
-            elif i == 'bow':
-                team_dps *= 1.05
-
-
-
+    if mass and loglevel <=0:
+        if mass != 1:
+            sim_times = mass
+        r, real_duration = do_mass_sim(classname, conf, cond, ex_set, sim_duration)
+    else:
+        r = sum_dmg(real_duration)
+    comment = adv.comment
+    
     amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
     amulets += '['+adv.slots.d.__class__.__name__+']'
+    amulets += '['+adv.slots.w.__class__.__name__.split('_')[0]+']'
     #comment = amulets + comment
 
-    if not no_cond:
-        condition = adv.m_condition.p()
-    else:
-        condition = ''
-    if condition != '' :
+    if adv.condition.exist():
+        r['condition'] = dict(adv.condition)
+        condition = adv.condition.cond_str()
         g_condition = condition
+    else:
+        r['condition'] = None
+        condition = ''
 
     displayed_str = adv.displayed_att
     base_str = adv.base_att
@@ -162,29 +185,38 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         print(adv._acl_str)
 
     if loglevel > 0 and loglevel & 4:
-        if adv.conf['x_type'] == 'melee':
+        if adv.conf['xtype'] == 'melee':
             logcat(['dmg','cancel','fs','cast','buff'])
-        if adv.conf['x_type'] == 'ranged':
+        if adv.conf['xtype'] == 'ranged':
             logcat(['x','dmg','cancel','fs','cast','buff'])
-
-    if mass and loglevel <=0 :
-        if mass != 1:
-            sim_times = mass
-        import random
-        r = do_mass_sim(classname,conf,no_cond)
-    else:
-        r = sum_dmg()
 
     dps = r['dmg_sum']['total']/real_duration
     bps = r['buff_sum'] #* team_dps
-    team_energy = r['energy_sum'] #* energy_efficiency
+    r['tension_sum'] = {k: round(v) for k, v in r['tension_sum'].items()}
+    team_tension = r['tension_sum']
 
+    r['logs'] = {}
+    f = io.StringIO()
+    with redirect_stdout(f):
+        logcat([str(type(adv.slots.d).__name__), str(type(adv).__name__)])
+    r['logs']['dragon'] = f.getvalue()
+    f = io.StringIO()
+    with redirect_stdout(f):
+        sum_ac()
+    r['logs']['action'] = f.getvalue()
+    f = io.StringIO()
+    dmg_sum, sdmg_sum, x_sum, o_sum, d_sum = summary(r)
+    r['logs']['skill_stat'] = str(sdmg_sum)
+    f = io.StringIO()
+    with redirect_stdout(f):
+        logcat()
+    r['logs']['timeline'] = f.getvalue()
 
     recount = "%d"%(dps)
     if bps:
         recount += '(%.2f)'%bps
-    if team_energy:
-        recount += '(team_energy:%d)'%team_energy
+    for tension, count in team_tension.items():
+        recount += '({}:{})'.format(tension, count)
 
     if loglevel >= 0 or loglevel == None:
         if g_condition != '' and condition == '':
@@ -198,9 +230,48 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
                     base_str, displayed_str, amulets, '<%s>'%condition, comment ))
             print('-----------------------')
 
+        print("dmgsum     | "+ str(dmg_sum))
+        print("skill_stat | "+ str(sdmg_sum))
+        print("x_stat     | "+ str(x_sum))
+        if r['o_sum']:
+            print("others     | "+ str(o_sum))
+        if r['dragon_sum']:
+            print("dragon     | "+ str(d_sum))
+
+    elif loglevel == -1:
+        if condition != '':
+            condition = '<%s>'%(condition)
+        print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname, displayed_str,amulets, condition, comment ))
+    elif loglevel == -2:
+        print(report(condition, r, mname, adv, amulets))
+    elif loglevel == -5:
+        lines['_'].append(report(condition, r, mname, adv, amulets, special))
+        lines['k'].append(report(condition, r, mname, adv, amulets, special, ex_mod='k'))
+        lines['r'].append(report(condition, r, mname, adv, amulets, special, ex_mod='r'))
+        lines['kr'].append(report(condition, r, mname, adv, amulets, special, ex_mod='kr'))
+        if cond == False or condition == '':
+            for ex in ('_', 'k', 'r', 'kr'):
+                print('\n'.join(lines[ex]))
+
+    if adv.condition.exist():
+        r2 = test(classname, conf, verbose, mass, duration, False, lines=lines)
+        g_condition = ''
+        r['no_cond'] = r2
+    elif g_condition != '':
+        return r
+
+    b = time.time()
+    if loglevel > 0 and loglevel & 8:
+        print('-----------------------\nrun in %f'%(b-a))
+    elif loglevel < 0 and not loglevel-1 & 8:
+        print('-----------------------\nrun in %f'%(b-a))
+    return r
+
+def summary(r):
         dmg_sum = {}
         sdmg_sum = {}
         o_sum = {}
+        d_sum = {}
         for i in r['dmg_sum']:
             dmg_sum[i] = int(r['dmg_sum'][i])
         for i in r['sdmg_sum']:
@@ -213,227 +284,219 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         for i in r['o_sum']:
             o_sum[i] = int(r['o_sum'][i])
 
-        print("dmgsum     | "+ str(dmg_sum))
-        print("skill_stat | "+ str(sdmg_sum))
-        print("x_stat     | "+ str(r['x_sum']))
-        if r['o_sum']:
-            print("others     | "+ str(o_sum))
+        for i in r['dragon_sum']:
+            d_sum[i] = int(r['dragon_sum'][i])
 
-    elif loglevel == -1:
-        if condition != '':
-            condition = '<%s>'%(condition)
-        print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname, displayed_str,amulets, condition, comment ))
-    elif loglevel == -2:
-        #comment += " (str: %d)"%(displayed_str)
-        bdps = team_dps*bps
-        name = mname
-        exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
-        line = report__2(condition, exdps, r, name, adv, amulets)
-        print(line)
-    elif loglevel == -5:
-        #comment += " (str: %d)"%(displayed_str)
-        bdps = team_dps*bps
-        name = mname
-        exdps = team_dps + int(r['dmg_sum']['total']/real_duration)
-        line += '\n'
-        line += report__2(condition, exdps, r, name, adv, amulets)
-        #print '-------'+line
-        #print('-,%s,%s\n'%(sim_duration,ex_str)+line)
-        if katana:
-            print('cannot blade when -5')
-            errrrrrrrrrrrrrrr()
+        return dmg_sum, sdmg_sum, r['x_sum'], o_sum, d_sum
+
+def report_dps_k(name, value):
+    return value * 1.10
+
+def report_dps_r(name, value):
+    return value * 1.15 if (name[0] == 's' or name[0:2] == 'ds') else value
+
+def report_dps_kr(name, value):
+    return (value * 1.15 if (name[0] == 's' or name[0:2] == 'ds') else value) * 1.10
+
+def report(condition, r, name, adv, amulets, special=False, ex_mod=None):
+    global displayed_str
+    global ex_str
+    global comment
+    global g_condition
+    global sim_duration
+    global real_duration
+
+    if special:
+        page = 'sp'
+    else:
+        page = str(sim_duration)
+
+    report_csv = []
+    report_csv.extend([
+        '_c_'+name if condition == '' and g_condition != '' else name,
+        adv.conf['c.stars']+'*',
+        adv.conf['c.ele'],
+        adv.conf['c.wt'],
+        displayed_str,
+        amulets,
+        '!<{}>'.format(g_condition) if condition == '' and g_condition != '' else '<{}>'.format(condition),
+        comment
+    ])
+    dps_mappings = {
+        'attack': r['dmg_sum']['x']/real_duration,
+        'force_strike': r['dmg_sum']['fs']/real_duration,
+        'skill_1': r['sdmg_sum']['s1']['dmg']/real_duration,
+        'skill_2': r['sdmg_sum']['s2']['dmg']/real_duration,
+        'skill_3': r['sdmg_sum']['s3']['dmg']/real_duration,
+        'team_buff': r['buff_sum']*team_dps
+    }
+    for tension, count in r['tension_sum'].items():
+        dmg_val = count*skill_efficiency(tension_efficiency[tension])
+        if dmg_val > 0:
+            dps_mappings['team_{}'.format(tension)] = dmg_val
+    for i in r['o_sum']:
+        dmg_val = r['o_sum'][i]/real_duration
+        if dmg_val > 0:
+            dps_mappings[i] = dmg_val
+    for i in r['dragon_sum']:
+        dmg_val = r['dragon_sum'][i]/real_duration
+        if dmg_val > 0:
+            dps_mappings[i] = dmg_val
+    dps_mod_f = None
+    if ex_mod is not None:
+        has_k = 'k' in ex_mod and adv.conf['c.wt'] != 'blade' and 'k' not in ex_str
+        has_r = 'r' in ex_mod and adv.conf['c.wt'] != 'wand' and 'r' not in ex_str
+        if has_k: 
+            if has_r:
+                dps_mod_f = report_dps_kr
+            else:
+                dps_mod_f = report_dps_k
+        elif has_r:
+            dps_mod_f = report_dps_r
+
+    dps_sum = 0
+    for name, value in dps_mappings.items():
+        if dps_mod_f is not None and not name[0:4] == 'team':
+            dps_mappings[name] = dps_mod_f(name, value)
         else:
-            line_k += '\n'
-            line_k += report__2_k(condition, exdps, r, name, adv, amulets)
-            if no_cond or condition == '':
-                output = '-,%s,%s'%(page, ex_str)
-                if ex_str == '_' :
-                    output_k = '-,%s,k'%(page)
-                else:
-                    output_k = '-,%s,k%s'%(page, ex_str)
-                output += line
-                output_k += line_k
-                print(output)
-                print(output_k)
+            dps_mappings[name] = value
+        dps_sum += dps_mappings[name]
+
+    report_csv = [int(dps_sum)] + report_csv
+    report_csv.extend(['{}:{}'.format(name, int(value)) for name, value in dps_mappings.items()])
+
+    output_line = ','.join([str(s) for s in report_csv])
+    if not condition == '' or not g_condition:
+        real_ex = ex_str
+        if ex_mod is not None: 
+            if ex_str == '_':
+                real_ex = ex_mod
+            else:
+                real_ex = ex_mod+ex_str
+        output_line = ','.join(['-',page,real_ex])+'\n' + output_line
+    return output_line
+
+# def do_mass_sim_stub(sim_id, classname, conf, no_cond):
+#     # print('SIM', 'cond', (not no_cond), sim_id)
+#     global real_duration
+#     global ex_set
+#     print(sim_id, ex_set)
+#     real_duration = 0
+#     sum_duration = 0
+#     if not no_cond:
+#         adv = classname(conf=conf,cond=1)
+#     else:
+#         adv = classname(conf=conf,cond=0)
+#     adv.slots.c.ex.update(ex_set)
+#     from core.acl import do_act
+#     adv._acl = do_act
+#     real_duration = adv.run(sim_duration)
+#     sum_duration += real_duration
+#     #condi = adv.m_condition.p()
+#     r = sum_dmg()
+#     return r, sum_duration
 
 
-    if condition != '':
-        test(classname, conf, verbose, mass, duration, 1)
-        g_condition = ''
-    elif g_condition != '':
-        return
+# def do_mass_sim(classname, conf, no_cond=None):
+#     global real_duration
+#     global ex_set
+#     results = []
+#     adv = classname(conf=conf)
+#     adv.slots.c.ex.update(ex_set)
+#     adv.run(1)
+#     # from core.acl import acl_func_str
+#     # _acl_str = acl_func_str(adv.conf['acl'])
+#     real_duration = 0
+#     sum_duration = 0
 
-    b = time.time()
-    if loglevel > 0 and loglevel & 8:
-        print('-----------------------\nrun in %f'%(b-a))
-    elif loglevel < 0 and not loglevel-1 & 8:
-        print('-----------------------\nrun in %f'%(b-a))
-    return
+#     with multiprocessing.Pool(processes=4) as pool:
+#         for dat, sum_d in pool.starmap(do_mass_sim_stub, [(i, classname, conf, no_cond) for i in range(sim_times)]):
+#             results.append(dat)
+#             sum_duration += sum_d
 
-def report__2(condition, exdps, r, name, adv, amulets):
-    global mname
-    global displayed_str
-    global base_str
-    global comment
-    global g_condition
-    global loglevel
-    global sim_duration
-    global real_duration
-    global sim_times
+#     real_duration = sum_duration / sim_times
+#     r = sum_mass_dmg(results)
+#     return r
 
-    condi = ' '
-    if condition != '':
-        condition = '<%s>'%condition
-        condi = condition
-    else :
-        if g_condition:
-            name = '_c_'+mname
-            condi = '!<%s>'%g_condition
+def do_mass_sim_stub(sim_id, classname, conf, cond, ex_set, sim_duration):
+    adv = classname(conf=conf,cond=cond)
+    from core.acl import do_act
+    adv._acl = do_act
+    adv.slots.c.ex.update(ex_set)
+    sum_d = adv.run(sim_duration)
+    dat = sum_dmg(sum_d)
+    return dat, sum_d
 
-    line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
-            name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
-            displayed_str, amulets+g_condicomment ,condi,comment,
-            )
-#    line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
-#    line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
-#    line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
-#    line = line.replace(',staff,',',奶,')
-#    line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
-#    line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
-    line = '%d,'%(int(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency)) + line
-    line += ',attack:%d'%(int(r['dmg_sum']['x']/real_duration))
-    line += ',force_strike:%d'%(int(r['dmg_sum']['fs']/real_duration))
-    line += ',skill_1:%d'%(int(r['sdmg_sum']['s1']['dmg']/real_duration))
-    line += ',skill_2:%d'%(int(r['sdmg_sum']['s2']['dmg']/real_duration))
-    line += ',skill_3:%d'%(int(r['sdmg_sum']['s3']['dmg']/real_duration))
-    line += ',team_buff:%d'%(int(r['buff_sum']*team_dps))
-    if r['energy_sum']:
-        line += ',team_energy:%d'%(int(r['energy_sum']*energy_efficiency))
-    if r['o_sum'] != {}:
-        for i in r['o_sum']:
-            line += ',%s:%d'%(i, int(r['o_sum'][i]/real_duration))
-    return line
-
-def report__2_k(condition, exdps, r, name, adv, amulets):
-    global mname
-    global displayed_str
-    global base_str
-    global comment
-    global g_condition
-    global g_condicomment
-    global loglevel
-    global sim_duration
-    global real_duration
-    global sim_times
-    global dmin
-    global dmax
-
-    condi = ' '
-    if condition != '':
-        condition = '<%s>'%condition
-        condi = condition
-    else :
-        if g_condition:
-            name = '_c_'+mname
-            condi = '!<%s>'%g_condition
-
-    katana = 1.1
-    if adv.conf['c.wt'] == 'blade':
-        katana = 1.0
-
-    if 0 < dmin < dmax:
-        g_condicomment = ";dpsrange:(%d~%d)"%(dmin*katana, dmax*katana)
-
-    line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
-            name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'], 
-            displayed_str, amulets+g_condicomment ,condi,comment,
-            )
-    #line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
-    #line = line.replace(',sword,',',剑,').replace(',blade,',',刀,').replace(',axe,',',斧,').replace(',dagger,',',匕,')
-    #line = line.replace(',lance,',',枪,').replace(',wand,',',法,').replace(',bow,',',弓,')
-    #line = line.replace(',staff,',',奶,')
-    #line = line.replace(',shadow,',',暗,').replace(',light,',',光,')
-    #line = line.replace(',wind,',',风,').replace(',water,',',水,').replace(',flame,',',火,')
-    line = '%d,'%(int(katana*(r['dmg_sum']['total']/real_duration+r['buff_sum']*team_dps+r['energy_sum']*energy_efficiency))) + line
-    line += ',attack:%d'%(int(katana*r['dmg_sum']['x']/real_duration))
-    line += ',force_strike:%d'%(int(katana*r['dmg_sum']['fs']/real_duration))
-    line += ',skill_1:%d'%(int(katana*r['sdmg_sum']['s1']['dmg']/real_duration))
-    line += ',skill_2:%d'%(int(katana*r['sdmg_sum']['s2']['dmg']/real_duration))
-    line += ',skill_3:%d'%(int(katana*r['sdmg_sum']['s3']['dmg']/real_duration))
-    line += ',team_buff:%d'%(int(katana*r['buff_sum']*team_dps))
-    if r['energy_sum']:
-        line += ',team_energy:%d'%(int(katana*r['energy_sum']*energy_efficiency))
-    if r['o_sum'] != {}:
-        for i in r['o_sum']:
-            line += ',%s:%d'%(i, int(katana*r['o_sum'][i]/real_duration))
-    return line
-
-
-def do_mass_sim(classname, conf, no_cond=None):
-    global real_duration
-    global ex_set
+def do_mass_sim(classname, conf, cond, ex_set, sim_duration):
     results = []
-    adv = classname(conf=conf)
-    adv.ex = ex_set
-    adv.run(1)
-    _acl, _acl_str = acl_func_str(
-                    adv.acl_prepare_default+adv.conf['acl'] 
-                    )
-    real_duration = 0
     sum_duration = 0
-    for i in range(sim_times):
-        if not no_cond:
-            adv = classname(conf=conf,cond=1)
-            adv.ex = ex_set
-        else:
-            adv = classname(conf=conf,cond=0)
-            adv.ex = ex_set
-        adv._acl = _acl
-        real_duration = adv.run(sim_duration)
-        sum_duration += real_duration
-        #condi = adv.m_condition.p()
-        r = sum_dmg()
-        results.append(r)
-    real_duration = sum_duration / sim_times
-    r = sum_mass_dmg(results)
-    return r
 
-def sum_mass_dmg(rs):
+    # Sequential version
+    # for i in range(sim_times):
+    #     dat, sum_d = do_mass_sim_stub(i, classname, conf, cond, ex_set, sim_duration)
+    #     results.append(dat)
+    #     sum_duration += sum_d
+
+    with multiprocessing.Pool(processes=4) as pool:
+        for dat, sum_d in pool.starmap(do_mass_sim_stub, [(i, classname, conf, cond, ex_set, sim_duration) for i in range(sim_times)]):
+            results.append(dat)
+            sum_duration += sum_d
+
+    real_duration = sum_duration / sim_times
+    r = sum_mass_dmg(results, real_duration)
+    return r, real_duration
+
+
+def sum_mass_dmg(rs, real_duration):
     global g_condicomment
     global dmax
     global dmin
-    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'total':0 }
+    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'dragon': 0,'total': 0}
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
                 's3':{"dmg":0, "count": 0}, 
                 }
-    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
+    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0, "shift":0}
     o_sum = {}
+    dragon_sum = {}
     team_buff = 0
-    team_energy = 0
+    team_tension = {}
 
     dmax = 0
     dmin = 0
 
     for i in rs:
-        for j in i['dmg_sum'] :
+        for j in i['dmg_sum']:
             dmg_sum[j] += i['dmg_sum'][j] / sim_times
         for j in i['sdmg_sum'] :
             for k in i['sdmg_sum'][j]:
                 sdmg_sum[j][k] += i['sdmg_sum'][j][k] / sim_times
         for j in i['x_sum'] :
-            x_sum[j] += float(i['x_sum'][j]) / sim_times
+            try:
+                x_sum[j] += float(i['x_sum'][j]) / sim_times
+            except:
+                x_sum[j] = float(i['x_sum'][j]) / sim_times
         for j in i['o_sum'] :
             if j not in o_sum:
                 o_sum[j] = 0
             o_sum[j] += i['o_sum'][j] / sim_times
+        for j in i['dragon_sum'] :
+            if j not in dragon_sum:
+                dragon_sum[j] = 0
+            dragon_sum[j] += i['dragon_sum'][j] / sim_times
         team_buff += i['buff_sum'] / sim_times
-        team_energy += i['energy_sum']  / sim_times
         
         case = 0
         case += i['dmg_sum']['total'] / real_duration
         case += i['buff_sum'] * team_dps
-        case += i['energy_sum'] * energy_efficiency
+
+        for tension in ('energy', 'inspiration'):
+            if tension in i['tension_sum']:
+                if tension in team_tension:
+                    team_tension[tension] += i['tension_sum'][tension]  / sim_times
+                else:
+                    team_tension[tension] = i['tension_sum'][tension]  / sim_times
+                case += team_tension[tension] * skill_efficiency(tension_efficiency[tension])
     #    print case
         if not dmin:
             dmin = case
@@ -450,49 +513,10 @@ def sum_mass_dmg(rs):
     r['sdmg_sum'] = sdmg_sum 
     r['x_sum'] = x_sum 
     r['o_sum'] = o_sum 
-    r['buff_sum'] = team_buff  
-    r['energy_sum'] = team_energy 
+    r['buff_sum'] = team_buff
+    r['tension_sum'] = team_tension 
+    r['dragon_sum'] = dragon_sum
     return r
-
-
-
-def statis(data, mname):
-    total = 0
-    dmin = data[0][0]
-    dmax = data[0][0]
-    bmin = data[0][1]
-    bmax = data[0][1]
-    size = len(data)
-    buff_sum = 0
-    energy_sum = 0
-    for i in data:
-        total += i[0]
-        buff_sum += i[1]
-        energy_sum += i[2]
-        if i[0] < dmin:
-            dmin = i[0]
-        if i[0] > dmax:
-            dmax = i[0]
-        if i[1] < bmin:
-            bmin = i[1]
-        if i[1] > bmax:
-            bmax = i[1]
-    
-    global dps
-    global bps
-    global energy
-    global comment
-    dps = float(total)/size
-    bps = float(buff_sum)/size
-    energy = float(energy_sum)/size
-    if bps and bmin != bmax:
-        comment = '(%.0f~%.0f)(%.2f~%.2f) %s'%(dmin, dmax, bmin, bmax, comment)
-    else:
-        comment = '(%.0f~%.0f) %s'%(dmin, dmax, comment)
-    if energy:
-        comment += '(team_energy:%.0f)'%energy
-
-    #print("%d , %s (str: %d) %s ;(%.2f, %.2f) %s"%(total/size, mname, base_str, condition, dmin, dmax, comment))
 
 
 def sum_ac():
@@ -501,8 +525,6 @@ def sum_ac():
     ret = []
     lastc = 0
     for i in l:
-        if i[2] == 'succ':
-            i[2] = 'fs'
         if i[1] == 'x':
             if i[2] == 'x1':
                 if lastc != 0:
@@ -523,13 +545,16 @@ def sum_ac():
                 prev = 0
             else:
                 ret.append(i[2])
+        if i[1] == 'dragon_start':
+            lastc = 0
+            ret.append('dragon')
     if lastc:
         ret.append(lastc)
 
-    print(ret)
+    # print(ret)
     prev = 'c0'
     row = 0
-    rowend = 11
+    rowend = 20
     c5count = 0
     prin = ''
     for i in ret:
@@ -545,18 +570,18 @@ def sum_ac():
 
         if i[0] == 's':
             if prev != 's':
-                prin += '-'*(rowend - row)+' '+i+' '
+                prin += '-'*(rowend - row)+i+' '
                 row = 0
             else:
                 prin += i+'\n'
             prev = 's'
         elif i[0] == 'c':
-            if prev == 's':
+            if (prev == 's' or prev == 'd') and prin[-1] != '\n':
                 row = 0
                 prin += '\n'
-            elif prev == 'fs':
-                row = 0
-                prin += '\n'
+            # elif prev == 'fs':
+            #     row = 0
+            #     prin += '\n'
             if i == 'c5':
                 c5count+=1
             else:
@@ -573,29 +598,40 @@ def sum_ac():
                     row += 8
             prev = 'c'
         elif i == 'fs':
-            if prev == 'fs':
+            # if prev == 'fs':
+            #     prin += '\nfs '
+            #     row = 3
+            # else:
+            if prev == 's':
                 prin += '\nfs '
                 row = 3
             else:
                 prin += 'fs '
-                row +=3
+                row += 3
             prev = 'fs'
+        elif i == 'dragon':
+            if len(prin) > 0 and prin[-1] != '\n':
+                prin += '\n'
+            prin += '------- dragon -------\n'
+            prev = 'd'
+            row = 0
     #if prev == 'c' :
     #    prin += i
     print(prin)
 
-def sum_dmg():
+def sum_dmg(real_duration):
     l = logget()
-    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0 }
+    dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'dragon': 0 }
     sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
                 's2':{"dmg":0, "count": 0}, 
                 's3':{"dmg":0, "count": 0}, 
                 }
-    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
+    x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0, "shift":0}
+    dragon_sum = {'dx': 0}
     team_buff_powertime = 0
     team_buff_power = 0
     team_buff_start = 0
-    team_energy = 0
+    team_tension = {}
     o_sum = {}
     for i in l:
         if i[1] == 'dmg':
@@ -614,6 +650,18 @@ def sum_dmg():
             elif i[2][:2] == 'fs':
                 dmg_sum['fs'] += i[3]
                 x_sum['fs'] += 1
+            elif i[2][0] == 'd':
+                dmg_sum['dragon'] += i[3]
+                if i[2][0:2] == 'dx':
+                    dragon_sum['dx'] += i[3]
+                elif i[2] == 'dshift':
+                    x_sum['shift'] += 1
+                    dragon_sum['dx'] += i[3]
+                else:
+                    try:
+                        dragon_sum[i[2]] += i[3]
+                    except:
+                        dragon_sum[i[2]] = i[3]
             elif i[2][0] == 'o':
                 dmg_sum['others'] += i[3]
                 if i[2][2:] in o_sum:
@@ -628,19 +676,25 @@ def sum_dmg():
             elif i[2] == 's3':
                 sdmg_sum['s3']['count'] += 1
         elif i[1] == 'x' :
-            x_sum[i[2]] += 1
+            try:
+                x_sum[i[2]] += 1
+            except:
+                x_sum[i[2]] = 1
         elif i[1] == 'buff' and i[2] == 'team':
             if team_buff_power != 0:
                 team_buff_powertime += team_buff_power*(i[0] - team_buff_start)
             team_buff_start = i[0]
             team_buff_power = i[3]
-        elif i[1] == 'energy' and i[2] == 'team':
-            team_energy += i[3]
+        elif i[1] in ('energy', 'inspiration') and i[2] == 'team':
+            try:
+                team_tension[i[1]] += i[3]
+            except KeyError:
+                team_tension[i[1]] = i[3]
     #print real_duration , team_buff_start, team_buff_power
     team_buff_powertime += (real_duration - team_buff_start)*team_buff_power
 
 
-    total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs'] + dmg_sum['others']
+    total = dmg_sum['x'] + dmg_sum['s'] + dmg_sum['fs'] + dmg_sum['others'] + dmg_sum['dragon']
     dmg_sum['total'] = total
     x_sum['x1'] -= x_sum['x5']
     x_sum['x2'] -= x_sum['x5']
@@ -667,18 +721,6 @@ def sum_dmg():
     r['x_sum'] = x_sum
     r['o_sum'] = o_sum
     r['buff_sum'] = team_buff_powertime/real_duration
-    r['energy_sum'] = team_energy
+    r['tension_sum'] = team_tension
+    r['dragon_sum'] = dragon_sum
     return r
-
-class Result(object):
-    dmg_sum = {}
-    sdmg_sum = {}
-    x_sum = {}
-    odmg_sum = {}
-    bdmg_sum = 0
-    energy_sum = 0
-
-
-
-
-

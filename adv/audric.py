@@ -1,23 +1,40 @@
-import adv_test
-import adv
-from adv import *
-from core.log import *
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Audric
 
-class Audric(adv.Adv):
-    conf = {}
-    conf['slot.a'] = TSO()+BN()
-
-if __name__ == '__main__':
+class Audric(Adv):
+    a1 = ('dp', 10)
+    
     conf = {}
     conf['acl'] = """
-        `s1
+        `dragon.act('c3 s end')
+        `s3, not self.s3_buff
+        `s1, fsc
         `s2, fsc
-        `s3, fsc
-        `fs, seq=3
-        """
-    adv_test.test(module(), conf, verbose=0)
+        `s4, fsc
+        `fs, x=3
+    """
+    coab = ['Ieyasu','Dagger2','Forte']
+    share = ['Curran']
 
+    def prerun(self):
+        self.cursed_blood = Selfbuff('cursed_blood',0.30,-1,'crit','chance')
+        Event('dragon').listener(self.a3_on)
+        Event('idle').listener(self.a3_off)
+
+    def a3_on(self, e):
+        if not self.cursed_blood.get():
+            self.cursed_blood.on()
+
+    def a3_off(self, e):
+        if self.cursed_blood.get():
+            self.cursed_blood.off()
+
+    def s1_proc(self, e):
+        self.dragonform.charge_gauge(30)
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

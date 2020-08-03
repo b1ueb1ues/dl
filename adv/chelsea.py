@@ -1,100 +1,77 @@
-import adv_test
-from adv import *
-
+from core.advbase import *
+from slot.d import *
+from slot.a import *
 def module():
     return Chelsea
 
 class Chelsea(Adv):
     conf = {}
+    conf['slots.d'] = Dreadking_Rathalos()
+    conf['slots.a'] = Mega_Friends()+Primal_Crisis()
     conf['acl'] = """
-        `s1
-        `s2
-        `s3
-        """
+        `s3, fsc and not self.s3_buff
+        `s1, fsc
+        `s2, fsc
+        `s4, fsc
+        `fs, x=1
+    """
+    coab = ['Blade', 'Grace', 'Serena']
+    share = ['Ranzal']
 
-    def prerun(this):
-        this.hp = 100
-        this.obsession = 0
-        
-        this.a1atk = Selfbuff('a1atk',0.20,-1,'att','passive')
-        this.a1spd = Spdbuff('a1spd',0.10,-1)
-        this.a3 = Selfbuff('a3_str_passive',0.3,60,'att','passive')
+    def prerun(self):
+        self.obsession = 0
+        self.s2_buffs = []
 
-    def dmg_before(this, name):
-        hpold = this.hp
-        
-        if name != 's1' and this.a3.get():
-            this.hp -= 3 * this.obsession
+        self.a1atk = Selfbuff('a1atk',0.20,-1,'att','passive')
+        self.a1spd = Spdbuff('a1spd',0.10,-1)
+        self.a3 = Selfbuff('a3_str_passive',0.3,60,'att','passive')
 
-        if this.hp <= 0:
-            this.hp = hpold
-        elif this.hp > 100:
-            this.hp = 100
+        Event('dragon').listener(self.s2_clear)
 
-        if this.hp <= 30:
-            this.a1atk.on()
-            this.a1spd.on()
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.a3 = Dummy()
+        adv.a1atk = Dummy()
+        adv.a1spd = Dummy()
+
+    def s2_clear(self, e):
+        for buff in self.s2_buffs:
+            buff.off()
+        self.s2_buffs = []
+        self.a3.off()
+        self.obsession = 0
+
+    def dmg_before(self, name):
+        new_hp = self.hp
+        if name != 's1' and self.a3.get():
+            new_hp -= 3 * self.obsession
+        self.update_hp(new_hp)
+
+    def dmg_proc(self, name, amount):
+        new_hp = self.hp
+        if name == 's1' and self.a3.get():
+            new_hp += 7
+        self.update_hp(new_hp)
+
+    def s1_proc(self, e):
+        for _ in range(7):
+            self.dmg_make(e.name,1.36)
+            self.hits += 1
+
+    def update_hp(self, new_hp):
+        if new_hp <= 30:
+            self.a1atk.on()
+            self.a1spd.on()
         else:
-            this.a1atk.off()
-            this.a1spd.off()
+            self.a1atk.off()
+            self.a1spd.off()
+        self.set_hp(new_hp)
 
-    def dmg_proc(this, name, amount):
-        hpold = this.hp
-        
-        if name == 's1' and this.a3.get():
-            this.hp += 7
-
-        if this.hp <= 0:
-            this.hp = hpold
-        elif this.hp > 100:
-            this.hp = 100
-
-        if this.hp <= 30:
-            this.a1atk.on()
-            this.a1spd.on()
-        else:
-            this.a1atk.off()
-            this.a1spd.off()
-
-    def s1_proc(this, e):
-        hpold = this.hp
-        
-        if this.a3.get():
-            this.hp -= 3 * this.obsession
-
-        if this.hp <= 0:
-            this.hp = hpold
-        elif this.hp > 100:
-            this.hp = 100
-
-        if this.hp <= 30:
-            this.a1atk.on()
-            this.a1spd.on()
-        else:
-            this.a1atk.off()
-            this.a1spd.off()
-        
-        this.dmg_make('s1',1.36)
-        this.dmg_make('s1',1.36)
-        this.dmg_make('s1',1.36)
-        this.dmg_make('s1',1.36)
-        this.dmg_make('s1',1.36)
-        this.dmg_make('s1',1.36)
-        this.dmg_make('s1',1.36)
-
-    def s2_proc(this, e):
-        Selfbuff('s2',0.3,60).on()
-        this.obsession = Selfbuff('s2').stack()
-        this.a3.on()
-
-    def dmg_make(this, name, dmg_coef, dtype=None):
-        if dtype == None:
-            dtype = name
-        this.dmg_before(name)
-        count = this.dmg_formula(dtype, dmg_coef)
-        log('dmg', name, count)
-        this.dmg_proc(name, count)
-        return count
+    def s2_proc(self, e):
+        self.s2_buffs.append(Selfbuff(e.name,0.3,60).on())
+        self.obsession = Selfbuff(e.name).stack()
+        self.a3.on()
 
 if __name__ == '__main__':
-    adv_test.test(module(), conf, verbose=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

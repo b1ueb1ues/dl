@@ -1,28 +1,25 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Malora
 
-class Malora(adv.Adv):
+class Malora(Adv):
     a1 = ('bk',0.2)
-
-    def prerun(this):
-        if this.condition('spawn c1+fs'):
-            this.conf['acl'] = """
-                `s1,fsc
-                `s2,fsc
-                `s3,fsc
-                `fs,seq=1
-                """
-
-
+    
+    conf = {}
+    conf['slots.paralysis.a'] = Resounding_Rendition()+Spirit_of_the_Season()
+    conf['acl'] = """
+        `dragon
+        `s4
+        `s1
+        `s2, cancel
+        `s3, cancel
+        `fs, x=4
+        """
+    coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        """
-    adv_test.test(module(), conf, verbose=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

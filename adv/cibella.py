@@ -1,6 +1,4 @@
-import adv_test
-from adv import *
-import slot.a 
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -9,16 +7,18 @@ def module():
 
 class Cibella(Adv):
     conf = {}
-    #conf['slots.a'] = RR() + Saintly_Delivery()
-    #comment = 'reach 100 resist with Saintly Delivery'
-    conf['slots.d'] = DJ()
-
-
-if __name__ == '__main__':
-    conf = {}
+    conf['slots.frostbite.a'] = Primal_Crisis()+His_Clever_Brother()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
+        `dragon
+        `s3
         `s2
-        `s3, seq=5
+        `s4
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=0)
+    coab = ['Dagger2', 'Xander', 'Dagger']
+    share = ['Gala_Elisanne', 'Ranzal']
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

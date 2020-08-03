@@ -1,34 +1,24 @@
-import adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Amane
 
-class Amane(adv.Adv):
+class Amane(Adv):
     a3 = ('bk',0.2)
-    a1 = ('prep','75%')
-
+    a1 = ('prep',0.75)
+    
+    conf = {}
+    conf['acl'] = """
+        `dragon
+        `s2
+        `s1
+        `s3, x=5
+        `s4, x=5
+        """
+    coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
 
 if __name__ == '__main__':
-    conf = {}
-    acl12 = """
-        `s1
-        `s2, seq=5 and cancel
-        `s3
-        """
-    acl21 = """
-        `s2
-        `s1
-        `s3, seq=5
-        """ 
-    # test that 21 is better than 12
-    # s3 when c5missile come change some timeline to have a better dps
-    if 0:
-        conf['acl'] = acl21
-        adv_test.test(module(), conf, verbose=0)
-
-    conf['acl'] = acl12
-    adv_test.test(module(), conf, verbose=0)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

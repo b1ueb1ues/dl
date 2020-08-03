@@ -1,21 +1,26 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Julietta
 
-class Julietta(adv.Adv):
+class Julietta(Adv):
     comment = 'no fs & no s2'
-    pass
 
+    conf = {}
+    conf['slots.a'] = RR()+Breakfast_at_Valerios()
+    conf['acl'] = """
+        `dragon
+        `s1
+        `s4
+        `s3, x=5
+        """
+    coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
+
+    def s2_proc(self, e):
+       Event('defchain')()
 
 if __name__ == '__main__':
-    conf = {}
-    conf['slot.a'] = KFM()+FitF()
-    conf['acl'] = """
-        `s1
-        `s3,seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

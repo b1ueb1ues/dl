@@ -1,20 +1,21 @@
-import adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Nicolas
 
-class Nicolas(adv.Adv):
-    pass
-
-
-if __name__ == '__main__':
+class Nicolas(Adv):
     conf = {}
     conf['acl'] = """
+        `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3
+        `s4
         """
+    coab = ['Blade','Ku_Hai','Lin_You']
+    share = ['Curran']
 
-    adv_test.test(module(), conf, verbose=0)
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
 

@@ -1,22 +1,22 @@
-import adv_test
-import adv
-from slot.a import *
+from core.advbase import *
 
 def module():
     return Raemond
 
-class Raemond(adv.Adv):
+class Raemond(Adv):
     conf = {}
-    conf['slot.a'] = TSO()+BN()
+    conf['acl'] = """
+        `dragon, fsc
+        `s1
+        `s2, fsc
+        `s3, fsc
+        `s4, fsc
+        `fs, x=3
+        """
+    coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, fsc
-        `s2, fsc
-        `s3, fsc
-        `fs, seq=3 and cancel
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

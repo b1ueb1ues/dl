@@ -1,28 +1,30 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Rodrigo
 
-class Rodrigo(adv.Adv):
-    a1 = ('a',0.08,'hp70')
-    
+class Rodrigo(Adv):
+    a1 = ('a',0.15,'hp70')
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+JotS()
-        else:
-            this.conf.slot.a = TSO()+BN()
+    conf['slots.a'] = The_Shining_Overlord()+The_Fires_of_Hate()
+    conf['acl'] = """
+        `dragon.act("c3 s end"),fsc
+        `s3, not self.s3_buff
+        `s4
+        `s1,cancel and self.s3_buff
+        `s2, fsc
+        `fs, x=3
+        """
+    coab = ['Ieyasu','Wand','Forte']
+    share = ['Curran']
 
+    def s1_proc(self, e):
+        self.afflics.poison(e.name,120,0.582)
+
+    def s2_proc(self, e):
+        self.afflics.poison(e.name,120,0.582)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, fsc
-        `s3, fsc
-        `fs, seq=3 and cancel
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

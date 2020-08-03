@@ -1,33 +1,29 @@
-import adv_test
-from adv import *
+from core.advbase import *
+from module.x_alt import Fs_alt
 
 def module():
     return Vida
 
 class Vida(Adv):
-#    comment = 'unsuitable resist'
     a1 = ('fs',0.30)
-
-    def prerun(this):
-        this.s2charge = 0
-
-    def s2_proc(this, e):
-        this.s2charge = 3
-
-    def fs_proc(this, e):
-        if this.s2charge > 0:
-            this.s2charge -= 1
-            this.dmg_make("o_s2fs",0.21*3)
-
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel or fsc
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
+        `dragon
+        `s3, not self.s3_buff
+        `s4
+        `s1
+        `fs, x=5
         """
-    adv_test.test(module(), conf, verbose=0, mass=0)
+    coab = ['Ieyasu','Wand','Dagger2']
+    share = ['Curran']
 
+    def prerun(self):
+        conf_fs_alt = {'fs.dmg': 0.110, 'fs.hit': 6}
+        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt))
+
+    def s2_proc(self, e):
+        self.fs_alt.on(3)
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

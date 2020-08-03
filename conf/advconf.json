@@ -1,0 +1,4508 @@
+{
+    "Addis": {
+        "c": {
+            "att": 509,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.64,
+            "hit": 4,
+            "recovery": 2.5,
+            "sp": 2537,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4877,
+            "startup": 0.25
+        }
+    },
+    "Aeleen": {
+        "c": {
+            "att": 470,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 8.38,
+            "hit": 1,
+            "recovery": 1.8,
+            "sp": 2579,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8534,
+            "startup": 0.25
+        }
+    },
+    "Alain": {
+        "c": {
+            "att": 525,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 8.22,
+            "hit": 3,
+            "recovery": 1.9,
+            "sp": 2581,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.22,
+            "hit": 2,
+            "recovery": 1.4,
+            "sp": 5112,
+            "startup": 0.1
+        }
+    },
+    "Albert": {
+        "c": {
+            "att": 502,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 8.25,
+            "hit": 1,
+            "recovery": 2.267,
+            "sp": 2351,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 160000,
+            "startup": 0.25
+        }
+    },
+    "Aldred": {
+        "c": {
+            "att": 495,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 4,
+            "recovery": 2.4,
+            "sp": 2537,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.35,
+            "sp": 7338,
+            "startup": 0.1
+        }
+    },
+    "Alex": {
+        "c": {
+            "att": 476,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.4
+            ],
+            "dmg": 6.64,
+            "hit": 4,
+            "recovery": 2.3,
+            "sp": 2243,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.05,
+            "hit": 5,
+            "recovery": 2.05,
+            "sp": 4925,
+            "startup": 0.1
+        }
+    },
+    "Alfonse": {
+        "c": {
+            "att": 584,
+            "ele": "light",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 6.96,
+            "hit": 2,
+            "recovery": 1.6333,
+            "sp": 3500,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.5333,
+            "sp": 4983,
+            "startup": 0.1
+        }
+    },
+    "Althemia": {
+        "c": {
+            "att": 557,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 14.84,
+            "hit": 1,
+            "recovery": 1.3667,
+            "sp": 2759,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.3667,
+            "sp": 5570,
+            "startup": 0.1
+        }
+    },
+    "Amane": {
+        "c": {
+            "att": 494,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 9.84,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 2711,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.15,
+                10.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 11449,
+            "startup": 0.25
+        }
+    },
+    "Annelie": {
+        "c": {
+            "att": 483,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.7,
+            "sp": 3051,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.2962,
+            "hit": 10,
+            "recovery": 3.6,
+            "sp": 10206,
+            "startup": 0.1
+        }
+    },
+    "Aoi": {
+        "c": {
+            "att": 592,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.78,
+            "hit": 1,
+            "recovery": 1.85,
+            "sp": 2630,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.9,
+            "hit": 1,
+            "recovery": 1.85,
+            "sp": 5280,
+            "startup": 0.1
+        }
+    },
+    "Audric": {
+        "c": {
+            "att": 481,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 7.0,
+            "hit": 2,
+            "recovery": 1.55,
+            "sp": 2503,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.76,
+            "hit": 4,
+            "recovery": 2.2,
+            "sp": 4593,
+            "startup": 0.1
+        }
+    },
+    "Aurien": {
+        "c": {
+            "att": 533,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "staff"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.8,
+            "sp": 5916,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 5.62,
+            "hit": 1,
+            "recovery": 1.4,
+            "sp": 9214,
+            "startup": 0.1
+        }
+    },
+    "Beautician_Zardin": {
+        "c": {
+            "att": 517,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.3
+            ],
+            "dmg": 9.48,
+            "hit": 3,
+            "recovery": 2.25,
+            "sp": 3080,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.75,
+            "sp": 5000,
+            "startup": 0.1
+        }
+    },
+    "Bellina": {
+        "c": {
+            "att": 501,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.6,
+            "sp": 2719,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.8,
+            "sp": 7338,
+            "startup": 0.10
+        }
+    },
+    "Berserker": {
+        "c": {
+            "att": 444,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 6.7,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 2376,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5750,
+            "startup": 0.25
+        }
+    },
+    "Botan": {
+        "c": {
+            "att": 526,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 7.5,
+            "hit": 5,
+            "recovery": 2.6,
+            "sp": 2427,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.15,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7634,
+            "startup": 0.25
+        }
+    },
+    "Cassandra": {
+        "c": {
+            "att": 616,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 10.82,
+            "hit": 2,
+            "recovery": 2.1,
+            "sp": 2919,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 5,
+            "recovery": 3.13,
+            "sp": 4935,
+            "startup": 0.1
+        }
+    },
+    "Catherine": {
+        "c": {
+            "att": 508,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "buff": [
+                "self",
+                0.20,
+                10.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.9,
+            "sp": 5400,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 12.42,
+            "hit": 46,
+            "recovery": 3.333,
+            "sp": 23400,
+            "startup": 0.1
+        }
+    },
+    "Celliera": {
+        "c": {
+            "att": 589,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 10.60,
+            "hit": 4,
+            "recovery": 1.6,
+            "sp": 2537,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4877,
+            "startup": 0.25
+        }
+    },
+    "Chelsea": {
+        "c": {
+            "att": 495,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.0,
+            "sp": 2910,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7000,
+            "startup": 0.25
+        }
+    },
+    "Chitose": {
+        "c": {
+            "att": 447,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3,
+            "sp": 3817,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7288,
+            "startup": 0.25
+        }
+    },
+    "Chrom": {
+        "c": {
+            "att": 505,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 2.81,
+            "hit": 0,
+            "recovery": 1.3,
+            "sp": 2304,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 2.96,
+            "sp": 2650,
+            "startup": 0.1
+        }
+    },
+    "Cibella": {
+        "c": {
+            "att": 437,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 2920,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 6.86,
+            "hit": 2,
+            "recovery": 1.45,
+            "sp": 5000,
+            "startup": 0.1
+        }
+    },
+    "Curran": {
+        "c": {
+            "att": 622,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                1
+            ],
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.633,
+            "sp": 3083,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 3,
+            "recovery": 2.25,
+            "sp": 6017,
+            "startup": 0.1
+        }
+    },
+    "Delphi": {
+        "c": {
+            "att": 572,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 3.66,
+            "hit": 1,
+            "recovery": 1.85,
+            "sp": 999999,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 4.99,
+            "hit": 1,
+            "recovery": 3.85,
+            "sp": 999999,
+            "startup": 0.1
+        }
+    },
+    "Dragonyule_Cleo": {
+        "c": {
+            "att": 474,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 7.37,
+            "hit": 11,
+            "recovery": 2.5,
+            "sp": 3136,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.4,
+            "hit": 5,
+            "recovery": 2.55,
+            "sp": 4882,
+            "startup": 0.1
+        }
+    },
+    "Dragonyule_Malora": {
+        "c": {
+            "att": 515,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 4.67,
+            "hit": 1,
+            "recovery": 2.37,
+            "sp": 3849,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 3,
+            "recovery": 2.25,
+            "sp": 6296,
+            "startup": 0.1
+        }
+    },
+    "Dragonyule_Nefaria": {
+        "c": {
+            "att": 465,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 8.64,
+            "hit": 3,
+            "recovery": 2.85,
+            "sp": 2359,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 9476,
+            "startup": 0.25
+        }
+    },
+    "Dragonyule_Xainfried": {
+        "c": {
+            "att": 472,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3817,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 8.86,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 7634,
+            "startup": 0.1
+        }
+    },
+    "Dragonyule_Xander": {
+        "c": {
+            "att": 505,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 8.78,
+            "hit": 2,
+            "recovery": 1.9,
+            "sp": 2563,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 9609,
+            "startup": 0.25
+        }
+    },
+    "Durant": {
+        "c": {
+            "att": 505,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "buff": [
+                "self",
+                0.4,
+                20.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 2987,
+            "startup": 0.25
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.3,
+                20.0,
+                "crit",
+                "rate"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4139,
+            "startup": 0.25
+        }
+    },
+    "Eleonora": {
+        "c": {
+            "att": 478,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.71,
+            "hit": 1,
+            "recovery": 2.05,
+            "sp": 2504,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.34,
+            "hit": 1,
+            "recovery": 1.8,
+            "sp": 5115,
+            "startup": 0.1
+        }
+    },
+    "Elias": {
+        "c": {
+            "att": 423,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 8.93,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 2558,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4000,
+            "startup": 0.25
+        }
+    },
+    "Elisanne": {
+        "c": {
+            "att": 460,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "buff": [
+                "team",
+                0.2,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3817,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 7.54,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 5158,
+            "startup": 0.1
+        }
+    },
+    "Emma": {
+        "c": {
+            "att": 470,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.1,
+            "sp": 3817,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.8,
+            "sp": 9154,
+            "startup": 0.1
+        }
+    },
+    "Erik": {
+        "c": {
+            "att": 590,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.5,
+            "sp": 2868,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 5883,
+            "startup": 0.1
+        }
+    },
+    "Euden": {
+        "c": {
+            "att": 575,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 8.26,
+            "hit": 2,
+            "recovery": 1.53,
+            "sp": 2376,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.9
+            ],
+            "dmg": 7.37,
+            "hit": 1,
+            "recovery": 2.7,
+            "sp": 4880,
+            "startup": 0.1
+        }
+    },
+    "Eugene": {
+        "c": {
+            "att": 479,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.6667,
+            "sp": 3456,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 25.00,
+            "hit": 1,
+            "recovery": 1.6667,
+            "sp": 0,
+            "startup": 0.1
+        }
+    },
+    "Ezelith": {
+        "c": {
+            "att": 571,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 3.83,
+            "sp": 2400,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8940,
+            "startup": 0.25
+        }
+    },
+    "Fjorm": {
+        "c": {
+            "att": 608,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 9.86,
+            "hit": 2,
+            "recovery": 1.9667,
+            "sp": 2738,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 15.41,
+            "hit": 1,
+            "recovery": 3.7667,
+            "sp": 4548,
+            "startup": 0.1
+        }
+    },
+    "Fleur": {
+        "c": {
+            "att": 481,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 1,
+            "recovery": 1.1,
+            "sp": 3478,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.25,
+                5.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5934,
+            "startup": 0.25
+        }
+    },
+    "Forte": {
+        "c": {
+            "att": 511,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.8333,
+            "sp": 2352,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 25.28,
+            "hit": 4,
+            "recovery": 2.5,
+            "sp": 5161,
+            "startup": 0.1
+        }
+    },
+    "Francesca": {
+        "c": {
+            "att": 451,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 6.76,
+            "hit": 4,
+            "recovery": 2.25,
+            "sp": 2257,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.3
+            ],
+            "dmg": 5.76,
+            "hit": 2,
+            "recovery": 1.8,
+            "sp": 4892,
+            "startup": 0.1
+        }
+    },
+    "Fritz": {
+        "c": {
+            "att": 459,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.4
+            ],
+            "dmg": 6.68,
+            "hit": 4,
+            "recovery": 1.55,
+            "sp": 2452,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5315,
+            "startup": 0.25
+        }
+    },
+    "Gala_Alex": {
+        "c": {
+            "att": 506,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.067,
+            "sp": 1129,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.333,
+            "sp": 2120,
+            "startup": 0.1
+        }
+    },
+    "Gala_Cleo": {
+        "c": {
+            "att": 489,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.45,
+            "sp": 2814,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 4.6,
+            "hit": 1,
+            "recovery": 1.45,
+            "sp": 6000,
+            "startup": 0.1
+        }
+    },
+    "Gala_Elisanne": {
+        "c": {
+            "att": 516,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4377,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 10.89,
+            "hit": 3,
+            "recovery": 2.5,
+            "sp": 38400,
+            "startup": 0.1
+        }
+    },
+    "Gala_Euden": {
+        "c": {
+            "att": 502,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 4.13,
+            "hit": 1,
+            "recovery": 2.52,
+            "sp": 3817,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.15,
+                15.0
+            ],
+            "dmg": 22.01,
+            "hit": 10,
+            "recovery": 2.73,
+            "sp": 999999,
+            "startup": 0.1
+        }
+    },
+    "Gala_Laxi": {
+        "c": {
+            "att": 500,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.2667,
+            "sp": 2476,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 7732,
+            "startup": 0.1
+        }
+    },
+    "Gala_Leif": {
+        "c": {
+            "att": 456,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.1667,
+            "sp": 3456,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 8640,
+            "startup": 0.1
+        }
+    },
+    "Gala_Luca": {
+        "c": {
+            "att": 517,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 1,
+            "recovery": 2.25,
+            "sp": 2870,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.8,
+                10.0,
+                "crit",
+                "damage"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3899,
+            "startup": 0.25
+        }
+    },
+    "Gala_Mym": {
+        "c": {
+            "att": 510,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 9.21,
+            "hit": 3,
+            "recovery": 1.7,
+            "sp": 2914,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.28,
+            "hit": 4,
+            "recovery": 1.7,
+            "sp": 5736,
+            "startup": 0.1
+        }
+    },
+    "Gala_Ranzal": {
+        "c": {
+            "att": 504,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 8.28,
+            "hit": 6,
+            "recovery": 1.55,
+            "sp": 2661,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5800,
+            "startup": 0.25
+        }
+    },
+    "Gala_Sarisse": {
+        "c": {
+            "att": 485,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 9.49,
+            "hit": 1,
+            "recovery": 2.05,
+            "sp": 2803,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8534,
+            "startup": 0.25
+        }
+    },
+    "Gauld": {
+        "c": {
+            "att": 492,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 2.667,
+            "sp": 3051,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5158,
+            "startup": 0.25
+        }
+    },
+    "Grace": {
+        "c": {
+            "att": 470,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "staff"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 2.3,
+            "sp": 5916,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.8,
+            "sp": 8534,
+            "startup": 0.1
+        }
+    },
+    "Halloween_Edward": {
+        "c": {
+            "att": 491,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.79,
+            "hit": 3,
+            "recovery": 2.8,
+            "sp": 2392,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.47,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 5346,
+            "startup": 0.1
+        }
+    },
+    "Halloween_Elisanne": {
+        "c": {
+            "att": 578,
+            "ele": "light",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 7,
+            "recovery": 2.73,
+            "sp": 4548,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.5,
+            "hit": 1,
+            "recovery": 1.466667,
+            "sp": 5252,
+            "startup": 0.1
+        }
+    },
+    "Halloween_Lowen": {
+        "c": {
+            "att": 454,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "staff"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.5,
+            "sp": 5916,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.5,
+            "sp": 11832,
+            "startup": 0.1
+        }
+    },
+    "Halloween_Mym": {
+        "c": {
+            "att": 493,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 5.6,
+            "hit": 2,
+            "recovery": 0.9,
+            "sp": 3849,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.6667,
+            "sp": 8534,
+            "startup": 0.1
+        }
+    },
+    "Halloween_Odetta": {
+        "c": {
+            "att": 486,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.4
+            ],
+            "dmg": 6.04,
+            "hit": 2,
+            "recovery": 1.6,
+            "sp": 2503,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6424,
+            "startup": 0.25
+        }
+    },
+    "Hanabusa": {
+        "c": {
+            "att": 503,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.69,
+            "hit": 1,
+            "recovery": 1.95,
+            "sp": 2840,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7634,
+            "startup": 0.25
+        }
+    },
+    "Hawk": {
+        "c": {
+            "att": 592,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 2.0,
+            "sp": 2723,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5315,
+            "startup": 0.25
+        }
+    },
+    "Heinwald": {
+        "c": {
+            "att": 563,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "staff"
+        },
+        "s1": {
+            "dmg": 10.82,
+            "hit": 2,
+            "recovery": 1.75,
+            "sp": 3352,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4202,
+            "startup": 0.25
+        }
+    },
+    "Hunter_Berserker": {
+        "c": {
+            "att": 505,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 7.08,
+            "hit": 3,
+            "recovery": 2.7,
+            "sp": 2630,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5600,
+            "startup": 0.25
+        }
+    },
+    "Hunter_Sarisse": {
+        "c": {
+            "att": 493,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 10.44,
+            "hit": 2,
+            "recovery": 1.4,
+            "sp": 3933,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 10000,
+            "startup": 0.25
+        }
+    },
+    "Hunter_Vanessa": {
+        "c": {
+            "att": 507,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 9.03,
+            "hit": 7,
+            "recovery": 1.85,
+            "sp": 2786,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 14000,
+            "startup": 0.25
+        }
+    },
+    "Ieyasu": {
+        "c": {
+            "att": 624,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 8,
+            "recovery": 4.1,
+            "sp": 2467,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7913,
+            "startup": 0.25
+        }
+    },
+    "Irfan": {
+        "c": {
+            "att": 450,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 6.78,
+            "hit": 3,
+            "recovery": 1.95,
+            "sp": 2318,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 5.76,
+            "hit": 2,
+            "recovery": 1.9,
+            "sp": 4892,
+            "startup": 0.1
+        }
+    },
+    "Jakob": {
+        "c": {
+            "att": 437,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 3,
+            "recovery": 1.9,
+            "sp": 2581,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7633,
+            "startup": 0.25
+        }
+    },
+    "Joachim": {
+        "c": {
+            "att": 478,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.17,
+            "sp": 2803,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.25,
+                5.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5599,
+            "startup": 0.25
+        }
+    },
+    "Joe": {
+        "c": {
+            "att": 563,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 8.64,
+            "hit": 3,
+            "recovery": 1.0,
+            "sp": 2395,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.01,
+            "hit": 1,
+            "recovery": 1.4,
+            "sp": 5051,
+            "startup": 0.1
+        }
+    },
+    "Johanna": {
+        "c": {
+            "att": 444,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.36,
+            "hit": 1,
+            "recovery": 1.25,
+            "sp": 2904,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.32,
+            "hit": 2,
+            "recovery": 1.8,
+            "sp": 5735,
+            "startup": 0.1
+        }
+    },
+    "Julietta": {
+        "c": {
+            "att": 466,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 12.54,
+            "hit": 2,
+            "recovery": 1.933,
+            "sp": 3130,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6296,
+            "startup": 0.25
+        }
+    },
+    "Jurota": {
+        "c": {
+            "att": 492,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.78,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 2640,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.25,
+                5.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4101,
+            "startup": 0.25
+        }
+    },
+    "Karina": {
+        "c": {
+            "att": 542,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.90,
+            "hit": 2,
+            "recovery": 1.5,
+            "sp": 3033,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 10.40,
+            "hit": 4,
+            "recovery": 2.1,
+            "sp": 5610,
+            "startup": 0.1
+        }
+    },
+    "Karl": {
+        "c": {
+            "att": 558,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 6.08,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 2376,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.2,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6610,
+            "startup": 0.25
+        }
+    },
+    "Kirsty": {
+        "c": {
+            "att": 509,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 9.21,
+            "hit": 1,
+            "recovery": 1.7,
+            "sp": 2930,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.2,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8534,
+            "startup": 0.25
+        }
+    },
+    "Kleimann": {
+        "c": {
+            "att": 568,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 17.80,
+            "hit": 1,
+            "recovery": 1.567,
+            "sp": 2854,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.667,
+            "sp": 7090,
+            "startup": 0.1
+        }
+    },
+    "Ku_Hai": {
+        "c": {
+            "att": 488,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 7.52,
+            "hit": 4,
+            "recovery": 2.3,
+            "sp": 2296,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.1,
+                10.0,
+                "crit",
+                "rate"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 2913,
+            "startup": 0.25
+        }
+    },
+    "Laranoa": {
+        "c": {
+            "att": 469,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 9.52,
+            "hit": 14,
+            "recovery": 2.55,
+            "sp": 2567,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8534,
+            "startup": 0.25
+        }
+    },
+    "Lathna": {
+        "c": {
+            "att": 613,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.05,
+            "sp": 2854,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.7,
+            "sp": 5499,
+            "startup": 0.1
+        }
+    },
+    "Laxi": {
+        "c": {
+            "att": 494,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 3.48,
+            "hit": 4,
+            "recovery": 2.23,
+            "sp": 2537,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4877,
+            "startup": 0.25
+        }
+    },
+    "Lazry": {
+        "c": {
+            "att": 505,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.70,
+            "sp": 3194,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.6667,
+            "sp": 7475,
+            "startup": 0.1
+        }
+    },
+    "Lea": {
+        "c": {
+            "att": 505,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 7.4,
+            "hit": 5,
+            "recovery": 2.7,
+            "sp": 2325,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.42,
+            "hit": -2,
+            "recovery": 3.13,
+            "sp": 4730,
+            "startup": 0.1
+        }
+    },
+    "Lily": {
+        "c": {
+            "att": 613,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 10.58,
+            "hit": -2,
+            "recovery": 3.1,
+            "sp": 2490,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 10.70,
+            "hit": 1,
+            "recovery": 1.46,
+            "sp": 5909,
+            "startup": 0.1
+        }
+    },
+    "Lin_You": {
+        "c": {
+            "att": 619,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 13.02,
+            "hit": 7,
+            "recovery": 2.4,
+            "sp": 2969,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8014,
+            "startup": 0.25
+        }
+    },
+    "Linnea": {
+        "c": {
+            "att": 521,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.133,
+            "sp": 3000,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5259,
+            "startup": 0.25
+        }
+    },
+    "Linus": {
+        "c": {
+            "att": 442,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.36,
+            "hit": 1,
+            "recovery": 1.85,
+            "sp": 2942,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.32,
+            "hit": 2,
+            "recovery": 1.9,
+            "sp": 5735,
+            "startup": 0.1
+        }
+    },
+    "Louise": {
+        "c": {
+            "att": 563,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.95,
+            "sp": 2896,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 3,
+            "recovery": 2.167,
+            "sp": 5001,
+            "startup": 0.1
+        }
+    },
+    "Luca": {
+        "c": {
+            "att": 445,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.71,
+            "hit": 1,
+            "recovery": 2.15,
+            "sp": 2504,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.77,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 5115,
+            "startup": 0.1
+        }
+    },
+    "Lucretia": {
+        "c": {
+            "att": 510,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 9.66,
+            "hit": 3,
+            "recovery": 3.15,
+            "sp": 3530,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.1,
+                10.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4553,
+            "startup": 0.25
+        }
+    },
+    "Luther": {
+        "c": {
+            "att": 550,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 10.12,
+            "hit": 4,
+            "recovery": 2.3,
+            "sp": 2343,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.5
+            ],
+            "dmg": 10.30,
+            "hit": 4,
+            "recovery": 1.8,
+            "sp": 4904,
+            "startup": 0.1
+        }
+    },
+    "Malka": {
+        "c": {
+            "att": 459,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 7.62,
+            "hit": 2,
+            "recovery": 1.4,
+            "sp": 2556,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.1,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6610,
+            "startup": 0.25
+        }
+    },
+    "Malora": {
+        "c": {
+            "att": 445,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.86,
+            "hit": 3,
+            "recovery": 2.0,
+            "sp": 2395,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.8
+            ],
+            "dmg": 6.67,
+            "hit": 1,
+            "recovery": 1.35,
+            "sp": 5051,
+            "startup": 0.1
+        }
+    },
+    "Maribelle": {
+        "c": {
+            "att": 512,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.5
+            ],
+            "dmg": 9.66,
+            "hit": 6,
+            "recovery": 2.7,
+            "sp": 2648,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.76,
+            "hit": 4,
+            "recovery": 1.8,
+            "sp": 5838,
+            "startup": 0.1
+        }
+    },
+    "Marth": {
+        "c": {
+            "att": 605,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 10.95,
+            "hit": 7,
+            "recovery": 2.3667,
+            "sp": 2875,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.7667,
+            "sp": 5700,
+            "startup": 0.1
+        }
+    },
+    "Marty": {
+        "c": {
+            "att": 434,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 6.82,
+            "hit": 2,
+            "recovery": 1.45,
+            "sp": 2409,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5840,
+            "startup": 0.25
+        }
+    },
+    "Mega_Man": {
+        "c": {
+            "att": 472,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "recovery": 0.75,
+            "startup": 0.1
+        },
+        "s2": {
+            "recovery": 0.75,
+            "startup": 0.1
+        }
+    },
+    "Melody": {
+        "c": {
+            "att": 563,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "blade"
+        },
+        "s1": {
+            "buff": [
+                "team",
+                0.20,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 2987,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 8.10,
+            "hit": 3,
+            "recovery": 2.75,
+            "sp": 4784,
+            "startup": 0.1
+        }
+    },
+    "Melsa": {
+        "c": {
+            "att": 452,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 7.44,
+            "hit": 6,
+            "recovery": 2.35,
+            "sp": 2311,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.68,
+            "hit": 4,
+            "recovery": 2.4,
+            "sp": 4685,
+            "startup": 0.1
+        }
+    },
+    "Mikoto": {
+        "c": {
+            "att": 520,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.4,
+            "sp": 4500,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4500,
+            "startup": 0.25
+        }
+    },
+    "Mitsuba": {
+        "c": {
+            "att": 474,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 8,
+            "recovery": 3.41,
+            "sp": 2275,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.78,
+            "sp": 10595,
+            "startup": 0.1
+        }
+    },
+    "Mitsuhide": {
+        "c": {
+            "att": 497,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.55,
+            "sp": 2641,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.45,
+            "hit": 1,
+            "recovery": 1.87,
+            "sp": 5280,
+            "startup": 0.1
+        }
+    },
+    "Musashi": {
+        "c": {
+            "att": 503,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.64,
+            "hit": 2,
+            "recovery": 2.0,
+            "sp": 2567,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.3,
+                5.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4430,
+            "startup": 0.25
+        }
+    },
+    "Nadine": {
+        "c": {
+            "att": 510,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.00,
+            "hit": 1,
+            "recovery": 1.30,
+            "sp": 3036,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.30,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5054,
+            "startup": 0.25
+        }
+    },
+    "Natalie": {
+        "c": {
+            "att": 521,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 3,
+            "recovery": 1.85,
+            "sp": 3247,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6000,
+            "startup": 0.25
+        }
+    },
+    "Naveed": {
+        "c": {
+            "att": 605,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 8.32,
+            "hit": 4,
+            "recovery": 2.2,
+            "sp": 2590,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3544,
+            "startup": 0.25
+        }
+    },
+    "Nefaria": {
+        "c": {
+            "att": 565,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.2,
+            "sp": 2713,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5599,
+            "startup": 0.25
+        }
+    },
+    "Nicolas": {
+        "c": {
+            "att": 486,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 8.95,
+            "hit": 1,
+            "recovery": 1.4,
+            "sp": 2785,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.05,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 5518,
+            "startup": 0.1
+        }
+    },
+    "Nobunaga": {
+        "c": {
+            "att": 520,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 7.13,
+            "hit": 1,
+            "recovery": 1.4,
+            "sp": 3300,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.04,
+            "hit": 1,
+            "recovery": 1.61,
+            "sp": 7500,
+            "startup": 0.1
+        }
+    },
+    "Noelle": {
+        "c": {
+            "att": 472,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3817,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 9.84,
+            "hit": 2,
+            "recovery": 1.3,
+            "sp": 6237,
+            "startup": 0.1
+        }
+    },
+    "Norwin": {
+        "c": {
+            "att": 480,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.71,
+            "hit": 1,
+            "recovery": 2.15,
+            "sp": 2503,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.85,
+            "sp": 4716,
+            "startup": 0.1
+        }
+    },
+    "Odetta": {
+        "c": {
+            "att": 486,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.4
+            ],
+            "dmg": 6.04,
+            "hit": 2,
+            "recovery": 1.6,
+            "sp": 2503,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6424,
+            "startup": 0.25
+        }
+    },
+    "Orion": {
+        "c": {
+            "att": 462,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 6.04,
+            "hit": 4,
+            "recovery": 2.4,
+            "sp": 2213,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.68,
+            "hit": 4,
+            "recovery": 1.9,
+            "sp": 4904,
+            "startup": 0.1
+        }
+    },
+    "Orsem": {
+        "c": {
+            "att": 482,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 7.44,
+            "hit": 6,
+            "recovery": 2.4,
+            "sp": 2311,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.36,
+            "hit": 4,
+            "recovery": 2.4,
+            "sp": 4685,
+            "startup": 0.1
+        }
+    },
+    "Patia": {
+        "c": {
+            "att": 537,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "buff": [
+                "team",
+                0.15,
+                15.0
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4367,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 7.49,
+            "hit": 1,
+            "recovery": 1.85,
+            "sp": 5157,
+            "startup": 0.1
+        }
+    },
+    "Peony": {
+        "c": {
+            "att": 485,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 4.17,
+            "hit": 1,
+            "recovery": 1.3333,
+            "sp": 2810,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 3,
+            "recovery": 1.8,
+            "sp": 6500,
+            "startup": 0.1
+        }
+    },
+    "Philia": {
+        "c": {
+            "att": 469,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.86,
+            "hit": 3,
+            "recovery": 2.05,
+            "sp": 2395,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.67,
+            "hit": 1,
+            "recovery": 1.0,
+            "sp": 5051,
+            "startup": 0.1
+        }
+    },
+    "Pia": {
+        "c": {
+            "att": 446,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 8.38,
+            "hit": 1,
+            "recovery": 1.85,
+            "sp": 2579,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3636,
+            "startup": 0.25
+        }
+    },
+    "Pietro": {
+        "c": {
+            "att": 443,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.36,
+            "hit": 2,
+            "recovery": 1.9,
+            "sp": 2868,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5840,
+            "startup": 0.25
+        }
+    },
+    "Pipple": {
+        "c": {
+            "att": 471,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4800,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4900,
+            "startup": 0.25
+        }
+    },
+    "Radiant_Xuan_Zang": {
+        "c": {
+            "att": 485,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.6667,
+            "sp": 3000,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 4500,
+            "startup": 0.1
+        }
+    },
+    "Raemond": {
+        "c": {
+            "att": 477,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 6.1,
+            "hit": 2,
+            "recovery": 1.35,
+            "sp": 2443,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.14,
+            "hit": 2,
+            "recovery": 1.45,
+            "sp": 4817,
+            "startup": 0.1
+        }
+    },
+    "Ramona": {
+        "c": {
+            "att": 518,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 12.55,
+            "hit": 3,
+            "recovery": 3.15,
+            "sp": 3033,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 9154,
+            "startup": 0.25
+        }
+    },
+    "Ranzal": {
+        "c": {
+            "att": 532,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 22.24,
+            "hit": 4,
+            "recovery": 2.1,
+            "sp": 2805,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7288,
+            "startup": 0.25
+        }
+    },
+    "Rawn": {
+        "c": {
+            "att": 454,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.71,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 2558,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.34,
+            "hit": 1,
+            "recovery": 2.15,
+            "sp": 5008,
+            "startup": 0.1
+        }
+    },
+    "Rena": {
+        "c": {
+            "att": 471,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.45,
+            "sp": 3303,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.5,
+                20.0,
+                "crit",
+                "damage"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6582,
+            "startup": 0.25
+        }
+    },
+    "Renee": {
+        "c": {
+            "att": 459,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 6,
+            "recovery": 2.6,
+            "sp": 2311,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.68,
+            "hit": 4,
+            "recovery": 2.35,
+            "sp": 5846,
+            "startup": 0.1
+        }
+    },
+    "Renelle": {
+        "c": {
+            "att": 542,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 7.11,
+            "hit": 3,
+            "recovery": 1.95,
+            "sp": 2318,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.3
+            ],
+            "dmg": 6.64,
+            "hit": 2,
+            "recovery": 1.9,
+            "sp": 4892,
+            "startup": 0.1
+        }
+    },
+    "Rex": {
+        "c": {
+            "att": 490,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.36,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 2942,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.33,
+            "hit": 1,
+            "recovery": 1.3,
+            "sp": 5807,
+            "startup": 0.1
+        }
+    },
+    "Rodrigo": {
+        "c": {
+            "att": 576,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 12.01,
+            "hit": 1,
+            "recovery": 0.8333,
+            "sp": 2613,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 13.68,
+            "hit": 1,
+            "recovery": 1.3,
+            "sp": 4886,
+            "startup": 0.1
+        }
+    },
+    "Ryozen": {
+        "c": {
+            "att": 444,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4367,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 7.55,
+            "hit": 5,
+            "recovery": 2.6,
+            "sp": 4855,
+            "startup": 0.1
+        }
+    },
+    "Sazanka": {
+        "c": {
+            "att": 460,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.2,
+            "hit": 4,
+            "recovery": 2.15,
+            "sp": 2805,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6400,
+            "startup": 0.25
+        }
+    },
+    "Serena": {
+        "c": {
+            "att": 443,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 7.0,
+            "hit": 2,
+            "recovery": 1.55,
+            "sp": 2500,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.76,
+            "hit": 4,
+            "recovery": 2.2,
+            "sp": 4593,
+            "startup": 0.1
+        }
+    },
+    "Sha_Wujing": {
+        "c": {
+            "att": 491,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3051,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 1.2667,
+            "sp": 8424,
+            "startup": 0.1
+        }
+    },
+    "Sharena": {
+        "c": {
+            "att": 459,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 4.39,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 2412,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 11.05,
+            "hit": 2,
+            "recovery": 1.6667,
+            "sp": 4593,
+            "startup": 0.1
+        }
+    },
+    "Sinoa": {
+        "c": {
+            "att": 473,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3817,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 8.86,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 5422,
+            "startup": 0.1
+        }
+    },
+    "Student_Maribelle": {
+        "c": {
+            "att": 513,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.5
+            ],
+            "dmg": 9.6,
+            "hit": 12,
+            "recovery": 1.1667,
+            "sp": 2649,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 12.88,
+            "hit": 2,
+            "recovery": 1.46,
+            "sp": 8300,
+            "startup": 0.1
+        }
+    },
+    "Su_Fang": {
+        "c": {
+            "att": 568,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 4,
+            "recovery": 2.1,
+            "sp": 2462,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4877,
+            "startup": 0.25
+        }
+    },
+    "Summer_Amane": {
+        "c": {
+            "att": 467,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.333,
+            "sp": 3849,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.20,
+                10.0,
+                "crit",
+                "chance"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.0,
+            "sp": 5217,
+            "startup": 0.1
+        }
+    },
+    "Summer_Celliera": {
+        "c": {
+            "att": 574,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.4,
+            "sp": 2649,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.6,
+            "hit": 1,
+            "recovery": 2.06,
+            "sp": 7641,
+            "startup": 0.1
+        }
+    },
+    "Summer_Cleo": {
+        "c": {
+            "att": 469,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.75,
+            "sp": 2841,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.05,
+            "sp": 6737,
+            "startup": 0.1
+        }
+    },
+    "Summer_Estelle": {
+        "c": {
+            "att": 471,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "wand"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                0.4
+            ],
+            "dmg": 8.8,
+            "hit": 2,
+            "recovery": 1.65,
+            "sp": 2711,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7634,
+            "startup": 0.25
+        }
+    },
+    "Summer_Julietta": {
+        "c": {
+            "att": 618,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 3,
+            "recovery": 1.7,
+            "sp": 3194,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7475,
+            "startup": 0.25
+        }
+    },
+    "Summer_Luca": {
+        "c": {
+            "att": 498,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 11.4,
+            "hit": 2,
+            "recovery": 2.7,
+            "sp": 3072,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4683,
+            "startup": 0.25
+        }
+    },
+    "Summer_Mikoto": {
+        "c": {
+            "att": 492,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 2600,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.1667,
+            "sp": 8600,
+            "startup": 0.1
+        }
+    },
+    "Summer_Norwin": {
+        "c": {
+            "att": 499,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 4513,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 4512,
+            "startup": 0.1
+        }
+    },
+    "Summer_Patia": {
+        "c": {
+            "att": 519,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                1
+            ],
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.3333,
+            "sp": 2800,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 23.10,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 5600,
+            "startup": 0.1
+        }
+    },
+    "Summer_Ranzal": {
+        "c": {
+            "att": 454,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 3.1,
+            "sp": 2489,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.4,
+            "sp": 7383,
+            "startup": 0.1
+        }
+    },
+    "Summer_Sinoa": {
+        "c": {
+            "att": 487,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 16.0,
+            "hit": 1,
+            "recovery": 1.333,
+            "sp": 1986,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.233,
+            "sp": 3812,
+            "startup": 0.1
+        }
+    },
+    "Sophie": {
+        "c": {
+            "att": 533,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "staff"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.8,
+            "sp": 5916,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.93,
+            "hit": 1,
+            "recovery": 1.4,
+            "sp": 9214,
+            "startup": 0.1
+        }
+    },
+    "Sylas": {
+        "c": {
+            "att": 582,
+            "ele": "wind",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.3,
+            "sp": 3120,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 12000,
+            "startup": 0.25
+        }
+    },
+    "Taro": {
+        "c": {
+            "att": 495,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 8.79,
+            "hit": 3,
+            "recovery": 2.8,
+            "sp": 2392,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.9,
+            "hit": 1,
+            "recovery": 1.95,
+            "sp": 5259,
+            "startup": 0.1
+        }
+    },
+    "Templar_Hope": {
+        "c": {
+            "att": 442,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3756,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 6.76,
+            "hit": 2,
+            "recovery": 1.53,
+            "sp": 4608,
+            "startup": 0.1
+        }
+    },
+    "Tiki": {
+        "c": {
+            "att": 498,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.3333,
+            "sp": 2248,
+            "startup": 0.10
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.3333,
+            "sp": 7868,
+            "startup": 0.10
+        }
+    },
+    "Tobias": {
+        "c": {
+            "att": 494,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3840,
+            "startup": 0.25
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.7,
+            "sp": 1,
+            "startup": 0.1
+        }
+    },
+    "Valentines_Addis": {
+        "c": {
+            "att": 496,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 2,
+            "recovery": 1.66,
+            "sp": 2603,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 6200,
+            "startup": 0.25
+        }
+    },
+    "Valentines_Ezelith": {
+        "c": {
+            "att": 462,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.68,
+            "hit": 8,
+            "recovery": 2.2,
+            "sp": 2708,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.1,
+                10.0,
+                0.9
+            ],
+            "dmg": 7.16,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 5115,
+            "startup": 0.1
+        }
+    },
+    "Valentines_Melody": {
+        "c": {
+            "att": 492,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 8.34,
+            "hit": 6,
+            "recovery": 2.2,
+            "sp": 3849,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.64,
+            "hit": 1,
+            "recovery": 1.05,
+            "sp": 5217,
+            "startup": 0.1
+        }
+    },
+    "Valentines_Orion": {
+        "c": {
+            "att": 471,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 6.08,
+            "hit": 2,
+            "recovery": 1.45,
+            "sp": 2409,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 7633,
+            "startup": 0.25
+        }
+    },
+    "Valerio": {
+        "c": {
+            "att": 518,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 2.83,
+            "sp": 2640,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.5,
+            "sp": 10595,
+            "startup": 0.1
+        }
+    },
+    "Vanessa": {
+        "c": {
+            "att": 501,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 11.4,
+            "hit": 2,
+            "recovery": 1.9,
+            "sp": 3033,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "debuff",
+                0.05,
+                10.0,
+                1
+            ],
+            "dmg": 9.7,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 6016,
+            "startup": 0.1
+        }
+    },
+    "Veronica": {
+        "c": {
+            "att": 616,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.30,
+            "sp": 3291,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 13.20,
+            "hit": 3,
+            "recovery": 1.4667,
+            "sp": 6186,
+            "startup": 0.1
+        }
+    },
+    "Vice": {
+        "c": {
+            "att": 543,
+            "ele": "shadow",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 4,
+            "recovery": 2.15,
+            "sp": 2257,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 4892,
+            "startup": 0.1
+        }
+    },
+    "Victor": {
+        "c": {
+            "att": 494,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 9.5,
+            "hit": 5,
+            "recovery": 2.35,
+            "sp": 2838,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 9.57,
+            "hit": 1,
+            "recovery": 2.7,
+            "sp": 7500,
+            "startup": 0.1
+        }
+    },
+    "Vida": {
+        "c": {
+            "att": 453,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 6.78,
+            "hit": 2,
+            "recovery": 1.85,
+            "sp": 2446,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5315,
+            "startup": 0.25
+        }
+    },
+    "Waike": {
+        "c": {
+            "att": 446,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "bow"
+        },
+        "s1": {
+            "dmg": 7.86,
+            "hit": 3,
+            "recovery": 2.0,
+            "sp": 2395,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.67,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 4989,
+            "startup": 0.1
+        }
+    },
+    "Wu_Kong": {
+        "c": {
+            "att": 472,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 1,
+            "recovery": 1.5,
+            "sp": 2256,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 11.89,
+            "hit": 4,
+            "recovery": 1.8,
+            "sp": 4904,
+            "startup": 0.1
+        }
+    },
+    "Wedding_Aoi": {
+        "c": {
+            "att": 475,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 5.86,
+            "hit": 1,
+            "recovery": 2.75,
+            "sp": 2401,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 3.1,
+            "sp": 4400,
+            "startup": 0.1
+        }
+    },
+    "Wedding_Elisanne": {
+        "c": {
+            "att": 480,
+            "ele": "wind",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 9.9,
+            "hit": 1,
+            "recovery": 1.95,
+            "sp": 2902,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.01,
+            "hit": 1,
+            "recovery": 1.1,
+            "sp": 6243,
+            "startup": 0.1
+        }
+    },
+    "Xainfried": {
+        "c": {
+            "att": 580,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "5",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 0,
+            "recovery": 3.0,
+            "sp": 2450,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "team",
+                0.2,
+                20.0
+            ],
+            "dmg": 7.62,
+            "hit": 3,
+            "recovery": 1.4,
+            "sp": 8534,
+            "startup": 0.1
+        }
+    },
+    "Xander": {
+        "c": {
+            "att": 603,
+            "ele": "water",
+            "lv2_autos": 6,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 8.32,
+            "hit": 1,
+            "recovery": 1.9,
+            "sp": 2714,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.59,
+            "hit": 3,
+            "recovery": 1.77,
+            "sp": 4817,
+            "startup": 0.1
+        }
+    },
+    "Xania": {
+        "c": {
+            "att": 584,
+            "ele": "flame",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 8.95,
+            "hit": 1,
+            "recovery": 1.35,
+            "sp": 2759,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 8.95,
+            "hit": 1,
+            "recovery": 1.35,
+            "sp": 5570,
+            "startup": 0.1
+        }
+    },
+    "Xiao_Lei": {
+        "c": {
+            "att": 461,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 8.95,
+            "hit": 1,
+            "recovery": 1.4,
+            "sp": 2785,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3909,
+            "startup": 0.25
+        }
+    },
+    "Xuan_Zang": {
+        "c": {
+            "att": 461,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 0,
+            "hit": 3,
+            "recovery": 1.8,
+            "sp": 2707,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 1.05,
+            "sp": 6000,
+            "startup": 0.1
+        }
+    },
+    "Yachiyo": {
+        "c": {
+            "att": 501,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "blade"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 2.0,
+            "sp": 2567,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 4139,
+            "startup": 0.25
+        }
+    },
+    "Yaten": {
+        "c": {
+            "att": 506,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 8.24,
+            "hit": 4,
+            "recovery": 2.15,
+            "sp": 2818,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 3636,
+            "startup": 0.25
+        }
+    },
+    "Yue": {
+        "c": {
+            "att": 454,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 10.18,
+            "hit": 2,
+            "recovery": 1.6,
+            "sp": 3033,
+            "startup": 0.1
+        },
+        "s2": {
+            "buff": [
+                "self",
+                0.2,
+                20.0,
+                "crit",
+                "rate"
+            ],
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 8000,
+            "startup": 0.25
+        }
+    },
+    "Yurius": {
+        "c": {
+            "att": 511,
+            "ele": "water",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.7667,
+            "sp": 2711,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 4,
+            "recovery": 1.7667,
+            "sp": 6400,
+            "startup": 0.1
+        }
+    },
+    "Yuya": {
+        "c": {
+            "att": 482,
+            "ele": "flame",
+            "lv2_autos": 0,
+            "stars": "4",
+            "wt": "dagger"
+        },
+        "s1": {
+            "dmg": 7.44,
+            "hit": 4,
+            "recovery": 3.0,
+            "sp": 4192,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 10894,
+            "startup": 0.25
+        }
+    },
+    "Zace": {
+        "c": {
+            "att": 486,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "3",
+            "wt": "lance"
+        },
+        "s1": {
+            "dmg": 6.8,
+            "hit": 1,
+            "recovery": 2.05,
+            "sp": 2352,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 6.87,
+            "hit": 3,
+            "recovery": 1.85,
+            "sp": 5161,
+            "startup": 0.1
+        }
+    },
+    "Zardin": {
+        "c": {
+            "att": 517,
+            "ele": "water",
+            "lv2_autos": 1,
+            "stars": "3",
+            "wt": "sword"
+        },
+        "s1": {
+            "dmg": 7.01,
+            "hit": 1,
+            "recovery": 1.3,
+            "sp": 2443,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 7.50,
+            "hit": 1,
+            "recovery": 0.9,
+            "sp": 5225,
+            "startup": 0.1
+        }
+    },
+    "Zena": {
+        "c": {
+            "att": 514,
+            "ele": "shadow",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "wand"
+        },
+        "s1": {
+            "dmg": 7.79,
+            "hit": 4,
+            "recovery": 1.1667,
+            "sp": 2759,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 4.00,
+            "hit": 1,
+            "recovery": 0.8667,
+            "sp": 5570,
+            "startup": 0.10
+        }
+    },
+    "Zhu_Bajie": {
+        "c": {
+            "att": 515,
+            "ele": "light",
+            "lv2_autos": 0,
+            "stars": "5",
+            "wt": "axe"
+        },
+        "s1": {
+            "dmg": 0.0,
+            "hit": 1,
+            "recovery": 1.1667,
+            "sp": 2800,
+            "startup": 0.1
+        },
+        "s2": {
+            "dmg": 0.0,
+            "hit": 0,
+            "recovery": 0.9,
+            "sp": 5600,
+            "startup": 0.25
+        }
+    }
+}

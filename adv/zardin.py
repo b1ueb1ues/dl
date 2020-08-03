@@ -1,28 +1,32 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
-from slot.d import *
 
 def module():
     return Zardin
 
-class Zardin(adv.Adv):
-    a1 = ('a',0.10,'hp100')
+class Zardin(Adv):
+    a1 = ('a',0.20,'hp100')
     
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+BN()
-        else:
-            this.conf.slot.a = TSO()+JotS()
-
-if __name__ == '__main__':
-    conf = {}
+    conf['slots.a'] = The_Shining_Overlord()+Primal_Crisis()
     conf['acl'] = """
+        `dragon.act('c3 s end')
+        `s3, cancel
+        `s4, fsc
         `s1, fsc
         `s2, fsc
-        `s3, fsc
         `fs, seq=3 and cancel
         """
-    adv_test.test(module(), conf, verbose=0)
+    coab = ['Blade', 'Dagger', 'Yurius']
+    share = ['Gala_Elisanne', 'Ranzal']
 
+    def s1_proc(self, e):
+        self.afflics.frostbite(e.name,120,0.41)
+
+    def s2_proc(self, e):
+        self.afflics.frostbite(e.name,120,0.41)
+
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,11 +1,8 @@
 victor.py
-s_cleo.py
-s_luca.py
+summer_cleo.py
 addis.py
-ieyasu.py
-sinoa.py
-ezelith.py
 sazanka.py
-botan.py
-natalie.py
-patia.py
+megaman.py
+valerio.py
+nadine.py
+eugene.py

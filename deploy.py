@@ -1,277 +1,164 @@
-#!/usr/bin/env python3
-# -*- encoding:utf8 -*-
 import os
 import sys
+from importlib import import_module
+from importlib.util import spec_from_file_location, module_from_spec
+from time import monotonic
+import core.simulate
 
-os.system('git --git-dir=www/.git pull')
-print('press anykey')
-input()
-
-# windows platform + git bash
-# python deploy.py -s [character] | sh
-# python deploy.py -c
-# python deploy.py -s > <file>  # will generate all characters script
-
-# linux platform
-# python deploy.py -c [character]  
-# python deploy.py 
-
-
-redirect = '|tee -a'
-#redirect = '>>'
-
-ex_all = [ '_', 'r', 'd', 'b',
-       'rd','rb','db',
-       'rdb' ] 
-ex_all += [ 'k', 'kr', 'kd', 'kb',
-       'krd','krb','kdb',
-       'krdb' ] 
-
-ex = [ '_', 'r', 'd', 'b',
-       'rd','rb','db',
-       'rdb' ]
-
-chart_title = 'dps,name,star,element,weapon,str,amulets,condition,comment,\n' 
+ROOT_DIR = '.'
+ADV_DIR = 'adv'
+OUTPUT_DIR = 'www/dl-sim'
+DURATION_LIST = [60, 120, 180]
+QUICK_LIST_FILES = ['chara_quick.txt', 'chara_sp_quick.txt']
+SLOW_LIST_FILES = ['chara_slow.txt', 'chara_sp_slow.txt']
+ADV_LIST_FILES = QUICK_LIST_FILES + SLOW_LIST_FILES
 
 
-opt = []
-name = 0
+def load_adv_module_special(adv_file):
+    adv_name = adv_file.split('.')[0]
+    fn = os.path.join(ROOT_DIR, ADV_DIR, adv_file)
+    spec = spec_from_file_location(adv_name, fn)
+    module = module_from_spec(spec)
+    sys.modules[adv_name] = module
+    spec.loader.exec_module(module)
+    return module.module()
 
 
-def sh(cmd):
-    global opt
-    global fsh
-    global name
-    if '-s' in opt:
-        print(cmd)
+def load_adv_module_normal(adv_file):
+    adv_name = adv_file.split('.')[0]
+    return getattr(
+        __import__('adv.{}'.format(adv_name.lower())),
+        adv_name.lower()
+    ).module()
+
+
+def sim_adv(adv_file, special=None, mass=None):
+    t_start = monotonic()
+
+    adv_file = os.path.basename(adv_file)
+    output = open(os.path.join(ROOT_DIR, OUTPUT_DIR,
+                               'chara', '{}.csv'.format(adv_file)), 'w', encoding='utf8')
+    if special is None and adv_file.count('.py') > 1:
+        special == True
+    if special:
+        durations = [180]
+        load_adv_module = load_adv_module_special
     else:
-        os.system(cmd)
+        durations = DURATION_LIST
+        load_adv_module = load_adv_module_normal
+    adv_module = load_adv_module(adv_file)
+    for d in durations:
+        core.simulate.test(adv_module, {}, duration=d, verbose=-5,
+                           mass=1000 if mass else None, special=special, output=output)
+    print('{:.4f}s - sim:{}'.format(monotonic() - t_start, adv_file), flush=True)
 
 
-
-def main(argv):
-    global opt
-    global name
-    while(len(argv)>=2):
-        if '-c' in argv:
-            opt += ['-c']
-            argv.pop(argv.index('-c'))
-            continue
-        if '-a' in argv:
-            opt += ['-a']
-            argv.pop(argv.index('-a'))
-            continue
-        if '-s' in argv:
-            opt += ['-s']
-            argv.pop(argv.index('-s'))
-            continue
-        if '-sp' in argv:
-            opt += ['-sp']
-            argv.pop(argv.index('-sp'))
-            continue
-
-        name = argv[1]
-        if name == 'quick':
-            opt += ['quick']
-        elif name == 'slow':
-            opt += ['slow']
-        else:
-            if name[:4] == 'adv/':
-                name = name[4:]
-        argv.pop(1)
-        break
+def sim_adv_list(list_file):
+    special = list_file.startswith('chara_sp')
+    mass = list_file.endswith('slow.txt') and not special
+    with open(os.path.join(ROOT_DIR, list_file), encoding='utf8') as f:
+        for adv_file in f:
+            sim_adv(adv_file.strip(), special, mass)
 
 
-    if '-c' in opt and '-s' in opt:
-        print('can not -c -s both')
-        errrrrr()
-    
+def download_writeups():
+    import gspread
+    from oauth2client.service_account import ServiceAccountCredentials
 
-    if name == 'quick':
-        chara_quick()
-        sp_quick()
-        if '-s' not in opt:
-            combine()
-        return
+    KEYFILE = './adv-haste-d888baf004e9.json'
+    scope = ['https://spreadsheets.google.com/feeds',
+             'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name(KEYFILE, scope)
+    client = gspread.authorize(creds)
+    sheet = client.open('dl-adv-writeups').sheet1
 
-    if name == 'slow':
-        chara_slow()
-        sp_slow()
-        if '-s' not in opt:
-            combine()
-        return
+    with open(os.path.join(ROOT_DIR, OUTPUT_DIR, 'chara', '_writeups.csv'), 'w', encoding='utf8') as f:
+        for line in sheet.get_all_values()[1:]:
+            f.write(line[0])
+            f.write(',')
+            f.write('"')
+            f.write(line[1])
+            f.write('"')
+            f.write('\n')
 
-    if name:
-        if '-sp' in opt :
-            sp_character(name)
-        else:
-            one_character(name)
-
-    if '-c' in opt:
-        combine()
-        return
-
-    if not name : # && ! '-c'
-        chara_quick()
-        sp_quick()
-        chara_slow()
-        sp_slow()
-        if '-s' not in opt:
-            combine()
-
-#} main()
-
-
-fs = {}
-def clean():
-    global fs
-    dr = 'www/dl-sim/'
-
-    time = '60'
-    for i in ex_all:
-        f = open(dr+time+'/data_'+i+'.csv','w')
-        f.write(chart_title)
-        fs[time+'_'+i] = f
-
-    time = '120'
-    for i in ex_all:
-        f = open(dr+time+'/data_'+i+'.csv','w')
-        f.write(chart_title)
-        fs[time+'_'+i] = f
-
-    time = '180'
-    for i in ex_all:
-        f = open(dr+time+'/data_'+i+'.csv','w')
-        f.write(chart_title)
-        fs[time+'_'+i] = f
-
-    time = 'sp'
-    for i in ex_all:
-        f = open(dr+time+'/data_'+i+'.csv','w')
-        f.write(chart_title)
-        fs[time+'_'+i] = f
 
 def combine():
-    global chart_title
-    global fs
-    clean()
+    dst_dict = {}
+    pages = [str(d) for d in DURATION_LIST] + ['sp']
+    aff = ['_', 'affliction']
+    for p in pages:
+        dst_dict[p] = {}
+        for a in aff:
+            dst_dict[p][a] = open(os.path.join(
+                ROOT_DIR, OUTPUT_DIR, 'page/{}_{}.csv'.format(p, a)), 'w')
 
-    time_combine('chara_quick.txt')
-    sp_combine('chara_sp_quick.txt')
+    for list_file in ADV_LIST_FILES:
+        with open(os.path.join(ROOT_DIR, list_file), encoding='utf8') as src:
+            c_page, c_aff = '60', '_'
+            for adv_file in src:
+                adv_file = adv_file.strip()
+                src = os.path.join(ROOT_DIR, OUTPUT_DIR,
+                                   'chara', '{}.csv'.format(adv_file))
+                if not os.path.exists(src):
+                    continue
+                with open(src, 'r', encoding='utf8') as chara:
+                    for line in chara:
+                        if line[0] == '-':
+                            _, c_page, c_aff = line.strip().split(',')
+                        else:
+                            dst_dict[c_page][c_aff].write(line.strip())
+                            dst_dict[c_page][c_aff].write('\n')
+            print('cmb:{}'.format(list_file), flush=True)
 
-    time_combine('chara_slow.txt')
-    sp_combine('chara_sp_slow.txt')
-
-
-def time_combine(fname):
-    global chart_title
-    global fs
-    fcs = open(fname,'r')
-    for c in fcs:
-        c = c.strip()
-        print(c)
-        if c == '':
-            continue
-
-        fc = open('www/dl-sim/chara/'+c+'.csv', 'r')
-        for i in fc:
-            if i[0] == '-':
-                c = i.strip().split(',')
-                page = c[1]
-                affix = c[2]
-                continue
-            else:
-                fname = page + '_' + affix
-                f = fs[fname]
-                f.write(i)
-
-def sp_combine(fname):
-    global chart_title
-    global fs
-    fcs = open(fname,'r')
-    for c in fcs:
-        c = c.strip()
-        print(c)
-        if c == '':
-            continue
-        fc = open('www/dl-sim/chara/'+c+'.csv','r')
-        for i in fc:
-            if i[0] == '-':
-                c = i.strip().split(',')
-                time = c[1]
-                affix = c[2]
-                continue
-            else:
-                fname = 'sp_'+affix
-                f = fs[fname]
-                f.write(i)
+    for p in pages:
+        for a in aff:
+            dst_dict[p][a].close()
+            dst_dict[p][a].close()
 
 
-def sp_quick():
-    f = open('chara_sp_quick.txt')
-    for i in f:
-        name = i.strip()
-        if name == '':
-            continue
-        sp_character(name)
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        print('USAGE python {} sim_targets [-c] [-sp]'.format(sys.argv[0]))
+        exit(1)
+    t_start = monotonic()
 
-def sp_slow():
-    f = open('chara_sp_slow.txt')
-    for i in f:
-        name = i.strip()
-        if name == '':
-            continue
-        sp_character(name)
+    arguments = sys.argv.copy()[1:]
+    do_combine = False
+    is_special = None
+    is_mass = None
+    if '-c' in arguments:
+        do_combine = True
+        arguments.remove('-c')
+    if '-sp' in arguments:
+        is_special = True
+        arguments.remove('-sp')
+    if '-m' in arguments:
+        is_mass = True
+        arguments.remove('-m')
+    if '-dw' in arguments:
+        download_writeups()
 
-def chara_quick():
-    f = open('chara_quick.txt')
-    for i in f:
-        name = i.strip()
-        if name == '':
-            continue
-        one_character(name)
+    sim_targets = arguments
 
-def chara_slow():
-    f = open('chara_slow.txt')
-    for i in f:
-        name = i.strip()
-        if name == '':
-            continue
-        one_character(name)
+    if 'all' in sim_targets:
+        list_files = ADV_LIST_FILES
+    elif 'quick' in sim_targets:
+        list_files = QUICK_LIST_FILES
+    elif 'slow' in sim_targets:
+        list_files = SLOW_LIST_FILES
+    else:
+        list_files = None
+        sim_targets = [a for a in sim_targets if a.endswith('.py')]
 
+    if list_files is not None:
+        do_combine = True
+        for list_file in list_files:
+            sim_adv_list(list_file)
+    else:
+        for adv_file in sim_targets:
+            sim_adv(adv_file, special=is_special, mass=is_mass)
 
-def one_character(name):
-    global ex
-    print('sim:'+name)
-    open('www/dl-sim/chara/%s.csv'%name, 'w').close()
-    #sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
-    time = 60
-    for i in ex:
-        single_sim(name, time, i)
-    time = 120
-    for i in ex:
-        single_sim(name, time, i)
-    time = 180
-    for i in ex:
-        single_sim(name, time, i)
+    if do_combine:
+        combine()
 
-
-def sp_character(name):
-    global ex
-    print('sim:'+name)
-    open('www/dl-sim/chara/%s.csv'%name, 'w').close()
-    #sh('echo -n '' > www/dl-sim/chara/%s.csv'%name)
-    for i in ex:
-        single_sim(name, 'sp', i)
-
-def single_sim(name, time, ex):
-    #cmd = "echo '-,%s,%s' >> www/dl-sim/chara/%s.csv ; "%(time, ex, name)
-    cmd = ''
-    cmd += 'python adv/%s -5 %s %s %s www/dl-sim/chara/%s.csv'%(name, time, ex, redirect, name)
-    sh(cmd)
-
-
-
-
-if __name__ == '__main__' :
-    main(sys.argv)
+    print('total: {:.4f}s'.format(monotonic() - t_start))

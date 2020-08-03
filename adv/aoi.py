@@ -1,21 +1,31 @@
-import adv_test
-import adv
-from slot.d import *
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Aoi
 
-class Aoi(adv.Adv):
-    a1 = ('od',0.08)
+class Aoi(Adv):
+    a1 = ('od',0.15)
+    
+    conf = {}
+    conf['slots.a'] = Resounding_Rendition()+Me_and_My_Bestie()
+    conf['acl'] = """
+        `dragon, s=2
+        `s3, not self.s3_buff
+        `s4
+        `s1
+        `s2
+    """
+    coab = ['Wand', 'Marth', 'Serena']
+    conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
+    def s1_proc(self, e):
+        self.afflics.burn(e.name,100,0.803)
+    
+    def s2_proc(self, e):
+        self.afflics.burn(e.name,100,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['slot.d'] = Sakuya()
-    conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

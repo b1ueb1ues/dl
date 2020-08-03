@@ -1,37 +1,29 @@
-import adv_test
-import adv
-from slot.d import *
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Musashi
 
-class Musashi(adv.Adv):
+class Musashi(Adv):
     a1 = ('lo',0.40)
     a3 = ('od',0.08)
-
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.d = Vayu()
-        else:
-            this.conf.slot.d = Pazuzu()
-    
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.poison.resist=0
-        else:
-            this.afflics.poison.resist=100
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['acl'] = """
+        `dragon.act("c3 s end")
+        `s3, not self.s3_buff
+        `s2, x=5
+        `s4
+        `s1
+        """
+    coab = ['Eleonora','Dragonyule_Xainfried','Lin_You']
+    conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
-    def s1_proc(this, e):
-        this.afflics.poison('s1',110,0.53)
+    def s1_proc(self, e):
+        self.afflics.poison(e.name,110,0.53)
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s2, seq=5 
-        `s1
-        `s3, s
-        """
-    adv_test.test(module(), conf, verbose=0, mass=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

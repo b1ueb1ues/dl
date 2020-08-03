@@ -1,37 +1,29 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.a import *
+from slot.d import *
 
 def module():
     return Philia
 
-class Philia(adv.Adv):
-    conf = {}
+class Philia(Adv):
     a1 = ('a',0.1,'hp100')
+    conf = {}
+    conf['slots.a'] = Forest_Bonds()+Primal_Crisis()
+    conf['acl'] = """
+        `dragon.act("c3 s end")
+        `s3, not self.s3_buff
+        `s1, x=5 or fsc
+        `s2, x=5 or fsc
+        `s4, x=5 or fsc
+        """
+    coab = ['Blade','Dragonyule_Xainfried','Lin_You']
+    share = ['Curran']
+    conf['afflict_res.paralysis'] = 0
 
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
-        else:
-            this.afflics.paralysis.resist=100
-
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
-
-    def s2_proc(this, e):
-        this.afflics.paralysis('s2',90,0.60)
+    def s2_proc(self, e):
+        self.afflics.paralysis(e.name,90,0.60)
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5 or fsc
-        `s2, seq=5 or fsc
-        `s3, seq=5 or fsc
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,19 +1,20 @@
-import adv_test
-import adv
+from core.advbase import *
 
 def module():
     return Taro
 
-class Taro(adv.Adv):
-    pass
-
-
-if __name__ == '__main__':
+class Taro(Adv):
     conf = {}
     conf['acl'] = """
+        `dragon
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3
+        `s4
         """
-    adv_test.test(module(), conf, verbose=1)
+    coab = ['Wand','Dagger','Dagger2']
+    share = ['Curran']
 
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

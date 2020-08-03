@@ -1,5 +1,4 @@
-import adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -7,33 +6,25 @@ def module():
     return Lea
 
 class Lea(Adv):
-    comment = 'c2+fs'
     a1 = ('fs', 0.50)
     a3 = ('sp', 0.12, 'fs')
-
+        
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.d = Sakuya()
-        else:
-            this.conf.slot.d = Apollo()
+    conf['slots.a'] = The_Shining_Overlord()+Me_and_My_Bestie()
+    conf['acl'] = """
+        `dragon, fsc
+        `s3, not self.s3_buff
+        `s1, fsc
+        `s4, fsc
+        `fs, x=2
+        """
+    conf['afflict_res.burn'] = 0
+    coab = ['Blade', 'Wand', 'Marth']
+    share = ['Ranzal']
     
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
-        else:
-            this.afflics.burn.resist=100
-    
-    def s1_proc(this, e):
-        this.afflics.burn('s1',120,0.97)
+    def s1_proc(self, e):
+        self.afflics.burn(e.name,120,0.97)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['slot.a'] = TSO()+EE()
-    conf['acl'] = """
-        `s1, fsc
-        `s3, fsc
-        `fs, seq=2
-        """
-
-    adv_test.test(module(), conf, verbose=0, mass=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

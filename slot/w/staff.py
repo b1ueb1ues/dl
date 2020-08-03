@@ -1,26 +1,7 @@
-import slot
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
-
-class staff5b1(WeaponBase):
-    ele = ['flame','water','wind']
-    wt = 'staff'
-    att = 528
-    s3 = {
-        }
-
-class staff5b2(WeaponBase):
-    ele = ['light','shadow']
-    wt = 'staff'
-    att = 513
-    s3 = {
-        "dmg"      : 7.55     ,
-        "sp"       : 15205    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.9      ,
-        }
-
-class staff5d1flame(WeaponBase):
+class HDT1_Brightblaze(WeaponBase):
     ele = ['flame']
     wt = 'staff'
     att = 684
@@ -29,53 +10,11 @@ class staff5d1flame(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+        "hit"      : 4        ,
+    } # Bright Flames
+    a = [('k', 0.3, 'vs HMS')]
 
-class staff5d1water(WeaponBase):
-    ele = ['water']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 1.43*4   ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.77     ,
-        }
-
-class staff5d1wind(WeaponBase):
-    ele = ['wind']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 1.43*4   ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.77     ,
-        }
-
-class staff5d1light(WeaponBase):
-    ele = ['light']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 7.55     ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.57     ,
-        }
-
-class staff5d1shadow(WeaponBase):
-    ele = ['shadow']
-    wt = 'staff'
-    att = 670
-    s3 = {
-        "dmg"      : 7.55     ,
-        "sp"       : 13684    ,
-        "startup"  : 0.1      ,
-        "recovery" : 1.57     ,
-        }
-
-class staff5d2flame(WeaponBase):
+class HDT2_Blazegambol(WeaponBase):
     ele = ['flame']
     wt = 'staff'
     att = 1368
@@ -84,9 +23,24 @@ class staff5d2flame(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+        "hit"      : 4        ,
+    } # Gambolling Flames
+    a = []
 
-class staff5d2water(WeaponBase):
+class HDT1_Unceasing_Tide(WeaponBase):
+    ele = ['water']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+        "hit"      : 4        ,
+    } # Unceasing Stream
+    a = [('k', 0.3, 'vs HBH')]
+
+class HDT2_Oceans_Embrace(WeaponBase):
     ele = ['water']
     wt = 'staff'
     att = 1340
@@ -95,9 +49,24 @@ class staff5d2water(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+        "hit"      : 4        ,
+    } # Embracing Stream
+    a = []
 
-class staff5d2wind(WeaponBase):
+class HDT1_Zephyrage(WeaponBase):
+    ele = ['wind']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 1.43*4   ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.77     ,
+        "hit"      : 4        ,
+    } # Bowing Gust
+    a = [('k', 0.3, 'vs HMC')]
+
+class HDT2_Stormruler(WeaponBase):
     ele = ['wind']
     wt = 'staff'
     att = 1340
@@ -106,9 +75,24 @@ class staff5d2wind(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.77     ,
-        }
+        "hit"      : 4        ,
+    } # Guiding Gust
+    a = []
 
-class staff5d2light(WeaponBase):
+class HDT1_Shadowblot(WeaponBase):
+    ele = ['light']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 7.55     ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.57     ,
+        "hit"      : 1        ,
+    } # Illuminating Sneer
+    a = [('k', 0.3, 'vs HZD')]
+
+class HDT2_Heavensneer(WeaponBase):
     ele = ['light']
     wt = 'staff'
     att = 1340
@@ -117,9 +101,24 @@ class staff5d2light(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.57     ,
-        }
+        "hit"      : 1        ,
+    } # Trickster's Sneer
+    a = []
 
-class staff5d2shadow(WeaponBase):
+class HDT1_Creeping_Death(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 670
+    s3 = {
+        "dmg"      : 7.55     ,
+        "sp"       : 13684    ,
+        "startup"  : 0.1      ,
+        "recovery" : 1.57     ,
+        "hit"      : 1        ,
+    } # Night Devourer
+    a = [('k', 0.3, 'vs HJP')]
+
+class HDT2_Dark_Hunger(WeaponBase):
     ele = ['shadow']
     wt = 'staff'
     att = 1340
@@ -128,10 +127,61 @@ class staff5d2shadow(WeaponBase):
         "sp"       : 13684    ,
         "startup"  : 0.1      ,
         "recovery" : 1.57     ,
-        }
+        "hit"      : 1        ,
+    } # Despair Devourer
+    a = []
 
-flame  = staff5d2flame
-water  = staff5d2water
-wind   = staff5d2wind
-light  = staff5d2light
-shadow = staff5d2shadow
+class Chimeratech_Staff(WeaponBase):
+    ele = ['flame', 'shadow', 'wind']
+    wt = 'staff'
+    att = 877
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito2_Gjallarhorn(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 1612
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Goosefoot_Staff(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['shadow'][1]
+
+class Agito1_Gjallarhorn(WeaponBase):
+    ele = ['flame']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Avalon(WeaponBase):
+    ele = ['wind']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['wind'][1]
+
+class Agito1_Kunado(WeaponBase):
+    ele = ['water']
+    wt = 'staff'
+    att = 1467
+    s3 = agito_buffs['water'][1]
+
+class Agito2_Goosefoot_Staff(WeaponBase):
+    ele = ['shadow']
+    wt = 'staff'
+    att = 1612
+    s3 = agito_buffs['shadow'][2]
+
+class UnreleasedAgitoStr_LightStaff(Agito1_Gjallarhorn):
+    ele = ['light']
+
+class UnreleasedAgitoSpd_LightStaff(Agito1_Goosefoot_Staff):
+    ele = ['light']
+
+flame = Agito2_Gjallarhorn
+water = Agito1_Kunado
+wind = Agito1_Avalon
+light = HDT2_Heavensneer
+shadow = Agito2_Goosefoot_Staff

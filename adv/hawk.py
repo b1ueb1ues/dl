@@ -1,68 +1,69 @@
-import adv_test
-from adv import *
+from core.advbase import *
+from slot.a import *
+from module.x_alt import Fs_alt
 
 def module():
     return Hawk
 
 class Hawk(Adv):
-    def init(this):
-        this.s2fscharge = 0
-        if this.condition('fullhp=stun'):
-            this.fullhp = 1
+    a1 = [('edge_stun', 50), ('edge_poison', 50)]
+    a3 = [('k_stun',0.4), ('k_poison',0.3)]
+    
+    conf = {}
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['acl'] = """
+        # queue self.duration<=60 and prep and self.afflics.stun.resist
+        # s2; s3; fs; s1, fsc; fs; s1, fsc; s1, cancel; s2, cancel
+        # end
+        `s3, not self.s3_buff
+        `dragon.act('c3 s end'), s and self.duration >= 120
+        `s2, self.fs_alt.uses=0 or (self.s2_mode=1)
+        `fs, (s1.check() and self.fs_alt.uses>1) or (x=4 and self.s2_mode=0 and self.fs_alt.uses>0)
+        `s1, fsc or s=1
+        `s4, s or x=5
+    """
+
+    coab = ['Blade','Dragonyule_Xainfried','Sylas']
+    share = ['Curran']
+    conf['afflict_res.stun'] = 80
+    conf['afflict_res.poison'] = 0
+    
+    def fs_proc_alt(self, e):
+        self.afflics.stun('fs', 110)
+        self.afflics.poison('fs', 120, 0.582)
+
+    def prerun(self):
+        conf_fs_alt = {
+            'fs.dmg': 4.94,
+            'fs.hit':19,
+            'fs.sp':2400,
+            'missile_iv.fs': 0.5
+        }
+        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
+        self.s2_mode = 0
+        self.a_s2 = self.s2.ac
+        self.a_s2a = S('s2', Conf({'startup': 0.10, 'recovery': 2.5}))
+
+    def s1_proc(self, e):
+        with KillerModifier('s1_stun_killer', 'hit', 3.3, ['stun']):
+            self.dmg_make(e.name,4.74)
+        with KillerModifier('s1_poison_killer', 'hit', 2, ['poison']):
+            self.dmg_make(e.name,4.74)
+
+    def s2_proc(self, e):
+        if self.s2_mode == 0:
+            self.fs_alt.on(2)
+            self.s2.ac = self.a_s2a
         else:
-            this.fullhp = 0
-
-
-    def prerun(this):
-        if this.condition('80 resist'):
-            this.afflics.stun.resist=80
-        else:
-            this.afflics.stun.resist=100
-
-        this.m = Modifier('skiller','att','killer',0.3)
-        this.m.get = this.getbane
-
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
-
-    def getbane(this):
-        return this.afflics.stun.get()*0.3
-
-    def s1_before(this, e):
-        r = this.afflics.stun.get()
-        coef = 8.48 * (1-r)
-        return coef
-
-    def s1_proc(this, e):
-        r = this.afflics.stun.get()
-        coef = 8.48 * r
-        this.dmg_make('s1',coef)
-        coef = (18.232-8.48) * r
-        this.dmg_make('o_s1_boost',coef)
-
-
-    def s2_proc(this, e):
-        this.s2fscharge = 3
-
-    def fs_proc(this, e):
-        if this.s2fscharge > 0:
-            this.s2fscharge -= 1
-            this.dmg_make("o_s2_fs",0.48)
-            this.afflics.stun('s2_fs', 100+this.fullhp*60, 5.5)
-
+            with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
+                self.dmg_make(e.name, 9.48)
+            self.conf.s2.startup = 0.25
+            self.conf.s2.recovery = 0.9
+            self.s2.ac = self.a_s2
+            self.hits += 3
+        self.s2_mode = (self.s2_mode + 1) % 2
 
 
 if __name__ == '__main__':
-    #module().comment = 'boost dmg from stun 3 times'
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

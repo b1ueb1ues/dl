@@ -1,25 +1,22 @@
-import adv_test
-import adv
-from slot.a import *
+from core.advbase import *
 
 def module():
     return Marty
 
-class Marty(adv.Adv):
+class Marty(Adv):
     a1 = ('sp',0.05)
-    #comment = 'reach 100 resist with Saintly Delivery'
-    #import slot
-    conf = {}
-    conf['slots.a'] = TSO()+BN()
 
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
-        `s1,fsc
-        `s3,fsc
-        `fs, seq=3
+        `dragon, s
+        `s3, fsc and not self.s3_buff
+        `s4, fsc
+        `s1, fsc
+        `fs, x=2
         """
-    adv_test.test(module(), conf, verbose=0)
+    coab = ['Blade', 'Marth', 'Dagger2']
+    share = ['Ranzal']
 
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

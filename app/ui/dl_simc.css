@@ -1,0 +1,140 @@
+#test-params {
+    margin: 0rem 1rem;
+}
+
+#input-acl {
+    height: 85%;
+    min-height: 150px;
+}
+
+#test-results>.test-result-item:not(:first-child), #copy-results>.copy-txt:not(:first-child) {
+    opacity: 0.50;
+    /*transition: opacity 0.01s linear 0s;*/
+}
+
+#test-results>.test-result-item:not(:first-child):hover, #copy-results>.copy-txt:not(:first-child):hover {
+    opacity: 1;
+}
+
+.test-result-item {
+    margin: 1em 1%;
+    width: 98%;
+    height: max-content;
+}
+
+.btn {
+    margin: 0.5rem 0;
+}
+
+.result-bar {
+    width: 100%;
+    height: 2.25rem;
+    color: white;
+}
+
+.result-bar>a {
+    float: left;
+    height: 100%;
+    line-height: 2rem;
+    text-indent: 0.25rem;
+    overflow: hidden;
+}
+
+#copy-results {
+    display: None;
+    margin: 1rem;
+}
+
+.copy-txt {
+    width: 100%;
+    resize: none;
+    overflow: auto;
+}
+
+#test-error {
+    color: red;
+    font-weight: 600;
+    margin: 1rem;
+}
+
+.coab-label {
+    margin-top: 0.5em;
+}
+
+#aboutBox {
+    padding: 0;
+    margin: 0;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #ced4da;
+}
+
+.custom-checkbox .custom-control-input:disabled:checked~.custom-control-label::before {
+    background-color: #ced4da;
+}
+
+.test-result-slot-grid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    column-gap: 0.25em;
+}
+
+.test-result-slot-grid>div:first-child {
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.slot-icon {
+    width: 1.7em;
+}
+
+.slot-icon.character {
+    width: 3em;
+}
+
+.slot-icon.placehold, .slot-icon.coab.generic {
+    position: relative;
+    top: 0.02em;
+    width: 1.5em;
+    margin: 0.1em;
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+.slot-icon.coab.generic {
+    padding: 0.3em;
+}
+
+#affliction-resist>div>input:placeholder-shown {
+    border: 1px solid #ced4da;
+}
+
+#affliction-resist>div>input {
+    border: 1px solid black;
+}
+
+#input-coabs {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+
+#input-coabs-other {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#input-coabs>div {
+    padding-bottom: 0.5em;
+    justify-content: center;
+    border-top: 1px solid #ced4da;
+}
+
+#input-coabs>div:nth-child(even) {
+    border-left: 1px solid #ced4da;
+    padding-left: 0.2em;
+}
+
+.leftpad-code {
+    margin-left: 40px;
+}

@@ -1,33 +1,28 @@
-import adv_test
-import adv
-from module import energy
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Elias
 
-class Elias(adv.Adv):
+class Elias(Adv):
     a3 = ('lo',0.4)
-    def init(this):
-        if this.condition('energy'):
-            this.prerun = this.c_prerun
+    conf = {}
+    conf['slots.paralysis.a'] = RR()+Spirit_of_the_Season()
+    conf['acl'] = """
+        `dragon
+        `s1, fsc
+        `s3, fsc
+        `s2, fsc
+        `s4, fsc
+        `fs, x=4
+        """
+    coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
-    def c_prerun(this):
-        energy.Energy(this,{'s2':1},{'s2':1})
-        if this.condition('c4+fs & no s2'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
+    def s2_proc(self, e):
+        self.energy.add(1, team=True)
 
-    def prerun(this):
-        energy.Energy(this,{},{})
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

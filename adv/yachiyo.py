@@ -1,6 +1,5 @@
-import adv_test
-from adv import *
-from slot import *
+from core.advbase import *
+from slot.a import *
 from slot.w import *
 
 class w530(WeaponBase):
@@ -13,65 +12,50 @@ def module():
     return Yachiyo
 
 class Yachiyo(Adv):
+    a1 = ('affself_paralysis', 0.15, 10, 5)
+    a3 = ('k_paralysis', 0.2)
 
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
-        else:
-            this.afflics.paralysis.resist=100
-        this.fsa_charge = 0
-        this.m = Modifier('pkiller','att','killer',0.2)
-        this.m.get = this.getbane
+    conf = {}
+    conf['slots.a'] = MF()+SotS()
+    conf['acl'] = """
+        `dragon
+        `fs, self.fsa_charge and seq=5
+        `s2
+        `s1
+        `s4
+        `s3, fsc
+        """
+    coab = ['Malora','Dagger','Peony']
+    share = ['Ranzal']
+    conf['afflict_res.paralysis'] = 0
 
+    def d_coabs(self):
+        if self.sim_afflict:
+            self.coab = ['Sharena','Dagger','Peony']
 
-    def getbane(this):
-        return this.afflics.paralysis.get()*0.2
-        
+    def prerun(self):
+        self.fsa_charge = 0
 
-    def s1_proc(this, e):
-        this.dmg_make('s1',4.32)
-        this.afflics.paralysis('s1',100,0.66)
-        Selfbuff('a1',0.15*this.afflics.paralysis.get(),10).on()
-        this.dmg_make('s1',4.32)
+    def s1_proc(self, e):
+        self.dmg_make(e.name,4.32)
+        self.afflics.paralysis(e.name,100,0.66)
+        self.dmg_make(e.name,4.32)
 
+    def s2_proc(self, e):
+        # self.fso_dmg = self.conf.fs.dmg
+        self.fso_sp = self.conf.fs.sp
+        # self.conf.fs.dmg = 7.82
+        self.conf.fs.sp = 200
+        self.fsa_charge = 1
 
-    def s2_proc(this, e):
-        this.fso_dmg = this.conf.fs.dmg
-        this.fso_sp = this.conf.fs.sp
-        this.conf.fs.dmg = 7.82
-        this.conf.fs.sp = 200
-        this.fsa_charge = 1
-
-    def fs_proc(this, e):
-        if this.fsa_charge:
-            this.conf.fs.dmg = this.fso_dmg
-            this.conf.fs.sp = this.fso_sp
-            this.fsa_charge = 0
-
+    def fs_proc(self, e):
+        if self.fsa_charge:
+            # self.conf.fs.dmg = self.fso_dmg
+            self.dmg_make(f'o_{e.name}_boost',6.90)
+            self.conf.fs.sp = self.fso_sp
+            self.fsa_charge = 0
 
 
 if __name__ == '__main__':
-    conf = {}
-    #module().comment = 'RR+SS'
-    from slot.a import *
-    from slot.d import *
-    conf['slots.a'] = MF()+SotS()
-    conf['slots.d'] = C_Phoenix()
-    conf['acl'] = """
-        `fs, this.fsa_charge and seq=5
-        `s2
-        `s1
-        `s3
-        """
-
-    #conf['slot.w'] = w530()
-    #conf['slot.w'] = blade5b2()
-    #conf['slot.w'] = blade4b2()
-    #conf['acl'] = """
-    #    `fs, this.fsa_charge and seq=5
-    #    `s2
-    #    `s1
-    #    `s3
-    #    """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

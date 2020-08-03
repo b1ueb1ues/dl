@@ -1,25 +1,32 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.d import *
 from slot.a import *
 
 def module():
     return Ranzal
 
-class Ranzal(adv.Adv):
-    comment = 'do not use fs'
+class Ranzal(Adv):
+    a1 = ('a', 0.08, 'hit15')
+    a3 = [('lo_defense', 0.70),('lo_defense', 0.10, -1)]
 
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = KFM()+CE()
-        else:
-            this.conf.slot.a = KFM()+JotS()
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['acl'] = """
+        `dragon.act("c3 s end"), s or x=5
+        `s3, not self.s3_buff
+        `s1
+        `s4
+        """
+    coab = ['Blade','Dragonyule_Xainfried','Eleonora']
+    share = ['Curran']
+    conf['afflict_res.poison'] = 0
+    
+    def s1_proc(self, e):
+        self.afflics.poison(e.name, 120, 0.582)
+
+    def s2_proc(self, e):
+        Event('defchain')()
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1 
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,45 +1,32 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Joe
 
-class Joe(adv.Adv):
+class Joe(Adv):
+    a1 = ('edge_burn', 70, 'hp100')
+
     conf = {}
-    #conf['slots.a'] = RR()+EE()
-    
+    conf['slots.a'] = Resounding_Rendition()+Me_and_My_Bestie()
+    conf['acl'] = """
+        `dragon, s=1
+        `s3, fsc and not self.s3_buff
+        `s1
+        `s2
+        `s4
+        `fs, x=4
+    """
+    coab = ['Blade', 'Wand', 'Marth']
+    conf['afflict_res.burn'] = 0
+    share = ['Ranzal']
 
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.burn.resist=0
-        else:
-            this.afflics.burn.resist=100
-        if this.condition('fullhp=burn'):
-            this.fullhp = 1
-        else:
-            this.fullhp = 0
-
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
-
-    def s2_proc(this, e):
-        this.afflics.burn('s2',90+40*this.fullhp,0.6)
-
-
-
+    def s1_proc(self, e):
+        self.afflics.burn(e.name,100,0.803)
+        
+    def s2_proc(self, e):
+        self.afflics.burn(e.name,100,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s2, seq=5
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

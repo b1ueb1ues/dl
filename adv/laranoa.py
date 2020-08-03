@@ -1,5 +1,4 @@
-import adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -10,66 +9,35 @@ class Laranoa(Adv):
     comment = 'doesn\'t count spbuff for teammates'
 
     a3 = ('s',0.3)
+    
     conf = {}
-    #conf['slot.a'] = FB()+The_Prince_of_Dragonyule()
-    conf['slot.d'] = DJ()
-    
-    def init(this):
-        if this.condition('buff all team'):
-            this.s2_proc = this.c_s2_proc
-        if this.condition('never lose comboes'):
-            this.dmg_proc = this.c_dmg_proc
+    conf['slots.a'] = Primal_Crisis()+The_Wyrmclan_Duo()
+    conf['slots.d'] = Siren()
+    conf['acl'] = """
+        `s3
+        `s4
+        `s1
+        `s2, fsc
+        `fs, seq=4
+    """
+    coab = ['Renee', 'Xander', 'Summer_Estelle']
+    share = ['Gala_Elisanne', 'Ranzal']
 
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1
-                `s2,fsc
-                `s3,fsc
-                `fs, seq=4
-                """
-        else:
-            this.conf['acl'] = """
-                `s1
-                `s2
-                `s3
-                """
+    def init(self):
+        self.buff_class = Teambuff if self.condition('buff all team') else Selfbuff
 
+    def prerun(self):
+        self.ahits = 0
 
-    def prerun(this):
-        this.hits = 0
+    def s2_proc(self, e):
+        self.buff_class(e.name,0.10,10).on()
+        Selfbuff(f'{e.name}_sp',0.20,10,'sp','passive').on()
 
-    
-    def c_s2_proc(this, e):
-        Teambuff('s2_str',0.10,10).on()
-        Selfbuff('s2_sp',0.20,10,'sp','passive').on()
-
-    def s2_proc(this, e):
-        Selfbuff('s2_str',0.10,10).on()
-        Selfbuff('s2_sp',0.20,10,'sp','passive').on()
-
-    def c_dmg_proc(this, name, amount):
-        if name[:2] == 'x1':
-            this.hits += 3
-        elif name[:2] == 'x2':
-            this.hits += 2
-        elif name[:2] == 'x3':
-            this.hits += 3
-        elif name[:2] == 'x4':
-            this.hits += 2
-        elif name[:2] == 'x5':
-            this.hits += 5
-        elif name[:2] == 'fs':
-            this.hits += 8
-        elif name[:2] == 's1':
-            this.hits += 14
-        if this.hits >= 20:
-            this.hits -= 20
+    def dmg_proc(self, name, amount):
+        if self.hits // 20 > self.ahits:
+            self.ahits = self.hits // 20
             Selfbuff('sylvan critdmg',0.10,20,'crit','damage').on()
 
-
-
 if __name__ == '__main__':
-    conf = {}
-    adv_test.test(module(), conf, verbose=-2)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,49 +1,30 @@
-import adv_test
-from xander import *
+import adv.xander
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
 def module():
-    return Xander_best
+    return Xander
 
-class Together_We_Stand(Amulet):
-    att = 52
-    a = [('sts',0.05),
-         ('s',0.20)]
+class Here_Come_the_Sealers(Amulet):
+    att = 65
+    a = [('slayers',0.06),
+         ('fs',0.50)]
 
+class A_New_Look(Amulet):
+    att = 65
+    a = [('slayers_crit_chance',0.05),
+         ('cd',0.17,'hp70')]
 
-class Xander_best(Xander):
+class Xander(adv.xander.Xander):
     comment = '10 stacks striker\'s strength'
-    name = 'Xander'
-    a1 = ('sts',0.06)
-    conf = {}
-    conf['slots.a'] = Together_We_Stand() + RR()
-
-
-    def s1_proc(this,e):
-        this.dmg_make('o_s1_boost',this.conf['s1.dmg']*0.5)
-
-
-
+    a1 = ('slayers',0.06)
+    
+    conf = adv.xander.Xander.conf.copy()
+    conf['slots.a'] = Here_Come_the_Sealers() + A_New_Look()
+    conf['slots.frostbite.a'] = conf['slots.a']
+    coab = ['Blade', 'Yurius', 'Dagger']
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2
-        `fs, seq=2 and cancel
-        """
-    adv_test.test(module(), conf, verbose=0)
-
-#    def foo(e):
-#        return
-#    module().a1 = None
-#    module().s1_proc = foo
-#    module().comment = 'only 2+1'
-#    conf['slots.a'] = Stellar_Show()+LC()
-#    conf['slots.d'] = DJ()
-#    conf['acl'] = """
-#        `fs, seq=2 and cancel
-#        """
-#    adv_test.test(module(), conf, verbose=0)
-#
+    from core.simulate import test_with_argv
+    test_with_argv(Xander, *sys.argv)

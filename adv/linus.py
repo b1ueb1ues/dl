@@ -1,22 +1,29 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Linus
 
-class Linus(adv.Adv):
-    comment = 'do not use weapon skill'
-    pass
-
-if __name__ == '__main__':
+class Linus(Adv):
+    # comment = 'do not use weapon skill'
     conf = {}
-    conf['slot.a'] = KFM()+FitF()
+    conf['slots.a'] = Summer_Paladyns()+Primal_Crisis()
+    conf['slots.paralysis.a'] = RR()+Spirit_of_the_Season()
     conf['acl'] = """
+        `dragon
         `s1 
         `s2
-        `s3,seq=4
-        `fs,seq=5
+        `s3, x=4
+        `s4
+        `fs, x=5
         """
-    adv_test.test(module(), conf, verbose=0)
+    coab = ['Blade','Dagger','Peony']
+    share = ['Ranzal']
 
+    def d_slots(self):
+        if self.duration <= 120:
+            self.conf['slots.a'] = Resounding_Rendition() + Breakfast_at_Valerios()
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

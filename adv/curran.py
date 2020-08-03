@@ -1,29 +1,40 @@
-import adv_test
-import adv
-from slot.d import *
+from core.advbase import *
 from slot.a import *
-
+from slot.d import *
 
 def module():
     return Curran
 
-class Curran(adv.Adv):
-    comment = "no fs"
+class Curran(Adv):
+    comment = 'no fs'
 
-    a1 = ('od',0.13)
-    a3 = ('lo',0.5)
+    a1 = ('od',0.15)
+    a3 = ('lo',0.6)
 
     conf = {}
-    conf['slot.a'] = KFM()+CE()
+    conf['slots.poison.a'] = Summer_Paladyns()+The_Plaguebringer()
+    conf['acl'] = '''
+        `dragon.act('c3 s end')
+        `s3, not self.s3_buff
+        `s1
+        `s2
+        `s4
+        '''
+    coab = ['Curran','Blade','Wand','Bow']
+    share = ['Veronica']
 
+    def s1_before(self, e):
+        with KillerModifier('s1_killer', 'hit', 0.6, ['poison']):
+            self.dmg_make(e.name, 2.45)
 
+    def s1_proc(self, e):
+        with KillerModifier('s1_killer', 'hit', 0.6, ['poison']):
+            self.dmg_make(e.name, 12.70)
+
+    def s2_proc(self, e):
+        with Modifier('s2killer', 'poison_killer', 'hit', 1):
+            self.dmg_make(e.name, 12.54)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=2
-        `s3, seq=5
-        """
-    conf['slot.d'] = Shinobi()
-    adv_test.test(module(), conf, verbose=-2)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

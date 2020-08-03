@@ -1,3 +1,0 @@
-84  1.4      (phase I)
-98  1.6333   (phase II)
-184 3.0667   (phase III)

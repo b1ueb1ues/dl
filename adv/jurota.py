@@ -1,26 +1,26 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Jurota
 
-class Jurota(adv.Adv):
+class Jurota(Adv):
     a1 = ('bk',0.2)
-    #comment = 'reach 100 resist with Saintly Delivery'
-    #conf = {}
-    #conf['slots.a'] = Saintly_Delivery()+RR()
 
-
-
-
-
-if __name__ == '__main__':
     conf = {}
+    conf['slots.frostbite.a'] = Primal_Crisis() + His_Clever_Brother()
+    conf['slots.d'] = Leviathan()
     conf['acl'] = """
+        `dragon
+        `s3
         `s1
         `s2, seq=5
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=0)
+        `s4
+    """
+    coab = ['Dagger2', 'Xander', 'Dagger']
+    share = ['Gala_Elisanne', 'Eugene']
 
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

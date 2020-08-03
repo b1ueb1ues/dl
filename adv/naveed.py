@@ -1,63 +1,44 @@
-import adv_test
-import adv
+from core.advbase import *
 from slot.a import *
 
 def module():
     return Naveed
 
-class Naveed(adv.Adv):
-
+class Naveed(Adv):
+    a1 = ('a',0.08,'hit15')
+    a3 = ('prep','100%')
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = TSO()+BN()
-        else:
-            this.conf.slot.a = TSO()+JotS()
-            
-    def prerun(this):
-        this.s1level = 0
-        this.charge_p('prep','100%')
-        pass
+    conf['acl'] = """
+        `dragon, s
+        `s3, not self.s3_buff
+        `s2, self.s1level < 5
+        `s1, cancel
+        `s4, cancel
+        `fs, x=3 and cancel
+        """
+    conf['slots.a'] = The_Shining_Overlord()+Primal_Crisis()
+    coab = ['Blade', 'Wand', 'Gala_Sarisse']
+    share = ['Ranzal']
 
-    def s1_proc(this, e):
-        this.dmg_make("s1_missile",3*this.s1level*0.28)
+    def prerun(self):
+        self.s1level = 0
 
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.s1level = 0
 
-    def s2_proc(this, e):
-        this.s1level += 1
-        if this.s1level >= 5:
-            if this.conf.s2stop :
-                this.s2.sp = 0
-            this.s1level = 5
-        adv.Event('defchain')()
+    def s1_proc(self, e):
+        for _ in range(self.s1level):
+            for _ in range(3):
+                self.dmg_make(e.name,0.7)
+                self.hits += 1
 
-        
-        
-
+    def s2_proc(self, e):
+        self.s1level += 1
+        if self.s1level >= 5:
+            self.s1level = 5
+        Event('defchain')()
 
 if __name__ == '__main__':
-    conf = {}
-
-    import sys
-    from slot.a import *
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
-
-    if sim_duration == 60:
-        conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
-    elif sim_duration == 90:
-        conf['slots.a'] = First_Rate_Hospitality()+The_Shining_Overlord()
-    elif sim_duration == 180:
-        conf['slot.a'] = The_Shining_Overlord()+Jewels_of_the_Sun()
-        conf['s2stop'] = 1
-
-    conf['acl'] = """
-        `s2, sp 
-        `s1, sp
-        `s3, sp
-        `fs, seq=3 and cancel
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

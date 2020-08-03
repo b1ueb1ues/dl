@@ -1,0 +1,1066 @@
+{
+  "Marty": {
+    "s": 2,
+    "cost": 3,
+    "type": 2,
+    "sp": 6424
+  },
+  "Valentines_Orion": {
+    "s": 2,
+    "cost": 3,
+    "type": 2,
+    "sp": 10686
+  },
+  "Zardin": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 6351
+  },
+  "Raemond": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4886
+  },
+  "Rodrigo": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 6009
+  },
+  "Euden": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 9266
+  },
+  "Karl": {
+    "s": 2,
+    "cost": 6,
+    "type": 4,
+    "sp": 11898
+  },
+  "Serena": {
+    "s": 2,
+    "cost": 3,
+    "type": 1,
+    "sp": 5970
+  },
+  "Halloween_Odetta": {
+    "s": 2,
+    "cost": 6,
+    "type": 4,
+    "sp": 14775
+  },
+  "Ku_Hai": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4592
+  },
+  "Templar_Hope": {
+    "s": 1,
+    "cost": 4,
+    "type": 2,
+    "sp": 13221
+  },
+  "Odetta": {
+    "s": 2,
+    "cost": 5,
+    "type": 3,
+    "sp": 11563
+  },
+  "Berserker": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4752
+  },
+  "Naveed": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 9065
+  },
+  "Marth": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7187
+  },
+  "Lea": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 4650
+  },
+  "Hunter_Berserker": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 7101
+  },
+  "Xander": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 8549
+  },
+  "Summer_Celliera": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 6887
+  },
+  "Eugene": {
+    "s": 2,
+    "cost": 4,
+    "type": 1,
+    "sp": 15759
+  },
+  "Gala_Ranzal": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 5322
+  },
+  "Wedding_Elisanne": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7255
+  },
+  "Albert": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 4702
+  },
+  "Gala_Euden": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 15649
+  },
+  "Yaten": {
+    "s": 2,
+    "cost": 6,
+    "type": 4,
+    "sp": 12726
+  },
+  "Aoi": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5260
+  },
+  "Jurota": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 5280
+  },
+  "Melody": {
+    "s": 2,
+    "cost": 3,
+    "type": 1,
+    "sp": 9568
+  },
+  "Halloween_Edward": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 4784
+  },
+  "Taro": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 4784
+  },
+  "Laxi": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 3044
+  },
+  "Summer_Ranzal": {
+    "s": 2,
+    "cost": 6,
+    "type": 4,
+    "sp": 13289
+  },
+  "Musashi": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 5134
+  },
+  "Addis": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 5074
+  },
+  "Yachiyo": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5134
+  },
+  "Durant": {
+    "s": 1,
+    "cost": 6,
+    "type": 5,
+    "sp": 14337
+  },
+  "Mikoto": {
+    "s": 2,
+    "cost": 5,
+    "type": 5,
+    "sp": 10800
+  },
+  "Rena": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 9248
+  },
+  "Nobunaga": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 7920
+  },
+  "Victor": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 7378
+  },
+  "Tobias": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 15360
+  },
+  "Beautician_Zardin": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 7084
+  },
+  "Gala_Luca": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 8610
+  },
+  "Ieyasu": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 8141
+  },
+  "Natalie": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 8442
+  },
+  "Renelle": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 4636
+  },
+  "Francesca": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4514
+  },
+  "Irfan": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4636
+  },
+  "Vice": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 8125
+  },
+  "Vida": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4892
+  },
+  "Yuya": {
+    "s": 2,
+    "cost": 4,
+    "type": 2,
+    "sp": 12528
+  },
+  "Luther": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 8317
+  },
+  "Orsem": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4622
+  },
+  "Renee": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4737
+  },
+  "Fritz": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 5762
+  },
+  "Fleur": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 11129
+  },
+  "Orion": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4426
+  },
+  "Alex": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7177
+  },
+  "Ezelith": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 4800
+  },
+  "Gala_Laxi": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5075
+  },
+  "Dragonyule_Cleo": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 6397
+  },
+  "Wedding_Aoi": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 6242
+  },
+  "Summer_Norwin": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 17145
+  },
+  "Mitsuhide": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5282
+  },
+  "Rex": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5884
+  },
+  "Pietro": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5736
+  },
+  "Johanna": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5808
+  },
+  "Linus": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5884
+  },
+  "Erik": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 6883
+  },
+  "Vanessa": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 6066
+  },
+  "Yue": {
+    "s": 2,
+    "cost": 5,
+    "type": 5,
+    "sp": 9600
+  },
+  "Karina": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 9402
+  },
+  "Ranzal": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 10939
+  },
+  "Summer_Luca": {
+    "s": 2,
+    "cost": 5,
+    "type": 5,
+    "sp": 9739
+  },
+  "Sazanka": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 7854
+  },
+  "Ramona": {
+    "s": 2,
+    "cost": 4,
+    "type": 2,
+    "sp": 13273
+  },
+  "Halloween_Mym": {
+    "s": 2,
+    "cost": 6,
+    "type": 4,
+    "sp": 14934
+  },
+  "Summer_Julietta": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7346
+  },
+  "Gala_Elisanne": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 15360
+  },
+  "Valentines_Melody": {
+    "s": 2,
+    "cost": 6,
+    "type": 1,
+    "sp": 5217
+  },
+  "Julietta": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 6260
+  },
+  "Dragonyule_Malora": {
+    "s": 2,
+    "cost": 6,
+    "type": 1,
+    "sp": 10703
+  },
+  "Zhu_Bajie": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 6440
+  },
+  "Curran": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 8015
+  },
+  "Summer_Patia": {
+    "s": 2,
+    "cost": 7,
+    "type": 1,
+    "sp": 10080
+  },
+  "Alain": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5162
+  },
+  "Cibella": {
+    "s": 1,
+    "cost": 3,
+    "type": 2,
+    "sp": 7008
+  },
+  "Jakob": {
+    "s": 2,
+    "cost": 3,
+    "type": 2,
+    "sp": 10686
+  },
+  "Malka": {
+    "s": 2,
+    "cost": 5,
+    "type": 4,
+    "sp": 9254
+  },
+  "Zace": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 4704
+  },
+  "Emma": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 14122
+  },
+  "Elisanne": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 13741
+  },
+  "Gauld": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 6102
+  },
+  "Aeleen": {
+    "s": 2,
+    "cost": 3,
+    "type": 2,
+    "sp": 11947
+  },
+  "Pia": {
+    "s": 2,
+    "cost": 5,
+    "type": 4,
+    "sp": 8362
+  },
+  "Ryozen": {
+    "s": 1,
+    "cost": 4,
+    "type": 2,
+    "sp": 13232
+  },
+  "Sha_Wujing": {
+    "s": 2,
+    "cost": 6,
+    "type": 1,
+    "sp": 13478
+  },
+  "Patia": {
+    "s": 1,
+    "cost": 5,
+    "type": 2,
+    "sp": 13232
+  },
+  "Gala_Mym": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 6702
+  },
+  "Nadine": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 7590
+  },
+  "Xainfried": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 6370
+  },
+  "Fjorm": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 5476
+  },
+  "Catherine": {
+    "s": 2,
+    "cost": 6,
+    "type": 1,
+    "sp": 4680
+  },
+  "Sylas": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 8112
+  },
+  "Kirsty": {
+    "s": 2,
+    "cost": 6,
+    "type": 4,
+    "sp": 13654
+  },
+  "Annelie": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 6102
+  },
+  "Halloween_Elisanne": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 6822
+  },
+  "Hunter_Vanessa": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5572
+  },
+  "Sharena": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4824
+  },
+  "Forte": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 4704
+  },
+  "Lathna": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 7420
+  },
+  "Joe": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 4790
+  },
+  "Waike": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4790
+  },
+  "Philia": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4790
+  },
+  "Malora": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 4790
+  },
+  "Valentines_Ezelith": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5416
+  },
+  "Dragonyule_Nefaria": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 4718
+  },
+  "Eleonora": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5008
+  },
+  "Joachim": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 8969
+  },
+  "Luca": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5008
+  },
+  "Rawn": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 5116
+  },
+  "Norwin": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 5006
+  },
+  "Gala_Sarisse": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 6727
+  },
+  "Chelsea": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 5820
+  },
+  "Laranoa": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5134
+  },
+  "Hunter_Sarisse": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 9045
+  },
+  "Louise": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 8977
+  },
+  "Hawk": {
+    "mod_sp": 1.2999999523162842,
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 7624
+  },
+  "Summer_Cleo": {
+    "s": 2,
+    "cost": 5,
+    "type": 4,
+    "sp": 10779
+  },
+  "Summer_Mikoto": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 10400
+  },
+  "Nefaria": {
+    "mod_sp": 1.149999976158142,
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 7596
+  },
+  "Valentines_Addis": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 9631
+  },
+  "Xania": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5518
+  },
+  "Nicolas": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 5570
+  },
+  "Xiao_Lei": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 5570
+  },
+  "Althemia": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 5518
+  },
+  "Sinoa": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 15268
+  },
+  "Dragonyule_Xander": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5126
+  },
+  "Pipple": {
+    "s": 1,
+    "cost": 5,
+    "type": 2,
+    "sp": 15840
+  },
+  "Noelle": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 14122
+  },
+  "Dragonyule_Xainfried": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 10305
+  },
+  "Amane": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5422
+  },
+  "Chitose": {
+    "s": 1,
+    "cost": 6,
+    "type": 4,
+    "sp": 14122
+  },
+  "Kleimann": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 6564
+  },
+  "Student_Maribelle": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7152
+  },
+  "Lily": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 5976
+  },
+  "Maribelle": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7149
+  },
+  "Summer_Sinoa": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 13343
+  },
+  "Lucretia": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 7766
+  },
+  "Peony": {
+    "s": 2,
+    "cost": 7,
+    "type": 1,
+    "sp": 18200
+  },
+  "Veronica": {
+    "s": 1,
+    "cost": 7,
+    "type": 1,
+    "sp": 9214
+  },
+  "Gala_Cleo": {
+    "s": 1,
+    "cost": 5,
+    "type": 1,
+    "sp": 7316
+  },
+  "Cassandra": {
+    "s": 1,
+    "cost": 6,
+    "type": 1,
+    "sp": 5838
+  },
+  "Zena": {
+    "s": 1,
+    "cost": 3,
+    "type": 1,
+    "sp": 5655
+  },
+  "Aurien": {
+    "s": 1,
+    "cost": 4,
+    "type": 3,
+    "sp": 8282
+  },
+  "Ricardt": {
+    "s": 1,
+    "cost": 4,
+    "type": 3,
+    "sp": 11437
+  },
+  "Sophie": {
+    "s": 1,
+    "cost": 4,
+    "type": 3,
+    "sp": 8282
+  },
+  "Hope": {
+    "s": 2,
+    "cost": 3,
+    "type": 2,
+    "sp": 10686
+  },
+  "Estelle": {
+    "s": 2,
+    "cost": 5,
+    "type": 3,
+    "sp": 8874
+  },
+  "Edward": {
+    "s": 1,
+    "cost": 4,
+    "type": 3,
+    "sp": 8282
+  },
+  "Verica": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 10648
+  },
+  "Halloween_Lowen": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 11536
+  },
+  "Thaniel": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 8874
+  },
+  "Nurse_Aeleen": {
+    "s": 2,
+    "cost": 5,
+    "type": 3,
+    "sp": 9465
+  },
+  "Lowen": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 9465
+  },
+  "Wedding_Xania": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 8834
+  },
+  "Halloween_Althemia": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 8874
+  },
+  "Vixel": {
+    "s": 1,
+    "cost": 5,
+    "type": 3,
+    "sp": 10057
+  },
+  "Cleo": {
+    "s": 1,
+    "cost": 3,
+    "type": 3,
+    "sp": 9465
+  },
+  "Valentines_Hildegarde": {
+    "s": 1,
+    "cost": 6,
+    "type": 3,
+    "sp": 12374
+  },
+  "Jiang_Ziya": {
+    "s": 1,
+    "cost": 6,
+    "type": 3,
+    "sp": 9465
+  },
+  "Akasha": {
+    "s": 1,
+    "cost": 6,
+    "type": 3,
+    "sp": 10057
+  },
+  "Hildegarde": {
+    "s": 1,
+    "cost": 6,
+    "type": 3,
+    "sp": 9465
+  },
+  "Heinwald": {
+    "s": 1,
+    "cost": 4,
+    "type": 1,
+    "sp": 9385
+  },
+  "Summer_Verica": {
+    "s": 1,
+    "cost": 6,
+    "type": 3,
+    "sp": 10648
+  },
+  "Zethia": {
+    "s": 1,
+    "cost": 0,
+    "type": 3,
+    "sp": 2785
+  },
+  "Leif": {
+    "s": 1,
+    "cost": 0,
+    "type": 2,
+    "sp": 7633
+  }
+}

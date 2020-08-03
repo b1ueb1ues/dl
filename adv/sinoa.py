@@ -1,38 +1,50 @@
-import adv_test
-import adv
-from adv import *
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Sinoa
 
-class Sinoa(adv.Adv):
-    comment = '5c+fs'
-
+class Sinoa(Adv):
     a1 = ('a',0.13,'hp100')
     a3 = ('bt',0.2)
-   # conf = {}
-   # import slot
-   # conf['slots.a'] = slot.a.Bellathorna()+slot.a.RR()
 
-
-    def s1_proc(this, e):
-        r = random.random()
-        if r<0.25  :
-            adv.Teambuff('s1_att',0.25,15,'att').on()
-        elif r<0.5 :
-            adv.Teambuff('s1_crit',0.25,10,'crit').on()
-        else:
-            log('failed','s1')
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = '''
+        `dragon, s=1
+        `s3, not self.s3_buff
         `s1
         `s2
-        `s3, seq=5
-        `fs, seq=5
-        '''
-    adv_test.test(module(), conf, verbose=-2, mass=1)
+        `s4
+    '''
+    coab = ['Dagger2', 'Gala_Sarisse', 'Marth']
+    share = ['Ranzal']
 
+    def prerun(self):
+        self.s1_buff_mode = 'means'
 
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.s1_buff_mode = 'means'
+
+    def s1_proc(self, e):
+        if self.s1_buff_mode == 'means':
+            Teambuff(f'{e.name}_att',0.25/4,15,'att').on()
+            Teambuff(f'{e.name}_crit',0.25/4,10,'crit').on()
+        elif self.s1_buff_mode == 'random':
+            r = random.random()
+            if r<0.25  :
+                Teambuff(f'{e.name}_att',0.25,15,'att').on()
+            elif r<0.5 :
+                Teambuff(f'{e.name}_crit',0.25,10,'crit').on()
+            elif r<0.75:
+                Event('defchain')()
+            else:
+                log('debug','s1 HP buff')
+        elif self.s1_buff_mode == 'att':
+            Teambuff(f'{e.name}_att',0.25,15,'att').on()
+        elif self.s1_buff_mode == 'crit':
+            Teambuff(f'{e.name}_crit',0.25,10,'crit').on()
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

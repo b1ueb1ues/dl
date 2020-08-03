@@ -1,5 +1,4 @@
-import adv_test
-from adv import *
+from core.advbase import *
 from module.bleed import Bleed
 from slot.a import *
 
@@ -7,56 +6,47 @@ def module():
     return Ieyasu
 
 class Ieyasu(Adv):
-    #comment = 'RR+Jewels'
-    a1 = ('cc',0.1,'hp70')
-    a2 = ('cd',0.2)
+    a1 = ('cc',0.13,'hp70')
+    a2 = ('cd',0.3)
 
     conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = RR()+BN()
-        else:
-            this.conf.slot.a = RR()+JotS()
+    conf['slots.a'] = Resounding_Rendition()+United_by_One_Vision()
+    conf['acl'] = """
+        ##Use Gala Cat Sith only when out of Skillful Trickery
+        #`dragon.act('c3 s end')
+        `s3, not self.s3_buff
+        `s1, self.s3_buff
+        `s2, x=5
+        `s4, fsc
+        `fs, x=5 and self.s3_buff
+    """
+    coab = ['Wand','Dagger','Axe2']
+    share = ['Curran']
 
-    def s2ifbleed(this):
-        if this.s2buff.get()!=0:
-            if this.bleed._static['stacks'] > 0:
-                return 0.15
+    def s2ifbleed(self):
+        if self.bleed._static['stacks'] > 0:
+            return self.s2buff.get()
         return 0
 
-    def prerun(this):
-        random.seed()
-        this.s2buff = Selfbuff("s2",0.15, 15, 'crit')
-        this.s2buff.modifier.get = this.s2ifbleed
-        this.bleed = Bleed("g_bleed",0).reset()
- #       this.crit_mod = this.rand_crit_mod
-        this.s2charge = 0
+    def prerun(self):
+        self.s2buff = Selfbuff('s2',0.20,15,'crit')
+        self.s2buff.modifier.get = self.s2ifbleed
+        self.bleed = Bleed('g_bleed',0).reset()
+        self.s2charge = 0
 
-    def s1_proc(this, e):
-        if random.random() < 0.8:
-            Bleed("s1_bleed", 1.46).on()
+    @staticmethod
+    def prerun_skillshare(adv, dst):
+        adv.bleed = Bleed('g_bleed',0).reset()
 
+    def s1_proc(self, e):
+        with KillerModifier('s1_killer', 'hit', 0.2, ['poison']):
+            self.dmg_make(e.name, 12.40)
+            Bleed(e.name, 1.46).on()
 
-    def s2_proc(this, e):
-        this.s2buff.on()
+    def s2_proc(self, e):
+        self.s2buff.on()
 
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=-2, mass=1)
-
-    exit()
-    def foo(this, e):
-        return
-    module().s1_proc = foo
-    conf['acl'] = """
-        `s1
-        `s2, seq=5 and this.bleed._static['stacks'] > 0
-        `s3
-        """
-    adv_test.test(module(), conf, verbose=1, mass=1)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,50 +1,52 @@
-import copy
-import conf.skillframe
-import conf.csv2conf
-import conf.slot_common
-import conf.forte
-import slot
+import json
+from slot import Slots
 from core import Conf
 
-conf = Conf()
+import conf.halidom
 
-def get_skillframe(name):
-    global conf
-    for i in skillframe.skills:
-        sf = skillframe.skills[i]
-        if name.lower() == i.lower():
-            if sf[0] == '1':
-                conf.s1.startup = 0.25
-                conf.s1.recovery = 0.90
-            else:
-                conf.s1.recovery = float(sf[0])
 
-            if sf[1] == '1':
-                conf.s2.startup = 0.25
-                conf.s2.recovery = 0.90
-            else:
-                conf.s2.recovery = float(sf[1])
+def load_json(name):
+    fname = ''
+    find = '/'
+    if __file__.find('/') == -1:
+        find = '\\'
+        if __file__.find('\\') == -1:
+            find = None
+            fname = name
+    if find:
+        l = __file__.rfind(find)
+        fname = __file__[:l] + find + name
+
+    with open(fname, 'r', encoding='utf8') as f:
+        return json.load(f, parse_float=float, parse_int=int)
+
+
+advconfs = load_json('advconf.json')
+coability = load_json('chains.json')
+skillshare = load_json('skillshare.json')
+
+
+def coability_dict(ele):
+    if ele:
+        return {**coability['all'], **coability[ele]}
+    else:
+        return coability['all'].copy()
+
 
 def get(name):
-    global conf
+    conf = Conf()
 
-    get_skillframe(name)
+    json_conf = Conf(advconfs.get(name))
 
-    csvconf = csv2conf.get(name)
-
-    conf += csvconf
-
-    slots = slot.Slots()
-
-    conf.slot_common = [slot_common.set]
+    conf += json_conf
 
     import wep
     wt = conf.c.wt
     weapon = getattr(wep, wt)
-    wepconf = weapon.conf
+    wepconf = Conf(weapon.conf)
+    if bool(conf.c.lv2_autos):
+        wepconf += Conf(weapon.lv2)
 
     conf += Conf(wepconf)
-    
-    return conf
-    
 
+    return conf

@@ -1,36 +1,29 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Luca
 
-class Luca(adv.Adv):
+class Luca(Adv):
     a1 = ('a',0.13,'hp100')
 
-    def prerun(this):
-        if this.condition('0 resist'):
-            this.afflics.paralysis.resist=0
-        else:
-            this.afflics.paralysis.resist=100
+    conf = {}
+    conf['slots.a'] = Resounding_Rendition()+Spirit_of_the_Season()
+    conf['acl'] = """
+        `dragon
+        `s1
+        `s2, fsc
+        `s3
+        `s4
+        `fs, seq=4
+        """
+    coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
+    conf['afflict_res.paralysis'] = 0
 
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
-
-    def s1_proc(this, e):
-        this.afflics.paralysis('s1',110,0.883)
-
-
+    def s1_proc(self, e):
+        self.afflics.paralysis(e.name,110,0.883)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5 
-        `s2, seq=5 
-        `s3, seq=5 
-        """
-    adv_test.test(module(), conf, verbose=0)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

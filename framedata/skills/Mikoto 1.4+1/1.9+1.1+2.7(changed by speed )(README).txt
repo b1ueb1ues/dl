@@ -1,5 +1,0 @@
-s3_ shows that s3 last for 2.712s with no speed aura
-s3  shows that s3 last for 2.269s with speed aura
-
-2712 ∕ 2269 ≈ 1.1952402
-means that skill is affected by attack speed

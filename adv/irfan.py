@@ -1,20 +1,24 @@
-import adv_test
-from adv import *
+from core.advbase import *
 
 def module():
     return Irfan
 
 class Irfan(Adv):
-    pass
-
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `dragon
         `s1
         `s2, seq=5
-        `s3, seq=5
+        `s3
+        `s4
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=0, mass=0)
+    coab = ['Blade','Halloween_Elisanne','Peony']
+    share = ['Ranzal']
 
+    def s2_proc(self, e):
+        Debuff(e.name, 0.05, 10, 0.8, 'attack').on()
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

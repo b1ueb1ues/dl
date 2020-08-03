@@ -1,5 +1,4 @@
-import adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -11,37 +10,18 @@ class Elisanne(Adv):
     a1 = ('bt',0.25)
 
     conf = {}
-    #conf['slots.a'] = RR() + HG()
-    #conf['slots.a'] = Halidom_Grooms() + Bellathorna()
-    #conf['slots.a'] = HG() + Indelible_Summer()
-    conf['slots.a'] = BB() + FWHC()
-    conf['slots.d'] = H_Maritimus()
-    #conf['mod'] = {'ex':('sp','passive',0.15)}
+    conf['slots.a'] = Beach_Battle()+Castle_Cheer_Corps()
+    conf['slots.frostbite.a'] = conf['slots.a']
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
+        `s3, not self.s3_buff
         `s1
+        `s4
+        `fs, x=5
     """
-
+    coab = ['Tobias', 'Renee', 'Bow']
+    share = ['Gala_Elisanne']
 
 if __name__ == '__main__':
-    conf = {}
-    #conf['acl'] = """
-    #    `s1, seq=5 and cancel
-    #    `s2, seq=5 and cancel
-    #    `s3, seq=5 and cancel
-    #    """
-    # conf['acl'] = """
-    #     `s1
-    #     `s2, fsc
-    #     `fs, seq=5
-    #     """
-
-#    conf['acl'] = '''
-#        `rotation
-#    '''
-#    conf['rotation'] = """
-#        c5c5fss1
-#    """
-#    conf['rotation'] = """
-#        c5fsc5s1
-#    """
-    adv_test.test(module(), conf, verbose=-2)
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

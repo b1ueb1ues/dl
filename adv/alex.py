@@ -1,44 +1,33 @@
-import adv_test
-import adv
+from core.advbase import *
+from slot.a import *
 from slot.d import *
 
 def module():
     return Alex
 
-class Alex(adv.Adv):
+class Alex(Adv):
     comment = 'not consider bk boost of her s2'
     a1 = ('s',0.35,'hp100')
     a3 = ('sp',0.05)
 
     conf = {}
-    conf['slot.d'] = Shinobi()
-    tmp = 0
+    conf['slots.a'] = Twinfold_Bonds()+The_Plaguebringer()
+    conf['slots.poison.a'] = conf['slots.a']
+    conf['acl'] = """
+        `dragon.act('c3 s end')
+        `s3, not self.s3_buff
+        `s4
+        `s1
+        `s2
+        `fs, x=5
+        """
+    coab = ['Blade','Wand','Heinwald']
+    conf['afflict_res.poison'] = 0
+    share = ['Curran']
 
+    def s1_proc(self, e):
+        self.afflics.poison(e.name,100,0.396)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s2, seq=5 and cancel 
-        `s3, seq=5 and cancel or fsc
-        `fs, seq=5
-        """
-    import sys
-    from slot.a import *
-    if len(sys.argv) >= 3:
-        sim_duration = int(sys.argv[2])
-    else:
-        sim_duration = 180
-
-    if sim_duration == 120:
-        conf['acl'] = """
-            `rotation
-        """
-        conf['rotation'] = """
-            C4FS C5- S1 C4FS C5- S1 C1- S2 C4FS C5- S1 C5- S3 C5- S1
-            C5- S2 C5- S1 C4FS C5- S1 C4FS C2- S2 C2- S3 C3- S1
-        """
-
-    adv_test.test(module(), conf, verbose=0)
-
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

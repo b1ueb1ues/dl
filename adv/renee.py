@@ -1,46 +1,34 @@
-import adv_test
-import adv
-from adv import *
+from core.advbase import *
+from slot.d import *
 
 def module():
     return Renee
 
-class Renee(adv.Adv):
-    comment = 'no bog'
+class Renee(Adv):
+    a1 = ('primed_crit_chance', 0.6,5)
 
-
-    def prerun(this):
-        this.a1_iscding = 0
-
-    def a1_cooldown(this, t):
-        this.a1_iscding = 0
-        log('cd','a1','end')
-
-
-    def a1_act(this):
-        if not this.a1_iscding :
-            this.a1_iscding = 1
-            Timer(this.a1_cooldown).on(15)
-            log('cd','a1','start')
-            Selfbuff('a1',0.06,5,'crit','chance').on()
-
-    def charge(this, name, sp):
-        if this.s1.check():
-            return Adv.charge(this, name, sp)
-        Adv.charge(this, name, sp)
-        if this.s1.check():
-            this.a1_act()
-
-
-
-
-if __name__ == '__main__':
     conf = {}
+    conf['slots.d'] = Gaibhne_and_Creidhne()
     conf['acl'] = """
+        `dragon
+        `s3
+        `s4
         `s1
         `s2
-        `s3, seq=5
         `fs, seq=5
         """
-    adv_test.test(module(), conf, verbose=-2)
+    coab = ['Blade', 'Xander', 'Dagger2']
+    conf['afflict_res.bog'] = 100
+    share = ['Gala_Elisanne', 'Eugene']
 
+    def s1_proc(self, e):
+        self.dmg_make(e.name,1.11)
+        self.afflics.bog.on(e.name, 100)
+        self.dmg_make(e.name,5.55)
+
+    def s2_proc(self, e):
+        Event('defchain')()
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,27 +1,32 @@
-import adv_test
-from adv import *
+from core.advbase import *
+from slot.a import *
 
 def module():
     return Renelle
 
 class Renelle(Adv):
-    a1 = ('cc',0.08,'hit15')
+    a1 = ('cc',0.15,'hit15')
+    
+    conf = {}
+    conf['slots.a'] = Twinfold_Bonds()+Me_and_My_Bestie()
+    conf['acl'] = """
+        `dragon
+        `s3, not self.s3_buff
+        `s1, fsc
+        `s2, fsc
+        `s4, fsc
+        `fs, x=5
+        """
+    conf['afflict_res.burn'] = 0
+    coab = ['Blade', 'Marth', 'Serena']
+    share = ['Ranzal']
 
-    def rinit(this):
-        this.rotation('')
+    def s1_proc(self, e):
+        self.afflics.burn(e.name,100,0.803)
+    
+    def s2_proc(self, e):
+        self.afflics.burn(e.name,100,0.803)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `rotation
-        """
-    conf['rotation_init'] = """
-        c4fs C4FS C1- 
-    """
-    conf['rotation'] = """
-        S1 C4FS C4FS C1- S1 C1- S2 C4FS C5- S1 C1- S3
-        C4FS C5- S1 C2- S2 C4FS C5- S1 C4FS C4FS C1- S1 C1- S3 C1- S2 C4fs !c5!
-    """
-    # why c4fs at end, not c5
-    adv_test.test(module(), conf, verbose=0, mass=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

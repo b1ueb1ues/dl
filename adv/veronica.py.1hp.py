@@ -1,6 +1,4 @@
-import adv_test
-import adv
-import veronica
+import adv.veronica
 import slot
 from slot import *
 
@@ -8,36 +6,19 @@ from slot import *
 def module():
     return Veronica
 
-class Veronica(veronica.Veronica):
-    comment = '1hp; only c5 & s1; '
-    a3 = ('prep','100%')
-    conf = {}
-    conf['slots.a'] = slot.a.FG() + slot.a.Heralds_of_Hinomoto()
-    conf['slots.d'] = slot.d.Shinobi()
+class Veronica(adv.veronica.Veronica):
 
-    def init(this):
-        if this.condition('hp1'):
-            this.s1boost = 1.25
-        else:
-            this.s1boost = 0
+    conf = adv.veronica.Veronica.conf.copy()
 
-    def s1_proc(this, e):
-        if this.s1boost:
-            this.dmg_make('o_s1_crisis', this.s1boost*10.84)
+    def prerun(self):
+        super().prerun()
+        self.set_hp(0)
 
+    def a1_buff_on(self, e):
+        super().a1_buff_on(e)
+        self.set_hp(0)
 
 if __name__ == '__main__':
-    conf = {}
-#    conf['acl'] = """
-#        `s1, seq=5 and cancel or fsc
-#        `s1, pin == 'prep'
-#        `fs, seq=5 and s1.charged >= 2500
-#        """
-
-    conf['acl'] = """
-        `s1, seq=5 and cancel or fsc
-        `s1, pin == 'prep'
-        """
-
-    adv_test.test(module(), conf, verbose=0)
-
+    import sys
+    from core.simulate import test_with_argv
+    test_with_argv(Veronica, *sys.argv)

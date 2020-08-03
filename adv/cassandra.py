@@ -1,66 +1,38 @@
-import adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
+from slot.d import *
 
 def module():
     return Cassandra
 
-class Flash_of_Genius(Amulet):
-    att = 57
-
 class Cassandra(Adv):
-    comment = 'no counter damage'
-    a1 = ('prep','100%')
-    a3 = ('ro',0.1)
+    a3 = [('prep',1.00), ('scharge_all', 0.05)]
+    a3 = ('ro', 0.15, 180)
 
-    def prerun(this):
-        this.comment = 's2 drops combo'
-        this.hits = 0
-        this.flurry_str = Selfbuff('flurry_str',0.2,-1,'att','passive')
-        
-        #timing = adv_test.sim_duration/3
-        #this.ro(0)
-        #Timer(this.ro).on(timing)
-        #Timer(this.ro).on(timing*2)
+    conf = {}
+    conf['slots.a'] = Candy_Couriers()+The_Plaguebringer()
+    conf['slots.poison.a'] = conf['slots.a']
+    conf['acl'] = """
+        `dragon.act('c3 s end')
+        `s3, not self.s3_buff
+        `s1
+        `s2
+        `s4
+    """
+    coab = ['Curran','Summer_Patia','Delphi']
+    share = ['Veronica']
+    conf['afflict_res.poison'] = 0
 
-    def dmg_proc(this, name, amount):
-        if name == 'x1':
-            this.hits += 1
-        elif name == 'x2':
-            this.hits += 2
-        elif name == 'x3':
-            this.hits += 3
-        elif name == 'x4':
-            this.hits += 2
-        elif name == 'x5':
-            this.hits += 5
-        elif name == 'fs':
-            this.hits += 2
-        elif name == 's1':
-            this.hits += 2
-        elif name == 's2':
-            this.hits += 5
-        elif name == 's3':
-            this.hits += 1
+    def prerun(self):
+        self.set_hp(80)
 
-        if this.hits >= 15:
-            this.flurry_str.on()
+    def s1_proc(self, e):
+        self.afflics.poison(e.name,120,0.582)
 
-    #def ro(this, t):
-        #Selfbuff('a3',0.10,-1).on()
-
-    def s2_proc(this, e):
-        this.flurry_str.off()
-        
+    def s2_proc(self, e):
+        with CrisisModifier(e.name, 1, self.hp):
+            self.dmg_make(e.name,9.72)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['slots.a'] = CC()+Flash_of_Genius()
-    conf['acl'] = """
-        `s1
-        `s2, seq=5
-        `s3
-    """
-
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

@@ -1,29 +1,7 @@
-import slot
-from slot import *
+from slot import WeaponBase
+from slot.w import agito_buffs
 
-class dagger5b1(WeaponBase):
-    ele = ['flame','wind','shadow']
-    wt = 'dagger'
-    att = 545
-    s3 = {
-        "dmg"      : 6*1.64   ,
-        "sp"       : 7323     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.5      ,
-        }
-
-class dagger5b2(WeaponBase):
-    ele = ['water','light']
-    wt = 'dagger'
-    att = 529
-    s3 = {
-        "buff"     : ['self',0.4, 5],
-        "sp"       : 7103       ,
-        "startup"  : 0.10+0.15  ,
-        "recovery" : 1.05-0.15  ,
-        }
-
-class dagger5d1flame(WeaponBase):
+class HDT1_Crimson_Fang(WeaponBase):
     ele = ['flame']
     wt = 'dagger'
     att = 728
@@ -32,9 +10,24 @@ class dagger5d1flame(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
-        }
+        "hit"      : 8        ,
+    } # Savage Crimson
+    a = [('k', 0.3, 'vs HMS')]
 
-class dagger5d1water(WeaponBase):
+class HDT2_Flamerulers_Maw(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1455
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        "hit"      : 8        ,
+    } # Savage Flameruler
+    a = []
+
+class HDT1_Tidal_Fang(WeaponBase):
     ele = ['water']
     wt = 'dagger'
     att = 728
@@ -43,9 +36,24 @@ class dagger5d1water(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 3.37     ,
-        }
+        "hit"      : 8        ,
+    } # Vicious Tides
+    a = [('k', 0.3, 'vs HBH')]
 
-class dagger5d1wind(WeaponBase):
+class HDT2_Tiderulers_Maw(WeaponBase):
+    ele = ['water']
+    wt = 'dagger'
+    att = 1455
+    s3 = {
+        "dmg"      : 1.15*8   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 3.37     ,
+        "hit"      : 8        ,
+    } # Vicious Tideruler
+    a = []
+
+class HDT1_Galestorm_Fang(WeaponBase):
     ele = ['wind']
     wt = 'dagger'
     att = 691
@@ -54,53 +62,11 @@ class dagger5d1wind(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
-        }
+        "hit"      : 5        ,
+    } # Merciless Galestorm
+    a = [('k', 0.3, 'vs HMC')]
 
-class dagger5d1light(WeaponBase):
-    ele = ['light']
-    wt = 'dagger'
-    att = 706
-    s3 = {
-        "dmg"      : 1.64*5   ,
-        "sp"       : 6145     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.45     ,
-        }
-
-class dagger5d1shadow(WeaponBase):
-    ele = ['shadow']
-    wt = 'dagger'
-    att = 706
-    s3 = {
-        "dmg"      : 1.73*5   ,
-        "sp"       : 6590     ,
-        "startup"  : 0.1      ,
-        "recovery" : 2.3      ,
-        }
-
-class dagger5d2flame(WeaponBase):
-    ele = ['flame']
-    wt = 'dagger'
-    att = 1455
-    s3 = {
-        "dmg"      : 1.15*8   ,
-        "sp"       : 6590     ,
-        "startup"  : 0.1      ,
-        "recovery" : 3.37     ,
-        }
-
-class dagger5d2water(WeaponBase):
-    ele = ['water']
-    wt = 'dagger'
-    att = 1455
-    s3 = {
-        "dmg"      : 1.15*8   ,
-        "sp"       : 6590     ,
-        "startup"  : 0.1      ,
-        "recovery" : 3.37     ,
-        }
-
-class dagger5d2wind(WeaponBase):
+class HDT2_Windrulers_Maw(WeaponBase):
     ele = ['wind']
     wt = 'dagger'
     att = 1383
@@ -109,9 +75,24 @@ class dagger5d2wind(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
-        }
+        "hit"      : 5        ,
+    } # Merciless Windruler
+    a = []
 
-class dagger5d2light(WeaponBase):
+class HDT1_Lightning_Fang(WeaponBase):
+    ele = ['light']
+    wt = 'dagger'
+    att = 706
+    s3 = {
+        "dmg"      : 1.64*5   ,
+        "sp"       : 6145     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.45     ,
+        "hit"      : 5        ,
+    } # Ferocious Lightning
+    a = [('k', 0.3, 'vs HZD')]
+
+class HDT2_Fulminators_Maw(WeaponBase):
     ele = ['light']
     wt = 'dagger'
     att = 1412
@@ -120,9 +101,24 @@ class dagger5d2light(WeaponBase):
         "sp"       : 6145     ,
         "startup"  : 0.1      ,
         "recovery" : 2.45     ,
-        }
+        "hit"      : 5        ,
+    } # Ferocious Fulminator
+    a = []
 
-class dagger5d2shadow(WeaponBase):
+class HDT1_Darkened_Fang(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 706
+    s3 = {
+        "dmg"      : 1.73*5   ,
+        "sp"       : 6590     ,
+        "startup"  : 0.1      ,
+        "recovery" : 2.3      ,
+        "hit"      : 5        ,
+    } # Bloodstarved Darkness
+    a = [('k', 0.3, 'vs HJP')]
+
+class HDT2_Shaderulers_Maw(WeaponBase):
     ele = ['shadow']
     wt = 'dagger'
     att = 1412
@@ -131,10 +127,61 @@ class dagger5d2shadow(WeaponBase):
         "sp"       : 6590     ,
         "startup"  : 0.1      ,
         "recovery" : 2.3      ,
-        }
+        "hit"      : 5        ,
+    } # Bloodstarved Shadowruler
+    a = []
 
-flame  = dagger5d2flame
-water  = dagger5d2water
-wind   = dagger5d2wind
-light  = dagger5d2light
-shadow = dagger5d2shadow
+class Chimeratech_Dagger(WeaponBase):
+    ele = ['flame', 'shadow', 'wind']
+    wt = 'dagger'
+    att = 981
+    s3 = {} #
+    a = [('uo', 0.04)]
+
+class Agito2_Hrotti(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1662
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Hrotti(WeaponBase):
+    ele = ['flame']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['flame'][1]
+
+class Agito1_Qinghong_Jian(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['shadow'][1]
+
+class Agito2_Qinghong_Jian(WeaponBase):
+    ele = ['shadow']
+    wt = 'dagger'
+    att = 1662
+    s3 = agito_buffs['shadow'][2]
+
+class Agito1_Carnwennan(WeaponBase):
+    ele = ['wind']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['wind'][1]
+
+class Agito1_Futsu_no_Mitama(WeaponBase):
+    ele = ['water']
+    wt = 'dagger'
+    att = 1513
+    s3 = agito_buffs['water'][1]
+
+class UnreleasedAgitoStr_LightDagger(Agito2_Hrotti):
+    ele = ['light']
+
+class UnreleasedAgitoSpd_LightDagger(Agito1_Qinghong_Jian):
+    ele = ['light']
+
+flame = Agito2_Hrotti
+water = Agito1_Futsu_no_Mitama
+wind = Agito1_Carnwennan
+light = HDT2_Fulminators_Maw
+shadow = Agito2_Qinghong_Jian

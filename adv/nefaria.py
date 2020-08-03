@@ -1,65 +1,56 @@
-import adv_test
-from adv import *
+from core.advbase import *
+from module.x_alt import Fs_alt
+from slot.a import *
 
 def module():
     return Nefaria
 
 class Nefaria(Adv):
+    comment = 's2 fs(precharge) s1 s1'
+    
+    a1 = [('edge_blind', 60, 'hp100'),('edge_poison', 60, 'hp100')]
+    a3 = [('k_blind',0.4), ('k_poison',0.3)]
 
-    def prerun(this):
-        if this.condition('80 resist'):
-            this.afflics.blind.resist=80
-        else:
-            this.afflics.blind.resist=100
-        this.m = Modifier('bkiller','att','killer',0.3)
-        this.m.get = this.getbane
-        this.s2fscharge = 0
-        if this.condition('fullhp=blind'):
-            this.fullhp = 1
-        else:
-            this.fullhp = 0
+    conf = {}
+    conf['slots.a'] = Resounding_Rendition()+The_Fires_of_Hate()
+    conf['acl'] = """
+        `dragon.act("c3 s end")
+        `s3, not self.s3_buff
+        `fs, self.fs_alt.uses > 0 and x=4
+        `s1, fsc or x=1 or not self.s3_buff
+        `s4
+        `s2
+        """
+    coab = ['Wand','Gala_Alex','Heinwald']
+    share = ['Curran']
 
-        if this.condition('c4+fs'):
-            this.conf['acl'] = """
-                `s1, fsc
-                `s2, fsc
-                `s3, fsc
-                `fs, seq=4
-                """
+    conf['afflict_res.blind'] = 80
+    conf['afflict_res.poison'] = 0
 
-    def getbane(this):
-        return this.afflics.blind.get()*0.3
+    def fs_proc_alt(self, e):
+        self.afflics.blind('s2_fs', 110)
+    
+    def prerun(self):
+        conf_fs_alt = {
+            'fs.dmg':7.90,
+            'fs.hit':19,
+            'fs.sp':2400,
+            'missile_iv.fs': 0.5
+        }
+        self.fs_alt = Fs_alt(self, Conf(conf_fs_alt), self.fs_proc_alt)
+        
+    def s1_proc(self, e):
+        with KillerModifier('s1killer', 'hit', 0.74, ['blind', 'poison']):
+            self.dmg_make(e.name,1.06)
+            self.hits += 1
+            self.afflics.poison(e.name, 70, 0.582)
+            self.dmg_make(e.name,7*1.06)
+            self.hits += 7
 
-
-    def s1_before(this, e):
-        r = this.afflics.blind.get()
-        coef = 8*1.06 * (1-r)
-        return coef
-
-    def s1_proc(this, e):
-        r = this.afflics.blind.get()
-        coef = 8*1.06 * r
-        this.dmg_make('s1',coef)
-        coef = 8*(1.8444-1.06) * r
-        this.dmg_make('o_s1_boost',coef)
-
-    def s2_proc(this, e):
-        this.s2fscharge = 3
-
-    def fs_proc(this, e):
-        if this.s2fscharge > 0:
-            this.s2fscharge -= 1
-            this.dmg_make("o_s2_fs",0.48)
-            this.afflics.blind('s2_fs', 100+this.fullhp*60)
-
-
-
+    def s2_proc(self, e):
+        self.fsacharge = 1
+        self.fs_alt.on(1)
 
 if __name__ == '__main__':
-    conf = {}
-    conf['acl'] = """
-        `s1, seq=5
-        `s3, seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

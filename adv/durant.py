@@ -1,5 +1,4 @@
-import adv_test
-from adv import *
+from core.advbase import *
 from slot.a import *
 from slot.d import *
 
@@ -11,15 +10,22 @@ class Durant(Adv):
     a3 = ('cd',0.17,'hp100')
 
     conf = {}
-    conf['slot.a'] = BN()+FWHC()
-    conf['slot.d'] = Marishiten()
+    conf['slots.a'] = Proper_Maintenance()+Howling_to_the_Heavens()
+    conf['slots.d'] = Fatalis()
 
+    conf['slots.poison.a'] = Proper_Maintenance()+The_Plaguebringer()
+    conf['slots.poison.d'] = Epimetheus()
+    
     conf['acl'] = """
+        `dragon, s=1
+        `s3, not self.s3_buff
         `s1
-        `s2
-        `s3, seq=5
-        """
+        `s2, x=5
+        `s4
+    """
+    coab = ['Dagger2', 'Tobias', 'Axe2']
+    share = ['Curran']
 
 if __name__ == '__main__':
-    adv_test.test(module(), conf, verbose=-2)
-
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)

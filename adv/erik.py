@@ -1,28 +1,31 @@
-import adv_test
-import adv
-from slot.a import *
+from core.advbase import *
+from slot.d import *
 
 def module():
     return Erik
 
-class Erik(adv.Adv):
-    comment =''
+class Erik(Adv):
     a1 = ('fs',0.30)
-
-    conf = {}
-    def d_slots(this):
-        if 'bow' in this.ex:
-            this.conf.slot.a = KFM()+JotS()
-        else:
-            this.conf.slot.a = KFM()+CE()
-
-if __name__ == '__main__':
     conf = {}
     conf['acl'] = """
+        `dragon.act("c3 s end")
+        `s3, not self.s3_buff
         `s1
         `s2, fsc
-        `s3, fsc
-        `fs,seq=5
-        """
-    adv_test.test(module(), conf, verbose=0)
+        `s4, fsc
+        `fs, x=5
+    """
+    coab = ['Blade','Wand','Dagger']
+    share = ['Curran']
 
+    def s1_proc(self, e):
+        with KillerModifier('s1_killer', 'hit', 0.5, ['poison']):
+            self.dmg_make(e.name, 15.84)
+
+    def s2_proc(self, e):
+        with KillerModifier('s2_killer', 'hit', 0.5, ['poison']):
+            self.dmg_make(e.name, 17.16)
+
+if __name__ == '__main__':
+    from core.simulate import test_with_argv
+    test_with_argv(None, *sys.argv)
